@@ -1,8 +1,33 @@
-# React + Vite
+## Requirements
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+To execute the project, it's necessary to have installed:
 
-Currently, two official plugins are available:
+- [NodeJS](https://nodejs.org/) (version 18 or higher)
+- [NPM](https://docs.npmjs.com/) (version 7 or higher)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tools
+
+For the Leve Energia front-end project, the following technologies were used:
+
+- [Vite](https://vitejs.dev/)
+- [Axios](https://axios-http.com/docs/intro)
+- [Dotenv](https://www.dotenv.org/docs/)
+- [Material UI](https://mui.com/material-ui/getting-started/)
+- [React Router](https://reactrouter.com/en/main/start/overview)
+
+Initialize the `node_modules`
+
+```bash
+npm install
+```
+
+Install all dependencies:
+
+```bash
+npm install axios dotenv react-router-dom @mui/material @emotion/react @emotion/styled
+```
+
+Run locally:
+```bash
+npm run dev -- --open
+```
