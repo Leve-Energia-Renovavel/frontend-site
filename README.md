@@ -13,6 +13,7 @@ For the Leve Energia front-end project, the following technologies were used:
 - [Axios](https://axios-http.com/docs/intro)
 - [Dotenv](https://www.dotenv.org/docs/)
 - [Material UI](https://mui.com/material-ui/getting-started/)
+- [Material Icons](https://mui.com/material-ui/material-icons/)
 - [React Router](https://reactrouter.com/en/main/start/overview)
 
 Initialize the `node_modules`
@@ -24,7 +25,7 @@ npm install
 Install all dependencies:
 
 ```bash
-npm install axios dotenv react-router-dom @mui/material @emotion/react @emotion/styled
+npm install axios dotenv react-router-dom @mui/material @mui/icons-material @emotion/react @emotion/styled
 ```
 
 Run locally:
