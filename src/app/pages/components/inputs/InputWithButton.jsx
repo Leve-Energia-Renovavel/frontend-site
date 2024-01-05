@@ -28,6 +28,10 @@ export default function InputWithButton(props) {
                             padding: '27.5px 14px',
                             borderTopRightRadius: '8px',
                             borderBottomRightRadius: '8px',
+                            "&:hover": {
+                                cursor: 'pointer',
+                                backgroundColor: background.secondaryLight,
+                            }
                         }}
                         position={props.position}
                     >

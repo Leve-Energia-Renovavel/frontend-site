@@ -24,6 +24,7 @@ export const button = {
 export const background = {
     primary: "#0075FF",
     secondary: "#FFD300",
+    secondaryLight: "#fce053",
     light: "#fefefe",
     dark: "#0a0a0a",
     lightBorder: "#e6e6e6",

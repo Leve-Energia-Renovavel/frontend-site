@@ -1,17 +1,16 @@
 "use client"
 
-import React from 'react';
+import { Typography } from '@mui/material';
+import Image from 'next/image';
 import Link from 'next/link';
-import { Typography, TextField, InputAdornment } from '@mui/material';
-import logo from "../../../../resources/img/logo-header.png"
-import Image from 'next/image'
-import { FooterContainer, LogoContainer, ContentContainer, AddressContainer, PagesContainer, ContactContainer, SocialMediaContainer, CallToActionContainer, RightsContainer } from './styles';
+import logo from "../../../../resources/img/logo-header.png";
+import { AddressContainer, CallToActionContainer, ContactContainer, ContentContainer, FooterContainer, LogoContainer, PagesContainer, RightsContainer, SocialMediaContainer } from './styles';
 
-import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import InputWithButton from '../inputs/InputWithButton';
 import DefaultButton from '../buttons/DefaultButton';
+import InputWithButton from '../inputs/InputWithButton';
 
 export default function Footer() {
     return (
@@ -42,7 +41,10 @@ export default function Footer() {
                     <Link href="/">Quem pode ser Leve</Link>
                     <Link href="/">Blog</Link>
                     <Typography variant="body1"></Typography>
+                    <br />
                     <Link href="/" style={{ fontWeight: "bold" }}>Sou gerador e quero ser Leve</Link>
+                    <br />
+                    <br />
                     <Typography variant="body1"></Typography>
                     <Typography variant="body1"></Typography>
                     <Link href="/">Política de Privacidade</Link>
@@ -52,9 +54,24 @@ export default function Footer() {
                 <ContactContainer>
                     <Typography variant="body1" style={{ fontWeight: "bold" }}>Conecte-se com a Leve</Typography>
                     <SocialMediaContainer>
-                        <InstagramIcon sx={{ fontSize: 40 }} />
-                        <FacebookIcon sx={{ fontSize: 40 }} />
-                        <LinkedInIcon sx={{ fontSize: 40 }} />
+                        <InstagramIcon sx={{
+                            fontSize: 40,
+                            "&:hover": {
+                                cursor: 'pointer',
+                            }
+                        }} />
+                        <FacebookIcon sx={{
+                            fontSize: 40,
+                            "&:hover": {
+                                cursor: 'pointer',
+                            }
+                        }} />
+                        <LinkedInIcon sx={{
+                            fontSize: 40,
+                            "&:hover": {
+                                cursor: 'pointer',
+                            }
+                        }} />
                     </SocialMediaContainer>
                     <Typography variant="body1">Fique por dentro das novidades:</Typography>
 
@@ -64,8 +81,8 @@ export default function Footer() {
                 </ContactContainer>
 
                 <CallToActionContainer>
-                    <Typography variant="body1">Adote um consumo mais Leve e comece a economizar agora mesmo com a gente.</Typography>
-                    <DefaultButton variant="contained" text="Quero ser Leve" />
+                    <Typography variant="body1" sx={{ fontWeight: 'bold' }}>Adote um consumo mais Leve e comece a economizar agora mesmo com a gente.</Typography>
+                    <DefaultButton variant="contained" text="Quero ser Leve" width="12vw" />
                 </CallToActionContainer>
 
             </ContentContainer>

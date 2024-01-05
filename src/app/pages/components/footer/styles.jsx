@@ -67,16 +67,15 @@ export const SocialMediaContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    padding: 2rem;
+    padding: 1 0rem;
     `;
 
 export const CallToActionContainer = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    padding: 2rem;
+    align-items: start;
     width: 30vw;
-    
+
     `;
 
 export const RightsContainer = styled.div`

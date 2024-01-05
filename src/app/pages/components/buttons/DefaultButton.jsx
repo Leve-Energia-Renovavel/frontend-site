@@ -20,6 +20,7 @@ export default function DefaultButton(props) {
 
     return (
         <Button disableElevation={true} variant={props.variant} sx={{
+            width: props.width ? props.width : null,
             textTransform: 'none',
             fontSize: 18,
             color: colorForVariants[props.variant],
