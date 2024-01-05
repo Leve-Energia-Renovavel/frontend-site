@@ -7,7 +7,6 @@ import { HeaderContainer, Nav, Ul, MenuItem, ButtonContainer, LogoContainer, Nav
 import logo from "../../../../resources/img/logo-header.png"
 import DefaultButton from '../buttons/DefaultButton';
 
-
 export default function Header() {
     return (
         <HeaderContainer>

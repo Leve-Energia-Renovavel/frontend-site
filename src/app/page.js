@@ -6,7 +6,6 @@ import "./globals.css"
 export default function Home() {
   return (
     <main>
-      <h1>Home</h1>
       <Header />
       <Link href="/about">Go to About page...</Link>
       <Footer />
