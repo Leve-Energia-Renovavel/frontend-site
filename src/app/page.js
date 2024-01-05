@@ -7,8 +7,9 @@ export default function Home() {
   return (
     <main>
       <Header />
-      <Link href="/about">Go to About page...</Link>
+      <h1>Home</h1>
       <Footer />
+      {/* <Link href="/about">Go to About page...</Link> */}
     </main>
   )
 }

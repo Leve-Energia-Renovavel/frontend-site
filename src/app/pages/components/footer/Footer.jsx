@@ -11,16 +11,19 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InputWithButton from '../inputs/InputWithButton';
+import DefaultButton from '../buttons/DefaultButton';
 
 export default function Footer() {
     return (
         <FooterContainer>
+
             <LogoContainer>
                 <Image
                     src={logo}
                     alt="Leve Energia Logo"
                 />
             </LogoContainer>
+
             <ContentContainer>
                 <AddressContainer>
                     <Typography variant="body1">R. Joaquim Floriano, 72</Typography>
@@ -31,6 +34,7 @@ export default function Footer() {
                     <Typography variant="body1"></Typography>
                     <Typography variant="body1">(11) 3181-8210</Typography>
                 </AddressContainer>
+
                 <PagesContainer>
                     <Link href="/">Sobre a Leve</Link>
                     <Link href="/">Como funciona</Link>
@@ -53,30 +57,22 @@ export default function Footer() {
                         <LinkedInIcon sx={{ fontSize: 40 }} />
                     </SocialMediaContainer>
                     <Typography variant="body1">Fique por dentro das novidades:</Typography>
-                    {/* <TextField
-                        id="stay-inside-our-news"
-                        placeholder='E-mail'
-                        // InputProps={{ endAdornment: <ArrowForwardIosIcon /> }}
-                        InputProps={{
-                            endAdornment: (
-                                <ArrowForwardIosIcon sx={{ backgroundColor: 'red' }} />
-                            )
-                        }}
-                    /> */}
+
                     <InputWithButton placeholder="E-mail" position="end" />
+                    <Typography sx={{ fontSize: '10px' }}>Ao informar seu e-mail, você concorda em receber e-mails da Leve Energia Renovável e aceita nossa Política de Privacidade.</Typography>
 
-
-                    {/* contact informations */}
-                    <CallToActionContainer>
-                        {/* call to action informations */}
-                    </CallToActionContainer>
                 </ContactContainer>
-                <RightsContainer>
 
-                </RightsContainer>
-
+                <CallToActionContainer>
+                    <Typography variant="body1">Adote um consumo mais Leve e comece a economizar agora mesmo com a gente.</Typography>
+                    <DefaultButton variant="contained" text="Quero ser Leve" />
+                </CallToActionContainer>
 
             </ContentContainer>
+
+            <RightsContainer>
+                <Typography variant="body1">&#169; 2024 Leve Energia Renovável &#174; Todos os direitos reservados</Typography>
+            </RightsContainer>
 
         </FooterContainer>
     );
