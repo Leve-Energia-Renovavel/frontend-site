@@ -21,14 +21,14 @@ export default function DefaultButton(props) {
     return (
         <Button disableElevation={true} variant={props.variant} sx={{
             textTransform: 'none',
-            fontWeight: 400,
+            fontSize: 18,
             color: colorForVariants[props.variant],
             borderColor: colorForVariants[props.variant],
             backgroundColor: backgroundColorForVariants[props.variant],
-            paddingTop: 1,
-            paddingBottom: 1,
-            paddingX: 3,
-            borderRadius: 1.5,
+            paddingY: 1,
+            paddingX: 4,
+            height: '3rem',
+            borderRadius: '12px',
             cursor: 'pointer',
             margin: 2,
             "&:hover": {
