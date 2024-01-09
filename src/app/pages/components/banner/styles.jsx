@@ -9,6 +9,8 @@ export const BannerContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
+
+    padding-top: 8vh;  //margin for header
 `
 export const ContentContainer = styled.div`
     display: flex;
@@ -23,9 +25,9 @@ export const ContentContainer = styled.div`
         font-style: bold;
         font-weight: 700;
         font-size: 2.5rem;
+        line-height: 2rem;
         color: ${background.light};
         margin-bottom: 1.2rem;
-        
     }
     
     .highlighted {
@@ -37,7 +39,6 @@ export const ContentContainer = styled.div`
         font-size: 1.2rem;
         color: ${background.light};
         line-height: 1rem;
-
     }
     
 `

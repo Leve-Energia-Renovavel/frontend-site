@@ -6,13 +6,21 @@ export const HeaderContainer = styled.header`
     align-items: center;
     justify-content: space-evenly;
     flex-direction: row;
-    background-color: ${background.primary};
-    opacity: 0.8;
+    overflow: hidden;
+    background-color: rgba(0, 117, 255, 0.9);
+    backdrop-filter: blur(2px); /* Add a slight blur effect */
+    -webkit-backdrop-filter: blur(2px); /* For Safari */
     padding-top: .5rem;
     padding-bottom: .5rem;
+
     width: 100%;
     text-align: center;
     font-size: 1.2rem;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 
     .logoImage {
         &:hover {
