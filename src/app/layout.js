@@ -15,12 +15,11 @@ export const viewport = {
   colorScheme: 'light',
 }
 
-
 export default function RootLayout({ children }) {
   return (
     <>
       <html lang="pt-BR">
-        <body>{children}</body>
+        <body suppressHydrationWarning={true}>{children}</body>
       </html>
     </>
   )

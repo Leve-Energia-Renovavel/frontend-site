@@ -39,7 +39,8 @@ export const FormContainer = styled.div`
   flex-direction: row;
 
   .formField {
-  padding: .5rem;
+    display: inline-block;
+    padding: .5rem;
 
   span {
     font-size: 1rem;
@@ -49,6 +50,7 @@ export const FormContainer = styled.div`
 
 .formInput {
     /* width: 25vw; */
+    flex-grow: 1;
 
   }
 

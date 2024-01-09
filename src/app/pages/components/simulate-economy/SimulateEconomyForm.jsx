@@ -25,16 +25,16 @@ export default function SimulateEconomy() {
                     method="POST"
                     onSubmit={handleSubmit}>
                     <FormControl className="formField" >
-                        <TextField sx={{ width: '400px' }} className="formInput" id="outlined-basic" label="Nome Completo" variant="outlined" placeholder="Nome Completo" type="text" />
+                        <TextField sx={{ width: '400px' }} className="formInput" label="Nome Completo" variant="outlined" placeholder="Nome Completo" type="text" />
                     </FormControl>
                     <FormControl className="formField">
-                        <TextField sx={{ width: '300px' }}className="formInput" id="outlined-basic" label="E-mail" variant="outlined" placeholder="E-mail" type="email" />
+                        <TextField sx={{ width: '300px' }} className="formInput" label="E-mail" variant="outlined" placeholder="E-mail" type="email" />
                     </FormControl>
                     <FormControl className="formField">
-                        <TextField sx={{ width: '180px' }}className="formInput" id="outlined-basic" label="Telefone" variant="outlined" placeholder="Telefone" type="phone" />
+                        <TextField sx={{ width: '180px' }} className="formInput" label="Telefone" variant="outlined" placeholder="Telefone" type="phone" />
                     </FormControl>
                     <FormControl className="formField">
-                        <TextField className="formInput" id="outlined-basic" label="CEP" variant="outlined" placeholder="CEP" type="number" />
+                        <TextField className="formInput" label="CEP" variant="outlined" placeholder="CEP" type="phone" />
                     </FormControl>
                     <FormControl className="formField" sx={{ width: '280px' }}>
                         <Typography variant="subtitle1"> Custo mensal (em média) <span>R$ {userCost}</span></Typography>
