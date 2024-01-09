@@ -9,7 +9,7 @@ import { AddressContainer, CallToActionContainer, ContactContainer, ContentConta
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import DefaultButton from '../buttons/DefaultButton';
+import DefaultButton from '../utils/buttons/DefaultButton';
 import InputWithButton from '../inputs/InputWithButton';
 
 export default function Footer() {

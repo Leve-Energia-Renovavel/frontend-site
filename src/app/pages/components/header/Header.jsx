@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { HeaderContainer, Nav, Ul, MenuItem, ButtonContainer, LogoContainer, NavContainer } from './styles';
 import logo from "../../../../resources/img/logo-header.png"
-import DefaultButton from '../buttons/DefaultButton';
+import DefaultButton from '../utils/buttons/DefaultButton';
 
 export default function Header() {
     return (

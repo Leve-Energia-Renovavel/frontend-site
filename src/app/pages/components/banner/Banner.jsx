@@ -3,7 +3,7 @@
 
 import Image from "next/image"
 import bannerImage from "../../../../resources/img/person-banner.png"
-import DefaultButton from "../buttons/DefaultButton"
+import DefaultButton from "../utils/buttons/DefaultButton"
 import BannerTitle from "./BannerTitle"
 import { BannerContainer, BannerImageContainer, ContentContainer } from "./styles"
 
