@@ -45,7 +45,7 @@ export default function SimulateEconomy() {
                             valueLabelDisplay="auto" />
                     </FormControl>
                     <FormControl className="formField" >
-                        <FormButton className="formInput" variant="outlined" type="submit" >Simular Economia</FormButton>
+                        <FormButton className="formInput" variant="outlined" type="submit" text="Simular Economia" />
                     </FormControl>
                 </form>
             </FormContainer>

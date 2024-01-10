@@ -5,6 +5,7 @@ import AboutTitle from "./AboutTitle"
 import AboutDescription from "./AboutDescription"
 import Image from "next/image"
 import aboutImage from "../../../../resources/img/a-leve.png"
+import DefaultButton from "../utils/buttons/DefaultButton"
 
 export default function About() {
     return (
@@ -15,6 +16,7 @@ export default function About() {
             <ContentContainer>
                 <AboutDescriptionContainer>
                     <AboutDescription />
+                    <DefaultButton variant="contained" text="Quero Contratar" />
                 </AboutDescriptionContainer>
                 <Image
                     src={aboutImage}
@@ -22,6 +24,7 @@ export default function About() {
                 />
 
             </ContentContainer>
+
         </AboutContainer>
     )
 }

@@ -5,12 +5,14 @@ import "./globals.css"
 import Banner from "./pages/components/banner/Banner"
 import About from "./pages/components/about/About"
 import SimulateEconomy from "./pages/components/simulate-economy/SimulateEconomyForm"
+import WhatsAppFAB from "./pages/components/fabWhatsapp/WhatsappFAB"
 
 export default function Home() {
   return (
     <main>
       <Header />
       <Banner />
+      <WhatsAppFAB />
       <SimulateEconomy />
       <About />
       <Footer />

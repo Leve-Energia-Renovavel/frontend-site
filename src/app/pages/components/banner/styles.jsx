@@ -28,6 +28,7 @@ export const ContentContainer = styled.div`
         line-height: 2rem;
         color: ${background.light};
         margin-bottom: 1.2rem;
+        max-width: 32vw;
     }
     
     .highlighted {
@@ -39,6 +40,7 @@ export const ContentContainer = styled.div`
         font-size: 1.2rem;
         color: ${background.light};
         line-height: 1rem;
+        max-width: 30vw;
     }
     
 `
