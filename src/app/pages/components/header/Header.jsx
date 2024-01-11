@@ -6,8 +6,12 @@ import Link from 'next/link'
 import { HeaderContainer, Nav, Ul, MenuItem, ButtonContainer, LogoContainer, NavContainer } from './styles';
 import logo from "../../../../resources/img/logo-header.png"
 import DefaultButton from '../utils/buttons/DefaultButton';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
+
+    const router = useRouter()
+
     return (
         <HeaderContainer>
             <LogoContainer>
@@ -16,6 +20,7 @@ export default function Header() {
                     alt="Leve Energia Logo"
                     width={200}
                     height={60}
+                    onClick={() => router.push("/")}
                 />
             </LogoContainer>
             <NavContainer>
@@ -28,13 +33,13 @@ export default function Header() {
                             <Link href="/about">Como funciona</Link>
                         </MenuItem>
                         <MenuItem>
-                            <Link href="/blog/hello-world">Benefícios</Link>
+                            <Link href="/beneficios">Benefícios</Link>
                         </MenuItem>
                         <MenuItem>
-                            <Link href="/blog/hello-world">Quem pode ser Leve</Link>
+                            <Link href="/quem-pode-ser-Leve">Quem pode ser Leve</Link>
                         </MenuItem>
                         <MenuItem>
-                            <Link href="/blog/hello-world">Blog</Link>
+                            <Link href="/blog">Blog</Link>
                         </MenuItem>
                     </Ul>
                 </Nav>

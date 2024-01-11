@@ -1,3 +1,7 @@
+import "./globals.css"
+import Header from "./pages/components/header/Header"
+import Footer from "./pages/components/footer/Footer"
+
 export const metadata = {
   title: 'Leve Energia Renovavel',
   description: 'Leve energia renovavel - pague menos na conta de luz',
@@ -19,7 +23,11 @@ export default function RootLayout({ children }) {
   return (
     <>
       <html lang="pt-BR">
-        <body suppressHydrationWarning={true}>{children}</body>
+        <body suppressHydrationWarning={true}>
+          <Header />
+          {children}
+          <Footer />
+        </body>
       </html>
     </>
   )
