@@ -8,6 +8,7 @@ import { FormContainer, SimulateEconomyContainer } from "./styles"
 import Link from "next/link"
 import { useRef } from "react"
 import { useRouter } from "next/navigation"
+import { red } from "@mui/material/colors"
 
 export default function SimulateEconomy() {
 
@@ -24,6 +25,16 @@ export default function SimulateEconomy() {
     const [userCost, setUserCost] = useState(minCostValue)
     const [userType, setUserType] = useState(defaultSelectedRadioButton)
 
+    const radioButtonStyle = {
+        color: 'black',
+        '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)': {
+            color: 'blue',
+        },
+        '&.Mui-checked': {
+            color: 'yellow',
+        }
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault()
 
@@ -32,7 +43,8 @@ export default function SimulateEconomy() {
             email: emailRef.current.value,
             phone: phoneRef.current.value,
             cep: cepRef.current.value,
-            userCost: userCost,
+            cost: userCost,
+            type: userType,
         }
 
         history.pushState(userInitialData, "");
@@ -56,10 +68,11 @@ export default function SimulateEconomy() {
                             defaultValue={defaultSelectedRadioButton}
                             name="radio-buttons-group"
                             onChange={(event) => setUserType(event.target.value)}
-                            style={{ display: 'flex', flexDirection: 'row' }}
+                            // style={{ display: 'flex', flexDirection: 'row' }}
+                            sx={{ display: 'flex', flexDirection: 'row' }}
                         >
-                            <FormControlLabel value="cpf" control={<Radio />} label="Minha Casa" />
-                            <FormControlLabel value="cnpj" control={<Radio />} label="Minha Empresa" />
+                            <FormControlLabel value="cpf" control={<Radio sx={radioButtonStyle} />} label="Minha Casa" />
+                            <FormControlLabel value="cnpj" control={<Radio sx={radioButtonStyle} />} label="Minha Empresa" />
                         </RadioGroup>
                     </FormControl>
 

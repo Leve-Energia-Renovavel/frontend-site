@@ -1,24 +1,22 @@
 "use client"
 
 import { useRouter } from "next/navigation"
+import RegisterBanner from "../banner/RegisterBanner";
+import ResultEconomy from "../result-economy/ResultEconomy";
 
-export default function RegisterType({ params }) {
+export default function Register() {
 
     const router = useRouter()
-    const myState = history.state;//store the state variable outside the component
+    const userData = history.state;
 
-    const isCompany = params.userType == 'cnpj'
+    const isCompany = userData.type == 'cnpj'
 
     return (
-        <div style={{ paddingTop: '20vh' }}>
+        <div>
             <h1>Register</h1>
-            <h1>{params.userType}</h1>
-            <h1>{router.query}</h1>
-            <h1>{JSON.stringify(myState)}</h1>
-            {isCompany && (
-                <>
-                    <h1>is company too</h1>
-                </>)}
+            <RegisterBanner userData={userData} />
+            <ResultEconomy userData={userData} />
+
         </div>
     )
 }
