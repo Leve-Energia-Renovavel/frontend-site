@@ -7,7 +7,7 @@ export const AboutContainer = styled.div`
     align-items: center;
     justify-content: center;
     background-color: ${background.light};
-    width: 100vw;
+    max-width: 100vw;
 
     margin-top: 8vh;    //margin for economy form
     padding: 2rem;

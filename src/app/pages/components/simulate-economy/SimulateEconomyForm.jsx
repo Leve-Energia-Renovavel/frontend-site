@@ -97,11 +97,6 @@ export default function SimulateEconomy() {
                             valueLabelDisplay="auto" />
                     </FormControl>
                     <FormControl className="formField" >
-                        {/* <Link href={{
-                            pathname: `/register/${userType}`,
-                            query: { userCost: userCost }
-                        }}>
-                        </Link> */}
                         <FormButton className="formInput" variant="outlined" type="submit" text="Simular Economia" />
                     </FormControl>
                 </form>

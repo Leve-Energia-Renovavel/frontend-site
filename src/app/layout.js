@@ -1,6 +1,7 @@
 import "./globals.css"
 import Header from "./pages/components/header/Header"
 import Footer from "./pages/components/footer/Footer"
+import WhatsAppFAB from "./pages/components/fabWhatsapp/WhatsappFAB"
 
 export const metadata = {
   title: 'Leve Energia Renovavel',
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
         <body suppressHydrationWarning={true}>
           <Header />
           {children}
+          <WhatsAppFAB />
           <Footer />
         </body>
       </html>

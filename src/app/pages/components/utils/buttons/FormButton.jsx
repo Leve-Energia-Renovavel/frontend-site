@@ -17,7 +17,8 @@ export default function FormButton(props) {
                     borderRadius: '12px',
                     "&:hover": {
                         backgroundColor: background.secondary,
-                        color: background.dark,
+                        color: background.primary,
+                        borderColor: background.lightBorder,
                     },
                 }} >{props.text}</Button >
         </>

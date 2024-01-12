@@ -13,7 +13,7 @@ export const HeaderContainer = styled.header`
     padding-top: .5rem;
     padding-bottom: .5rem;
 
-    width: 100%;
+    width: 100vw;
     text-align: center;
     font-size: 1.2rem;
 
@@ -62,13 +62,15 @@ export const MenuItem = styled.li`
 
 `;
 
-export const ButtonContainer = styled.div``;
+export const ButtonContainer = styled.div`
+    /* width: 20vw; */
+`;
 export const LogoContainer = styled.div``;
 export const NavContainer = styled.div``;
 
-export const HeaderHeightComponent = styled.div`
-    background-color: ${background.primary};
-    background-color: green;
-    padding-top: 8vh;  //margin for header
+// export const HeaderHeightComponent = styled.div`
+//     background-color: ${background.primary};
+//     background-color: green;
+//     /* padding-top: 8vh;  //margin for header */
 
-`;
+// `;

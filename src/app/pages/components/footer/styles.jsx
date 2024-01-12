@@ -7,7 +7,7 @@ export const FooterContainer = styled.div`
     justify-content: flex-start;
     background-color: ${background.primary};
     color: ${background.light};
-    width: 100vw;
+    max-width: 100vw;
     padding: 2rem;
     `
 
