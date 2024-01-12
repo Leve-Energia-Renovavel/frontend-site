@@ -1,16 +1,22 @@
 "use client"
 
+import { FormControl, FormControlLabel, Radio, RadioGroup, Slider, TextField, Typography } from "@mui/material"
 import { useState } from "react"
-import { FormControl, Slider, TextField, Typography, FormLabel, RadioGroup, FormControlLabel, Radio } from "@mui/material"
 import FormButton from "../utils/buttons/FormButton"
 import SimulateEconomyTitle from "./SimulateEconomyTitle"
 import { FormContainer, SimulateEconomyContainer } from "./styles"
-import { useRouter } from 'next/navigation';
-
+import Link from "next/link"
+import { useRef } from "react"
+import { useRouter } from "next/navigation"
 
 export default function SimulateEconomy() {
 
     const router = useRouter()
+
+    const nameRef = useRef()
+    const emailRef = useRef()
+    const phoneRef = useRef()
+    const cepRef = useRef()
 
     const minCostValue = 150
     const defaultSelectedRadioButton = "cpf"
@@ -20,9 +26,18 @@ export default function SimulateEconomy() {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log("userCost ==>> ", userCost, " userType ==>> ", userType)
 
-        // router.push("/")
+        const userInitialData = {
+            name: nameRef.current.value,
+            email: emailRef.current.value,
+            phone: phoneRef.current.value,
+            cep: cepRef.current.value,
+            userCost: userCost,
+        }
+
+        history.pushState(userInitialData, "");
+        router.push(`/register/${userType}`)
+
     }
     return (
         <SimulateEconomyContainer>
@@ -49,16 +64,16 @@ export default function SimulateEconomy() {
                     </FormControl>
 
                     <FormControl className="formField" >
-                        <TextField sx={{ width: '400px' }} className="formInput" label="Nome Completo" variant="outlined" placeholder="Nome Completo" type="text" />
+                        <TextField sx={{ width: '400px' }} className="formInput" label="Nome Completo" variant="outlined" placeholder="Nome Completo" type="text" inputRef={nameRef} />
                     </FormControl>
                     <FormControl className="formField">
-                        <TextField sx={{ width: '300px' }} className="formInput" label="E-mail" variant="outlined" placeholder="E-mail" type="email" />
+                        <TextField sx={{ width: '300px' }} className="formInput" label="E-mail" variant="outlined" placeholder="E-mail" type="email" inputRef={emailRef} />
                     </FormControl>
                     <FormControl className="formField">
-                        <TextField sx={{ width: '180px' }} className="formInput" label="Telefone" variant="outlined" placeholder="Telefone" type="phone" />
+                        <TextField sx={{ width: '180px' }} className="formInput" label="Telefone" variant="outlined" placeholder="Telefone" type="phone" inputRef={phoneRef} />
                     </FormControl>
                     <FormControl className="formField">
-                        <TextField className="formInput" label="CEP" variant="outlined" placeholder="CEP" type="phone" />
+                        <TextField className="formInput" label="CEP" variant="outlined" placeholder="CEP" type="phone" inputRef={cepRef} />
                     </FormControl>
                     <FormControl className="formField" sx={{ width: '280px' }}>
                         <Typography variant="subtitle1"> Custo mensal (em média) <span>R$ {userCost}</span></Typography>
@@ -69,6 +84,11 @@ export default function SimulateEconomy() {
                             valueLabelDisplay="auto" />
                     </FormControl>
                     <FormControl className="formField" >
+                        {/* <Link href={{
+                            pathname: `/register/${userType}`,
+                            query: { userCost: userCost }
+                        }}>
+                        </Link> */}
                         <FormButton className="formInput" variant="outlined" type="submit" text="Simular Economia" />
                     </FormControl>
                 </form>

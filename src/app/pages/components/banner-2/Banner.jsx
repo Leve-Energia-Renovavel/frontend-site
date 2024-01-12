@@ -6,7 +6,6 @@ import { BannerContainer, ContentContainer } from "./styles"
 
 export default function Banner() {
 
-
     return (
         <BannerContainer>
             <ContentContainer>
