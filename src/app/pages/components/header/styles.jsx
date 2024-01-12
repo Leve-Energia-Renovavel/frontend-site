@@ -65,3 +65,10 @@ export const MenuItem = styled.li`
 export const ButtonContainer = styled.div``;
 export const LogoContainer = styled.div``;
 export const NavContainer = styled.div``;
+
+export const HeaderHeightComponent = styled.div`
+    background-color: ${background.primary};
+    background-color: green;
+    padding-top: 8vh;  //margin for header
+
+`;

@@ -16,7 +16,7 @@ export const SimulateEconomyContainer = styled.div`
   transform: translate(-50%, -50%);
   z-index: 100;
   
-  max-height: 25vh;
+  /* max-height: 25vh; */
   width: 60vw;
   max-width: 80vw;
 

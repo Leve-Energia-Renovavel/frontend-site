@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import { background } from '@/app/pages/styles';
 
-export default function FormButton() {
+export default function FormButton(props) {
     return (
         <>
             <Button className="formInput" variant="outlined" type="submit"
@@ -19,7 +19,7 @@ export default function FormButton() {
                         backgroundColor: background.secondary,
                         color: background.dark,
                     },
-                }} >Simular Economia</Button >
+                }} >{props.text}</Button >
         </>
     )
 }

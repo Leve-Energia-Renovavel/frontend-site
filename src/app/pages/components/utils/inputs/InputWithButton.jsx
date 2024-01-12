@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextField, InputAdornment } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { background } from '../../styles';
+import { background } from '../../../styles';
 
 export default function InputWithButton(props) {
     return (

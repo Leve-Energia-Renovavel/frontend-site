@@ -10,7 +10,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import DefaultButton from '../utils/buttons/DefaultButton';
-import InputWithButton from '../inputs/InputWithButton';
+import InputWithButton from '../utils/inputs/InputWithButton';
 
 export default function Footer() {
     return (
