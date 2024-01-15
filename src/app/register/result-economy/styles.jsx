@@ -43,11 +43,13 @@ export const ResultEconomyComparissonContent = styled.div`
 export const ResultEconomyToUnderstandContent = styled.div`
   display: flex;
   flex-direction: row;
-`;
+  `;
 
 export const ResultEconomyDiscount = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 50%;
+
 `;
 export const ResultEconomyDiscountGraph = styled.div`
   display: flex;

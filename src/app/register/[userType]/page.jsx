@@ -1,12 +1,12 @@
 "use client"
 
-import { useRouter } from "next/navigation"
 import RegisterBanner from "../banner/RegisterBanner";
 import ResultEconomy from "../result-economy/ResultEconomy";
+import RegisterForm from "../forms/RegisterForm";
+import FormBanner from "../form-banner/FormBanner";
 
 export default function Register() {
 
-    const router = useRouter()
     const userData = history.state;
 
     const isCompany = userData.type == 'cnpj'
@@ -15,6 +15,8 @@ export default function Register() {
         <div>
             <RegisterBanner userData={userData} />
             <ResultEconomy userData={userData} />
+            <FormBanner />
+            <RegisterForm isCompany={isCompany} />
 
         </div>
     )

@@ -36,10 +36,12 @@ export default function ResultEconomy(props) {
 
             <ResultEconomyToUnderstandContent>
                 <ResultEconomyDiscount>
-                    <Image src={icon} alt='percentage icon' />
-                    <Typography variant="h1" sx={{ color: 'blue', fontSize: '20px' }}>Tenha {percentageDiscount * 100}% de desconto todo mês!</Typography>
-                    <Typography variant="subtitle1" sx={{}}>Em 1 ano com a Leve a sua  {location} economizará</Typography>
-                    <Typography variant="h1" sx={{ color: 'blue', backgroundColor: 'yellow', padding: '1rem' }}>R$ {leveYearTotalDiscount()}</Typography>
+                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                        <Image src={icon} alt='percentage icon' style={{ maxWidth: '30%' }} />
+                        <Typography variant="h1" sx={{ color: 'blue', fontSize: '20px', maxWidth: '70%' }}>Tenha {percentageDiscount * 100}% de desconto todo mês!</Typography>
+                    </div>
+                    <Typography variant="subtitle1" >Em 1 ano com a Leve a sua  {location} economizará</Typography>
+                    <Typography variant="h1" sx={{ color: 'blue', backgroundColor: 'yellow', padding: '1rem', marginRight: 'auto' }}>R$ {leveYearTotalDiscount()}</Typography>
                 </ResultEconomyDiscount>
 
                 <ResultEconomyDiscountGraph>
