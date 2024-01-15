@@ -4,7 +4,7 @@ import { background } from "@/app/pages/styles";
 
 export const ResultEconomyContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding: 2rem;
   border: 1px solid #ccc; 
   border-radius: 5px;
@@ -12,7 +12,7 @@ export const ResultEconomyContainer = styled.div`
   background-color: ${background.light};
   
   position: absolute;
-  top: 85vh;
+  top: 60vh;
   left: 50vw;
   transform: translate(-50%, -50%);
   z-index: 100;
@@ -32,4 +32,24 @@ export const ResultEconomyContainer = styled.div`
           
     }
 
+`;
+
+export const ResultEconomyComparissonContent = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    `;
+
+export const ResultEconomyToUnderstandContent = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const ResultEconomyDiscount = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+export const ResultEconomyDiscountGraph = styled.div`
+  display: flex;
+  flex-direction: column;
 `;

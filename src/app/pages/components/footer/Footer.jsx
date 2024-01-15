@@ -36,10 +36,10 @@ export default function Footer() {
 
                 <PagesContainer>
                     <Link href="/">Sobre a Leve</Link>
-                    <Link href="/">Como funciona</Link>
-                    <Link href="/">Benefícios</Link>
-                    <Link href="/">Quem pode ser Leve</Link>
-                    <Link href="/">Blog</Link>
+                    <Link href="/about">Como funciona</Link>
+                    <Link href="/beneficios">Benefícios</Link>
+                    <Link href="/quem-pode-ser-leve">Quem pode ser Leve</Link>
+                    <Link href="/blog">Blog</Link>
                     <Typography variant="body1"></Typography>
                     <br />
                     <Link href="/" style={{ fontWeight: "bold" }}>Sou gerador e quero ser Leve</Link>
