@@ -22,11 +22,11 @@ export default function ResultEconomy(props) {
     return (
         <ResultEconomyContainer>
             <ResultEconomyComparissonContent>
-                <div>
+                <div style={{ flex: 1, maxWidth: '50%' }}>
                     <Typography variant="subtitle1">Hoje a sua {location} paga a Concessionaria</Typography>
                     <Typography variant="h1" sx={{ color: 'red' }}>R$ {cost} 😡</Typography>
                 </div>
-                <div>
+                <div style={{ flex: 1, maxWidth: '50%', marginRight: 'auto' }}>
                     <Typography variant="subtitle1">Com a Leve voce vai passar a pagar:</Typography>
                     <Typography variant="h1" sx={{ color: 'blue', backgroundColor: 'yellow', padding: '1rem' }}>R$ {leveCost()} 😀</Typography>
                 </div>

@@ -37,7 +37,6 @@ export const ResultEconomyContainer = styled.div`
 export const ResultEconomyComparissonContent = styled.div`
     display: flex;
     flex-direction: row;
-    align-items: center;
     `;
 
 export const ResultEconomyToUnderstandContent = styled.div`
@@ -49,9 +48,10 @@ export const ResultEconomyDiscount = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 50%;
-
-`;
+  
+  `;
 export const ResultEconomyDiscountGraph = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 50%;
 `;
