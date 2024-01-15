@@ -4,10 +4,10 @@ import { background } from "@/app/pages/styles"
 export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 2rem;
   border: 1px solid #ccc; 
   border-radius: 5px;
   margin: 0 auto;
+  padding: 2rem;
   background-color: ${background.light};
   
   position: absolute;
@@ -25,20 +25,27 @@ export const FormContainer = styled.div`
     line-height: normal;
     color: ${background.primary}
   }
-  
-  `
+`;
+
+export const FormHeader = styled.div`
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+`;
+
 export const FormContent = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 2rem;
   background-color: ${background.light};
 
   width: 60vw;
 
   .formInput {
-    display: inline-block;
-    max-width: 20vw;
+    /* display: inline-block; */
+    max-width: 40%;
+    margin: 1rem;
   }
     
 `
+
