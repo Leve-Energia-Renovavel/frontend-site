@@ -1,14 +1,11 @@
 "use client"
 
 import { FormControl, FormControlLabel, Radio, RadioGroup, Slider, TextField, Typography } from "@mui/material"
-import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { useRef, useState } from "react"
 import FormButton from "../utils/buttons/FormButton"
 import SimulateEconomyTitle from "./SimulateEconomyTitle"
 import { FormContainer, SimulateEconomyContainer } from "./styles"
-import Link from "next/link"
-import { useRef } from "react"
-import { useRouter } from "next/navigation"
-import { red } from "@mui/material/colors"
 
 export default function SimulateEconomy() {
 
@@ -68,7 +65,6 @@ export default function SimulateEconomy() {
                             defaultValue={defaultSelectedRadioButton}
                             name="radio-buttons-group"
                             onChange={(event) => setUserType(event.target.value)}
-                            // style={{ display: 'flex', flexDirection: 'row' }}
                             sx={{ display: 'flex', flexDirection: 'row' }}
                         >
                             <FormControlLabel value="cpf" control={<Radio sx={radioButtonStyle} />} label="Minha Casa" />
