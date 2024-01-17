@@ -27,7 +27,7 @@ export default function Register() {
             <RegisterBanner userData={userData} />
             <ResultEconomy userData={userData} />
             <FormBanner />
-            <RegisterForm isCompany={isCompany} />
+            <RegisterForm userData={userData} isCompany={isCompany} />
 
         </div>
     )

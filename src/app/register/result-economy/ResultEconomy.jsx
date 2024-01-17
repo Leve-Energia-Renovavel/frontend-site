@@ -2,11 +2,13 @@ import { Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import Image from 'next/image';
 import icon from '../../../resources/img/Frame.svg';
-import { ResultEconomyComparissonContent, ResultEconomyContainer, ResultEconomyDiscount, ResultEconomyToUnderstandContent, ResultEconomyDiscountGraph } from './styles';
+import { ResultEconomyComparissonContent, ResultEconomyContainer, ResultEconomyDiscount, ResultEconomyDiscountGraph, ResultEconomyToUnderstandContent } from './styles';
+
 
 export default function ResultEconomy(props) {
 
     const { cost, type } = props.userData
+
     const location = type == 'cnpj' ? 'empresa' : 'residência'
 
     const percentageDiscount = 0.1     //for 10% of discount 
@@ -18,6 +20,8 @@ export default function ResultEconomy(props) {
     const leveYearTotalDiscount = () => {
         return parseFloat(((cost * percentageDiscount) * 12)).toFixed(2).replace(".", ",");
     }
+
+
 
     return (
         <ResultEconomyContainer>

@@ -6,6 +6,7 @@ import { useRef, useState } from "react"
 import FormButton from "../utils/buttons/FormButton"
 import SimulateEconomyTitle from "./SimulateEconomyTitle"
 import { FormContainer, SimulateEconomyContainer } from "./styles"
+import InputMask from "react-input-mask";
 
 export default function SimulateEconomy() {
 
@@ -90,10 +91,15 @@ export default function SimulateEconomy() {
                         <TextField sx={{ width: '300px' }} required className="formInput" label={`E-mail ${userType === "cnpj" ? "do Responsavel" : ""}`} variant="outlined" placeholder="E-mail" type="email" inputRef={emailRef} />
                     </FormControl>
                     <FormControl className="formField">
-                        <TextField sx={{ width: '180px' }} required className="formInput" label={`Telefone ${userType === "cnpj" ? "do Responsavel" : ""}`} variant="outlined" placeholder="Telefone" type="phone" inputRef={phoneRef} />
+                        <InputMask mask="(99) 99999-9999">
+                            {() => <TextField sx={{ width: '180px' }} required className="formInput" label={`Telefone ${userType === "cnpj" ? "do Responsavel" : ""}`} variant="outlined" placeholder="Telefone" type="phone" inputRef={phoneRef} />}
+                        </InputMask>
                     </FormControl>
                     <FormControl className="formField">
-                        <TextField className="formInput" required label="CEP" variant="outlined" placeholder="CEP" type="phone" inputRef={cepRef} />
+                        <InputMask mask="99999-999">
+                            {() => <TextField className="formInput" required label="CEP" variant="outlined" placeholder="CEP" type="phone" inputRef={cepRef} />}
+                        </InputMask>
+
                     </FormControl>
                     <FormControl className="formField" sx={{ width: '280px' }}>
                         <Typography variant="subtitle1"> Custo mensal (em média) <span>R$ {userCost}</span></Typography>

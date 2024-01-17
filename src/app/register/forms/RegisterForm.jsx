@@ -1,49 +1,55 @@
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
 import { TextField, Typography } from "@mui/material";
+import axios from "axios";
+import { useEffect, useRef } from "react";
+import InputMask from "react-input-mask";
 import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { FormContainer, FormContent, FormHeader } from "./styles";
-import { useRef } from "react";
-import InputMask from "react-input-mask";
 
 export default function RegisterForm(props) {
+
+    const { name, email, phone, cep, companyName } = props.userData
 
     const isCompany = props.isCompany
 
     const userRefs = {
-        name: useRef(),
-        rg: useRef(),
-        cpf: useRef(),
-        birthday: useRef(),
-        nationality: useRef(),
-        maritalStatus: useRef(),
-        profession: useRef(),
-        email: useRef(),
-        phone: useRef(),
+        name: useRef(null),
+        rg: useRef(null),
+        cpf: useRef(null),
+        birthday: useRef(null),
+        nationality: useRef(null),
+        maritalStatus: useRef(null),
+        profession: useRef(null),
+        email: useRef(null),
+        phone: useRef(null),
 
     };
 
+
+
     const companyRefs = {
-        companyName: useRef(),
-        corporateReason: useRef(),
-        cnpj: useRef(),
-        stateRegistration: useRef(),
-        responsibleName: useRef(),
-        companyEmail: useRef(),
-        companyPhone: useRef(),
+        companyName: useRef(null),
+        corporateReason: useRef(null),
+        cnpj: useRef(null),
+        stateRegistration: useRef(null),
+        responsibleName: useRef(null),
+        companyEmail: useRef(null),
+        companyPhone: useRef(null),
     }
 
     const addressRefs = {
-        address: useRef(),
-        addressNumber: useRef(),
-        addressCep: useRef(),
-        addressComplement: useRef(),
-        neighborhood: useRef(),
-        state: useRef(),
-        city: useRef(),
+        address: useRef(null),
+        addressNumber: useRef(null),
+        addressCep: useRef(null),
+        addressComplement: useRef(null),
+        neighborhood: useRef(null),
+        state: useRef(null),
+        city: useRef(null),
+        installationNumber: useRef(null)
     }
 
-    const installationNumberRef = useRef()
+
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -69,8 +75,8 @@ export default function RegisterForm(props) {
                     neighborhood: addressRefs.neighborhood.current.value,
                     state: addressRefs.state.current.value,
                     city: addressRefs.city.current.value,
+                    installationNumber: addressRefs.installationNumber.current.value
                 },
-                installationNumber: installationNumberRef.current.value
 
             }
         } else {
@@ -94,17 +100,57 @@ export default function RegisterForm(props) {
                     neighborhood: addressRefs.neighborhood.current.value,
                     state: addressRefs.state.current.value,
                     city: addressRefs.city.current.value,
+                    installationNumber: addressRefs.installationNumber.current.value
                 },
-                installationNumber: installationNumberRef.current.value
             }
 
         }
 
         console.log(data)
 
-
     }
 
+
+
+    const statusIsSuccessful = (status) => {
+        return status === 200
+    }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const url = `https://viacep.com.br/ws/${cep}/json/`
+                await axios.get(url).then(response => {
+                    if (statusIsSuccessful(response.status)) {
+                        addressRefs.address.current.value = response.data.logradouro
+                        addressRefs.neighborhood.current.value = response.data.bairro
+                        addressRefs.addressCep.current.value = response.data.cep
+                        addressRefs.city.current.value = response.data.localidade
+                        addressRefs.state.current.value = response.data.uf
+
+                    }
+                })
+
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+
+
+    const formatPhoneNumber = (phoneNumber) => {
+        const match = phoneNumber.match(/^(\d{2})(\d{5})(\d{4})$/);
+        if (match) {
+            return `(${match[1]}) ${match[2]}-${match[3]}`;
+        } else {
+            return phoneNumber
+        }
+    };
+
+    const formattedPhone = formatPhoneNumber(phone);
 
     return (
         <form
@@ -120,27 +166,28 @@ export default function RegisterForm(props) {
                 <FormContent>
                     {isCompany ? (
                         <>
-                            <TextField className="formInput" inputRef={companyRefs.companyName} label="Nome da Empresa" variant="outlined" placeholder="Nome da Empresa" type="text" />
+                            <TextField className="formInput" inputRef={companyRefs.companyName} defaultValue={companyName || ''} label="Nome da Empresa" variant="outlined" placeholder="Nome da Empresa" type="text" InputLabelProps={{ shrink: true }} />
                             <TextField className="formInput" inputRef={companyRefs.corporateReason} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" />
                             <InputMask mask="99.999.999/9999-99">
                                 {() => <TextField className="formInput" inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text" />}
                             </InputMask>
-                            <InputMask mask="99.999999-9">
+                            <InputMask>
                                 {() => <TextField className="formInput" inputRef={companyRefs.stateRegistration} label="Inscrição Estadual" variant="outlined" placeholder="Inscrição Estadual" type="text" />}
                             </InputMask>
-                            <TextField className="formInput" inputRef={companyRefs.responsibleName} label="Nome Completo do Responsável" variant="outlined" placeholder="Nome Completo do Responsável" type="text" />
-                            <TextField sx={{ width: '300px' }} inputRef={companyRefs.companyEmail} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" />
-                            <InputMask mask="(99) 99999-9999">
-                                {() => <TextField sx={{ width: '300px' }} inputRef={companyRefs.companyPhone} className="formInput" label="Telefone do Responsável" variant="outlined" placeholder="Telefone do Responsável" type="text" />}
+                            <TextField className="formInput" inputRef={companyRefs.responsibleName} defaultValue={name || ''} label="Nome Completo do Responsável" variant="outlined" placeholder="Nome Completo do Responsável" type="text" InputLabelProps={{ shrink: true }} />
+                            <TextField sx={{ width: '300px' }} inputRef={companyRefs.companyEmail} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" InputLabelProps={{ shrink: true }} />
+                            <InputMask mask="(99) 99999-9999" value={formattedPhone || ''}>
+                                {() => <TextField sx={{ width: '300px' }} inputRef={companyRefs.companyPhone} className="formInput" label="Telefone do Responsável" variant="outlined" placeholder="Telefone do Responsável" type="text" InputLabelProps={{ shrink: true }} />}
                             </InputMask>
                         </>
                     ) : (
                         <>
-                            <TextField sx={{ width: '500px' }} inputRef={userRefs.name} className="formInput" label="Nome Completo" variant="outlined" placeholder="Nome Completo" type="text" />
-                            <TextField sx={{ width: '500px' }} inputRef={userRefs.email} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" />
+                            <TextField sx={{ width: '500px' }} inputRef={userRefs.name} defaultValue={name || ''} className="formInput" label="Nome Completo" variant="outlined" placeholder="Nome Completo" type="text" />
+                            <TextField sx={{ width: '500px' }} inputRef={userRefs.email} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" />
 
-                            <InputMask mask="(99) 99999-9999">
-                                {() => <TextField sx={{ width: '200px' }} inputRef={userRefs.phone} className="formInput" label="Celular" placeholder="Celular" variant="outlined" type="text" />}
+                            <InputMask mask="(99) 99999-9999" value={formattedPhone || ''}>
+                                {() => <TextField sx={{ width: '200px' }}
+                                    inputRef={userRefs.phone} className="formInput" label="Celular" placeholder="Celular" variant="outlined" type="text" />}
                             </InputMask>
                             <InputMask mask="99999999-9">
                                 {() => <TextField sx={{ width: '200px' }} inputRef={userRefs.rg} className="formInput" label="RG" variant="outlined" placeholder="RG" type="text" />}
@@ -157,13 +204,16 @@ export default function RegisterForm(props) {
                         </>
 
                     )}
-                    <TextField className="formInput" inputRef={addressRefs.address} label="Endereço" variant="outlined" placeholder="Endereço" type="text" />
+                    <TextField className="formInput" inputRef={addressRefs.address} label="Endereço" variant="outlined" placeholder="Endereço" type="text" InputLabelProps={{ shrink: true }} />
                     <TextField className="formInput" inputRef={addressRefs.addressNumber} label="Nº" variant="outlined" placeholder="Nº" type="text" />
-                    <TextField className="formInput" inputRef={addressRefs.addressCep} label="CEP" variant="outlined" placeholder="CEP" type="text" />
+                    <InputMask mask="99999-999">
+                        {() => <TextField className="formInput" inputRef={addressRefs.addressCep} defaultValue={cep || ''} label="CEP" variant="outlined" placeholder="CEP" type="text" InputLabelProps={{ shrink: true }} />}
+                    </InputMask>
+
                     <TextField className="formInput" inputRef={addressRefs.addressComplement} label="Complemento" variant="outlined" placeholder="Complemento" type="text" />
-                    <TextField className="formInput" inputRef={addressRefs.neighborhood} label="Bairro" variant="outlined" placeholder="Bairro" type="text" />
-                    <TextField className="formInput" inputRef={addressRefs.state} label="Estado" variant="outlined" placeholder="Estado" type="text" />
-                    <TextField className="formInput" inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" />
+                    <TextField className="formInput" inputRef={addressRefs.neighborhood} label="Bairro" variant="outlined" placeholder="Bairro" type="text" InputLabelProps={{ shrink: true }} />
+                    <TextField className="formInput" inputRef={addressRefs.state} label="Estado" variant="outlined" placeholder="Estado" type="text" InputLabelProps={{ shrink: true }} />
+                    <TextField className="formInput" inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} />
                     <TextField sx={{
                         width: '60%', margin: '1rem', borderColor: '#0075FF',
                         '& label': {
@@ -180,7 +230,7 @@ export default function RegisterForm(props) {
                                 borderColor: '#0075FF',
                             },
                         },
-                    }} inputRef={installationNumberRef} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text" />
+                    }} inputRef={addressRefs.installationNumber} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text" />
                     <Typography variant="body2" sx={{ color: 'blue', maxWidth: '20%', margin: '1rem' }}>Não encontrou o número? <a target="_blank" style={{ textDecoration: 'underline', cursor: 'pointer' }} href="https://www.google.com">Clique aqui para saber onde encontrá-lo.</a></Typography>
                     <FormButton className="formInput" variant="outlined" type="submit" text="Continuar" />
                 </FormContent >
