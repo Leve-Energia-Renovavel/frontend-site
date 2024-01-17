@@ -1,4 +1,3 @@
-
 "use client"
 
 import { Typography } from "@mui/material"
@@ -9,13 +8,7 @@ import { useRouter } from "next/navigation";
 export default function RegisterBannerFailRegion(props) {
 
     const router = useRouter()
-
     const { name, type } = props.userData
-
-    const fullName = name.split(" ");
-
-    const userName = fullName[0] + " " + fullName[fullName.length - 1]
-
     const location = type == "cnpj" ? "empresa" : "residência"
 
     return (

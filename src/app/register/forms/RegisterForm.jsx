@@ -9,7 +9,7 @@ import { FormContainer, FormContent, FormHeader } from "./styles";
 
 export default function RegisterForm(props) {
 
-    const { name, email, phone, cep, companyName } = props.userData
+    const { name, email, phone, cep, companyName, cost } = props.userData
 
     const isCompany = props.isCompany
 
@@ -55,7 +55,6 @@ export default function RegisterForm(props) {
         event.preventDefault()
 
         var data = {}
-
         if (isCompany) {
             data = {
                 company: {
@@ -106,7 +105,23 @@ export default function RegisterForm(props) {
 
         }
 
+        var submitData = {}
+        submitData = {
+            nome: userRefs.name.current.value,
+            email: userRefs.email.current.value,
+            telefone: userRefs.phone.current.value,
+            cep: addressRefs.addressCep.current.value,
+            endereco: addressRefs.address.current.value,
+            numero: addressRefs.addressNumber.current.value,
+            bairro: addressRefs.neighborhood.current.value,
+            estado_id: "14",
+            cidade_id: "2754",
+            valor: cost
+        }
+
+
         console.log(data)
+        // console.log(submitData)
 
     }
 
@@ -201,20 +216,21 @@ export default function RegisterForm(props) {
                             <TextField
                                 placeholder={"test"}
                                 select
+                                defaultValue={""}
                                 label="Estado Civil"
                                 sx={{ width: '300px' }}
                                 className="formInput"
-                                inputRef={userRefs.maritalStatus}
+                                inputRef={userRefs.maritalStatus || ''}
                             >
                                 <MenuItem value={"solteiro"}>Solteiro(a)</MenuItem>
                                 <MenuItem value={"casado"}>Casado(a)</MenuItem>
                                 <MenuItem value={"viuvo"}>Viúvo(a)</MenuItem>
                             </TextField>
-                            <TextField select sx={{ width: '300px' }} inputRef={userRefs.nationality} className="formInput" label="Nacionalidade" variant="outlined" placeholder="Nacionalidade" type="text">
+                            <TextField select defaultValue={""} sx={{ width: '300px' }} inputRef={userRefs.nationality} className="formInput" label="Nacionalidade" variant="outlined" placeholder="Nacionalidade" type="text">
                                 <MenuItem value={"brasileiro"}>Brasileiro(a)</MenuItem>
                                 <MenuItem value={"estrangeiro"}>Estrangeiro(a)</MenuItem>
                             </TextField>
-                            <TextField select sx={{ width: '300px' }} inputRef={userRefs.profession} className="formInput" label="Profissão" variant="outlined" placeholder="Profissão" type="text">
+                            <TextField select defaultValue={""} sx={{ width: '300px' }} inputRef={userRefs.profession} className="formInput" label="Profissão" variant="outlined" placeholder="Profissão" type="text">
                                 <MenuItem value={"autonomo"}>Autônomo(a)</MenuItem>
                                 <MenuItem value={"assalariado"}>Assaláriado(a)</MenuItem>
                                 <MenuItem value={"aposentado"}>Aposentado(a)</MenuItem>
@@ -224,7 +240,8 @@ export default function RegisterForm(props) {
 
                     )}
                     <TextField className="formInput" inputRef={addressRefs.address} label="Endereço" variant="outlined" placeholder="Endereço" type="text" InputLabelProps={{ shrink: true }} />
-                    <TextField className="formInput" inputRef={addressRefs.addressNumber} label="Nº" variant="outlined" placeholder="Nº" type="text" />
+                    <TextField className="formInput"
+                        inputRef={addressRefs.addressNumber} label="Nº" variant="outlined" placeholder="Nº" type="text" />
                     <InputMask mask="99999-999">
                         {() => <TextField className="formInput" inputRef={addressRefs.addressCep} defaultValue={cep || ''} label="CEP" variant="outlined" placeholder="CEP" type="text" InputLabelProps={{ shrink: true }} />}
                     </InputMask>

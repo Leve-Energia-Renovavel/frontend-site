@@ -51,7 +51,7 @@ export default function ResultEconomy(props) {
 
                 <ResultEconomyDiscountGraph>
                     <Typography variant="subtitle1">Para entender: </Typography>
-                    <Image src={graphic} alt='percentage icon' style={{ maxWidth: "500px" }} />
+                    <Image src={graphic} alt='percentage icon' width={420} height={'auto'} loading="eager" priority={true} />
                 </ResultEconomyDiscountGraph>
 
             </ResultEconomyToUnderstandContent>

@@ -1,4 +1,3 @@
-
 "use client"
 
 import { Typography } from "@mui/material"
@@ -7,11 +6,8 @@ import { BannerContainer, ContentContainer } from "./styles"
 export default function RegisterBannerSuccess(props) {
 
     const { name, type } = props.userData
-
     const fullName = name.split(" ");
-
     const userName = fullName[0] + " " + fullName[fullName.length - 1]
-
     const location = type == "cnpj" ? "empresa" : "residência"
 
     return (

@@ -22,16 +22,21 @@ export default function Register() {
 
     const userData = loadUserData()
     const isCompany = userData.type == 'cnpj'
+    const isLowCost = userData.cost < 300
+    const isOutOfRange = userData.cep != "30670-515"
 
     return (
         <div>
-            {userData.cost < 300 ? <RegisterBannerFailRegion userData={userData} /> :
+            {isLowCost && <RegisterBannerFailRegion userData={userData} />}
+            {!isLowCost && isOutOfRange && <RegisterBannerFailRegion userData={userData} />}
+            {!isLowCost && !isOutOfRange &&
                 <>
                     <RegisterBannerSuccess userData={userData} />
                     <ResultEconomy userData={userData} />
                     <FormBanner />
                     <RegisterForm userData={userData} isCompany={isCompany} />
-                </>}
+                </>
+            }
         </div>
     )
 }

@@ -48,8 +48,6 @@ export default function SimulateEconomy() {
 
         userType == "cnpj" ? userInitialData["companyName"] = companyNameRef.current.value : null
 
-        console.log(userInitialData)
-
         history.pushState(userInitialData, "");
         localStorage.setItem('leveData', JSON.stringify(userInitialData));  //TODO: check this usage
         router.push(`/register/${userType}`)

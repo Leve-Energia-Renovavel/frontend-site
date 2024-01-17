@@ -48,7 +48,7 @@ export const ContentContainer = styled.div`
 export const BannerImageContainer = styled.div`
   border-radius: 1rem; 
   overflow: hidden;
-  filter: drop-shadow(0 0 10vw rgba(255, 255, 0, 0.8)); 
+  filter: drop-shadow(0 0 10vw rgba(255, 255, 0, 2)); 
 
         img {
             height: auto;
