@@ -11,12 +11,12 @@ export const FormContainer = styled.div`
   background-color: ${background.light};
   
   position: absolute;
-  top: 130vh;
+  top: 160vh;
   left: 50vw;
   transform: translate(-50%, -50%);
   z-index: 100;
   
-  max-width: 80vw;
+  width: 60vw;
 
   h1 {
     font-size: 1.75rem;
@@ -39,7 +39,7 @@ export const FormContent = styled.div`
   flex-wrap: wrap;
   background-color: ${background.light};
 
-  width: 60vw;
+  max-width: 100%;
 
   .formInput {
     /* display: inline-block; */

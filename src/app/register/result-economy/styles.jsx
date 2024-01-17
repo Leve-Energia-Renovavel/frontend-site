@@ -12,7 +12,7 @@ export const ResultEconomyContainer = styled.div`
   background-color: ${background.light};
   
   position: absolute;
-  top: 60vh;
+  top: 75vh;
   left: 50vw;
   transform: translate(-50%, -50%);
   z-index: 100;
@@ -37,11 +37,20 @@ export const ResultEconomyContainer = styled.div`
 export const ResultEconomyComparissonContent = styled.div`
     display: flex;
     flex-direction: row;
+    padding: 2rem; //must be equal to ResultEconomyToUnderstandContent
+     
+    .bold {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.7rem;
+
+    } 
     `;
 
 export const ResultEconomyToUnderstandContent = styled.div`
   display: flex;
   flex-direction: row;
+  padding: 2rem; //must be equal to ResultEconomyComparissonContent
   `;
 
 export const ResultEconomyDiscount = styled.div`

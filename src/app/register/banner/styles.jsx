@@ -3,10 +3,9 @@ import { background } from "@/app/pages/styles"
 
 export const BannerContainer = styled.div`
     background-color: ${background.primary};
-    height: 80vh;
+    height: 150vh;
     max-width: 100vw;
     padding: 10rem 15rem;
-    
 `
 
 export const ContentContainer = styled.div`

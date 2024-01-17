@@ -1,5 +1,5 @@
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
-import { TextField, Typography } from "@mui/material";
+import { TextField, Typography, InputLabel, MenuItem, Select, FormControl, OutlinedInput } from "@mui/material";
 import axios from "axios";
 import { useEffect, useRef } from "react";
 import InputMask from "react-input-mask";
@@ -198,9 +198,28 @@ export default function RegisterForm(props) {
                             <InputMask mask="99/99/9999">
                                 {() => <TextField sx={{ width: '300px' }} inputRef={userRefs.birthday} className="formInput" label="Data de Nascimento" variant="outlined" placeholder="Data de Nascimento" type="text" />}
                             </InputMask>
-                            <TextField sx={{ width: '300px' }} inputRef={userRefs.maritalStatus} className="formInput" label="Estado Civil" variant="outlined" placeholder="Estado Civil" type="text" />
-                            <TextField sx={{ width: '300px' }} inputRef={userRefs.nationality} className="formInput" label="Nacionalidade" variant="outlined" placeholder="Nacionalidade" type="text" />
-                            <TextField sx={{ width: '300px' }} inputRef={userRefs.profession} className="formInput" label="Profissão" variant="outlined" placeholder="Profissão" type="text" />
+                            <TextField
+                                placeholder={"test"}
+                                select
+                                label="Estado Civil"
+                                sx={{ width: '300px' }}
+                                className="formInput"
+                                inputRef={userRefs.maritalStatus}
+                            >
+                                <MenuItem value={"solteiro"}>Solteiro(a)</MenuItem>
+                                <MenuItem value={"casado"}>Casado(a)</MenuItem>
+                                <MenuItem value={"viuvo"}>Viúvo(a)</MenuItem>
+                            </TextField>
+                            <TextField select sx={{ width: '300px' }} inputRef={userRefs.nationality} className="formInput" label="Nacionalidade" variant="outlined" placeholder="Nacionalidade" type="text">
+                                <MenuItem value={"brasileiro"}>Brasileiro(a)</MenuItem>
+                                <MenuItem value={"estrangeiro"}>Estrangeiro(a)</MenuItem>
+                            </TextField>
+                            <TextField select sx={{ width: '300px' }} inputRef={userRefs.profession} className="formInput" label="Profissão" variant="outlined" placeholder="Profissão" type="text">
+                                <MenuItem value={"autonomo"}>Autônomo(a)</MenuItem>
+                                <MenuItem value={"assalariado"}>Assaláriado(a)</MenuItem>
+                                <MenuItem value={"aposentado"}>Aposentado(a)</MenuItem>
+                                <MenuItem value={"estudante"}>Estudante</MenuItem>
+                            </TextField>
                         </>
 
                     )}

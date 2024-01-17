@@ -19,7 +19,6 @@ const loadUserData = () => {
 export default function Register() {
 
     const userData = loadUserData()
-
     const isCompany = userData.type == 'cnpj'
 
     return (
@@ -28,7 +27,6 @@ export default function Register() {
             <ResultEconomy userData={userData} />
             <FormBanner />
             <RegisterForm userData={userData} isCompany={isCompany} />
-
         </div>
     )
 }
