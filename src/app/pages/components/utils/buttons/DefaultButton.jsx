@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@mui/material';
 import { background } from '../../../styles';
 
-export default function DefaultButton(props) {
+export default function DefaultButton({ onClick, ...props }) {
 
     const colorForVariants = {
         "contained": background.primary,
@@ -19,7 +19,7 @@ export default function DefaultButton(props) {
 
 
     return (
-        <Button disableElevation={true} variant={props.variant} sx={{
+        <Button onClick={onClick} disableElevation={true} variant={props.variant} sx={{
             width: props.width ? props.width : null,
             textTransform: 'none',
             fontSize: 18,
