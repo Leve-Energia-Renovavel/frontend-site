@@ -4,7 +4,7 @@
 import { Typography } from "@mui/material"
 import { BannerContainer, ContentContainer } from "./styles"
 
-export default function Banner() {
+export default function Banner(props) {
 
     return (
         <BannerContainer>

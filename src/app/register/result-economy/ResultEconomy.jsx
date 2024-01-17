@@ -12,11 +12,11 @@ export default function ResultEconomy(props) {
     const percentageDiscount = 0.1     //for 10% of discount 
 
     const leveCost = () => {
-        return cost - (cost * percentageDiscount)
+        return parseFloat(cost - (cost * percentageDiscount)).toFixed(2).replace(".", ",");
     }
 
     const leveYearTotalDiscount = () => {
-        return ((cost * percentageDiscount) * 12)
+        return parseFloat(((cost * percentageDiscount) * 12)).toFixed(2).replace(".", ",");
     }
 
     return (
@@ -28,20 +28,20 @@ export default function ResultEconomy(props) {
                 </div>
                 <div style={{ flex: 1, maxWidth: '50%', marginRight: 'auto' }}>
                     <Typography variant="subtitle1">Com a Leve voce vai passar a pagar:</Typography>
-                    <Typography variant="h1" sx={{ color: 'blue', backgroundColor: 'yellow', padding: '1rem' }}>R$ {leveCost()} 😀</Typography>
+                    <Typography variant="h1" sx={{ color: '#0075FF', backgroundColor: '#FFD300', padding: '1rem' }}>R$ {leveCost()} 😀</Typography>
                 </div>
             </ResultEconomyComparissonContent>
 
-            <Divider variant="middle" style={{ background: 'yellow' }} />
+            <Divider variant="middle" style={{ background: '#FFD300' }} />
 
             <ResultEconomyToUnderstandContent>
                 <ResultEconomyDiscount>
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
                         <Image src={icon} alt='percentage icon' style={{ maxWidth: '30%' }} />
-                        <Typography variant="h1" sx={{ color: 'blue', fontSize: '20px', maxWidth: '70%' }}>Tenha {percentageDiscount * 100}% de desconto todo mês!</Typography>
+                        <Typography variant="h1" sx={{ color: '#0075FF', fontSize: '20px', maxWidth: '70%' }}>Tenha {percentageDiscount * 100}% de desconto todo mês!</Typography>
                     </div>
                     <Typography variant="subtitle1" >Em 1 ano com a Leve a sua  {location} economizará</Typography>
-                    <Typography variant="h1" sx={{ color: 'blue', backgroundColor: 'yellow', padding: '1rem', marginRight: 'auto' }}>R$ {leveYearTotalDiscount()}</Typography>
+                    <Typography variant="h1" sx={{ color: '#0075FF', backgroundColor: '#FFD300', padding: '1rem', marginRight: 'auto' }}>R$ {leveYearTotalDiscount()}</Typography>
                 </ResultEconomyDiscount>
 
                 <ResultEconomyDiscountGraph>

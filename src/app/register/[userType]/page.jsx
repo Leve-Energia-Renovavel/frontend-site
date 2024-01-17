@@ -5,9 +5,20 @@ import ResultEconomy from "../result-economy/ResultEconomy";
 import RegisterForm from "../forms/RegisterForm";
 import FormBanner from "../form-banner/FormBanner";
 
+const loadUserData = () => {
+    if (history.state.name) {
+        return history.state
+    } else {
+        const storedObject = localStorage.getItem('leveData');
+        if (storedObject) {
+            return JSON.parse(storedObject);
+        }
+    }
+}
+
 export default function Register() {
 
-    const userData = history.state;
+    const userData = loadUserData()
 
     const isCompany = userData.type == 'cnpj'
 

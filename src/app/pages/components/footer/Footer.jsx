@@ -42,13 +42,13 @@ export default function Footer() {
                     <Link href="/blog">Blog</Link>
                     <Typography variant="body1"></Typography>
                     <br />
-                    <Link href="/" style={{ fontWeight: "bold" }}>Sou gerador e quero ser Leve</Link>
+                    <Link href="/sou-gerador" style={{ fontWeight: "bold" }}>Sou gerador e quero ser Leve</Link>
                     <br />
                     <br />
                     <Typography variant="body1"></Typography>
                     <Typography variant="body1"></Typography>
-                    <Link href="/">Política de Privacidade</Link>
-                    <Link href="/">Termos de Uso</Link>
+                    <Link href="/politica-de-privacidade">Política de Privacidade</Link>
+                    <Link href="/termos-de-uso">Termos de Uso</Link>
                 </PagesContainer>
 
                 <ContactContainer>
@@ -58,18 +58,21 @@ export default function Footer() {
                             fontSize: 40,
                             "&:hover": {
                                 cursor: 'pointer',
+                                color: '#FFD300'
                             }
                         }} />
                         <FacebookIcon sx={{
                             fontSize: 40,
                             "&:hover": {
                                 cursor: 'pointer',
+                                color: '#FFD300'
                             }
                         }} />
                         <LinkedInIcon sx={{
                             fontSize: 40,
                             "&:hover": {
                                 cursor: 'pointer',
+                                color: '#FFD300'
                             }
                         }} />
                     </SocialMediaContainer>

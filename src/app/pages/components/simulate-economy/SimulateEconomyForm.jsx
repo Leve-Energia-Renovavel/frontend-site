@@ -12,6 +12,7 @@ export default function SimulateEconomy() {
     const router = useRouter()
 
     const nameRef = useRef()
+    const companyNameRef = useRef()
     const emailRef = useRef()
     const phoneRef = useRef()
     const cepRef = useRef()
@@ -28,7 +29,7 @@ export default function SimulateEconomy() {
             color: '#0075FF',
         },
         '&.Mui-checked': {
-            color: 'yellow',
+            color: '#FFD300',
         }
     }
 
@@ -44,7 +45,12 @@ export default function SimulateEconomy() {
             type: userType,
         }
 
+        userType == "cnpj" ? userInitialData["companyName"] = companyNameRef.current.value : null
+
+        console.log(userInitialData)
+
         history.pushState(userInitialData, "");
+        localStorage.setItem('leveData', JSON.stringify(userInitialData));  //TODO: check this usage
         router.push(`/register/${userType}`)
 
     }
@@ -71,15 +77,20 @@ export default function SimulateEconomy() {
                             <FormControlLabel value="cnpj" control={<Radio sx={radioButtonStyle} />} label="Minha Empresa" />
                         </RadioGroup>
                     </FormControl>
+                    {userType === "cnpj" && (
+                        <FormControl className="formField" >
+                            <TextField sx={{ width: '600px' }} required className="formInput" label="Nome da Empresa" variant="outlined" placeholder="Nome da Empresa" type="text" inputRef={companyNameRef} />
+                        </FormControl>
+                    )}
 
                     <FormControl className="formField" >
-                        <TextField sx={{ width: '400px' }} required className="formInput" label="Nome Completo" variant="outlined" placeholder="Nome Completo" type="text" inputRef={nameRef} />
+                        <TextField sx={{ width: '400px' }} required className="formInput" label={`Nome Completo ${userType === "cnpj" ? "do Responsavel" : ""}`} variant="outlined" placeholder="Nome Completo" type="text" inputRef={nameRef} />
                     </FormControl>
                     <FormControl className="formField">
-                        <TextField sx={{ width: '300px' }} required className="formInput" label="E-mail" variant="outlined" placeholder="E-mail" type="email" inputRef={emailRef} />
+                        <TextField sx={{ width: '300px' }} required className="formInput" label={`E-mail ${userType === "cnpj" ? "do Responsavel" : ""}`} variant="outlined" placeholder="E-mail" type="email" inputRef={emailRef} />
                     </FormControl>
                     <FormControl className="formField">
-                        <TextField sx={{ width: '180px' }} required className="formInput" label="Telefone" variant="outlined" placeholder="Telefone" type="phone" inputRef={phoneRef} />
+                        <TextField sx={{ width: '180px' }} required className="formInput" label={`Telefone ${userType === "cnpj" ? "do Responsavel" : ""}`} variant="outlined" placeholder="Telefone" type="phone" inputRef={phoneRef} />
                     </FormControl>
                     <FormControl className="formField">
                         <TextField className="formInput" required label="CEP" variant="outlined" placeholder="CEP" type="phone" inputRef={cepRef} />

@@ -12,7 +12,7 @@ export default function RegisterFormProgress() {
                     backgroundColor: 'lightblue'
                 },
                 '& .MuiLinearProgress-barColorPrimary': {
-                    backgroundColor: 'yellow'
+                    backgroundColor: '#FFD300'
                 }
             }} />
         </div>
