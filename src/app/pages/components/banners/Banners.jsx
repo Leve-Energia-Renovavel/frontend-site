@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from 'react';
-
 import Banner1 from './banner-1/Banner';
 import Banner2 from './banner-2/Banner';
 

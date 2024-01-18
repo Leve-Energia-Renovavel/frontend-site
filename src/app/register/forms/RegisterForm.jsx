@@ -1,12 +1,12 @@
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
-import { TextField, Typography, InputLabel, MenuItem, Select, FormControl, OutlinedInput } from "@mui/material";
+import { MenuItem, TextField, Typography, Box, Modal } from "@mui/material";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
+import RegisterModal from "../modal/Modal";
 import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { FormContainer, FormContent, FormHeader } from "./styles";
-import RegisterModal from "../modal/Modal";
 
 export default function RegisterForm(props) {
 
@@ -170,6 +170,10 @@ export default function RegisterForm(props) {
 
     const formattedPhone = formatPhoneNumber(phone);
 
+    const closeModal = () => {
+        setIsModalOpen(false)
+    }
+
     return (
         <form
             acceptCharset="UTF-8"
@@ -274,7 +278,8 @@ export default function RegisterForm(props) {
                     <FormButton className="formInput" variant="outlined" type="submit" text="Continuar" />
                 </FormContent >
             </FormContainer >
-            {isModalOpen && <RegisterModal />}
+            {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"}/>}
+
         </form>
     );
 }
