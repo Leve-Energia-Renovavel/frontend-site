@@ -149,13 +149,14 @@ export default function RegisterForm(props) {
                     }
                 })
 
+
             } catch (error) {
                 console.error(error);
             }
         };
 
         fetchData();
-    }, []);
+    }, [isModalOpen]);
 
 
 
@@ -173,6 +174,9 @@ export default function RegisterForm(props) {
     const closeModal = () => {
         setIsModalOpen(false)
     }
+
+    console.log("CEP ===>>>", addressRefs?.addressCep?.current?.value)
+    console.log("usedata CEP ===>>>", cep)
 
     return (
         <form
@@ -278,7 +282,7 @@ export default function RegisterForm(props) {
                     <FormButton className="formInput" variant="outlined" type="submit" text="Continuar" />
                 </FormContent >
             </FormContainer >
-            {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"}/>}
+            {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}
 
         </form>
     );

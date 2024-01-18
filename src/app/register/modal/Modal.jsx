@@ -36,7 +36,7 @@ export default function RegisterModal(props) {
                     <Typography variant="h5" id={"modal-modal-title"} sx={{ color: background.primary, fontWeight: `bold`, }}>Saiba onde encontrar o Número de Instalação 😉</Typography>
                     <Typography id="modal-modal-description" sx={{ margin: '2rem 0 1rem 0' }}>Para a {distribuitor.toUpperCase()}, normalmente ele fica no canto superior direito do boleto: </Typography>
                     <Image src={distribuitorImage} alt='exemplo numero instalacao' width={`auto`} height={300} loading="eager" priority={true} />
-                    <DefaultButton variant="contained" text={"Entendi"} onClick={closeModal} />
+                    <DefaultButton variant="outlined" text={"Entendi"} onClick={closeModal} />
                 </Box>
             </Modal>
         </>
