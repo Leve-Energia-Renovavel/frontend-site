@@ -6,10 +6,11 @@ import RegisterBannerFailRegion from "../banners/banner-fail-region/RegisterBann
 import RegisterForm from "../forms/RegisterForm";
 import FormBanner from "../form-banner/FormBanner";
 import RegisterBannerSuccess from "../banners/banner-success/RegisterBanner";
+import { notFound } from "next/navigation";
 
 const loadUserData = () => {
-    if (history.state.name) {
-        return history.state
+    if (history?.state?.name) {
+        return history?.state
     } else {
         const storedObject = localStorage.getItem('leveData');
         if (storedObject) {
@@ -18,12 +19,20 @@ const loadUserData = () => {
     }
 }
 
+const isNotValidUserType = (userType) => {
+    return userType != 'cpf' && userType != 'cnpj'
+}
+
 export default function Register() {
 
     const userData = loadUserData()
-    const isCompany = userData.type == 'cnpj'
-    const isLowCost = userData.cost < 300
-    const isOutOfRange = userData.cep != "30670-515"
+    const isCompany = userData?.type == 'cnpj'
+    const isLowCost = userData?.cost < 300                  //validation for cost
+    const isOutOfRange = userData?.cep != "30670-515"       //validation for region
+
+    if (isNotValidUserType(userData?.type)) {
+        notFound()
+    }
 
     return (
         <div>

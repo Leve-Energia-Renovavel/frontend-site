@@ -1,13 +1,16 @@
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
 import { TextField, Typography, InputLabel, MenuItem, Select, FormControl, OutlinedInput } from "@mui/material";
 import axios from "axios";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { FormContainer, FormContent, FormHeader } from "./styles";
+import RegisterModal from "../modal/Modal";
 
 export default function RegisterForm(props) {
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const { name, email, phone, cep, companyName, cost } = props.userData
 
@@ -267,10 +270,11 @@ export default function RegisterForm(props) {
                             },
                         },
                     }} inputRef={addressRefs.installationNumber} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text" />
-                    <Typography variant="body2" sx={{ color: 'blue', maxWidth: '20%', margin: '1rem' }}>Não encontrou o número? <a target="_blank" style={{ textDecoration: 'underline', cursor: 'pointer' }} href="https://www.google.com">Clique aqui para saber onde encontrá-lo.</a></Typography>
+                    <Typography variant="body2" sx={{ color: 'blue', maxWidth: '20%', margin: '1rem' }}>Não encontrou o número? <a onClick={() => setIsModalOpen(true)} style={{ textDecoration: 'underline', cursor: 'pointer' }}>Clique aqui para saber onde encontrá-lo.</a></Typography>
                     <FormButton className="formInput" variant="outlined" type="submit" text="Continuar" />
                 </FormContent >
             </FormContainer >
+            {isModalOpen && <RegisterModal />}
         </form>
     );
 }
