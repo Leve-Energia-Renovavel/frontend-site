@@ -28,4 +28,5 @@ export const background = {
     light: "#fefefe",
     dark: "#0a0a0a",
     lightBorder: "#e6e6e6",
+    grey: "#7F7F7F"
 }

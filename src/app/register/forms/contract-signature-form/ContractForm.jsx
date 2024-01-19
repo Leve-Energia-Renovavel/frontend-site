@@ -16,6 +16,7 @@ export default function ContractForm(props) {
 
     const router = useRouter()
     const isCompany = props.isCompany
+    const userData = props.userData
 
     const [contracts, setContracts] = useState([
         {
@@ -60,6 +61,11 @@ export default function ContractForm(props) {
     const handleSubmit = (event) => {
         event.preventDefault()
         handleSignAllContracts()
+
+        userData["contracts"] = contracts
+        history.pushState(userData, "");
+        localStorage.setItem('leveLeadData', JSON.stringify(userData));
+        router.push(`/register/contract-auth`)
     }
 
     return (

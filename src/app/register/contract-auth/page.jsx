@@ -1,9 +1,8 @@
 "use client"
 
-import { notFound, useRouter } from 'next/navigation';
-import AlmostThere from '../banners/banner-almost-there/AlmostThereBanner';
-import ContractForm from '../forms/contract-signature-form/ContractForm';
-import FormBanner from '../banners/form-banner/FormBanner';
+import AlmostThere from "../banners/banner-almost-there/AlmostThereBanner";
+import FormBanner from "../banners/form-banner/FormBanner";
+import ContractAuthForm from "../forms/contract-auth-form/ContractAuthForm";
 
 const loadUserData = () => {
     if (history?.state?.address) {
@@ -15,11 +14,12 @@ const loadUserData = () => {
         }
     }
 }
+
 const accessNotValid = (user) => {
-    return !user.address
+    return !user.contracts
 }
 
-export default function ContractSignature() {
+export default function ContractAuthentication() {
 
     const userData = loadUserData()
 
@@ -27,12 +27,11 @@ export default function ContractSignature() {
         notFound()
     }
 
-
     return (
-        <>
+        <div>
             <AlmostThere userData={userData} confirmationByEmail={userData.user ? true : false} />
-            <ContractForm userData={userData} isCompany={userData.company ? true : false}/>
+            <ContractAuthForm userData={userData} confirmationByEmail={userData.user ? true : false} />
             <FormBanner />
-        </>
+        </div>
     );
 }
