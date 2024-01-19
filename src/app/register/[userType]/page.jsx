@@ -3,7 +3,7 @@
 import ResultEconomy from "../result-economy/ResultEconomy";
 import RegisterBannerFailCost from "../banners/banner-fail-cost/RegisterBanner";
 import RegisterBannerFailRegion from "../banners/banner-fail-region/RegisterBanner";
-import RegisterForm from "../forms/RegisterForm";
+import RegisterForm from "../forms/register-form/RegisterForm";
 import FormBanner from "../banners/form-banner/FormBanner";
 import RegisterBannerSuccess from "../banners/banner-success/RegisterBanner";
 import { notFound } from "next/navigation";

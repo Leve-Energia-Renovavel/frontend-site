@@ -3,7 +3,7 @@ import { MenuItem, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
-import RegisterModal from "../modal/Modal";
+import RegisterModal from "../../modal/Modal";
 import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { FormContainer, FormContent, FormHeader } from "./styles";
@@ -196,11 +196,7 @@ export default function RegisterForm(props) {
     }
 
     return (
-        <form
-            acceptCharset="UTF-8"
-            method="POST"
-            onSubmit={handleSubmit}>
-
+        <form acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
             <FormContainer>
                 <FormHeader>
                     <RegisterFormTitle />

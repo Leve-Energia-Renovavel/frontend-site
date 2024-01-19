@@ -2,6 +2,8 @@
 
 import { notFound } from 'next/navigation';
 import AlmostThere from '../banners/banner-almost-there/AlmostThereBanner';
+import ContractForm from '../forms/contract-signature-form/ContractForm';
+import FormBanner from '../banners/form-banner/FormBanner';
 
 const loadUserData = () => {
     if (history?.state?.address) {
@@ -27,6 +29,10 @@ export default function ContractSignature() {
 
 
     return (
-        <AlmostThere userData={userData} confirmationByEmail={userData.user ? true : false} />
+        <>
+            <AlmostThere userData={userData} confirmationByEmail={userData.user ? true : false} />
+            <ContractForm />
+            <FormBanner />
+        </>
     );
 }
