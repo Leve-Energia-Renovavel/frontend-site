@@ -1,6 +1,6 @@
 "use client"
 
-import { Contract, FormContainer, FormContent, FormHeader } from './styles';
+import { Contract, FormButtonContainer, FormContainer, FormContent, FormHeader } from './styles';
 import ContractFormTitle from './ContractFormTitle';
 import ContractFormProgress from './ContractFormProgress';
 import { useState } from 'react';
@@ -9,8 +9,13 @@ import PeopleIcon from '@mui/icons-material/People';
 import SearchIcon from '@mui/icons-material/Search';
 import DownloadIcon from '@mui/icons-material/Download';
 import { background } from '@/app/pages/styles';
+import DefaultButton from '@/app/pages/components/utils/buttons/DefaultButton';
+import { useRouter } from 'next/navigation';
 
-export default function ContractForm() {
+export default function ContractForm(props) {
+
+    const router = useRouter()
+    const isCompany = props.isCompany
 
     const [contracts, setContracts] = useState([
         {
@@ -43,8 +48,18 @@ export default function ContractForm() {
         );
     };
 
-    const handleSubmit = () => {
-        console.log("submit")
+    const handleSignAllContracts = () => {
+        setContracts((prevContracts) =>
+            prevContracts.map((contract) => ({
+                ...contract,
+                signed: true,
+            }))
+        );
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        handleSignAllContracts()
     }
 
     return (
@@ -74,6 +89,10 @@ export default function ContractForm() {
                             </div>
                         )
                     })}
+                    <FormButtonContainer>
+                        <DefaultButton text={"Alterar dados cadastrais"} variant="outlined-inverse" onClick={() => router.push(`/register/${isCompany ? 'cnpj' : 'cpf'}`)} />
+                        <DefaultButton text={"Assinar Todos"} variant="contained" isSubmit={true} />
+                    </FormButtonContainer>
                 </FormContent>
             </FormContainer>
         </form >

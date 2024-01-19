@@ -50,5 +50,9 @@ export const Contract = styled.div`
     ;
 
 export const FormButtonContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: .5rem;
 
 `;

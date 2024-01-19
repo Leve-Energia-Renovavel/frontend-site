@@ -31,7 +31,7 @@ export default function ContractSignature() {
     return (
         <>
             <AlmostThere userData={userData} confirmationByEmail={userData.user ? true : false} />
-            <ContractForm />
+            <ContractForm isCompany={userData.company ? true : false}/>
             <FormBanner />
         </>
     );
