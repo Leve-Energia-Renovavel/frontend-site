@@ -1,5 +1,5 @@
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
-import { MenuItem, TextField, Typography, Box, Modal } from "@mui/material";
+import { MenuItem, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
@@ -7,13 +7,14 @@ import RegisterModal from "../modal/Modal";
 import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { FormContainer, FormContent, FormHeader } from "./styles";
+import { useRouter } from "next/navigation";
 
 export default function RegisterForm(props) {
 
+    const router = useRouter()
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const { name, email, phone, cep, companyName, cost } = props.userData
-
     const isCompany = props.isCompany
 
     const userRefs = {
@@ -109,22 +110,42 @@ export default function RegisterForm(props) {
         }
 
         var submitData = {}
-        submitData = {
-            nome: userRefs.name.current.value,
-            email: userRefs.email.current.value,
-            telefone: userRefs.phone.current.value,
-            cep: addressRefs.addressCep.current.value,
-            endereco: addressRefs.address.current.value,
-            numero: addressRefs.addressNumber.current.value,
-            bairro: addressRefs.neighborhood.current.value,
-            estado_id: "14",
-            cidade_id: "2754",
-            valor: cost
-        }
+        if (isCompany) {
+            submitData = {
+                nome: companyRefs.companyName.current.value,
+                email: companyRefs.companyEmail.current.value,
+                telefone: companyRefs.companyPhone.current.value,
+                cep: addressRefs.addressCep.current.value,
+                endereco: addressRefs.address.current.value,
+                numero: addressRefs.addressNumber.current.value,
+                bairro: addressRefs.neighborhood.current.value,
+                estado_id: "14",
+                cidade_id: "2754",
+                valor: cost
+            }
 
+        } else {
+            submitData = {
+                nome: userRefs.name.current.value,
+                email: userRefs.email.current.value,
+                telefone: userRefs.phone.current.value,
+                cep: addressRefs.addressCep.current.value,
+                endereco: addressRefs.address.current.value,
+                numero: addressRefs.addressNumber.current.value,
+                bairro: addressRefs.neighborhood.current.value,
+                estado_id: "14",
+                cidade_id: "2754",
+                valor: cost
+            }
+
+        }
 
         console.log(data)
         // console.log(submitData)
+
+        history.pushState(data, "");
+        localStorage.setItem('leveLeadData', JSON.stringify(data));
+        router.push(`/register/contract-signature`)
 
     }
 
@@ -159,7 +180,6 @@ export default function RegisterForm(props) {
     }, [isModalOpen]);
 
 
-
     const formatPhoneNumber = (phoneNumber) => {
         const match = phoneNumber.match(/^(\d{2})(\d{5})(\d{4})$/);
         if (match) {
@@ -174,9 +194,6 @@ export default function RegisterForm(props) {
     const closeModal = () => {
         setIsModalOpen(false)
     }
-
-    console.log("CEP ===>>>", addressRefs?.addressCep?.current?.value)
-    console.log("usedata CEP ===>>>", cep)
 
     return (
         <form

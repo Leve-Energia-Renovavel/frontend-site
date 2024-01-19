@@ -4,7 +4,7 @@ import ResultEconomy from "../result-economy/ResultEconomy";
 import RegisterBannerFailCost from "../banners/banner-fail-cost/RegisterBanner";
 import RegisterBannerFailRegion from "../banners/banner-fail-region/RegisterBanner";
 import RegisterForm from "../forms/RegisterForm";
-import FormBanner from "../form-banner/FormBanner";
+import FormBanner from "../banners/form-banner/FormBanner";
 import RegisterBannerSuccess from "../banners/banner-success/RegisterBanner";
 import { notFound } from "next/navigation";
 
@@ -36,7 +36,7 @@ export default function Register() {
 
     return (
         <div>
-            {isLowCost && <RegisterBannerFailRegion userData={userData} />}
+            {isLowCost && <RegisterBannerFailCost userData={userData} />}
             {!isLowCost && isOutOfRange && <RegisterBannerFailRegion userData={userData} />}
             {!isLowCost && !isOutOfRange &&
                 <>
