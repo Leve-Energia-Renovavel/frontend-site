@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material"
 import { BannerContainer, ContentContainer } from "./styles"
 
-export default function AlmostThere(props) {
+export default function AlmostThereBanner(props) {
 
     const confirmationByEmail = props.confirmationByEmail
 
