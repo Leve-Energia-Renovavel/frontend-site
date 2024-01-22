@@ -9,7 +9,6 @@ import { background } from "@/app/pages/styles";
 export default function RegisterModal(props) {
 
     const { distribuitor, isModalOpen, closeModal } = props;
-
     const distribuitorImage = distribuitor == "cemig" ? boletoCemig : boletoCpfl
 
     return (

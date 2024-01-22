@@ -9,6 +9,7 @@ import RegisterModal from "../../modal/Modal";
 import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader } from "./styles";
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function RegisterForm(props) {
 
@@ -40,7 +41,6 @@ export default function RegisterForm(props) {
         companyName: useRef(null),
         corporateReason: useRef(null),
         cnpj: useRef(null),
-        stateRegistration: useRef(null),
         responsibleName: useRef(null),
         companyEmail: useRef(null),
         companyPhone: useRef(null),
@@ -73,7 +73,6 @@ export default function RegisterForm(props) {
                     companyName: companyRefs.companyName.current.value,
                     corporateReason: companyRefs.corporateReason.current.value,
                     cnpj: companyRefs.cnpj.current.value,
-                    stateRegistration: companyRefs.stateRegistration.current.value,
                     responsibleName: companyRefs.responsibleName.current.value,
                     companyEmail: companyRefs.companyEmail.current.value,
                     companyPhone: companyRefs.companyPhone.current.value,
@@ -225,6 +224,17 @@ export default function RegisterForm(props) {
         }
     };
 
+    async function getCNPJ() {
+        const cnpj = companyRefs.cnpj.current.value.replace(/\D/g, '');
+
+        try {
+            const response = await axios.get(`https://publica.cnpj.ws/cnpj/${cnpj}`);
+            console.log(response)
+        } catch (error) {
+            console.error('Error fetching CNPJ data:', error);
+        }
+    }
+
     return (
         <form acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
             <FormContainer>
@@ -238,18 +248,18 @@ export default function RegisterForm(props) {
                             <TextField className="formInput" inputRef={companyRefs.companyName} defaultValue={companyName || ''} label="Nome da Empresa" variant="outlined" placeholder="Nome da Empresa" type="text" InputLabelProps={{ shrink: true }} />
                             <TextField className="formInput" inputRef={companyRefs.corporateReason} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" />
                             <InputMask mask="99.999.999/9999-99">
-                                {() => <TextField className="formInput" inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text" />}
-                            </InputMask>
-                            <InputMask>
-                                {() => <TextField className="formInput" inputRef={companyRefs.stateRegistration} label="Inscrição Estadual" variant="outlined" placeholder="Inscrição Estadual" type="text" />}
+                                {() => <TextField className="formInput" inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text"
+                                    InputProps={{
+                                        endAdornment: <SearchIcon
+                                            sx={{ cursor: 'pointer' }}
+                                            onClick={() => getCNPJ()} />,
+                                    }} />}
                             </InputMask>
                             <TextField className="formInput" inputRef={companyRefs.responsibleName} defaultValue={name || ''} label="Nome Completo do Responsável" variant="outlined" placeholder="Nome Completo do Responsável" type="text" InputLabelProps={{ shrink: true }} />
                             <TextField sx={{ width: '300px' }} inputRef={companyRefs.companyEmail} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" InputLabelProps={{ shrink: true }} />
                             <InputMask mask="(99) 99999-9999" value={formattedPhone || ''}>
                                 {() => <TextField sx={{ width: '300px' }} inputRef={companyRefs.companyPhone} className="formInput" label="Telefone do Responsável" variant="outlined" placeholder="Telefone do Responsável" type="text" InputLabelProps={{ shrink: true }} />}
                             </InputMask>
-
-
 
                         </>
                     ) : (
