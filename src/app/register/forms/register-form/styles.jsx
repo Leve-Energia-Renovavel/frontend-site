@@ -42,10 +42,20 @@ export const FormContent = styled.div`
   max-width: 100%;
 
   .formInput {
-    /* display: inline-block; */
     max-width: 40%;
     margin: 1rem;
   }
-    
+  `
+
+export const FileUploadContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 1rem;
+`
+export const FileUploadItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `
 

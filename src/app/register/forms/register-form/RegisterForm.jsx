@@ -1,18 +1,22 @@
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
-import { MenuItem, TextField, Typography } from "@mui/material";
+import FileUploadIcon from '@mui/icons-material/FileUpload';
+import { Button, MenuItem, TextField, Typography } from "@mui/material";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import RegisterModal from "../../modal/Modal";
 import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
-import { FormContainer, FormContent, FormHeader } from "./styles";
-import { useRouter } from "next/navigation";
+import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader } from "./styles";
 
 export default function RegisterForm(props) {
 
     const router = useRouter()
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [socialContractFile, setSocialContractFile] = useState(null);
+    const [energyExtractFile, setEnergyExtractFile] = useState(null);
+
 
     const { name, email, phone, cep, companyName, cost } = props.userData
     const isCompany = props.isCompany
@@ -40,6 +44,10 @@ export default function RegisterForm(props) {
         responsibleName: useRef(null),
         companyEmail: useRef(null),
         companyPhone: useRef(null),
+
+        socialContract: useRef(null),
+        energyExtract: useRef(null),
+
     }
 
     const addressRefs = {
@@ -177,7 +185,7 @@ export default function RegisterForm(props) {
         };
 
         fetchData();
-    }, [isModalOpen]);
+    }, [isModalOpen, socialContractFile, energyExtractFile]);
 
 
     const formatPhoneNumber = (phoneNumber) => {
@@ -194,6 +202,28 @@ export default function RegisterForm(props) {
     const closeModal = () => {
         setIsModalOpen(false)
     }
+
+    const handleClickFiles = (fileType) => {
+        companyRefs[fileType].current.click();
+    };
+
+    const handleChangeFiles = (event, fileType) => {
+        console.log(event.target.files)
+        const fileUploaded = event.target.files[0];
+        if (fileType === 'socialContract') {
+            setSocialContractFile(fileUploaded);
+        } else if (fileType === 'energyExtract') {
+            setEnergyExtractFile(fileUploaded);
+        }
+    };
+
+    const handleDeleteFiles = (event, fileType) => {
+        if (fileType === 'socialContract') {
+            setSocialContractFile(null);
+        } else if (fileType === 'energyExtract') {
+            setEnergyExtractFile(null);
+        }
+    };
 
     return (
         <form acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
@@ -218,6 +248,9 @@ export default function RegisterForm(props) {
                             <InputMask mask="(99) 99999-9999" value={formattedPhone || ''}>
                                 {() => <TextField sx={{ width: '300px' }} inputRef={companyRefs.companyPhone} className="formInput" label="Telefone do Responsável" variant="outlined" placeholder="Telefone do Responsável" type="text" InputLabelProps={{ shrink: true }} />}
                             </InputMask>
+
+
+
                         </>
                     ) : (
                         <>
@@ -274,6 +307,64 @@ export default function RegisterForm(props) {
                     <TextField className="formInput" inputRef={addressRefs.neighborhood} label="Bairro" variant="outlined" placeholder="Bairro" type="text" InputLabelProps={{ shrink: true }} />
                     <TextField className="formInput" inputRef={addressRefs.state} label="Estado" variant="outlined" placeholder="Estado" type="text" InputLabelProps={{ shrink: true }} />
                     <TextField className="formInput" inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} />
+
+                    {isCompany ? (
+                        <FileUploadContainer>
+                            <FileUploadItem>
+                                <Button
+                                    startIcon={<FileUploadIcon />}
+                                    onClick={() => handleClickFiles('socialContract')}>Enviar Contrato Social</Button>
+                                <input
+                                    type="file"
+                                    onChange={(event) => handleChangeFiles(event, 'socialContract')}
+                                    ref={companyRefs.socialContract}
+                                    style={{ display: 'none' }} />
+                                {socialContractFile && (
+                                    <>
+                                        <p>{socialContractFile.name}</p>
+                                        <button
+                                            style={{
+                                                cursor: 'pointer',
+                                                backgroundColor: 'transparent',
+                                                padding: '0 5px',
+                                                marginLeft: '.5rem',
+                                                fontSize: '1rem',
+                                                fontWeight: 'bold',
+                                            }}
+                                            onClick={(event) => handleDeleteFiles(event, 'socialContract')}>x</button>
+                                    </>
+                                )}
+                            </FileUploadItem>
+
+                            <FileUploadItem>
+                                <Button
+                                    startIcon={<FileUploadIcon />}
+                                    onClick={() => handleClickFiles('energyExtract')}>Enviar Fatura de Energia</Button>
+                                <input
+                                    type="file"
+                                    onChange={(event) => handleChangeFiles(event, 'energyExtract')}
+                                    ref={companyRefs.energyExtract}
+                                    style={{ display: 'none' }} />
+                                {energyExtractFile && (
+                                    <>
+                                        <p>{energyExtractFile.name}</p>
+                                        <button
+                                            style={{
+                                                cursor: 'pointer',
+                                                backgroundColor: 'transparent',
+                                                padding: '0 5px',
+                                                marginLeft: '.5rem',
+                                                fontSize: '1rem',
+                                                fontWeight: 'bold',
+                                            }}
+                                            onClick={(event) => handleDeleteFiles(event, 'energyExtract')}>x</button>
+                                    </>
+                                )}
+                            </FileUploadItem>
+                        </FileUploadContainer>
+                    ) : null}
+
+
                     <TextField sx={{
                         width: '60%', margin: '1rem', borderColor: '#0075FF',
                         '& label': {
@@ -293,6 +384,10 @@ export default function RegisterForm(props) {
                     }} inputRef={addressRefs.installationNumber} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text" />
                     <Typography variant="body2" sx={{ color: 'blue', maxWidth: '20%', margin: '1rem' }}>Não encontrou o número? <a onClick={() => setIsModalOpen(true)} style={{ textDecoration: 'underline', cursor: 'pointer' }}>Clique aqui para saber onde encontrá-lo.</a></Typography>
                     <FormButton className="formInput" variant="outlined" type="submit" text="Continuar" />
+
+
+
+
                 </FormContent >
             </FormContainer >
             {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}
