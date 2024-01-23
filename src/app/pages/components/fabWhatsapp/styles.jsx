@@ -7,6 +7,7 @@ export const FABContainer = styled.div`
   bottom: 20px;
   right: 20px;
   z-index: 1000;
+  cursor: pointer;
 `
 
 export const WhatsappLink = styled.a`

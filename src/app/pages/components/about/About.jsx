@@ -22,7 +22,6 @@ export default function About() {
                     src={aboutImage}
                     alt="Descrição sobre a Leve Energias Renováveis"
                 />
-
             </ContentContainer>
 
         </AboutContainer>

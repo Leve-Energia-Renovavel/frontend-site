@@ -3,10 +3,10 @@
 import { FormControl, FormControlLabel, Radio, RadioGroup, Slider, TextField, Typography } from "@mui/material"
 import { useRouter } from "next/navigation"
 import { useRef, useState } from "react"
+import InputMask from "react-input-mask"
 import FormButton from "../utils/buttons/FormButton"
 import SimulateEconomyTitle from "./SimulateEconomyTitle"
-import { FormContainer, SimulateEconomyContainer, SimulateEconomyHeader as Header, radioButtonStyle, radioButtonLabelStyle } from "./styles"
-import InputMask from "react-input-mask";
+import { FormContainer, SimulateEconomyHeader as Header, SimulateEconomyContainer, radioButtonLabelStyle, radioButtonStyle } from "./styles"
 
 export default function SimulateEconomy() {
 
