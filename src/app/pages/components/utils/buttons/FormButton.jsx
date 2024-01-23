@@ -10,14 +10,14 @@ export default function FormButton(props) {
                     fontSize: 18,
                     color: background.light,
                     borderColor: background.lightBorder,
-                    backgroundColor: background.primary,
+                    backgroundColor: background.blueLeve,
                     paddingY: 1,
                     paddingX: 4,
                     height: '3rem',
                     borderRadius: '12px',
                     "&:hover": {
-                        backgroundColor: background.secondary,
-                        color: background.primary,
+                        backgroundColor: background.yellowLeve,
+                        color: background.blueLeve,
                         borderColor: background.lightBorder,
                     },
                 }} >{props.text}</Button >

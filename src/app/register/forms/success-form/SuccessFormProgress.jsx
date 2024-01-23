@@ -1,18 +1,27 @@
 import { Typography, LinearProgress } from "@mui/material"
 import { useEffect, useState } from "react";
 
-export default function SuccessFormProgress() {
+export default function SuccessFormProgress(props) {
 
-    const [progress, setProgress] = useState(50);
+
+    const [progress, setProgress] = useState(80);
+    const { finishedProgress } = props
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setProgress((prevProgress) => prevProgress < 100 ? prevProgress + 10 : prevProgress + 0);
-        }, 200);
+            setProgress((prevProgress) => (prevProgress < 100 ? prevProgress + 10 : prevProgress));
+        }, 600);
+
         return () => {
             clearInterval(timer);
         };
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        if (progress >= 100) {
+            finishedProgress()
+        }
+    }, [progress]);
 
     return (
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '1rem 0' }}>

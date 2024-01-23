@@ -5,25 +5,25 @@ import { background } from '../../../styles';
 export default function DefaultButton({ onClick, isSubmit, ...props }) {
 
     const colorForVariants = {
-        "contained": background.primary,
-        "outlined": background.secondary,
+        "contained": background.blueLeve,
+        "outlined": background.yellowLeve,
         "outlined-inverse": background.light,
     }
     const backgroundColorForVariants = {
-        "contained": background.secondary,
-        "outlined": background.primary,
-        "outlined-inverse": background.primary,
+        "contained": background.yellowLeve,
+        "outlined": background.blueLeve,
+        "outlined-inverse": background.blueLeve,
     }
     const backgroundHoverColor = {
         "contained": background.light,
-        "outlined": background.secondary,
+        "outlined": background.yellowLeve,
         "outlined-inverse": background.light,
     }
 
     const hoverColor = {
-        "contained": background.primary,
-        "outlined": background.primary,
-        "outlined-inverse": background.primary,
+        "contained": background.blueLeve,
+        "outlined": background.blueLeve,
+        "outlined-inverse": background.blueLeve,
 
     }
 

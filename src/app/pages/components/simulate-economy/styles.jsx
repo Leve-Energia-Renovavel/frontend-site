@@ -99,6 +99,7 @@ export const FormContainer = styled.form`
       }
       .monthyCostValue{
         font-family: Inter;
+        float: right;
         font-size: 1rem;
         font-style: normal;
         font-weight: 700;

@@ -29,8 +29,9 @@ export const background = {
     dark: "#0a0a0a",
     lightBorder: "#e6e6e6",
     grey: "#7F7F7F",
+    darkGrey: "#343434",
     yellowLeve: "#FFE04C",
     blueLeve: "#0075FF",
     white: "#FFFFFF",
-    stroke: "#CACACB"
+    stroke: "#CACACB",
 }

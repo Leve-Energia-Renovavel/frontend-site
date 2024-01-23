@@ -6,7 +6,7 @@ import { useRef, useState } from "react"
 import InputMask from "react-input-mask"
 import FormButton from "../utils/buttons/FormButton"
 import SimulateEconomyTitle from "./SimulateEconomyTitle"
-import { FormContainer, SimulateEconomyHeader as Header, SimulateEconomyContainer, radioButtonLabelStyle, radioButtonStyle } from "./styles"
+import { FormContainer, SimulateEconomyHeader as Header, SimulateEconomyContainer as Container, radioButtonLabelStyle, radioButtonStyle } from "./styles"
 
 export default function SimulateEconomy() {
 
@@ -44,7 +44,7 @@ export default function SimulateEconomy() {
 
     }
     return (
-        <SimulateEconomyContainer>
+        <Container>
             <Header>
                 <SimulateEconomyTitle />
                 <FormControl style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '1.2rem' }}>
@@ -106,6 +106,6 @@ export default function SimulateEconomy() {
                     <FormButton variant="outlined" type="submit" text="Simular Economia" />
                 </FormControl>
             </FormContainer>
-        </SimulateEconomyContainer >
+        </Container >
     )
 }

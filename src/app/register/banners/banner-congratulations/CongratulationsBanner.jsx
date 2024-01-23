@@ -1,3 +1,4 @@
+
 import { Typography } from "@mui/material"
 import { BannerContainer, ContentContainer } from "./styles"
 import ConfettiExplosion from "react-confetti-explosion";
