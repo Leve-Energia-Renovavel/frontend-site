@@ -3,30 +3,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700;800&family=Roboto:wght@100;300;400;500;700&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700;800;900&display=swap");
 
+@import url('https://fonts.cdnfonts.com/css/metropolis-2');
+
+
 *,
 html {
     border: 0;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Metropolis", sans-serif;
-    /* font-family: -apple-system, "Helvetica Neue", Helvetica, "Roboto", Arial, sans-serif; */
-    /* font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; */
+    font-family: "Metropolis", sans-serif, system-ui, -apple-system;
     font-weight: normal;
-    line-height: 1.5;
 }
 
 body {
     background: #fefefe;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 
 *,

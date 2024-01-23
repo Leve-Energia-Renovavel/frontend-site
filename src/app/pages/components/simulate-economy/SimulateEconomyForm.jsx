@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { useRef, useState } from "react"
 import FormButton from "../utils/buttons/FormButton"
 import SimulateEconomyTitle from "./SimulateEconomyTitle"
-import { FormContainer, SimulateEconomyContainer } from "./styles"
+import { FormContainer, SimulateEconomyContainer, SimulateEconomyHeader as Header, radioButtonStyle, radioButtonLabelStyle } from "./styles"
 import InputMask from "react-input-mask";
 
 export default function SimulateEconomy() {
@@ -23,16 +23,6 @@ export default function SimulateEconomy() {
 
     const [userCost, setUserCost] = useState(minCostValue)
     const [userType, setUserType] = useState(defaultSelectedRadioButton)
-
-    const radioButtonStyle = {
-        color: 'black',
-        '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)': {
-            color: '#0075FF',
-        },
-        '&.Mui-checked': {
-            color: '#FFD300',
-        }
-    }
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -55,71 +45,66 @@ export default function SimulateEconomy() {
     }
     return (
         <SimulateEconomyContainer>
-            <SimulateEconomyTitle />
-            <FormContainer>
-                <form
-                    acceptCharset="UTF-8"
-                    method="POST"
-                    onSubmit={handleSubmit}>
+            <Header>
+                <SimulateEconomyTitle />
+                <FormControl style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '1.2rem' }}>
+                    <Typography className="whereToSimulate">Escolha onde quer simular a economia:</Typography>
+                    <RadioGroup
+                        className="radioGroup"
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue={defaultSelectedRadioButton}
+                        name="radio-buttons-group"
+                        onChange={(event) => setUserType(event.target.value)}
+                    >
+                        <FormControlLabel value="cpf" control={<Radio sx={radioButtonStyle} />} label={<Typography sx={radioButtonLabelStyle}>Minha casa</Typography>} />
+                        <FormControlLabel className="radioLabel" value="cnpj" control={<Radio sx={radioButtonStyle} />} label={<Typography sx={radioButtonLabelStyle}>Minha casa</Typography>} />
+                    </RadioGroup>
+                </FormControl>
+            </Header>
+            <FormContainer acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
+                {userType === "cnpj" && (
+                    <FormControl className="isCNPJ">
+                        <TextField required label="Nome da Empresa" variant="outlined" placeholder="Nome da Empresa" type="text" inputRef={companyNameRef} />
+                    </FormControl>
+                )}
 
-                    <FormControl className="formField" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                        <Typography variant="subtitle1">Escolha onde quer simular a economia:</Typography>
+                <FormControl>
+                    <TextField required label={`Nome Completo ${userType === "cnpj" ? "do Responsavel" : ""}`} variant="outlined" placeholder="Nome Completo" type="text" inputRef={nameRef} />
+                </FormControl>
+                <FormControl>
+                    <TextField required label={`E-mail ${userType === "cnpj" ? "do Responsavel" : ""}`} variant="outlined" placeholder="E-mail" type="email" inputRef={emailRef} />
+                </FormControl>
+                <FormControl>
+                    <InputMask mask="(99) 99999-9999">
+                        {() => <TextField required label={`Telefone ${userType === "cnpj" ? "do Responsavel" : ""}`} variant="outlined" placeholder="Telefone" type="phone" inputRef={phoneRef} />}
+                    </InputMask>
+                </FormControl>
+                <FormControl>
+                    <InputMask mask="99999-999">
+                        {() => <TextField required label="CEP" variant="outlined" placeholder="CEP" type="phone" inputRef={cepRef} />}
+                    </InputMask>
 
-                        <RadioGroup
-                            aria-labelledby="demo-radio-buttons-group-label"
-                            defaultValue={defaultSelectedRadioButton}
-                            name="radio-buttons-group"
-                            onChange={(event) => setUserType(event.target.value)}
-                            sx={{ display: 'flex', flexDirection: 'row' }}
-                        >
-                            <FormControlLabel value="cpf" control={<Radio sx={radioButtonStyle} />} label="Minha Casa" />
-                            <FormControlLabel value="cnpj" control={<Radio sx={radioButtonStyle} />} label="Minha Empresa" />
-                        </RadioGroup>
-                    </FormControl>
-                    {userType === "cnpj" && (
-                        <FormControl className="formField" >
-                            <TextField sx={{ width: '600px' }} required className="formInput" label="Nome da Empresa" variant="outlined" placeholder="Nome da Empresa" type="text" inputRef={companyNameRef} />
-                        </FormControl>
-                    )}
-
-                    <FormControl className="formField" >
-                        <TextField sx={{ width: '400px' }} required className="formInput" label={`Nome Completo ${userType === "cnpj" ? "do Responsavel" : ""}`} variant="outlined" placeholder="Nome Completo" type="text" inputRef={nameRef} />
-                    </FormControl>
-                    <FormControl className="formField">
-                        <TextField sx={{ width: '300px' }} required className="formInput" label={`E-mail ${userType === "cnpj" ? "do Responsavel" : ""}`} variant="outlined" placeholder="E-mail" type="email" inputRef={emailRef} />
-                    </FormControl>
-                    <FormControl className="formField">
-                        <InputMask mask="(99) 99999-9999">
-                            {() => <TextField sx={{ width: '180px' }} required className="formInput" label={`Telefone ${userType === "cnpj" ? "do Responsavel" : ""}`} variant="outlined" placeholder="Telefone" type="phone" inputRef={phoneRef} />}
-                        </InputMask>
-                    </FormControl>
-                    <FormControl className="formField">
-                        <InputMask mask="99999-999">
-                            {() => <TextField className="formInput" required label="CEP" variant="outlined" placeholder="CEP" type="phone" inputRef={cepRef} />}
-                        </InputMask>
-
-                    </FormControl>
-                    <FormControl className="formField" sx={{ width: '280px' }}>
-                        <Typography variant="subtitle1"> Custo mensal (em média) <span>R$ {userCost}</span></Typography>
-                        <Slider onChange={(event) => setUserCost(event.target.value)}
-                            className="formInput"
-                            min={150}
-                            max={3000}
-                            sx={{
-                                color: 'yellow', //color of the slider between thumbs
-                                "& .MuiSlider-thumb": {
-                                    backgroundColor: '#0075FF' //color of thumbs
-                                },
-                                "& .MuiSlider-rail": {
-                                    color: 'lightblue'
-                                }
-                            }}
-                            valueLabelDisplay="auto" />
-                    </FormControl>
-                    <FormControl className="formField" >
-                        <FormButton className="formInput" variant="outlined" type="submit" text="Simular Economia" />
-                    </FormControl>
-                </form>
+                </FormControl>
+                <FormControl className="slider">
+                    <Typography className="averageMonthlyCost"> Custo mensal (em média) <span className="monthyCostValue">R$ {userCost}</span></Typography>
+                    <Slider onChange={(event) => setUserCost(event.target.value)}
+                        min={150}
+                        max={3000}
+                        sx={{
+                            color: '#FFE04C', //color of the slider between thumbs
+                            height: '0.5rem',
+                            "& .MuiSlider-thumb": {
+                                backgroundColor: '#0075FF' //color of thumbs
+                            },
+                            "& .MuiSlider-rail": {
+                                color: 'lightblue'
+                            }
+                        }}
+                        valueLabelDisplay="auto" />
+                </FormControl>
+                <FormControl >
+                    <FormButton variant="outlined" type="submit" text="Simular Economia" />
+                </FormControl>
             </FormContainer>
         </SimulateEconomyContainer >
     )

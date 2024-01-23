@@ -6,53 +6,124 @@ export const SimulateEconomyContainer = styled.div`
   flex-direction: column;
   padding: 2rem;
   border: 1px solid #ccc; 
-  border-radius: 5px;
+  border-radius: 0.25rem;
   margin: 0 auto;
-  background-color: ${background.light};
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.16);
+  background-color: ${background.white};
   
   position: absolute;
-  top: 85vh;
-  left: 50vw;
+  top: 97dvh;
+  left: 50dvw;
   transform: translate(-50%, -50%);
   z-index: 100;
   
-  /* max-height: 25vh; */
   width: 60vw;
   max-width: 80vw;
 
-  h1, span {
-    font-size: 2rem;
-    font-weight: bold;
-    line-height: 1.7rem;
 
-    } 
+
+`;
+
+export const SimulateEconomyHeader = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  .whereToSimulate { 
+    font-family: Inter;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.00938rem;
+    margin-top: 1.5rem;
+    margin-right: 1.5rem;
+    
+  }
+  .radioGroup {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1.2rem;
+
+  }
+`;
+
+export const SimulateEconomyTitleStyles = styled.div`
+
+    h3, span {
+        font-size: 1.75rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 1.555rem;
+
+        } 
   .highlighted {
     color: ${background.primary};
           
     }
 
-`;
+`
 
-export const FormContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+export const FormContainer = styled.form`
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3,1fr);
+    gap: 1rem;
 
-  .formField {
-    display: inline-block;
-    padding: .5rem;
+    div {
+      grid-row: span 1;
+      grid-column: span 1;
 
-  span {
-    font-size: 1rem;
-    font-weight: bold;
+    }
+
+    .isCNPJ { 
+      grid-row: span 1;
+      grid-column: span 3;
+    }
+    
+    .slider {
+      grid-row: span 1;
+      grid-column: span 1;
+      
+    }
+      
+  input {
+    width: 100%;
   }
-}
 
-.formInput {
-    /* width: 25vw; */
-    flex-grow: 1;
+      .averageMonthlyCost{
+        font-family: Inter;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      .monthyCostValue{
+        font-family: Inter;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
 
-  }
 
 
 `
+export const radioButtonStyle = {
+  color: 'black',
+  '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)': {
+    color: background.stroke,
+  },
+  '&.Mui-checked': {
+    color: '#FFD300',
+  }
+}
+
+export const radioButtonLabelStyle = {
+  fontFamily: 'Inter',
+  fontSize: '1.125rem',
+  fontStyle: 'normal',
+  fontWeight: 700,
+  lineHeight: 'normal',
+  letterSpacing: '0.00938rem'
+
+}

@@ -1,16 +1,17 @@
 import { Typography } from "@mui/material"
+import { SimulateEconomyTitleStyles as TitleContainer } from "./styles"
 
 export default function SimulateEconomyTitle() {
     return (
-        <div>
-            <Typography variant="body1" component="h1">A
+        <TitleContainer>
+            <Typography component="h3">A
                 <span className="highlighted"> Leve </span>
                 <span> te ajuda a </span>
             </Typography>
-            <Typography variant="body1" component="h1">
+            <Typography component="h3">
                 <span className="highlighted">economizar </span>
                 <span>na conta de luz.</span>
             </Typography>
-        </div>
+        </TitleContainer>
     )
 }
