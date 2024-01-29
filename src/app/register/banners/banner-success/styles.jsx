@@ -2,10 +2,10 @@ import styled from "@emotion/styled"
 import { background } from "@/app/pages/styles"
 
 export const BannerContainer = styled.div`
-    background-color: ${background.primary};
+    background-color: ${background.blueLeve};
     height: 150vh;
     max-width: 100vw;
-    padding: 10rem 15rem;
+    padding: 9rem 13.5rem;
 `
 
 export const ContentContainer = styled.div`
@@ -13,23 +13,24 @@ export const ContentContainer = styled.div`
     flex-direction: "column";
 
     h1 {
-        font-family: -apple-system, "Helvetica Neue", Helvetica, "Roboto", Arial, sans-serif;
-        font-style: bold;
+        font-family: "Metropolis", sans-serif, system-ui, -apple-system;
         font-weight: 700;
-        color: ${background.secondary};
-        font-size: 3.5rem;
-        line-height: 3.2rem;
+        color: ${background.yellowLeve};
+        font-size: 2.625rem;
+        line-height: 2rem;
     }
-
+    
     .subtitle {
         color: ${background.light};
+        font-size: 1.125rem;
         max-width: 50vw;
-        margin-top: 1.2rem;
+        margin-top: 1rem;
     }
     .boldSubtitle {
         color: ${background.light};
+        font-size: 1.125rem;
         font-weight: bold;
-        margin-top: 2rem;
+        margin-top: 1rem;
     }
 
 `

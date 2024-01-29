@@ -1,5 +1,6 @@
 import { Typography, LinearProgress } from "@mui/material"
 import { useEffect, useState } from "react";
+import { RegisterFormProgressContainer as Container } from "./styles";
 
 export default function RegisterFormProgress() {
 
@@ -15,22 +16,13 @@ export default function RegisterFormProgress() {
     }, [])
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '1rem 0' }}>
-            <Typography variant="body1" component="h2" sx={{ fontWeight: 'bold', color: '#FFD300', marginRight: '1rem' }}>Progresso: </Typography>
+        <Container>
+            <Typography variant="body1" component="h2">Progresso: </Typography>
             <LinearProgress
+                className="progressBar"
                 variant="buffer"
                 valueBuffer={100}
-                value={progress} sx={{
-                    height: '.75rem',
-                    width: '40vw',
-                    borderRadius: 5,
-                    '& .MuiLinearProgress-colorPrimary': {
-                        backgroundColor: 'lightblue'
-                    },
-                    '& .MuiLinearProgress-barColorPrimary': {
-                        backgroundColor: '#FFD300'
-                    },
-                }} />
-        </div>
+                value={progress} />
+        </Container>
     );
 }

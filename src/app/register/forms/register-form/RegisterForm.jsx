@@ -1,6 +1,6 @@
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
-import { Button, MenuItem, TextField, Typography } from "@mui/material";
+import { Button, MenuItem, TextField, Typography, Divider } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -8,7 +8,7 @@ import InputMask from "react-input-mask";
 import RegisterModal from "../../modal/Modal";
 import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
-import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader } from "./styles";
+import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormRow } from "./styles";
 import SearchIcon from '@mui/icons-material/Search';
 
 export default function RegisterForm(props) {
@@ -236,13 +236,13 @@ export default function RegisterForm(props) {
     }
 
     return (
-        <form acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
+        <>
             <FormContainer>
                 <FormHeader>
                     <RegisterFormTitle />
                     <RegisterFormProgress />
                 </FormHeader>
-                <FormContent>
+                <FormContent acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
                     {isCompany ? (
                         <>
                             <TextField className="formInput" inputRef={companyRefs.companyName} defaultValue={companyName || ''} label="Nome da Empresa" variant="outlined" placeholder="Nome da Empresa" type="text" InputLabelProps={{ shrink: true }} />
@@ -256,7 +256,7 @@ export default function RegisterForm(props) {
                                     }} />}
                             </InputMask>
                             <TextField className="formInput" inputRef={companyRefs.responsibleName} defaultValue={name || ''} label="Nome Completo do Responsável" variant="outlined" placeholder="Nome Completo do Responsável" type="text" InputLabelProps={{ shrink: true }} />
-                            <TextField sx={{ width: '300px' }} inputRef={companyRefs.companyEmail} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" InputLabelProps={{ shrink: true }} />
+                            <TextField inputRef={companyRefs.companyEmail} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" InputLabelProps={{ shrink: true }} />
                             <InputMask mask="(99) 99999-9999" value={formattedPhone || ''}>
                                 {() => <TextField sx={{ width: '300px' }} inputRef={companyRefs.companyPhone} className="formInput" label="Telefone do Responsável" variant="outlined" placeholder="Telefone do Responsável" type="text" InputLabelProps={{ shrink: true }} />}
                             </InputMask>
@@ -264,28 +264,31 @@ export default function RegisterForm(props) {
                         </>
                     ) : (
                         <>
-                            <TextField sx={{ width: '500px' }} inputRef={userRefs.name} defaultValue={name || ''} className="formInput" label="Nome Completo" variant="outlined" placeholder="Nome Completo" type="text" />
-                            <TextField sx={{ width: '500px' }} inputRef={userRefs.email} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" />
+                            <FormRow>
+                                <TextField inputRef={userRefs.name} defaultValue={name || ''} className="formInput" label="Nome Completo" variant="outlined" placeholder="Nome Completo" type="text" />
+                                <TextField inputRef={userRefs.email} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" />
+                            </FormRow>
 
                             <InputMask mask="(99) 99999-9999" value={formattedPhone || ''}>
-                                {() => <TextField sx={{ width: '200px' }}
-                                    inputRef={userRefs.phone} className="formInput" label="Celular" placeholder="Celular" variant="outlined" type="text" />}
+                                {() => <TextField
+                                    inputRef={userRefs.phone} className="formInput" label="Celular" placeholder="Celular" variant="outlined" type="text" InputLabelProps={{ shrink: true }} />}
                             </InputMask>
                             <InputMask mask="99999999-9">
-                                {() => <TextField sx={{ width: '200px' }} inputRef={userRefs.rg} className="formInput" label="RG" variant="outlined" placeholder="RG" type="text" />}
+                                {() => <TextField inputRef={userRefs.rg} className="formInput" label="RG" variant="outlined" placeholder="RG" type="text" InputLabelProps={{ shrink: true }} />}
                             </InputMask>
                             <InputMask mask="999.999.999-99">
-                                {() => <TextField sx={{ width: '200px' }} inputRef={userRefs.cpf} className="formInput" label="CPF" variant="outlined" placeholder="CPF" type="text" />}
+                                {() => <TextField inputRef={userRefs.cpf} className="formInput" label="CPF" variant="outlined" placeholder="CPF" type="text" InputLabelProps={{ shrink: true }} />}
                             </InputMask>
+
                             <InputMask mask="99/99/9999">
-                                {() => <TextField sx={{ width: '300px' }} inputRef={userRefs.birthday} className="formInput" label="Data de Nascimento" variant="outlined" placeholder="Data de Nascimento" type="text" />}
+                                {() => <TextField inputRef={userRefs.birthday} className="formInput" label="Data de Nascimento" variant="outlined" placeholder="Data de Nascimento" type="text" />}
                             </InputMask>
                             <TextField
                                 placeholder={"test"}
                                 select
                                 defaultValue={""}
                                 label="Estado Civil"
-                                sx={{ width: '300px' }}
+
                                 className="formInput"
                                 inputRef={userRefs.maritalStatus || ''}
                             >
@@ -293,28 +296,34 @@ export default function RegisterForm(props) {
                                 <MenuItem value={"casado"}>Casado(a)</MenuItem>
                                 <MenuItem value={"viuvo"}>Viúvo(a)</MenuItem>
                             </TextField>
-                            <TextField select defaultValue={""} sx={{ width: '300px' }} inputRef={userRefs.nationality} className="formInput" label="Nacionalidade" variant="outlined" placeholder="Nacionalidade" type="text">
+                            <TextField select defaultValue={""} inputRef={userRefs.nationality} className="formInput" label="Nacionalidade" variant="outlined" placeholder="Nacionalidade" type="text">
                                 <MenuItem value={"brasileiro"}>Brasileiro(a)</MenuItem>
                                 <MenuItem value={"estrangeiro"}>Estrangeiro(a)</MenuItem>
-                            </TextField>
-                            <TextField select defaultValue={""} sx={{ width: '300px' }} inputRef={userRefs.profession} className="formInput" label="Profissão" variant="outlined" placeholder="Profissão" type="text">
-                                <MenuItem value={"autonomo"}>Autônomo(a)</MenuItem>
-                                <MenuItem value={"assalariado"}>Assaláriado(a)</MenuItem>
-                                <MenuItem value={"aposentado"}>Aposentado(a)</MenuItem>
-                                <MenuItem value={"estudante"}>Estudante</MenuItem>
                             </TextField>
                         </>
 
                     )}
-                    <TextField className="formInput" inputRef={addressRefs.address} label="Endereço" variant="outlined" placeholder="Endereço" type="text" InputLabelProps={{ shrink: true }} />
-                    <TextField className="formInput"
-                        inputRef={addressRefs.addressNumber} label="Nº" variant="outlined" placeholder="Nº" type="text" />
+                    <TextField select defaultValue={""} inputRef={userRefs.profession} className="formInput" label="Profissão" variant="outlined" placeholder="Profissão" type="text">
+                        <MenuItem value={"autonomo"}>Autônomo(a)</MenuItem>
+                        <MenuItem value={"assalariado"}>Assaláriado(a)</MenuItem>
+                        <MenuItem value={"aposentado"}>Aposentado(a)</MenuItem>
+                        <MenuItem value={"estudante"}>Estudante</MenuItem>
+                    </TextField>
+
+                    <div style={{ margin: 'auto', }}>
+                        <Divider sx={{ width: '107px', border: '1px solid #A0A0A0' }} />
+                    </div>
+
                     <InputMask mask="99999-999">
                         {() => <TextField className="formInput" inputRef={addressRefs.addressCep} defaultValue={cep || ''} label="CEP" variant="outlined" placeholder="CEP" type="text" InputLabelProps={{ shrink: true }} />}
                     </InputMask>
 
+                    <TextField className="formInput" inputRef={addressRefs.address} label="Endereço" variant="outlined" placeholder="Endereço" type="text" InputLabelProps={{ shrink: true }} />
+                    <TextField className="formInput" inputRef={addressRefs.addressNumber} label="Nº" variant="outlined" placeholder="Nº" type="text" />
+
                     <TextField className="formInput" inputRef={addressRefs.addressComplement} label="Complemento" variant="outlined" placeholder="Complemento" type="text" />
                     <TextField className="formInput" inputRef={addressRefs.neighborhood} label="Bairro" variant="outlined" placeholder="Bairro" type="text" InputLabelProps={{ shrink: true }} />
+
                     <TextField className="formInput" inputRef={addressRefs.state} label="Estado" variant="outlined" placeholder="Estado" type="text" InputLabelProps={{ shrink: true }} />
                     <TextField className="formInput" inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} />
 
@@ -374,9 +383,8 @@ export default function RegisterForm(props) {
                         </FileUploadContainer>
                     ) : null}
 
-
                     <TextField sx={{
-                        width: '60%', margin: '1rem', borderColor: '#0075FF',
+                        borderColor: '#0075FF',
                         '& label': {
                             color: '#0075FF',
                         },
@@ -392,16 +400,12 @@ export default function RegisterForm(props) {
                             },
                         },
                     }} inputRef={addressRefs.installationNumber} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text" />
-                    <Typography variant="body2" sx={{ color: 'blue', maxWidth: '20%', margin: '1rem' }}>Não encontrou o número? <a onClick={() => setIsModalOpen(true)} style={{ textDecoration: 'underline', cursor: 'pointer' }}>Clique aqui para saber onde encontrá-lo.</a></Typography>
+                    <Typography variant="body2" sx={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}>Não encontrou o número? <a onClick={() => setIsModalOpen(true)}>Clique aqui para saber onde encontrá-lo.</a></Typography>
                     <FormButton className="formInput" variant="outlined" type="submit" text="Continuar" />
-
-
-
-
-                </FormContent >
+                </FormContent>
+                {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}
             </FormContainer >
-            {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}
+        </>
 
-        </form>
     );
 }

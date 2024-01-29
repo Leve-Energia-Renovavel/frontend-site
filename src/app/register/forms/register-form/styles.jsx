@@ -33,19 +33,21 @@ export const FormHeader = styled.div`
     margin: 1rem;
 `;
 
-export const FormContent = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+export const FormContent = styled.form`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  grid-gap: 20px 40px;
   background-color: ${background.light};
-
   max-width: 100%;
-
-  .formInput {
-    max-width: 40%;
-    margin: 1rem;
-  }
   `
+
+export const FormRow = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  grid-column: span 3; 
+  grid-gap: 40px;
+`;
+
 
 export const FileUploadContainer = styled.div`
   display: flex;
@@ -57,5 +59,32 @@ export const FileUploadItem = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+`
+
+export const RegisterFormProgressContainer = styled.div`
+ display: flex;
+ flex-direction: row; 
+ align-items: center; 
+ padding: 1rem 0;
+
+ h2{ 
+  font-weight: bold; 
+  color: ${background.yellowLeve};
+  margin-right: 1rem;
+ }
+
+ .progressBar {
+    height: .75rem;
+    width: 100%;
+    border-radius: 5px;
+
+    .MuiLinearProgress-colorPrimary {
+      background-color: ${background.greyLeve};
+    }
+
+    .MuiLinearProgress-barColorPrimary {
+      background-color: ${background.yellowLeve};
+    }
+ }
 `
 

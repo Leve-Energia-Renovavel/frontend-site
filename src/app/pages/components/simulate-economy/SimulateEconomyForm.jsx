@@ -57,7 +57,7 @@ export default function SimulateEconomy() {
                         onChange={(event) => setUserType(event.target.value)}
                     >
                         <FormControlLabel value="cpf" control={<Radio sx={radioButtonStyle} />} label={<Typography sx={radioButtonLabelStyle}>Minha casa</Typography>} />
-                        <FormControlLabel className="radioLabel" value="cnpj" control={<Radio sx={radioButtonStyle} />} label={<Typography sx={radioButtonLabelStyle}>Minha casa</Typography>} />
+                        <FormControlLabel className="radioLabel" value="cnpj" control={<Radio sx={radioButtonStyle} />} label={<Typography sx={radioButtonLabelStyle}>Minha empresa</Typography>} />
                     </RadioGroup>
                 </FormControl>
             </Header>
