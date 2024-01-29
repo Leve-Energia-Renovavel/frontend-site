@@ -34,5 +34,7 @@ export const background = {
     blueLeve: "#0075FF",
     white: "#FFFFFF",
     stroke: "#CACACB",
-    greyLeve: "#F5F5F5"
+    greyLeve: "#F5F5F5",
+    orangeLeve: "#EB641B",
+    textLeve: "#343434"
 }

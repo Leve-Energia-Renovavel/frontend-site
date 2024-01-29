@@ -3,7 +3,7 @@ import { background } from "@/app/pages/styles"
 
 export const BannerContainer = styled.div`
     background-color: ${background.blueLeve};
-    height: 150vh;
+    height: 140vh;
     max-width: 100vw;
     padding: 9rem 13.5rem;
 `
