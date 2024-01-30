@@ -4,7 +4,7 @@ import img from "../../../../../resources/img/person-banner.png"
 
 export const BannerContainer = styled.div`
     display: flex;
-    background-color: ${background.primary};
+    background-color: ${background.blueLeve};
     height: 93dvh;
     max-width: 100dvw;
     flex-direction: row;
