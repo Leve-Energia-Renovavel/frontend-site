@@ -1,17 +1,17 @@
 import styled from "@emotion/styled"
 import { background } from "@/app/pages/styles"
 
-export const FormContainer = styled.div`
+export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   border: 1px solid #ccc; 
   border-radius: 5px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 4rem;
   background-color: ${background.light};
   
   position: absolute;
-  top: 80vh;
+  top: 90vh;
   left: 50vw;
   transform: translate(-50%, -50%);
   z-index: 100;
@@ -36,7 +36,6 @@ export const FormHeader = styled.div`
 export const FormContent = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 2rem;
 
 `;
 
@@ -44,15 +43,43 @@ export const Contract = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: .5rem;
+    margin: 1rem;
 
 `
-    ;
+  ;
 
 export const FormButtonContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: .5rem;
+    padding: 1rem 0;
 
 `;
+
+
+export const RegisterFormProgressContainer = styled.div`
+ display: flex;
+ flex-direction: row; 
+ align-items: center; 
+ padding: 1rem 0;
+
+ h2{ 
+  font-weight: bold; 
+  color: ${background.yellowLeve};
+  margin-right: 1rem;
+ }
+
+ .progressBar {
+    height: .75rem;
+    width: 100%;
+    border-radius: 5px;
+
+    .MuiLinearProgress-colorPrimary {
+      background-color: ${background.greyLeve};
+    }
+
+    .MuiLinearProgress-barColorPrimary {
+      background-color: ${background.yellowLeve};
+    }
+ }
+`

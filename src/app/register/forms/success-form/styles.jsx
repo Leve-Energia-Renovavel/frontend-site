@@ -11,7 +11,7 @@ export const FormContainer = styled.div`
   background-color: ${background.light};
   
   position: absolute;
-  top: ${(props) => props.isDown ? `70vh` : `85vh`};
+  top: ${(props) => props.isDown ? `65vh` : `90vh`};
   left: 50vw;
   transform: translate(-50%, -50%);
   z-index: 100;

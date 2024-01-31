@@ -5,7 +5,7 @@ export const BannerContainer = styled.div`
     background-color: ${background.primary};
     height: 70vh;
     max-width: 100vw;
-    padding: 10rem 15rem;
+    padding: 8rem 13.5rem;
 `
 
 export const ContentContainer = styled.div`
@@ -13,23 +13,38 @@ export const ContentContainer = styled.div`
     flex-direction: "column";
 
     h1 {
-        font-family: -apple-system, "Helvetica Neue", Helvetica, "Roboto", Arial, sans-serif;
+        font-family: "Metropolis";
         font-style: bold;
         font-weight: 700;
-        color: ${background.secondary};
-        font-size: 3.5rem;
-        line-height: 3.2rem;
+        font-size: 2.625rem;
+        line-height: 2.625rem;;
+        color: ${background.yellowLeve};
     }
-
-    .subtitle {
-        color: ${background.light};
-        max-width: 50vw;
-        margin-top: 1.2rem;
+    
+    h6 {
+        color: ${background.white};
+        font-family: "Inter";
+        font-size: 1.125rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.375rem; 
+        
+        margin-top: 1rem;
     }
-    .boldSubtitle {
-        color: ${background.light};
+    .bold {
         font-weight: bold;
-        margin-top: 2rem;
+    }
+    
+    .highlightedVerificationInfo {
+        color: ${background.blueLeve};
+        background-color: ${background.white};
+        font-family: "Inter";
+        font-size: 1.125rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 1.375rem;
+        padding: .5rem;
+        border-radius: 10px;
     }
 
 `

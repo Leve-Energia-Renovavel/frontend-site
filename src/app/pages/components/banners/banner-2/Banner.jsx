@@ -2,15 +2,14 @@
 "use client"
 
 import { Typography } from "@mui/material"
-import { BannerContainer, LeftContent, RightContent, RightContentContainer, StepContainer, StepContent, StepTitle } from "./styles"
 import Image from "next/image"
 import icon1 from "../../../../../resources/icons/frame1.svg"
 import icon2 from "../../../../../resources/icons/frame2.svg"
 import icon3 from "../../../../../resources/icons/frame3.svg"
 import icon4 from "../../../../../resources/icons/frame4.svg"
-import icon5 from "../../../../../resources/icons/frame5.svg"
+import { BannerContainer, LeftContent, RightContentContainer, StepContent, StepTitle } from "./styles"
 
-import Divider from '@mui/material/Divider';
+import Divider from '@mui/material/Divider'
 
 
 export default function Banner() {

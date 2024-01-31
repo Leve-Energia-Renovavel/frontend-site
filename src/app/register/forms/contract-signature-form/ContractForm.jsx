@@ -69,38 +69,36 @@ export default function ContractForm(props) {
     }
 
     return (
-        <form acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
-            <FormContainer>
-                <FormHeader>
-                    <ContractFormTitle />
-                    <ContractFormProgress />
-                </FormHeader>
-                <FormContent>
-                    {contracts.map((contract) => {
-                        return (
-                            <div key={contract.id}>
-                                <Contract>
-                                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                        <Typography variant='subtitle1' sx={{ fontSize: 20, fontWeight: 'bold' }}>{contract.name}</Typography>
-                                        <Typography variant='subtitle1' sx={{ cursor: 'pointer' }} onClick={() => handleSignContract(contract.id)}>{`${contract.signed ? "Assinado" : "Assinar"}`} </Typography>
-                                    </div>
-                                    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', color: background.primary }}>
-                                        <PeopleIcon sx={{ fontSize: 30, margin: '0 .5rem' }} />
-                                        <Typography sx={{ fontSize: 20, margin: '0 .5rem' }} variant='subtitle1'>{`Assinaturas ${contract.signed ? "1/1" : "0/1"}`}</Typography>
-                                        <SearchIcon sx={{ cursor: 'pointer', fontSize: 30, margin: '0 .5rem' }} />
-                                        <DownloadIcon sx={{ cursor: 'pointer', fontSize: 30 }} onClick={() => handleSignContract(contract.id)} />
-                                    </div>
-                                </Contract>
-                                <Divider orientation="horizontal" variant="middle" flexItem />
-                            </div>
-                        )
-                    })}
-                    <FormButtonContainer>
-                        <DefaultButton text={"Alterar dados cadastrais"} variant="outlined-inverse" onClick={() => router.push(`/register/${isCompany ? 'cnpj' : 'cpf'}`)} />
-                        <DefaultButton text={"Assinar Todos"} variant="contained" isSubmit={true} />
-                    </FormButtonContainer>
-                </FormContent>
-            </FormContainer>
-        </form >
+        <FormContainer acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
+            <FormHeader>
+                <ContractFormTitle />
+                <ContractFormProgress />
+            </FormHeader>
+            <FormContent>
+                {contracts.map((contract) => {
+                    return (
+                        <div key={contract.id}>
+                            <Contract>
+                                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                    <Typography variant='subtitle1' sx={{ fontSize: 20, fontWeight: 'bold' }}>{contract.name}</Typography>
+                                    <Typography variant='subtitle1' sx={{ cursor: 'pointer' }} onClick={() => handleSignContract(contract.id)}>{`${contract.signed ? "Assinado" : "Assinar"}`} </Typography>
+                                </div>
+                                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', color: background.primary }}>
+                                    <PeopleIcon sx={{ fontSize: 30, margin: '0 .5rem' }} />
+                                    <Typography sx={{ fontSize: 20, margin: '0 .5rem' }} variant='subtitle1'>{`Assinaturas ${contract.signed ? "1/1" : "0/1"}`}</Typography>
+                                    <SearchIcon sx={{ cursor: 'pointer', fontSize: 30, margin: '0 .5rem' }} />
+                                    <DownloadIcon sx={{ cursor: 'pointer', fontSize: 30 }} onClick={() => handleSignContract(contract.id)} />
+                                </div>
+                            </Contract>
+                            <Divider orientation="horizontal" variant="middle" flexItem />
+                        </div>
+                    )
+                })}
+                <FormButtonContainer>
+                    <DefaultButton text={"Alterar dados cadastrais"} variant="outlined-inverse" onClick={() => router.push(`/register/${isCompany ? 'cnpj' : 'cpf'}`)} />
+                    <DefaultButton text={"Assinar Todos"} variant="contained" isSubmit={true} />
+                </FormButtonContainer>
+            </FormContent>
+        </FormContainer>
     );
 }

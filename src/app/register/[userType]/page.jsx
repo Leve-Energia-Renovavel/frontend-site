@@ -7,6 +7,8 @@ import RegisterForm from "../forms/register-form/RegisterForm";
 import FormBanner from "../banners/form-banner/FormBanner";
 import RegisterBannerSuccess from "../banners/banner-success/RegisterBanner";
 import { notFound } from "next/navigation";
+import { useEffect } from "react";
+import axios from "axios";
 
 const loadUserData = () => {
     if (history?.state?.name) {
@@ -33,6 +35,28 @@ export default function Register() {
     if (isNotValidUserType(userData?.type)) {
         notFound()
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const url = `https://viacep.com.br/ws/${userData?.cep}/json/`
+                await axios.get(url).then(response => {
+                    if (response.status == 200) {
+                        userData["address"] = response.data.logradouro
+                        userData["neighborhood"] = response.data.bairro
+                        userData["city"] = response.data.localidade
+                        userData["state"] = response.data.uf
+
+                    }
+                })
+
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <div>

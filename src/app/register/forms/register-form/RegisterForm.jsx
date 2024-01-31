@@ -400,7 +400,7 @@ export default function RegisterForm(props) {
                             },
                         },
                     }} inputRef={addressRefs.installationNumber} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text" />
-                    <Typography variant="body2" sx={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}>Não encontrou o número? <a onClick={() => setIsModalOpen(true)}>Clique aqui para saber onde encontrá-lo.</a></Typography>
+                    <Typography variant="body2" sx={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => setIsModalOpen(true)}>Não encontrou o número? <a >Clique aqui para saber onde encontrá-lo.</a></Typography>
                     <FormButton className="formInput" variant="outlined" type="submit" text="Continuar" />
                 </FormContent>
                 {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}

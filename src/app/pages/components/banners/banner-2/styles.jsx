@@ -40,7 +40,6 @@ export const LeftContent = styled.div`
     width: 50%;
 
     animation: ${fadeInUp} 0.5s ease-out;
-
     
     h1 {
         font-family: "Metropolis", sans-serif, system-ui, -apple-system;

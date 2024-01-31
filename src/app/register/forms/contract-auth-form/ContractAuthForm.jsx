@@ -3,7 +3,7 @@
 
 import ContractAuthFormProgress from "./ContractAuthFormProgress";
 import ContractAuthFormTitle from "./ContractAuthFormTitle";
-import { FormContainer, FormContent, FormHeader } from "./styles"
+import { AuthBoxes, FormContainer, FormContent, FormHeader, alertStyles, verifiedIconStyles, boxesStyles, ButtonContainer, finishButtonStyles, ResendTokenContainer, TermsAndPolicyContainer, SafeEnvironmentFooter } from "./styles"
 import { TextField, Typography, Alert, Snackbar, Box } from "@mui/material";
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import { useRef, useState, useEffect } from "react";
@@ -12,6 +12,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import { background } from "@/app/pages/styles";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const handleSubmit = (event) => {
     event.preventDefault()
@@ -103,66 +104,60 @@ export default function ContractAuthForm(props) {
                     onClose={handleClose}
                     severity="success"
                     variant="filled"
-                    sx={{ fontSize: 25, backgroundColor: 'lightgreen', borderRadius: 5, padding: '1rem', alignItems: 'center' }}
+                    sx={alertStyles}
                 >
                     Token validado com sucesso!
                 </Alert>
             </Snackbar>
 
-            <form acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
-                <FormContainer>
-                    <FormHeader>
+            <FormContainer acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
+                <FormHeader>
+                    <ContractAuthFormTitle />
+                    <ContractAuthFormProgress />
+                </FormHeader>
+                <FormContent>
+                    <VerifiedUserIcon sx={verifiedIconStyles} />
+                    <Typography variant="h1"> Token de autenticação</Typography>
+                    <Typography variant="subtitle1" className="bold">Enviado para: {confirmationByEmail ? userData.user.email : userData.company.companyPhone}</Typography>
+                    <Typography variant="subtitle1" >Insira o token para finalizar</Typography>
 
-                        <ContractAuthFormTitle />
-                        <ContractAuthFormProgress />
-                    </FormHeader>
-                    <FormContent>
-                        <VerifiedUserIcon sx={{ display: 'block', margin: '0 auto', color: background.primary }} />
-                        <Typography variant="h1" sx={{ display: 'block', margin: '0 auto' }} > Token de autenticação</Typography>
-                        <Typography variant="subtitle1" sx={{ display: 'block', margin: '0 auto' }}>Enviado para: {confirmationByEmail ? userData.user.email : userData.company.companyPhone}</Typography>
-                        <Typography variant="subtitle1" sx={{ display: 'block', margin: '0 auto' }}>Insira o token para finalizar</Typography>
+                    <AuthBoxes>
+                        {codes.map((code, index) => (
+                            <TextField
+                                key={index}
+                                type="text"
+                                value={code}
+                                onChange={(e) => handleInputChange(e.target.value, index)}
+                                onKeyDown={(e) => handleKeyDown(e, index)}
+                                sx={boxesStyles}
+                                inputProps={{ maxLength: 1 }}
+                                inputRef={inputRefs[index]}
+                            />
+                        ))}
+                    </AuthBoxes>
+                    <ButtonContainer>
+                        <DefaultButton variant="contained" text={"Finalizar"} isSubmit={true} sx={finishButtonStyles} />
+                    </ButtonContainer>
 
-                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-                            {codes.map((code, index) => (
-                                <TextField
-                                    key={index}
-                                    type="text"
-                                    value={code}
-                                    onChange={(e) => handleInputChange(e.target.value, index)}
-                                    onKeyDown={(e) => handleKeyDown(e, index)}
-                                    sx={{
-                                        width: '5rem',
-                                        height: '5rem',
-                                        marginRight: '0.5rem',
-                                        fontSize: '2rem',
-                                        textAlign: 'center',
-                                    }}
-                                    inputProps={{ maxLength: 1 }}
-                                    inputRef={inputRefs[index]}
-                                />
-                            ))}
-                        </div>
-                        <div style={{ margin: '0 auto' }}>
-                            <DefaultButton variant="contained" text={"Finalizar"} isSubmit={true} sx={{ maxWidth: '10vw' }} />
-                        </div>
-                        <Typography variant="subtitle1" sx={{ display: 'block', margin: '3rem auto 0 auto', color: background.primary, textDecoration: 'underline', cursor: 'pointer' }}
-                            onClick={resendToken}
-                        >Reenviar token via {confirmationByEmail ? 'E-mail' : 'SMS'}</Typography>
-                        <div style={{ margin: '0 auto', maxWidth: '40%', textAlign: 'center', color: background.grey, margin: '2rem auto' }} >
-                            <Typography variant="subtitle1" sx={{ display: 'block', margin: '0 auto' }}>
-                                Ao clicar em finalizar, voce concorda com os <Link className="highlighted" href={"https://www.clicksign.com/termos/"}>Termos de Uso</Link> e <Link className="highlighted" href={"https://www.clicksign.com/politica-de-privacidade/"}>Politica de Privacidade - LGPD</Link> da Clicksign
-                            </Typography>
+                    <ResendTokenContainer onClick={resendToken}>
+                        <Typography variant="subtitle1">
+                            Reenviar token via {confirmationByEmail ? 'E-mail' : 'SMS'}<ArrowForwardIosIcon className="arrowIcon" />
+                        </Typography>
+                    </ResendTokenContainer>
 
-                        </div>
+                    <TermsAndPolicyContainer>
+                        <Typography variant="subtitle1">
+                            Ao clicar em finalizar, voce concorda com os <Link className="highlighted" href={"https://www.clicksign.com/termos/"}>Termos de Uso</Link> e <Link className="highlighted" href={"https://www.clicksign.com/politica-de-privacidade/"}>Politica de Privacidade - LGPD</Link> da Clicksign
+                        </Typography>
+                    </TermsAndPolicyContainer>
 
-                        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', color: background.grey, }}>
-                            <LockIcon />
-                            <Typography variant="subtitle1">Ambiente Seguro ClickSign</Typography>
-                        </div>
+                    <SafeEnvironmentFooter>
+                        <LockIcon className="lockIcon" />
+                        <Typography variant="subtitle1">Ambiente Seguro ClickSign</Typography>
+                    </SafeEnvironmentFooter>
 
-                    </FormContent>
-                </FormContainer>
-            </form >
+                </FormContent>
+            </FormContainer>
         </>
 
     );

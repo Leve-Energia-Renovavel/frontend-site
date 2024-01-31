@@ -64,10 +64,13 @@ export default function SuccessForm() {
                         </>
                     ) : (
                         <>
-                        <Typography variant="h3">Conta conectada com sucesso!</Typography>
-                        <Typography className="orientations">Agora você já pode curtir sua vida mais Leve 😉</Typography>
-                        <DistibuitorSyncData />
-                        <DefaultButton variant="contained" text={"Acessar minha conta"} onClick={() => router.push(`/`)} />
+                            <Typography variant="h3">Conta conectada com sucesso!</Typography>
+                            <Typography className="orientations">Agora você já pode curtir sua vida mais Leve 😉</Typography>
+                            <br />
+                            <DistibuitorSyncData />
+                            <br />
+                            <br />
+                            <DefaultButton variant="contained" text={"Acessar minha conta"} onClick={() => router.push(`/`)} />
                         </>
                     )}
 
