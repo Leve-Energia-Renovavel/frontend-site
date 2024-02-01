@@ -10,6 +10,14 @@ import DefaultButton from '../utils/buttons/DefaultButton';
 import InputWithButton from '../utils/inputs/InputWithButton';
 
 export default function Footer() {
+
+    const getCurrentYear = () => {
+        return new Date().getFullYear();
+    }
+
+    const currentYear = getCurrentYear();
+
+
     return (
         <FooterContainer>
             <LogoContainer>
@@ -50,8 +58,8 @@ export default function Footer() {
                     </SocialMediaContainer>
                     <Typography variant="body1">Fique por dentro das novidades:</Typography>
 
-                    <InputWithButton placeholder="E-mail" position="end" />
-                    <Typography sx={{ fontSize: '10px' }}>Ao informar seu e-mail, você concorda em receber e-mails da Leve Energia Renovável e aceita nossa Política de Privacidade.</Typography>
+                    <InputWithButton placeholder="E-mail" />
+                    <Typography className='acceptReceivingEmails'>Ao informar seu e-mail, você concorda em receber e-mails da Leve Energia Renovável e aceita nossa Política de Privacidade.</Typography>
 
                 </ContactContainer>
 
@@ -63,7 +71,7 @@ export default function Footer() {
             </ContentContainer>
 
             <RightsContainer>
-                <Typography variant="body1">&#169; 2024 Leve Energia Renovável &#174; Todos os direitos reservados</Typography>
+                <Typography variant="body1">&#169; {currentYear} Leve Energia Renovável. Todos os direitos reservados</Typography>
             </RightsContainer>
 
         </FooterContainer>

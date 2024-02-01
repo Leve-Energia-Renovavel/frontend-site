@@ -150,12 +150,16 @@ export const BannerImageContainer = styled.div`
         width: auto;
         height: auto;
          
-        /*
+        
         @media (max-width: 900px) {
-            width: 95%;
-            height: 95%;
+            width: 80%;
+            height: 80%;
         }
-        */
+        @media (max-width: 400px) {
+            width: 65%;
+            height: 65%;
+        }
+       
     }
     @media (max-width: 900px) {
         text-align: center;

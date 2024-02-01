@@ -58,7 +58,7 @@ export const AddressContainer = styled.div`
     
     @media (max-width: 900px) {
         width: 100vw;
-        padding: 2rem 0;
+        padding: 4rem 0;
     }
     
     p {
@@ -128,7 +128,7 @@ export const ContactContainer = styled.div`
         padding: 0rem;
         width: 100vw;
     }
-
+    
     h6 {
         margin-top: 2rem;
         font-weight: bold;
@@ -138,9 +138,16 @@ export const ContactContainer = styled.div`
             margin-top: 3rem;
         }
     }
-
-    .input {
-        width: 20vw;
+    
+    .acceptReceivingEmails {
+        margin-top: .5rem;
+        margin-bottom: .5rem;
+        font-size: .8rem;
+        
+        @media (max-width: 900px) {
+            margin-bottom: 2rem;
+            width: 80vw;
+        }
     }
 `;
 
@@ -172,7 +179,7 @@ export const CallToActionContainer = styled.div`
     width: 30vw;
 
     @media (max-width: 900px) {
-        max-width: 100vw;
+        display: none;
     }
 
     `;
