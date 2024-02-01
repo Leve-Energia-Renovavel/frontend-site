@@ -60,7 +60,7 @@ export const BannerTitleContainer = styled.div`
     margin-bottom: 1.5rem;
     margin-right: 1.7rem;
     
-    h1{
+    h1, span{
         font-family: "Metropolis", sans-serif, system-ui, -apple-system;
         font-style: bold;
         font-weight: 700;
@@ -126,6 +126,7 @@ export const BannerButton = styled.button`
             
             @media (max-width: 900px) {
                 font-size: 1rem;
+                font-weight: 400;
             }
         }
 
@@ -137,8 +138,8 @@ export const BannerButton = styled.button`
                 font-size: 1rem;
                 height: 3rem;
                 padding: 0.75rem 2.375rem;
-                margin-bottom: 3rem;
-                margin-top: 2rem;
+                margin-bottom: 2rem;
+                margin-top: 1rem;
             }
 `;
 
@@ -148,11 +149,13 @@ export const BannerImageContainer = styled.div`
     .logoImage {
         width: auto;
         height: auto;
-        
+         
+        /*
         @media (max-width: 900px) {
-            width: 80%;
-            height: 80%;
-    }
+            width: 95%;
+            height: 95%;
+        }
+        */
     }
     @media (max-width: 900px) {
         text-align: center;

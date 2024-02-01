@@ -10,7 +10,7 @@ export default function SimulateEconomyTitle() {
             </Typography>
             <Typography component="h3">
                 <span className="highlighted">economizar </span>
-                <span>na conta de luz.</span>
+                <span>na conta de luz</span>
             </Typography>
         </TitleContainer>
     )

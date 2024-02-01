@@ -4,18 +4,14 @@ import { Typography } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo from "../../../../resources/img/logo-header.png";
-import { AddressContainer, CallToActionContainer, ContactContainer, ContentContainer, FooterContainer, LogoContainer, PagesContainer, RightsContainer, SocialMediaContainer } from './styles';
+import { AddressContainer, CallToActionContainer, ContactContainer, ContentContainer, FacebookLogo, FooterContainer, InstagramLogo, LinkedinLogo, LogoContainer, PagesContainer, RightsContainer, SocialMediaContainer } from './styles';
 
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import DefaultButton from '../utils/buttons/DefaultButton';
 import InputWithButton from '../utils/inputs/InputWithButton';
 
 export default function Footer() {
     return (
         <FooterContainer>
-
             <LogoContainer>
                 <Image
                     src={logo}
@@ -25,56 +21,32 @@ export default function Footer() {
 
             <ContentContainer>
                 <AddressContainer>
-                    <Typography variant="body1">R. Joaquim Floriano, 72</Typography>
-                    <Typography variant="body1">Conjunto 177</Typography>
-                    <Typography variant="body1">Itaim Bibi</Typography>
-                    <Typography variant="body1">São Paulo - SP</Typography>
-                    <Typography variant="body1">04534-000</Typography>
-                    <Typography variant="body1"></Typography>
-                    <Typography variant="body1">(11) 3181-8210</Typography>
+                    <Typography>R. Joaquim Floriano, 72</Typography>
+                    <Typography>Conjunto 177</Typography>
+                    <Typography>Itaim Bibi</Typography>
+                    <Typography>São Paulo - SP</Typography>
+                    <Typography>04534-000</Typography>
+                    <Typography></Typography>
+                    <Typography className='phoneNumber'>(11) 3181-8210</Typography>
                 </AddressContainer>
 
                 <PagesContainer>
-                    <Link href="/">Sobre a Leve</Link>
-                    <Link href="/about">Como funciona</Link>
-                    <Link href="/beneficios">Benefícios</Link>
-                    <Link href="/quem-pode-ser-leve">Quem pode ser Leve</Link>
-                    <Link href="/blog">Blog</Link>
-                    <Typography variant="body1"></Typography>
-                    <br />
-                    <Link href="/sou-gerador" style={{ fontWeight: "bold" }}>Sou gerador e quero ser Leve</Link>
-                    <br />
-                    <br />
-                    <Typography variant="body1"></Typography>
-                    <Typography variant="body1"></Typography>
-                    <Link href="/politica-de-privacidade">Política de Privacidade</Link>
-                    <Link href="/termos-de-uso">Termos de Uso</Link>
+                    <Link href="/" className='pageLink'>Sobre a Leve</Link>
+                    <Link href="/about" className='pageLink'>Como funciona</Link>
+                    <Link href="/beneficios" className='pageLink'>Benefícios</Link>
+                    <Link href="/quem-pode-ser-leve" className='pageLink'>Quem pode ser Leve</Link>
+                    <Link href="/blog" className='pageLink'>Blog</Link>
+                    <Link href="/sou-gerador" className="pageLinkGenerator">Sou gerador e quero ser Leve</Link>
+                    <Link href="/politica-de-privacidade" className='pageLink'>Política de Privacidade</Link>
+                    <Link href="/termos-de-uso" className='pageLink'>Termos de Uso</Link>
                 </PagesContainer>
 
                 <ContactContainer>
-                    <Typography variant="body1" style={{ fontWeight: "bold" }}>Conecte-se com a Leve</Typography>
+                    <Typography variant="subtitle1">Conecte-se com a Leve</Typography>
                     <SocialMediaContainer>
-                        <InstagramIcon sx={{
-                            fontSize: 40,
-                            "&:hover": {
-                                cursor: 'pointer',
-                                color: '#FFD300'
-                            }
-                        }} />
-                        <FacebookIcon sx={{
-                            fontSize: 40,
-                            "&:hover": {
-                                cursor: 'pointer',
-                                color: '#FFD300'
-                            }
-                        }} />
-                        <LinkedInIcon sx={{
-                            fontSize: 40,
-                            "&:hover": {
-                                cursor: 'pointer',
-                                color: '#FFD300'
-                            }
-                        }} />
+                        <InstagramLogo className="socialIcon" />
+                        <FacebookLogo className="socialIcon" />
+                        <LinkedinLogo className="socialIcon" />
                     </SocialMediaContainer>
                     <Typography variant="body1">Fique por dentro das novidades:</Typography>
 

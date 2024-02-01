@@ -6,7 +6,7 @@ import { useRef, useState } from "react"
 import InputMask from "react-input-mask"
 import FormButton from "../utils/buttons/FormButton"
 import SimulateEconomyTitle from "./SimulateEconomyTitle"
-import { FormContainer, SimulateEconomyHeader as Header, SimulateEconomyContainer as Container, radioButtonLabelStyle, radioButtonStyle } from "./styles"
+import { FormContainer, SimulateEconomyHeader as Header, SimulateEconomyContainer as Container, radioButtonLabelStyle, radioButtonStyle, RadioContainer } from "./styles"
 
 export default function SimulateEconomy() {
 
@@ -38,7 +38,6 @@ export default function SimulateEconomy() {
 
         userType == "cnpj" ? userInitialData["companyName"] = companyNameRef.current.value : null
 
-
         history.pushState(userInitialData, "");
         localStorage.setItem('leveData', JSON.stringify(userInitialData));  //TODO: check this usage
         router.push(`/register/${userType}`)
@@ -48,7 +47,7 @@ export default function SimulateEconomy() {
         <Container>
             <Header>
                 <SimulateEconomyTitle />
-                <FormControl style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '1.2rem' }}>
+                <RadioContainer>
                     <Typography className="whereToSimulate">Escolha onde quer simular a economia:</Typography>
                     <RadioGroup
                         className="radioGroup"
@@ -57,10 +56,10 @@ export default function SimulateEconomy() {
                         name="radio-buttons-group"
                         onChange={(event) => setUserType(event.target.value)}
                     >
-                        <FormControlLabel value="cpf" control={<Radio sx={radioButtonStyle} />} label={<Typography sx={radioButtonLabelStyle}>Minha casa</Typography>} />
-                        <FormControlLabel className="radioLabel" value="cnpj" control={<Radio sx={radioButtonStyle} />} label={<Typography sx={radioButtonLabelStyle}>Minha empresa</Typography>} />
+                        <FormControlLabel value="cpf" control={<Radio sx={radioButtonStyle} />} label={<Typography variant="subtitle1">Minha casa</Typography>} />
+                        <FormControlLabel className="radioLabel" value="cnpj" control={<Radio sx={radioButtonStyle} />} label={<Typography variant="subtitle1">Minha empresa</Typography>} />
                     </RadioGroup>
-                </FormControl>
+                </RadioContainer>
             </Header>
             <FormContainer acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
                 {userType === "cnpj" && (
@@ -87,7 +86,7 @@ export default function SimulateEconomy() {
 
                 </FormControl>
                 <FormControl className="slider">
-                    <Typography className="averageMonthlyCost"> Custo mensal (em média) <span className="monthyCostValue">R$ {userCost}</span></Typography>
+                    <Typography className="averageMonthlyCost">Custo mensal médio <span className="monthyCostValue">R$ {userCost}</span></Typography>
                     <Slider onChange={(event) => setUserCost(event.target.value)}
                         min={150}
                         max={3000}
@@ -104,7 +103,7 @@ export default function SimulateEconomy() {
                         valueLabelDisplay="auto" />
                 </FormControl>
                 <FormControl >
-                    <FormButton variant="outlined" type="submit" text={"Simular Economia"} />
+                    <FormButton variant="outlined" type="submit" text={"Quero economizar!"} />
                 </FormControl>
             </FormContainer>
         </Container >

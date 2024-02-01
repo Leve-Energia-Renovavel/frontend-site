@@ -2,42 +2,55 @@ import React from 'react';
 import { TextField, InputAdornment } from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { background } from '../../../styles';
+import styled from '@emotion/styled';
 
+const StyledInput = styled(TextField)`
+    padding: 0 0 0 1rem;
+    appearance: none;
+    background-color: ${background.light};
+    border: 1px border ${background.lightBorder};
+    border-radius: 8px;
+    
+    &.MuiOutlinedInput-root {
+        padding-right: 0,
+    }
+    
+    @media (max-width: 900px) {
+        border-radius: 3px;
+        width: 80vw;
+        padding: 0;
+    }
+`
+const StyledAdornment = styled(InputAdornment)`
+    color: ${background.blueLeve};
+    background-color: ${background.yellowLeve};
+    padding: 27.5px 14px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    position: end;
+    
+    @media (max-width: 900px) {
+        padding: 20px 14px;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: ${background.secondaryLight};
+    }
+
+`
 export default function InputWithButton(props) {
     return (
-        <TextField
+        <StyledInput
             placeholder={props.placeholder}
             variant="standard"
-            sx={{
-                padding: '0 0 0 1rem',
-                appearance: 'none',
-                backgroundColor: background.light,
-                border: `1px border ${background.lightBorder}`,
-                borderRadius: '8px',
-                '& .MuiOutlinedInput-root': {
-                    paddingRight: 0,
-                },
-            }}
             InputProps={{
                 disableUnderline: true,
                 endAdornment: (
-                    <InputAdornment
-                        sx={{
-                            color: background.primary,
-                            backgroundColor: background.secondary,
-                            padding: '27.5px 14px',
-                            borderTopRightRadius: '8px',
-                            borderBottomRightRadius: '8px',
-                            "&:hover": {
-                                cursor: 'pointer',
-                                backgroundColor: background.secondaryLight,
-                            }
-                        }}
-                        position={props.position}
-                    >
+                    <StyledAdornment>
                         <ArrowForwardIosIcon />
-                    </InputAdornment>
-                ),
+                    </StyledAdornment>
+                )
             }}
         />
 

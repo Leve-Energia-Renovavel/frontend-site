@@ -1,6 +1,5 @@
 "use client"
 
-import MenuIcon from '@mui/icons-material/Menu';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -8,7 +7,7 @@ import { useEffect, useState } from 'react';
 import logo from "../../../../resources/img/logo-header.png";
 import DefaultButton from '../utils/buttons/DefaultButton';
 import MobileHeader from './MobileHeader';
-import { ButtonContainer, HeaderContainer, LogoContainer, MenuItem, MobileHeaderContainer, Nav, NavContainer, Ul, burguerMenuStyles } from './styles';
+import { ButtonContainer, HeaderContainer, LogoContainer, MenuBurguer, MenuItem, MobileHeaderContainer, Nav, NavContainer, Ul } from './styles';
 
 export default function Header() {
 
@@ -87,7 +86,7 @@ export default function Header() {
                             onClick={() => router.push("/")}
                         />
                     </LogoContainer>
-                    <MenuIcon sx={burguerMenuStyles} onClick={() => setMenuOpen(!isMenuOpen)} />
+                    <MenuBurguer onClick={() => setMenuOpen(!isMenuOpen)} />
                     {isMenuOpen && (
                         <MobileHeader isMenuOpen={isMenuOpen} closeMenu={closeMobileMenu} />
                     )}

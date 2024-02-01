@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
 import { background } from "../../styles"
+import MenuIcon from '@mui/icons-material/Menu';
 
 export const HeaderContainer = styled.header`
     display: flex;
@@ -88,7 +89,19 @@ export const MobileHeaderContainer = styled.header`
         &:hover {
             cursor: pointer;
         }
+        @media (max-width: 900px) {
+            width: 11rem;
+            height: 3.32rem; 
+    
+        }
     }
+
+    @media (max-width: 900px) {
+       justify-content: space-between;
+       padding: 1rem 2rem;
+
+    }
+
 `
 export const MobileMenu = styled.div`
   display: flex;
@@ -102,12 +115,23 @@ export const MobileMenu = styled.div`
   font-size: 2rem;
   margin: 5rem 2rem;
   padding: 2rem;
+  
+  @media (max-width: 900px) {
+      font-size: 1.5rem;
+      margin: 1rem;
+      padding: 1rem;
+    }
 
   .closeIcon {
     color: ${background.white}; 
     font-size: 5rem;
     margin: 0 auto;
     cursor: pointer;
+    
+    @media (max-width: 900px) {
+        font-size: 4rem;
+    }
+    
   }
 `;
 
@@ -122,12 +146,6 @@ export const UlMobile = styled.ul`
   list-style-type: none;
   `;
 
-export const MenuIcon = styled.div`
-  color: #FFF;
-  font-size: 50px;
-  cursor: pointer;
-  `;
-
 export const MenuItemMobile = styled.li`
     margin: 2rem;
 
@@ -136,6 +154,10 @@ export const MenuItemMobile = styled.li`
         padding: 1rem;
         color: ${background.light};   
         cursor: pointer;
+        
+        @media (max-width: 900px) {
+            padding: .25rem;
+        }
 
         &:hover {
             font-weight: bold;
@@ -144,4 +166,8 @@ export const MenuItemMobile = styled.li`
 
 `;
 
-export const burguerMenuStyles = { color: "#FFF", fontSize: 50, cursor: 'pointer' }
+export const MenuBurguer = styled(MenuIcon)`
+    color: ${background.white};
+    font-size: 2rem;
+    cursor: pointer;
+`

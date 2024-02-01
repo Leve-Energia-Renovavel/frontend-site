@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
 import { background } from "../../styles"
+import { FormControl } from "@mui/material";
 
 export const SimulateEconomyContainer = styled.div`
   display: flex;
@@ -21,8 +22,16 @@ export const SimulateEconomyContainer = styled.div`
   max-width: 80vw;
   
   @media (max-width: 900px) {
-    top: 170dvh;
-    left: 50dvw;
+    top: 175dvh;
+    width: 100vw;
+    max-width: 100vw;
+    margin: 0;
+
+    position: static; 
+    top: auto; 
+    left: auto; 
+    transform: none;
+    z-index: auto; 
 
   }
 
@@ -35,7 +44,7 @@ export const SimulateEconomyHeader = styled.div`
   flex-direction: column;
 
   .whereToSimulate { 
-    font-family: Inter;
+    font-family: "Inter";
     font-size: 1.125rem;
     font-style: normal;
     font-weight: 400;
@@ -44,12 +53,37 @@ export const SimulateEconomyHeader = styled.div`
     margin-top: 1.5rem;
     margin-right: 1.5rem;
     
+    @media (max-width: 900px) {
+      font-size: 1rem;
+      margin-top: 1rem;
+      margin-right: 0;
+      letter-spacing: 0rem;
+    }
+    
   }
   .radioGroup {
     display: flex;
     flex-direction: row;
     margin-top: 1.2rem;
+    
+    @media (max-width: 900px) {
+      margin-top: 1rem;
+    }
 
+  }
+
+  .radioGroup h6 {
+    font-family: "Inter";
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.00938rem;
+    
+    @media (max-width: 900px) {
+      font-size: 1rem;
+      letter-spacing: 0rem;
+    }
   }
 `;
 
@@ -74,6 +108,11 @@ export const FormContainer = styled.form`
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(3,1fr);
     gap: 1rem;
+    
+    @media (max-width: 900px) {
+      grid-template-rows: repeat(1, 1fr);
+      grid-template-columns: repeat(1,1fr);
+    }
 
     div {
       grid-row: span 1;
@@ -125,12 +164,14 @@ export const radioButtonStyle = {
   }
 }
 
-export const radioButtonLabelStyle = {
-  fontFamily: 'Inter',
-  fontSize: '1.125rem',
-  fontStyle: 'normal',
-  fontWeight: 700,
-  lineHeight: 'normal',
-  letterSpacing: '0.00938rem'
-
-}
+export const RadioContainer = styled(FormControl)`
+  display: flex; 
+  flex-direction: row; 
+  flex-wrap: wrap;
+  align-items: center; 
+  margin-bottom: 1.2rem;
+  
+  @media (max-width: 900px) {
+    margin-bottom: 1rem;
+  }
+`
