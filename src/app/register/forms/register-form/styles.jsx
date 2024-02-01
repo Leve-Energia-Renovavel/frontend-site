@@ -48,12 +48,21 @@ export const FormRow = styled.div`
   grid-gap: 40px;
 `;
 
+export const FormLastRow = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  grid-column: span 3; 
+  grid-gap: 40px;
+  margin-top: .5rem;
+`;
+
 
 export const FileUploadContainer = styled.div`
   display: flex;
+  grid-template-columns: repeat(2, 1fr); 
+  grid-column: span 3; 
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 1rem;
 `
 export const FileUploadItem = styled.div`
   display: flex;
@@ -87,4 +96,13 @@ export const RegisterFormProgressContainer = styled.div`
     }
  }
 `
+
+export const fileInputStyles = {
+  cursor: 'pointer',
+  backgroundColor: 'transparent',
+  padding: '0 5px',
+  marginLeft: '.5rem',
+  fontSize: '1rem',
+  fontWeight: 'bold',
+}
 

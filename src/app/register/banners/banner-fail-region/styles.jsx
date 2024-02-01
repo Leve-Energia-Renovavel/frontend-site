@@ -3,9 +3,9 @@ import { background } from "@/app/pages/styles"
 
 export const BannerContainer = styled.div`
     background-color: ${background.blueLeve};
-    height: 50vh;
+    height: 140vh;
     max-width: 100vw;
-    padding: 10rem 15rem;
+    padding: 9rem 13.5rem;
 `
 
 export const ContentContainer = styled.div`
@@ -13,24 +13,25 @@ export const ContentContainer = styled.div`
     flex-direction: column;
 
     h1 {
-        font-family: "Metropolis";
-        font-style: bold;
+        font-family: "Metropolis", sans-serif, system-ui, -apple-system;
+        color: ${background.yellowLeve};
         font-weight: 700;
+        font-style: bold;
         font-size: 2.625rem;
         line-height: 2.625rem;
-        color: ${background.yellowLeve};
-
     }
+    
+    h6 {
+        font-family:"Inter";
+        color: ${background.white};
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 1.2rem;
+        letter-spacing: 0em;
+        text-align: left;
 
-    .subtitle {
-        color: ${background.white};
-        max-width: 50vw;
-        margin-top: 1.2rem;
-    }
-    .boldSubtitle {
-        color: ${background.white};
-        font-weight: bold;
         margin-top: 2rem;
+
     }
 
 `

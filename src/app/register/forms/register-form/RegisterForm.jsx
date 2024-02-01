@@ -8,7 +8,7 @@ import InputMask from "react-input-mask";
 import RegisterModal from "../../modal/Modal";
 import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
-import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormRow } from "./styles";
+import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, fileInputStyles } from "./styles";
 import SearchIcon from '@mui/icons-material/Search';
 
 export default function RegisterForm(props) {
@@ -327,6 +327,30 @@ export default function RegisterForm(props) {
                     <TextField className="formInput" inputRef={addressRefs.state} label="Estado" variant="outlined" placeholder="Estado" type="text" InputLabelProps={{ shrink: true }} />
                     <TextField className="formInput" inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} />
 
+
+
+                    <FormLastRow>
+                        <TextField sx={{
+                            borderColor: '#0075FF',
+                            '& label': {
+                                color: '#0075FF',
+                            },
+                            '& .MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: '#0075FF',
+                                },
+                                '&:hover fieldset': {
+                                    borderColor: '#0075FF',
+                                },
+                                '&.Mui-focused fieldset': {
+                                    borderColor: '#0075FF',
+                                },
+                            },
+                        }} inputRef={addressRefs.installationNumber} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text" />
+                        <Typography variant="body2" sx={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => setIsModalOpen(true)}>Não encontrou o número? <a >Clique aqui para saber onde encontrá-lo.</a></Typography>
+                        <FormButton className="formInput" variant="outlined" type="submit" text="Continuar" />
+                    </FormLastRow>
+
                     {isCompany ? (
                         <FileUploadContainer>
                             <FileUploadItem>
@@ -342,14 +366,7 @@ export default function RegisterForm(props) {
                                     <>
                                         <p>{socialContractFile.name}</p>
                                         <button
-                                            style={{
-                                                cursor: 'pointer',
-                                                backgroundColor: 'transparent',
-                                                padding: '0 5px',
-                                                marginLeft: '.5rem',
-                                                fontSize: '1rem',
-                                                fontWeight: 'bold',
-                                            }}
+                                            style={fileInputStyles}
                                             onClick={(event) => handleDeleteFiles(event, 'socialContract')}>x</button>
                                     </>
                                 )}
@@ -368,14 +385,7 @@ export default function RegisterForm(props) {
                                     <>
                                         <p>{energyExtractFile.name}</p>
                                         <button
-                                            style={{
-                                                cursor: 'pointer',
-                                                backgroundColor: 'transparent',
-                                                padding: '0 5px',
-                                                marginLeft: '.5rem',
-                                                fontSize: '1rem',
-                                                fontWeight: 'bold',
-                                            }}
+                                            style={fileInputStyles}
                                             onClick={(event) => handleDeleteFiles(event, 'energyExtract')}>x</button>
                                     </>
                                 )}
@@ -383,25 +393,6 @@ export default function RegisterForm(props) {
                         </FileUploadContainer>
                     ) : null}
 
-                    <TextField sx={{
-                        borderColor: '#0075FF',
-                        '& label': {
-                            color: '#0075FF',
-                        },
-                        '& .MuiOutlinedInput-root': {
-                            '& fieldset': {
-                                borderColor: '#0075FF',
-                            },
-                            '&:hover fieldset': {
-                                borderColor: '#0075FF',
-                            },
-                            '&.Mui-focused fieldset': {
-                                borderColor: '#0075FF',
-                            },
-                        },
-                    }} inputRef={addressRefs.installationNumber} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text" />
-                    <Typography variant="body2" sx={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => setIsModalOpen(true)}>Não encontrou o número? <a >Clique aqui para saber onde encontrá-lo.</a></Typography>
-                    <FormButton className="formInput" variant="outlined" type="submit" text="Continuar" />
                 </FormContent>
                 {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}
             </FormContainer >

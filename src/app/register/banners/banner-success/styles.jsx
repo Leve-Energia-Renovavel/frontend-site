@@ -9,8 +9,8 @@ export const BannerContainer = styled.div`
 `
 
 export const ContentContainer = styled.div`
-    display: "flex";
-    flex-direction: "column";
+    display: flex;
+    flex-direction: column;
 
     h1 {
         font-family: "Metropolis", sans-serif, system-ui, -apple-system;
