@@ -1,6 +1,6 @@
 "use client"
 
-import { FormControl, FormControlLabel, Radio, RadioGroup, Slider, TextField, Typography } from "@mui/material"
+import { FormControl, FormControlLabel, Radio, RadioGroup, Slider, TextField, Typography, CircularProgress } from "@mui/material"
 import { useRouter } from "next/navigation"
 import { useRef, useState } from "react"
 import InputMask from "react-input-mask"
@@ -24,7 +24,7 @@ export default function SimulateEconomy() {
     const [userCost, setUserCost] = useState(minCostValue)
     const [userType, setUserType] = useState(defaultSelectedRadioButton)
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
 
         const userInitialData = {
@@ -37,6 +37,7 @@ export default function SimulateEconomy() {
         }
 
         userType == "cnpj" ? userInitialData["companyName"] = companyNameRef.current.value : null
+
 
         history.pushState(userInitialData, "");
         localStorage.setItem('leveData', JSON.stringify(userInitialData));  //TODO: check this usage
@@ -103,7 +104,7 @@ export default function SimulateEconomy() {
                         valueLabelDisplay="auto" />
                 </FormControl>
                 <FormControl >
-                    <FormButton variant="outlined" type="submit" text="Simular Economia" />
+                    <FormButton variant="outlined" type="submit" text={"Simular Economia"} />
                 </FormControl>
             </FormContainer>
         </Container >

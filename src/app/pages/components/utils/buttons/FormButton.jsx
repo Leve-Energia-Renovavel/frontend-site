@@ -1,10 +1,14 @@
-import { Button } from '@mui/material';
 import { background } from '@/app/pages/styles';
+import { Button } from '@mui/material';
 
 export default function FormButton(props) {
+
     return (
         <>
-            <Button className="formInput" variant="outlined" type="submit"
+            <Button
+                className="formInput"
+                variant="outlined"
+                type="submit"
                 sx={{
                     textTransform: 'none',
                     fontSize: 18,

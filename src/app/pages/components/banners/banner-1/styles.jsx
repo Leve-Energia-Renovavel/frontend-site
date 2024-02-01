@@ -36,18 +36,26 @@ export const ContentContainer = styled.div`
 `
 
 export const BannerTitleContainer = styled.div`
+
     width: 35dvw;
-    height: 7.5rem;
     flex-shrink: 0;
     margin-bottom: 1.5rem;
     margin-right: 1.7rem;
+
+    h1{
+        font-family: "Metropolis", sans-serif, system-ui, -apple-system;
+        font-style: bold;
+        font-weight: 700;
+        font-size: 2.625rem;
+        line-height: 2.625rem;
+        }
 `;
 
 export const BannerSubTitleContainer = styled.div`
     width: 33.625rem;
     height: 3.39388rem;
     flex-shrink: 0;
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
     
     .subtitle {
         color: ${background.white};
@@ -55,7 +63,7 @@ export const BannerSubTitleContainer = styled.div`
         font-size: 1rem;
         font-style: normal;
         font-weight: 300;
-        line-height: 1.125rem; /* 112.5% */
+        line-height: 1.125rem; 
     }
 
 `;
