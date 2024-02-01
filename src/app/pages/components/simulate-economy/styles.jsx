@@ -19,6 +19,12 @@ export const SimulateEconomyContainer = styled.div`
   
   width: 60vw;
   max-width: 80vw;
+  
+  @media (max-width: 900px) {
+    top: 170dvh;
+    left: 50dvw;
+
+  }
 
 
 

@@ -1,6 +1,5 @@
 import styled from "@emotion/styled"
 import { background } from "../../../styles"
-import img from "../../../../../resources/img/person-banner.png"
 
 export const BannerContainer = styled.div`
     display: flex;
@@ -8,11 +7,18 @@ export const BannerContainer = styled.div`
     height: 93dvh;
     max-width: 100dvw;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-
+    
     padding-top: 8dvh;  //margin for header
+    
+    @media (max-width: 900px) {
+        height: 90dvh;
+        padding-top: 15dvh; 
+        max-width: 100dvw;
+    }
 `
 export const ContentContainer = styled.div`
     display: flex;
@@ -27,28 +33,53 @@ export const ContentContainer = styled.div`
         font-size: 2.625rem;
         line-height: 2.625rem;
         color: ${background.light};
+        
+        @media (max-width: 900px) {
+            font-size: 2rem;
+            line-height: 1.5rem;
+        }
     }
     
     .highlighted {
         color: ${background.yellowLeve};
         
     }
+    
+    @media (max-width: 900px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 2rem;
+
+        }
 `
 
 export const BannerTitleContainer = styled.div`
-
     width: 35dvw;
     flex-shrink: 0;
     margin-bottom: 1.5rem;
     margin-right: 1.7rem;
-
+    
     h1{
         font-family: "Metropolis", sans-serif, system-ui, -apple-system;
         font-style: bold;
         font-weight: 700;
         font-size: 2.625rem;
         line-height: 2.625rem;
+
+        @media (max-width: 900px) {
+            font-size: 1.8rem;
+            line-height: 1.8rem;
         }
+    }
+    
+    @media (max-width: 900px) {
+        width: 90dvw;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        text-align: center;
+        padding: 0 2rem;
+    }
 `;
 
 export const BannerSubTitleContainer = styled.div`
@@ -66,13 +97,17 @@ export const BannerSubTitleContainer = styled.div`
         line-height: 1.125rem; 
     }
 
+    @media (max-width: 900px) {
+        display: none;
+    }
+
 `;
 
 export const BannerButton = styled.button`
         background-color: ${background.yellowLeve};
         border-radius: 0.5rem;
         display: inline-flex;
-        height: 3.01675rem;
+        height: 3rem;
         padding: 0.75rem 2.375rem;
         justify-content: center;
         align-items: center;
@@ -88,11 +123,23 @@ export const BannerButton = styled.button`
             font-size: 1rem;
             font-style: bold;
             line-height: normal;
+            
+            @media (max-width: 900px) {
+                font-size: 1rem;
+            }
         }
 
         &:hover {
             background-color: ${background.white};
         }
+
+        @media (max-width: 900px) {
+                font-size: 1rem;
+                height: 3rem;
+                padding: 0.75rem 2.375rem;
+                margin-bottom: 3rem;
+                margin-top: 2rem;
+            }
 `;
 
 export const BannerImageContainer = styled.div`
@@ -101,5 +148,15 @@ export const BannerImageContainer = styled.div`
     .logoImage {
         width: auto;
         height: auto;
-        }
+        
+        @media (max-width: 900px) {
+            width: 80%;
+            height: 80%;
+    }
+    }
+    @media (max-width: 900px) {
+        text-align: center;
+        margin: 0 auto;
+        max-width: 100vw;
+    }
 `
