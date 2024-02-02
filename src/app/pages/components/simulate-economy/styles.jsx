@@ -21,7 +21,7 @@ export const SimulateEconomyContainer = styled.div`
   width: 60vw;
   max-width: 80vw;
   
-  @media (max-width: 900px) {
+  @media (max-width: 600px) {
     top: 175dvh;
     width: 100vw;
     max-width: 100vw;
@@ -53,7 +53,7 @@ export const SimulateEconomyHeader = styled.div`
     margin-top: 1.5rem;
     margin-right: 1.5rem;
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
       font-size: 1rem;
       margin-top: 1rem;
       margin-right: 0;
@@ -66,7 +66,7 @@ export const SimulateEconomyHeader = styled.div`
     flex-direction: row;
     margin-top: 1.2rem;
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
       margin-top: 1rem;
     }
 
@@ -80,7 +80,7 @@ export const SimulateEconomyHeader = styled.div`
     line-height: normal;
     letter-spacing: 0.00938rem;
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
       font-size: 1rem;
       letter-spacing: 0rem;
     }
@@ -109,7 +109,7 @@ export const FormContainer = styled.form`
     grid-template-columns: repeat(3,1fr);
     gap: 1rem;
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
       grid-template-rows: repeat(1, 1fr);
       grid-template-columns: repeat(1,1fr);
     }
@@ -123,6 +123,11 @@ export const FormContainer = styled.form`
     .isCNPJ { 
       grid-row: span 1;
       grid-column: span 3;
+
+      @media (max-width: 600px) {
+        grid-row: span 1;
+        grid-column: span 1;
+      }
     }
     
     .slider {
@@ -171,7 +176,7 @@ export const RadioContainer = styled(FormControl)`
   align-items: center; 
   margin-bottom: 1.2rem;
   
-  @media (max-width: 900px) {
+  @media (max-width: 600px) {
     margin-bottom: 1rem;
   }
 `

@@ -40,13 +40,13 @@ export default function ResultEconomy(props) {
                         <Image src={icon} alt='ícone de porcentagem de desconto da Leve' />
                         <Typography variant="h1">Tenha {percentageDiscount * 100}% de desconto todo mês!</Typography>
                     </LeveMonthlyDiscount>
-                    <Typography variant="subtitle1" className='yearDiscountLeveSubtitle' >Em 1 ano com a Leve a sua  {location} economizará</Typography>
+                    <Typography variant="subtitle1">Em 1 ano com a Leve a sua  {location} economizará</Typography>
                     <Typography variant="h1" className='yearDiscountLeve'>R$ {leveYearTotalDiscount()}</Typography>
                 </Banner>
 
                 <ResultEconomyDiscountGraph>
                     <Typography variant="subtitle1">Para entender: </Typography>
-                    <Image src={graphic} alt='percentage icon' className='discountGraph' loading="eager" priority={true} />
+                    <Image src={graphic} alt='desconto da Leve em um grafico explicativo' className='discountGraph' loading="eager" priority={true} />
                 </ResultEconomyDiscountGraph>
             </Content>
         </Container>

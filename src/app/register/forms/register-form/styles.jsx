@@ -17,6 +17,18 @@ export const FormContainer = styled.div`
   z-index: 100;
   
   width: 60vw;
+  
+  @media (max-width: 600px) {
+    width: 100vw;
+    max-width: 100vw;
+
+    position: static; 
+    top: auto;
+    left: auto; 
+    transform: none; 
+    z-index: auto; 
+
+  }
 
   h1 {
     font-size: 1.75rem;
@@ -39,6 +51,18 @@ export const FormContent = styled.form`
   grid-gap: 20px 40px;
   background-color: ${background.light};
   max-width: 100%;
+
+  @media (max-width: 600px) {
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(1,1fr);
+  }
+
+  div { 
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+
+
   `
 
 export const FormRow = styled.div`
@@ -46,6 +70,13 @@ export const FormRow = styled.div`
   grid-template-columns: repeat(2, 1fr); 
   grid-column: span 3; 
   grid-gap: 40px;
+  
+  @media (max-width: 600px) {
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(1,1fr);
+    grid-gap: 1.5rem;
+  }
+  
 `;
 
 export const FormLastRow = styled.div`
@@ -54,6 +85,13 @@ export const FormLastRow = styled.div`
   grid-column: span 3; 
   grid-gap: 40px;
   margin-top: .5rem;
+  
+  @media (max-width: 600px) {
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(1,1fr);
+    grid-gap: 1.5rem;
+    margin-top: 0rem;
+  }
 `;
 
 

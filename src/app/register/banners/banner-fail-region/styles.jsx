@@ -6,6 +6,11 @@ export const BannerContainer = styled.div`
     height: 140vh;
     max-width: 100vw;
     padding: 9rem 13.5rem;
+
+    @media (max-width: 600px) {
+        height: 55vh;
+        padding: 8rem 2rem;
+    }
 `
 
 export const ContentContainer = styled.div`
@@ -19,6 +24,10 @@ export const ContentContainer = styled.div`
         font-style: bold;
         font-size: 2.625rem;
         line-height: 2.625rem;
+
+        @media (max-width: 600px) {
+            font-size: 2rem;
+        }
     }
     
     h6 {
@@ -31,6 +40,10 @@ export const ContentContainer = styled.div`
         text-align: left;
 
         margin-top: 2rem;
+
+        @media (max-width: 600px) {
+            font-size: 1rem;
+        }
 
     }
 

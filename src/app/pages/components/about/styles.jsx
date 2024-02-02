@@ -12,7 +12,7 @@ export const AboutContainer = styled.div`
     margin-top: 8vh;    //margin for economy form
     padding: 2rem;
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         margin-top: 0;
         padding: 1rem;
     }
@@ -33,7 +33,7 @@ export const AboutTitleContainer = styled.div`
         line-height: 2.625rem;
         font-size: 2rem;
         
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             line-height: 2rem;
         }
     }
@@ -43,7 +43,7 @@ export const AboutTitleContainer = styled.div`
         color: ${background.blueLeve};
         font-size: 1rem;
         
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             font-size: 1rem;
             font-weight: 300;
             margin-bottom: .5rem;
@@ -64,12 +64,12 @@ export const ContentContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         justify-content: center;
     }
 
     img {
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             margin-top: 1.5rem;
             margin-bottom: 1.5rem;
             width: 80%;
@@ -85,7 +85,7 @@ export const AboutDescriptionContainer = styled.div`
     padding: 1rem;
     max-width: 25vw;
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         max-width: 100vw;
         padding: .5rem 1rem;
     }
@@ -109,7 +109,7 @@ export const DescriptionContainer = styled.div`
     padding: 1rem;
     max-width: 25vw;
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         max-width: 100vw;
     }
 

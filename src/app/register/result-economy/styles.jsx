@@ -1,6 +1,18 @@
 import styled from "@emotion/styled";
 import { background } from "@/app/pages/styles";
+import { keyframes } from "@emotion/react";
 
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const ResultEconomyContainer = styled.div`
   display: flex;
@@ -15,12 +27,24 @@ export const ResultEconomyContainer = styled.div`
   left: 50vw;
   transform: translate(-50%, -50%);
   z-index: 100;
-
+  
   font-family: "Metropolis", sans-serif, system-ui, -apple-system;
-
-  /* max-height: 25vh; */
+  
   width: 60vw;
   max-width: 80vw;
+  
+  @media (max-width: 600px) {
+    top: 105vh;
+    width: 100vw;
+    max-width: 100vw;
+
+    position: static; 
+    top: auto;
+    left: auto; 
+    transform: none; 
+    z-index: auto; 
+
+  }
 
   h1, span {
     font-size: 2rem;
@@ -45,6 +69,13 @@ export const ResultEconomyComparissonContent = styled.div`
     display: flex;
     flex-direction: row;
     padding: 2rem 4rem; //must be equal to ResultEconomyToUnderstandContent
+    
+    animation: ${fadeInUp} 0.5s ease-out;
+    
+    @media (max-width: 600px) {
+      flex-direction: column;
+      padding: 2rem 1rem;  //must be equal to ResultEconomyToUnderstandContent
+    }
      
     .bold {
     font-size: 2rem;
@@ -56,7 +87,12 @@ export const ResultEconomyComparissonContent = styled.div`
 
 export const TodayPriceInfo = styled.div`
   flex: 1; 
-  max-width: '50%';
+  max-width: 50%;
+  
+  @media (max-width: 600px) {
+    max-width: 100%;
+    text-align: center;
+  }
 
   h1 { 
     font-family: "Metropolis", sans-serif, system-ui, -apple-system;
@@ -66,6 +102,7 @@ export const TodayPriceInfo = styled.div`
     line-height: normal;
     color: ${background.orangeLeve}; 
     margin: 2rem 0;
+    
   }
 
   h6 { 
@@ -75,6 +112,10 @@ export const TodayPriceInfo = styled.div`
     font-weight: 400;
     line-height: normal;
     padding-bottom: 1rem;
+    
+    @media (max-width: 600px) {
+      padding-bottom: .5rem;
+    }
   }
   `;
 
@@ -82,6 +123,13 @@ export const LeveEconomyInfo = styled.div`
   flex: 1; 
   max-width: 50%;
   margin-right: auto;
+  
+  @media (max-width: 600px) {
+    max-width: 100%;
+    text-align: center;
+    margin-right: 0;
+    margin-top: 1rem;
+  }
 
   h1 {
     font-family: "Metropolis", sans-serif, system-ui, -apple-system;
@@ -104,20 +152,37 @@ export const LeveEconomyInfo = styled.div`
     font-weight: 400;
     line-height: normal;
     padding-bottom: 1rem;
+
+    @media (max-width: 600px) {
+      padding-bottom: .5rem;
+    }
   }
 `;
 
 export const ResultEconomyToUnderstandContent = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 2rem 3rem; //must be equal to ResultEconomyComparissonContent
+  padding: 2rem 4rem; //must be equal to ResultEconomyToUnderstandContent
+
+  animation: ${fadeInUp} 1s ease-out;
+  
+  @media (max-width: 600px) {
+    flex-direction: column;
+    padding: 2rem 1rem; //must be equal to ResultEconomyComparissonContent
+  }
+
   `;
 
 export const ResultEconomyDiscount = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 50%;
-
+  
+  @media (max-width: 600px) {
+    max-width: 100%;
+    text-align: center;
+  }
+  
   .yearDiscountLeve {
     font-family: "Metropolis", sans-serif, system-ui, -apple-system;
     color: ${background.blueLeve}; 
@@ -126,10 +191,13 @@ export const ResultEconomyDiscount = styled.div`
     margin-right: auto;
     margin-left: 1rem;
     border-radius: 0.5rem;
-
+    
+    @media (max-width: 600px) {
+      margin: 0 auto;
+    }
   }
-
-  .yearDiscountLeveSubtitle {
+  
+  h6 {
     color: ${background.textLeve};
     font-family: "Metropolis", sans-serif, system-ui, -apple-system;
     font-size: 1.2rem;
@@ -137,6 +205,7 @@ export const ResultEconomyDiscount = styled.div`
     font-weight: 400;
     line-height: normal;
     margin: 1rem;
+
   }
   
   `;
@@ -154,11 +223,24 @@ export const LeveMonthlyDiscount = styled.div`
     font-weight: 700;
     line-height: normal;
     max-width: 60%;
+    
+    @media (max-width: 600px) {
+      max-width: 80%;
+      text-align: left;
+
+    }
+
+    
   }
   
   img {
     margin: 0 1.5rem; 
     max-width: 30%;
+    
+    @media (max-width: 600px) {
+      margin: 0 1rem; 
+    }
+    
   }
   
   `;
@@ -166,6 +248,10 @@ export const ResultEconomyDiscountGraph = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 65%;
+  
+  @media (max-width: 600px) {
+      max-width: 100%;
+    }
 
   h6 {
     font-family: "Metropolis", sans-serif, system-ui, -apple-system;
@@ -173,10 +259,20 @@ export const ResultEconomyDiscountGraph = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    
+    @media (max-width: 600px) {
+      font-size: 1.2rem;
+      margin: 2rem auto;
+    }
   }
 
   .discountGraph {
     width: 420px;
     height: auto;
+    
+    @media (max-width: 600px) {
+      width: 90vw;
+      margin: 0 auto;
+    }
   }
 `;

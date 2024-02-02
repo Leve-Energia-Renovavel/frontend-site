@@ -23,12 +23,12 @@ export const LogoContainer = styled.div`
     align-items: start;
     padding: 2rem;
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         padding: 0rem;
     }
 
     img { 
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
         width: 60%;
         height: 60%;
     }
@@ -42,7 +42,7 @@ export const ContentContainer = styled.div`
     justify-content: space-evenly;
     padding: 2rem;
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         flex-direction: column;
         justify-content: flex-start;
         padding: 0rem;
@@ -56,7 +56,7 @@ export const AddressContainer = styled.div`
     padding: 2rem;
     width: 30vw;
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         width: 100vw;
         padding: 4rem 0;
     }
@@ -65,14 +65,14 @@ export const AddressContainer = styled.div`
         font-family: "Metropolis";
         font-size: 1.2rem;
         
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             font-size: 1rem;
         }
         
     }
     
     .phoneNumber {
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             margin-top: 1rem;
         }
         
@@ -88,7 +88,7 @@ export const PagesContainer = styled.div`
     padding: 2rem;
     width: 30vw;
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         padding: 0rem;
         width: 100vw;
     }
@@ -102,7 +102,7 @@ export const PagesContainer = styled.div`
     }
 
     .pageLink { 
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             margin-top: 1rem;
         }
     }
@@ -111,7 +111,7 @@ export const PagesContainer = styled.div`
         font-weight: bold;
         margin-top: 1rem;
 
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             margin-top: 1rem;
         }
     }
@@ -124,7 +124,7 @@ export const ContactContainer = styled.div`
     padding: 2rem;
     width: 30vw;
 
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         padding: 0rem;
         width: 100vw;
     }
@@ -134,7 +134,7 @@ export const ContactContainer = styled.div`
         font-weight: bold;
         line-height: 1rem;
         
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             margin-top: 3rem;
         }
     }
@@ -144,7 +144,7 @@ export const ContactContainer = styled.div`
         margin-bottom: .5rem;
         font-size: .8rem;
         
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             margin-bottom: 2rem;
             width: 80vw;
         }
@@ -157,14 +157,14 @@ export const SocialMediaContainer = styled.div`
     justify-content: flex-start;
     padding: 1rem 0rem;
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         padding: 1rem 0rem;
     }
     
     .socialIcon {
         font-size: 2rem;
         
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             font-size: 3.5rem;
             margin-right: 1rem;
         }
@@ -178,7 +178,7 @@ export const CallToActionContainer = styled.div`
     align-items: start;
     width: 30vw;
 
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         display: none;
     }
 

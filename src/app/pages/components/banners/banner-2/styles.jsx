@@ -19,7 +19,6 @@ export const BannerContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
     background-color: ${background.blueLeve};
     height: 93dvh;
     max-width: 100dvw;
@@ -27,22 +26,23 @@ export const BannerContainer = styled.div`
 
     padding: 0 13.5rem;      //padding top for header
 
+    @media (max-width: 600px) {
+        height: 125dvh;
+        max-width: 100dvw;
+        padding: 15dvh 2rem;  //padding top for header
+        flex-wrap: wrap;
+
+    }
     .divider { 
         border-left: 2px solid ${background.white};
         height: 16.5625rem;
         margin: auto 1.7rem;
 
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             display: none;
         }
     }
 
-    @media (max-width: 900px) {
-        height: 125dvh;
-        max-width: 100dvw;
-        padding: 15dvh 2rem;  //padding top for header
-
-    }
     
 `
 
@@ -54,7 +54,7 @@ export const LeftContent = styled.div`
     
     animation: ${fadeInUp} 0.5s ease-out;
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         width: 100%;
     }
     
@@ -66,7 +66,7 @@ export const LeftContent = styled.div`
         font-size: 2.625rem;
         line-height: 2.625rem;
         
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             font-size: 1.8rem;
             line-height: 1.8rem;
         }
@@ -77,7 +77,7 @@ export const LeftContent = styled.div`
         max-width: 50vw;
         margin-top: 1.2rem;
 
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             max-width: 100vw;
         }
         
@@ -86,7 +86,7 @@ export const LeftContent = styled.div`
         color: ${background.light};
         max-width: 50vw;
 
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             max-width: 100vw;
         }
     }
@@ -115,7 +115,7 @@ export const RightContentContainer = styled.div`
     flex-direction: column;
     width: 50%;
 
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         width: 100%;
         margin-top: 1rem;
     }
@@ -139,7 +139,7 @@ export const StepContent = styled.div`
 
         margin-right: 2.7rem;
         
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             margin-right: 2rem;
         }
     }
@@ -152,7 +152,7 @@ export const StepContent = styled.div`
         font-weight: 400;
         line-height: 1.375rem; 
         
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             font-size: 1rem;
         }
     }
@@ -164,7 +164,7 @@ export const StepContent = styled.div`
         font-weight: 700;
         line-height: 1.375rem;
         
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             font-weight: 500;
             margin-right: 2rem;
         }
@@ -180,7 +180,7 @@ export const StepContent = styled.div`
 
         max-width: 25rem;
 
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             font-size: 1rem;
         }
     }

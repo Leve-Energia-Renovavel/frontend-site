@@ -14,7 +14,7 @@ export const BannerContainer = styled.div`
     
     padding-top: 8dvh;  //margin for header
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         height: 90dvh;
         padding-top: 15dvh; 
         max-width: 100dvw;
@@ -34,7 +34,7 @@ export const ContentContainer = styled.div`
         line-height: 2.625rem;
         color: ${background.light};
         
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             font-size: 2rem;
             line-height: 1.5rem;
         }
@@ -45,7 +45,7 @@ export const ContentContainer = styled.div`
         
     }
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -67,13 +67,13 @@ export const BannerTitleContainer = styled.div`
         font-size: 2.625rem;
         line-height: 2.625rem;
 
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             font-size: 1.8rem;
             line-height: 1.8rem;
         }
     }
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         width: 90dvw;
         flex-wrap: wrap;
         margin: 0 auto;
@@ -97,7 +97,7 @@ export const BannerSubTitleContainer = styled.div`
         line-height: 1.125rem; 
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         display: none;
     }
 
@@ -124,7 +124,7 @@ export const BannerButton = styled.button`
             font-style: bold;
             line-height: normal;
             
-            @media (max-width: 900px) {
+            @media (max-width: 600px) {
                 font-size: 1rem;
                 font-weight: 400;
             }
@@ -134,7 +134,7 @@ export const BannerButton = styled.button`
             background-color: ${background.white};
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
                 font-size: 1rem;
                 height: 3rem;
                 padding: 0.75rem 2.375rem;
@@ -150,18 +150,13 @@ export const BannerImageContainer = styled.div`
         width: auto;
         height: auto;
          
-        
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
             width: 80%;
             height: 80%;
         }
-        @media (max-width: 400px) {
-            width: 65%;
-            height: 65%;
-        }
        
     }
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         text-align: center;
         margin: 0 auto;
         max-width: 100vw;

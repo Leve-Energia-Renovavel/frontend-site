@@ -15,7 +15,7 @@ const StyledInput = styled(TextField)`
         padding-right: 0,
     }
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         border-radius: 3px;
         width: 80vw;
         padding: 0;
@@ -27,9 +27,8 @@ const StyledAdornment = styled(InputAdornment)`
     padding: 27.5px 14px;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
-    position: end;
     
-    @media (max-width: 900px) {
+    @media (max-width: 600px) {
         padding: 20px 14px;
     }
 
@@ -47,7 +46,7 @@ export default function InputWithButton(props) {
             InputProps={{
                 disableUnderline: true,
                 endAdornment: (
-                    <StyledAdornment>
+                    <StyledAdornment position='end'>
                         <ArrowForwardIosIcon />
                     </StyledAdornment>
                 )

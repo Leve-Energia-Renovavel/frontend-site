@@ -6,4 +6,10 @@ export const FormBannerContainer = styled.div`
   padding: 20vw;
   border: 1px solid #ccc; 
   background-color: ${background.light};
+  
+  @media (max-width: 600px) {
+    padding: 2rem;
+    background-color: ${background.blueLeve};
+  }
+  
 `
