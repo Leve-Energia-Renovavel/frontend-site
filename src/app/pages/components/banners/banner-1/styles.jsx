@@ -147,14 +147,13 @@ export const BannerImageContainer = styled.div`
     filter: drop-shadow(0 0 10vw rgba(255, 255, 0, 2)); 
     
     .logoImage {
-        width: auto;
+        width: 100%;
         height: auto;
-         
+        
         @media (max-width: 600px) {
-            width: 80%;
-            height: 80%;
-        }
-       
+            width: 100%;
+    }
+         
     }
     @media (max-width: 600px) {
         text-align: center;

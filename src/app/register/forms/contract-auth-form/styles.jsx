@@ -17,13 +17,30 @@ export const FormContainer = styled.form`
   z-index: 100;
   
   width: 60vw;
+  
+  @media (max-width: 600px) {
+    width: 100vw;
+    max-width: 100vw;
+    
+    position: static; 
+    top: auto;
+    left: auto; 
+    transform: none; 
+    z-index: auto; 
+    
+    padding: 2rem 1.5rem;
+  }
 
   h1 {
     font-size: 1.75rem;
-    font-style: normal;
     font-weight: 700;
     line-height: normal;
-    color: ${background.primary}
+    color: ${background.blueLeve};
+    
+    @media (max-width: 600px) {
+      font-size: 1.75rem;
+      line-height: 1.5rem;
+    }
   }
 `;
 
@@ -68,6 +85,7 @@ export const AuthBoxes = styled.div`
     flex-direction: row;
     align-items: center; 
     justify-content: center;
+
 `;
 export const ButtonContainer = styled.div`
     margin: 0 auto;
@@ -97,10 +115,14 @@ export const TermsAndPolicyContainer = styled.div`
         text-align: center; 
         color: ${background.greyLeve};
         margin: 2rem auto;
+        
+        @media (max-width: 600px) {
+          max-width: 100%; 
+          margin: 2rem;
+        }
 
         h6 { 
           font-family: "Metropolis";
-          
         }
         `;
 
@@ -129,7 +151,7 @@ export const alertStyles = {
 export const verifiedIconStyles = {
   display: 'block',
   margin: '0 auto',
-  color: background.textLeve
+  color: background.blueLeve
 }
 export const boxesStyles = {
   width: '5rem',

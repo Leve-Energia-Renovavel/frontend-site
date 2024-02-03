@@ -1,6 +1,6 @@
 "use client"
 
-import { Contract, FormButtonContainer, FormContainer, FormContent, FormHeader } from './styles';
+import { Contract, ContractLeftContent, ContractRightContent, FormButtonContainer, FormContainer, FormContent, FormHeader } from './styles';
 import ContractFormTitle from './ContractFormTitle';
 import ContractFormProgress from './ContractFormProgress';
 import { useState } from 'react';
@@ -79,16 +79,16 @@ export default function ContractForm(props) {
                     return (
                         <div key={contract.id}>
                             <Contract>
-                                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                    <Typography variant='subtitle1' sx={{ fontSize: 20, fontWeight: 'bold' }}>{contract.name}</Typography>
-                                    <Typography variant='subtitle1' sx={{ cursor: 'pointer' }} onClick={() => handleSignContract(contract.id)}>{`${contract.signed ? "Assinado" : "Assinar"}`} </Typography>
-                                </div>
-                                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', color: background.primary }}>
+                                <ContractLeftContent>
+                                    <Typography variant='subtitle1' className='contractName'>{contract.name}</Typography>
+                                    <Typography variant='subtitle1' className='signButton' onClick={() => handleSignContract(contract.id)}>{`${contract.signed ? "Assinado" : "Assinar"}`} </Typography>
+                                </ContractLeftContent>
+                                <ContractRightContent>
                                     <PeopleIcon sx={{ fontSize: 30, margin: '0 .5rem' }} />
                                     <Typography sx={{ fontSize: 20, margin: '0 .5rem' }} variant='subtitle1'>{`Assinaturas ${contract.signed ? "1/1" : "0/1"}`}</Typography>
                                     <SearchIcon sx={{ cursor: 'pointer', fontSize: 30, margin: '0 .5rem' }} />
                                     <DownloadIcon sx={{ cursor: 'pointer', fontSize: 30 }} onClick={() => handleSignContract(contract.id)} />
-                                </div>
+                                </ContractRightContent>
                             </Contract>
                             <Divider orientation="horizontal" variant="middle" flexItem />
                         </div>

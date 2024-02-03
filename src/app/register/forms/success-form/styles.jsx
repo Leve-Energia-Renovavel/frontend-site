@@ -18,12 +18,24 @@ export const FormContainer = styled.div`
   
   width: 60vw;
 
+  @media (max-width: 600px) {
+    width: 100vw;
+    max-width: 100vw;
+    
+    position: static; 
+    top: auto;
+    left: auto; 
+    transform: none; 
+    z-index: auto; 
+    
+  }
+
   h1 {
     font-size: 1.75rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    color: ${background.primary}
+    color: ${background.blueLeve}
   }
 `;
 
@@ -38,46 +50,65 @@ export const Form = styled.form`
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
     gap: 1rem;
-
-`;
+    
+    `;
 
 export const FormContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 0 auto;
-
+    
+    @media (max-width: 600px) {
+      margin: 0;
+    }
+    
+    
     h3 {
-    color: ${background.blueLeve};
-    font-family: Metropolis;
-    font-size: 1.875rem;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-
-    margin-bottom: 1.5rem;
+      color: ${background.blueLeve};
+      font-family: "Metropolis";
+      font-size: 1.875rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      
+      margin-bottom: 1.5rem;
+      
+      @media (max-width: 600px) {
+        font-size: 1.75rem;
+      }
+    }
+    
+    h6 {
+      width: 30dvw;
+      color: ${background.darkGrey};
+      font-family: "Metropolis";
+      font-size: 1.375rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      
+      margin-bottom: 1.5rem;
+      
+      @media (max-width: 600px) {
+        width: 100%;
+        max-width: 100vw;
+        font-size: 1.2rem;
+      }
+    }
+    
+    .bold{
+      font-weight: bold;
   }
   
-  .orientations{
-    width: 30dvw;
-    color: ${background.darkGrey};
-    font-family: Metropolis;
-    font-size: 1.375rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    
-    margin-bottom: 1.5rem;
-  }
-
-  .bold{
-    font-weight: bold;
-  }
-
   div {
-      grid-row: span 1;
-      grid-column: span 1;
+    grid-row: span 1;
+    grid-column: span 1;
+    
+  }
+  
+  `;
 
-    }
-
-`;
+export const ButtonContainer = styled.div`
+    margin: 0 auto;
+  `;

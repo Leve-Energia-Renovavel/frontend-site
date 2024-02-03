@@ -17,6 +17,20 @@ export const FormContainer = styled.form`
   z-index: 100;
   
   width: 60vw;
+  
+  @media (max-width: 600px) {
+    width: 100vw;
+    max-width: 100vw;
+    
+    position: static; 
+    top: auto;
+    left: auto; 
+    transform: none; 
+    z-index: auto; 
+
+    padding: 2rem 1rem;
+
+  }
 
   h1 {
     font-size: 1.75rem;
@@ -44,15 +58,57 @@ export const Contract = styled.div`
     flex-direction: row;
     justify-content: space-between;
     margin: 1rem;
+    
+    @media (max-width: 600px) {
+      flex-direction: column;
+      margin: 1rem;
+    }
+`;
 
-`
-  ;
+export const ContractLeftContent = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    .contractName{ 
+      font-weight: bold;
+      font-size: 24px;
+      
+      @media (max-width: 600px) {
+        font-size: 18px;
+      }
+    }
+
+    .signButton {
+      cursor: pointer;
+
+    }
+`;
+export const ContractRightContent = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center; 
+    color: ${background.blueLeve};
+
+    @media (max-width: 600px) {
+        margin: 0 auto;
+      }
+
+    h6 {
+      @media (max-width: 600px) {
+        font-size: 1rem;
+      }
+    }
+`;
 
 export const FormButtonContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 1rem 0;
+    
+    @media (max-width: 600px) {
+      flex-direction: column;
+    }
 
 `;
 

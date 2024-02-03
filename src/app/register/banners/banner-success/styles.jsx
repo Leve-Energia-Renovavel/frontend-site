@@ -1,5 +1,18 @@
 import styled from "@emotion/styled"
 import { background } from "@/app/pages/styles"
+import { keyframes } from "@emotion/react";
+
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const BannerContainer = styled.div`
     background-color: ${background.blueLeve};
@@ -17,6 +30,9 @@ export const ContentContainer = styled.div`
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+
+    animation: ${fadeInUp} 0.5s ease-out;
+
 
     h1 {
         font-family: "Metropolis", sans-serif, system-ui, -apple-system;
