@@ -1,12 +1,17 @@
 "use client"
 
-import { FormControl, FormControlLabel, Radio, RadioGroup, Slider, TextField, Typography, CircularProgress } from "@mui/material"
+import { FormControl, FormControlLabel, RadioGroup, TextField, Typography } from "@mui/material"
 import { useRouter } from "next/navigation"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import InputMask from "react-input-mask"
 import FormButton from "../utils/buttons/FormButton"
 import SimulateEconomyTitle from "./SimulateEconomyTitle"
-import { FormContainer, SimulateEconomyHeader as Header, SimulateEconomyContainer as Container, radioButtonLabelStyle, radioButtonStyle, RadioContainer } from "./styles"
+import { SimulateEconomyContainer as Container, FormContainer, SimulateEconomyHeader as Header, RadioContainer, Radios, Sliders, ValidationErrorsContainer } from "./styles"
+
+import { getCurrentDate } from "@/app/utils/date/DateUtils"
+import { loadBrowserInfos } from "@/app/utils/date/browser/BrowserUtils"
+
+import { validationSchema } from "./schema"
 
 export default function SimulateEconomy() {
 
@@ -23,6 +28,11 @@ export default function SimulateEconomy() {
 
     const [userCost, setUserCost] = useState(minCostValue)
     const [userType, setUserType] = useState(defaultSelectedRadioButton)
+    const [validationErrors, setValidationErrors] = useState([])
+
+    useEffect(() => {
+    }, [validationErrors])
+
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -34,18 +44,30 @@ export default function SimulateEconomy() {
             cep: cepRef.current.value,
             cost: userCost,
             type: userType,
+            simulationDate: getCurrentDate(),
+            browserInfo: loadBrowserInfos()
         }
 
         userType == "cnpj" ? userInitialData["companyName"] = companyNameRef.current.value : null
 
-        history.pushState(userInitialData, "");
-        localStorage.setItem('leveData', JSON.stringify(userInitialData));  //TODO: check this usage
-        router.push(`/register/${userType}`)
+        validationSchema.validate(userInitialData, { abortEarly: false })
+            .then(() => {
+                history.pushState(userInitialData, "");
+                localStorage.setItem('leveData', JSON.stringify(userInitialData));  //TODO: check this usage
+                router.push(`/register/${userType}`)
+            })
+            .catch((err) => {
+                console.log(err.errors);
+                setValidationErrors(err.errors)
+            });
+
 
     }
+
     return (
         <Container>
             <Header>
+
                 <SimulateEconomyTitle />
                 <RadioContainer>
                     <Typography className="whereToSimulate">Escolha onde quer simular a economia:</Typography>
@@ -56,8 +78,8 @@ export default function SimulateEconomy() {
                         name="radio-buttons-group"
                         onChange={(event) => setUserType(event.target.value)}
                     >
-                        <FormControlLabel value="cpf" control={<Radio sx={radioButtonStyle} />} label={<Typography variant="subtitle1">Minha casa</Typography>} />
-                        <FormControlLabel className="radioLabel" value="cnpj" control={<Radio sx={radioButtonStyle} />} label={<Typography variant="subtitle1">Minha empresa</Typography>} />
+                        <FormControlLabel value="cpf" control={<Radios />} label={<Typography variant="subtitle1">Minha casa</Typography>} />
+                        <FormControlLabel className="radioLabel" value="cnpj" control={<Radios />} label={<Typography variant="subtitle1">Minha empresa</Typography>} />
                     </RadioGroup>
                 </RadioContainer>
             </Header>
@@ -87,25 +109,24 @@ export default function SimulateEconomy() {
                 </FormControl>
                 <FormControl className="slider">
                     <Typography className="averageMonthlyCost">Custo mensal médio <span className="monthyCostValue">R$ {userCost}</span></Typography>
-                    <Slider onChange={(event) => setUserCost(event.target.value)}
+                    <Sliders onChange={(event) => setUserCost(event.target.value)}
                         min={150}
                         max={3000}
-                        sx={{
-                            color: '#FFE04C', //color of the slider between thumbs
-                            height: '0.5rem',
-                            "& .MuiSlider-thumb": {
-                                backgroundColor: '#0075FF' //color of thumbs
-                            },
-                            "& .MuiSlider-rail": {
-                                color: 'lightblue'
-                            }
-                        }}
                         valueLabelDisplay="auto" />
                 </FormControl>
                 <FormControl >
                     <FormButton variant="outlined" type="submit" text={"Quero economizar!"} />
                 </FormControl>
             </FormContainer>
+            {validationErrors.length >= 1 && (
+                <ValidationErrorsContainer>
+                    <Typography>Erro nos campos:</Typography>
+                    {validationErrors.map((error, index) => (
+                        <p key={index}>- {error}</p>
+                    ))}
+                </ValidationErrorsContainer>
+            )}
+
         </Container >
     )
 }

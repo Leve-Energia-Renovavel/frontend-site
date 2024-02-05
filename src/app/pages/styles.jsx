@@ -36,5 +36,6 @@ export const background = {
     stroke: "#CACACB",
     greyLeve: "#F5F5F5",
     orangeLeve: "#EB641B",
-    textLeve: "#343434"
+    textLeve: "#343434",
+    error: "#F00",
 }
