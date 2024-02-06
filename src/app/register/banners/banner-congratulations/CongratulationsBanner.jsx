@@ -1,13 +1,12 @@
 
-import { Typography } from "@mui/material"
-import { BannerContainer, ContentContainer, confettiStyles } from "./styles"
-import ConfettiExplosion from "react-confetti-explosion";
+import { Typography } from "@mui/material";
+import { BannerContainer, ConfettiContainer, ContentContainer } from "./styles";
 
 export default function CongratulationsBanner(props) {
 
     return (
         <BannerContainer>
-            <ConfettiExplosion style={confettiStyles} duration={3000} particleCount={100} force={0.8} width={1500} />
+            <ConfettiContainer duration={3000} particleCount={100} force={0.8} />
             <ContentContainer>
                 <Typography variant="body1" component="h1">Parabéns! 🎉</Typography>
                 <Typography variant="subtitle1">Pronto! As assinaturas foram feitas com sucesso.</Typography>

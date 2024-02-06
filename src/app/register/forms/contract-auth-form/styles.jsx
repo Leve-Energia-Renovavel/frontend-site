@@ -1,5 +1,6 @@
-import styled from "@emotion/styled"
-import { background } from "@/app/pages/styles"
+import { background } from "@/app/pages/styles";
+import styled from "@emotion/styled";
+import { Alert } from "@mui/material";
 
 export const FormContainer = styled.form`
   display: flex;
@@ -138,16 +139,20 @@ export const SafeEnvironmentFooter = styled.div`
       }
 `;
 
+export const AlertAuth = styled(Alert)`
+  font-family: "Metropolis";
+  font-size: 1.5rem;
+  background-color: lightgreen;
+  border-radius: 10px;
+  padding: 1rem;
+  align-items: center;
+  
+  @media screen and (max-width: 600px) {
+    padding: 1rem;
+    font-size: 1.2rem; 
+  }
 
-export const alertStyles = {
-  fontFamily: "Metropolis",
-  fontSize: '1.5rem',
-  backgroundColor: 'lightgreen',
-  borderRadius: 5,
-  padding: '1rem',
-  alignItems: 'center',
-}
-
+`
 export const verifiedIconStyles = {
   display: 'block',
   margin: '0 auto',

@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 import { background } from "@/app/pages/styles"
 import { keyframes } from "@emotion/react";
+import ConfettiExplosion from "react-confetti-explosion";
 
 const fadeInUp = keyframes`
   from {
@@ -63,4 +64,12 @@ export const ContentContainer = styled.div`
 
 `
 
-export const confettiStyles = { margin: '0 auto' }
+export const ConfettiContainer = styled(ConfettiExplosion)`
+    margin: 0 auto;
+    
+    @media (max-width: 600px) {
+        margin: 0;
+        padding: 0;
+        left: 50%;
+    }
+`

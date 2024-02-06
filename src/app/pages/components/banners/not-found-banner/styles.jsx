@@ -1,16 +1,38 @@
 import styled from "@emotion/styled"
 import { background } from "@/app/pages/styles"
+import { keyframes } from "@emotion/react";
+
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const BannerContainer = styled.div`
     background-color: ${background.blueLeve};
     height: 50vh;
     max-width: 100vw;
     padding: 10rem 15rem;
+
+    @media (max-width: 600px) {
+        height: 100vh;
+        max-width: 100vw;
+        padding: 15dvh 2rem;  //padding top for header
+
+    }
 `
 
 export const ContentContainer = styled.div`
     display: flex;
     flex-direction: column;
+
+    animation: ${fadeInUp} 0.5s ease-out;
 
     h1 {
         font-family: "Metropolis";

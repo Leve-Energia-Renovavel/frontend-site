@@ -1,18 +1,17 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 
+import DefaultButton from "@/app/pages/components/utils/buttons/DefaultButton";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import LockIcon from '@mui/icons-material/Lock';
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import { Snackbar, TextField, Typography } from "@mui/material";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import ContractAuthFormProgress from "./ContractAuthFormProgress";
 import ContractAuthFormTitle from "./ContractAuthFormTitle";
-import { AuthBoxes, FormContainer, FormContent, FormHeader, alertStyles, verifiedIconStyles, boxesStyles, ButtonContainer, finishButtonStyles, ResendTokenContainer, TermsAndPolicyContainer, SafeEnvironmentFooter } from "./styles"
-import { TextField, Typography, Alert, Snackbar, Box } from "@mui/material";
-import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
-import { useRef, useState, useEffect } from "react";
-import DefaultButton from "@/app/pages/components/utils/buttons/DefaultButton";
-import LockIcon from '@mui/icons-material/Lock';
-import { background } from "@/app/pages/styles";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { AlertAuth, AuthBoxes, ButtonContainer, FormContainer, FormContent, FormHeader, ResendTokenContainer, SafeEnvironmentFooter, TermsAndPolicyContainer, alertStyles, boxesStyles, finishButtonStyles, verifiedIconStyles } from "./styles";
 
 const handleSubmit = (event) => {
     event.preventDefault()
@@ -100,14 +99,13 @@ export default function ContractAuthForm(props) {
                 autoHideDuration={6000}
                 onClose={handleClose}
                 anchorOrigin={{ vertical: "top", horizontal: "center" }}>
-                <Alert
+                <AlertAuth
                     onClose={handleClose}
                     severity="success"
                     variant="filled"
-                    sx={alertStyles}
                 >
                     Token validado com sucesso!
-                </Alert>
+                </AlertAuth>
             </Snackbar>
 
             <FormContainer acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
