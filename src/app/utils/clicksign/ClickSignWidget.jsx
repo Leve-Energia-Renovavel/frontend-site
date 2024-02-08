@@ -4,8 +4,10 @@ import { FormHeader } from '@/app/register/forms/contract-signature-form/styles'
 import { useEffect, useState } from 'react';
 import Clicksign from "./embedded";
 import { ClicksignWidgetContainer } from './styles';
+import { useRouter } from 'next/navigation';
 
 export default function ClicksignWidget() {
+    const router = useRouter()
     const [widget, setWidget] = useState(null);
 
     useEffect(() => {
@@ -21,7 +23,25 @@ export default function ClicksignWidget() {
 
             widgetInstance.mount('clicksign-container');
 
+            // Set the callback function
+            widgetInstance.callback = function (event) {
+                console.log("event =====>>>>", event)
+                if (event !== "signed") {
+                    return;
+                }
+                alert("Documento assinado!");
+            };
+
+            // Callback que será disparado quando o documento for assinado
+            widgetInstance.on('signed', function (event) {
+                console.log("event =====>>>>", event)
+                console.log('signed!');
+                router.push(`/register/contract-auth`)
+
+            });
+
             setWidget(widgetInstance);
+
         };
 
         run();
