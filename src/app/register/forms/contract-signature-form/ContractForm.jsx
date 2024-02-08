@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import ContractFormProgress from './ContractFormProgress';
 import ContractFormTitle from './ContractFormTitle';
-import { Contract, ContractLeftContent, ContractRightContent, FormButtonContainer, FormContainer, FormContent, FormHeader, Download, People, Search } from './styles';
+import { Contract, ContractLeftContent, ContractRightContent, Download, FormButtonContainer, FormContainer, FormContent, FormHeader, People, Search } from './styles';
 
 export default function ContractForm(props) {
 

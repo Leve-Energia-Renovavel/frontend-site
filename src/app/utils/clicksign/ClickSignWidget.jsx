@@ -1,9 +1,9 @@
+import ContractFormProgress from '@/app/register/forms/contract-signature-form/ContractFormProgress';
+import ContractFormTitle from '@/app/register/forms/contract-signature-form/ContractFormTitle';
+import { FormHeader } from '@/app/register/forms/contract-signature-form/styles';
 import { useEffect, useState } from 'react';
 import Clicksign from "./embedded";
 import { ClicksignWidgetContainer } from './styles';
-import { FormHeader } from '@/app/register/forms/contract-signature-form/styles';
-import ContractFormTitle from '@/app/register/forms/contract-signature-form/ContractFormTitle';
-import ContractFormProgress from '@/app/register/forms/contract-signature-form/ContractFormProgress';
 
 export default function ClicksignWidget() {
     const [widget, setWidget] = useState(null);
