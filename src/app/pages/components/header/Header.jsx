@@ -42,8 +42,6 @@ export default function Header() {
                         <Image className='logoImage'
                             src={logo}
                             alt="Leve Energia Logo"
-                            width={200}
-                            height={60}
                             onClick={() => router.push("/")}
                         />
                     </LogoContainer>

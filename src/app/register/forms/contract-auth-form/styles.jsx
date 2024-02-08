@@ -166,3 +166,33 @@ export const boxesStyles = {
   textAlign: 'center',
 }
 export const finishButtonStyles = { maxWidth: '10vw' }
+
+
+
+
+export const ContractAuthFormProgressContainer = styled.div`
+ display: flex;
+ flex-direction: row; 
+ align-items: center; 
+ padding: 1rem 0;
+
+ h2{ 
+  font-weight: bold; 
+  color: ${background.yellowLeve};
+  margin-right: 1rem;
+ }
+
+ .progressBar {
+    height: .75rem;
+    width: 100%;
+    border-radius: 5px;
+
+    .MuiLinearProgress-colorPrimary {
+      background-color: ${background.greyLeve};
+    }
+
+    .MuiLinearProgress-barColorPrimary {
+      background-color: ${background.yellowLeve};
+    }
+ }
+`

@@ -112,3 +112,32 @@ export const FormContent = styled.div`
 export const ButtonContainer = styled.div`
     margin: 0 auto;
   `;
+
+
+
+export const SuccessFormProgressContainer = styled.div`
+ display: flex;
+ flex-direction: row; 
+ align-items: center; 
+ padding: 1rem 0;
+
+ h2{ 
+  font-weight: bold; 
+  color: ${background.yellowLeve};
+  margin-right: 1rem;
+ }
+
+ .progressBar {
+    height: .75rem;
+    width: 100%;
+    border-radius: 5px;
+
+    .MuiLinearProgress-colorPrimary {
+      background-color: ${background.greyLeve};
+    }
+
+    .MuiLinearProgress-barColorPrimary {
+      background-color: ${background.yellowLeve};
+    }
+ }
+`;

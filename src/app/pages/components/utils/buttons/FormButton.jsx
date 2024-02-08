@@ -1,5 +1,4 @@
-import { background } from '@/app/pages/styles';
-import { Button } from '@mui/material';
+import { FormButtonStyle as Button } from './styles';
 
 export default function FormButton(props) {
 
@@ -8,23 +7,9 @@ export default function FormButton(props) {
             <Button
                 className="formInput"
                 variant="outlined"
-                type="submit"
-                sx={{
-                    textTransform: 'none',
-                    fontSize: 18,
-                    color: background.light,
-                    borderColor: background.lightBorder,
-                    backgroundColor: background.blueLeve,
-                    paddingY: 1,
-                    paddingX: 4,
-                    height: '3rem',
-                    borderRadius: '12px',
-                    "&:hover": {
-                        backgroundColor: background.yellowLeve,
-                        color: background.blueLeve,
-                        borderColor: background.lightBorder,
-                    },
-                }} >{props.text}</Button >
+                type="submit">
+                <span>{props.text}</span>
+            </Button >
         </>
     )
 }

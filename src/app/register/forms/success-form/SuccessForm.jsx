@@ -3,11 +3,11 @@
 import DefaultButton from "@/app/pages/components/utils/buttons/DefaultButton";
 import { FormControl, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { useRef, useState } from "react";
+import DistibuitorSyncData from "./DistribuitorSyncData";
 import SuccessFormProgress from "./SuccessFormProgress";
 import SuccessFormTitle from "./SuccessFormTitle";
-import { Form, FormContainer, FormHeader, FormContent, ButtonContainer } from "./styles";
-import { useState, useRef } from "react";
-import DistibuitorSyncData from "./DistribuitorSyncData";
+import { ButtonContainer, Form, FormContainer, FormContent, FormHeader } from "./styles";
 
 export default function SuccessForm() {
     const router = useRouter()
