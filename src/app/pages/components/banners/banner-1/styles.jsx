@@ -186,6 +186,10 @@ export const BannerImageContainer = styled.div`
         width: 100%;
         height: auto;
         
+        @media (min-width: 2000px) {
+            width: 30rem;
+            height: auto;
+        }
         @media (min-width: 1900px) and (max-width: 2000px) {
             width: 28rem;
             height: auto;

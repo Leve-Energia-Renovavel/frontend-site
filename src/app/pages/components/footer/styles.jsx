@@ -5,6 +5,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
+import { keyframes } from "@emotion/react";
 
 export const FooterContainer = styled.div`
     display: flex;
@@ -111,6 +112,10 @@ export const PagesContainer = styled.div`
         font-weight: bold;
         margin-top: 1rem;
 
+        &:hover {
+            color: ${background.yellowLeve}
+        }
+
         @media (max-width: 600px) {
             margin-top: 1rem;
         }
@@ -193,17 +198,26 @@ export const InstagramLogo = styled(InstagramIcon)`
     &:hover {
         cursor: pointer;
         color: ${background.yellowLeve};
+
+        filter: drop-shadow(0 0 5px rgba(255, 255, 0, 2)); 
+
     }
 `;
 export const FacebookLogo = styled(FacebookIcon)`
     &:hover {
         cursor: pointer;
         color: ${background.yellowLeve};
+
+        filter: drop-shadow(0 0 5px rgba(255, 255, 0, 2)); 
+
     }
 `;
 export const LinkedinLogo = styled(LinkedInIcon)`
     &:hover {
         cursor: pointer;
         color: ${background.yellowLeve};
+
+        filter: drop-shadow(0 0 5px rgba(255, 255, 0, 2)); 
+
     }
 `;

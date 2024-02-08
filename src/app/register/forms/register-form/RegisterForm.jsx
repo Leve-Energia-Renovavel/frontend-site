@@ -18,8 +18,7 @@ export default function RegisterForm(props) {
     const [socialContractFile, setSocialContractFile] = useState(null);
     const [energyExtractFile, setEnergyExtractFile] = useState(null);
 
-
-    const { name, email, phone, cep, companyName, cost } = props.userData
+    const { name, email, phone, cep, companyName, cost, browserInfo } = props.userData
     const isCompany = props.isCompany
 
     const userRefs = {
@@ -34,8 +33,6 @@ export default function RegisterForm(props) {
         phone: useRef(null),
 
     };
-
-
 
     const companyRefs = {
         companyName: useRef(null),
@@ -60,8 +57,6 @@ export default function RegisterForm(props) {
         city: useRef(null),
         installationNumber: useRef(null)
     }
-
-
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -112,6 +107,7 @@ export default function RegisterForm(props) {
                     city: addressRefs.city.current.value,
                     installationNumber: addressRefs.installationNumber.current.value
                 },
+                browserInfo: browserInfo
             }
 
         }

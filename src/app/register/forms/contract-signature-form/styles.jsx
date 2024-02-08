@@ -1,6 +1,12 @@
 import styled from "@emotion/styled"
 import { background } from "@/app/pages/styles"
 
+import DownloadIcon from '@mui/icons-material/Download';
+import PeopleIcon from '@mui/icons-material/People';
+import SearchIcon from '@mui/icons-material/Search';
+
+
+
 export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
@@ -94,6 +100,9 @@ export const ContractRightContent = styled.div`
       }
 
     h6 {
+      font-size: 1.2rem;
+    }
+    h6 {
       @media (max-width: 600px) {
         font-size: 1rem;
       }
@@ -139,3 +148,18 @@ export const RegisterFormProgressContainer = styled.div`
     }
  }
 `
+export const Download = styled(DownloadIcon)`
+  cursor: pointer;
+  font-size: 30px;
+  margin: 0 .5rem;
+  `;
+export const People = styled(PeopleIcon)`
+cursor: pointer;
+font-size: 30;
+margin: 0 .5rem;
+`;
+export const Search = styled(SearchIcon)`
+cursor: pointer;
+  font-size: 30;
+   margin: 0 .5rem;
+`;

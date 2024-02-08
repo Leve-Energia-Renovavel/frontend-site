@@ -20,9 +20,15 @@ export const BannerContainer = styled.div`
     max-width: 100vw;
     padding: 8rem 13.5rem;
 
-
+    @media (max-width: 900px) {
+        padding: 7rem 2rem;
+    }
     @media (max-width: 600px) {
-        height: 80vh;
+        height: 50vh;
+        padding: 7rem 2rem;
+    }
+    @media (max-width: 400px) {
+        height: 60vh;
         padding: 7rem 2rem;
     }
 `
@@ -32,7 +38,6 @@ export const ContentContainer = styled.div`
     flex-direction: column;
 
     animation: ${fadeInUp} 0.5s ease-out;
-
 
     h1 {
         font-family: "Metropolis";
