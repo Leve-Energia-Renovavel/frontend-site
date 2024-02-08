@@ -51,7 +51,7 @@ export const DefaultButtonStyle = styled(Button)`
         @media (max-width: 1200px) {
         font-size: 16px;
         line-height: 16px;
-    }
+        }
     }
 
     &:hover {

@@ -22,6 +22,18 @@ export const SimulateEconomyContainer = styled.div`
   width: 60vw;
   max-width: 80vw;
   
+  @media (max-width: 1300px) {
+    top: 95dvh;
+    width: 85vw;
+    max-width: 85vw;
+    margin: 0;
+  }
+  @media (max-width: 1100px) {
+    top: 95dvh;
+    width: 90vw;
+    max-width: 90vw;
+    margin: 0;
+  }
   @media (max-width: 600px) {
     top: 175dvh;
     width: 100vw;

@@ -7,7 +7,6 @@ export const BannerContainer = styled.div`
     height: 93dvh;
     max-width: 100dvw;
     flex-direction: row;
-    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     overflow: hidden;
@@ -15,6 +14,7 @@ export const BannerContainer = styled.div`
     padding-top: 8dvh;  //margin for header
     
     @media (max-width: 600px) {
+        flex-wrap: wrap;
         height: 90dvh;
         padding-top: 15dvh; 
         max-width: 100dvw;
@@ -50,8 +50,7 @@ export const ContentContainer = styled.div`
         justify-content: center;
         align-items: center;
         padding: 0 2rem;
-
-        }
+    }
 `
 
 export const BannerTitleContainer = styled.div`
@@ -73,6 +72,15 @@ export const BannerTitleContainer = styled.div`
         }
     }
     
+    @media (max-width: 900px) {
+        width: 70dvw;
+        flex-wrap: wrap;
+        text-align: left;
+        padding: 0 5rem;
+        margin-bottom: 1.5rem;
+        margin-right: 0;
+        margin-left: 5rem;
+    }
     @media (max-width: 600px) {
         width: 90dvw;
         flex-wrap: wrap;
@@ -95,6 +103,16 @@ export const BannerSubTitleContainer = styled.div`
         font-style: normal;
         font-weight: 300;
         line-height: 1.125rem; 
+    }
+    @media (max-width: 900px) {
+        width: 70dvw;
+        flex-wrap: wrap;
+        text-align: left;
+        padding: 0 5rem;
+        margin-bottom: 1.5rem;
+        margin-right: 0;
+        margin-left: 5rem;
+
     }
 
     @media (max-width: 600px) {
@@ -134,30 +152,61 @@ export const BannerButton = styled.button`
             background-color: ${background.white};
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 900px) {
                 font-size: 1rem;
                 height: 3rem;
-                padding: 0.75rem 2.375rem;
-                margin-bottom: 2rem;
-                margin-top: 1rem;
-            }
+                margin-top: 2rem;
+                margin-left: 10rem;
+
+        }
+        @media (max-width: 600px) {
+            font-size: 1rem;
+            height: 3rem;
+            padding: 0.75rem 2.375rem;
+            margin-bottom: 2rem;
+            margin-top: 1rem;
+            margin-left: 0;
+        }
 `;
 
 export const BannerImageContainer = styled.div`
     filter: drop-shadow(0 0 10vw rgba(255, 255, 0, 2)); 
-    
-    .logoImage {
-        width: 100%;
-        height: auto;
-        
-        @media (max-width: 600px) {
-            width: 100%;
-    }
-         
+
+    @media (max-width: 900px) {
+        margin-right: 5rem;
+        margin-left:0;
     }
     @media (max-width: 600px) {
         text-align: center;
         margin: 0 auto;
         max-width: 100vw;
     }
+    
+    .logoImage {
+        width: 100%;
+        height: auto;
+        
+        @media (min-width: 1900px) and (max-width: 2000px) {
+            width: 28rem;
+            height: auto;
+        }
+        @media (max-width: 1200px) {
+            width: 25rem;
+            height: auto;
+        }
+        @media (max-width: 800px) {
+            width: 20rem;
+            height: auto;
+        }
+        @media (max-width: 600px) {
+            width: 20rem;
+            height: auto;
+        }
+        @media (max-width: 400px) {
+            width: 14rem;
+            height: auto;
+        }
+        
+    }
+
 `

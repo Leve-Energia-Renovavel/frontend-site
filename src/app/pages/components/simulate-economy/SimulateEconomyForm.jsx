@@ -67,7 +67,6 @@ export default function SimulateEconomy() {
     return (
         <Container>
             <Header>
-
                 <SimulateEconomyTitle />
                 <RadioContainer>
                     <Typography className="whereToSimulate">Escolha onde quer simular a economia:</Typography>
