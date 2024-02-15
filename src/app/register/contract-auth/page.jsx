@@ -3,20 +3,23 @@
 import AlmostThere from "../banners/banner-almost-there/AlmostThereBanner";
 import FormBanner from "../banners/form-banner/FormBanner";
 import ContractAuthForm from "../forms/contract-auth-form/ContractAuthForm";
+import { notFound } from "next/navigation";
 
 const loadUserData = () => {
-    if (history?.state?.address) {
-        return history?.state
+    if (typeof window !== 'undefined' && window?.history?.state?.name) {
+        return window?.history?.state;
     } else {
-        const storedObject = localStorage.getItem('leveLeadData');
-        if (storedObject) {
-            return JSON.parse(storedObject);
+        if (typeof window !== 'undefined' && window?.localStorage) {
+            const storedObject = window.localStorage.getItem('leveLeadData');
+            if (storedObject) {
+                return JSON.parse(storedObject);
+            }
         }
     }
 }
 
 const accessNotValid = (user) => {
-    return !user.contracts
+    return !user?.contracts
 }
 
 export default function ContractAuthentication() {

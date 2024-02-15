@@ -1,22 +1,21 @@
-"use client"
-
-import ResultEconomy from "../result-economy/ResultEconomy";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { notFound } from "next/navigation";
 import RegisterBannerFailCost from "../banners/banner-fail-cost/FailCostBanner";
 import RegisterBannerFailRegion from "../banners/banner-fail-region/FailRegionBanner";
-import RegisterForm from "../forms/register-form/RegisterForm";
-import FormBanner from "../banners/form-banner/FormBanner";
 import RegisterBannerSuccess from "../banners/banner-success/RegisterBanner";
-import { notFound } from "next/navigation";
-import { useEffect } from "react";
-import axios from "axios";
+import FormBanner from "../banners/form-banner/FormBanner";
+import RegisterForm from "../forms/register-form/RegisterForm";
+import ResultEconomy from "../result-economy/ResultEconomy";
 
 const loadUserData = () => {
-    if (history?.state?.name) {
-        return history?.state
+    if (typeof window !== 'undefined' && window?.history?.state?.name) {
+        return window?.history?.state;
     } else {
-        const storedObject = localStorage.getItem('leveData');
-        if (storedObject) {
-            return JSON.parse(storedObject);
+        if (typeof window !== 'undefined' && window?.localStorage) {
+            const storedObject = window.localStorage.getItem('leveLeadData');
+            if (storedObject) {
+                return JSON.parse(storedObject);
+            }
         }
     }
 }
@@ -25,6 +24,19 @@ const isNotValidUserType = (userType) => {
     return userType != 'cpf' && userType != 'cnpj'
 }
 
+export function generateStaticParams() {
+    return [
+        { params: { userType: 'cpf' } },
+        { params: { userType: 'cnpj' } },
+    ];
+}
+
+export function getStaticPaths() {
+    return {
+        paths: generateStaticParams(),
+        fallback: true,
+    };
+}
 export default function Register() {
 
     const userData = loadUserData()
@@ -36,27 +48,27 @@ export default function Register() {
         notFound()
     }
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const url = `https://viacep.com.br/ws/${userData?.cep}/json/`
-                await axios.get(url).then(response => {
-                    if (response.status == 200) {
-                        userData["address"] = response.data.logradouro
-                        userData["neighborhood"] = response.data.bairro
-                        userData["city"] = response.data.localidade
-                        userData["state"] = response.data.uf
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const url = `https://viacep.com.br/ws/${userData?.cep}/json/`
+    //             await axios.get(url).then(response => {
+    //                 if (response.status == 200) {
+    //                     userData["address"] = response.data.logradouro
+    //                     userData["neighborhood"] = response.data.bairro
+    //                     userData["city"] = response.data.localidade
+    //                     userData["state"] = response.data.uf
 
-                    }
-                })
+    //                 }
+    //             })
 
-            } catch (error) {
-                console.error(error);
-            }
-        };
+    //         } catch (error) {
+    //             console.error(error);
+    //         }
+    //     };
 
-        fetchData();
-    }, []);
+    //     fetchData();
+    // }, []);
 
     return (
         <div>

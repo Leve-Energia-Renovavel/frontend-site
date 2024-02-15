@@ -1,3 +1,5 @@
+"use client"
+
 import { Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import Image from 'next/image';
