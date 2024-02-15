@@ -10,6 +10,8 @@ pipelines:
           script:
             - npm install
             - npm run build
+          artifacts:
+            - ./out
 
       - step:
           name: Upload to Dev S3
@@ -31,6 +33,8 @@ pipelines:
           script:
             - npm install
             - npm run build
+          artifacts:
+            - ./out
 
       - step:
           name: Upload to Production S3
