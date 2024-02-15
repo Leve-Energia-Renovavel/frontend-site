@@ -1,0 +1,39 @@
+image: node:18.19.1
+
+pipelines:
+  branches:
+    dev:
+      - step:
+          name: Build
+          caches:
+            - node
+          script:
+            - npm install
+            - npm run build
+
+      - step:
+          name: Upload to Dev S3
+          script:
+            - apt-get update && apt-get install -y python3-pip
+            - pip3 install awscli
+            - aws configure set aws_access_key_id $DEV_AWS_ACCESS_KEY_ID
+            - aws configure set aws_secret_access_key $DEV_AWS_SECRET_ACCESS_KEY
+            - aws s3 sync ./static s3://$DEV_AWS_BUCKET/
+
+    master:
+      - step:
+          name: Build
+          caches:
+            - node
+          script:
+            - npm install
+            - npm run build
+
+      - step:
+          name: Upload to Production S3
+          script:
+            - apt-get update && apt-get install -y python3-pip
+            - pip3 install awscli
+            - aws configure set aws_access_key_id $PROD_AWS_ACCESS_KEY_ID
+            - aws configure set aws_secret_access_key $PROD_AWS_SECRET_ACCESS_KEY
+            - aws s3 sync ./static s3://$PROD_AWS_BUCKET/
