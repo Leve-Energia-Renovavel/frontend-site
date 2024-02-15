@@ -11,7 +11,9 @@ pipelines:
             - npm install
             - npm run build
           artifacts:
-            - ./out
+            expire_in: 1 hrs
+            paths:
+              - out/**
 
       - step:
           name: Upload to Dev S3
@@ -22,7 +24,7 @@ pipelines:
             - pip install awscli
             - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
             - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-            - aws s3 sync $BITBUCKET_CLONE_DIR/out s3://$DEV_AWS_BUCKET/
+            - aws s3 sync ./out s3://$DEV_AWS_BUCKET/
             - deactivate
 
     master:
@@ -34,7 +36,9 @@ pipelines:
             - npm install
             - npm run build
           artifacts:
-            - ./out
+            expire_in: 1 hrs
+            paths:
+              - out/**
 
       - step:
           name: Upload to Production S3
@@ -45,5 +49,5 @@ pipelines:
             - pip install awscli
             - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
             - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-            - aws s3 sync $BITBUCKET_CLONE_DIR/out s3://$PROD_AWS_BUCKET/
+            - aws s3 sync ./out s3://$PROD_AWS_BUCKET/
             - deactivate
