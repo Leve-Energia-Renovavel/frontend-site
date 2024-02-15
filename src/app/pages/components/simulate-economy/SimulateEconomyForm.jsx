@@ -10,7 +10,6 @@ import { SimulateEconomyContainer as Container, FormContainer, SimulateEconomyHe
 
 import { getCurrentDate } from "@/app/utils/date/DateUtils"
 import { loadBrowserInfos } from "@/app/utils/date/browser/BrowserUtils"
-
 import { validationSchema } from "./schema"
 
 export default function SimulateEconomy() {
@@ -54,7 +53,21 @@ export default function SimulateEconomy() {
             .then(() => {
                 history.pushState(userInitialData, "");
                 localStorage.setItem('leveData', JSON.stringify(userInitialData));  //TODO: check this usage
-                router.push(`/register/${userType}`)
+
+                const path = `/register/${userType}?nome=${userInitialData.name}&email=${userInitialData.email}&telefone=${userInitialData.phone}&cep=${userInitialData.cep}&valor=${userInitialData.cost}&lp=true`;
+                // console.log({
+                //     pathname: `/register/${encodeURIComponent(userType)}`,
+                //     query: {
+                //         nome: encodeURIComponent(userInitialData.name),
+                //         email: encodeURIComponent(userInitialData.email),
+                //         telefone: encodeURIComponent(userInitialData.phone),
+                //         cep: encodeURIComponent(userInitialData.cep),
+                //         valor: encodeURIComponent(userInitialData.cost),
+                //         lp: true
+                //     }
+                // })
+                // router.push(`/register/${userType}`)
+                router.push(path)
             })
             .catch((err) => {
                 console.log(err.errors);
@@ -117,14 +130,14 @@ export default function SimulateEconomy() {
                     <FormButton variant="outlined" type="submit" text={"Quero economizar!"} />
                 </FormControl>
             </FormContainer>
-            {validationErrors.length >= 1 && (
+            {/* {validationErrors.length >= 1 && (
                 <ValidationErrorsContainer>
                     <Typography>Erro nos campos:</Typography>
                     {validationErrors.map((error, index) => (
                         <p key={index}>- {error}</p>
                     ))}
                 </ValidationErrorsContainer>
-            )}
+            )} */}
 
         </Container >
     )

@@ -3,7 +3,8 @@
 
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
-import { Button, MenuItem, TextField, Typography, Divider } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
+import { Button, Divider, MenuItem, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -12,7 +13,6 @@ import RegisterModal from "../../modal/Modal";
 import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, fileInputStyles } from "./styles";
-import SearchIcon from '@mui/icons-material/Search';
 
 export default function RegisterForm(props) {
 
@@ -21,7 +21,10 @@ export default function RegisterForm(props) {
     const [socialContractFile, setSocialContractFile] = useState(null);
     const [energyExtractFile, setEnergyExtractFile] = useState(null);
 
-    const { name, email, phone, cep, companyName, cost, browserInfo } = props.userData
+    const { email, cep, companyName, cost, browserInfo } = props.userData
+    const name = props.userData?.nome
+    const phone = props.userData?.telefone
+
     const isCompany = props.isCompany
 
     const userRefs = {

@@ -1,14 +1,20 @@
 "use client"
 
 import { Button, Typography } from "@mui/material";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { BannerContainer, ButtonContainer, ContentContainer } from "./styles";
 
 export default function RegisterBannerFailRegion(props) {
 
     const router = useRouter()
-    const { name, type } = props.userData
-    const location = type == "cnpj" ? "empresa" : "residência"
+    const params = useParams()
+
+    const userData = props.userData
+
+    const userType = params?.userType
+
+    const name = userData.nome;
+    const fullName = name.split(" ");
 
     return (
         <BannerContainer>

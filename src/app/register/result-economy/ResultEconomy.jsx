@@ -3,14 +3,21 @@
 import { Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import Image from 'next/image';
+import { useParams, useSearchParams } from 'next/navigation';
 import icon from '../../../resources/img/Frame.svg';
 import graphic from '../../../resources/img/graphic-leve.png';
-import { ResultEconomyComparissonContent as Header, ResultEconomyContainer as Container, ResultEconomyDiscount as Banner, ResultEconomyDiscountGraph, ResultEconomyToUnderstandContent as Content, TodayPriceInfo, LeveEconomyInfo, LeveMonthlyDiscount } from './styles';
+import { ResultEconomyDiscount as Banner, ResultEconomyContainer as Container, ResultEconomyToUnderstandContent as Content, ResultEconomyComparissonContent as Header, LeveEconomyInfo, LeveMonthlyDiscount, ResultEconomyDiscountGraph, TodayPriceInfo } from './styles';
 
 export default function ResultEconomy(props) {
 
-    const { cost, type } = props.userData
-    const location = type == 'cnpj' ? 'empresa' : 'residência'
+    const params = useParams()
+
+    const userData = props.userData
+
+    const userType = params?.userType
+    const cost = userData.valor;
+
+    const location = userType == 'cnpj' ? 'empresa' : 'residência'
     const percentageDiscount = 0.1     //for 10% of discount 
 
     const leveCost = () => {

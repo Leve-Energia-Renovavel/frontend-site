@@ -2,13 +2,20 @@
 
 import { Typography } from "@mui/material"
 import { BannerContainer, ContentContainer } from "./styles"
+import { useParams, useSearchParams } from 'next/navigation';
 
 export default function RegisterBannerSuccess(props) {
 
-    const { name, type } = props.userData
+    const params = useParams()
+
+    const userData = props.userData
+
+    const userType = params?.userType
+
+    const name = userData.nome;
     const fullName = name.split(" ");
     const userName = fullName[0] + " " + fullName[fullName.length - 1]
-    const location = type == "cnpj" ? "empresa" : "residência"
+    const location = userType == 'cnpj' ? 'empresa' : 'residência'
 
     return (
         <BannerContainer>
