@@ -15,10 +15,13 @@ pipelines:
           name: Upload to Dev S3
           script:
             - apt-get update && apt-get install -y python3-pip
-            - pip3 install awscli
+            - python3 -m venv myenv
+            - source myenv/bin/activate
+            - pip install awscli
             - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
             - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
             - aws s3 sync ./out s3://$DEV_AWS_BUCKET/
+            - deactivate
 
     master:
       - step:
@@ -33,7 +36,10 @@ pipelines:
           name: Upload to Production S3
           script:
             - apt-get update && apt-get install -y python3-pip
-            - pip3 install awscli
+            - python3 -m venv myenv
+            - source myenv/bin/activate
+            - pip install awscli
             - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
             - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-            - aws s3 sync ./out s3://$PROD_AWS_BUCKET/
+            - aws s3 sync ./out s3://PROD_AWS_BUCKET/
+            - deactivate
