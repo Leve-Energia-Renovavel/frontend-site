@@ -4,6 +4,7 @@ import { notFound, useRouter } from 'next/navigation';
 import AlmostThereBanner from '../banners/banner-almost-there/AlmostThereBanner';
 import ContractForm from '../forms/contract-signature-form/ContractForm';
 import FormBanner from '../banners/form-banner/FormBanner';
+import ClicksignWidget from '@/app/utils/clicksign/ClickSignWidget';
 
 const loadUserData = () => {
     if (history?.state?.address) {
@@ -31,8 +32,9 @@ export default function ContractSignature() {
     return (
         <>
             <AlmostThereBanner userData={userData} confirmationByEmail={userData.user ? true : false} />
-            <ContractForm userData={userData} isCompany={userData.company ? true : false} />
+            <ClicksignWidget />
             <FormBanner />
         </>
     );
 }
+{/* <ContractForm userData={userData} isCompany={userData.company ? true : false} /> */ }

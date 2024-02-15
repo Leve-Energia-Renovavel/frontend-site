@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 import { background } from "../../styles"
-import { FormControl } from "@mui/material";
+import { FormControl, Radio, Slider } from "@mui/material";
+
 
 export const SimulateEconomyContainer = styled.div`
   display: flex;
@@ -21,6 +22,18 @@ export const SimulateEconomyContainer = styled.div`
   width: 60vw;
   max-width: 80vw;
   
+  @media (max-width: 1300px) {
+    top: 95dvh;
+    width: 85vw;
+    max-width: 85vw;
+    margin: 0;
+  }
+  @media (max-width: 1100px) {
+    top: 95dvh;
+    width: 90vw;
+    max-width: 90vw;
+    margin: 0;
+  }
   @media (max-width: 600px) {
     top: 175dvh;
     width: 100vw;
@@ -159,15 +172,6 @@ export const FormContainer = styled.form`
 
 
 `
-export const radioButtonStyle = {
-  color: 'black',
-  '& .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root)': {
-    color: background.stroke,
-  },
-  '&.Mui-checked': {
-    color: '#FFD300',
-  }
-}
 
 export const RadioContainer = styled(FormControl)`
   display: flex; 
@@ -179,4 +183,38 @@ export const RadioContainer = styled(FormControl)`
   @media (max-width: 600px) {
     margin-bottom: 1rem;
   }
+`
+
+export const Radios = styled(Radio)`
+  color: ${background.stroke};
+  
+  & .MuiSvgIcon-root:not(.MuiSvgIcon-root ~ .MuiSvgIcon-root) {
+    color: ${background.stroke};
+  }
+
+  &.Mui-checked {
+    color: ${background.yellowLeve};
+  }
+`;
+
+export const Sliders = styled(Slider)`
+    color: ${background.yellowLeve};
+    height: 0.5rem;
+    
+    & .MuiSlider-thumb {
+        background-color: ${background.blueLeve};
+    }
+    
+    & .MuiSlider-rail {
+      background-color: lightblue;
+    } 
+`;
+
+export const ValidationErrorsContainer = styled.div`
+color: ${background.error};
+
+    @media (max-width: 600px) {
+      margin-top: .5rem;
+        font-size: 1rem;
+      }
 `

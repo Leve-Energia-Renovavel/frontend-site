@@ -1,33 +1,50 @@
 import styled from "@emotion/styled"
 import { background } from "../../styles"
 import MenuIcon from '@mui/icons-material/Menu';
+import { keyframes } from "@emotion/react";
+
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const HeaderContainer = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: row;
+    flex-wrap: nowrap;
     overflow: hidden;
     background-color: rgba(0, 117, 255, 0.9);
     backdrop-filter: blur(2px); /* Add a slight blur effect */
     -webkit-backdrop-filter: blur(2px); /* For Safari */
     padding-top: .5rem;
     padding-bottom: .5rem;
-
+    
     width: 100vw;
+    max-width: 100vw;
     text-align: center;
     font-size: 1.2rem;
-
+    
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
-
-    .logoImage {
-        &:hover {
-            cursor: pointer;
-        }
+    
+    @media (max-width: 1300px) {
+        padding-top: 0;
+        padding-bottom: 0;
+        font-size: 1rem;
     }
+
+
 `
 
 export const Nav = styled.nav`
@@ -41,26 +58,64 @@ export const Ul = styled.ul`
     flex-direction: row;
     align-items: center;
     list-style-type: none;
-`
+    `
 
 
 export const MenuItem = styled.li`
+    display: flex;
+    align-items: center;
+
     a {
         text-decoration: none;
         padding: 1rem;
         color: ${background.light};   
-
+        
         &:hover {
             font-weight: bold;
+        }
+        
+        @media (max-width: 1300px) {
+            padding: 0 .5rem;
         }
     }
 
 `;
 
 export const ButtonContainer = styled.div`
-    /* width: 20vw; */
+    display: flex;
+    flex-wrap: nowrap;
+    text-align: center;
+
+    @media (max-width: 1300px) {
+        margin: 0;
+        padding: 0;
+        width: 40vw;
+        max-width: 50vw;
+    }
+    @media (max-width: 1200px) {
+        margin: 0;
+        padding: 0;
+        width: 50vw;
+        max-width: 50vw;
+    }
 `;
-export const LogoContainer = styled.div``;
+export const LogoContainer = styled.div`
+    .logoImage {
+        width: 200px;
+        height: 60px;
+        margin: 0 1rem;
+        
+        &:hover {
+            cursor: pointer;
+        }
+        @media (max-width: 1300px) {
+            width: 150px;
+            height: auto;
+            margin: 0 1rem;
+        }
+
+    }
+`;
 
 export const NavContainer = styled.div``;
 
@@ -147,6 +202,9 @@ export const UlMobile = styled.ul`
   `;
 
 export const MenuItemMobile = styled.li`
+
+    animation: ${fadeInUp} 0.5s ease-out;
+
     margin: 2rem;
 
     a {

@@ -65,7 +65,7 @@ export default function Footer() {
 
                 <CallToActionContainer>
                     <Typography variant="body1" sx={{ fontWeight: 'bold' }}>Adote um consumo mais Leve e comece a economizar agora mesmo com a gente.</Typography>
-                    <DefaultButton variant="contained" text="Quero ser Leve" width="12vw" />
+                    <DefaultButton variant="contained" text="Quero ser Leve" />
                 </CallToActionContainer>
 
             </ContentContainer>

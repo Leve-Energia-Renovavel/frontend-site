@@ -55,13 +55,12 @@ export const FormContent = styled.form`
   @media (max-width: 600px) {
     grid-template-rows: repeat(1, 1fr);
     grid-template-columns: repeat(1,1fr);
-  }
 
-  div { 
-    grid-row: span 1;
-    grid-column: span 1;
+    div { 
+      grid-row: span 1;
+      grid-column: span 1;
+    }
   }
-
 
   `
 

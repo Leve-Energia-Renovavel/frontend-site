@@ -32,6 +32,11 @@ const LogoBox = styled.div`
   justify-content: center;
   align-items: center;
   
+  @media (max-width: 600px) {
+    width: 200px;
+    height: 100px;
+  }
+  
   box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
   0 6.7px 5.3px rgba(0, 0, 0, 0.048),
   0 12.5px 10px rgba(0, 0, 0, 0.06),
@@ -58,6 +63,7 @@ const LastBox = styled(LogoBox)`
   img {
     width: 100%;
     height: 100%;
+    
   }
   animation: ${fadeOut} 5s forwards;
 `;
@@ -66,16 +72,16 @@ const LastBox = styled(LogoBox)`
 export default function DistibuitorSyncData() {
 
 
-    const distribuitorLogo = cemigLogo
+  const distribuitorLogo = cemigLogo
 
-    return (
-        <Container>
-            <FirstBox>
-                <Image src={leveLogo} alt='leve' objectFit='contain' objectPosition='left' />
-            </FirstBox>
-            <LastBox>
-                <Image src={distribuitorLogo} alt='cemig' objectFit='contain' objectPosition='left' />
-            </LastBox>
-        </Container>
-    );
+  return (
+    <Container>
+      <FirstBox>
+        <Image src={leveLogo} alt='leve' objectFit='contain' objectPosition='left' />
+      </FirstBox>
+      <LastBox>
+        <Image src={distribuitorLogo} alt='cemig' objectFit='contain' objectPosition='left' />
+      </LastBox>
+    </Container>
+  );
 };

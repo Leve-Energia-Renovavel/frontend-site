@@ -3,11 +3,11 @@
 import DefaultButton from "@/app/pages/components/utils/buttons/DefaultButton";
 import { FormControl, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
+import { useRef, useState } from "react";
+import DistibuitorSyncData from "./DistribuitorSyncData";
 import SuccessFormProgress from "./SuccessFormProgress";
 import SuccessFormTitle from "./SuccessFormTitle";
-import { Form, FormContainer, FormHeader, FormContent } from "./styles";
-import { useState, useRef } from "react";
-import DistibuitorSyncData from "./DistribuitorSyncData";
+import { ButtonContainer, Form, FormContainer, FormContent, FormHeader } from "./styles";
 
 export default function SuccessForm() {
     const router = useRouter()
@@ -44,9 +44,9 @@ export default function SuccessForm() {
                     {!hasSync ? (
                         <>
                             <Typography variant="h3">Agora é só se conectar à Leve!</Typography>
-                            <Typography className="orientations">Para que a Leve seja capaz de direcionar os créditos de energia da usina para você,
+                            <Typography variant="subtitle1">Para que a Leve seja capaz de direcionar os créditos de energia da usina para você,
                                 precisamos que você conecte sua conta da <span className="bold">{distribuitor}</span> a sua Conta da Leve. </Typography>
-                            <Typography className="orientations">Para isso,
+                            <Typography variant="subtitle1">Para isso,
                                 insira
                                 suas informações de login e senha que você usa no portal da <span className="bold">{distribuitor}</span>.</Typography>
 
@@ -57,9 +57,9 @@ export default function SuccessForm() {
                                 <FormControl>
                                     <TextField label={`Senha da ${distribuitor}`} variant="outlined" placeholder="Senha" type="text" required inputRef={passwordRef} />
                                 </FormControl>
-                                <div style={{ margin: '0 auto' }}>
+                                <ButtonContainer>
                                     <DefaultButton variant="contained" text={"Vincular minha conta de luz"} isSubmit={true} />
-                                </div>
+                                </ButtonContainer>
                             </Form>
                         </>
                     ) : (

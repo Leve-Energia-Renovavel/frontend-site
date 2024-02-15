@@ -1,16 +1,14 @@
 "use client"
 
-import { Contract, FormButtonContainer, FormContainer, FormContent, FormHeader } from './styles';
-import ContractFormTitle from './ContractFormTitle';
-import ContractFormProgress from './ContractFormProgress';
-import { useState } from 'react';
-import { Typography, Divider } from '@mui/material';
-import PeopleIcon from '@mui/icons-material/People';
-import SearchIcon from '@mui/icons-material/Search';
-import DownloadIcon from '@mui/icons-material/Download';
-import { background } from '@/app/pages/styles';
 import DefaultButton from '@/app/pages/components/utils/buttons/DefaultButton';
+import { getCurrentDate } from '@/app/utils/date/DateUtils';
+
+import { Divider, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import ContractFormProgress from './ContractFormProgress';
+import ContractFormTitle from './ContractFormTitle';
+import { Contract, ContractLeftContent, ContractRightContent, Download, FormButtonContainer, FormContainer, FormContent, FormHeader, People, Search } from './styles';
 
 export default function ContractForm(props) {
 
@@ -23,37 +21,53 @@ export default function ContractForm(props) {
             id: 1,
             name: "LeveEnergia-ContratoSubLocacao-247.pdf",
             link: "link to the contract 1",
-            signed: false
+            signed: false,
+            signDate: null
         },
         {
             id: 2,
             name: "LeveEnergia-FichaMatricula-248",
             link: "link to the contract 2",
-            signed: false
+            signed: false,
+            signDate: null
+
         },
         {
             id: 3,
             name: "LeveEnergia-Procuracao-249",
             link: "link to the contract 3",
-            signed: false
+            signed: false,
+            signDate: null
+
         },
     ])
+
+    useEffect(() => {
+        userData["contracts"] = contracts;
+        localStorage.setItem('leveLeadData', JSON.stringify(userData));
+    }, [contracts]);
 
     const handleSignContract = (contractId) => {
         setContracts((prevContracts) =>
             prevContracts.map((contract) =>
                 contract.id === contractId
-                    ? { ...contract, signed: !contract.signed }
+                    ? {
+                        ...contract,
+                        signed: !contract.signed,
+                        signDate: !contract.signed ? getCurrentDate() : null
+                    }
                     : contract
             )
         );
     };
 
-    const handleSignAllContracts = () => {
+    const handleSignAllContracts = async () => {
         setContracts((prevContracts) =>
             prevContracts.map((contract) => ({
                 ...contract,
                 signed: true,
+                signDate: getCurrentDate()
+
             }))
         );
     };
@@ -61,10 +75,6 @@ export default function ContractForm(props) {
     const handleSubmit = (event) => {
         event.preventDefault()
         handleSignAllContracts()
-
-        userData["contracts"] = contracts
-        history.pushState(userData, "");
-        localStorage.setItem('leveLeadData', JSON.stringify(userData));
         router.push(`/register/contract-auth`)
     }
 
@@ -79,16 +89,16 @@ export default function ContractForm(props) {
                     return (
                         <div key={contract.id}>
                             <Contract>
-                                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                    <Typography variant='subtitle1' sx={{ fontSize: 20, fontWeight: 'bold' }}>{contract.name}</Typography>
-                                    <Typography variant='subtitle1' sx={{ cursor: 'pointer' }} onClick={() => handleSignContract(contract.id)}>{`${contract.signed ? "Assinado" : "Assinar"}`} </Typography>
-                                </div>
-                                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', color: background.primary }}>
-                                    <PeopleIcon sx={{ fontSize: 30, margin: '0 .5rem' }} />
-                                    <Typography sx={{ fontSize: 20, margin: '0 .5rem' }} variant='subtitle1'>{`Assinaturas ${contract.signed ? "1/1" : "0/1"}`}</Typography>
-                                    <SearchIcon sx={{ cursor: 'pointer', fontSize: 30, margin: '0 .5rem' }} />
-                                    <DownloadIcon sx={{ cursor: 'pointer', fontSize: 30 }} onClick={() => handleSignContract(contract.id)} />
-                                </div>
+                                <ContractLeftContent>
+                                    <Typography variant='subtitle1' className='contractName'>{contract.name}</Typography>
+                                    <Typography variant='subtitle1' className='signButton' onClick={() => handleSignContract(contract.id)}>{`${contract.signed ? "Assinado" : "Assinar"}`} </Typography>
+                                </ContractLeftContent>
+                                <ContractRightContent>
+                                    <People />
+                                    <Typography variant='subtitle1'>{`Assinaturas ${contract.signed ? "1/1" : "0/1"}`}</Typography>
+                                    <Search />
+                                    <Download onClick={() => handleSignContract(contract.id)} />
+                                </ContractRightContent>
                             </Contract>
                             <Divider orientation="horizontal" variant="middle" flexItem />
                         </div>

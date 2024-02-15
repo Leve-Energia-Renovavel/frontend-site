@@ -1,5 +1,6 @@
-import styled from "@emotion/styled"
-import { background } from "@/app/pages/styles"
+import { background } from "@/app/pages/styles";
+import styled from "@emotion/styled";
+import { Alert } from "@mui/material";
 
 export const FormContainer = styled.form`
   display: flex;
@@ -17,13 +18,30 @@ export const FormContainer = styled.form`
   z-index: 100;
   
   width: 60vw;
+  
+  @media (max-width: 600px) {
+    width: 100vw;
+    max-width: 100vw;
+    
+    position: static; 
+    top: auto;
+    left: auto; 
+    transform: none; 
+    z-index: auto; 
+    
+    padding: 2rem 1.5rem;
+  }
 
   h1 {
     font-size: 1.75rem;
-    font-style: normal;
     font-weight: 700;
     line-height: normal;
-    color: ${background.primary}
+    color: ${background.blueLeve};
+    
+    @media (max-width: 600px) {
+      font-size: 1.75rem;
+      line-height: 1.5rem;
+    }
   }
 `;
 
@@ -68,6 +86,7 @@ export const AuthBoxes = styled.div`
     flex-direction: row;
     align-items: center; 
     justify-content: center;
+
 `;
 export const ButtonContainer = styled.div`
     margin: 0 auto;
@@ -97,10 +116,14 @@ export const TermsAndPolicyContainer = styled.div`
         text-align: center; 
         color: ${background.greyLeve};
         margin: 2rem auto;
+        
+        @media (max-width: 600px) {
+          max-width: 100%; 
+          margin: 2rem;
+        }
 
         h6 { 
           font-family: "Metropolis";
-          
         }
         `;
 
@@ -116,20 +139,24 @@ export const SafeEnvironmentFooter = styled.div`
       }
 `;
 
+export const AlertAuth = styled(Alert)`
+  font-family: "Metropolis";
+  font-size: 1.5rem;
+  background-color: lightgreen;
+  border-radius: 10px;
+  padding: 1rem;
+  align-items: center;
+  
+  @media screen and (max-width: 600px) {
+    padding: 1rem;
+    font-size: 1.2rem; 
+  }
 
-export const alertStyles = {
-  fontFamily: "Metropolis",
-  fontSize: '1.5rem',
-  backgroundColor: 'lightgreen',
-  borderRadius: 5,
-  padding: '1rem',
-  alignItems: 'center',
-}
-
+`
 export const verifiedIconStyles = {
   display: 'block',
   margin: '0 auto',
-  color: background.textLeve
+  color: background.blueLeve
 }
 export const boxesStyles = {
   width: '5rem',
@@ -139,3 +166,33 @@ export const boxesStyles = {
   textAlign: 'center',
 }
 export const finishButtonStyles = { maxWidth: '10vw' }
+
+
+
+
+export const ContractAuthFormProgressContainer = styled.div`
+ display: flex;
+ flex-direction: row; 
+ align-items: center; 
+ padding: 1rem 0;
+
+ h2{ 
+  font-weight: bold; 
+  color: ${background.yellowLeve};
+  margin-right: 1rem;
+ }
+
+ .progressBar {
+    height: .75rem;
+    width: 100%;
+    border-radius: 5px;
+
+    .MuiLinearProgress-colorPrimary {
+      background-color: ${background.greyLeve};
+    }
+
+    .MuiLinearProgress-barColorPrimary {
+      background-color: ${background.yellowLeve};
+    }
+ }
+`

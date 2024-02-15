@@ -72,8 +72,8 @@ export const ContentContainer = styled.div`
         @media (max-width: 600px) {
             margin-top: 1.5rem;
             margin-bottom: 1.5rem;
-            width: 80%;
-            height: 80%;
+            width: auto;
+            height: auto;
         }
     }
 

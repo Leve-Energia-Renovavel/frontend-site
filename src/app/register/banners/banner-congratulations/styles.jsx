@@ -1,16 +1,38 @@
 import styled from "@emotion/styled"
 import { background } from "@/app/pages/styles"
+import { keyframes } from "@emotion/react";
+import ConfettiExplosion from "react-confetti-explosion";
+
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
 
 export const BannerContainer = styled.div`
     background-color: ${background.primary};
     height: 70vh;
     max-width: 100vw;
     padding: 8rem 15rem;
+
+    @media (max-width: 600px) {
+        height: 80vh;
+        padding: 8rem 2rem;
+    }
 `
 
 export const ContentContainer = styled.div`
-    display: "flex";
-    flex-direction: "column";
+    display: flex;
+    flex-direction: column;
+
+    animation: ${fadeInUp} 0.5s ease-out;
 
     h1 {
         font-family: "Metropolis";
@@ -19,6 +41,10 @@ export const ContentContainer = styled.div`
         font-size: 2.625rem;
         line-height: 2.625rem;;
         color: ${background.yellowLeve};
+
+        @media (max-width: 600px) {
+            font-size: 2rem;
+        }
     }
     
     h6 { 
@@ -38,4 +64,12 @@ export const ContentContainer = styled.div`
 
 `
 
-export const confettiStyles = { margin: '0 auto' }
+export const ConfettiContainer = styled(ConfettiExplosion)`
+    margin: 0 auto;
+    
+    @media (max-width: 600px) {
+        margin: 0;
+        padding: 0;
+        left: 50%;
+    }
+`
