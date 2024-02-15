@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 
@@ -11,7 +12,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import ContractAuthFormProgress from "./ContractAuthFormProgress";
 import ContractAuthFormTitle from "./ContractAuthFormTitle";
-import { AlertAuth, AuthBoxes, ButtonContainer, FormContainer, FormContent, FormHeader, ResendTokenContainer, SafeEnvironmentFooter, TermsAndPolicyContainer, alertStyles, boxesStyles, finishButtonStyles, verifiedIconStyles } from "./styles";
+import { AlertAuth, AuthBoxes, ButtonContainer, FormContainer, FormContent, FormHeader, ResendTokenContainer, SafeEnvironmentFooter, TermsAndPolicyContainer, boxesStyles, finishButtonStyles, verifiedIconStyles } from "./styles";
 
 const handleSubmit = (event) => {
     event.preventDefault()

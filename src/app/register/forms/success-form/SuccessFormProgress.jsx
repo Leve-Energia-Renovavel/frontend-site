@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Typography, LinearProgress } from "@mui/material"
 import { useEffect, useState } from "react";
 import { SuccessFormProgressContainer as Container } from "./styles";

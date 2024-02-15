@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
 import DefaultButton from '@/app/pages/components/utils/buttons/DefaultButton';

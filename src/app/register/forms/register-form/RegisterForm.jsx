@@ -1,3 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+"use client"
+
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import { Button, MenuItem, TextField, Typography, Divider } from "@mui/material";

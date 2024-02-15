@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import ContractFormProgress from '@/app/register/forms/contract-signature-form/ContractFormProgress';
 import ContractFormTitle from '@/app/register/forms/contract-signature-form/ContractFormTitle';
 import { FormHeader } from '@/app/register/forms/contract-signature-form/styles';
