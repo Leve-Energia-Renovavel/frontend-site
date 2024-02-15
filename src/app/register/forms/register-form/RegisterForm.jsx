@@ -21,11 +21,21 @@ export default function RegisterForm(props) {
     const [socialContractFile, setSocialContractFile] = useState(null);
     const [energyExtractFile, setEnergyExtractFile] = useState(null);
 
-    const { email, cep, companyName, cost, browserInfo } = props.userData
-    const name = props.userData?.nome
-    const phone = props.userData?.telefone
+    // const { email, cep, companyName, cost, browserInfo } = props.userData
+    // const name = props.userData?.nome
+    // const phone = props.userData?.telefone
 
-    const isCompany = props.isCompany
+    // const isCompany = props.isCompany
+
+    const name = ""
+    const companyName = ""
+    const email = ""
+    const phone = ""
+    const cost = ""
+    const browserInfo = ""
+    const cep = ""
+    const type = ""
+    const isCompany = false
 
     const userRefs = {
         name: useRef(null),

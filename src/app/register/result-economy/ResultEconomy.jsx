@@ -15,7 +15,8 @@ export default function ResultEconomy(props) {
     const userData = props.userData
 
     const userType = params?.userType
-    const cost = userData.valor;
+    // const cost = userData.valor;
+    const cost = 1000;
 
     const location = userType == 'cnpj' ? 'empresa' : 'residência'
     const percentageDiscount = 0.1     //for 10% of discount 
