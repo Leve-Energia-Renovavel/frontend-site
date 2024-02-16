@@ -47,6 +47,7 @@ export const ContentContainer = styled.div`
         flex-direction: column;
         justify-content: flex-start;
         padding: 0rem;
+        max-width: 100vw;
     }
     `;
 
@@ -56,10 +57,12 @@ export const AddressContainer = styled.div`
     justify-content: flex-start;
     padding: 2rem;
     width: 30vw;
+    max-width: 100vw;
     
     @media (max-width: 600px) {
-        width: 100vw;
-        padding: 4rem 0;
+        width: 90vw;
+        max-width: 100vw;
+        padding: 4rem 0rem;
     }
     
     p {
@@ -88,10 +91,12 @@ export const PagesContainer = styled.div`
     justify-content: flex-start;
     padding: 2rem;
     width: 30vw;
+    max-width: 100vw;
     
     @media (max-width: 600px) {
         padding: 0rem;
-        width: 100vw;
+        width: 90vw;
+        max-width: 100vw;
     }
 
     a {
@@ -128,10 +133,12 @@ export const ContactContainer = styled.div`
     justify-content: flex-start;
     padding: 2rem;
     width: 30vw;
+    max-width: 100vw;
 
     @media (max-width: 600px) {
         padding: 0rem;
-        width: 100vw;
+        width: 90vw;
+        max-width: 100vw;
     }
     
     h6 {
@@ -161,9 +168,13 @@ export const SocialMediaContainer = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     padding: 1rem 0rem;
+    width: 90vw;
+    max-width: 100vw;
     
     @media (max-width: 600px) {
         padding: 1rem 0rem;
+        width: 90vw;
+    max-width: 100vw;
     }
     
     .socialIcon {

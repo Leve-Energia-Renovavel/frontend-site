@@ -13,7 +13,7 @@ export default function Home() {
       {/* <SimulateEconomy /> */}
       <RegisterMain />
       <BlankBanner />
-      <About />
+      {/* <About /> */}
     </main>
   )
 }

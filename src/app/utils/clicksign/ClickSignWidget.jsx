@@ -17,7 +17,8 @@ export default function ClicksignWidget() {
         }
 
         const run = () => {
-            const request_signature_key = process.env.NEXT_PUBLIC_CLICK_SIGN_ASSIGNATURE;
+            // const request_signature_key = process.env.NEXT_PUBLIC_CLICK_SIGN_ASSIGNATURE;
+            const request_signature_key = "3d72067b-c75c-43ac-94f7-ff7307a126f7";
             const widgetInstance = new Clicksign(request_signature_key);
             widgetInstance.endpoint = 'https://app.clicksign.com';
             widgetInstance.origin = window.location.protocol + '//' + window.location.host;

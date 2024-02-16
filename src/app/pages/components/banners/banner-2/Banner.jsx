@@ -11,7 +11,6 @@ import { BannerContainer, LeftContent, RightContentContainer, StepContent, StepT
 
 import Divider from '@mui/material/Divider'
 
-
 export default function Banner() {
 
     return (
