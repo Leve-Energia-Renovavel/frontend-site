@@ -168,13 +168,12 @@ export const SocialMediaContainer = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     padding: 1rem 0rem;
-    width: 90vw;
     max-width: 100vw;
     
     @media (max-width: 600px) {
         padding: 1rem 0rem;
         width: 90vw;
-    max-width: 100vw;
+        max-width: 100vw;
     }
     
     .socialIcon {

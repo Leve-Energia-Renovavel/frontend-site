@@ -20,11 +20,17 @@ export const BannerContainer = styled.div`
     max-width: 100vw;
     padding: 8rem 13.5rem;
 
+    @media (max-width: 1300px) {
+        padding: 7rem 4rem;
+    }
+    @media (max-width: 900px) {
+        padding: 7rem 2rem;
+    }
     @media (max-width: 900px) {
         padding: 7rem 2rem;
     }
     @media (max-width: 600px) {
-        height: 50vh;
+        height: 60vh;
         padding: 7rem 2rem;
     }
     @media (max-width: 400px) {

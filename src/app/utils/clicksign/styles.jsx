@@ -9,11 +9,20 @@ export const ClicksignWidgetContainer = styled.div`
   background-color: ${background.light};
   
   position: absolute;
-  top: 80vh;
+  top: 90vh;
   left: 50vw;
   transform: translate(-50%, -50%);
   z-index: 100;
   
+  @media (max-width: 1800px) {
+      top: 90vh;
+  }
+  @media (max-width: 1500px) {
+      top: 90vh;
+  }
+  @media (max-width: 1300px) {
+      top: 90vh;
+  }
   @media (max-width: 900px) {
       top: 90vh;
   }

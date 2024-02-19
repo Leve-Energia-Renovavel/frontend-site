@@ -18,27 +18,17 @@ export default function ClicksignWidget() {
 
         const run = () => {
             // const request_signature_key = process.env.NEXT_PUBLIC_CLICK_SIGN_ASSIGNATURE;
-            const request_signature_key = "3d72067b-c75c-43ac-94f7-ff7307a126f7";
+            const request_signature_key = "a4bf758f-1ace-49d7-aadf-4c9ae0bda495";
             const widgetInstance = new Clicksign(request_signature_key);
             widgetInstance.endpoint = 'https://app.clicksign.com';
             widgetInstance.origin = window.location.protocol + '//' + window.location.host;
 
             widgetInstance.mount('clicksign-container');
 
-            // Set the callback function
-            widgetInstance.callback = function (event) {
-                console.log("event =====>>>>", event)
-                if (event !== "signed") {
-                    return;
-                }
-                alert("Documento assinado!");
-            };
-
             // Callback que será disparado quando o documento for assinado
             widgetInstance.on('signed', function (event) {
-                console.log("event =====>>>>", event)
-                console.log('signed!');
-                router.push(`/register/contract-auth`)
+                // console.log('signed!');
+                router.push(`/register/success`)
 
             });
 

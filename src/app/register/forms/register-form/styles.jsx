@@ -18,6 +18,28 @@ export const FormContainer = styled.div`
   
   width: 60vw;
   
+  @media (max-width: 2400px) {
+    top: 160vh;
+  }
+  
+  @media (max-width: 1800px) {
+    top: 160vh;
+  }
+  @media (max-width: 1600px) {
+    top: 160vh;
+  }
+
+  @media (max-width: 600px) {
+    width: 100vw;
+    max-width: 100vw;
+
+    position: static; 
+    top: auto;
+    left: auto; 
+    transform: none; 
+    z-index: auto; 
+
+  }
   @media (max-width: 600px) {
     width: 100vw;
     max-width: 100vw;
