@@ -8,12 +8,18 @@ import logo from "../../../../resources/img/logo-header.png";
 import DefaultButton from '../utils/buttons/DefaultButton';
 import MobileHeader from './MobileHeader';
 import { ButtonContainer, HeaderContainer, LogoContainer, MenuBurguer, MenuItem, MobileHeaderContainer, Nav, NavContainer, Ul } from './styles';
+import { usePathname } from 'next/navigation';
+
 
 export default function Header() {
 
     const router = useRouter()
+    const pathname = usePathname()
+
     const [isMobile, setIsMobile] = useState(false);
     const [isMenuOpen, setMenuOpen] = useState(false);
+
+    const isLoggedUser = pathname == '/dashboard' ? true : false;
 
     const mobileWidth = 900
 
@@ -45,32 +51,47 @@ export default function Header() {
                             onClick={() => router.push("/")}
                         />
                     </LogoContainer>
-                    <NavContainer>
-                        <Nav>
-                            <Ul>
-                                <MenuItem>
-                                    <Link href="/">A Leve</Link>
-                                </MenuItem>
-                                <MenuItem>
-                                    <Link href="/about">Como funciona</Link>
-                                </MenuItem>
-                                <MenuItem>
-                                    <Link href="/beneficios">Benefícios</Link>
-                                </MenuItem>
-                                <MenuItem>
-                                    <Link href="/quem-pode-ser-Leve">Quem pode ser Leve</Link>
-                                </MenuItem>
-                                <MenuItem>
-                                    <Link href="/blog">Blog</Link>
-                                </MenuItem>
-                            </Ul>
-                        </Nav>
-                    </NavContainer>
+                    {!isLoggedUser ?
+                        (
+                            <>
+                                <NavContainer>
+                                    <Nav>
+                                        <Ul>
+                                            <MenuItem>
+                                                <Link href="/">A Leve</Link>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <Link href="/about">Como funciona</Link>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <Link href="/beneficios">Benefícios</Link>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <Link href="/quem-pode-ser-Leve">Quem pode ser Leve</Link>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <Link href="/blog">Blog</Link>
+                                            </MenuItem>
+                                        </Ul>
+                                    </Nav>
+                                </NavContainer>
+                                <ButtonContainer>
+                                    <DefaultButton variant="contained" text="Quero ser Leve" />
+                                    <DefaultButton variant="outlined" text="Já sou Leve" />
+                                </ButtonContainer>
+                            </>
+                        ) : (
+                            <NavContainer>
+                                <Nav>
+                                    <Ul>
+                                        <MenuItem>
+                                            <Link href="/">Ola, usuario!</Link>
+                                        </MenuItem>
+                                    </Ul>
+                                </Nav>
+                            </NavContainer>
+                        )}
 
-                    <ButtonContainer>
-                        <DefaultButton variant="contained" text="Quero ser Leve" />
-                        <DefaultButton variant="outlined" text="Já sou Leve" />
-                    </ButtonContainer>
                 </HeaderContainer>
 
             ) : (
@@ -92,6 +113,5 @@ export default function Header() {
             )}
 
         </>
-
     );
 }

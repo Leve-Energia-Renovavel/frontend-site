@@ -339,8 +339,6 @@ export default function RegisterForm(props) {
                     <TextField className="formInput" inputRef={addressRefs.state} label="Estado" variant="outlined" placeholder="Estado" type="text" InputLabelProps={{ shrink: true }} />
                     <TextField className="formInput" inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} />
 
-
-
                     <FormLastRow>
                         <TextField sx={{
                             borderColor: '#0075FF',
@@ -362,6 +360,9 @@ export default function RegisterForm(props) {
                         <Typography variant="body2" sx={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => setIsModalOpen(true)}>Não encontrou o número? <a >Clique aqui para saber onde encontrá-lo.</a></Typography>
                         <FormButton className="formInput" variant="outlined" type="submit" text="Continuar" />
                     </FormLastRow>
+
+                    <Button onClick={() => router.push(`/dashboard`)}>Ir para o Painel do usuario</Button>
+
 
                     {isCompany ? (
                         <FileUploadContainer>
