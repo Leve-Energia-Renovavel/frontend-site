@@ -1,14 +1,15 @@
+import DashboardBanner from "../pages/components/banners/dashboard-banner/DashboardBanner";
+import DashboardHistory from "../pages/components/dashboard/DashboardHistory";
+import DashboardMain from "../pages/components/dashboard/DashboardMain";
+import DashboardMGM from "../pages/components/dashboard/DashboardMGM";
 
 export default function Dashboard() {
     return (
-        <div>
-            <h1>Dashboard</h1>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <h1>Dashboard</h1>
-        </div>
+        <>
+            <DashboardBanner />
+            <DashboardMain />
+            {/* <DashboardMGM /> */}
+            {/* <DashboardHistory /> */}
+        </>
     );
 }

@@ -361,9 +361,6 @@ export default function RegisterForm(props) {
                         <FormButton className="formInput" variant="outlined" type="submit" text="Continuar" />
                     </FormLastRow>
 
-                    <Button onClick={() => router.push(`/dashboard`)}>Ir para o Painel do usuario</Button>
-
-
                     {isCompany ? (
                         <FileUploadContainer>
                             <FileUploadItem>
