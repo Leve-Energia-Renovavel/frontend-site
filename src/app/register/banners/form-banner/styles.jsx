@@ -3,7 +3,7 @@ import { background } from "@/app/pages/styles"
 
 export const FormBannerContainer = styled.div`
   max-width: 100vw;
-  padding: 20vw;
+  padding: 22vw;
   border: 1px solid #ccc; 
   background-color: ${background.light};
   

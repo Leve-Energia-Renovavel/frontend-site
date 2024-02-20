@@ -4,7 +4,7 @@ import { background } from "../../../styles"
 export const BannerContainer = styled.div`
     display: flex;
     background-color: ${background.blueLeve};
-    height: 93dvh;
+    height: 94dvh;
     max-width: 100dvw;
     flex-direction: row;
     align-items: center;
@@ -72,6 +72,11 @@ export const BannerTitleContainer = styled.div`
         }
     }
     
+    @media (max-width: 1600px) {
+        width: 42dvw;
+        text-align: left;
+        margin-top: 4rem;
+    }
     @media (max-width: 900px) {
         width: 70dvw;
         flex-wrap: wrap;
@@ -96,14 +101,6 @@ export const BannerSubTitleContainer = styled.div`
     flex-shrink: 0;
     margin-bottom: 3.5rem;
     
-    .subtitle {
-        color: ${background.white};
-        font-family: "Inter";
-        font-size: 1rem;
-        font-style: normal;
-        font-weight: 300;
-        line-height: 1.125rem; 
-    }
     @media (max-width: 900px) {
         width: 70dvw;
         flex-wrap: wrap;
@@ -112,11 +109,18 @@ export const BannerSubTitleContainer = styled.div`
         margin-bottom: 1.5rem;
         margin-right: 0;
         margin-left: 5rem;
-
     }
 
     @media (max-width: 600px) {
         display: none;
+    }
+    .subtitle {
+        color: ${background.white};
+        font-family: "Inter";
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 1.125rem;
     }
 
 `;
@@ -186,18 +190,23 @@ export const BannerImageContainer = styled.div`
         width: 100%;
         height: auto;
         
-        @media (min-width: 2000px) {
-            width: 30rem;
-            height: auto;
-        }
         @media (min-width: 1900px) and (max-width: 2000px) {
             width: 28rem;
             height: auto;
         }
+        @media (max-width: 1800px) {
+            width: 24rem;
+            height: auto;
+        } 
+        @media (max-width: 1600px) {
+            width: 22rem;
+            height: auto;
+        } 
         @media (max-width: 1200px) {
             width: 25rem;
             height: auto;
         }
+       
         @media (max-width: 800px) {
             width: 20rem;
             height: auto;

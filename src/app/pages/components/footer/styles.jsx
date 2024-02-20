@@ -5,8 +5,6 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
-import { keyframes } from "@emotion/react";
-
 export const FooterContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -15,7 +13,6 @@ export const FooterContainer = styled.div`
     color: ${background.light};
     max-width: 100vw;
     padding: 2rem;
-    
 `
 
 export const LogoContainer = styled.div`
@@ -29,25 +26,27 @@ export const LogoContainer = styled.div`
     }
 
     img { 
+        width: 208px;
+        height: auto;
+
         @media (max-width: 600px) {
         width: 60%;
         height: 60%;
-    }
+        }
     }
 `
 
 export const ContentContainer = styled.div`
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: space-evenly;
-    padding: 2rem;
+    padding: 1rem;
+    max-width: 100vw;
     
     @media (max-width: 600px) {
         flex-direction: column;
         justify-content: flex-start;
         padding: 0rem;
-        max-width: 100vw;
     }
     `;
 
@@ -56,13 +55,11 @@ export const AddressContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     padding: 2rem;
-    width: 30vw;
-    max-width: 100vw;
+    max-width: 30vw;
     
     @media (max-width: 600px) {
-        width: 90vw;
         max-width: 100vw;
-        padding: 4rem 0rem;
+        padding: 4rem 0;
     }
     
     p {
@@ -90,18 +87,20 @@ export const PagesContainer = styled.div`
     flex-wrap: wrap;
     justify-content: flex-start;
     padding: 2rem;
-    width: 30vw;
-    max-width: 100vw;
+    max-width: 30vw;
     
     @media (max-width: 600px) {
         padding: 0rem;
-        width: 90vw;
-        max-width: 100vw;
+        width: 100vw;
     }
 
     a {
         text-decoration: none;
         color: ${background.light};
+        transition: font-weight 0.3s ease;
+        margin-top: 6px;
+        line-height: 18px;
+
         &:hover {
             font-weight: bold;
         }
@@ -117,10 +116,6 @@ export const PagesContainer = styled.div`
         font-weight: bold;
         margin-top: 1rem;
 
-        &:hover {
-            color: ${background.yellowLeve}
-        }
-
         @media (max-width: 600px) {
             margin-top: 1rem;
         }
@@ -131,14 +126,12 @@ export const ContactContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    padding: 2rem;
-    width: 30vw;
-    max-width: 100vw;
+    padding: 1rem 2rem;
+    max-width: 28vw;
 
     @media (max-width: 600px) {
         padding: 0rem;
-        width: 90vw;
-        max-width: 100vw;
+        width: 100vw;
     }
     
     h6 {
@@ -168,12 +161,9 @@ export const SocialMediaContainer = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     padding: 1rem 0rem;
-    max-width: 100vw;
     
     @media (max-width: 600px) {
         padding: 1rem 0rem;
-        width: 90vw;
-        max-width: 100vw;
     }
     
     .socialIcon {
@@ -191,7 +181,15 @@ export const CallToActionContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: start;
-    width: 30vw;
+    max-width: 25vw;
+    margin-top: 5rem;
+
+    h6 {
+        font-family: "Inter";
+        font-weight: 400;
+        size: 16px;
+        line-height: 18px;
+    }
 
     @media (max-width: 600px) {
         display: none;
@@ -208,26 +206,17 @@ export const InstagramLogo = styled(InstagramIcon)`
     &:hover {
         cursor: pointer;
         color: ${background.yellowLeve};
-
-        filter: drop-shadow(0 0 5px rgba(255, 255, 0, 2)); 
-
     }
 `;
 export const FacebookLogo = styled(FacebookIcon)`
     &:hover {
         cursor: pointer;
         color: ${background.yellowLeve};
-
-        filter: drop-shadow(0 0 5px rgba(255, 255, 0, 2)); 
-
     }
 `;
 export const LinkedinLogo = styled(LinkedInIcon)`
     &:hover {
         cursor: pointer;
         color: ${background.yellowLeve};
-
-        filter: drop-shadow(0 0 5px rgba(255, 255, 0, 2)); 
-
     }
 `;

@@ -1,7 +1,8 @@
-import styled from "@emotion/styled"
-import { background } from "../../styles"
-import MenuIcon from '@mui/icons-material/Menu';
 import { keyframes } from "@emotion/react";
+import styled from "@emotion/styled";
+import MenuIcon from '@mui/icons-material/Menu';
+import { Button } from "@mui/material";
+import { background } from "../../styles";
 
 const fadeInUp = keyframes`
   from {
@@ -28,6 +29,7 @@ export const HeaderContainer = styled.header`
     padding-top: .5rem;
     padding-bottom: .5rem;
     
+    height: 90px;
     width: 100vw;
     max-width: 100vw;
     text-align: center;
@@ -38,10 +40,25 @@ export const HeaderContainer = styled.header`
     left: 0;
     z-index: 1000;
     
+    @media (max-width: 1900px) {
+        padding-top: 0;
+        padding-bottom: 0;
+        font-size: 1rem;
+    }
+    @media (max-width: 1600px) {
+        padding-top: 0;
+        padding-bottom: 0;
+        font-size: 1rem;
+    }
     @media (max-width: 1300px) {
         padding-top: 0;
         padding-bottom: 0;
         font-size: 1rem;
+    }
+    @media (max-width: 1200px) {
+        padding-top: 0;
+        padding-bottom: 0;
+        font-size: .8rem;
     }
 
 
@@ -58,7 +75,7 @@ export const Ul = styled.ul`
     flex-direction: row;
     align-items: center;
     list-style-type: none;
-    `
+`
 
 
 export const MenuItem = styled.li`
@@ -68,7 +85,8 @@ export const MenuItem = styled.li`
     a {
         text-decoration: none;
         padding: 1rem;
-        color: ${background.light};   
+        color: ${background.white};  
+        transition: font-weight 0.3s ease;
         
         &:hover {
             font-weight: bold;
@@ -95,15 +113,21 @@ export const ButtonContainer = styled.div`
     @media (max-width: 1200px) {
         margin: 0;
         padding: 0;
-        width: 50vw;
-        max-width: 50vw;
+        width: 40vw;
+        max-width: 40vw;
+    }
+    @media (max-width: 1000px) {
+        margin: 0;
+        padding: 0;
+        width: 30vw;
+        max-width: 40vw;
     }
 `;
 export const LogoContainer = styled.div`
     .logoImage {
         width: 200px;
         height: 60px;
-        margin: 0 1rem;
+        margin: 0 1rem 0 4rem;
         
         &:hover {
             cursor: pointer;

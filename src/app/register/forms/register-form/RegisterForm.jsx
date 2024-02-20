@@ -9,7 +9,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
-import InstallationNumberModal from "../../modals/installation-number-modal/InstallationNumberModal";
+import RegisterModal from "../../modals/installation-number-modal/InstallationNumberModal";
 import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, fileInputStyles } from "./styles";
@@ -21,21 +21,8 @@ export default function RegisterForm(props) {
     const [socialContractFile, setSocialContractFile] = useState(null);
     const [energyExtractFile, setEnergyExtractFile] = useState(null);
 
-    // const { email, cep, companyName, cost, browserInfo } = props.userData
-    // const name = props.userData?.nome
-    // const phone = props.userData?.telefone
-
-    // const isCompany = props.isCompany
-
-    const name = ""
-    const companyName = ""
-    const email = ""
-    const phone = ""
-    const cost = ""
-    const browserInfo = ""
-    const cep = ""
-    const type = ""
-    const isCompany = false
+    const { name, email, phone, cep, companyName, cost } = props.userData
+    const isCompany = props.isCompany
 
     const userRefs = {
         name: useRef(null),
@@ -47,7 +34,6 @@ export default function RegisterForm(props) {
         profession: useRef(null),
         email: useRef(null),
         phone: useRef(null),
-
     };
 
     const companyRefs = {
@@ -60,7 +46,6 @@ export default function RegisterForm(props) {
 
         socialContract: useRef(null),
         energyExtract: useRef(null),
-
     }
 
     const addressRefs = {
@@ -123,7 +108,6 @@ export default function RegisterForm(props) {
                     city: addressRefs.city.current.value,
                     installationNumber: addressRefs.installationNumber.current.value
                 },
-                browserInfo: browserInfo
             }
 
         }
@@ -200,15 +184,15 @@ export default function RegisterForm(props) {
 
 
     const formatPhoneNumber = (phoneNumber) => {
-        const match = phoneNumber.match(/^(\d{2})(\d{5})(\d{4})$/);
-        if (match) {
+        const matches = phoneNumber.match(/^(\d{2})(\d{5})(\d{4})$/);
+        if (matches) {
             return `(${match[1]}) ${match[2]}-${match[3]}`;
         } else {
             return phoneNumber
         }
     };
 
-    const formattedPhone = formatPhoneNumber(phone);
+    // const formattedPhone = formatPhoneNumber(phone);
 
     const closeModal = () => {
         setIsModalOpen(false)
@@ -281,7 +265,7 @@ export default function RegisterForm(props) {
                                 <TextField inputRef={userRefs.email} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" />
                             </FormRow>
 
-                            <InputMask mask="(99) 99999-9999" value={formattedPhone || ''}>
+                            <InputMask mask="(99) 99999-9999">
                                 {() => <TextField
                                     inputRef={userRefs.phone} className="formInput" label="Celular" placeholder="Celular" variant="outlined" type="text" InputLabelProps={{ shrink: true }} />}
                             </InputMask>
@@ -317,7 +301,7 @@ export default function RegisterForm(props) {
                     )}
                     <TextField select defaultValue={""} inputRef={userRefs.profession} className="formInput" label="Profissão" variant="outlined" placeholder="Profissão" type="text">
                         <MenuItem value={"autonomo"}>Autônomo(a)</MenuItem>
-                        <MenuItem value={"assalariado"}>Assaláriado(a)</MenuItem>
+                        <MenuItem value={"assalariado"}>Assalariado(a)</MenuItem>
                         <MenuItem value={"aposentado"}>Aposentado(a)</MenuItem>
                         <MenuItem value={"estudante"}>Estudante</MenuItem>
                     </TextField>
@@ -331,7 +315,9 @@ export default function RegisterForm(props) {
                     </InputMask>
 
                     <TextField className="formInput" inputRef={addressRefs.address} label="Endereço" variant="outlined" placeholder="Endereço" type="text" InputLabelProps={{ shrink: true }} />
-                    <TextField className="formInput" inputRef={addressRefs.addressNumber} label="Nº" variant="outlined" placeholder="Nº" type="text" />
+                    <InputMask mask="99999">
+                        {() => <TextField className="formInput" inputRef={addressRefs.addressNumber} label="Nº" variant="outlined" placeholder="Nº" type="text" />}
+                    </InputMask>
 
                     <TextField className="formInput" inputRef={addressRefs.addressComplement} label="Complemento" variant="outlined" placeholder="Complemento" type="text" />
                     <TextField className="formInput" inputRef={addressRefs.neighborhood} label="Bairro" variant="outlined" placeholder="Bairro" type="text" InputLabelProps={{ shrink: true }} />
@@ -404,7 +390,7 @@ export default function RegisterForm(props) {
                     ) : null}
 
                 </FormContent>
-                {isModalOpen && <InstallationNumberModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}
+                {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}
             </FormContainer >
         </>
 
