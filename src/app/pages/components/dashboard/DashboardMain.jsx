@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react";
-import { DashboardContainer as Container, DashboardInfoContainer as MainInfo, InstalationInfo, BillingInfo } from "./styles";
+import { DashboardContainer as Container, HistoryBilling, HistoryContainer, HistorySpending, DashboardInfoContainer as Main, NextBill, NextBillGrid, SkeletonDiv, YourInfo, UserEconomyInfos as Info, TitleContainer, NextBillContainer, YourInfoContainer, HistorySpendingContainer, HistoryBillingContainer } from "./styles";
+import DefaultButton from "../utils/buttons/DefaultButton";
 
 export default function DashboardMain() {
 
@@ -17,24 +18,60 @@ export default function DashboardMain() {
 
     return (
         <Container>
-            <MainInfo>
-                <InstalationInfo>
-                    <h2>Instalação Selecionada</h2>
-                    <p>{installation.address}</p>
-                    <p>{installation.city}, {installation.state} {installation.zipCode}</p>
-                    <p>Valor da Fatura: R$ {installation.amount}</p>
-                    <p>Data de Vencimento: {installation.dueDate}</p>
-                    <p>Status: {installation.status}</p>
-                    <button>Ver Minhas Instalações</button>
-                    <button>Conecte sua conta a Leve</button>
-                    <button>Ver Fatura</button>
-                    <button>Pagar Fatura</button>
-                </InstalationInfo>
-                <BillingInfo>
-                    <h1>Proximas faturas</h1>
-                    <span>Fartura selecionada</span>
-                </BillingInfo>
-            </MainInfo>
-        </Container>
+            <Main>
+                <NextBillContainer>
+                    <TitleContainer>
+                        <h1>Proxima Fatura</h1>
+                    </TitleContainer>
+                    <NextBill>
+                        <NextBillGrid>
+                            <SkeletonDiv className="grid-item" />
+                            <SkeletonDiv className="grid-item" />
+                            <SkeletonDiv className="grid-item" />
+                            <SkeletonDiv className="grid-item" />
+                        </NextBillGrid>
+                        <div>
+                            <DefaultButton variant="contained" text="Realizar Pagamento" />
+                        </div>
+                    </NextBill>
+                </NextBillContainer>
+                <YourInfoContainer>
+                    <TitleContainer>
+                        <h1>Voce de Leve</h1>
+                    </TitleContainer>
+                    <YourInfo>
+                        <Info><span>Quanto voce economizou</span></Info>
+                        <Info><span>Creditos recebidos</span></Info>
+                        <Info><span>Creditos acumulados</span></Info>
+                        <Info><span>CO2 nao emitido</span></Info>
+                        <Info><span>Economizando desde</span></Info>
+                    </YourInfo>
+                </YourInfoContainer>
+            </Main>
+            <HistoryContainer>
+
+                <HistorySpendingContainer>
+                    <TitleContainer>
+                        <h1>Histórico de Consumo e Economia</h1>
+                    </TitleContainer>
+                    <HistorySpending>
+                        <div>info</div>
+                        <div>info</div>
+                        <div>info</div>
+                    </HistorySpending>
+                </HistorySpendingContainer>
+                <HistoryBillingContainer>
+                    <TitleContainer>
+                        <h1>Historico de Contas</h1>
+                    </TitleContainer>
+                    <HistoryBilling>
+                        <div>info</div>
+                        <div>info</div>
+                        <div>info</div>
+                    </HistoryBilling>
+                </HistoryBillingContainer>
+            </HistoryContainer>
+        </Container >
+
     );
 }

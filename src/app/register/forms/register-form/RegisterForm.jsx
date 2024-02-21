@@ -389,6 +389,8 @@ export default function RegisterForm(props) {
                         </FileUploadContainer>
                     ) : null}
 
+                    <Button onClick={() => router.push("/dashboard")}>DASHBOARD</Button>
+
                 </FormContent>
                 {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}
             </FormContainer >
