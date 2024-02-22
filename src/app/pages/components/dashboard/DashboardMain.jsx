@@ -1,8 +1,10 @@
 "use client"
 
 import { useState } from "react";
-import { DashboardContainer as Container, HistoryBilling, HistoryContainer, HistorySpending, DashboardInfoContainer as Main, NextBill, NextBillGrid, SkeletonDiv, YourInfo, UserEconomyInfos as Info, TitleContainer, NextBillContainer, YourInfoContainer, HistorySpendingContainer, HistoryBillingContainer } from "./styles";
+import { DashboardContainer as Container, HistoryBilling, HistoryContainer, HistorySpending, MainInfoContainer as Main, NextBill, NextBillGrid, SkeletonDiv, YourInfo, UserEconomyInfos as Info, TitleContainer, NextBillContainer, YourInfoContainer, HistorySpendingContainer, HistoryBillingContainer, BillDetails, PaymentButtonContainer } from "./styles";
 import DefaultButton from "../utils/buttons/DefaultButton";
+import { Button } from "@mui/material";
+import FormButton from "../utils/buttons/FormButton";
 
 export default function DashboardMain() {
 
@@ -21,7 +23,7 @@ export default function DashboardMain() {
             <Main>
                 <NextBillContainer>
                     <TitleContainer>
-                        <h1>Proxima Fatura</h1>
+                        <h1>Próxima fatura</h1>
                     </TitleContainer>
                     <NextBill>
                         <NextBillGrid>
@@ -30,14 +32,14 @@ export default function DashboardMain() {
                             <SkeletonDiv className="grid-item" />
                             <SkeletonDiv className="grid-item" />
                         </NextBillGrid>
-                        <div>
-                            <DefaultButton variant="contained" text="Realizar Pagamento" />
-                        </div>
+                        <PaymentButtonContainer>
+                            <FormButton text="Realizar pagamento" />
+                        </PaymentButtonContainer>
                     </NextBill>
                 </NextBillContainer>
                 <YourInfoContainer>
                     <TitleContainer>
-                        <h1>Voce de Leve</h1>
+                        <h1>Você de Leve</h1>
                     </TitleContainer>
                     <YourInfo>
                         <Info><span>Quanto voce economizou</span></Info>
@@ -49,25 +51,41 @@ export default function DashboardMain() {
                 </YourInfoContainer>
             </Main>
             <HistoryContainer>
-
                 <HistorySpendingContainer>
                     <TitleContainer>
-                        <h1>Histórico de Consumo e Economia</h1>
+                        <h1>Histórico de consumo e economia</h1>
                     </TitleContainer>
                     <HistorySpending>
-                        <div>info</div>
-                        <div>info</div>
-                        <div>info</div>
+                        <SkeletonDiv className="grid-item" />
+                        <SkeletonDiv className="grid-item" />
+                        <SkeletonDiv className="grid-item" />
+                        <SkeletonDiv className="grid-item" />
+                        <SkeletonDiv className="grid-item" />
+                        <SkeletonDiv className="grid-item" />
+                        <SkeletonDiv className="grid-item" />
+                        <SkeletonDiv className="grid-item" />
                     </HistorySpending>
                 </HistorySpendingContainer>
                 <HistoryBillingContainer>
                     <TitleContainer>
-                        <h1>Historico de Contas</h1>
+                        <h1>Histórico de contas</h1>
                     </TitleContainer>
                     <HistoryBilling>
-                        <div>info</div>
-                        <div>info</div>
-                        <div>info</div>
+                        <BillDetails>
+                            <span>2023 - Julho</span>
+                            <span>R$ 4.949,00</span>
+                            <span>Em aberto</span>
+                        </BillDetails>
+                        <BillDetails>
+                            <span>2023 - Junho</span>
+                            <span>R$ 4.949,00</span>
+                            <span>Pago</span>
+                        </BillDetails>
+                        <BillDetails>
+                            <span>2023 - Maio</span>
+                            <span>R$ 4.949,00</span>
+                            <span>Pago</span>
+                        </BillDetails>
                     </HistoryBilling>
                 </HistoryBillingContainer>
             </HistoryContainer>
