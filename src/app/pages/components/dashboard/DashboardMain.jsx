@@ -90,6 +90,5 @@ export default function DashboardMain() {
                 </HistoryBillingContainer>
             </HistoryContainer>
         </Container >
-
     );
 }

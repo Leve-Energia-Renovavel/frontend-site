@@ -87,3 +87,28 @@ export const FormButtonStyle = styled(Button)`
         }
 `;
 
+export const HeaderButtonStyle = styled(Button)`
+        text-transform: none;
+        color: ${background.white};
+        border: 1px solid ${background.white};
+        background-color: ${background.blueLeve};
+        padding: 12px 24px;
+        height: 3rem;
+        border-radius: 8px;
+
+        margin-left: 2rem;
+
+        span { 
+            font-family: "Metropolis";
+            font-size: 16px;
+            line-height: 16px;
+            font-weight: 400;
+        }
+
+        &:hover {
+            background-color: ${background.yellowLeve};
+            color: ${background.blueLeve};
+            border-color: ${background.lightBorder};
+        }
+`;
+

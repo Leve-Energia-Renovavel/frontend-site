@@ -9,7 +9,7 @@ export const FooterContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    background-color: ${background.primary};
+    background-color: ${background.blueLeve};
     color: ${background.light};
     max-width: 100vw;
     padding: 2rem;

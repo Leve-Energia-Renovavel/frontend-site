@@ -23,7 +23,7 @@ export const HeaderContainer = styled.header`
     flex-direction: row;
     flex-wrap: nowrap;
     overflow: hidden;
-    background-color: rgba(0, 117, 255, 0.9);
+    background-color: ${background.blueLeve};
     backdrop-filter: blur(2px); /* Add a slight blur effect */
     -webkit-backdrop-filter: blur(2px); /* For Safari */
     padding-top: .5rem;
@@ -127,7 +127,6 @@ export const LogoContainer = styled.div`
     .logoImage {
         width: 200px;
         height: 60px;
-        margin: 0 1rem 0 4rem;
         
         &:hover {
             cursor: pointer;

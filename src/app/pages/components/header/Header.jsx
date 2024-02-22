@@ -9,6 +9,7 @@ import DefaultButton from '../utils/buttons/DefaultButton';
 import MobileHeader from './MobileHeader';
 import { ButtonContainer, HeaderContainer, LogoContainer, MenuBurguer, MenuItem, MobileHeaderContainer, Nav, NavContainer, Ul } from './styles';
 import { usePathname } from 'next/navigation';
+import LoggedUserHeader from './LoggedUserHeader';
 
 
 export default function Header() {
@@ -44,16 +45,16 @@ export default function Header() {
         <>
             {!isMobile ? (
                 <HeaderContainer>
-                    <LogoContainer>
-                        <Image className='logoImage'
-                            src={logo}
-                            alt="Leve Energia Logo"
-                            onClick={() => router.push("/")}
-                        />
-                    </LogoContainer>
                     {!isLoggedUser ?
                         (
                             <>
+                                <LogoContainer>
+                                    <Image className='logoImage'
+                                        src={logo}
+                                        alt="Leve Energia Logo"
+                                        onClick={() => router.push("/")}
+                                    />
+                                </LogoContainer>
                                 <NavContainer>
                                     <Nav>
                                         <Ul>
@@ -81,15 +82,8 @@ export default function Header() {
                                 </ButtonContainer>
                             </>
                         ) : (
-                            <NavContainer>
-                                <Nav>
-                                    <Ul>
-                                        <MenuItem>
-                                            <Link href="/">Ola, usuario!</Link>
-                                        </MenuItem>
-                                    </Ul>
-                                </Nav>
-                            </NavContainer>
+
+                            <LoggedUserHeader />
                         )}
 
                 </HeaderContainer>

@@ -37,6 +37,12 @@ export const MainInfoContainer = styled.div`
 
     padding: 0 2rem;
 
+    @media (max-width: 1300px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      grid-gap: 1.5rem;
+  }
+
 `
 export const NextBillContainer = styled.div`
     display: flex;
@@ -67,7 +73,11 @@ export const NextBillGrid = styled.div`
     border: 1px solid #999;
 
     padding: 20px;
+
+
   }
+
+  
 
     .grid-item:nth-child(1) {
       grid-column: 1;
@@ -145,6 +155,13 @@ export const HistoryContainer = styled.div`
     margin: 0 auto;
 
     padding: 1rem 2rem;
+
+    //TODO: Change 1300px for 600px and more responsive ways.....
+    @media (max-width: 1300px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      grid-gap: 1.5rem;
+  }
 
 `
 
