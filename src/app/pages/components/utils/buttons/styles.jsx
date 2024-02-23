@@ -65,19 +65,26 @@ export const DefaultButtonStyle = styled(Button)`
 
 export const FormButtonStyle = styled(Button)`
         text-transform: none;
-        font-size: 18;
         color: ${background.light};
         border-color: ${background.lightBorder};
         background-color: ${background.blueLeve};
         padding: 1rem 4rem;
         height: 3rem;
         border-radius: 13px;
+        
+        @media (max-width: 600px) {
+            padding: 1rem 2rem;
+        }
 
         span { 
             font-family: "Metropolis";
             font-size: 18px;
             line-height: 18px;
             font-weight: 600;
+            
+            @media (max-width: 1500px) {
+                font-size: 16px;
+            }
         }
 
         &:hover {

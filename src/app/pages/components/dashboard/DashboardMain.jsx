@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import { DashboardContainer as Container, HistoryBilling, HistoryContainer, HistorySpending, MainInfoContainer as Main, NextBill, NextBillGrid, SkeletonDiv, YourInfo, UserEconomyInfos as Info, TitleContainer, NextBillContainer, YourInfoContainer, HistorySpendingContainer, HistoryBillingContainer, BillDetails, PaymentButtonContainer } from "./styles";
+import { DashboardContainer as Container, HistoryBilling, HistoryContainer, HistorySpending, MainInfoContainer as Main, NextBill, NextBillGrid, SkeletonDiv, YourInfo, UserEconomyInfos as Info, TitleContainer, NextBillContainer, YourInfoContainer, HistorySpendingContainer, HistoryBillingContainer, BillDetails, PaymentButtonContainer, HistorySpendingGrid } from "./styles";
 import DefaultButton from "../utils/buttons/DefaultButton";
 import { Button } from "@mui/material";
 import FormButton from "../utils/buttons/FormButton";
@@ -55,7 +55,7 @@ export default function DashboardMain() {
                     <TitleContainer>
                         <h1>Histórico de consumo e economia</h1>
                     </TitleContainer>
-                    <HistorySpending>
+                    <HistorySpendingGrid>
                         <SkeletonDiv className="grid-item" />
                         <SkeletonDiv className="grid-item" />
                         <SkeletonDiv className="grid-item" />
@@ -64,7 +64,7 @@ export default function DashboardMain() {
                         <SkeletonDiv className="grid-item" />
                         <SkeletonDiv className="grid-item" />
                         <SkeletonDiv className="grid-item" />
-                    </HistorySpending>
+                    </HistorySpendingGrid>
                 </HistorySpendingContainer>
                 <HistoryBillingContainer>
                     <TitleContainer>

@@ -40,13 +40,28 @@ export const MainInfoContainer = styled.div`
     @media (max-width: 1300px) {
       grid-template-columns: 1fr;
       grid-template-rows: 1fr;
-      grid-gap: 1.5rem;
-  }
+      grid-gap: 1rem;
+
+      max-width: 90vw;
+      padding: 1rem 2rem;
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      grid-gap: 1rem;
+
+      max-width: 100vw;
+      padding: 1rem 1rem;
+     }
 
 `
 export const NextBillContainer = styled.div`
     display: flex;
     flex-direction: column;
+
+
+    
 `
 
 export const NextBill = styled.div`
@@ -60,6 +75,7 @@ export const NextBill = styled.div`
 
   height: 100%;
   max-height: 50vh;
+
 `
 
 export const NextBillGrid = styled.div`
@@ -74,10 +90,7 @@ export const NextBillGrid = styled.div`
 
     padding: 20px;
 
-
   }
-
-  
 
     .grid-item:nth-child(1) {
       grid-column: 1;
@@ -98,10 +111,35 @@ export const NextBillGrid = styled.div`
       grid-column: 3;
       grid-row: 2;
     }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+      gap: 1rem; 
+
+    .grid-item:nth-child(1),
+    .grid-item:nth-child(2),
+    .grid-item:nth-child(3),
+    .grid-item:nth-child(4) {
+      grid-column: auto;
+      grid-row: auto; 
+
+      margin: 0 auto;
+
+      padding: 10px;
+
+    }
+  }
+
+
 `
 
 export const PaymentButtonContainer = styled.div`
   padding: 1rem 0;
+
+  @media (max-width: 600px) {
+    margin: 0 auto;
+  }
+  
 `
 export const YourInfoContainer = styled.div`
     display: flex;
@@ -116,6 +154,12 @@ export const YourInfo = styled.div`
 
   height: 100%;
   max-height: 50vh;
+  
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 1rem; 
+    max-height: 80vh;
+  }
 `
 export const UserEconomyContainer = styled.div`
     display: flex;
@@ -155,21 +199,29 @@ export const HistoryContainer = styled.div`
     margin: 0 auto;
 
     padding: 1rem 2rem;
-
-    //TODO: Change 1300px for 600px and more responsive ways.....
+    
     @media (max-width: 1300px) {
       grid-template-columns: 1fr;
       grid-template-rows: 1fr;
       grid-gap: 1.5rem;
-  }
+    }
+    
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      grid-gap: 1.5rem;
+      
+      margin: 0;
+      padding: 1rem 1rem;
 
+    }
 `
 
 export const HistorySpendingContainer = styled.div`
     display: flex;
     flex-direction: column;
 `
-export const HistorySpending = styled.div`
+export const HistorySpendingGrid = styled.div`
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: auto;
@@ -178,15 +230,25 @@ export const HistorySpending = styled.div`
     border-radius: 4px;
 
     padding: 0 2rem;
-
+    
     height: 100%;
     max-height: 50vh;
+    
+    @media (max-width: 600px) {
+      padding: 0 10px;
+    }
 
     .grid-item {
       background-color: grey;
       width: 40px;
       height: 300px;
       margin-top: auto;
+      
+      @media (max-width: 600px) {
+        width: 36px;
+        margin-right: 4px;
+      }
+      
     }
     
     .grid-item:nth-child(3) {
