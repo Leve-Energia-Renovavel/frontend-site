@@ -193,8 +193,6 @@ export default function RegisterForm(props) {
         }
     };
 
-    // const formattedPhone = formatPhoneNumber(phone);
-
     const closeModal = () => {
         setIsModalOpen(false)
     }
@@ -389,6 +387,8 @@ export default function RegisterForm(props) {
                             </FileUploadItem>
                         </FileUploadContainer>
                     ) : null}
+
+                    <Button onClick={() => router.push('/dashboard')}>Dashboard</Button>
 
                 </FormContent>
                 {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}

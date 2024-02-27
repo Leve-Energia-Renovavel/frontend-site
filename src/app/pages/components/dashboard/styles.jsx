@@ -106,6 +106,31 @@ export const NextBillGrid = styled.div`
       grid-row: 2;
     }
 
+
+    .loaded-grid-item {
+      padding: .5rem;
+    }
+
+    .loaded-grid-item:nth-of-type(1) {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .loaded-grid-item:nth-of-type(2) {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .loaded-grid-item:nth-of-type(3) {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .loaded-grid-item:nth-of-type(4) {
+      grid-column: 3;
+      grid-row: 2;
+    }
+
     @media (max-width: 600px) {
       grid-template-columns: 1fr;
       gap: 1rem; 
@@ -141,7 +166,8 @@ export const NextBillValue = styled.div`
   .billValue {
     color: ${background.textLeve};
     font-weight: 500;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    white-space: nowrap;
   }
 `
 export const NextBillInfo = styled.div`
@@ -162,12 +188,13 @@ export const NextBillInfo = styled.div`
   }
   
   .paymentStatus { 
+    font-weight: 800;
     color: ${props => props.status ? statusHelper[props.status] : background.mediumGrey};
   }
 `
 export const PaymentButtonContainer = styled.div`
   display: flex;
-  padding: 1rem 0;
+  padding: 2rem 0;
 
   @media (max-width: 600px) {
     margin: 0 auto;
@@ -176,13 +203,13 @@ export const PaymentButtonContainer = styled.div`
 export const YourInfoContainer = styled.div`
     display: flex;
     flex-direction: column;
-
 `
+
 export const YourInfo = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2 columns with equal width */
   grid-template-rows: repeat(3, auto); /* 3 rows with auto height */
-  gap: 2rem;
+  gap: 1.5rem;
 
   height: 100%;
   max-height: 50vh;
@@ -192,6 +219,11 @@ export const YourInfo = styled.div`
     gap: 1rem; 
     max-height: 80vh;
   }
+`
+
+export const NewInstallationButtonContainer = styled.div`
+    padding: 1.8rem;
+
 `
 export const UserEconomyContainer = styled.div`
     display: flex;
@@ -207,7 +239,7 @@ export const UserEconomyInfos = styled.div`
   text-align: center;
   align-items: center;
 
-  padding: 2rem;
+  padding: 1.8rem;
   
   span{
       text-align: center;

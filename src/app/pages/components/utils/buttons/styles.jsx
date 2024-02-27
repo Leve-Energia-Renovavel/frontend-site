@@ -119,3 +119,53 @@ export const HeaderButtonStyle = styled(Button)`
         }
 `;
 
+export const DashboardButtonStyle = styled(Button)`
+        text-transform: none;
+        color: ${background.blueLeve};
+        border: 1px solid ${background.blueLeve};
+        background-color: ${background.white};
+        padding: 12px 48px;
+        height: 3rem;
+        border-radius: 8px;
+
+        margin: 0 1rem 0 0;
+
+        span { 
+            font-family: "Metropolis";
+            font-size: 16px;
+            line-height: 16px;
+            font-weight: 600;
+        }
+
+        &:hover {
+            background-color: ${background.blueLeve};
+            color: ${background.white};
+            border-color: ${background.lightBorder};
+        }
+`;
+export const NewInstallationButtonStyle = styled(Button)`
+        text-transform: none;
+        color: ${background.blueLeve};
+        border: 1px solid ${background.blueLeve};
+        background-color: ${background.white};
+        padding: 12px 24px;
+        height: 3rem;
+        border-radius: 8px;
+
+        margin: 0 auto;
+
+        span { 
+            font-family: "Metropolis";
+            font-size: 16px;
+            line-height: 16px;
+            font-weight: 600;
+
+        }
+
+        &:hover {
+            background-color: ${background.blueLeve};
+            color: ${background.white};
+            border-color: ${background.lightBorder};
+        }
+`;
+

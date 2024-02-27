@@ -7,7 +7,9 @@ import HistorySpendingChart from "../charts/HistorySpendingChart";
 import MemberGetMember from "../member-get-member/MemberGetMember";
 import DefaultButton from "../utils/buttons/DefaultButton";
 import FormButton from "../utils/buttons/FormButton";
-import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, YourInfo, YourInfoContainer } from "./styles";
+import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, NewInstallationButtonContainer, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, YourInfo, YourInfoContainer } from "./styles";
+import DashboardButton from "../utils/buttons/DashboardButton";
+import NewInstallationButton from "../utils/buttons/NewInstallationButton";
 
 export default function DashboardMain() {
 
@@ -40,29 +42,31 @@ export default function DashboardMain() {
                     <NextBill>
                         <NextBillGrid>
                             {isLoading ? <SkeletonDiv className="grid-item" /> :
-                                (<NextBillValue className="grid-item">
+                                (<NextBillValue className="loaded-grid-item">
                                     <Typography className="referenceMonth">01/2024</Typography>
                                     <Typography className="billValue">R$ {installation?.amount.toString().replace('.', ',')}</Typography>
                                 </NextBillValue>)}
                             {isLoading ? <SkeletonDiv className="grid-item" /> :
                                 (
-                                    <NextBillInfo className="grid-item">
+                                    <NextBillInfo className="loaded-grid-item">
                                         <Typography className="title">Vencimento</Typography>
                                         <Typography className="content">{installation?.dueDate}</Typography>
                                     </NextBillInfo>
                                 )}
                             {isLoading ? <SkeletonDiv className="grid-item" /> :
                                 (
-                                    <NextBillInfo status={installation?.status} className="grid-item">
+                                    <NextBillInfo status={installation?.status} className="loaded-grid-item">
                                         <Typography className="title">Status</Typography>
                                         <Typography className="paymentStatus">{installation?.status}</Typography>
                                     </NextBillInfo>
                                 )}
-                            {isLoading ? <SkeletonDiv className="grid-item" /> : <div className="grid-item"></div>}
+                            {isLoading ? <SkeletonDiv className="grid-item" /> :
+                                <div className="loaded-grid-item"></div>
+                            }
                         </NextBillGrid>
                         <PaymentButtonContainer>
-                            <FormButton text="Ver faturas" onClick={() => router.push('/invoices')} />
-                            <FormButton text="Realizar pagamento" />
+                            <DashboardButton text="Ver todas faturas" onClick={() => router.push('/invoices')} />
+                            <FormButton text="Pagar" />
                         </PaymentButtonContainer>
                     </NextBill>
                 </NextBillContainer>
@@ -91,9 +95,9 @@ export default function DashboardMain() {
                             <span>Economizando desde</span>
                             <span>18/09/2023</span>
                         </Info>
-                        <div>
-                            <DefaultButton variant="contained" text="Novo Endereço" />
-                        </div>
+                        <NewInstallationButtonContainer>
+                            <NewInstallationButton text="Adicionar Novo Endereço" />
+                        </NewInstallationButtonContainer>
                     </YourInfo>
                 </YourInfoContainer>
             </Main>
@@ -103,15 +107,19 @@ export default function DashboardMain() {
                         <h1>Histórico de consumo e economia</h1>
                     </TitleContainer>
                     <HistorySpendingGrid>
-                        {/* <SkeletonDiv className="grid-item" />
-                        <SkeletonDiv className="grid-item" />
-                        <SkeletonDiv className="grid-item" />
-                        <SkeletonDiv className="grid-item" />
-                        <SkeletonDiv className="grid-item" />
-                        <SkeletonDiv className="grid-item" />
-                        <SkeletonDiv className="grid-item" />
-                        <SkeletonDiv className="grid-item" /> */}
-                        <HistorySpendingChart />
+                        {isLoading ? (
+                            <>
+                                <SkeletonDiv className="grid-item" />
+                                <SkeletonDiv className="grid-item" />
+                                <SkeletonDiv className="grid-item" />
+                                <SkeletonDiv className="grid-item" />
+                                <SkeletonDiv className="grid-item" />
+                                <SkeletonDiv className="grid-item" />
+                                <SkeletonDiv className="grid-item" />
+                                <SkeletonDiv className="grid-item" />
+                            </>
+                        ) :
+                            <HistorySpendingChart />}
                     </HistorySpendingGrid>
                 </HistorySpendingContainer>
                 <HistoryBillingContainer>
