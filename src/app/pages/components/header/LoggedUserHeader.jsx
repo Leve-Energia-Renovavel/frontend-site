@@ -4,11 +4,12 @@ import Image from 'next/image';
 import Link from "next/link";
 import logo from "../../../../resources/img/logo-header.png";
 import HeaderButton from '../utils/buttons/HeaderButton';
-import { LogoContainer, MenuItem, Nav, Ul } from "./styles";
+import { HeaderMenuItem, LogoContainer, MenuItem, Nav, Ul } from "./styles";
 import { useRouter } from 'next/navigation';
 
 export default function LoggedUserHeader() {
     const router = useRouter()
+
     return (
         <>
             <LogoContainer>
@@ -28,7 +29,7 @@ export default function LoggedUserHeader() {
                             sx={{
                                 fontFamily: 'Metropolis',
                                 fontWeight: '600',
-                                color: 'white',
+                                color: '#FFF',
                                 '& .MuiOutlinedInput-root': {
                                     '&:hover .MuiOutlinedInput-notchedOutline': {
                                         borderColor: '#0075FF', // Border color on hover
@@ -46,9 +47,26 @@ export default function LoggedUserHeader() {
                                 '.MuiSvgIcon-root ': {
                                     fill: "white !important",
                                 },
+
                             }}>
-                            <MenuItem value={10} >Instalação Leve Selecionada</MenuItem>
-                            <MenuItem value={20}>Adicionar Novo Endereço</MenuItem>
+                            <HeaderMenuItem
+                                value={10}>
+                                <span onClick={() => router.push("/dashboard")}>
+                                    Instalação Leve Selecionada
+                                </span>
+                            </HeaderMenuItem>
+                            <HeaderMenuItem
+                                value={20}>
+                                <span onClick={() => router.push("/installations")}>
+                                    Ver Minhas Instalações
+                                </span>
+                            </HeaderMenuItem>
+                            <HeaderMenuItem
+                                value={30}>
+                                <span onClick={() => console.log("/installations")}>
+                                    Adicionar Novo Endereço
+                                </span>
+                            </HeaderMenuItem>
                         </Select>
                     </Box>
                     <MenuItem>

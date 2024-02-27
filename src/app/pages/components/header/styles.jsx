@@ -1,7 +1,6 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import MenuIcon from '@mui/icons-material/Menu';
-import { Button } from "@mui/material";
 import { background } from "../../styles";
 
 const fadeInUp = keyframes`
@@ -94,6 +93,22 @@ export const MenuItem = styled.li`
         
         @media (max-width: 1300px) {
             padding: 0 .5rem;
+        }
+    }
+
+`;
+export const HeaderMenuItem = styled.li`
+    display: flex;
+    align-items: center;
+
+    span {
+        text-decoration: none;
+        padding: 1rem;
+        color: ${background.blueLeve};  
+        
+        &:hover {
+            font-weight: bold;
+            cursor: pointer;
         }
     }
 

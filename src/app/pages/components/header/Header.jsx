@@ -24,6 +24,8 @@ export default function Header() {
         '/register': false,
         '/dashboard': true,
         '/profile': true,
+        '/invoices': true,
+        '/installations': true,
     }
 
     const isLoggedUser = headerHelper[pathname];

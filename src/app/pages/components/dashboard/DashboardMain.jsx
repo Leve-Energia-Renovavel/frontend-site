@@ -96,7 +96,7 @@ export default function DashboardMain() {
                             <span>18/09/2023</span>
                         </Info>
                         <NewInstallationButtonContainer>
-                            <NewInstallationButton text="Adicionar Novo Endereço" />
+                            <NewInstallationButton text="Adicionar Novo Endereço" onClick={() => router.push("/installations")} />
                         </NewInstallationButtonContainer>
                     </YourInfo>
                 </YourInfoContainer>
