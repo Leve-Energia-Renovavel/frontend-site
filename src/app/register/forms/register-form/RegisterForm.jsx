@@ -21,7 +21,8 @@ export default function RegisterForm(props) {
     const [socialContractFile, setSocialContractFile] = useState(null);
     const [energyExtractFile, setEnergyExtractFile] = useState(null);
 
-    const { name, email, phone, cep, companyName, cost } = props.userData
+    const { name, email, phone, cep, companyName, cost }
+        = props.userData
     const isCompany = props.isCompany
 
     const userRefs = {
@@ -388,8 +389,6 @@ export default function RegisterForm(props) {
                             </FileUploadItem>
                         </FileUploadContainer>
                     ) : null}
-
-                    <Button onClick={() => router.push("/dashboard")}>DASHBOARD</Button>
 
                 </FormContent>
                 {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}

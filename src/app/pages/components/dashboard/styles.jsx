@@ -110,10 +110,10 @@ export const NextBillGrid = styled.div`
       grid-template-columns: 1fr;
       gap: 1rem; 
 
-    .grid-item:nth-child(1),
-    .grid-item:nth-child(2),
-    .grid-item:nth-child(3),
-    .grid-item:nth-child(4) {
+    .grid-item:nth-of-type(1),
+    .grid-item:nth-of-type(2),
+    .grid-item:nth-of-type(3),
+    .grid-item:nth-of-type(4) {
       grid-column: auto;
       grid-row: auto; 
 

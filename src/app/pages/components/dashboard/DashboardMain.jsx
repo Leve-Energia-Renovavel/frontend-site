@@ -1,14 +1,13 @@
 "use client"
 
 import { Typography } from "@mui/material";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import HistorySpendingChart from "../charts/HistorySpendingChart";
+import MemberGetMember from "../member-get-member/MemberGetMember";
+import DefaultButton from "../utils/buttons/DefaultButton";
 import FormButton from "../utils/buttons/FormButton";
 import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, YourInfo, YourInfoContainer } from "./styles";
-import DefaultButton from "../utils/buttons/DefaultButton";
-import MemberGetMember from "../member-get-member/MemberGetMember";
-import Timeline from "../timeline/Timeline";
-import { useRouter } from "next/navigation";
-import HistorySpendingChart from "../charts/HistorySpendingChart";
 
 export default function DashboardMain() {
 
