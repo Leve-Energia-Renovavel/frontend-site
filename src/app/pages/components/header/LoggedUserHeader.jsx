@@ -1,13 +1,14 @@
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Box, Select } from "@mui/material";
-import Link from "next/link";
-import DefaultButton from "../utils/buttons/DefaultButton";
-import { LoggedUserNavContainer, LogoContainer, MenuItem, Nav, Ul } from "./styles";
 import Image from 'next/image';
+import Link from "next/link";
 import logo from "../../../../resources/img/logo-header.png";
 import HeaderButton from '../utils/buttons/HeaderButton';
+import { LogoContainer, MenuItem, Nav, Ul } from "./styles";
+import { useRouter } from 'next/navigation';
 
 export default function LoggedUserHeader() {
+    const router = useRouter()
     return (
         <>
             <LogoContainer>
@@ -44,20 +45,24 @@ export default function LoggedUserHeader() {
                                 },
                                 '.MuiSvgIcon-root ': {
                                     fill: "white !important",
-                                }
+                                },
                             }}>
-                            <MenuItem value={10}>Instalação Leve Selecionada</MenuItem>
-                            <MenuItem value={20}>Outra instalação Leve</MenuItem>
+                            <MenuItem value={10} >Instalação Leve Selecionada</MenuItem>
+                            <MenuItem value={20}>Adicionar Novo Endereço</MenuItem>
                         </Select>
                     </Box>
                     <MenuItem>
                         <Link href="/">Ola, Usuário Leve</Link>
                     </MenuItem>
                     <MenuItem>
-                        <HeaderButton text="Meu Perfil" />
+                        <HeaderButton
+                            text="Meu Perfil"
+                            onClick={() => router.push("/profile")} />
                     </MenuItem>
                     <MenuItem>
-                        <HeaderButton text="Sair" />
+                        <HeaderButton
+                            text="Sair"
+                            onClick={() => router.push("/")} />
                     </MenuItem>
                 </Ul>
             </Nav>

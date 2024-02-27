@@ -11,7 +11,6 @@ import { ButtonContainer, HeaderContainer, LogoContainer, MenuBurguer, MenuItem,
 import { usePathname } from 'next/navigation';
 import LoggedUserHeader from './LoggedUserHeader';
 
-
 export default function Header() {
 
     const router = useRouter()
@@ -20,7 +19,14 @@ export default function Header() {
     const [isMobile, setIsMobile] = useState(false);
     const [isMenuOpen, setMenuOpen] = useState(false);
 
-    const isLoggedUser = pathname == '/dashboard' ? true : false;
+    const headerHelper = {
+        '/': false,
+        '/register': false,
+        '/dashboard': true,
+        '/profile': true,
+    }
+
+    const isLoggedUser = headerHelper[pathname];
 
     const mobileWidth = 900
 

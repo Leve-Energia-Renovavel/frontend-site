@@ -14,6 +14,14 @@ export const notification = {
     alert: "#cc4b37",
     alertFocus: "#67251a",
 }
+export const statusColors = {
+    paid: "#3adb76",
+    paidFocus: "#22bb5b",
+    warning: "#ffae00",
+    warningFocus: "#cc8b00",
+    pending: "#F44336",
+    pendingFocus: "#ab1d13",
+}
 
 export const button = {
     primary: "#0075FF",
@@ -30,6 +38,7 @@ export const background = {
     lightBorder: "#e6e6e6",
     grey: "#7F7F7F",
     darkGrey: "#343434",
+    mediumGrey: "#B0BEC5",
     yellowLeve: "#FFE04C",
     blueLeve: "#0075FF",
     white: "#FFFFFF",

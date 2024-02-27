@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { Skeleton } from "@mui/material";
 import { background } from "../../styles";
+import { statusHelper } from "@/app/utils/helper/StyleHelpers";
 
 export const DashboardContainer = styled.div`
     color: ${background.blueLeve};
@@ -59,9 +60,6 @@ export const MainInfoContainer = styled.div`
 export const NextBillContainer = styled.div`
     display: flex;
     flex-direction: column;
-
-
-    
 `
 
 export const NextBill = styled.div`
@@ -75,7 +73,6 @@ export const NextBill = styled.div`
 
   height: 100%;
   max-height: 50vh;
-
 `
 
 export const NextBillGrid = styled.div`
@@ -133,13 +130,51 @@ export const NextBillGrid = styled.div`
 
 `
 
+export const NextBillValue = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  .referenceMonth {
+    color: ${background.mediumGrey};
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  
+  .billValue {
+    color: ${background.textLeve};
+    font-weight: 500;
+    font-size: 1.5rem;
+  }
+`
+export const NextBillInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  .title { 
+    color: ${background.mediumGrey};
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .content {
+    color: ${background.textLeve};
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  
+  .paymentStatus { 
+    color: ${props => props.status ? statusHelper[props.status] : background.mediumGrey};
+  }
+`
 export const PaymentButtonContainer = styled.div`
+  display: flex;
   padding: 1rem 0;
 
   @media (max-width: 600px) {
     margin: 0 auto;
-  }
-  
+  } 
 `
 export const YourInfoContainer = styled.div`
     display: flex;

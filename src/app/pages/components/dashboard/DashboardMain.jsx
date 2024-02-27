@@ -1,12 +1,15 @@
 "use client"
 
-import { useState } from "react";
-import { DashboardContainer as Container, HistoryBilling, HistoryContainer, HistorySpending, MainInfoContainer as Main, NextBill, NextBillGrid, SkeletonDiv, YourInfo, UserEconomyInfos as Info, TitleContainer, NextBillContainer, YourInfoContainer, HistorySpendingContainer, HistoryBillingContainer, BillDetails, PaymentButtonContainer, HistorySpendingGrid } from "./styles";
-import DefaultButton from "../utils/buttons/DefaultButton";
-import { Button } from "@mui/material";
+import { Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 import FormButton from "../utils/buttons/FormButton";
+import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, YourInfo, YourInfoContainer } from "./styles";
+import DefaultButton from "../utils/buttons/DefaultButton";
+import MemberGetMember from "../member-get-member/MemberGetMember";
 
 export default function DashboardMain() {
+
+    const [isLoading, setIsLoading] = useState(true)
 
     const [installation, setInstallation] = useState({
         address: "Alameda José de Oliveira Guimarães 563 casa 23.",
@@ -15,8 +18,13 @@ export default function DashboardMain() {
         zipCode: "38412324",
         amount: 80.75,
         dueDate: "05/02/2024",
-        status: "Pendente",
+        status: "pendente",
     });
+
+    useEffect(() => {
+        setIsLoading(false)
+
+    }, [])
 
     return (
         <Container>
@@ -27,12 +35,29 @@ export default function DashboardMain() {
                     </TitleContainer>
                     <NextBill>
                         <NextBillGrid>
-                            <SkeletonDiv className="grid-item" />
-                            <SkeletonDiv className="grid-item" />
-                            <SkeletonDiv className="grid-item" />
-                            <SkeletonDiv className="grid-item" />
+                            {isLoading ? <SkeletonDiv className="grid-item" /> :
+                                (<NextBillValue>
+                                    <Typography className="referenceMonth">01/2024</Typography>
+                                    <Typography className="billValue">R$ {installation?.amount.toString().replace('.', ',')}</Typography>
+                                </NextBillValue>)}
+                            {isLoading ? <SkeletonDiv className="grid-item" /> :
+                                (
+                                    <NextBillInfo>
+                                        <Typography className="title">Vencimento</Typography>
+                                        <Typography className="content">{installation?.dueDate}</Typography>
+                                    </NextBillInfo>
+                                )}
+                            {isLoading ? <SkeletonDiv className="grid-item" /> :
+                                (
+                                    <NextBillInfo status={installation?.status}>
+                                        <Typography className="title">Status</Typography>
+                                        <Typography className="paymentStatus">{installation?.status}</Typography>
+                                    </NextBillInfo>
+                                )}
+                            {isLoading ? <SkeletonDiv className="grid-item" /> : null}
                         </NextBillGrid>
                         <PaymentButtonContainer>
+                            <FormButton text="Ver fatura" />
                             <FormButton text="Realizar pagamento" />
                         </PaymentButtonContainer>
                     </NextBill>
@@ -47,6 +72,7 @@ export default function DashboardMain() {
                         <Info><span>Creditos acumulados</span></Info>
                         <Info><span>CO2 nao emitido</span></Info>
                         <Info><span>Economizando desde</span></Info>
+                        <DefaultButton variant="contained" text="Adicionar Novo Endereço" />
                     </YourInfo>
                 </YourInfoContainer>
             </Main>
@@ -89,6 +115,7 @@ export default function DashboardMain() {
                     </HistoryBilling>
                 </HistoryBillingContainer>
             </HistoryContainer>
+            <MemberGetMember />
         </Container >
     );
 }
