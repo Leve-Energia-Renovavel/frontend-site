@@ -26,13 +26,10 @@ export default function RegisterMain() {
         userData[key] = value;
     }
 
-    // userData["type"] = params?.userType
     userData["type"] = "cpf"
 
     const isCompany = userData?.type == 'cnpj'
-    // const isLowCost = userData?.valor < 300                  //validation for cost
-    const isLowCost = false                  //validation for cost
-    // const isOutOfRange = userData?.cep != "30670-515"       //validation for region
+    const isLowCost = false
     const isOutOfRange = false
 
     if (isNotValidUserType(userData?.type)) {

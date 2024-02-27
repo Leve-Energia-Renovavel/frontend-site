@@ -5,6 +5,7 @@ const nextConfig = {
         unoptimized: true,
     },
     reactStrictMode: false,
+    transpilePackages: ['@mui/x-charts'],
     compiler: {
         styledComponents: true
     }

@@ -6,8 +6,13 @@ import FormButton from "../utils/buttons/FormButton";
 import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, YourInfo, YourInfoContainer } from "./styles";
 import DefaultButton from "../utils/buttons/DefaultButton";
 import MemberGetMember from "../member-get-member/MemberGetMember";
+import Timeline from "../timeline/Timeline";
+import { useRouter } from "next/navigation";
+import HistorySpendingChart from "../charts/HistorySpendingChart";
 
 export default function DashboardMain() {
+
+    const router = useRouter()
 
     const [isLoading, setIsLoading] = useState(true)
 
@@ -36,28 +41,28 @@ export default function DashboardMain() {
                     <NextBill>
                         <NextBillGrid>
                             {isLoading ? <SkeletonDiv className="grid-item" /> :
-                                (<NextBillValue>
+                                (<NextBillValue className="grid-item">
                                     <Typography className="referenceMonth">01/2024</Typography>
                                     <Typography className="billValue">R$ {installation?.amount.toString().replace('.', ',')}</Typography>
                                 </NextBillValue>)}
                             {isLoading ? <SkeletonDiv className="grid-item" /> :
                                 (
-                                    <NextBillInfo>
+                                    <NextBillInfo className="grid-item">
                                         <Typography className="title">Vencimento</Typography>
                                         <Typography className="content">{installation?.dueDate}</Typography>
                                     </NextBillInfo>
                                 )}
                             {isLoading ? <SkeletonDiv className="grid-item" /> :
                                 (
-                                    <NextBillInfo status={installation?.status}>
+                                    <NextBillInfo status={installation?.status} className="grid-item">
                                         <Typography className="title">Status</Typography>
                                         <Typography className="paymentStatus">{installation?.status}</Typography>
                                     </NextBillInfo>
                                 )}
-                            {isLoading ? <SkeletonDiv className="grid-item" /> : null}
+                            {isLoading ? <SkeletonDiv className="grid-item" /> : <div className="grid-item"></div>}
                         </NextBillGrid>
                         <PaymentButtonContainer>
-                            <FormButton text="Ver fatura" />
+                            <FormButton text="Ver faturas" onClick={() => router.push('/invoices')} />
                             <FormButton text="Realizar pagamento" />
                         </PaymentButtonContainer>
                     </NextBill>
@@ -67,12 +72,29 @@ export default function DashboardMain() {
                         <h1>Você de Leve</h1>
                     </TitleContainer>
                     <YourInfo>
-                        <Info><span>Quanto voce economizou</span></Info>
-                        <Info><span>Creditos recebidos</span></Info>
-                        <Info><span>Creditos acumulados</span></Info>
-                        <Info><span>CO2 nao emitido</span></Info>
-                        <Info><span>Economizando desde</span></Info>
-                        <DefaultButton variant="contained" text="Adicionar Novo Endereço" />
+                        <Info>
+                            <span>Quanto voce economizou</span>
+                            <span className="economyValue">R$ 571,57</span>
+                        </Info>
+                        <Info>
+                            <span>Creditos recebidos</span>
+                            <span>7533 kWh</span>
+                        </Info>
+                        <Info>
+                            <span>Creditos acumulados</span>
+                            <span>0 - kWh</span>
+                        </Info>
+                        <Info>
+                            <span>CO2 nao emitido</span>
+                            <span>0 - kWh</span>
+                        </Info>
+                        <Info>
+                            <span>Economizando desde</span>
+                            <span>18/09/2023</span>
+                        </Info>
+                        <div>
+                            <DefaultButton variant="contained" text="Novo Endereço" />
+                        </div>
                     </YourInfo>
                 </YourInfoContainer>
             </Main>
@@ -82,14 +104,15 @@ export default function DashboardMain() {
                         <h1>Histórico de consumo e economia</h1>
                     </TitleContainer>
                     <HistorySpendingGrid>
+                        {/* <SkeletonDiv className="grid-item" />
                         <SkeletonDiv className="grid-item" />
                         <SkeletonDiv className="grid-item" />
                         <SkeletonDiv className="grid-item" />
                         <SkeletonDiv className="grid-item" />
                         <SkeletonDiv className="grid-item" />
                         <SkeletonDiv className="grid-item" />
-                        <SkeletonDiv className="grid-item" />
-                        <SkeletonDiv className="grid-item" />
+                        <SkeletonDiv className="grid-item" /> */}
+                        <HistorySpendingChart />
                     </HistorySpendingGrid>
                 </HistorySpendingContainer>
                 <HistoryBillingContainer>

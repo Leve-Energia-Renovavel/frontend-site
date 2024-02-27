@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Skeleton } from "@mui/material";
-import { background } from "../../styles";
+import { background, statusColors } from "../../styles";
 import { statusHelper } from "@/app/utils/helper/StyleHelpers";
 
 export const DashboardContainer = styled.div`
@@ -82,29 +82,26 @@ export const NextBillGrid = styled.div`
   gap: 1rem; 
     
   .grid-item {
-    background-color: #ccc;
-    border: 1px solid #999;
-
-    padding: 20px;
+    padding: 1rem;
 
   }
 
-    .grid-item:nth-child(1) {
+    .grid-item:nth-of-type(1) {
       grid-column: 1;
       grid-row: 1;
     }
 
-    .grid-item:nth-child(2) {
+    .grid-item:nth-of-type(2) {
       grid-column: 1;
       grid-row: 2;
     }
 
-    .grid-item:nth-child(3) {
+    .grid-item:nth-of-type(3) {
       grid-column: 2;
       grid-row: 2;
     }
 
-    .grid-item:nth-child(4) {
+    .grid-item:nth-of-type(4) {
       grid-column: 3;
       grid-row: 2;
     }
@@ -202,6 +199,9 @@ export const UserEconomyContainer = styled.div`
 
 `
 export const UserEconomyInfos = styled.div`
+  display: flex;
+  flex-direction: column;
+  
   border: 1px solid ${background.blueLeve};
   border-radius: 4px;
   text-align: center;
@@ -216,6 +216,12 @@ export const UserEconomyInfos = styled.div`
       font-weight: 500;
       line-height: 14px;
       letter-spacing: 0em;
+
+      padding: 2px;
+  }
+
+  .economyValue {
+    color: ${statusColors.paid}
   }
 `
 
