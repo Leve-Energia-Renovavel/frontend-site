@@ -16,13 +16,15 @@ export default function MemberGetMember() {
                     <ContentCopyIcon />
                     X36UY
                 </CodeButton>
-                <SendInviteButton>
-                    <EmailIcon />
-                    Enviar Convite</SendInviteButton>
-                <ShareButton>
-                    <WhatsAppIcon />
-                    Compartilhar
-                </ShareButton>
+                <div>
+                    <SendInviteButton>
+                        <EmailIcon />
+                        Enviar Convite</SendInviteButton>
+                    <ShareButton>
+                        <WhatsAppIcon />
+                        Compartilhar
+                    </ShareButton>
+                </div>
             </MemberGetMemberMain>
         </MemberGetMemberContainer>
 

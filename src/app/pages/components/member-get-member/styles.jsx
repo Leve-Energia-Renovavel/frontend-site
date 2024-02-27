@@ -11,7 +11,7 @@ export const MemberGetMemberContainer = styled.div`
 
   margin: 1rem auto;
 
-  padding: 1rem;
+  padding: 2rem;
   width: 100%;
   max-width: 75vw;
 `
@@ -22,26 +22,32 @@ export const TitleContainer = styled.div`
 export const MemberGetMemberMain = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
 
   padding: 1rem;
   `
 export const CodeButton = styled(Button)`
   background-color: ${background.grey};
   color: ${background.white};
+  border-radius: 8px;
 
   padding: 1rem 2rem;
+
 `
 export const SendInviteButton = styled(Button)`
   background-color: ${statusColors.warning};
   color: ${background.white};
+  border-radius: 8px;
 
   padding: 1rem 2rem;
+
+  margin-right: 1rem;
 
 `
 export const ShareButton = styled(Button)`
   background-color: ${statusColors.paid};
   color: ${background.white};
+  border-radius: 8px;
 
   padding: 1rem 2rem;
 
