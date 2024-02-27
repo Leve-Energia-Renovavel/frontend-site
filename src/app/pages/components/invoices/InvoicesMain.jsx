@@ -17,7 +17,7 @@ export default function InvoicesMain() {
             <br />
             <br />
             <h1>Invoices</h1>
-            {/* <Timeline /> */}
+            <Timeline />
 
         </Container>
 
