@@ -31,15 +31,6 @@ export default function InstallationsMain() {
             dueDate: "05/02/2024",
             status: "pendente",
         },
-        {
-            address: "Alameda AAAAAAA 563 casa 23.",
-            city: "Uberlândia",
-            state: "MG",
-            zipCode: "38412324",
-            amount: 80.75,
-            dueDate: "05/02/2024",
-            status: "pendente",
-        },
     ]);
 
     const newInstallationRef = {
