@@ -71,10 +71,9 @@ export const ButtonContainer = styled.div`
     justify-content: space-between;
 
     margin-top: 1rem;
-    margin-left: auto;
 
     width: 100%;
-    max-width: 30vw;
+    max-width: 80vw;
 `
 
 export const NewInstallationContent = styled.div`

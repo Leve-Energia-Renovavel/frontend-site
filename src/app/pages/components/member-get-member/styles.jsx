@@ -33,15 +33,23 @@ export const CodeButton = styled(Button)`
 
   padding: 1rem 2rem;
 
+  &:hover{ 
+    background-color: ${background.darkGrey};
+  }
+
 `
 export const SendInviteButton = styled(Button)`
   background-color: ${statusColors.warning};
   color: ${background.white};
   border-radius: 8px;
-
+  
   padding: 1rem 2rem;
-
+  
   margin-right: 1rem;
+  
+  &:hover{ 
+    background-color: ${statusColors.warningFocus};
+  }
 
 `
 export const ShareButton = styled(Button)`
@@ -50,5 +58,9 @@ export const ShareButton = styled(Button)`
   border-radius: 8px;
 
   padding: 1rem 2rem;
+
+  &:hover{ 
+    background-color: ${statusColors.paidFocus};
+  }
 
 `
