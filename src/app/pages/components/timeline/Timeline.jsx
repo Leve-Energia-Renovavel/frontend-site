@@ -8,59 +8,76 @@ import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import { Typography } from '@mui/material';
+import { background, statusColors } from '../../styles';
+import { useState } from 'react';
+import { statusHelper } from '@/app/utils/helper/StyleHelpers';
+import { translationHelper } from '@/app/utils/helper/TranslationHelpers';
+import PriceCheckIcon from '@mui/icons-material/PriceCheck';
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 
 export default function TimelineMain() {
-    return (
-        <Timeline position="right">
-            <TimelineItem>
-                <TimelineOppositeContent color="text.secondary">
-                    <div>
-                        <Typography>09:30 am</Typography>
-                    </div>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                    <TimelineDot />
-                    <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>Eat</TimelineContent>
-            </TimelineItem>
-            <TimelineItem>
-                <TimelineOppositeContent color="text.secondary">
-                    <div>
-                        <Typography>10:00 am</Typography>
-                    </div>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                    <TimelineDot />
-                    <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>Code</TimelineContent>
-            </TimelineItem>
-            <TimelineItem>
-                <TimelineOppositeContent color="text.secondary">
-                    <div>
-                        <Typography>12:00 am</Typography>
-                    </div>
 
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                    <TimelineDot />
-                    <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>Sleep</TimelineContent>
-            </TimelineItem>
-            <TimelineItem>
-                <TimelineOppositeContent color="text.secondary">
-                    <div>
-                        <Typography>9:00 am</Typography>
-                    </div>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                    <TimelineDot />
-                    <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>Repeat</TimelineContent>
-            </TimelineItem>
+    const [invoices, setInvoices] = useState([
+        {
+            id: "1",
+            referenceMonth: "02/2024",
+            value: "80,75",
+            status: "pending"
+        },
+        {
+            id: "2",
+            referenceMonth: "12/2023",
+            value: "80,75",
+            status: "paid"
+        },
+        {
+            id: "3",
+            referenceMonth: "11/2023",
+            value: "80,75",
+            status: "paid"
+        },
+        {
+            id: "4",
+            referenceMonth: "10/2023",
+            value: "80,75",
+            status: "paid"
+        },
+        {
+            id: "5",
+            referenceMonth: "09/2023",
+            value: "80,75",
+            status: "paid"
+        },
+        {
+            id: "6",
+            referenceMonth: "08/2023",
+            value: "80,75",
+            status: "paid"
+        },
+    ])
+    return (
+        <Timeline position="right" sx={{ color: background.blueLeve }}>
+            {invoices.map((invoice) => {
+                return (
+                    <TimelineItem key={invoice.id}>
+                        <TimelineOppositeContent>
+                            <div>
+                                <Typography sx={{ fontWeight: 500 }}>{invoice.referenceMonth}</Typography>
+                            </div>
+                        </TimelineOppositeContent>
+                        <TimelineSeparator >
+                            <TimelineDot sx={{ backgroundColor: statusColors[invoice.status] }}>
+                                {invoice.status == "paid" ? <PriceCheckIcon /> : <LocalAtmIcon />}
+                            </TimelineDot>
+                            <TimelineConnector />
+                        </TimelineSeparator>
+                        <TimelineContent>
+                            <Typography sx={{ fontWeight: 700 }}>R$ {invoice.value}</Typography>
+                            <Typography sx={{ color: statusColors[invoice.status], fontWeight: 700 }}>{translationHelper[invoice.status]}</Typography>
+                        </TimelineContent>
+                    </TimelineItem>
+                )
+            })}
         </Timeline>
     );
 }
