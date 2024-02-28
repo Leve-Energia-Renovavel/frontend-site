@@ -9,8 +9,7 @@ export const InvoiceContainer = styled.div`
     
     padding: 2rem;
 
-    height: 80vh;
-    max-height: 90vh;
+    overflow: auto; //for timeline height
 
     h1 {
         font-family: "Metropolis", sans-serif;
@@ -30,7 +29,9 @@ export const InvoicesMainContent = styled.div`
     
     width: 100vw;
     max-width: 100vw;
-    `
+`
+export const InvoicesMainContainer = styled.div`
+`
 export const InvoicesMainCardContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -38,11 +39,17 @@ export const InvoicesMainCardContainer = styled.div`
     border: 1px solid ${background.blueLeve};
     border-radius: 4px;
 
-    width: 45vw;
-    max-width: 50vw;
+    width: 40vw;
+    max-width: 40vw;
 
     margin: 0 2rem 0 0;
     padding: 1rem;
+`
+export const InvoicesTimelineContainer = styled.div`
+    border-radius: 4px;
+
+    width: 60vw;
+    max-width: 60vw;
 `
 export const NextBillTitleContainer = styled.div`
     display: flex;

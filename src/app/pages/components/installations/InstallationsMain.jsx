@@ -1,17 +1,15 @@
 "use client"
 
-import { TextField, Typography } from "@mui/material";
-import { useState } from "react";
-import NewInstallationButton from "../utils/buttons/NewInstallationButton";
-import { ButtonContainer, InstallationsMainContainer as Container, HomeIconStyled, InstallationsMainContent, MainInstallationInfoContainer as MainInstallationInfo, NewInstallationContent, TitleContainer } from "./styles";
-import { useRouter } from "next/navigation";
-import FormButton from "../utils/buttons/FormButton";
-import InputMask from "react-input-mask";
 import { FormContent } from "@/app/register/forms/register-form/styles";
 import SearchIcon from '@mui/icons-material/Search';
-import { useRef } from "react";
+import { TextField, Typography } from "@mui/material";
 import axios from "axios";
-import { data } from "autoprefixer";
+import { useRouter } from "next/navigation";
+import { useRef, useState } from "react";
+import InputMask from "react-input-mask";
+import FormButton from "../utils/buttons/FormButton";
+import NewInstallationButton from "../utils/buttons/NewInstallationButton";
+import { ButtonContainer, InstallationsMainContainer as Container, HomeIconStyled, InstallationsMainContent, MainInstallationInfoContainer as MainInstallationInfo, NewInstallationContent, TitleContainer } from "./styles";
 
 export default function InstallationsMain() {
 

@@ -2,7 +2,7 @@
 
 import { Typography } from '@mui/material';
 import Timeline from '../timeline/Timeline';
-import { InvoiceContainer as Container, InvoicesMainCardContainer, InvoicesMainContent, MoneyIcon, NextBillButtonContainer, NextBillDetail, NextBillTitleContainer } from './styles';
+import { InvoiceContainer as Container, InvoicesMainCardContainer, InvoicesMainContainer, InvoicesMainContent, InvoicesTimelineContainer, MoneyIcon, NextBillButtonContainer, NextBillDetail, NextBillTitleContainer } from './styles';
 import { useState } from 'react';
 import FormButton from '../utils/buttons/FormButton';
 
@@ -26,14 +26,12 @@ export default function InvoicesMain() {
 
     return (
         <Container>
-            <div>
+            <InvoicesMainContainer>
                 <Typography variant='h1'>Suas Faturas</Typography>
                 <InvoicesMainCardContainer>
                     {hasOpenInvoices ? (
                         <>
                             <NextBillTitleContainer>
-                                <MoneyIcon />
-                                <Typography variant='h2'>Fatura em aberto</Typography>
                             </NextBillTitleContainer>
                             <NextBillDetail>
                                 <Typography className="referenceMonth">01/2024</Typography>
@@ -54,12 +52,12 @@ export default function InvoicesMain() {
                     ) :
                         <Typography variant='h2'>Nao ha faturas em aberto</Typography>}
                 </InvoicesMainCardContainer>
-            </div>
+            </InvoicesMainContainer>
             <div>
                 <Typography variant='h1'>Faturas Anteriores</Typography>
-                <InvoicesMainCardContainer>
+                <InvoicesTimelineContainer>
                     <Timeline />
-                </InvoicesMainCardContainer>
+                </InvoicesTimelineContainer>
             </div>
         </Container >
 
