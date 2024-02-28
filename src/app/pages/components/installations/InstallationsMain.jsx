@@ -81,7 +81,7 @@ export default function InstallationsMain() {
                 </MainInstallationInfo>
                 <ButtonContainer>
                     <NewInstallationButton text="Editar Endereço" onClick={() => router.push("/profile")} />
-                    <NewInstallationButton text="Adicionar Novo Endereço" onClick={() => setOpenForm(true)} />
+                    {!openForm ? <NewInstallationButton text="Adicionar Novo Endereço" onClick={() => setOpenForm(true)} /> : null}
                 </ButtonContainer>
             </InstallationsMainContent>
             {openForm ?
@@ -110,7 +110,23 @@ export default function InstallationsMain() {
                                 <TextField className="formInput" inputRef={newInstallationRef.state} label="Estado" variant="outlined" placeholder="Estado" type="text" InputLabelProps={{ shrink: true }} />
                                 <TextField className="formInput" inputRef={newInstallationRef.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} />
 
-
+                                <TextField sx={{
+                                    borderColor: '#0075FF',
+                                    '& label': {
+                                        color: '#0075FF',
+                                    },
+                                    '& .MuiOutlinedInput-root': {
+                                        '& fieldset': {
+                                            borderColor: '#0075FF',
+                                        },
+                                        '&:hover fieldset': {
+                                            borderColor: '#0075FF',
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: '#0075FF',
+                                        },
+                                    },
+                                }} inputRef={newInstallationRef.installationNumber} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text" />
                             </FormContent>
                             <ButtonContainer>
                                 <NewInstallationButton text="Cancelar" onClick={() => setOpenForm(false)} />

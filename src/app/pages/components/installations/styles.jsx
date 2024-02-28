@@ -63,14 +63,18 @@ export const MainInstallationInfoContainer = styled.div`
     }
 `
 export const ButtonContainer = styled.div`
+
     display: flex;
     flex-direction: row;
+    gap: 1rem;
 
-    padding: 0;
+    justify-content: space-between;
+
+    margin-top: 1rem;
     margin-left: auto;
 
-    width: 35vw;
-    max-width: 40vw;
+    width: 100%;
+    max-width: 30vw;
 `
 
 export const NewInstallationContent = styled.div`
