@@ -2,7 +2,19 @@ import styled from "@emotion/styled";
 import { Skeleton } from "@mui/material";
 import { background, statusColors } from "../../styles";
 import { statusHelper } from "@/app/utils/helper/StyleHelpers";
+import { keyframes } from "@emotion/react";
 
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 export const DashboardContainer = styled.div`
     color: ${background.blueLeve};
 
@@ -67,9 +79,12 @@ export const NextBill = styled.div`
   justify-content: center;
   flex-direction: column;
 
+  animation: ${fadeInUp} 0.5s ease-out;
+
   border: 1px solid ${background.blueLeve};
   border-radius: 4px;
   padding: 1rem 3rem;
+
 
   height: 100%;
   max-height: 50vh;
@@ -233,6 +248,8 @@ export const UserEconomyContainer = styled.div`
 export const UserEconomyInfos = styled.div`
   display: flex;
   flex-direction: column;
+
+  animation: ${fadeInUp} 0.5s ease-out;
   
   border: 1px solid ${background.blueLeve};
   border-radius: 4px;
@@ -303,6 +320,8 @@ export const HistorySpendingGrid = styled.div`
     border-radius: 4px;
 
     padding: 0 2rem;
+    animation: ${fadeInUp} 0.5s ease-out;
+
     
     height: 100%;
     max-height: 50vh;
@@ -341,6 +360,8 @@ export const BillDetails = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+
+    animation: ${fadeInUp} 0.5s ease-out;
 
     padding: 2rem;
     margin-bottom: 1.5rem;

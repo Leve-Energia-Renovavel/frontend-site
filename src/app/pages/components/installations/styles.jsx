@@ -1,6 +1,19 @@
 import styled from "@emotion/styled";
 import { background } from "../../styles";
 import HomeIcon from '@mui/icons-material/Home';
+import { keyframes } from "@emotion/react";
+
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const InstallationsMainContainer = styled.div`
     display: flex;
@@ -23,6 +36,8 @@ export const InstallationsMainContent = styled.div`
     
     padding: 2rem;
     margin: 1rem auto;
+
+    animation: ${fadeInUp} 0.5s ease-out;
   
     width: 80vw;
     max-width: 100vw;

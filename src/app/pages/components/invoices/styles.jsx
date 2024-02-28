@@ -2,7 +2,19 @@ import { statusHelper } from "@/app/utils/helper/StyleHelpers";
 import styled from "@emotion/styled";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import { background } from "../../styles";
+import { keyframes } from "@emotion/react";
 
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 export const InvoiceContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -10,6 +22,7 @@ export const InvoiceContainer = styled.div`
     padding: 2rem;
 
     overflow: auto; //for timeline height
+    max-width: 100vw;
 
     h1 {
         font-family: "Metropolis", sans-serif;
@@ -31,19 +44,20 @@ export const InvoicesMainContent = styled.div`
     max-width: 100vw;
 `
 export const InvoicesMainContainer = styled.div`
+    width: 40vw;
+    max-width: 40vw;
 `
 export const InvoicesMainCardContainer = styled.div`
     display: flex;
     flex-direction: column;
     
     border: 1px solid ${background.blueLeve};
+    animation: ${fadeInUp} 0.5s ease-out;
+
     border-radius: 4px;
 
-    width: 40vw;
-    max-width: 40vw;
-
     margin: 0 2rem 0 0;
-    padding: 1rem;
+    padding: 1rem 2rem;
 `
 export const InvoicesTimelineContainer = styled.div`
     border-radius: 4px;
@@ -69,6 +83,7 @@ export const NextBillDetail = styled.div`
     display: flex;
     flex-direction: column;
     align-items: left;
+
 
     .title { 
     color: ${background.mediumGrey};
@@ -102,9 +117,8 @@ export const NextBillDetail = styled.div`
 `
 
 export const NextBillButtonContainer = styled.div`
-    margin: 0 auto;
+    margin-left: auto;
     padding: 1rem;
-    
 `
 
 export const MoneyIcon = styled(AttachMoneyIcon)`

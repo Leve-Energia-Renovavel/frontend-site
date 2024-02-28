@@ -73,6 +73,7 @@ export default function TimelineMain() {
                             </TimelineSeparator>
                             <TimelineContent>
                                 <TimelineContentContainer>
+                                    <Typography sx={{ fontWeight: 700, color: background.grey }}>{invoice.referenceMonth}</Typography>
                                     <Typography sx={{ fontWeight: 700, fontSize: '2rem' }}>R$ {invoice.value}</Typography>
                                     <div style={{ display: "flex", gap: "1rem", padding: "1rem 1rem 0 0" }}>
                                         <div style={{ marginRight: "2rem" }}>
