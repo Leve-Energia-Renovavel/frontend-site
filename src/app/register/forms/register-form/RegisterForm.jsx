@@ -14,8 +14,12 @@ import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { companySchema, userSchema } from "./schema";
 import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, fileInputStyles } from "./styles";
+import { useStore } from "@/app/hooks/useStore";
 
 export default function RegisterForm(props) {
+
+    // const { setUUID, setUser } = useStore()
+    const store = useStore()
 
     const router = useRouter()
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -177,8 +181,10 @@ export default function RegisterForm(props) {
         console.log(data)
         // console.log(submitData)
 
-        history.pushState(data, "");
-        localStorage.setItem('leveLeadData', JSON.stringify(data));
+        store.setUsername(data.user.name)
+        store.setEmail(data.user.email)
+        store.setPhone(data.user.phone)
+
         router.push(`/register/contract-signature`)
 
     }
@@ -189,6 +195,9 @@ export default function RegisterForm(props) {
 
     useEffect(() => {
         const fetchData = async () => {
+
+            store.setUUID(uuid)
+
             try {
                 const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
                 if (requestSuccessful(userResponse.status)) {
@@ -470,6 +479,7 @@ export default function RegisterForm(props) {
                     )} */}
 
                     <Button onClick={() => router.push('/dashboard')}>Dashboard</Button>
+                    <span>UUID: {store.uuid}</span>
 
                 </FormContent>
                 {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}

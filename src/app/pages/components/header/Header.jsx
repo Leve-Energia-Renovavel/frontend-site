@@ -58,6 +58,7 @@ export default function Header() {
                             <>
                                 <LogoContainer>
                                     <Image className='logoImage'
+                                        loading="eager" priority={true}
                                         src={logo}
                                         alt="Leve Energia Logo"
                                         onClick={() => router.push("/")}
@@ -100,6 +101,7 @@ export default function Header() {
                 <MobileHeaderContainer>
                     <LogoContainer>
                         <Image className='logoImage'
+                            loading="eager" priority={true}
                             src={logo}
                             alt="Leve Energia Logo"
                             width={200}

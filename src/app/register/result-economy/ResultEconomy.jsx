@@ -47,7 +47,7 @@ export default function ResultEconomy(props) {
             <Content>
                 <Banner>
                     <LeveMonthlyDiscount>
-                        <Image src={icon} alt='ícone de porcentagem de desconto da Leve' />
+                        <Image src={icon} alt='ícone de porcentagem de desconto da Leve' loading="eager" priority={true} />
                         <Typography variant="h1">Tenha {percentageDiscount * 100}% de desconto todo mês!</Typography>
                     </LeveMonthlyDiscount>
                     <Typography variant="subtitle1">Em 1 ano com a Leve a sua  {location} economizará</Typography>

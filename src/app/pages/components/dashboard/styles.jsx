@@ -343,7 +343,7 @@ export const HistorySpendingGrid = styled.div`
       
     }
     
-    .grid-item:nth-child(3) {
+    .grid-item:nth-of-type(3) {
       height: 300px;
     }
 `

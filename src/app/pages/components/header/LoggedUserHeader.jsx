@@ -1,19 +1,23 @@
+import { useStore } from '@/app/hooks/useStore';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Box, Select } from "@mui/material";
 import Image from 'next/image';
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import logo from "../../../../resources/img/logo-header.png";
 import HeaderButton from '../utils/buttons/HeaderButton';
 import { HeaderMenuItem, LogoContainer, MenuItem, Nav, Ul } from "./styles";
-import { useRouter } from 'next/navigation';
 
 export default function LoggedUserHeader() {
     const router = useRouter()
+    const { username } = useStore()
 
     return (
         <>
             <LogoContainer>
-                <Image className='logoImage'
+                <Image
+                    loading="eager" priority={true}
+                    className='logoImage'
                     src={logo}
                     alt="Leve Energia Logo"
                     onClick={() => router.push("/")}
@@ -70,7 +74,7 @@ export default function LoggedUserHeader() {
                         </Select>
                     </Box>
                     <MenuItem>
-                        <Link href="/">Ola, Usuário Leve</Link>
+                        <Link href="/">Olá, {username}</Link>
                     </MenuItem>
                     <MenuItem>
                         <HeaderButton

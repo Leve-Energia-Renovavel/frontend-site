@@ -16,7 +16,9 @@ export default function Banner(props) {
                 <BannerButton onClick={handleChangeBanner}><span>Quero economizar agora!</span></BannerButton>
             </ContentContainer>
             <BannerImageContainer>
-                <Image className='logoImage'
+                <Image
+                    loading="eager" priority={true}
+                    className='logoImage'
                     src={bannerImage}
                     alt="Leve Energia Logo"
                 />

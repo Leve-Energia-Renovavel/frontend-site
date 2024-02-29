@@ -5,11 +5,10 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import HistorySpendingChart from "../charts/HistorySpendingChart";
 import MemberGetMember from "../member-get-member/MemberGetMember";
-import DefaultButton from "../utils/buttons/DefaultButton";
-import FormButton from "../utils/buttons/FormButton";
-import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, NewInstallationButtonContainer, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, YourInfo, YourInfoContainer } from "./styles";
 import DashboardButton from "../utils/buttons/DashboardButton";
+import FormButton from "../utils/buttons/FormButton";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
+import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, NewInstallationButtonContainer, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, YourInfo, YourInfoContainer } from "./styles";
 
 export default function DashboardMain() {
 

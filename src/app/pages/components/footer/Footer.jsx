@@ -22,6 +22,7 @@ export default function Footer() {
         <FooterContainer>
             <LogoContainer>
                 <Image
+                    loading="eager" priority={true}
                     src={logo}
                     alt="Leve Energia Logo"
                 />
