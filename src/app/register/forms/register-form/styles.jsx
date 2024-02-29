@@ -26,7 +26,7 @@ export const FormContainer = styled.div`
     top: 160vh;
   }
   @media (max-width: 1600px) {
-    top: 160vh;
+    top: 175vh;
   }
 
   @media (max-width: 600px) {
