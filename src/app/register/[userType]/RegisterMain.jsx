@@ -1,16 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { notFound } from "next/navigation";
+import { notFound, useParams, useSearchParams } from "next/navigation";
 import RegisterBannerFailCost from "../banners/banner-fail-cost/FailCostBanner";
 import RegisterBannerFailRegion from "../banners/banner-fail-region/FailRegionBanner";
 import RegisterBannerSuccess from "../banners/banner-success/RegisterBanner";
 import FormBanner from "../banners/form-banner/FormBanner";
 import RegisterForm from "../forms/register-form/RegisterForm";
 import ResultEconomy from "../result-economy/ResultEconomy";
-import { useParams, useSearchParams } from 'next/navigation';
-import { useEffect } from "react";
-import axios from "axios";
 
 const isNotValidUserType = (userType) => {
     return userType != 'cpf' && userType != 'cnpj'
@@ -35,27 +32,6 @@ export default function RegisterMain() {
     if (isNotValidUserType(userData?.type)) {
         notFound()
     }
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const url = `https://viacep.com.br/ws/${userData?.cep}/json/`
-                await axios.get(url).then(response => {
-                    if (response.status == 200) {
-                        userData["address"] = response.data.logradouro
-                        userData["neighborhood"] = response.data.bairro
-                        userData["city"] = response.data.localidade
-                        userData["state"] = response.data.uf
-                    }
-                })
-
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
-        fetchData();
-    }, []);
 
     return (
         <div>

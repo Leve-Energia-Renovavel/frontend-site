@@ -21,6 +21,8 @@ export const ResultEconomyContainer = styled.div`
   border-radius: 5px;
   margin: 0 auto;
   background-color: ${background.light};
+
+  overflow: auto;
   
   position: absolute;
   top: 75vh;
@@ -102,6 +104,8 @@ export const TodayPriceInfo = styled.div`
     line-height: normal;
     color: ${background.orangeLeve}; 
     margin: 2rem 0;
+
+    white-space: nowrap;
     
   }
 
@@ -112,6 +116,8 @@ export const TodayPriceInfo = styled.div`
     font-weight: 400;
     line-height: normal;
     padding-bottom: 1rem;
+
+    white-space: nowrap;
     
     @media (max-width: 600px) {
       padding-bottom: .5rem;
@@ -142,8 +148,10 @@ export const LeveEconomyInfo = styled.div`
     border-radius: 0.5rem;
     margin: 2rem 0;
     padding: .5rem 1rem;
-  }
 
+    white-space: nowrap;
+
+  }
 
   h6 { 
     font-family: "Metropolis", sans-serif, system-ui, -apple-system;
@@ -152,6 +160,8 @@ export const LeveEconomyInfo = styled.div`
     font-weight: 400;
     line-height: normal;
     padding-bottom: 1rem;
+
+    white-space: nowrap;
 
     @media (max-width: 600px) {
       padding-bottom: .5rem;
@@ -236,6 +246,7 @@ export const LeveMonthlyDiscount = styled.div`
   img {
     margin: 0 1.5rem; 
     max-width: 30%;
+    height: auto;
     
     @media (max-width: 600px) {
       margin: 0 1rem; 
@@ -270,8 +281,14 @@ export const ResultEconomyDiscountGraph = styled.div`
     width: 420px;
     height: auto;
     
+    @media (max-width: 1300px) {
+      width: 30vw;
+      height: auto;
+      margin: 0 auto;
+    }
     @media (max-width: 600px) {
       width: 90vw;
+      height: auto;
       margin: 0 auto;
     }
   }
