@@ -55,18 +55,6 @@ export default function SimulateEconomy() {
                 localStorage.setItem('leveData', JSON.stringify(userInitialData));  //TODO: check this usage
 
                 const path = `/register/${userType}?nome=${userInitialData.name}&email=${userInitialData.email}&telefone=${userInitialData.phone}&cep=${userInitialData.cep}&valor=${userInitialData.cost}&lp=true`;
-                // console.log({
-                //     pathname: `/register/${encodeURIComponent(userType)}`,
-                //     query: {
-                //         nome: encodeURIComponent(userInitialData.name),
-                //         email: encodeURIComponent(userInitialData.email),
-                //         telefone: encodeURIComponent(userInitialData.phone),
-                //         cep: encodeURIComponent(userInitialData.cep),
-                //         valor: encodeURIComponent(userInitialData.cost),
-                //         lp: true
-                //     }
-                // })
-                // router.push(`/register/${userType}`)
                 router.push(path)
             })
             .catch((err) => {

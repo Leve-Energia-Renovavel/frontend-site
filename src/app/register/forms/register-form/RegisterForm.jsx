@@ -4,7 +4,7 @@
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import SearchIcon from '@mui/icons-material/Search';
-import { Button, Divider, MenuItem, TextField, Typography } from "@mui/material";
+import { Button, Checkbox, Divider, FormControlLabel, FormGroup, MenuItem, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -12,17 +12,24 @@ import InputMask from "react-input-mask";
 import RegisterModal from "../../modals/installation-number-modal/InstallationNumberModal";
 import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
-import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, fileInputStyles } from "./styles";
+import { companySchema, userSchema } from "./schema";
+import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, ValidationErrorsContainer, fileInputStyles } from "./styles";
 
 export default function RegisterForm(props) {
 
     const router = useRouter()
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isRequired, setIsRequired] = useState(true);
     const [socialContractFile, setSocialContractFile] = useState(null);
     const [energyExtractFile, setEnergyExtractFile] = useState(null);
+    const [validationErrors, setValidationErrors] = useState([]);
 
-    const { name, email, phone, cep, companyName, cost }
-        = props.userData
+    const handleChangeRequired = () => {
+        setIsRequired(prev => !prev)
+        console.log(isRequired)
+    }
+
+    const { name, email, phone, cep, companyName, cost } = props.userData
     const isCompany = props.isCompany
 
     const userRefs = {
@@ -58,6 +65,27 @@ export default function RegisterForm(props) {
         state: useRef(null),
         city: useRef(null),
         installationNumber: useRef(null)
+    }
+
+    const schemaValidation = (isCompany, data) => {
+        if (isCompany) {
+            companySchema.validate(data, { abortEarly: false })
+                .then(() => {
+                })
+                .catch((err) => {
+                    console.log(err.errors);
+                    setValidationErrors(err.errors)
+                });
+
+        } else {
+            userSchema.validate(data, { abortEarly: false })
+                .then(() => {
+                })
+                .catch((err) => {
+                    console.log(err.errors);
+                    setValidationErrors(err.errors)
+                });
+        }
     }
 
     const handleSubmit = (event) => {
@@ -112,6 +140,8 @@ export default function RegisterForm(props) {
             }
 
         }
+
+        schemaValidation(isCompany, data)
 
         var submitData = {}
         if (isCompany) {
@@ -183,6 +213,10 @@ export default function RegisterForm(props) {
         fetchData();
     }, [isModalOpen, socialContractFile, energyExtractFile]);
 
+    useEffect(() => {
+    }, [validationErrors])
+
+
 
     const formatPhoneNumber = (phoneNumber) => {
         const matches = phoneNumber.match(/^(\d{2})(\d{5})(\d{4})$/);
@@ -240,43 +274,43 @@ export default function RegisterForm(props) {
                 <FormContent acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
                     {isCompany ? (
                         <>
-                            <TextField className="formInput" inputRef={companyRefs.companyName} defaultValue={companyName || ''} label="Nome da Empresa" variant="outlined" placeholder="Nome da Empresa" type="text" InputLabelProps={{ shrink: true }} />
-                            <TextField className="formInput" inputRef={companyRefs.corporateReason} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" />
+                            <TextField className="formInput" inputRef={companyRefs.companyName} defaultValue={companyName || ''} label="Nome da Empresa" variant="outlined" placeholder="Nome da Empresa" type="text" InputLabelProps={{ shrink: true }} required />
+                            <TextField className="formInput" inputRef={companyRefs.corporateReason} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" required />
                             <InputMask mask="99.999.999/9999-99">
-                                {() => <TextField className="formInput" inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text"
+                                {() => <TextField className="formInput" inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text" required
                                     InputProps={{
                                         endAdornment: <SearchIcon
                                             sx={{ cursor: 'pointer' }}
                                             onClick={() => getCNPJ()} />,
                                     }} />}
                             </InputMask>
-                            <TextField className="formInput" inputRef={companyRefs.responsibleName} defaultValue={name || ''} label="Nome Completo do Responsável" variant="outlined" placeholder="Nome Completo do Responsável" type="text" InputLabelProps={{ shrink: true }} />
-                            <TextField inputRef={companyRefs.companyEmail} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" InputLabelProps={{ shrink: true }} />
-                            <InputMask mask="(99) 99999-9999" value={formattedPhone || ''}>
-                                {() => <TextField sx={{ width: '300px' }} inputRef={companyRefs.companyPhone} className="formInput" label="Telefone do Responsável" variant="outlined" placeholder="Telefone do Responsável" type="text" InputLabelProps={{ shrink: true }} />}
+                            <TextField className="formInput" inputRef={companyRefs.responsibleName} defaultValue={name || ''} label="Nome Completo do Responsável" variant="outlined" placeholder="Nome Completo do Responsável" type="text" InputLabelProps={{ shrink: true }} required />
+                            <TextField inputRef={companyRefs.companyEmail} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" InputLabelProps={{ shrink: true }} required />
+                            <InputMask mask="(99) 99999-9999">
+                                {() => <TextField sx={{ width: '300px' }} inputRef={companyRefs.companyPhone} className="formInput" label="Telefone do Responsável" variant="outlined" placeholder="Telefone do Responsável" type="text" InputLabelProps={{ shrink: true }} required />}
                             </InputMask>
 
                         </>
                     ) : (
                         <>
                             <FormRow>
-                                <TextField inputRef={userRefs.name} defaultValue={name || ''} className="formInput" label="Nome Completo" variant="outlined" placeholder="Nome Completo" type="text" />
-                                <TextField inputRef={userRefs.email} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" />
+                                <TextField inputRef={userRefs.name} defaultValue={name || ''} className="formInput" label="Nome Completo" variant="outlined" placeholder="Nome Completo" type="text" required />
+                                <TextField inputRef={userRefs.email} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" required />
                             </FormRow>
 
-                            <InputMask mask="(99) 99999-9999">
+                            <InputMask mask="(99) 99999-9999" required>
                                 {() => <TextField
-                                    inputRef={userRefs.phone} className="formInput" label="Celular" placeholder="Celular" variant="outlined" type="text" InputLabelProps={{ shrink: true }} />}
+                                    inputRef={userRefs.phone} className="formInput" label="Celular" placeholder="Celular" variant="outlined" type="text" InputLabelProps={{ shrink: true }} required />}
                             </InputMask>
-                            <InputMask mask="99999999-9">
-                                {() => <TextField inputRef={userRefs.rg} className="formInput" label="RG" variant="outlined" placeholder="RG" type="text" InputLabelProps={{ shrink: true }} />}
+                            <InputMask mask="99999999-9" required>
+                                {() => <TextField inputRef={userRefs.rg} className="formInput" label="RG" variant="outlined" placeholder="RG" type="text" InputLabelProps={{ shrink: true }} required />}
                             </InputMask>
-                            <InputMask mask="999.999.999-99">
-                                {() => <TextField inputRef={userRefs.cpf} className="formInput" label="CPF" variant="outlined" placeholder="CPF" type="text" InputLabelProps={{ shrink: true }} />}
+                            <InputMask mask="999.999.999-99" required>
+                                {() => <TextField inputRef={userRefs.cpf} className="formInput" label="CPF" variant="outlined" placeholder="CPF" type="text" InputLabelProps={{ shrink: true }} required />}
                             </InputMask>
 
-                            <InputMask mask="99/99/9999">
-                                {() => <TextField inputRef={userRefs.birthday} className="formInput" label="Data de Nascimento" variant="outlined" placeholder="Data de Nascimento" type="text" />}
+                            <InputMask mask="99/99/9999" required>
+                                {() => <TextField inputRef={userRefs.birthday} className="formInput" label="Data de Nascimento" variant="outlined" placeholder="Data de Nascimento" type="text" required />}
                             </InputMask>
                             <TextField
                                 placeholder={"test"}
@@ -291,14 +325,14 @@ export default function RegisterForm(props) {
                                 <MenuItem value={"casado"}>Casado(a)</MenuItem>
                                 <MenuItem value={"viuvo"}>Viúvo(a)</MenuItem>
                             </TextField>
-                            <TextField select defaultValue={""} inputRef={userRefs.nationality} className="formInput" label="Nacionalidade" variant="outlined" placeholder="Nacionalidade" type="text">
+                            <TextField select defaultValue={""} inputRef={userRefs.nationality} className="formInput" label="Nacionalidade" variant="outlined" placeholder="Nacionalidade" type="text" required>
                                 <MenuItem value={"brasileiro"}>Brasileiro(a)</MenuItem>
                                 <MenuItem value={"estrangeiro"}>Estrangeiro(a)</MenuItem>
                             </TextField>
                         </>
 
                     )}
-                    <TextField select defaultValue={""} inputRef={userRefs.profession} className="formInput" label="Profissão" variant="outlined" placeholder="Profissão" type="text">
+                    <TextField select defaultValue={""} inputRef={userRefs.profession} className="formInput" label="Profissão" variant="outlined" placeholder="Profissão" type="text" required>
                         <MenuItem value={"autonomo"}>Autônomo(a)</MenuItem>
                         <MenuItem value={"assalariado"}>Assalariado(a)</MenuItem>
                         <MenuItem value={"aposentado"}>Aposentado(a)</MenuItem>
@@ -310,19 +344,19 @@ export default function RegisterForm(props) {
                     </div>
 
                     <InputMask mask="99999-999">
-                        {() => <TextField className="formInput" inputRef={addressRefs.addressCep} defaultValue={cep || ''} label="CEP" variant="outlined" placeholder="CEP" type="text" InputLabelProps={{ shrink: true }} />}
+                        {() => <TextField className="formInput" inputRef={addressRefs.addressCep} defaultValue={cep || ''} label="CEP" variant="outlined" placeholder="CEP" type="text" InputLabelProps={{ shrink: true }} required />}
                     </InputMask>
 
-                    <TextField className="formInput" inputRef={addressRefs.address} label="Endereço" variant="outlined" placeholder="Endereço" type="text" InputLabelProps={{ shrink: true }} />
+                    <TextField className="formInput" inputRef={addressRefs.address} label="Endereço" variant="outlined" placeholder="Endereço" type="text" InputLabelProps={{ shrink: true }} required />
                     <InputMask mask="99999">
-                        {() => <TextField className="formInput" inputRef={addressRefs.addressNumber} label="Nº" variant="outlined" placeholder="Nº" type="text" />}
+                        {() => <TextField className="formInput" inputRef={addressRefs.addressNumber} label="Nº" variant="outlined" placeholder="Nº" type="text" required />}
                     </InputMask>
 
                     <TextField className="formInput" inputRef={addressRefs.addressComplement} label="Complemento" variant="outlined" placeholder="Complemento" type="text" />
-                    <TextField className="formInput" inputRef={addressRefs.neighborhood} label="Bairro" variant="outlined" placeholder="Bairro" type="text" InputLabelProps={{ shrink: true }} />
+                    <TextField className="formInput" inputRef={addressRefs.neighborhood} label="Bairro" variant="outlined" placeholder="Bairro" type="text" InputLabelProps={{ shrink: true }} required />
 
-                    <TextField className="formInput" inputRef={addressRefs.state} label="Estado" variant="outlined" placeholder="Estado" type="text" InputLabelProps={{ shrink: true }} />
-                    <TextField className="formInput" inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} />
+                    <TextField className="formInput" inputRef={addressRefs.state} label="Estado" variant="outlined" placeholder="Estado" type="text" InputLabelProps={{ shrink: true }} required />
+                    <TextField className="formInput" inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} required />
 
                     <FormLastRow>
                         <TextField sx={{
@@ -387,6 +421,15 @@ export default function RegisterForm(props) {
                             </FileUploadItem>
                         </FileUploadContainer>
                     ) : null}
+
+                    {/* {validationErrors.length >= 1 && (
+                        <ValidationErrorsContainer>
+                            <Typography>Erro nos campos:</Typography>
+                            {validationErrors.map((error, index) => (
+                                <p key={index}>- {error}</p>
+                            ))}
+                        </ValidationErrorsContainer>
+                    )} */}
 
                     <Button onClick={() => router.push('/dashboard')}>Dashboard</Button>
 

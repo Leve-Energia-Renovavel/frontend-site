@@ -155,6 +155,14 @@ export const RegisterFormProgressContainer = styled.div`
     }
  }
 `
+export const ValidationErrorsContainer = styled.div`
+color: ${background.error};
+
+    @media (max-width: 600px) {
+      margin-top: .5rem;
+        font-size: 1rem;
+      }
+`
 
 export const fileInputStyles = {
   cursor: 'pointer',

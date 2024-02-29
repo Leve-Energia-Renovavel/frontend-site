@@ -34,7 +34,7 @@ export default function ResultEconomy(props) {
             <Header>
                 <TodayPriceInfo>
                     <Typography variant="subtitle1">Hoje você paga a Concessionária</Typography>
-                    <Typography variant="h1">R$ {cost} 😡</Typography>
+                    <Typography variant="h1">R$ {cost} 😢</Typography>
                 </TodayPriceInfo>
                 <LeveEconomyInfo>
                     <Typography variant="subtitle1" >Com a Leve você pagará:</Typography>
