@@ -1,4 +1,4 @@
-import { useStore } from '@/app/hooks/useStore';
+import { useStoreUser } from '@/app/hooks/useStore';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Box, Select } from "@mui/material";
 import Image from 'next/image';
@@ -10,7 +10,7 @@ import { HeaderMenuItem, LogoContainer, MenuItem, Nav, Ul } from "./styles";
 
 export default function LoggedUserHeader() {
     const router = useRouter()
-    const { username } = useStore()
+    const { username } = useStoreUser()
 
     return (
         <>

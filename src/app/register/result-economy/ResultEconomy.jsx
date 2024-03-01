@@ -7,18 +7,18 @@ import { useParams, useSearchParams } from 'next/navigation';
 import icon from '../../../resources/img/Frame.svg';
 import graphic from '../../../resources/img/graphic-leve.png';
 import { ResultEconomyDiscount as Banner, ResultEconomyContainer as Container, ResultEconomyToUnderstandContent as Content, ResultEconomyComparissonContent as Header, LeveEconomyInfo, LeveMonthlyDiscount, ResultEconomyDiscountGraph, TodayPriceInfo } from './styles';
+import { useStoreUser } from '@/app/hooks/useStore';
 
-export default function ResultEconomy(props) {
+export default function ResultEconomy() {
 
     const params = useParams()
+    const store = useStoreUser()
 
-    const userData = props.userData
-
-    const userType = params?.userType
+    const isCompany = store.isCompany
     // const cost = userData.valor;
-    const cost = 1000;
+    const cost = store.cost;
 
-    const location = userType == 'cnpj' ? 'empresa' : 'residência'
+    const location = isCompany ? 'empresa' : 'residência'
     const percentageDiscount = 0.1     //for 10% of discount 
 
     const leveCost = () => {

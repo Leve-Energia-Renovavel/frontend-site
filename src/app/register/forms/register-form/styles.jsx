@@ -113,6 +113,34 @@ export const FormLastRow = styled.div`
     grid-gap: 1.5rem;
     margin-top: 0rem;
   }
+
+  .installationNumberField {
+    border-color: #0075FF;
+
+      & label {
+        color: #0075FF;
+      }
+
+      & .MuiOutlinedInput-root {
+        & fieldset {
+          border-color: #0075FF;
+        }
+
+        &:hover fieldset {
+          border-color: #0075FF;
+        }
+
+        &.Mui-focused fieldset {
+          border-color: #0075FF;
+        }
+      }
+  }
+
+  .linkInstallationNumberTutorial {
+    color:#0075FF; 
+    text-decoration: underline; 
+    cursor: pointer;
+  }
 `;
 
 

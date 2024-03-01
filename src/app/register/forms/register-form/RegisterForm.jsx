@@ -14,27 +14,34 @@ import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { companySchema, userSchema } from "./schema";
 import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, fileInputStyles } from "./styles";
-import { useStore } from "@/app/hooks/useStore";
+import { useStoreUser, useStoreAddress, useStoreCompany } from "@/app/hooks/useStore";
+import { requestSuccessful } from "@/app/service/utils/Validations";
+import { maritalStatusOptions, nationalityOptions, professionOptions } from "@/app/utils/form-options/formOptions";
 
-export default function RegisterForm(props) {
+export default function RegisterForm() {
 
-    // const { setUUID, setUser } = useStore()
-    const store = useStore()
+    const store = useStoreUser()
+    const storeAddress = useStoreAddress()
+    const storeCompany = useStoreCompany()
 
     const router = useRouter()
+
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isForeigner, setIsForeigner] = useState(false);
+
     const [socialContractFile, setSocialContractFile] = useState(null);
     const [energyExtractFile, setEnergyExtractFile] = useState(null);
     const [validationErrors, setValidationErrors] = useState([]);
 
-    const { name, email, phone, cep, companyName, cost } = props.userData
-    const isCompany = props.isCompany
+    const { username, email, phone, cep, companyName, cost } = store
+    const { street, neighborhood, city, state } = storeAddress.address
+
+    const company = storeCompany.company
+
+    const isCompany = store.isCompany
 
     const params = useParams()
     const search = useSearchParams()
-
-    // const uuid = search.get("uuid")
-    const uuid = "20d04059-a75b-403b-910e-e59096a1370b"
 
     const userRefs = {
         name: useRef(null),
@@ -189,51 +196,12 @@ export default function RegisterForm(props) {
 
     }
 
-    const requestSuccessful = (status) => {
-        return status === 200
-    }
-
-    useEffect(() => {
-        const fetchData = async () => {
-
-            store.setUUID(uuid)
-
-            try {
-                const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
-                if (requestSuccessful(userResponse.status)) {
-                    const consumer = userResponse.data.instalacao.consumidor;
-                    userRefs.name.current.value = consumer.nome;
-                    userRefs.phone.current.value = formatPhoneNumber(consumer.telefone);
-                    userRefs.email.current.value = consumer.email;
-                    addressRefs.addressCep.current.value = consumer.cep;
-
-                    const addressResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, {
-                        params: { cep: consumer.cep }
-                    });
-
-                    if (requestSuccessful(addressResponse.status)) {
-                        addressRefs.address.current.value = addressResponse?.data?.logradouro;
-                        addressRefs.neighborhood.current.value = addressResponse?.data?.bairro;
-                        addressRefs.addressCep.current.value = addressResponse?.data?.cep;
-                        addressRefs.city.current.value = addressResponse?.data?.cidade;
-                        addressRefs.state.current.value = addressResponse?.data?.uf;
-                    }
-                }
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
-        fetchData();
-    }, [isModalOpen, socialContractFile, energyExtractFile]);
-
-
     useEffect(() => {
     }, [validationErrors])
 
 
 
-    const formatPhoneNumber = (phoneNumber) => {
+    function formatPhoneNumber(phoneNumber) {
         const matches = phoneNumber.match(/^(\d{2})(\d{5})(\d{4})$/);
         if (matches) {
             return `(${matches[1]}) ${matches[2]}-${matches[3]}`;
@@ -274,10 +242,24 @@ export default function RegisterForm(props) {
         try {
             const response = await axios.get(`https://publica.cnpj.ws/cnpj/${cnpj}`);
             console.log(response)
+
+            const company = response?.data?.estabelecimento
+
+            storeCompany.updateCompany({
+                name: company?.nome_fantasia,
+                phone: company?.ddd1 + company?.telefone1,
+                corporateReason: response?.data?.razao_social,
+                cnpj: company?.cnpj,
+            })
+
         } catch (error) {
             console.error('Error fetching CNPJ data:', error);
         }
     }
+
+    const handleNationalityChange = (value) => {
+        setIsForeigner(value === "estrangeiro");
+    };
 
     return (
         <>
@@ -289,8 +271,8 @@ export default function RegisterForm(props) {
                 <FormContent acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
                     {isCompany ? (
                         <>
-                            <TextField className="formInput" inputRef={companyRefs.companyName} defaultValue={companyName || ''} label="Nome da Empresa" variant="outlined" placeholder="Nome da Empresa" type="text" InputLabelProps={{ shrink: true }} required />
-                            <TextField className="formInput" inputRef={companyRefs.corporateReason} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" required />
+                            <TextField className="formInput" defaultValue={company.name || ''} inputRef={companyRefs.companyName} label="Nome da Empresa" variant="outlined" placeholder="Nome da Empresa" type="text" InputLabelProps={{ shrink: true }} required />
+                            <TextField className="formInput" defaultValue={company.corporateReason || ''} inputRef={companyRefs.corporateReason} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" InputLabelProps={{ shrink: true }} required />
                             <InputMask mask="99.999.999/9999-99">
                                 {() => <TextField className="formInput" inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text" required
                                     InputProps={{
@@ -299,9 +281,9 @@ export default function RegisterForm(props) {
                                             onClick={() => getCNPJ()} />,
                                     }} />}
                             </InputMask>
-                            <TextField className="formInput" inputRef={companyRefs.responsibleName} defaultValue={name || ''} label="Nome Completo do Responsável" variant="outlined" placeholder="Nome Completo do Responsável" type="text" InputLabelProps={{ shrink: true }} required />
+                            <TextField className="formInput" inputRef={companyRefs.responsibleName} defaultValue={username || ''} label="Nome Completo do Responsável" variant="outlined" placeholder="Nome Completo do Responsável" type="text" InputLabelProps={{ shrink: true }} required />
                             <TextField inputRef={companyRefs.companyEmail} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" InputLabelProps={{ shrink: true }} required />
-                            <InputMask mask="(99) 99999-9999">
+                            <InputMask mask="(99) 99999-9999" value={formatPhoneNumber(company.phone) || ""} onChange={(e) => storeCompany.updateCompany({ phone: e.target.value })}>
                                 {() => <TextField sx={{ width: '300px' }} inputRef={companyRefs.companyPhone} className="formInput" label="Telefone do Responsável" variant="outlined" placeholder="Telefone do Responsável" type="text" InputLabelProps={{ shrink: true }} required />}
                             </InputMask>
 
@@ -309,17 +291,20 @@ export default function RegisterForm(props) {
                     ) : (
                         <>
                             <FormRow>
-                                <TextField inputRef={userRefs.name} defaultValue={name || ''} className="formInput" label="Nome Completo" variant="outlined" placeholder="Nome Completo" type="text" required InputLabelProps={{ shrink: true }} />
+                                <TextField inputRef={userRefs.name} defaultValue={username || ''} className="formInput" label="Nome Completo" variant="outlined" placeholder="Nome Completo" type="text" required InputLabelProps={{ shrink: true }} />
                                 <TextField inputRef={userRefs.email} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" required InputLabelProps={{ shrink: true }} />
                             </FormRow>
 
-                            <InputMask mask="(99) 99999-9999" required>
+                            <InputMask mask="(99) 99999-9999" required value={formatPhoneNumber(phone) || ""} onChange={(e) => store.setPhone(e.target.value)}>
                                 {() => <TextField
-                                    inputRef={userRefs.phone} defaultValue={phone || ''} className="formInput" label="Celular" placeholder="Celular" variant="outlined" type="text" InputLabelProps={{ shrink: true }} required />}
+                                    inputRef={userRefs.phone} className="formInput" label="Celular" placeholder="Celular" variant="outlined" type="text" InputLabelProps={{ shrink: true }} required />}
                             </InputMask>
-                            <InputMask mask="99999999-9" required>
-                                {() => <TextField inputRef={userRefs.rg} className="formInput" label="RG" variant="outlined" placeholder="RG" type="text" InputLabelProps={{ shrink: true }} required />}
-                            </InputMask>
+                            {isForeigner ?
+                                <TextField inputRef={userRefs.rg} className="formInput" label="RNE" variant="outlined" placeholder="RNE" type="text" InputLabelProps={{ shrink: true }} required />
+                                :
+                                <InputMask mask="99999999-9" required>
+                                    {() => <TextField inputRef={userRefs.rg} className="formInput" label="RG" variant="outlined" placeholder="RG" type="text" InputLabelProps={{ shrink: true }} required />}
+                                </InputMask>}
                             <InputMask mask="999.999.999-99" required>
                                 {() => <TextField inputRef={userRefs.cpf} className="formInput" label="CPF" variant="outlined" placeholder="CPF" type="text" InputLabelProps={{ shrink: true }} required />}
                             </InputMask>
@@ -338,12 +323,11 @@ export default function RegisterForm(props) {
                                     component: 'span',
                                 }}
                                 inputRef={userRefs.maritalStatus || ''}>
-                                <MenuItem
-                                    value={"solteiro"}>Solteiro(a)</MenuItem>
-                                <MenuItem
-                                    value={"casado"}>Casado(a)</MenuItem>
-                                <MenuItem
-                                    value={"viuvo"}>Viúvo(a)</MenuItem>
+                                {maritalStatusOptions.map((maritalStatus) => {
+                                    return (
+                                        <MenuItem key={maritalStatus.label} value={maritalStatus.value}>{maritalStatus.label}</MenuItem>
+                                    )
+                                })}
                             </TextField>
 
                             <TextField
@@ -356,12 +340,16 @@ export default function RegisterForm(props) {
                                 variant="outlined"
                                 placeholder="Nacionalidade"
                                 type="text"
+                                onChange={(event) => handleNationalityChange(event.target.value)}
                                 InputLabelProps={{
                                     component: 'span',
                                 }}
                                 required>
-                                <MenuItem value={"brasileiro"}>Brasileiro(a)</MenuItem>
-                                <MenuItem value={"estrangeiro"}>Estrangeiro(a)</MenuItem>
+                                {nationalityOptions.map((nationality) => {
+                                    return (
+                                        <MenuItem key={nationality.label} value={nationality.value}>{nationality.label}</MenuItem>
+                                    )
+                                })}
                             </TextField>
                         </>
 
@@ -380,50 +368,39 @@ export default function RegisterForm(props) {
                         }}
                         type="text"
                         required>
-                        <MenuItem value={"autonomo"}>Autônomo(a)</MenuItem>
-                        <MenuItem value={"assalariado"}>Assalariado(a)</MenuItem>
-                        <MenuItem value={"aposentado"}>Aposentado(a)</MenuItem>
-                        <MenuItem value={"estudante"}>Estudante</MenuItem>
+                        {professionOptions.map((profession) => {
+                            return (
+                                <MenuItem key={profession.label} value={profession.value}>{profession.label}</MenuItem>
+                            )
+                        })}
                     </TextField>
 
                     <div style={{ margin: 'auto', }}>
                         <Divider sx={{ width: '107px', border: '1px solid #A0A0A0' }} />
                     </div>
 
-                    <InputMask mask="99999-999">
-                        {() => <TextField className="formInput" inputRef={addressRefs.addressCep} defaultValue={cep || ''} label="CEP" variant="outlined" placeholder="CEP" type="text" InputLabelProps={{ shrink: true }} required />}
+                    <InputMask mask="99999-999" value={cep || ''} onChange={(e) => store.setCEP(e.target.value)}>
+                        {() => <TextField className="formInput" inputRef={addressRefs.addressCep} label="CEP" variant="outlined" placeholder="CEP" type="text" InputLabelProps={{ shrink: true }} required />}
                     </InputMask>
 
-                    <TextField className="formInput" inputRef={addressRefs.address} label="Endereço" variant="outlined" placeholder="Endereço" type="text" InputLabelProps={{ shrink: true }} required />
+                    <TextField className="formInput" defaultValue={street || ''} inputRef={addressRefs.address} label="Endereço" variant="outlined" placeholder="Endereço" type="text" InputLabelProps={{ shrink: true }} required />
                     <InputMask mask="99999">
                         {() => <TextField className="formInput" inputRef={addressRefs.addressNumber} label="Nº" variant="outlined" placeholder="Nº" type="text" required />}
                     </InputMask>
 
                     <TextField className="formInput" inputRef={addressRefs.addressComplement} label="Complemento" variant="outlined" placeholder="Complemento" type="text" />
-                    <TextField className="formInput" inputRef={addressRefs.neighborhood} label="Bairro" variant="outlined" placeholder="Bairro" type="text" InputLabelProps={{ shrink: true }} required />
+                    <TextField className="formInput" defaultValue={neighborhood || ''} inputRef={addressRefs.neighborhood} label="Bairro" variant="outlined" placeholder="Bairro" type="text" InputLabelProps={{ shrink: true }} required />
 
-                    <TextField className="formInput" inputRef={addressRefs.state} label="Estado" variant="outlined" placeholder="Estado" type="text" InputLabelProps={{ shrink: true }} required />
-                    <TextField className="formInput" inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} required />
+                    <TextField className="formInput" defaultValue={state || ''} inputRef={addressRefs.state} label="Estado" variant="outlined" placeholder="Estado" type="text" InputLabelProps={{ shrink: true }} required />
+                    <TextField className="formInput" defaultValue={city || ''} inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} required />
 
                     <FormLastRow>
-                        <TextField sx={{
-                            borderColor: '#0075FF',
-                            '& label': {
-                                color: '#0075FF',
-                            },
-                            '& .MuiOutlinedInput-root': {
-                                '& fieldset': {
-                                    borderColor: '#0075FF',
-                                },
-                                '&:hover fieldset': {
-                                    borderColor: '#0075FF',
-                                },
-                                '&.Mui-focused fieldset': {
-                                    borderColor: '#0075FF',
-                                },
-                            },
-                        }} inputRef={addressRefs.installationNumber} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text" />
-                        <Typography variant="body2" sx={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => setIsModalOpen(true)}>Não encontrou o número? <a >Clique aqui para saber onde encontrá-lo.</a></Typography>
+                        <TextField
+                            className="installationNumberField"
+                            inputRef={addressRefs.installationNumber} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text" />
+                        <Typography
+                            className="linkInstallationNumberTutorial"
+                            variant="body2" onClick={() => setIsModalOpen(true)}>Não encontrou o número? <a >Clique aqui para saber onde encontrá-lo.</a></Typography>
                         <FormButton className="formInput" variant="outlined" type="submit" text="Continuar" />
                     </FormLastRow>
 
@@ -479,7 +456,6 @@ export default function RegisterForm(props) {
                     )} */}
 
                     <Button onClick={() => router.push('/dashboard')}>Dashboard</Button>
-                    <span>UUID: {store.uuid}</span>
 
                 </FormContent>
                 {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}
