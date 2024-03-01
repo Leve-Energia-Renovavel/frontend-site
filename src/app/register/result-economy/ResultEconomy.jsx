@@ -1,6 +1,6 @@
 "use client"
 
-import { Typography } from '@mui/material';
+import { FormControl, Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import Image from 'next/image';
 import { useParams, useSearchParams } from 'next/navigation';
@@ -8,6 +8,8 @@ import icon from '../../../resources/img/Frame.svg';
 import graphic from '../../../resources/img/graphic-leve.png';
 import { ResultEconomyDiscount as Banner, ResultEconomyContainer as Container, ResultEconomyToUnderstandContent as Content, ResultEconomyComparissonContent as Header, LeveEconomyInfo, LeveMonthlyDiscount, ResultEconomyDiscountGraph, TodayPriceInfo } from './styles';
 import { useStoreUser } from '@/app/hooks/useStore';
+import { Sliders } from '@/app/pages/components/simulate-economy/styles';
+import { useState } from 'react';
 
 export default function ResultEconomy() {
 
@@ -15,19 +17,15 @@ export default function ResultEconomy() {
     const store = useStoreUser()
 
     const isCompany = store.isCompany
-    // const cost = userData.valor;
     const cost = store.cost;
 
     const location = isCompany ? 'empresa' : 'residência'
     const percentageDiscount = 0.1     //for 10% of discount 
 
-    const leveCost = () => {
-        return parseFloat(cost - (cost * percentageDiscount)).toFixed(2).replace(".", ",");
-    }
+    const [simulationCost, setSimulationCost] = useState(cost)
 
-    const leveYearTotalDiscount = () => {
-        return parseFloat(((cost * percentageDiscount) * 12)).toFixed(2).replace(".", ",");
-    }
+    const leveCost = parseFloat(cost - (cost * percentageDiscount)).toFixed(2).replace(".", ",");
+    const leveYearTotalDiscount = parseFloat(((simulationCost * percentageDiscount) * 12)).toFixed(2).replace(".", ",");
 
     return (
         <Container>
@@ -38,7 +36,7 @@ export default function ResultEconomy() {
                 </TodayPriceInfo>
                 <LeveEconomyInfo>
                     <Typography variant="subtitle1" >Com a Leve você pagará:</Typography>
-                    <Typography variant="h1" >R$ {leveCost()} 😀</Typography>
+                    <Typography variant="h1" >{`R$ ${leveCost} 😀`}</Typography>
                 </LeveEconomyInfo>
             </Header>
 
@@ -50,8 +48,17 @@ export default function ResultEconomy() {
                         <Image src={icon} alt='ícone de porcentagem de desconto da Leve' loading="eager" priority={true} />
                         <Typography variant="h1">Tenha {percentageDiscount * 100}% de desconto todo mês!</Typography>
                     </LeveMonthlyDiscount>
-                    <Typography variant="subtitle1">Em 1 ano com a Leve a sua  {location} economizará</Typography>
-                    <Typography variant="h1" className='yearDiscountLeve'>R$ {leveYearTotalDiscount()}</Typography>
+                    <Typography variant="subtitle1">Em 1 ano com a Leve a sua {location} economizará</Typography>
+                    <Typography variant="h1" className='yearDiscountLeve'>R$ {leveYearTotalDiscount}</Typography>
+                    <FormControl className="slider">
+                        <Sliders
+                            onChange={(event) => setSimulationCost(event.target.value)}
+                            value={simulationCost}
+                            min={150}
+                            max={3000}
+                            valueLabelDisplay="auto" />
+                        {simulationCost != cost && <Typography className="simulationCost">(se seu custo mensal médio fosse de:<span className="simulationCostValue">{`R$ ${simulationCost}`}</span>)</Typography>}
+                    </FormControl>
                 </Banner>
 
                 <ResultEconomyDiscountGraph>

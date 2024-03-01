@@ -217,6 +217,28 @@ export const ResultEconomyDiscount = styled.div`
     margin: 1rem;
 
   }
+
+  .slider {
+    width: 90%;
+    margin:0 auto;
+  }
+  .simulationCost{
+    font-family: Inter;
+    font-size: .8rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+
+    margin: 0 auto;
+  }
+  .simulationCostValue{
+    font-family: Inter;
+    margin-left: 4px;
+    font-size: .8rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
   
   `;
 

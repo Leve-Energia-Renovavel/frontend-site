@@ -149,9 +149,9 @@ export const FormContainer = styled.form`
       
     }
       
-  input {
-    width: 100%;
-  }
+    input {
+      width: 100%;
+    }
 
       .averageMonthlyCost{
         font-family: Inter;
