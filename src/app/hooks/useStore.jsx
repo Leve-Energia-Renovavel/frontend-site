@@ -4,12 +4,25 @@ export const useStoreUser = create((set) => ({
     user: {
         uuid: "",
         username: "",
-        companyName: "",
         email: "",
         phone: null,
         cep: "",
         cost: 0,
+
+        companyName: "",
+
+        discount: 0,
         isCompany: false,
+        isLowCost: false,
+        isOutOfRange: false,
+
+        birthDate: "",
+        rg: "",
+        cpf: "",
+        maritalStatus: "",
+        profession: "",
+        nationality: "",
+
     },
     updateUser: (newUser) =>
         set((state) => ({
@@ -25,9 +38,12 @@ export const useStoreAddress = create((set) => ({
         street: "",
         number: "",
         neighborhood: "",
+        cityId: 0,
+        stateId: 0,
         city: "",
         state: "",
         cep: "",
+        installationNumber: "",
     },
     updateAddress: (newAddress) =>
         set((state) => ({

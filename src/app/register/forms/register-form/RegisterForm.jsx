@@ -16,6 +16,18 @@ import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { companySchema, userSchema } from "./schema";
 import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, fileInputStyles } from "./styles";
+import { requestSuccessful } from "@/app/service/utils/Validations";
+
+
+const savingData = async (data) => {
+    try {
+        return await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up`, data);
+    } catch (error) {
+        console.error(error);
+        return error
+    }
+}
+
 
 export default function RegisterForm() {
 
@@ -46,7 +58,7 @@ export default function RegisterForm() {
         name: useRef(null),
         rg: useRef(null),
         cpf: useRef(null),
-        birthday: useRef(null),
+        birthDate: useRef(null),
         nationality: useRef(null),
         maritalStatus: useRef(null),
         profession: useRef(null),
@@ -77,10 +89,11 @@ export default function RegisterForm() {
         installationNumber: useRef(null)
     }
 
-    const schemaValidation = (isCompany, data) => {
+    const schemaValidation = async (isCompany, data) => {
         if (isCompany) {
-            companySchema.validate(data, { abortEarly: false })
+            await companySchema.validate(data, { abortEarly: false })
                 .then(() => {
+
                 })
                 .catch((err) => {
                     console.log(err.errors);
@@ -88,120 +101,65 @@ export default function RegisterForm() {
                 });
 
         } else {
-            userSchema.validate(data, { abortEarly: false })
-                .then(() => {
+            await userSchema.validate(data, { abortEarly: false })
+                .then(async () => {
+
+                    return await savingData(data)
+
+                    // store.updateUser({
+                    //     birthDate: data.data_nascimento,
+                    //     rg: data.rg,
+                    //     cpf: data.cpf,
+                    //     maritalStatus: data.estado_civil,
+                    //     profession: data.profissao,
+                    //     nationality: data.nacionalidade,
+                    // });
+
                 })
                 .catch((err) => {
                     console.log(err.errors);
-                    setValidationErrors(err.errors)
+                    console.log(err.errors);
+                    return err.errors
                 });
         }
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
 
-        var data = {}
-        if (isCompany) {
-            data = {
-                company: {
-                    companyName: companyRefs.companyName.current.value,
-                    corporateReason: companyRefs.corporateReason.current.value,
-                    cnpj: companyRefs.cnpj.current.value,
-                    responsibleName: companyRefs.responsibleName.current.value,
-                    companyEmail: companyRefs.companyEmail.current.value,
-                    companyPhone: companyRefs.companyPhone.current.value,
-                },
-                address: {
-                    address: addressRefs.address.current.value,
-                    addressNumber: addressRefs.addressNumber.current.value,
-                    addressCep: addressRefs.addressCep.current.value,
-                    addressComplement: addressRefs.addressComplement.current.value,
-                    neighborhood: addressRefs.neighborhood.current.value,
-                    state: addressRefs.state.current.value,
-                    city: addressRefs.city.current.value,
-                    installationNumber: addressRefs.installationNumber.current.value
-                },
-
-            }
-        } else {
-            data = {
-                user: {
-                    name: userRefs.name.current.value,
-                    rg: userRefs.rg.current.value,
-                    cpf: userRefs.cpf.current.value,
-                    birthday: userRefs.birthday.current.value,
-                    nationality: userRefs.nationality.current.value,
-                    maritalStatus: userRefs.maritalStatus.current.value,
-                    profession: userRefs.profession.current.value,
-                    email: userRefs.email.current.value,
-                    phone: userRefs.phone.current.value,
-                },
-                address: {
-                    address: addressRefs.address.current.value,
-                    addressNumber: addressRefs.addressNumber.current.value,
-                    addressCep: addressRefs.addressCep.current.value,
-                    addressComplement: addressRefs.addressComplement.current.value,
-                    neighborhood: addressRefs.neighborhood.current.value,
-                    state: addressRefs.state.current.value,
-                    city: addressRefs.city.current.value,
-                    installationNumber: addressRefs.installationNumber.current.value
-                },
-            }
-
+        const submitData = {
+            uuid: store.user.uuid,
+            nome: userRefs.name.current.value,
+            email: userRefs.email.current.value,
+            telefone: userRefs.phone.current.value,
+            cep: addressRefs.addressCep.current.value,
+            endereco: addressRefs.address.current.value,
+            numero: parseFloat(addressRefs.addressNumber.current.value.replace(/[^0-9.]/g, "")),
+            bairro: addressRefs.neighborhood.current.value,
+            estado_id: storeAddress.address.stateId,
+            cidade_id: storeAddress.address.cityId,
+            valor: cost,
+            rg: userRefs.rg.current.value,
+            data_nascimento: userRefs.birthDate.current.value,
+            nacionalidade: userRefs.nationality.current.value,
+            profissao: userRefs.profession.current.value,
+            estado_civil: userRefs.maritalStatus.current.value,
+            cpf: userRefs.cpf.current.value,
+            numero_instalacao: addressRefs.installationNumber.current.value
         }
 
-        schemaValidation(isCompany, data)
+        console.log("submitData ====>>", submitData)
 
-        var submitData = {}
-        if (isCompany) {
-            submitData = {
-                nome: companyRefs.companyName.current.value,
-                email: companyRefs.companyEmail.current.value,
-                telefone: companyRefs.companyPhone.current.value,
-                cep: addressRefs.addressCep.current.value,
-                endereco: addressRefs.address.current.value,
-                numero: addressRefs.addressNumber.current.value,
-                bairro: addressRefs.neighborhood.current.value,
-                estado_id: "14",
-                cidade_id: "2754",
-                valor: cost
-            }
+        const response = await schemaValidation(isCompany, submitData)
+        console.log("response ====>>", response)
 
-        } else {
-            submitData = {
-                nome: userRefs.name.current.value,
-                email: userRefs.email.current.value,
-                telefone: userRefs.phone.current.value,
-                cep: addressRefs.addressCep.current.value,
-                endereco: addressRefs.address.current.value,
-                numero: addressRefs.addressNumber.current.value,
-                bairro: addressRefs.neighborhood.current.value,
-                estado_id: "14",
-                cidade_id: "2754",
-                valor: cost
-            }
+        // router.push(`/register/contract-signature`)
 
-        }
-
-        console.log(data)
-        // console.log(submitData)
-
-
-        // store.updateUser({
-        //     username: data.user.name,
-        //     phone: data.user.phone,
-        //     email: data.user.email,
-        // });
-
-        router.push(`/register/contract-signature`)
 
     }
 
     useEffect(() => {
     }, [validationErrors])
-
-
 
     function formatPhoneNumber(phoneNumber) {
         if (phoneNumber) {
@@ -299,7 +257,7 @@ export default function RegisterForm() {
                                 <TextField inputRef={userRefs.email} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" required InputLabelProps={{ shrink: true }} />
                             </FormRow>
 
-                            <InputMask mask="(99) 99999-9999" required value={formatPhoneNumber(phone) || ""} onChange={(e) => store.setPhone(e.target.value)}>
+                            <InputMask mask="(99) 99999-9999" required value={formatPhoneNumber(phone) || ""} onChange={(e) => store.updateUser({ phone: e.target.value })}>
                                 {() => <TextField
                                     inputRef={userRefs.phone} className="formInput" label="Celular" placeholder="Celular" variant="outlined" type="text" InputLabelProps={{ shrink: true }} required />}
                             </InputMask>
@@ -314,7 +272,7 @@ export default function RegisterForm() {
                             </InputMask>
 
                             <InputMask mask="99/99/9999" required>
-                                {() => <TextField inputRef={userRefs.birthday} className="formInput" label="Data de Nascimento" variant="outlined" placeholder="Data de Nascimento" type="text" required />}
+                                {() => <TextField inputRef={userRefs.birthDate} className="formInput" label="Data de Nascimento" variant="outlined" placeholder="Data de Nascimento" type="text" required />}
                             </InputMask>
                             <TextField
                                 id="maritalStatus"
@@ -383,7 +341,7 @@ export default function RegisterForm() {
                         <Divider sx={{ width: '107px', border: '1px solid #A0A0A0' }} />
                     </div>
 
-                    <InputMask mask="99999-999" value={cep || ''} onChange={(e) => store.setCEP(e.target.value)}>
+                    <InputMask mask="99999-999" value={cep || ''} onChange={(e) => store.updateUser({ cep: e.target.value })}>
                         {() => <TextField className="formInput" inputRef={addressRefs.addressCep} label="CEP" variant="outlined" placeholder="CEP" type="text" InputLabelProps={{ shrink: true }} required />}
                     </InputMask>
 

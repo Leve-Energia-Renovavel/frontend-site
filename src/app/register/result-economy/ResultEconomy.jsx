@@ -20,7 +20,7 @@ export default function ResultEconomy() {
     const cost = store.user.cost;
 
     const location = isCompany ? 'empresa' : 'residência'
-    const percentageDiscount = 0.1     //for 10% of discount 
+    const percentageDiscount = store.user.discount == 0 ? 0.1 : store.user.discount
 
     const [simulationCost, setSimulationCost] = useState(cost)
 
