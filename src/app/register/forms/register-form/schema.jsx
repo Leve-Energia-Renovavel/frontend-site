@@ -14,6 +14,16 @@ export const validationSchema = yup.object({
     cep: yup.string().required('O campo CEP é obrigatório').matches(/^\d{5}-\d{3}$/, 'Formato de CEP inválido'),
     cost: yup.number().required('O campo de Custo é obrigatório'),
     type: yup.string(),
+    birthDate: yup.date()
+        .required('O campo Data de Nascimento é obrigatório')
+        .test('is-over-18', 'Você deve ser maior de 18 anos', (value) => {
+            if (!value) return false;
+            const today = new Date();
+            const userBirthday = new Date(value);
+            const ageDifference = today.getFullYear() - userBirthday.getFullYear();
+            const birthdayInThisYear = new Date(today.getFullYear(), userBirthday.getMonth(), userBirthday.getDate());
+            return ageDifference > 18 || (ageDifference === 18 && today >= birthdayInThisYear);
+        })
 });
 
 export const userSchema = yup.object({

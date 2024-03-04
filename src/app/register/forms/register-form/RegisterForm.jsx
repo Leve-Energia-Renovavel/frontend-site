@@ -1,7 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
+import { useStoreAddress, useStoreCompany, useStoreUser } from "@/app/hooks/useStore";
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
+import { maritalStatusOptions, nationalityOptions, professionOptions } from "@/app/utils/form-options/formOptions";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import SearchIcon from '@mui/icons-material/Search';
 import { Button, Divider, MenuItem, TextField, Typography } from "@mui/material";
@@ -14,9 +16,6 @@ import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { companySchema, userSchema } from "./schema";
 import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, fileInputStyles } from "./styles";
-import { useStoreUser, useStoreAddress, useStoreCompany } from "@/app/hooks/useStore";
-import { requestSuccessful } from "@/app/service/utils/Validations";
-import { maritalStatusOptions, nationalityOptions, professionOptions } from "@/app/utils/form-options/formOptions";
 
 export default function RegisterForm() {
 
@@ -33,12 +32,12 @@ export default function RegisterForm() {
     const [energyExtractFile, setEnergyExtractFile] = useState(null);
     const [validationErrors, setValidationErrors] = useState([]);
 
-    const { username, email, phone, cep, companyName, cost } = store
+    const { username, email, phone, cep, companyName, cost } = store.user
     const { street, neighborhood, city, state } = storeAddress.address
 
     const company = storeCompany.company
 
-    const isCompany = store.isCompany
+    const isCompany = store.user.isCompany
 
     const params = useParams()
     const search = useSearchParams()
@@ -188,9 +187,12 @@ export default function RegisterForm() {
         console.log(data)
         // console.log(submitData)
 
-        store.setUsername(data.user.name)
-        store.setEmail(data.user.email)
-        store.setPhone(data.user.phone)
+
+        // store.updateUser({
+        //     username: data.user.name,
+        //     phone: data.user.phone,
+        //     email: data.user.email,
+        // });
 
         router.push(`/register/contract-signature`)
 
@@ -202,11 +204,13 @@ export default function RegisterForm() {
 
 
     function formatPhoneNumber(phoneNumber) {
-        const matches = phoneNumber.match(/^(\d{2})(\d{5})(\d{4})$/);
-        if (matches) {
-            return `(${matches[1]}) ${matches[2]}-${matches[3]}`;
-        } else {
-            return phoneNumber
+        if (phoneNumber) {
+            const matches = phoneNumber.match(/^(\d{2})(\d{5})(\d{4})$/);
+            if (matches) {
+                return `(${matches[1]}) ${matches[2]}-${matches[3]}`;
+            } else {
+                return phoneNumber
+            }
         }
     };
 

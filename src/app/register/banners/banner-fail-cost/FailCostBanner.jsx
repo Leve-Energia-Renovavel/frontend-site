@@ -1,23 +1,19 @@
 
 "use client"
 
+import { useStoreUser } from "@/app/hooks/useStore";
 import { Button, Typography } from "@mui/material";
 import { useParams, useRouter } from 'next/navigation';
 import { BannerContainer, ButtonContainer, ContentContainer } from "./styles";
 
-export default function RegisterBannerFailCost(props) {
+export default function RegisterBannerFailCost() {
 
     const router = useRouter()
     const params = useParams()
 
-    const userData = props.userData
-
-    const userType = params?.userType
-
-    const name = userData.nome;
-    const fullName = name.split(" ");
-    const userName = fullName[0] + " " + fullName[fullName.length - 1]
-    const location = userType == 'cnpj' ? 'empresa' : 'residência'
+    const store = useStoreUser()
+    const isCompany = store.isCompany
+    const location = isCompany ? 'empresa' : 'residência'
 
     return (
         <BannerContainer>

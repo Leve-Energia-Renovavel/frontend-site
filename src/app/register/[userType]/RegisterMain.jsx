@@ -38,7 +38,7 @@ export default function RegisterMain() {
     useEffect(() => {
         const fetchData = async () => {
 
-            store.setUUID(uuid)
+            store.updateUser({ uuid: uuid });
 
             try {
                 const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
@@ -47,11 +47,15 @@ export default function RegisterMain() {
                     const consumer = userResponse?.data?.instalacao?.consumidor
                     const cep = consumer?.cep
 
-                    store.setUsername(consumer?.nome)
-                    store.setPhone(consumer?.telefone)
-                    store.setEmail(consumer?.email)
-                    store.setCost(consumer?.valor)
-                    store.setCEP(cep)
+                    console.log("consumer ===>>", consumer)
+
+                    store.updateUser({
+                        username: consumer?.nome,
+                        phone: consumer?.telefone,
+                        email: consumer?.email,
+                        cost: consumer?.valor,
+                        cep: cep
+                    });
 
                     const addressResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, {
                         params: { cep: cep }

@@ -1,9 +1,9 @@
 "use client"
 
+import { notFound } from "next/navigation";
 import AlmostThere from "../banners/banner-almost-there/AlmostThereBanner";
 import FormBanner from "../banners/form-banner/FormBanner";
 import ContractAuthForm from "../forms/contract-auth-form/ContractAuthForm";
-import { notFound } from "next/navigation";
 
 const loadUserData = () => {
     if (typeof window !== 'undefined' && window?.history?.state?.name) {
@@ -32,8 +32,8 @@ export default function ContractAuthentication() {
 
     return (
         <div>
-            <AlmostThere userData={userData} confirmationByEmail={userData.user ? true : false} />
-            <ContractAuthForm userData={userData} confirmationByEmail={userData.user ? true : false} />
+            <AlmostThere />
+            <ContractAuthForm />
             <FormBanner />
         </div>
     );

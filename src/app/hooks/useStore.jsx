@@ -1,22 +1,24 @@
 import { create } from "zustand";
 
 export const useStoreUser = create((set) => ({
-    uuid: "",
-    username: "",
-    companyName: "",
-    email: "",
-    phone: "",
-    cep: "",
-    cost: 0,
-    isCompany: false,
-    setUUID: (uuid) => set(() => ({ uuid: uuid })),
-    setUsername: (username) => set(() => ({ username: username })),
-    setCompanyName: (companyName) => set(() => ({ companyName: companyName })),
-    setEmail: (email) => set(() => ({ email: email })),
-    setPhone: (phone) => set(() => ({ phone: phone })),
-    setCost: (cost) => set(() => ({ cost: cost })),
-    setCEP: (cep) => set(() => ({ cep: cep })),
-}))
+    user: {
+        uuid: "",
+        username: "",
+        companyName: "",
+        email: "",
+        phone: null,
+        cep: "",
+        cost: 0,
+        isCompany: false,
+    },
+    updateUser: (newUser) =>
+        set((state) => ({
+            user: {
+                ...state.user,
+                ...newUser
+            }
+        }))
+}));
 
 export const useStoreAddress = create((set) => ({
     address: {

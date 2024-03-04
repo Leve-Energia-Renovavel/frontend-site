@@ -1,9 +1,9 @@
 "use client"
 
-import { Typography } from "@mui/material"
-import { BannerContainer, ContentContainer } from "./styles"
-import { useParams, useSearchParams } from 'next/navigation';
 import { useStoreUser } from "@/app/hooks/useStore";
+import { Typography } from "@mui/material";
+import { useParams } from 'next/navigation';
+import { BannerContainer, ContentContainer } from "./styles";
 
 export default function RegisterBannerSuccess(props) {
 
@@ -12,7 +12,7 @@ export default function RegisterBannerSuccess(props) {
 
     const isCompany = store.isCompany
 
-    const name = store.username;
+    const name = store.user.username;
     const fullName = name.split(" ");
     const firstName = fullName[0]
 
@@ -22,6 +22,7 @@ export default function RegisterBannerSuccess(props) {
         <BannerContainer>
             <ContentContainer>
                 <Typography variant="body1" component="h1">{`Boas notícias${firstName && `, ${firstName}`}! 🎉`}</Typography>
+                {/* <Typography variant="body1" component="h1">{`Boas notícias! 🎉`}</Typography> */}
                 <Typography variant="subtitle1" className="boldSubtitle">A Leve já chegou na sua região!</Typography>
                 <Typography variant="subtitle1" className="subtitle">Veja abaixo o resultado da economia de sua {location}</Typography>
             </ContentContainer>

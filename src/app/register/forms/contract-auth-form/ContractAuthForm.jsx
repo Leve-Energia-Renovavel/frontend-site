@@ -13,17 +13,18 @@ import { useEffect, useRef, useState } from "react";
 import ContractAuthFormProgress from "./ContractAuthFormProgress";
 import ContractAuthFormTitle from "./ContractAuthFormTitle";
 import { AlertAuth, AuthBoxes, ButtonContainer, FormContainer, FormContent, FormHeader, ResendTokenContainer, SafeEnvironmentFooter, TermsAndPolicyContainer, boxesStyles, finishButtonStyles, verifiedIconStyles } from "./styles";
+import { useStoreUser } from "@/app/hooks/useStore";
 
 const handleSubmit = (event) => {
     event.preventDefault()
     console.log("submit")
 }
 
-export default function ContractAuthForm(props) {
+export default function ContractAuthForm() {
 
     const router = useRouter()
-    const confirmationByEmail = props.confirmationByEmail
-    const userData = props.userData
+    const store = useStoreUser()
+    const confirmationByEmail = true
 
     const codeLength = 6
     const initialCodes = Array(codeLength).fill('')
@@ -117,7 +118,7 @@ export default function ContractAuthForm(props) {
                 <FormContent>
                     <VerifiedUserIcon sx={verifiedIconStyles} />
                     <Typography variant="h1"> Token de autenticação</Typography>
-                    <Typography variant="subtitle1" className="bold">Enviado para: {confirmationByEmail ? userData.user.email : userData.company.companyPhone}</Typography>
+                    <Typography variant="subtitle1" className="bold">Enviado para: {confirmationByEmail ? store.email : store.phone}</Typography>
                     <Typography variant="subtitle1" >Insira o token para finalizar</Typography>
 
                     <AuthBoxes>

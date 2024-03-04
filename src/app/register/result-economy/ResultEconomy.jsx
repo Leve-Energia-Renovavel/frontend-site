@@ -1,23 +1,23 @@
 "use client"
 
+import { useStoreUser } from '@/app/hooks/useStore';
+import { Sliders } from '@/app/pages/components/simulate-economy/styles';
 import { FormControl, Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
 import Image from 'next/image';
-import { useParams, useSearchParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import icon from '../../../resources/img/Frame.svg';
 import graphic from '../../../resources/img/graphic-leve.png';
 import { ResultEconomyDiscount as Banner, ResultEconomyContainer as Container, ResultEconomyToUnderstandContent as Content, ResultEconomyComparissonContent as Header, LeveEconomyInfo, LeveMonthlyDiscount, ResultEconomyDiscountGraph, TodayPriceInfo } from './styles';
-import { useStoreUser } from '@/app/hooks/useStore';
-import { Sliders } from '@/app/pages/components/simulate-economy/styles';
-import { useState } from 'react';
 
 export default function ResultEconomy() {
 
     const params = useParams()
     const store = useStoreUser()
 
-    const isCompany = store.isCompany
-    const cost = store.cost;
+    const isCompany = store.user.isCompany
+    const cost = store.user.cost;
 
     const location = isCompany ? 'empresa' : 'residência'
     const percentageDiscount = 0.1     //for 10% of discount 
@@ -26,6 +26,10 @@ export default function ResultEconomy() {
 
     const leveCost = parseFloat(cost - (cost * percentageDiscount)).toFixed(2).replace(".", ",");
     const leveYearTotalDiscount = parseFloat(((simulationCost * percentageDiscount) * 12)).toFixed(2).replace(".", ",");
+
+    useEffect(() => {
+        setSimulationCost(cost)
+    }, [cost])
 
     return (
         <Container>
@@ -56,8 +60,8 @@ export default function ResultEconomy() {
                             value={simulationCost}
                             min={150}
                             max={3000}
-                            valueLabelDisplay="auto" />
-                        {simulationCost != cost && <Typography className="simulationCost">(se seu custo mensal médio fosse de:<span className="simulationCostValue">{`R$ ${simulationCost}`}</span>)</Typography>}
+                            valueLabelDisplay="off" />
+                        {simulationCost !== cost && <Typography className="simulationCost">(se seu custo mensal médio fosse de:<span className="simulationCostValue">{`R$ ${simulationCost}`}</span>)</Typography>}
                     </FormControl>
                 </Banner>
 
