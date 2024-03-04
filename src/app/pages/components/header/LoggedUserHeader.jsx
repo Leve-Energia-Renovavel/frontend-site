@@ -10,7 +10,7 @@ import { HeaderMenuItem, LogoContainer, MenuItem, Nav, Ul } from "./styles";
 
 export default function LoggedUserHeader() {
     const router = useRouter()
-    const { username } = useStoreUser()
+    const user = useStoreUser().user
 
     return (
         <>
@@ -74,7 +74,7 @@ export default function LoggedUserHeader() {
                         </Select>
                     </Box>
                     <MenuItem>
-                        <Link href="/">Olá, {username}</Link>
+                        <Link href="/">Olá, {user.username}</Link>
                     </MenuItem>
                     <MenuItem>
                         <HeaderButton

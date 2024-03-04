@@ -26,9 +26,9 @@ export default function RegisterMain() {
 
     // const uuid = search.get("uuid")
     // const uuid = "20d04059-a75b-403b-910e-e59096a1370b"   //teste Milton
-    
+
     const uuid = "b2fc67d3-a48e-47d2-972e-629da4dafcfc"   //teste um
-    
+
     // const uuid = "bc2ad4c7-c9c7-4743-8f70-50431af52565" //teste dois
 
     var isCompany = store.user.isCompany
@@ -53,7 +53,7 @@ export default function RegisterMain() {
                     const cep = consumer?.cep
 
                     store.updateUser({
-                        username: consumer?.sobrenome,
+                        username: consumer?.nome + " " + consumer?.sobrenome,
                         phone: consumer?.telefone,
                         email: consumer?.email,
                         cost: instalacao?.valor_base_consumo,

@@ -22,7 +22,6 @@ export default function RegisterBannerSuccess(props) {
         <BannerContainer>
             <ContentContainer>
                 <Typography variant="body1" component="h1">{`Boas notícias${firstName && `, ${firstName}`}! 🎉`}</Typography>
-                {/* <Typography variant="body1" component="h1">{`Boas notícias! 🎉`}</Typography> */}
                 <Typography variant="subtitle1" className="boldSubtitle">A Leve já chegou na sua região!</Typography>
                 <Typography variant="subtitle1" className="subtitle">Veja abaixo o resultado da economia de sua {location}</Typography>
             </ContentContainer>
