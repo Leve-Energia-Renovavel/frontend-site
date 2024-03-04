@@ -16,11 +16,11 @@ export const maritalStatusOptions = [
 export const nationalityOptions = [
     {
         label: "Brasileiro(a)",
-        value: "brasileiro",
+        value: "brasileira",
     },
     {
         label: "Estrangeiro(a)",
-        value: "estrangeiro",
+        value: "estrangeira",
     },
 ]
 export const professionOptions = [
@@ -41,3 +41,4 @@ export const professionOptions = [
         value: "aposentado",
     },
 ]
+

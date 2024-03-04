@@ -3,7 +3,7 @@ import { create } from "zustand";
 export const useStoreUser = create((set) => ({
     user: {
         uuid: "",
-        username: "",
+        name: "",
         email: "",
         phone: null,
         cep: "",
@@ -70,4 +70,29 @@ export const useStoreCompany = create((set) => ({
                 ...newCompany
             }
         }))
+}));
+
+export const useInstallationsStore = create((set) => ({
+    installations: [
+        {
+            address: "Alameda José de Oliveira Guimarães 563 casa 23.",
+            city: "Uberlândia",
+            state: "MG",
+            zipCode: "38412324",
+            amount: 80.75,
+            dueDate: "05/02/2024",
+            status: "pendente",
+        }
+    ],
+    addInstallation: (newInstallation) => set((state) => ({
+        installations: [...state.installations, newInstallation]
+    })),
+    updateInstallation: (index, updatedInstallation) => set((state) => ({
+        installations: state.installations.map((installation, i) =>
+            i === index ? { ...installation, ...updatedInstallation } : installation
+        )
+    })),
+    deleteInstallation: (index) => set((state) => ({
+        installations: state.installations.filter((_, i) => i !== index)
+    }))
 }));

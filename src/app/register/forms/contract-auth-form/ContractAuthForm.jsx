@@ -2,6 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 
+import { useStoreUser } from "@/app/hooks/useStore";
 import DefaultButton from "@/app/pages/components/utils/buttons/DefaultButton";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import LockIcon from '@mui/icons-material/Lock';
@@ -13,7 +14,6 @@ import { useEffect, useRef, useState } from "react";
 import ContractAuthFormProgress from "./ContractAuthFormProgress";
 import ContractAuthFormTitle from "./ContractAuthFormTitle";
 import { AlertAuth, AuthBoxes, ButtonContainer, FormContainer, FormContent, FormHeader, ResendTokenContainer, SafeEnvironmentFooter, TermsAndPolicyContainer, boxesStyles, finishButtonStyles, verifiedIconStyles } from "./styles";
-import { useStoreUser } from "@/app/hooks/useStore";
 
 const handleSubmit = (event) => {
     event.preventDefault()
@@ -162,5 +162,3 @@ export default function ContractAuthForm() {
 
     );
 }
-
-ContractAuthForm;

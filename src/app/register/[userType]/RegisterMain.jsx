@@ -53,7 +53,7 @@ export default function RegisterMain() {
                     const cep = consumer?.cep
 
                     store.updateUser({
-                        username: consumer?.nome + " " + consumer?.sobrenome,
+                        name: consumer?.nome + " " + consumer?.sobrenome,
                         phone: consumer?.telefone,
                         email: consumer?.email,
                         cost: instalacao?.valor_base_consumo,

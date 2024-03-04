@@ -12,7 +12,7 @@ export default function RegisterBannerSuccess(props) {
 
     const isCompany = store.isCompany
 
-    const name = store.user.username;
+    const name = store.user.name;
     const fullName = name.split(" ");
     const firstName = fullName[0]
 

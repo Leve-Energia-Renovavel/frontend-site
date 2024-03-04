@@ -84,6 +84,28 @@ export const FormContent = styled.form`
     }
   }
 
+  .installationNumberField {
+    border-color: #0075FF;
+
+      & label {
+        color: #0075FF;
+      }
+
+      & .MuiOutlinedInput-root {
+        & fieldset {
+          border-color: #0075FF;
+        }
+
+        &:hover fieldset {
+          border-color: #0075FF;
+        }
+
+        &.Mui-focused fieldset {
+          border-color: #0075FF;
+        }
+      }
+  }
+
   `
 
 export const FormRow = styled.div`

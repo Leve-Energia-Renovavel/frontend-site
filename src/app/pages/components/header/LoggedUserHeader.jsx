@@ -74,7 +74,7 @@ export default function LoggedUserHeader() {
                         </Select>
                     </Box>
                     <MenuItem>
-                        <Link href="/">Olá, {user.username}</Link>
+                        <Link href="/">Olá, {user.name}</Link>
                     </MenuItem>
                     <MenuItem>
                         <HeaderButton

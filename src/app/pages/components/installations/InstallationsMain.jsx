@@ -10,26 +10,18 @@ import InputMask from "react-input-mask";
 import FormButton from "../utils/buttons/FormButton";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
 import { ButtonContainer, InstallationsMainContainer as Container, HomeIconStyled, InstallationsMainContent, MainInstallationInfoContainer as MainInstallationInfo, NewInstallationContent, TitleContainer } from "./styles";
+import { useInstallationsStore } from "@/app/hooks/useStore";
 
 export default function InstallationsMain() {
 
 
     const router = useRouter()
 
+    const storeInstallations = useInstallationsStore()
+    const installations = useInstallationsStore().installations
+
     const [openForm, setOpenForm] = useState(false)
     const [installationCost, setInstallationCost] = useState()
-
-    const [installations, setInstallations] = useState([
-        {
-            address: "Alameda José de Oliveira Guimarães 563 casa 23.",
-            city: "Uberlândia",
-            state: "MG",
-            zipCode: "38412324",
-            amount: 80.75,
-            dueDate: "05/02/2024",
-            status: "pendente",
-        },
-    ]);
 
     const newInstallationRef = {
         address: useRef(null),
@@ -79,8 +71,7 @@ export default function InstallationsMain() {
         }
 
         console.log("InstallationsMain handleSubmit ===>>", data)
-
-        setInstallations(prevInstallations => [...prevInstallations, data]);
+        storeInstallations.addInstallation(data);
         setOpenForm(false)
 
     }
@@ -147,23 +138,9 @@ export default function InstallationsMain() {
                                 <TextField className="formInput" inputRef={newInstallationRef.state} label="Estado" variant="outlined" placeholder="Estado" type="text" InputLabelProps={{ shrink: true }} />
                                 <TextField className="formInput" inputRef={newInstallationRef.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} />
 
-                                <TextField sx={{
-                                    borderColor: '#0075FF',
-                                    '& label': {
-                                        color: '#0075FF',
-                                    },
-                                    '& .MuiOutlinedInput-root': {
-                                        '& fieldset': {
-                                            borderColor: '#0075FF',
-                                        },
-                                        '&:hover fieldset': {
-                                            borderColor: '#0075FF',
-                                        },
-                                        '&.Mui-focused fieldset': {
-                                            borderColor: '#0075FF',
-                                        },
-                                    },
-                                }} inputRef={newInstallationRef.installationNumber} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text" />
+                                <TextField
+                                    className="installationNumberField"
+                                    inputRef={newInstallationRef.installationNumber} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text" />
                                 <ButtonContainer>
                                     <NewInstallationButton text="Cancelar" onClick={() => setOpenForm(false)} />
                                     <FormButton text="Confirmar Novo Endereço" type="submit" />

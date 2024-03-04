@@ -2,22 +2,24 @@
 "use client"
 
 import { useStoreAddress, useStoreCompany, useStoreUser } from "@/app/hooks/useStore";
+import useGetCEP from '@/app/hooks/utils/useGetCEP'; // Adjust the import path if needed
+import useGetCNPJ from "@/app/hooks/utils/useGetCNPJ";
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
+import { requestSuccessful } from "@/app/service/utils/Validations";
+import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { maritalStatusOptions, nationalityOptions, professionOptions } from "@/app/utils/form-options/formOptions";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import SearchIcon from '@mui/icons-material/Search';
 import { Button, Divider, MenuItem, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import RegisterModal from "../../modals/installation-number-modal/InstallationNumberModal";
 import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { companySchema, userSchema } from "./schema";
 import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, fileInputStyles } from "./styles";
-import { requestSuccessful } from "@/app/service/utils/Validations";
-
 
 const savingData = async (data) => {
     try {
@@ -44,15 +46,19 @@ export default function RegisterForm() {
     const [energyExtractFile, setEnergyExtractFile] = useState(null);
     const [validationErrors, setValidationErrors] = useState([]);
 
-    const { username, email, phone, cep, companyName, cost } = store.user
-    const { street, neighborhood, city, state } = storeAddress.address
+    const { name, email, phone, cep, companyName, cost } = store.user
+    const { street, neighborhood, city, state, stateId, cityId } = storeAddress.address
+
+    const stateOptionValue = stateOptions.find(option => option.cod_estados === stateId);
 
     const company = storeCompany.company
-
     const isCompany = store.user.isCompany
 
     const params = useParams()
     const search = useSearchParams()
+
+    const fetchCEP = useGetCEP();
+    const fetchCNPJ = useGetCNPJ();
 
     const userRefs = {
         name: useRef(null),
@@ -82,7 +88,7 @@ export default function RegisterForm() {
         address: useRef(null),
         addressNumber: useRef(null),
         addressCep: useRef(null),
-        addressComplement: useRef(null),
+        complement: useRef(null),
         neighborhood: useRef(null),
         state: useRef(null),
         city: useRef(null),
@@ -136,6 +142,7 @@ export default function RegisterForm() {
             endereco: addressRefs.address.current.value,
             numero: parseFloat(addressRefs.addressNumber.current.value.replace(/[^0-9.]/g, "")),
             bairro: addressRefs.neighborhood.current.value,
+            complemento: addressRefs.complement.current.value,
             estado_id: storeAddress.address.stateId,
             cidade_id: storeAddress.address.cityId,
             valor: cost,
@@ -153,13 +160,14 @@ export default function RegisterForm() {
         const response = await schemaValidation(isCompany, submitData)
         console.log("response ====>>", response)
 
+        if (requestSuccessful(response)) {
+            console.log("Success!")
+        }
+
         // router.push(`/register/contract-signature`)
 
 
     }
-
-    useEffect(() => {
-    }, [validationErrors])
 
     function formatPhoneNumber(phoneNumber) {
         if (phoneNumber) {
@@ -198,26 +206,7 @@ export default function RegisterForm() {
         }
     };
 
-    async function getCNPJ() {
-        const cnpj = companyRefs.cnpj.current.value.replace(/\D/g, '');
 
-        try {
-            const response = await axios.get(`https://publica.cnpj.ws/cnpj/${cnpj}`);
-            console.log(response)
-
-            const company = response?.data?.estabelecimento
-
-            storeCompany.updateCompany({
-                name: company?.nome_fantasia,
-                phone: company?.ddd1 + company?.telefone1,
-                corporateReason: response?.data?.razao_social,
-                cnpj: company?.cnpj,
-            })
-
-        } catch (error) {
-            console.error('Error fetching CNPJ data:', error);
-        }
-    }
 
     const handleNationalityChange = (value) => {
         setIsForeigner(value === "estrangeiro");
@@ -240,10 +229,10 @@ export default function RegisterForm() {
                                     InputProps={{
                                         endAdornment: <SearchIcon
                                             sx={{ cursor: 'pointer' }}
-                                            onClick={() => getCNPJ()} />,
+                                            onClick={() => fetchCNPJ(companyRefs.cnpj.current.value)} />,
                                     }} />}
                             </InputMask>
-                            <TextField className="formInput" inputRef={companyRefs.responsibleName} defaultValue={username || ''} label="Nome Completo do Responsável" variant="outlined" placeholder="Nome Completo do Responsável" type="text" InputLabelProps={{ shrink: true }} required />
+                            <TextField className="formInput" inputRef={companyRefs.responsibleName} defaultValue={name || ''} label="Nome Completo do Responsável" variant="outlined" placeholder="Nome Completo do Responsável" type="text" InputLabelProps={{ shrink: true }} required />
                             <TextField inputRef={companyRefs.companyEmail} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" InputLabelProps={{ shrink: true }} required />
                             <InputMask mask="(99) 99999-9999" value={formatPhoneNumber(company.phone) || ""} onChange={(e) => storeCompany.updateCompany({ phone: e.target.value })}>
                                 {() => <TextField sx={{ width: '300px' }} inputRef={companyRefs.companyPhone} className="formInput" label="Telefone do Responsável" variant="outlined" placeholder="Telefone do Responsável" type="text" InputLabelProps={{ shrink: true }} required />}
@@ -253,7 +242,7 @@ export default function RegisterForm() {
                     ) : (
                         <>
                             <FormRow>
-                                <TextField inputRef={userRefs.name} defaultValue={username || ''} className="formInput" label="Nome Completo" variant="outlined" placeholder="Nome Completo" type="text" required InputLabelProps={{ shrink: true }} />
+                                <TextField inputRef={userRefs.name} defaultValue={name || ''} className="formInput" label="Nome Completo" variant="outlined" placeholder="Nome Completo" type="text" required InputLabelProps={{ shrink: true }} />
                                 <TextField inputRef={userRefs.email} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" required InputLabelProps={{ shrink: true }} />
                             </FormRow>
 
@@ -285,7 +274,7 @@ export default function RegisterForm() {
                                     component: 'span',
                                 }}
                                 inputRef={userRefs.maritalStatus || ''}>
-                                {maritalStatusOptions.map((maritalStatus) => {
+                                {maritalStatusOptions?.map((maritalStatus) => {
                                     return (
                                         <MenuItem key={maritalStatus.label} value={maritalStatus.value}>{maritalStatus.label}</MenuItem>
                                     )
@@ -307,7 +296,7 @@ export default function RegisterForm() {
                                     component: 'span',
                                 }}
                                 required>
-                                {nationalityOptions.map((nationality) => {
+                                {nationalityOptions?.map((nationality) => {
                                     return (
                                         <MenuItem key={nationality.label} value={nationality.value}>{nationality.label}</MenuItem>
                                     )
@@ -330,7 +319,7 @@ export default function RegisterForm() {
                         }}
                         type="text"
                         required>
-                        {professionOptions.map((profession) => {
+                        {professionOptions?.map((profession) => {
                             return (
                                 <MenuItem key={profession.label} value={profession.value}>{profession.label}</MenuItem>
                             )
@@ -341,8 +330,21 @@ export default function RegisterForm() {
                         <Divider sx={{ width: '107px', border: '1px solid #A0A0A0' }} />
                     </div>
 
-                    <InputMask mask="99999-999" value={cep || ''} onChange={(e) => store.updateUser({ cep: e.target.value })}>
-                        {() => <TextField className="formInput" inputRef={addressRefs.addressCep} label="CEP" variant="outlined" placeholder="CEP" type="text" InputLabelProps={{ shrink: true }} required />}
+                    <InputMask mask="99999-999" value={cep || ''}
+                        onChange={(e) => store.updateUser({ cep: e.target.value })}>
+                        {() => <TextField
+                            className="formInput"
+                            inputRef={addressRefs.addressCep}
+                            label="CEP"
+                            variant="outlined"
+                            placeholder="CEP"
+                            type="text"
+                            InputLabelProps={{ shrink: true }}
+                            InputProps={{
+                                endAdornment: <SearchIcon
+                                    sx={{ cursor: 'pointer' }}
+                                    onClick={() => fetchCEP(addressRefs.addressCep.current.value)} />,
+                            }} required />}
                     </InputMask>
 
                     <TextField className="formInput" defaultValue={street || ''} inputRef={addressRefs.address} label="Endereço" variant="outlined" placeholder="Endereço" type="text" InputLabelProps={{ shrink: true }} required />
@@ -350,11 +352,30 @@ export default function RegisterForm() {
                         {() => <TextField className="formInput" inputRef={addressRefs.addressNumber} label="Nº" variant="outlined" placeholder="Nº" type="text" required />}
                     </InputMask>
 
-                    <TextField className="formInput" inputRef={addressRefs.addressComplement} label="Complemento" variant="outlined" placeholder="Complemento" type="text" />
+                    <TextField className="formInput" inputRef={addressRefs.complement} label="Complemento" variant="outlined" placeholder="Complemento" type="text" />
                     <TextField className="formInput" defaultValue={neighborhood || ''} inputRef={addressRefs.neighborhood} label="Bairro" variant="outlined" placeholder="Bairro" type="text" InputLabelProps={{ shrink: true }} required />
 
-                    <TextField className="formInput" defaultValue={state || ''} inputRef={addressRefs.state} label="Estado" variant="outlined" placeholder="Estado" type="text" InputLabelProps={{ shrink: true }} required />
-                    <TextField className="formInput" defaultValue={city || ''} inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} required />
+                    <TextField
+                        id="state"
+                        select
+                        value={stateOptionValue ? stateOptionValue.sigla : ''}
+                        label="Estado"
+                        placeholder="Estado"
+                        variant="outlined"
+                        className="formInput"
+                        InputLabelProps={{
+                            component: 'span',
+                        }}
+                        inputRef={addressRefs.state}
+                        required>
+                        {stateOptions?.map((state) => {
+                            return (
+                                <MenuItem key={state.cod_estados} value={state.sigla}>{state.sigla}</MenuItem>
+                            )
+                        })}
+                    </TextField>
+
+                    <TextField className="formInput" defaultValue={city.toUpperCase() || ''} inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} required />
 
                     <FormLastRow>
                         <TextField
