@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "npm run open-browser && next dev",
+    "export": "next build && next export",
     "build": "next build",
-    "start": "next start",
+    "start": "npx serve out -p 3000",
     "lint": "next lint",
     "open-browser": "start http://localhost:3000"
   },
