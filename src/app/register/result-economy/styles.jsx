@@ -22,7 +22,6 @@ export const ResultEconomyContainer = styled.div`
   margin: 0 auto;
   background-color: ${background.light};
 
-  overflow: auto;
   
   position: absolute;
   top: 75vh;

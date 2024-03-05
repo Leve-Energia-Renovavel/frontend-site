@@ -1,13 +1,14 @@
 import { useStoreUser } from "@/app/hooks/useStore"
 import { Typography } from "@mui/material"
 import { BannerContainer, ContentContainer } from "./styles"
+import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter"
 
 export default function AlmostThereBanner(props) {
 
-    const store = useStoreUser()
+    const user = props.userData
 
-    const confirmationByEmail = true
-    const confirmationContact = confirmationByEmail ? store.email : store.phone;
+    const confirmationByEmail = false
+    const confirmationContact = confirmationByEmail ? user.email : formatPhoneNumber(user.phone);
 
     return (
         <BannerContainer>

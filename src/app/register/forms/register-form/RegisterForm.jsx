@@ -5,7 +5,7 @@ import { useStoreAddress, useStoreCompany, useStoreUser } from "@/app/hooks/useS
 import useGetCEP from '@/app/hooks/utils/useGetCEP'; // Adjust the import path if needed
 import useGetCNPJ from "@/app/hooks/utils/useGetCNPJ";
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
-import { requestSuccessful } from "@/app/service/utils/Validations";
+import { hasToSignContract, requestSuccessful } from "@/app/service/utils/Validations";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { maritalStatusOptions, nationalityOptions, professionOptions } from "@/app/utils/form-options/formOptions";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
@@ -20,16 +20,8 @@ import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { companySchema, userSchema } from "./schema";
 import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, fileInputStyles } from "./styles";
-
-const savingData = async (data) => {
-    try {
-        return await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up`, data);
-    } catch (error) {
-        console.error(error);
-        return error
-    }
-}
-
+import { signUp } from "@/app/service/user-service/UserService";
+import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
 
 export default function RegisterForm() {
 
@@ -96,8 +88,9 @@ export default function RegisterForm() {
     }
 
     const schemaValidation = async (isCompany, data) => {
+        var response = null
         if (isCompany) {
-            await companySchema.validate(data, { abortEarly: false })
+            response = await companySchema.validate(data, { abortEarly: false })
                 .then(() => {
 
                 })
@@ -107,27 +100,19 @@ export default function RegisterForm() {
                 });
 
         } else {
-            await userSchema.validate(data, { abortEarly: false })
+            response = await userSchema.validate(data, { abortEarly: false })
                 .then(async () => {
-
-                    return await savingData(data)
-
-                    // store.updateUser({
-                    //     birthDate: data.data_nascimento,
-                    //     rg: data.rg,
-                    //     cpf: data.cpf,
-                    //     maritalStatus: data.estado_civil,
-                    //     profession: data.profissao,
-                    //     nationality: data.nacionalidade,
-                    // });
+                    return await signUp(data)
 
                 })
                 .catch((err) => {
                     console.log(err.errors);
-                    console.log(err.errors);
                     return err.errors
                 });
         }
+
+        return response
+
     }
 
     const handleSubmit = async (event) => {
@@ -155,30 +140,35 @@ export default function RegisterForm() {
             numero_instalacao: addressRefs.installationNumber.current.value
         }
 
-        console.log("submitData ====>>", submitData)
-
         const response = await schemaValidation(isCompany, submitData)
-        console.log("response ====>>", response)
 
-        if (requestSuccessful(response)) {
-            console.log("Success!")
+        if (requestSuccessful(response) || hasToSignContract(response?.data?.message)) {
+            console.log("Data successfully saved!")
+
+            store.updateUser({
+                birthDate: submitData.data_nascimento,
+                rg: submitData.rg,
+                cpf: submitData.cpf,
+                maritalStatus: submitData.estado_civil,
+                profession: submitData.profissao,
+                nationality: submitData.nacionalidade,
+            });
+
+            storeAddress.updateAddress({
+                street: submitData.endereco,
+                number: submitData.numero,
+                neighborhood: submitData.bairro,
+                city: addressRefs.city.current.value,
+                state: addressRefs.state.current.value,
+                cep: submitData.cep,
+                installationNumber: submitData.numero_instalacao,
+
+            })
+
+            router.push(`/register/contract-signature`)
         }
-
-        // router.push(`/register/contract-signature`)
-
 
     }
-
-    function formatPhoneNumber(phoneNumber) {
-        if (phoneNumber) {
-            const matches = phoneNumber.match(/^(\d{2})(\d{5})(\d{4})$/);
-            if (matches) {
-                return `(${matches[1]}) ${matches[2]}-${matches[3]}`;
-            } else {
-                return phoneNumber
-            }
-        }
-    };
 
     const closeModal = () => {
         setIsModalOpen(false)

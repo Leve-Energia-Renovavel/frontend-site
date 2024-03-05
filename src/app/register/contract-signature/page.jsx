@@ -1,39 +1,52 @@
 "use client"
 
-import { notFound } from 'next/navigation';
-import AlmostThereBanner from '../banners/banner-almost-there/AlmostThereBanner';
-import ContractForm from '../forms/contract-signature-form/ContractForm';
-import FormBanner from '../banners/form-banner/FormBanner';
+import { useStoreClickSign, useStoreUser } from '@/app/hooks/useStore';
 import ClicksignWidget from '@/app/utils/clicksign/ClickSignWidget';
+import axios from 'axios';
+import { useEffect } from 'react';
+import AlmostThereBanner from '../banners/banner-almost-there/AlmostThereBanner';
+import FormBanner from '../banners/form-banner/FormBanner';
 
-const loadUserData = () => {
-    if (typeof window !== 'undefined' && window?.history?.state?.name) {
-        return window?.history?.state;
-    } else {
-        if (typeof window !== 'undefined' && window?.localStorage) {
-            const storedObject = window.localStorage.getItem('leveLeadData');
-            if (storedObject) {
-                return JSON.parse(storedObject);
-            }
-        }
-    }
-}
 const accessNotValid = (user) => {
     return !user?.address
 }
 
 export default function ContractSignature() {
 
-    const userData = loadUserData()
+    const store = useStoreUser()
+    const user = store.user
+    const clicksign = useStoreClickSign()
 
-    if (accessNotValid(userData)) {
-        notFound()
-    }
+    // if (accessNotValid(userData)) {
+    //     notFound()
+    // }
+
+    // const getClicksignData = useFetchClickSignData();
+
+    // useEffect(() => {
+    //     getClicksignData();
+    // }, [])
+    useEffect(() => {
+        const fetchData = async () => {
+            const uuid = store.uuid;
+
+            try {
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
+                if (requestSuccessful(response.status)) {
+                    clicksign.updateClickSign(response?.data?.instalacao?.clicksign_reg);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        return fetchData;
+    }, [])
 
 
     return (
         <>
-            <AlmostThereBanner userData={userData} confirmationByEmail={userData.user ? true : false} />
+            <AlmostThereBanner userData={user} />
             <ClicksignWidget />
             <FormBanner />
         </>

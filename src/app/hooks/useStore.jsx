@@ -72,6 +72,30 @@ export const useStoreCompany = create((set) => ({
         }))
 }));
 
+export const useStoreClickSign = create((set) => ({
+    data: {
+        key: "",
+        request_signature_key: "",
+        url: "",
+        signer_key: "",
+        document_keys: [],
+        summary: false,
+        created_at: "",
+        updated_at: "",
+        opened: false
+    },
+    updateClickSign: (newClickSign) => {
+        const newValue = JSON.parse(newClickSign);
+        set((state) => ({
+            data: {
+                ...state.clicksign_reg,
+                ...newValue.batch
+            }
+        }))
+    }
+}));
+
+
 export const useInstallationsStore = create((set) => ({
     installations: [
         {

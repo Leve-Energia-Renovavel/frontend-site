@@ -9,7 +9,7 @@ import SimulateEconomyTitle from "./SimulateEconomyTitle"
 import { SimulateEconomyContainer as Container, FormContainer, SimulateEconomyHeader as Header, RadioContainer, Radios, Sliders, ValidationErrorsContainer } from "./styles"
 
 import { getCurrentDate } from "@/app/utils/date/DateUtils"
-import { loadBrowserInfos } from "@/app/utils/date/browser/BrowserUtils"
+import { loadBrowserInfos } from "@/app/utils/browser/BrowserUtils"
 import { validationSchema } from "./schema"
 
 export default function SimulateEconomy() {
