@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
 import { useStoreClickSign, useStoreUser } from '@/app/hooks/useStore';
