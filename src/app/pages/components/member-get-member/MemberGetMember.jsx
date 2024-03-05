@@ -1,5 +1,5 @@
 import React from 'react';
-import { CodeButton, MemberGetMemberContainer, MemberGetMemberMain, SendInviteButton, ShareButton, TitleContainer } from './styles';
+import { CodeButton, MemberGetMemberContainer, MemberGetMemberMain, SendInviteAndShareContainer, SendInviteButton, ShareButton, TitleContainer } from './styles';
 import { Typography } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -16,15 +16,16 @@ export default function MemberGetMember() {
                     <ContentCopyIcon />
                     X36UY
                 </CodeButton>
-                <div>
+                <SendInviteAndShareContainer>
                     <SendInviteButton>
                         <EmailIcon />
-                        Enviar Convite</SendInviteButton>
+                        Enviar Convite
+                    </SendInviteButton>
                     <ShareButton>
                         <WhatsAppIcon />
                         Compartilhar
                     </ShareButton>
-                </div>
+                </SendInviteAndShareContainer>
             </MemberGetMemberMain>
         </MemberGetMemberContainer>
 

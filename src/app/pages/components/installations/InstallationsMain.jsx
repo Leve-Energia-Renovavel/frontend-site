@@ -10,15 +10,15 @@ import InputMask from "react-input-mask";
 import FormButton from "../utils/buttons/FormButton";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
 import { ButtonContainer, InstallationsMainContainer as Container, HomeIconStyled, InstallationsMainContent, MainInstallationInfoContainer as MainInstallationInfo, NewInstallationContent, TitleContainer } from "./styles";
-import { useInstallationsStore } from "@/app/hooks/useStore";
+import { useStoreInstallations } from "@/app/hooks/useStore";
 
 export default function InstallationsMain() {
 
 
     const router = useRouter()
 
-    const storeInstallations = useInstallationsStore()
-    const installations = useInstallationsStore().installations
+    const storeInstallations = useStoreInstallations()
+    const installations = useStoreInstallations().installations
 
     const [openForm, setOpenForm] = useState(false)
     const [installationCost, setInstallationCost] = useState()

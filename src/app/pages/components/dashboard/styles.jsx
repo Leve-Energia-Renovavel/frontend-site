@@ -84,10 +84,14 @@ export const NextBill = styled.div`
   border: 1px solid ${background.blueLeve};
   border-radius: 4px;
   padding: 1rem 3rem;
-
-
+  
   height: 100%;
   max-height: 50vh;
+  
+  @media (max-width: 600px) {
+    padding: 1rem 1rem;
+    max-width: 100vw;
+  }
 `
 
 export const NextBillGrid = styled.div`
@@ -210,9 +214,10 @@ export const NextBillInfo = styled.div`
 export const PaymentButtonContainer = styled.div`
   display: flex;
   padding: 2rem 0;
-
+  
   @media (max-width: 600px) {
     margin: 0 auto;
+    padding: 1rem 0;
   } 
 `
 export const YourInfoContainer = styled.div`
@@ -232,7 +237,7 @@ export const YourInfo = styled.div`
   @media (max-width: 600px) {
     grid-template-columns: 1fr;
     gap: 1rem; 
-    max-height: 80vh;
+    max-height: 100vh;
   }
 `
 
@@ -279,7 +284,15 @@ export const UserEconomyInfos = styled.div`
     color: ${background.textLeve};
     font-size: 1.4rem;
     margin-top: 4px;
+  }
+  
+  @media (max-width: 600px) {
+    padding: 1rem;
 
+    span{
+      font-size: 12px;
+    }
+    
   }
 `
 
@@ -364,6 +377,8 @@ export const HistoryBillingContainer = styled.div`
 export const HistoryBilling = styled.div`
     display: flex;
     flex-direction: column;
+
+    justify-content: center;
 `
 export const BillDetails = styled.div`
     display: flex;
@@ -388,8 +403,16 @@ export const BillDetails = styled.div`
       line-height: 14px;
       letter-spacing: 0em;
       text-align: center;
-
     }
+
+    @media (max-width: 600px) {
+      max-width: 92vw;
+      padding: 2rem;
+    }
+`
+
+export const MemberGetMemberContainer = styled.div`
+  padding: 0 1rem;
 `
 
 export const SkeletonDiv = styled(Skeleton)`

@@ -96,7 +96,7 @@ export const useStoreClickSign = create((set) => ({
 }));
 
 
-export const useInstallationsStore = create((set) => ({
+export const useStoreInstallations = create((set) => ({
     installations: [
         {
             address: "Alameda José de Oliveira Guimarães 563 casa 23.",

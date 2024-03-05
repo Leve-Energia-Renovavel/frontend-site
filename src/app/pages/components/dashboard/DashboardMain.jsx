@@ -1,5 +1,6 @@
 "use client"
 
+import { useStoreInstallations } from "@/app/hooks/useStore";
 import { Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -8,23 +9,15 @@ import MemberGetMember from "../member-get-member/MemberGetMember";
 import DashboardButton from "../utils/buttons/DashboardButton";
 import FormButton from "../utils/buttons/FormButton";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
-import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, NewInstallationButtonContainer, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, YourInfo, YourInfoContainer } from "./styles";
+import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, MemberGetMemberContainer, NewInstallationButtonContainer, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, YourInfo, YourInfoContainer } from "./styles";
 
 export default function DashboardMain() {
 
     const router = useRouter()
+    const installations = useStoreInstallations().installations
+    const installation = installations[0]
 
     const [isLoading, setIsLoading] = useState(true)
-
-    const [installation, setInstallation] = useState({
-        address: "Alameda José de Oliveira Guimarães 563 casa 23.",
-        city: "Uberlândia",
-        state: "MG",
-        zipCode: "38412324",
-        amount: 80.75,
-        dueDate: "05/02/2024",
-        status: "pendente",
-    });
 
     useEffect(() => {
         setIsLoading(false)
@@ -144,7 +137,9 @@ export default function DashboardMain() {
                     </HistoryBilling>
                 </HistoryBillingContainer>
             </HistoryContainer>
-            <MemberGetMember />
+            <MemberGetMemberContainer>
+                <MemberGetMember />
+            </MemberGetMemberContainer>
         </Container >
     );
 }
