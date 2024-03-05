@@ -7,15 +7,15 @@ import Clicksign from "./embedded";
 import { ClicksignWidgetContainer } from './styles';
 import { useRouter } from 'next/navigation';
 import { useStoreClickSign } from '@/app/hooks/useStore';
+import { Typography } from '@mui/material';
 
 export default function ClicksignWidget() {
     const router = useRouter()
 
-    const storeClicksign = useStoreClickSign().data
+    const storeClicksign = useStoreClickSign()
+    const clickSign = storeClicksign.data
 
     const [widget, setWidget] = useState(null);
-
-    console.log("storeClicksign ==>>", storeClicksign)
 
     useEffect(() => {
         if (widget) {
@@ -23,9 +23,7 @@ export default function ClicksignWidget() {
         }
 
         const run = () => {
-            // const request_signature_key = process.env.NEXT_PUBLIC_CLICK_SIGN_ASSIGNATURE;
-            // const request_signature_key = "6194ea77-032c-4606-851d-51a8ae4e1a04";
-            const widgetInstance = new Clicksign(storeClicksign.key);
+            const widgetInstance = new Clicksign(clickSign.key);
             widgetInstance.endpoint = 'https://app.clicksign.com';
             widgetInstance.origin = window.location.protocol + '//' + window.location.host;
 
@@ -59,7 +57,8 @@ export default function ClicksignWidget() {
                 <ContractFormTitle />
                 <ContractFormProgress />
             </FormHeader>
-            <div id="clicksign-container" />
+            {clickSign.key != '' ? <div id="clicksign-container" /> :
+                <Typography>Carregando dados...</Typography>}
         </ClicksignWidgetContainer>
 
     )

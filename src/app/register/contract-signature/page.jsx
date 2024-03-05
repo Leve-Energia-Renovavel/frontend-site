@@ -1,6 +1,7 @@
 "use client"
 
 import { useStoreClickSign, useStoreUser } from '@/app/hooks/useStore';
+import { requestSuccessful } from '@/app/service/utils/Validations';
 import ClicksignWidget from '@/app/utils/clicksign/ClickSignWidget';
 import axios from 'axios';
 import { useEffect } from 'react';
@@ -13,34 +14,22 @@ const accessNotValid = (user) => {
 
 export default function ContractSignature() {
 
-    const store = useStoreUser()
-    const user = store.user
-    const clicksign = useStoreClickSign()
+    const user = useStoreUser().user
+    const storeClicksign = useStoreClickSign()
 
-    // if (accessNotValid(userData)) {
-    //     notFound()
-    // }
-
-    // const getClicksignData = useFetchClickSignData();
-
-    // useEffect(() => {
-    //     getClicksignData();
-    // }, [])
     useEffect(() => {
         const fetchData = async () => {
-            const uuid = store.uuid;
-
             try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${user.uuid}`);
                 if (requestSuccessful(response.status)) {
-                    clicksign.updateClickSign(response?.data?.instalacao?.clicksign_reg);
+                    storeClicksign.updateClickSign(response?.data?.instalacao?.clicksign_reg);
                 }
             } catch (error) {
                 console.error(error);
             }
         };
 
-        return fetchData;
+        fetchData();
     }, [])
 
 
