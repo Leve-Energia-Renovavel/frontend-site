@@ -3,6 +3,7 @@
 import { useStoreClickSign, useStoreUser } from '@/app/hooks/useStore';
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import ClicksignWidget from '@/app/utils/clicksign/ClickSignWidget';
+import { Typography } from '@mui/material';
 import axios from 'axios';
 import { useEffect } from 'react';
 import AlmostThereBanner from '../banners/banner-almost-there/AlmostThereBanner';
@@ -36,7 +37,9 @@ export default function ContractSignature() {
     return (
         <>
             <AlmostThereBanner userData={user} />
-            <ClicksignWidget />
+            {storeClicksign.data.key != '' ? <ClicksignWidget />
+                : <Typography>Carregando dados...</Typography>
+            }
             <FormBanner />
         </>
     );

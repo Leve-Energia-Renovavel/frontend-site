@@ -8,9 +8,13 @@ import DistibuitorSyncData from "./DistribuitorSyncData";
 import SuccessFormProgress from "./SuccessFormProgress";
 import SuccessFormTitle from "./SuccessFormTitle";
 import { ButtonContainer, Form, FormContainer, FormContent, FormHeader } from "./styles";
+import { useStoreUser } from "@/app/hooks/useStore";
+import axios from "axios";
+import { requestSuccessful } from "@/app/service/utils/Validations";
 
 export default function SuccessForm() {
     const router = useRouter()
+    const user = useStoreUser().user
 
     const loginRef = useRef(null)
     const passwordRef = useRef(null)
@@ -18,19 +22,35 @@ export default function SuccessForm() {
     const [finishedProgress, setFinishedProgress] = useState(false)
     const [hasSync, setHasSync] = useState(false)
 
-    const handleSubmit = (event) => {
+    const distribuitor = "cemig".toUpperCase()
+
+    const handleFinishSignup = async (event) => {
         event.preventDefault()
 
-        const payload = {
-            login: loginRef.current.value,
-            password: passwordRef.current.value
+        const loginValue = loginRef.current.value
+        const passwordValue = passwordRef.current.value
+
+        if (loginValue && passwordValue) {
+            const payload = {
+                login: loginValue,
+                password: passwordValue
+            }
+            console.log("handleSubmit payload ===>>", payload)
+            setHasSync(true)
         }
 
-        setHasSync(true)
-        console.log("handleSubmit payload ===>>", payload)
-    }
+        try {
+            const data = { uuid: user.uuid }
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/finalizar-cadastro`, data)
+            if (requestSuccessful(response.status)) {
+                router.push(`/dashboard`)
+            }
 
-    const distribuitor = "cemig".toUpperCase()
+        } catch (error) {
+            console.error(error)
+        }
+
+    }
 
     return (
         <>
@@ -50,7 +70,7 @@ export default function SuccessForm() {
                                 insira
                                 suas informações de login e senha que você usa no portal da <span className="bold">{distribuitor}</span>.</Typography>
 
-                            <Form method="POST" onSubmit={handleSubmit}>
+                            <Form method="POST" onSubmit={handleFinishSignup}>
                                 <FormControl>
                                     <TextField label={`Login da ${distribuitor}`} variant="outlined" placeholder="Login" type="text" required inputRef={loginRef} />
                                 </FormControl>
@@ -59,6 +79,7 @@ export default function SuccessForm() {
                                 </FormControl>
                                 <ButtonContainer>
                                     <DefaultButton variant="contained" text={"Vincular minha conta de luz"} isSubmit={true} />
+                                    <Typography className="skipBinding" onClick={handleFinishSignup}>Fazer isso mais tarde</Typography>
                                 </ButtonContainer>
                             </Form>
                         </>
@@ -70,10 +91,9 @@ export default function SuccessForm() {
                             <DistibuitorSyncData />
                             <br />
                             <br />
-                            <DefaultButton variant="contained" text={"Acessar minha conta"} onClick={() => router.push(`/`)} />
+                            <DefaultButton variant="contained" text={"Acessar minha conta"} isSubmit={true} />
                         </>
                     )}
-
 
                 </FormContent>}
             </FormContainer>

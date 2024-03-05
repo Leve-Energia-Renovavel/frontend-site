@@ -260,17 +260,26 @@ export const UserEconomyInfos = styled.div`
   
   span{
       text-align: center;
-      color: ${background.textLeve};
+      color: ${background.grey};
       font-size: 14px;
       font-weight: 500;
       line-height: 14px;
       letter-spacing: 0em;
-
+      
       padding: 2px;
-  }
-
+    }
+    
   .economyValue {
-    color: ${statusColors.paid}
+    color: ${statusColors.paid};
+    font-size: 1.4rem;
+    margin-top: 4px;
+  }
+  
+  .economyData {
+    color: ${background.textLeve};
+    font-size: 1.4rem;
+    margin-top: 4px;
+
   }
 `
 

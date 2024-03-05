@@ -111,6 +111,20 @@ export const FormContent = styled.div`
 
 export const ButtonContainer = styled.div`
     margin: 0 auto;
+
+    text-align: center;
+    
+    .skipBinding { 
+      color: ${background.grey};
+      font-family: "Metropolis";
+      font-size: 1.2rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      text-decoration: underline;
+      
+      cursor: pointer;
+    }
   `;
 
 

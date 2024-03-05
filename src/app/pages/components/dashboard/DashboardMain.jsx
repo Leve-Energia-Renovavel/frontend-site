@@ -80,19 +80,19 @@ export default function DashboardMain() {
                         </Info>
                         <Info>
                             <span>Creditos recebidos</span>
-                            <span>7533 kWh</span>
+                            <span className="economyData">7533 kWh</span>
                         </Info>
                         <Info>
                             <span>Creditos acumulados</span>
-                            <span>0 - kWh</span>
+                            <span className="economyData">0 kWh</span>
                         </Info>
                         <Info>
                             <span>CO2 nao emitido</span>
-                            <span>0 - kWh</span>
+                            <span className="economyData">0</span>
                         </Info>
                         <Info>
                             <span>Economizando desde</span>
-                            <span>18/09/2023</span>
+                            <span className="economyData">18/09/2023</span>
                         </Info>
                         <NewInstallationButtonContainer>
                             <NewInstallationButton text="Adicionar Novo Endereço" onClick={() => router.push("/installations")} />

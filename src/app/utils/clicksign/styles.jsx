@@ -7,7 +7,9 @@ export const ClicksignWidgetContainer = styled.div`
   margin: 0 auto;
   padding: 2rem 4rem;
   background-color: ${background.light};
-  
+
+  overflow: auto;
+
   position: absolute;
   top: 90vh;
   left: 50vw;

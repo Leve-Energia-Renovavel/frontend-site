@@ -1,13 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useStoreClickSign } from '@/app/hooks/useStore';
 import ContractFormProgress from '@/app/register/forms/contract-signature-form/ContractFormProgress';
 import ContractFormTitle from '@/app/register/forms/contract-signature-form/ContractFormTitle';
 import { FormHeader } from '@/app/register/forms/contract-signature-form/styles';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Clicksign from "./embedded";
 import { ClicksignWidgetContainer } from './styles';
-import { useRouter } from 'next/navigation';
-import { useStoreClickSign } from '@/app/hooks/useStore';
-import { Typography } from '@mui/material';
 
 export default function ClicksignWidget() {
     const router = useRouter()
@@ -31,7 +30,6 @@ export default function ClicksignWidget() {
 
             // Callback que será disparado quando o documento for assinado
             widgetInstance.on('signed', function (event) {
-                // console.log('signed!');
                 router.push(`/register/success`)
 
             });
@@ -57,8 +55,7 @@ export default function ClicksignWidget() {
                 <ContractFormTitle />
                 <ContractFormProgress />
             </FormHeader>
-            {clickSign.key != '' ? <div id="clicksign-container" /> :
-                <Typography>Carregando dados...</Typography>}
+            <div id="clicksign-container" />
         </ClicksignWidgetContainer>
 
     )
