@@ -42,7 +42,48 @@ export const userSchema = yup.object({
         .oneOf(professionOptions.map(option => option.value), 'Valor de profissão inválido'),
     estado_civil: yup.string().required('O campo Estado Civil é obrigatório')
         .oneOf(maritalStatusOptions.map(option => option.value), 'Valor de estado civil inválido'),
-    cpf: yup.string().required('O campo CPF é obrigatório'),
+    cpf: yup.string().required('O campo CPF é obrigatório')
+        .test('is-valid-cpf', 'CPF inválido', (value) => {
+            if (!value) return true;
+            const cpf = value.replace(/[^\d]+/g, '');
+            if (cpf.length !== 11) return false;
+
+            if (/^(\d)\1{10}$/.test(cpf)) return false;
+
+            let sum = 0;
+            let remainder;
+
+            for (let i = 1; i <= 9; i++) {
+                sum += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+            }
+
+            remainder = (sum * 10) % 11;
+
+            if ((remainder === 10) || (remainder === 11)) {
+                remainder = 0;
+            }
+
+            if (remainder !== parseInt(cpf.substring(9, 10))) {
+                return false;
+            }
+
+            sum = 0;
+            for (let i = 1; i <= 10; i++) {
+                sum += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+            }
+
+            remainder = (sum * 10) % 11;
+
+            if ((remainder === 10) || (remainder === 11)) {
+                remainder = 0;
+            }
+
+            if (remainder !== parseInt(cpf.substring(10, 11))) {
+                return false;
+            }
+
+            return true;
+        }),
     numero_instalacao: yup.string().required('O campo Número de Instalação é obrigatório')
 });
 
