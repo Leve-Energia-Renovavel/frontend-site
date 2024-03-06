@@ -1,5 +1,6 @@
 import styled from "@emotion/styled"
-import { background } from "@/app/pages/styles"
+import { background, notification } from "@/app/pages/styles"
+import { Alert } from "@mui/material";
 
 export const FormContainer = styled.div`
   display: flex;
@@ -223,3 +224,17 @@ export const fileInputStyles = {
   fontWeight: 'bold',
 }
 
+export const SnackbarMessageAlert = styled(Alert)`
+  font-family: "Metropolis";
+  font-size: 1rem;
+  background-color: ${notification.alert};
+  border-radius: 10px;
+  padding: 1rem;
+  align-items: center;
+
+  @media screen and (max-width: 600px) {
+    padding: .3rem;
+    font-size: 1rem; 
+  }
+
+`

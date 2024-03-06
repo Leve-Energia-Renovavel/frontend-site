@@ -1,3 +1,4 @@
+import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
 import * as yup from 'yup'
 
 const isOver18 = (value) => {
@@ -35,9 +36,12 @@ export const userSchema = yup.object({
     data_nascimento: yup.string()
         .required('O campo Data de Nascimento é obrigatório')
         .test('is-over-18', 'Você deve ser maior de 18 anos', isOver18),
-    nacionalidade: yup.string().required('O campo Nacionalidade é obrigatório'),
-    profissao: yup.string().required('O campo Profissão é obrigatório'),
-    estado_civil: yup.string().required('O campo Estado Civil é obrigatório'),
+    nacionalidade: yup.string().required('O campo Nacionalidade é obrigatório')
+        .oneOf(nationalityOptions.map(option => option.value), 'Valor de nacionalidade inválido'),
+    profissao: yup.string().required('O campo Profissão é obrigatório')
+        .oneOf(professionOptions.map(option => option.value), 'Valor de profissão inválido'),
+    estado_civil: yup.string().required('O campo Estado Civil é obrigatório')
+        .oneOf(maritalStatusOptions.map(option => option.value), 'Valor de estado civil inválido'),
     cpf: yup.string().required('O campo CPF é obrigatório'),
     numero_instalacao: yup.string().required('O campo Número de Instalação é obrigatório')
 });

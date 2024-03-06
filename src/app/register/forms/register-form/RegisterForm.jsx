@@ -5,13 +5,14 @@ import { useStoreAddress, useStoreCompany, useStoreUser } from "@/app/hooks/useS
 import useGetCEP from '@/app/hooks/utils/useGetCEP'; // Adjust the import path if needed
 import useGetCNPJ from "@/app/hooks/utils/useGetCNPJ";
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
+import { signUp } from "@/app/service/user-service/UserService";
 import { hasToSignContract, requestSuccessful } from "@/app/service/utils/Validations";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { maritalStatusOptions, nationalityOptions, professionOptions } from "@/app/utils/form-options/formOptions";
+import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import SearchIcon from '@mui/icons-material/Search';
-import { Button, Divider, MenuItem, TextField, Typography } from "@mui/material";
-import axios from "axios";
+import { Button, Divider, MenuItem, Snackbar, TextField, Typography } from "@mui/material";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
@@ -19,9 +20,7 @@ import RegisterModal from "../../modals/installation-number-modal/InstallationNu
 import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { companySchema, userSchema } from "./schema";
-import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, fileInputStyles } from "./styles";
-import { signUp } from "@/app/service/user-service/UserService";
-import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
+import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, SnackbarMessageAlert, fileInputStyles } from "./styles";
 
 export default function RegisterForm() {
 
@@ -41,7 +40,8 @@ export default function RegisterForm() {
     const { name, email, phone, cep, companyName, cost } = store.user
     const { street, neighborhood, city, state, stateId, cityId } = storeAddress.address
 
-    const stateOptionValue = stateOptions.find(option => option.cod_estados === stateId);
+    const stateOptionValue = stateOptions?.find(option => option.cod_estados === stateId);
+    const [stateValue, setStateValue] = useState(stateOptionValue || null);
 
     const company = storeCompany.company
     const isCompany = store.user.isCompany
@@ -107,12 +107,18 @@ export default function RegisterForm() {
                 })
                 .catch((err) => {
                     console.log(err.errors);
+                    setValidationErrors(err.errors)
                     return err.errors
                 });
         }
 
         return response
 
+    }
+
+    const handleChangeState = (value) => {
+        const stateAbbreviation = stateOptions.find(option => option.sigla === value)
+        setStateValue(stateAbbreviation)
     }
 
     const handleSubmit = async (event) => {
@@ -348,7 +354,8 @@ export default function RegisterForm() {
                     <TextField
                         id="state"
                         select
-                        value={stateOptionValue ? stateOptionValue.sigla : ''}
+                        value={stateValue ? stateValue.sigla : ''}
+                        onChange={(event) => handleChangeState(event.target.value)}
                         label="Estado"
                         placeholder="Estado"
                         variant="outlined"
@@ -419,20 +426,35 @@ export default function RegisterForm() {
                         </FileUploadContainer>
                     ) : null}
 
-                    {/* {validationErrors.length >= 1 && (
-                        <ValidationErrorsContainer>
-                            <Typography>Erro nos campos:</Typography>
-                            {validationErrors.map((error, index) => (
-                                <p key={index}>- {error}</p>
-                            ))}
-                        </ValidationErrorsContainer>
-                    )} */}
-
                     <Button onClick={() => router.push('/dashboard')}>Dashboard</Button>
 
                 </FormContent>
                 {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}
             </FormContainer >
+            {validationErrors.length >= 1 && (
+                <>
+                    {validationErrors.map((error, index) => {
+                        return (
+                            <Snackbar
+                                key={index}
+                                open={validationErrors.length >= 1}
+                                autoHideDuration={3000}
+                                message={error}
+                                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                                onClose={() => setValidationErrors([])}>
+                                <SnackbarMessageAlert
+                                    sx={{ marginBottom: `${index * 5}rem` }}
+                                    severity="error"
+                                    variant="filled"
+                                    onClose={() => setValidationErrors([])}
+                                >
+                                    {error}
+                                </SnackbarMessageAlert>
+                            </Snackbar>
+                        )
+                    })}
+                </>
+            )}
         </>
 
     );

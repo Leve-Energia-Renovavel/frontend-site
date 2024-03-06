@@ -45,4 +45,3 @@ export default function ContractSignature() {
         </>
     );
 }
-{/* <ContractForm userData={userData} isCompany={userData.company ? true : false} /> */ }
