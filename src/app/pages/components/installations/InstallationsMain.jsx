@@ -1,6 +1,6 @@
 "use client"
 
-import { FormContent } from "@/app/register/forms/register-form/styles";
+import { useStoreInstallations } from "@/app/hooks/useStore";
 import SearchIcon from '@mui/icons-material/Search';
 import { TextField, Typography } from "@mui/material";
 import axios from "axios";
@@ -9,8 +9,8 @@ import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import FormButton from "../utils/buttons/FormButton";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
-import { ButtonContainer, InstallationsMainContainer as Container, HomeIconStyled, InstallationsMainContent, MainInstallationInfoContainer as MainInstallationInfo, NewInstallationContent, TitleContainer } from "./styles";
-import { useStoreInstallations } from "@/app/hooks/useStore";
+import { ButtonContainer, InstallationsMainContainer as Container, FormContentNewInstallation, HomeIconStyled, InstallationsMainContent, MainInstallationInfoContainer as MainInstallationInfo, NewInstallationContent, TitleContainer } from "./styles";
+import NewInstallationButtonConfirm from "../utils/buttons/NewInstallationButtonConfirm";
 
 export default function InstallationsMain() {
 
@@ -115,7 +115,7 @@ export default function InstallationsMain() {
                     <>
                         <Typography variant="h1">Novo Endereço</Typography>
                         <NewInstallationContent>
-                            <FormContent acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
+                            <FormContentNewInstallation acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
                                 <InputMask mask="99999-999">
                                     {() => <TextField className="formInput" inputRef={newInstallationRef.zipCode} label="CEP" variant="outlined" placeholder="CEP" type="text" InputLabelProps={{ shrink: true }}
                                         InputProps={{
@@ -143,9 +143,9 @@ export default function InstallationsMain() {
                                     inputRef={newInstallationRef.installationNumber} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text" />
                                 <ButtonContainer>
                                     <NewInstallationButton text="Cancelar" onClick={() => setOpenForm(false)} />
-                                    <FormButton text="Confirmar Novo Endereço" type="submit" />
+                                    <NewInstallationButtonConfirm text="Confirmar Novo Endereço" type="submit" />
                                 </ButtonContainer>
-                            </FormContent>
+                            </FormContentNewInstallation>
                         </NewInstallationContent>
                     </>
                 ) : null}

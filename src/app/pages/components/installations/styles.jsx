@@ -70,11 +70,19 @@ export const MainInstallationInfoContainer = styled.div`
         margin: 6px 0;
         font-size: 1.5rem;
         color: ${background.blueLeve};
+
+        @media (max-width: 600px) {
+            font-size: 1.2rem;
+        }
     }
     .mainAddress {
         color: ${background.blueLeve};
         font-size: 2rem;
+        font-weight: 500;
 
+        @media (max-width: 600px) {
+            font-size: 1.5rem;
+        }
     }
 `
 export const ButtonContainer = styled.div`
@@ -86,9 +94,13 @@ export const ButtonContainer = styled.div`
     justify-content: space-between;
 
     margin-top: 1rem;
-
+    
     width: 100%;
     max-width: 80vw;
+    
+    @media (max-width: 600px) {
+        max-width: 90%;
+    }
 `
 
 export const NewInstallationContent = styled.div`
@@ -98,10 +110,68 @@ export const NewInstallationContent = styled.div`
     
     padding: 2rem;
     margin: 1rem auto;
-  
+    
     width: 80vw;
     max-width: 100vw;
+    
+    @media (max-width: 600px) {
+        margin: 1rem 0;
+        width: 85vw;
+
+        overflow: auto;
+
+    }
 `
 export const NewInstallationButtonContainer = styled.div`
-display: flex;
+    display: flex;
+`
+
+
+export const FormContentNewInstallation = styled.form`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  grid-gap: 20px 40px;
+  /* background-color: ${background.light}; */
+
+  max-width: 100%;
+  
+  @media (max-width: 600px) {
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(1,1fr);
+
+    div { 
+      grid-row: span 1;
+      grid-column: span 1;
+    }
+
+    .formInput {
+      max-width: 90%;
+    }
+  }
+
+  .installationNumberField {
+    border-color: #0075FF;
+
+      & label {
+        color: #0075FF;
+      }
+
+      & .MuiOutlinedInput-root {
+        & fieldset {
+          border-color: #0075FF;
+        }
+
+        &:hover fieldset {
+          border-color: #0075FF;
+        }
+
+        &.Mui-focused fieldset {
+          border-color: #0075FF;
+        }
+      }
+
+      @media (max-width: 600px) {
+        max-width: 90%;
+      }
+  }
 `

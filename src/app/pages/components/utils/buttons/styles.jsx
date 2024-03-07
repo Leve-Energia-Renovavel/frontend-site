@@ -151,15 +151,47 @@ export const NewInstallationButtonStyle = styled(Button)`
         padding: 12px 24px;
         height: 3rem;
         border-radius: 8px;
-
+        
         margin: 0 auto;
+        
+        @media (max-width: 600px) {
+            height: 4rem;
+        }
 
         span { 
             font-family: "Metropolis";
             font-size: 16px;
             line-height: 16px;
             font-weight: 600;
+        }
 
+        &:hover {
+            background-color: ${background.blueLeve};
+            color: ${background.white};
+            border-color: ${background.lightBorder};
+        }
+`;
+
+export const NewInstallationButtonConfirmStyle = styled(Button)`
+        text-transform: none;
+        color: ${background.white};
+        border: 1px solid ${background.lightBorder};
+        background-color: ${background.blueLeve};
+        padding: 12px 24px;
+        height: 3rem;
+        border-radius: 8px;
+        
+        margin: 0 auto;
+        
+        @media (max-width: 600px) {
+            height: 4rem;
+        }
+
+        span { 
+            font-family: "Metropolis";
+            font-size: 16px;
+            line-height: 16px;
+            font-weight: 600;
         }
 
         &:hover {
