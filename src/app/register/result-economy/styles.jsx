@@ -34,6 +34,22 @@ export const ResultEconomyContainer = styled.div`
   width: 60vw;
   max-width: 80vw;
   
+  @media (min-width: 2000px) and (max-width: 2150px) {
+    top: 60vh;
+  }
+  
+  @media (max-width: 1100px) {
+    top: 105vh;
+    width: 100vw;
+    max-width: 100vw;
+
+    position: static; 
+    top: auto;
+    left: auto; 
+    transform: none; 
+    z-index: auto; 
+  }
+
   @media (max-width: 600px) {
     top: 105vh;
     width: 100vw;
@@ -44,7 +60,6 @@ export const ResultEconomyContainer = styled.div`
     left: auto; 
     transform: none; 
     z-index: auto; 
-
   }
 
   h1, span {
@@ -103,10 +118,11 @@ export const TodayPriceInfo = styled.div`
     line-height: normal;
     color: ${background.orangeLeve}; 
     margin: 2rem 0;
-
+    
     white-space: nowrap;
     
   }
+
 
   h6 { 
     font-family: "Metropolis", sans-serif, system-ui, -apple-system;

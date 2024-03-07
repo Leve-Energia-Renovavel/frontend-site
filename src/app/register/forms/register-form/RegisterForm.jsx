@@ -441,7 +441,6 @@ export default function RegisterForm() {
                     ) : null}
 
                     {/* <Button onClick={() => router.push('/dashboard')}>Dashboard</Button> */}
-                    <Button onClick={() => console.log(storeAddress.address)}>STATE</Button>
 
                 </FormContent>
                 {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}

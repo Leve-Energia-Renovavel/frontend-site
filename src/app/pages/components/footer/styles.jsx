@@ -21,6 +21,9 @@ export const LogoContainer = styled.div`
     align-items: start;
     padding: 2rem;
     
+    @media (max-width: 1100px) {
+        padding: 1rem;
+    }
     @media (max-width: 600px) {
         padding: 0rem;
     }
@@ -29,6 +32,10 @@ export const LogoContainer = styled.div`
         width: 208px;
         height: auto;
 
+        @media (max-width: 1100px) {
+        width: 30%;
+        height: 30%;
+        }
         @media (max-width: 600px) {
         width: 60%;
         height: 60%;
@@ -43,6 +50,10 @@ export const ContentContainer = styled.div`
     padding: 1rem;
     max-width: 100vw;
     
+    @media (max-width: 1100px) {
+        flex-wrap: wrap;
+        padding: .5rem;
+    }
     @media (max-width: 600px) {
         flex-direction: column;
         justify-content: flex-start;
@@ -57,6 +68,10 @@ export const AddressContainer = styled.div`
     padding: 2rem;
     max-width: 30vw;
     
+    @media (max-width: 1100px) {
+        max-width: 100vw;
+        padding: 4rem 0;
+    }
     @media (max-width: 600px) {
         max-width: 100vw;
         padding: 4rem 0;
@@ -89,6 +104,10 @@ export const PagesContainer = styled.div`
     padding: 2rem;
     max-width: 30vw;
     
+    @media (max-width: 1100px) {
+        margin-top: 2rem;
+        width: 100vw;
+    }
     @media (max-width: 600px) {
         padding: 0rem;
         width: 100vw;
@@ -129,6 +148,10 @@ export const ContactContainer = styled.div`
     padding: 1rem 2rem;
     max-width: 28vw;
 
+    @media (max-width: 1100px) {
+        padding: 0rem;
+        width: 100vw;
+    }
     @media (max-width: 600px) {
         padding: 0rem;
         width: 100vw;
@@ -162,10 +185,6 @@ export const SocialMediaContainer = styled.div`
     justify-content: flex-start;
     padding: 1rem 0rem;
     
-    @media (max-width: 600px) {
-        padding: 1rem 0rem;
-    }
-    
     .socialIcon {
         font-size: 2rem;
         
@@ -191,6 +210,9 @@ export const CallToActionContainer = styled.div`
         line-height: 18px;
     }
 
+    @media (max-width: 1100px) {
+        display: none;
+    }
     @media (max-width: 600px) {
         display: none;
     }

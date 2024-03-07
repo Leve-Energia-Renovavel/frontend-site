@@ -32,22 +32,23 @@ export const FormContainer = styled.div`
   z-index: 100;
   
   width: 60vw;
-  
-  @media (max-width: 2400px) {
-    top: 160vh;
+
+  @media (min-width: 2000px) and (max-width: 2150px) {
+    top: 135vh;
+  }
+
+  @media (max-width: 2000px) {
+    top: 170vh;
   }
   
-  @media (max-width: 1800px) {
-    top: 160vh;
-  }
   @media (max-width: 1600px) {
     top: 175vh;
   }
-
-  @media (max-width: 600px) {
+  
+  @media (max-width: 1100px) {
     width: 100vw;
     max-width: 100vw;
-
+    
     position: static; 
     top: auto;
     left: auto; 
@@ -55,6 +56,7 @@ export const FormContainer = styled.div`
     z-index: auto; 
 
   }
+  
   @media (max-width: 600px) {
     width: 100vw;
     max-width: 100vw;
