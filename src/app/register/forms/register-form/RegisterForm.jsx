@@ -2,7 +2,7 @@
 "use client"
 
 import { useStoreAddress, useStoreCompany, useStoreUser } from "@/app/hooks/useStore";
-import useGetCEP from '@/app/hooks/utils/useGetCEP'; // Adjust the import path if needed
+import useGetCEP from '@/app/hooks/utils/useGetCEP';
 import useGetCNPJ from "@/app/hooks/utils/useGetCNPJ";
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
 import { signUp } from "@/app/service/user-service/UserService";
@@ -14,7 +14,7 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 import SearchIcon from '@mui/icons-material/Search';
 import { Button, Divider, MenuItem, Snackbar, TextField, Typography } from "@mui/material";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import RegisterModal from "../../modals/installation-number-modal/InstallationNumberModal";
 import RegisterFormProgress from "./RegisterFormProgress";
@@ -40,8 +40,7 @@ export default function RegisterForm() {
     const { name, email, phone, cep, companyName, cost } = store.user
     const { street, neighborhood, city, state, stateId, cityId } = storeAddress.address
 
-    const stateOptionValue = stateOptions?.find(option => option.cod_estados === stateId);
-    const [stateValue, setStateValue] = useState(stateOptionValue || null);
+    const [stateValue, setStateValue] = useState(stateOptions[stateId] || null);
 
     const company = storeCompany.company
     const isCompany = store.user.isCompany
@@ -116,10 +115,7 @@ export default function RegisterForm() {
 
     }
 
-    const handleChangeState = (value) => {
-        const stateAbbreviation = stateOptions.find(option => option.sigla === value)
-        setStateValue(stateAbbreviation)
-    }
+
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -205,8 +201,25 @@ export default function RegisterForm() {
 
 
     const handleNationalityChange = (value) => {
-        setIsForeigner(value === "estrangeiro");
+        setIsForeigner(value === "estrangeira");
     };
+
+    useEffect(() => {
+        setStateValue(stateOptions[stateId] || null)
+    }, [storeAddress])
+
+
+    const handleChangeState = (value) => {
+        setStateValue(stateOptions[value])
+        addressRefs.address.current.value = ""
+        addressRefs.addressNumber.current.value = ""
+        addressRefs.addressCep.current.value = ""
+        addressRefs.complement.current.value = ""
+        addressRefs.city.current.value = ""
+
+        storeAddress.updateAddress({ stateId: value })
+        store.updateUser({ cep: "" })
+    }
 
     return (
         <>
@@ -326,7 +339,8 @@ export default function RegisterForm() {
                         <Divider sx={{ width: '107px', border: '1px solid #A0A0A0' }} />
                     </div>
 
-                    <InputMask mask="99999-999" value={cep || ''}
+                    <InputMask mask="99999-999"
+                        value={cep || ''}
                         onChange={(e) => store.updateUser({ cep: e.target.value })}>
                         {() => <TextField
                             className="formInput"
@@ -354,7 +368,7 @@ export default function RegisterForm() {
                     <TextField
                         id="state"
                         select
-                        value={stateValue ? stateValue.sigla : ''}
+                        value={stateValue ? stateValue.cod_estados : ''}
                         onChange={(event) => handleChangeState(event.target.value)}
                         label="Estado"
                         placeholder="Estado"
@@ -365,9 +379,9 @@ export default function RegisterForm() {
                         }}
                         inputRef={addressRefs.state}
                         required>
-                        {stateOptions?.map((state) => {
+                        {Object.values(stateOptions).map((state) => {
                             return (
-                                <MenuItem key={state.cod_estados} value={state.sigla}>{state.sigla}</MenuItem>
+                                <MenuItem key={state.cod_estados} value={state.cod_estados}>{state.sigla}</MenuItem>
                             )
                         })}
                     </TextField>
@@ -426,35 +440,34 @@ export default function RegisterForm() {
                         </FileUploadContainer>
                     ) : null}
 
-                    <Button onClick={() => router.push('/dashboard')}>Dashboard</Button>
+                    {/* <Button onClick={() => router.push('/dashboard')}>Dashboard</Button> */}
+                    <Button onClick={() => console.log(storeAddress.address)}>STATE</Button>
 
                 </FormContent>
                 {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}
             </FormContainer >
-            {validationErrors.length >= 1 && (
-                <>
-                    {validationErrors.map((error, index) => {
-                        return (
-                            <Snackbar
-                                key={index}
-                                open={validationErrors.length >= 1}
-                                autoHideDuration={3000}
-                                message={error}
-                                anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-                                onClose={() => setValidationErrors([])}>
-                                <SnackbarMessageAlert
-                                    sx={{ marginBottom: `${index * 5}rem` }}
-                                    severity="error"
-                                    variant="filled"
-                                    onClose={() => setValidationErrors([])}
-                                >
-                                    {error}
-                                </SnackbarMessageAlert>
-                            </Snackbar>
-                        )
-                    })}
-                </>
-            )}
+            <>
+                {validationErrors.map((error, index) => {
+                    return (
+                        <Snackbar
+                            key={index}
+                            open={validationErrors.length >= 1}
+                            autoHideDuration={3000}
+                            message={error}
+                            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                            onClose={() => setValidationErrors([])}>
+                            <SnackbarMessageAlert
+                                sx={{ marginBottom: `${index * 5}rem` }}
+                                severity="error"
+                                variant="filled"
+                                onClose={() => setValidationErrors([])}
+                            >
+                                {error}
+                            </SnackbarMessageAlert>
+                        </Snackbar>
+                    )
+                })}
+            </>
         </>
 
     );

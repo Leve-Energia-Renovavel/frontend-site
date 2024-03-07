@@ -1,8 +1,16 @@
-// useGetCEP.js
-
 import { useStoreAddress } from "@/app/hooks/useStore";
+import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import axios from 'axios';
 import { requestSuccessful } from "../../service/utils/Validations";
+
+function findStateId(uf) {
+    for (const id in stateOptions) {
+        if (stateOptions[id].sigla === uf) {
+            return id;
+        }
+    }
+    return "";
+}
 
 const useGetCEP = () => {
     const storeAddress = useStoreAddress();
@@ -15,11 +23,13 @@ const useGetCEP = () => {
 
             if (requestSuccessful(response?.status)) {
                 const address = response?.data;
+
                 storeAddress.updateAddress({
                     street: address?.logradouro,
                     neighborhood: address?.bairro,
                     city: address?.cidade,
                     state: address?.uf,
+                    stateId: findStateId(address?.uf),
                     cep: address?.cep,
                 });
             }

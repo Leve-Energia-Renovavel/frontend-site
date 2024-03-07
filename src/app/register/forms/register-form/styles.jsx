@@ -1,6 +1,20 @@
 import styled from "@emotion/styled"
 import { background, notification } from "@/app/pages/styles"
 import { Alert } from "@mui/material";
+import { keyframes } from "@emotion/react";
+
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
 
 export const FormContainer = styled.div`
   display: flex;
@@ -232,9 +246,12 @@ export const SnackbarMessageAlert = styled(Alert)`
   padding: 1rem;
   align-items: center;
 
+  animation: ${fadeInUp} 0.5s ease-out;
+
   @media screen and (max-width: 600px) {
     padding: .3rem;
     font-size: 1rem; 
   }
 
 `
+

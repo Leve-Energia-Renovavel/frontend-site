@@ -23,8 +23,11 @@ export const userSchema = yup.object({
             const words = value.trim().split(/\s+/);
             return words.length >= 2;
         }),
-    email: yup.string().required('O campo E-mail é obrigatório'),
-    telefone: yup.string().required('O campo Celular é obrigatório'),
+    email: yup.string().email('O formato do E-mail é inválido')
+        .required('O campo E-mail é obrigatório'),
+    telefone: yup.string()
+        .matches(/^\(\d{2}\) \d{5}-\d{4}$/, 'O formato do Telefone é inválido')
+        .required('O campo Celular é obrigatório'),
     cep: yup.string().required('O campo CEP é obrigatório'),
     endereco: yup.string().required('O campo Endereco é obrigatório'),
     numero: yup.number().required('O campo Número é obrigatório'),
@@ -32,7 +35,9 @@ export const userSchema = yup.object({
     estado_id: yup.number().required(),
     cidade_id: yup.number().required(),
     valor: yup.number().required(),
-    rg: yup.string().required('O campo RG é obrigatório'),
+    rg: yup.string()
+        .matches(/^\d{8}-\d$/, 'O formato do RG é inválido')
+        .required('O campo RG é obrigatório'),
     data_nascimento: yup.string()
         .required('O campo Data de Nascimento é obrigatório')
         .test('is-over-18', 'Você deve ser maior de 18 anos', isOver18),
@@ -42,7 +47,9 @@ export const userSchema = yup.object({
         .oneOf(professionOptions.map(option => option.value), 'Valor de profissão inválido'),
     estado_civil: yup.string().required('O campo Estado Civil é obrigatório')
         .oneOf(maritalStatusOptions.map(option => option.value), 'Valor de estado civil inválido'),
-    cpf: yup.string().required('O campo CPF é obrigatório')
+    cpf: yup.string()
+        .matches(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, 'O formato do CPF é inválido')
+        .required('O campo CPF é obrigatório')
         .test('is-valid-cpf', 'CPF inválido', (value) => {
             if (!value) return true;
             const cpf = value.replace(/[^\d]+/g, '');
