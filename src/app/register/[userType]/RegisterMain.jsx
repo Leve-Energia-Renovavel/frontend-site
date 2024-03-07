@@ -67,7 +67,8 @@ export default function RegisterMain() {
                     })
 
                     const addressResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, {
-                        params: { cep: cep }
+                        params: { cep: cep },
+                        withCredentials: false
                     });
 
                     if (requestSuccessful(addressResponse?.status)) {
