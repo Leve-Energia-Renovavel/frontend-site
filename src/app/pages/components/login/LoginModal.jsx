@@ -1,16 +1,22 @@
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import CloseIcon from '@mui/icons-material/Close';
-import { Backdrop, Divider, IconButton, Modal, TextField, Typography } from '@mui/material';
+import { Backdrop, Divider, IconButton, InputAdornment, Modal, Snackbar, TextField, Typography } from '@mui/material';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import leveLogo from '../../../../resources/img/leve-logo-blue.jpg';
-import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginContentContainer, LoginForm, LoginIconContainer, LoginTitleContainer } from './styles';
-import { useRouter } from 'next/navigation';
+import { forgotPasswordSchema, loginSchema } from './schema';
+import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginContentContainer, LoginForm, LoginIconContainer, LoginTitleContainer, SnackbarMessageAlert } from './styles';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 export default function LoginModal({ isOpen, openModal, closeModal }) {
 
     const router = useRouter()
 
     const [forgotPassword, setForgotPassword] = useState(false)
+    const [passwordVisibible, setPasswordVisibible] = useState("password")
+    const [validationErrors, setValidationErrors] = useState([])
 
     const loginRef = {
         email: useRef(null),
@@ -22,18 +28,44 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
         setForgotPassword(false)
     }
 
+    const loginValidation = async (data) => {
+        const response = await loginSchema.validate(data, { abortEarly: false })
+            .then(() => {
+
+            })
+            .catch((err) => {
+                console.log(err.errors);
+                setValidationErrors(err.errors)
+            });
+    }
+    const forgotPasswordValidation = async (data) => {
+        const response = await forgotPasswordSchema.validate(data, { abortEarly: false })
+            .then(() => {
+
+            })
+            .catch((err) => {
+                console.log(err.errors);
+                setValidationErrors(err.errors)
+            });
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault()
 
         if (!forgotPassword) {
-            const email = loginRef.email.current.value
-            const password = loginRef.password.current.value
-            console.log(`handleSubmit  ${forgotPassword} value ==>>`, email, password)
+
+            const data = {
+                email: loginRef.email.current.value,
+                password: loginRef.password.current.value
+            }
+
+            const response = loginValidation(data)
 
         } else {
-            const email = loginRef.email.current.value
-            console.log(`handleSubmit  ${forgotPassword} value ==>>`, email)
+            const data = { email: loginRef.email.current.value }
+            const response = forgotPasswordValidation(data)
         }
+
     }
 
     return (
@@ -69,7 +101,24 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
                         <LoginForm>
                             <TextField className="formInput" inputRef={loginRef.email} label="Login" variant="outlined" placeholder="Login" type="text" required />
                             {!forgotPassword ?
-                                <TextField className="formInput" inputRef={loginRef.password} label="Senha" variant="outlined" placeholder="Senha" type="text" required />
+                                <TextField className="formInput"
+                                    inputRef={loginRef.password}
+                                    label="Senha"
+                                    variant="outlined"
+                                    placeholder="Senha"
+                                    type={passwordVisibible}
+                                    required
+                                    InputProps={{
+                                        endAdornment:
+                                            <InputAdornment position="end">
+                                                <IconButton
+                                                    onClick={() => setPasswordVisibible(passwordVisibible == "password" ? "text" : "password")}>
+                                                    {passwordVisibible == "password" ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                                                </IconButton>
+                                            </InputAdornment>
+                                    }}
+
+                                />
                                 : <></>}
                             <LoginButtonContainer>
                                 <LoginButton onClick={handleSubmit}>
@@ -92,6 +141,28 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
                     </LoginContentContainer>
                 </LoginBox>
             </Modal >
+            <>
+                {validationErrors.map((error, index) => {
+                    return (
+                        <Snackbar
+                            key={index}
+                            open={validationErrors.length >= 1}
+                            autoHideDuration={3000}
+                            message={error}
+                            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                            onClose={() => setValidationErrors([])}>
+                            <SnackbarMessageAlert
+                                sx={{ marginBottom: `${index * 5}rem` }}
+                                severity="error"
+                                variant="filled"
+                                onClose={() => setValidationErrors([])}
+                            >
+                                {error}
+                            </SnackbarMessageAlert>
+                        </Snackbar>
+                    )
+                })}
+            </>
         </>
     );
 }

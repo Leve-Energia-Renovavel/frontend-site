@@ -28,16 +28,16 @@ export default function MobileHeader(props) {
                                 <a onClick={() => handleNavigation("/")}>A Leve</a>
                             </MenuItemMobile>
                             <MenuItemMobile>
-                                <a onClick={() => handleNavigation("/about")}>Como funciona</a>
+                                <a onClick={() => handleNavigation("https://leveenergia.com.br/#comofunciona")}>Como funciona</a>
                             </MenuItemMobile>
                             <MenuItemMobile>
-                                <a onClick={() => handleNavigation("/beneficios")}>Benefícios</a>
+                                <a onClick={() => handleNavigation("https://leveenergia.com.br/#beneficios")}>Benefícios</a>
                             </MenuItemMobile>
                             <MenuItemMobile>
-                                <a onClick={() => handleNavigation("/quem-pode-ser-Leve")}>Quem pode ser Leve</a>
+                                <a onClick={() => handleNavigation("https://leveenergia.com.br/#serleve")}>Quem pode ser Leve</a>
                             </MenuItemMobile>
                             <MenuItemMobile>
-                                <a onClick={() => handleNavigation("/blog")}>Blog</a>
+                                <a onClick={() => handleNavigation("https://leveenergia.com.br/blog/")}>Blog</a>
                             </MenuItemMobile>
                         </UlMobile>
                     </NavMobile>

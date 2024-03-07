@@ -37,6 +37,9 @@ export const ResultEconomyContainer = styled.div`
   @media (min-width: 2000px) and (max-width: 2150px) {
     top: 60vh;
   }
+  @media (min-width: 1200px) and (max-width: 1500px) {
+    top: 90vh;
+  }
   
   @media (max-width: 1100px) {
     top: 105vh;

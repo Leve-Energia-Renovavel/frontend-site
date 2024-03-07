@@ -1,6 +1,19 @@
-import { background } from "../../styles";
+import { background, notification } from "../../styles";
 import styled from "@emotion/styled";
-import { Box, Button } from "@mui/material";
+import { Alert, Box, Button } from "@mui/material";
+import { keyframes } from "@emotion/react";
+
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`
 
 export const LoginBox = styled(Box)`
     position: absolute;
@@ -82,9 +95,9 @@ export const LoginButtonContainer = styled.form`
     .forgotPassword {
         font-family: "Metropolis";
         font-weight: 700;
-        font-size: 1.2rem;
-        line-height: 1.2rem;
-        color: ${background.grey};
+        font-size: 18px;
+        line-height: 18px;
+        color: ${background.higherGrey};
         
         margin: 1rem auto;
 
@@ -104,6 +117,7 @@ export const LoginButtonContainer = styled.form`
         font-weight: 500;
         
         &:hover {
+            font-weight: 700;
             cursor: pointer;
             text-decoration: underline;
 
@@ -154,4 +168,21 @@ export const FormFooterContainer = styled.div`
         font-weight: 500;
         color: ${background.grey}
     }
+`
+
+export const SnackbarMessageAlert = styled(Alert)`
+  font-family: "Metropolis";
+  font-size: 1rem;
+  background-color: ${notification.alert};
+  border-radius: 10px;
+  padding: 1rem;
+  align-items: center;
+
+  animation: ${fadeInUp} 0.5s ease-out;
+
+  @media screen and (max-width: 600px) {
+    padding: .3rem;
+    font-size: 1rem; 
+  }
+
 `

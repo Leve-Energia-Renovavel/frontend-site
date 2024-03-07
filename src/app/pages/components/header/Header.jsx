@@ -83,16 +83,16 @@ export default function Header() {
                                                 <Link href="/">A Leve</Link>
                                             </MenuItem>
                                             <MenuItem>
-                                                <Link href="/about">Como funciona</Link>
+                                                <Link href="https://leveenergia.com.br/#comofunciona">Como funciona</Link>
                                             </MenuItem>
                                             <MenuItem>
-                                                <Link href="/beneficios">Benefícios</Link>
+                                                <Link href="https://leveenergia.com.br/#beneficios">Benefícios</Link>
                                             </MenuItem>
                                             <MenuItem>
-                                                <Link href="/quem-pode-ser-Leve">Quem pode ser Leve</Link>
+                                                <Link href="https://leveenergia.com.br/#serleve">Quem pode ser Leve</Link>
                                             </MenuItem>
                                             <MenuItem>
-                                                <Link href="/blog">Blog</Link>
+                                                <Link href="https://leveenergia.com.br/blog/">Blog</Link>
                                             </MenuItem>
                                         </Ul>
                                     </Nav>
