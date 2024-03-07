@@ -1,7 +1,9 @@
 "use client"
 
-import { useStoreInstallations } from "@/app/hooks/useStore";
+import { useStoreAddress, useStoreInstallations, useStoreUser } from "@/app/hooks/useStore";
+import { requestSuccessful } from "@/app/service/utils/Validations";
 import { Typography } from "@mui/material";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import HistorySpendingChart from "../charts/HistorySpendingChart";
@@ -14,15 +16,70 @@ import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBi
 export default function DashboardMain() {
 
     const router = useRouter()
+
+    const user = useStoreUser().user
+    const storeUser = useStoreUser()
+    const storeAddress = useStoreAddress()
+    const storeInstallations = useStoreInstallations()
+
+    const address = useStoreAddress().address
+
     const installations = useStoreInstallations().installations
     const installation = installations[0]
 
     const [isLoading, setIsLoading] = useState(true)
 
-    useEffect(() => {
-        setIsLoading(false)
+    console.log(installations)
 
-    }, [])
+    useEffect(() => {
+        const fetchData = async () => {
+
+            try {
+                const uuid = "b2fc67d3-a48e-47d2-972e-629da4dafcfc"
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
+                if (requestSuccessful(response.status)) {
+
+                    const instalacao = response?.data?.instalacao
+                    const consumer = response?.data?.instalacao?.consumidor
+                    const cep = consumer?.cep
+
+                    storeUser.updateUser({
+                        name: consumer?.nome + " " + consumer?.sobrenome,
+                        phone: consumer?.telefone,
+                        email: consumer?.email,
+                        cost: instalacao?.valor_base_consumo,
+                        cep: cep,
+                        discount: instalacao?.desconto,
+                    });
+
+                    storeAddress.updateAddress({
+                        cityId: consumer?.cidade_id,
+                        stateId: consumer?.estado_id,
+                    })
+
+                    const installation = response.data.instalacao
+                    storeInstallations.addInstallation(
+                        {
+                            address: installation.endereco,
+                            number: installation.numero,
+                            city: installation.cidade || address.city || "CHURROS",
+                            state: installation.uf || address.city || "CHU",
+                            zipCode: installation.cep,
+                            amount: 80.75,
+                            dueDate: "05/02/2024",
+                            status: installation.situacao,
+                        })
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchData();
+        setIsLoading(false)
+    }, []);
+
+
 
     return (
         <Container>

@@ -97,17 +97,7 @@ export const useStoreClickSign = create((set) => ({
 
 
 export const useStoreInstallations = create((set) => ({
-    installations: [
-        {
-            address: "Alameda José de Oliveira Guimarães 563 casa 23.",
-            city: "Uberlândia",
-            state: "MG",
-            zipCode: "38412324",
-            amount: 80.75,
-            dueDate: "05/02/2024",
-            status: "pendente",
-        }
-    ],
+    installations: [],
     addInstallation: (newInstallation) => set((state) => ({
         installations: [...state.installations, newInstallation]
     })),

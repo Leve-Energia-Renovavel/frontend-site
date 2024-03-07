@@ -1,4 +1,4 @@
-import { useStoreUser } from '@/app/hooks/useStore';
+import { useStoreAddress, useStoreInstallations, useStoreUser } from '@/app/hooks/useStore';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Box, Select } from "@mui/material";
 import Image from 'next/image';
@@ -11,6 +11,8 @@ import { HeaderMenuItem, LogoContainer, MenuItem, Nav, Ul } from "./styles";
 export default function LoggedUserHeader() {
     const router = useRouter()
     const user = useStoreUser().user
+    const address = useStoreAddress().address
+    const mainInstallation = useStoreInstallations().installations[0]
 
     return (
         <>
@@ -29,7 +31,7 @@ export default function LoggedUserHeader() {
                         <Select
                             fullWidth
                             value={10}
-                            IconComponent={KeyboardArrowDownIcon} // Custom arrow icon
+                            IconComponent={KeyboardArrowDownIcon}
                             sx={{
                                 fontFamily: 'Metropolis',
                                 fontWeight: '600',
@@ -56,7 +58,7 @@ export default function LoggedUserHeader() {
                             <HeaderMenuItem
                                 value={10}>
                                 <span onClick={() => router.push("/dashboard")}>
-                                    Instalação Leve Selecionada
+                                    {mainInstallation ? (`${mainInstallation?.address}, ${mainInstallation?.number}`) : "Minha instalação"}
                                 </span>
                             </HeaderMenuItem>
                             <HeaderMenuItem
@@ -67,14 +69,14 @@ export default function LoggedUserHeader() {
                             </HeaderMenuItem>
                             <HeaderMenuItem
                                 value={30}>
-                                <span onClick={() => console.log("/installations")}>
+                                <span onClick={() => router.push("/installations")}>
                                     Adicionar Novo Endereço
                                 </span>
                             </HeaderMenuItem>
                         </Select>
                     </Box>
                     <MenuItem>
-                        <Link href="/">Olá, {user.name}</Link>
+                        <Link href="/">Olá{user ? (`, ${user.name}`) : ", Usuário Leve"}</Link>
                     </MenuItem>
                     <MenuItem>
                         <HeaderButton
