@@ -262,9 +262,7 @@ export default function RegisterForm() {
                             {isForeigner ?
                                 <TextField inputRef={userRefs.rg} className="formInput" label="RNE" variant="outlined" placeholder="RNE" type="text" InputLabelProps={{ shrink: true }} required />
                                 :
-                                <InputMask mask="99999999-9" required>
-                                    {() => <TextField inputRef={userRefs.rg} className="formInput" label="RG" variant="outlined" placeholder="RG" type="text" InputLabelProps={{ shrink: true }} required />}
-                                </InputMask>}
+                                <TextField inputRef={userRefs.rg} className="formInput" label="RG" variant="outlined" placeholder="RG" type="text" InputLabelProps={{ shrink: true }} required />}
                             <InputMask mask="999.999.999-99" required>
                                 {() => <TextField inputRef={userRefs.cpf} className="formInput" label="CPF" variant="outlined" placeholder="CPF" type="text" InputLabelProps={{ shrink: true }} required />}
                             </InputMask>
@@ -440,7 +438,7 @@ export default function RegisterForm() {
                         </FileUploadContainer>
                     ) : null}
 
-                    {/* <Button onClick={() => router.push('/dashboard')}>Dashboard</Button> */}
+                    <Button onClick={() => router.push('/dashboard')}>Dashboard</Button>
 
                 </FormContent>
                 {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}

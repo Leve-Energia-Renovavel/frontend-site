@@ -36,8 +36,7 @@ export const userSchema = yup.object({
     cidade_id: yup.number().required(),
     valor: yup.number().required(),
     rg: yup.string()
-        .matches(/^\d{8}-\d$/, 'O formato do RG é inválido')
-        .required('O campo RG é obrigatório'),
+        .required('O campo RG/RNE é obrigatório'),
     data_nascimento: yup.string()
         .required('O campo Data de Nascimento é obrigatório')
         .test('is-over-18', 'Você deve ser maior de 18 anos', isOver18),
