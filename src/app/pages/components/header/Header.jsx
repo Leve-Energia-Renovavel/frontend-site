@@ -1,15 +1,16 @@
 "use client"
 
+import { Box, Modal, Typography } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import logo from "../../../../resources/img/logo-header.png";
 import DefaultButton from '../utils/buttons/DefaultButton';
+import LoggedUserHeader from './LoggedUserHeader';
 import MobileHeader from './MobileHeader';
 import { ButtonContainer, HeaderContainer, LogoContainer, MenuBurguer, MenuItem, MobileHeaderContainer, Nav, NavContainer, Ul } from './styles';
-import { usePathname } from 'next/navigation';
-import LoggedUserHeader from './LoggedUserHeader';
+import LoginModal from '../login/LoginModal';
 
 export default function Header() {
 
@@ -18,6 +19,9 @@ export default function Header() {
 
     const [isMobile, setIsMobile] = useState(false);
     const [isMenuOpen, setMenuOpen] = useState(false);
+
+    const [openLogin, setOpenLogin] = useState(false);
+
 
     const headerHelper = {
         '/': false,
@@ -48,6 +52,14 @@ export default function Header() {
     const closeMobileMenu = () => {
         setMenuOpen(false)
     }
+
+    const openLoginModal = () => {
+        setOpenLogin(true);
+    };
+
+    const closeLoginModal = () => {
+        setOpenLogin(false);
+    };
 
     return (
         <>
@@ -87,7 +99,7 @@ export default function Header() {
                                 </NavContainer>
                                 <ButtonContainer>
                                     <DefaultButton variant="contained" text="Quero ser Leve" />
-                                    <DefaultButton variant="outlined" text="Já sou Leve" />
+                                    <DefaultButton variant="outlined" text="Já sou Leve" onClick={() => setOpenLogin(true)} />
                                 </ButtonContainer>
                             </>
                         ) : (
@@ -115,6 +127,11 @@ export default function Header() {
                     )}
                 </MobileHeaderContainer>
             )}
+
+
+            {openLogin &&
+                <LoginModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />
+            }
 
         </>
     );

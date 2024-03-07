@@ -1,5 +1,5 @@
-import BlankBanner from "./pages/components/banners/blank-banner/BlankBanner"
-import RegisterMain from "./register/[userType]/RegisterMain"
+import BlankBanner from "./pages/components/banners/blank-banner/BlankBanner";
+import RegisterMain from "./register/[userType]/RegisterMain";
 
 export default function Home() {
 
@@ -7,6 +7,7 @@ export default function Home() {
     <main>
       <RegisterMain />
       <BlankBanner />
+
     </main>
   )
 }

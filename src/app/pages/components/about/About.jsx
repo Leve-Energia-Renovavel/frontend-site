@@ -17,6 +17,7 @@ export default function About() {
                     <DefaultButton variant="contained" text="Quero Contratar" />
                 </DescriptionContainer>
                 <Image
+                    loading="eager" priority={true}
                     src={aboutImage}
                     alt="Descrição sobre a Leve Energias Renováveis"
                 />
