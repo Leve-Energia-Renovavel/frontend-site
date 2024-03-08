@@ -138,11 +138,10 @@ export const useStoreClickSign = create((set) => ({
         opened: false
     },
     updateClickSign: (newClickSign) => {
-        const newValue = JSON.parse(newClickSign);
         set((state) => ({
             data: {
                 ...state.clicksign_reg,
-                ...newValue.batch
+                ...newClickSign.batch
             }
         }))
     },

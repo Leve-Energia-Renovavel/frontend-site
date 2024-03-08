@@ -14,8 +14,6 @@ export default function ClicksignWidget() {
     const storeClicksign = useStoreClickSign()
     const clickSign = storeClicksign.data
 
-    console.log("ClicksignWidget  clickSign ==>>", clickSign)
-
     const [widget, setWidget] = useState(null);
 
     useEffect(() => {
