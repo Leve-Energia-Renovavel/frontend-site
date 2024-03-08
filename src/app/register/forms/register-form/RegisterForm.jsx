@@ -198,8 +198,6 @@ export default function RegisterForm() {
         }
     };
 
-
-
     const handleNationalityChange = (value) => {
         setIsForeigner(value === "estrangeira");
     };

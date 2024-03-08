@@ -24,6 +24,7 @@ export default function ContractSignature() {
             try {
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${user.uuid}`);
                 if (requestSuccessful(response.status)) {
+                    console.log("contract signature response ===>>", response)
                     storeClicksign.updateClickSign(response?.data?.instalacao?.clicksign_reg);
                 }
             } catch (error) {
@@ -34,13 +35,15 @@ export default function ContractSignature() {
         fetchData();
     }, [])
 
+    console.log("storeClicksign data ===>>", storeClicksign.data)
 
     return (
         <>
             <AlmostThereBanner userData={user} />
-            {storeClicksign.data.key != '' ? <ClicksignWidget />
+            {/* {storeClicksign.data.key != '' ? <ClicksignWidget />
                 : <Typography>Carregando dados...</Typography>
-            }
+            } */}
+            <ClicksignWidget />
             <FormBanner />
         </>
     );

@@ -14,8 +14,6 @@ export default function RegisterBannerSuccess(props) {
 
     const location = user.isCompany ? 'empresa' : 'residência'
 
-    console.log("success banner user ===>>", user )
-
     return (
         <BannerContainer>
             <ContentContainer>
