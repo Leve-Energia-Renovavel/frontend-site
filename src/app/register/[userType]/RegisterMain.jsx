@@ -4,11 +4,8 @@
 import { useStoreAddress, useStoreUser } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import axios from "axios";
-import Error from "next/error";
-import { useParams, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
-import RegisterBannerFailCost from "../banners/banner-fail-cost/FailCostBanner";
-import RegisterBannerFailRegion from "../banners/banner-fail-region/FailRegionBanner";
 import RegisterBannerSuccess from "../banners/banner-success/RegisterBanner";
 import FormBanner from "../banners/form-banner/FormBanner";
 import RegisterForm from "../forms/register-form/RegisterForm";
@@ -20,7 +17,6 @@ const isNotValidUserType = (userType) => {
 
 export default function RegisterMain() {
 
-    const params = useParams()
     const search = useSearchParams()
     const store = useStoreUser()
     const storeAddress = useStoreAddress()
@@ -96,16 +92,16 @@ export default function RegisterMain() {
 
     return (
         <div>
-            {isLowCost && <RegisterBannerFailCost />}
-            {!isLowCost && isOutOfRange && <RegisterBannerFailRegion />}
-            {!isLowCost && !isOutOfRange &&
+            {/* {isLowCost && <RegisterBannerFailCost />} */}
+            {/* {!isLowCost && isOutOfRange && <RegisterBannerFailRegion />} */}
+            {/* {!isLowCost && !isOutOfRange && */}
                 <>
                     <RegisterBannerSuccess />
                     <ResultEconomy />
                     <FormBanner />
                     <RegisterForm />
                 </>
-            }
+            {/* } */}
         </div>
     )
 }
