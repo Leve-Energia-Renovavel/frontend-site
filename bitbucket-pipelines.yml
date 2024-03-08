@@ -29,13 +29,13 @@ pipelines:
       - step:
           name: CloudFront Invalidation
           script:
-            - apt-get update && apt-get install -y python3
+            - apt-get update && apt-get install -y python3-pip python3-venv
             - python3 -m venv myenv
             - source myenv/bin/activate
             - pip install awscli
             - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
             - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-            - aws configure set region $AWS_REGION 
+            - aws configure set region $AWS_REGION  # Defina a região do seu CloudFront
             - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
             - deactivate
 
