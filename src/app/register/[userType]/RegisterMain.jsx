@@ -78,9 +78,6 @@ export default function RegisterMain() {
                         })
 
                     }
-                    console.log("user ===>>", store.user)
-                    console.log("address ===>>", storeAddress.address)
-
                 }
             } catch (error) {
                 console.error(error);
@@ -95,12 +92,12 @@ export default function RegisterMain() {
             {/* {isLowCost && <RegisterBannerFailCost />} */}
             {/* {!isLowCost && isOutOfRange && <RegisterBannerFailRegion />} */}
             {/* {!isLowCost && !isOutOfRange && */}
-                <>
-                    <RegisterBannerSuccess />
-                    <ResultEconomy />
-                    <FormBanner />
-                    <RegisterForm />
-                </>
+            <>
+                <RegisterBannerSuccess />
+                <ResultEconomy />
+                <FormBanner />
+                <RegisterForm />
+            </>
             {/* } */}
         </div>
     )

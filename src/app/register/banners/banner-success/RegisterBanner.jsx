@@ -2,21 +2,19 @@
 
 import { useStoreUser } from "@/app/hooks/useStore";
 import { Typography } from "@mui/material";
-import { useParams } from 'next/navigation';
 import { BannerContainer, ContentContainer } from "./styles";
 
 export default function RegisterBannerSuccess(props) {
 
-    const params = useParams()
-    const store = useStoreUser()
+    const user = useStoreUser().user
 
-    const isCompany = store.isCompany
-
-    const name = store.user.name;
+    const name = user.name;
     const fullName = name.split(" ");
     const firstName = fullName[0]
 
-    const location = isCompany ? 'empresa' : 'residência'
+    const location = user.isCompany ? 'empresa' : 'residência'
+
+    console.log("success banner user ===>>", user )
 
     return (
         <BannerContainer>
