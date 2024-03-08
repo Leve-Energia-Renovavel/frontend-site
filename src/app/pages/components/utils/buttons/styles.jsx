@@ -46,7 +46,7 @@ export const DefaultButtonStyle = styled(Button)`
         font-family: "Metropolis";
         font-size: 18px;
         line-height: 18px;
-        font-weight: 600;
+        font-weight: 500;
 
         @media (max-width: 1200px) {
         font-size: 16px;
