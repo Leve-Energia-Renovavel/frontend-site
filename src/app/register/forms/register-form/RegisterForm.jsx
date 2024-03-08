@@ -13,7 +13,7 @@ import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import SearchIcon from '@mui/icons-material/Search';
 import { Button, Divider, MenuItem, Snackbar, TextField, Typography } from "@mui/material";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import RegisterModal from "../../modals/installation-number-modal/InstallationNumberModal";
@@ -21,7 +21,6 @@ import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { companySchema, userSchema } from "./schema";
 import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, SnackbarMessageAlert, fileInputStyles } from "./styles";
-import Error from "next/error";
 
 export default function RegisterForm() {
 
@@ -38,16 +37,10 @@ export default function RegisterForm() {
     const [energyExtractFile, setEnergyExtractFile] = useState(null);
     const [validationErrors, setValidationErrors] = useState([]);
 
-    const { name, email, phone, cep, companyName, cost } = store.user
+    const { name, email, phone, cep, companyName, cost, isCompany } = store.user
     const { street, neighborhood, city, state, stateId, cityId } = storeAddress.address
 
     const [stateValue, setStateValue] = useState(stateOptions[stateId] || null);
-
-    const company = storeCompany.company
-    const isCompany = store.user.isCompany
-
-    const params = useParams()
-    const search = useSearchParams()
 
     const fetchCEP = useGetCEP();
     const fetchCNPJ = useGetCNPJ();
@@ -142,8 +135,11 @@ export default function RegisterForm() {
             numero_instalacao: addressRefs.installationNumber.current.value
         }
 
+        console.log("submitData ==>>", submitData)
+        
         const response = await schemaValidation(isCompany, submitData)
-
+        console.log("registerForm response ==>>", response)
+        
         if (requestSuccessful(response.status) || hasToSignContract(response?.data?.message)) {
             console.log("Data successfully saved!")
 
