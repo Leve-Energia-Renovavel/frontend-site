@@ -267,3 +267,26 @@ export const MenuBurguer = styled(MenuIcon)`
     font-size: 2rem;
     cursor: pointer;
 `
+
+export const installationFieldStyle = {
+    fontFamily: 'Metropolis',
+    fontWeight: '600',
+    color: '#FFF',
+    '& .MuiOutlinedInput-root': {
+        '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#0075FF', // Border color on hover
+        },
+        '& .MuiSelect-select:focus': {
+            backgroundColor: '#0075FF', // Avoid the blue background on focus
+        },
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+        borderColor: '#0075FF', // Border color
+    },
+    '&:hover .MuiOutlinedInput-notchedOutline': {
+        borderColor: '#0075FF', // Border color on hover
+    },
+    '.MuiSvgIcon-root ': {
+        fill: "white !important",
+    },
+}

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import logo from "../../../../resources/img/logo-header.png";
 import HeaderButton from '../utils/buttons/HeaderButton';
-import { HeaderMenuItem, LogoContainer, MenuItem, Nav, Ul } from "./styles";
+import { HeaderMenuItem, LogoContainer, MenuItem, Nav, Ul, installationFieldStyle } from "./styles";
 
 export default function LoggedUserHeader() {
     const router = useRouter()
@@ -32,31 +32,9 @@ export default function LoggedUserHeader() {
                             fullWidth
                             value={10}
                             IconComponent={KeyboardArrowDownIcon}
-                            sx={{
-                                fontFamily: 'Metropolis',
-                                fontWeight: '600',
-                                color: '#FFF',
-                                '& .MuiOutlinedInput-root': {
-                                    '&:hover .MuiOutlinedInput-notchedOutline': {
-                                        borderColor: '#0075FF', // Border color on hover
-                                    },
-                                    '& .MuiSelect-select:focus': {
-                                        backgroundColor: '#0075FF', // Avoid the blue background on focus
-                                    },
-                                },
-                                '& .MuiOutlinedInput-notchedOutline': {
-                                    borderColor: '#0075FF', // Border color
-                                },
-                                '&:hover .MuiOutlinedInput-notchedOutline': {
-                                    borderColor: '#0075FF', // Border color on hover
-                                },
-                                '.MuiSvgIcon-root ': {
-                                    fill: "white !important",
-                                },
-
-                            }}>
-                            <HeaderMenuItem
-                                value={10}>
+                            sx={installationFieldStyle}>
+                            <HeaderMenuItem value={10} style={{ display: 'none' }}
+                            >
                                 <span onClick={() => router.push("/dashboard")}>
                                     {mainInstallation ? (`${mainInstallation?.address}, ${mainInstallation?.number}`) : "Minha instalação"}
                                 </span>
