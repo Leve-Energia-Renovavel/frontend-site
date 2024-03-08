@@ -110,7 +110,6 @@ export default function RegisterForm() {
                     return err.errors
                 });
         }
-
         return response
 
     }
@@ -144,7 +143,7 @@ export default function RegisterForm() {
 
         const response = await schemaValidation(isCompany, submitData)
 
-        if (requestSuccessful(response) || hasToSignContract(response?.data?.message)) {
+        if (requestSuccessful(response.status) || hasToSignContract(response?.data?.message)) {
             console.log("Data successfully saved!")
 
             store.updateUser({

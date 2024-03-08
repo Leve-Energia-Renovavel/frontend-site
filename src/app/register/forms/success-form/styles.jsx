@@ -11,17 +11,24 @@ export const FormContainer = styled.div`
   background-color: ${background.light};
   
   position: absolute;
-  top: ${(props) => props.isDown ? `65vh` : `90vh`};
+  top: ${(props) => props.isDown ? `65vh` : `75vh`};
   left: 50vw;
   transform: translate(-50%, -50%);
   z-index: 100;
   
   width: 60vw;
 
+  @media (min-width: 1800px) and (max-width: 2150px) {
+    top: 75vh;
+  }
+  @media (max-width: 1100px) {
+    top: 80vh;
+  }
+
   @media (max-width: 600px) {
     width: 100vw;
     max-width: 100vw;
-    
+
     position: static; 
     top: auto;
     left: auto; 
@@ -106,6 +113,34 @@ export const FormContent = styled.div`
     grid-column: span 1;
     
   }
+  
+  `;
+
+export const SimpleFormContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+
+    @media (max-width: 600px) {
+      margin: 0;
+    }
+    
+    
+    h3 {
+      color: ${background.blueLeve};
+      font-family: "Metropolis";
+      font-size: 1.875rem;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      
+      margin-bottom: 1.5rem;
+      
+      @media (max-width: 600px) {
+        font-size: 1.75rem;
+      }
+    }
   
   `;
 

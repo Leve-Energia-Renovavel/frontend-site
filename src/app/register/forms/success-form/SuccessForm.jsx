@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 import DistibuitorSyncData from "./DistribuitorSyncData";
 import SuccessFormProgress from "./SuccessFormProgress";
 import SuccessFormTitle from "./SuccessFormTitle";
-import { ButtonContainer, Form, FormContainer, FormContent, FormHeader } from "./styles";
+import { ButtonContainer, Form, FormContainer, FormContent, FormHeader, SimpleFormContent } from "./styles";
 import { useStoreUser } from "@/app/hooks/useStore";
 import axios from "axios";
 import { requestSuccessful } from "@/app/service/utils/Validations";
@@ -60,7 +60,8 @@ export default function SuccessForm() {
                         <SuccessFormTitle />
                         <SuccessFormProgress finishedProgress={() => setFinishedProgress(true)} />
                     </FormHeader>}
-                {finishedProgress && <FormContent>
+                {/* {finishedProgress && 
+                <FormContent>
                     {!hasSync ? (
                         <>
                             <Typography variant="h3">Agora é só se conectar à Leve!</Typography>
@@ -94,8 +95,14 @@ export default function SuccessForm() {
                             <DefaultButton variant="contained" text={"Acessar minha conta"} isSubmit={true} />
                         </>
                     )}
-
-                </FormContent>}
+                </FormContent>} */}
+                {finishedProgress && (
+                    <SimpleFormContent>
+                        <Typography variant="h3">Sucesso!</Typography>
+                        <Typography className="orientations">Agora você já pode curtir sua vida mais Leve 😉</Typography>
+                        <DefaultButton variant="contained" text={"Acessar minha conta"} onClick={() => router.push(`/dashboard`)} />
+                    </SimpleFormContent>
+                )}
             </FormContainer>
         </>
     );
