@@ -49,7 +49,7 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
             });
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
 
         if (!forgotPassword) {
@@ -59,7 +59,7 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
                 password: loginRef.password.current.value
             }
 
-            const response = loginValidation(data)
+            const response = await loginValidation(data)
             console.log("handleSubmit response ===>>", response)
 
         } else {
