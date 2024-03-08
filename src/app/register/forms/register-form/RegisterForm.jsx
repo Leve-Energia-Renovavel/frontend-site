@@ -259,10 +259,14 @@ export default function RegisterForm() {
                                     inputRef={userRefs.phone} className="formInput" label="Celular" placeholder="Celular" variant="outlined" type="text" InputLabelProps={{ shrink: true }} required />}
                             </InputMask>
                             {isForeigner ?
-                                <TextField inputRef={userRefs.rg} className="formInput" label="RNE" variant="outlined" placeholder="RNE" type="text" InputLabelProps={{ shrink: true }} required />
+                                (<InputMask mask="*******-*" required >
+                                    {() => <TextField inputRef={userRefs.rg} className="formInput" label="RNE" variant="outlined" placeholder="RNE" type="text" InputLabelProps={{ shrink: true }} required />}
+                                </InputMask>)
                                 :
-                                <TextField inputRef={userRefs.rg} className="formInput" label="RG" variant="outlined" placeholder="RG" type="text" InputLabelProps={{ shrink: true }} required />}
-                            <InputMask mask="999.999.999-99" required>
+                                (<InputMask mask="********-*" required >
+                                    {() => <TextField inputRef={userRefs.rg} className="formInput" label="RG" variant="outlined" placeholder="RG" type="text" InputLabelProps={{ shrink: true }} required />}
+                                </InputMask>)}
+                            <InputMask mask="999.999.999-99" required >
                                 {() => <TextField inputRef={userRefs.cpf} className="formInput" label="CPF" variant="outlined" placeholder="CPF" type="text" InputLabelProps={{ shrink: true }} required />}
                             </InputMask>
 
