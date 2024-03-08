@@ -1,3 +1,4 @@
+import { logIn } from '@/app/service/user-service/UserService';
 import CloseIcon from '@mui/icons-material/Close';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -8,11 +9,12 @@ import { useRef, useState } from 'react';
 import leveLogo from '../../../../resources/img/leve-logo-blue.jpg';
 import { forgotPasswordSchema, loginSchema } from './schema';
 import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginContentContainer, LoginForm, LoginIconContainer, LoginTitleContainer, SnackbarMessageAlert } from './styles';
-import { logIn } from '@/app/service/user-service/UserService';
+import { useStoreUser } from '@/app/hooks/useStore';
 
 export default function LoginModal({ isOpen, openModal, closeModal }) {
 
     const router = useRouter()
+    const user = useStoreUser().user
 
     const [forgotPassword, setForgotPassword] = useState(false)
     const [passwordVisibible, setPasswordVisibible] = useState("password")
@@ -55,9 +57,14 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
         if (!forgotPassword) {
 
             const data = {
-                email: loginRef.email.current.value,
-                password: loginRef.password.current.value
+                username: loginRef.email.current.value,
+                password: loginRef.password.current.value,
+                grant_type: "password",
+                client_secret: "Ne3XLQEfGYzkhwDAtIYcknkn8cbRXGL2Ya0vFY7r",
+                client_id: user.clientId,
+                scope: ""
             }
+
 
             const response = await loginValidation(data)
             console.log("handleSubmit response ===>>", response)

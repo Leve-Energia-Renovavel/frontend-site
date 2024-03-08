@@ -66,6 +66,7 @@ export default function RegisterMain() {
                         cost: instalacao?.valor_base_consumo,
                         cep: cep,
                         discount: instalacao?.desconto,
+                        clientId: instalacao?.clientes_id
                     });
 
                     storeAddress.updateAddress({

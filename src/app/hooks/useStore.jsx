@@ -23,6 +23,8 @@ export const useStoreUser = create((set) => ({
         profession: "",
         nationality: "",
 
+        clientId: "",
+
     },
     updateUser: (newUser) =>
         set((state) => ({

@@ -11,7 +11,8 @@ export const notification = {
     successFocus: "#22bb5b",
     warning: "#ffae00",
     warningFocus: "#cc8b00",
-    alert: "#cc4b37",
+    // alert: "#cc4b37",
+    alert: "#f00",
     alertFocus: "#67251a",
 }
 export const statusColors = {
