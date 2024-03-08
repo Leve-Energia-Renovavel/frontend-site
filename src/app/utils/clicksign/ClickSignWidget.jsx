@@ -23,6 +23,7 @@ export default function ClicksignWidget() {
 
         const run = () => {
             const widgetInstance = new Clicksign(clickSign.key);
+
             widgetInstance.endpoint = 'https://app.clicksign.com';
             widgetInstance.origin = window.location.protocol + '//' + window.location.host;
 

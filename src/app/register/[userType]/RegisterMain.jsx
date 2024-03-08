@@ -4,8 +4,9 @@
 import { useStoreAddress, useStoreUser } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import axios from "axios";
-import { notFound, useParams, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import Error from "next/error";
+import { useParams, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import RegisterBannerFailCost from "../banners/banner-fail-cost/FailCostBanner";
 import RegisterBannerFailRegion from "../banners/banner-fail-region/FailRegionBanner";
 import RegisterBannerSuccess from "../banners/banner-success/RegisterBanner";
@@ -28,6 +29,10 @@ export default function RegisterMain() {
     // const uuid = "20d04059-a75b-403b-910e-e59096a1370b"   //teste Milton
 
     const uuid = "b2fc67d3-a48e-47d2-972e-629da4dafcfc"   //teste um
+
+    if (uuid == "b2fc67d3-a48e-47d2-972e-629da4dafcfc") {
+        throw new Error("Erro no Servidor")
+    }
 
     // const uuid = "bc2ad4c7-c9c7-4743-8f70-50431af52565" //teste dois
 

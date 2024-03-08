@@ -21,6 +21,7 @@ import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { companySchema, userSchema } from "./schema";
 import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, SnackbarMessageAlert, fileInputStyles } from "./styles";
+import Error from "next/error";
 
 export default function RegisterForm() {
 
