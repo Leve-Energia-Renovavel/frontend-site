@@ -11,6 +11,17 @@ export const signUp = async (data) => {
         return error
     }
 }
+export const getAccessToken = async (data) => {
+    try {
+        console.log("getting access token...")
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL_TOKEN_OAUTH}`, data);
+        return response
+
+    } catch (error) {
+        console.error(error);
+        return error
+    }
+}
 export const logIn = async (data) => {
     try {
         const payload = {

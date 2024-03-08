@@ -13,6 +13,7 @@ import DashboardButton from "../utils/buttons/DashboardButton";
 import FormButton from "../utils/buttons/FormButton";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
 import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, MemberGetMemberContainer, NewInstallationButtonContainer, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, YourInfo, YourInfoContainer } from "./styles";
+import { getInstallationsByUUID } from "@/app/service/installation-service/InstallationService";
 
 export default function DashboardMain() {
 
@@ -30,19 +31,36 @@ export default function DashboardMain() {
 
     const [isLoading, setIsLoading] = useState(true)
 
-    console.log(installations)
-
     useEffect(() => {
-        const fetchData = async () => {
-
+        const fetchDashboardData = async () => {
             try {
-                const uuid = "b2fc67d3-a48e-47d2-972e-629da4dafcfc"
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
-                if (requestSuccessful(response.status)) {
+                const headers = {
+                    Authorization: `Bearer ${user.accessToken}`
+                };
 
-                    const instalacao = response?.data?.instalacao
-                    const consumer = response?.data?.instalacao?.consumidor
-                    const cep = consumer?.cep
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/${user.uuid}`, { headers });
+                console.log("Dashboard data response ===>>>", response)
+
+                if (requestSuccessful(response.status)) {
+                    // Handle dashboard data response if needed
+                } else {
+                    console.error("Failed to fetch dashboard data");
+                }
+            } catch (error) {
+                console.error("Error fetching dashboard data:", error);
+            }
+        };
+
+        const fetchCustomerData = async () => {
+            try {
+                const uuid = "b2fc67d3-a48e-47d2-972e-629da4dafcfc";
+                const response = await getInstallationsByUUID(uuid);
+                console.log("Customer data response ===>>>", response);
+
+                if (requestSuccessful(response.status)) {
+                    const instalacao = response?.data?.instalacao;
+                    const consumer = response?.data?.instalacao?.consumidor;
+                    const cep = consumer?.cep;
 
                     storeUser.updateUser({
                         name: consumer?.nome + " " + consumer?.sobrenome,
@@ -56,30 +74,32 @@ export default function DashboardMain() {
                     storeAddress.updateAddress({
                         cityId: consumer?.cidade_id,
                         stateId: consumer?.estado_id,
-                    })
+                    });
 
-                    const installation = response.data.instalacao
-                    storeInstallations.addInstallation(
-                        {
-                            address: installation.endereco,
-                            number: installation.numero,
-                            city: installation.cidade || address.city || "CHURROS",
-                            state: installation.uf || address.city || "CHU",
-                            zipCode: installation.cep,
-                            amount: 80.75,
-                            dueDate: "05/02/2024",
-                            status: installation.situacao,
-                        })
+                    const installation = response.data.instalacao;
+                    storeInstallations.addInstallation({
+                        address: installation.endereco,
+                        number: installation.numero,
+                        city: installation.cidade || address.city || "CHURROS",
+                        state: installation.uf || address.city || "CHU",
+                        zipCode: installation.cep,
+                        amount: 80.75,
+                        dueDate: "05/02/2024",
+                        status: installation.situacao,
+                    });
+                } else {
+                    console.error("Failed to fetch customer data");
                 }
             } catch (error) {
-                console.error(error);
+                console.error("Error fetching customer data:", error);
+            } finally {
+                setIsLoading(false);
             }
         };
 
-        fetchData();
-        setIsLoading(false)
+        fetchDashboardData();
+        fetchCustomerData();
     }, []);
-
 
 
     return (

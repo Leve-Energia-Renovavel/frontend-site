@@ -2,15 +2,16 @@
 
 import { useStoreInstallations } from "@/app/hooks/useStore";
 import SearchIcon from '@mui/icons-material/Search';
-import { TextField, Typography } from "@mui/material";
+import { IconButton, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import FormButton from "../utils/buttons/FormButton";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
-import { ButtonContainer, InstallationsMainContainer as Container, FormContentNewInstallation, HomeIconStyled, InstallationsMainContent, MainInstallationInfoContainer as MainInstallationInfo, NewInstallationContent, TitleContainer } from "./styles";
+import { ButtonContainer, InstallationsMainContainer as Container, FormContentNewInstallation, HomeIconStyled, InstallationsMainContent, InstallationsTitleContainer, MainInstallationInfoContainer as MainInstallationInfo, NewInstallationContent, TitleContainer, TitleIconsContainer } from "./styles";
 import NewInstallationButtonConfirm from "../utils/buttons/NewInstallationButtonConfirm";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function InstallationsMain() {
 
@@ -70,7 +71,6 @@ export default function InstallationsMain() {
             installationNumber: newInstallationRef.installationNumber.current.value
         }
 
-        console.log("InstallationsMain handleSubmit ===>>", data)
         storeInstallations.addInstallation(data);
         setOpenForm(false)
 
@@ -86,16 +86,24 @@ export default function InstallationsMain() {
 
         setInstallationCost(newCost)
     }
+    const handleDeleteInstallation = (installation, index) => {
+        storeInstallations.deleteInstallation(index)
+    }
 
     return (
         <Container>
             <Typography variant="h1">Meus Endereços</Typography>
-            {installations.map((installation) => {
+            {installations.map((installation, index) => {
                 return (
                     <InstallationsMainContent key={installation.address}>
                         <TitleContainer>
-                            <HomeIconStyled />
-                            <Typography variant="h2">Meu Endereço</Typography>
+                            <TitleIconsContainer>
+                                <HomeIconStyled />
+                                <Typography variant="h2">Meu Endereço</Typography>
+                            </TitleIconsContainer>
+                            {installations.length > 1 && <IconButton onClick={() => handleDeleteInstallation(installation, index)}>
+                                <DeleteIcon className="deleteIcon" />
+                            </IconButton>}
                         </TitleContainer>
                         <MainInstallationInfo>
                             <Typography variant="h3" className="mainAddress">{installation.address}</Typography>

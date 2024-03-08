@@ -25,10 +25,13 @@ export default function RegisterMain() {
     const store = useStoreUser()
     const storeAddress = useStoreAddress()
 
-    // const uuid = search.get("uuid")
+    console.log("params ===>>>", params)
+    console.log("search ===>>>", search)
+    
+    const uuidTeste = search.get("uuid")
+    console.log("uuidTeste ===>>>", uuidTeste)
     // const uuid = "20d04059-a75b-403b-910e-e59096a1370b"   //teste Milton
 
-    const uuid = "b2fc67d3-a48e-47d2-972e-629da4dafcfc"   //teste um
 
     // if (uuid == "b2fc67d3-a48e-47d2-972e-629da4dafcfc") {
     //     throw new Error("Erro no Servidor")
@@ -47,6 +50,7 @@ export default function RegisterMain() {
     useEffect(() => {
         const fetchData = async () => {
 
+            const uuid = "b2fc67d3-a48e-47d2-972e-629da4dafcfc"
             store.updateUser({ uuid: uuid });
 
             try {

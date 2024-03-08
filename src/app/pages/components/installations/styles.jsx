@@ -28,7 +28,6 @@ export const InstallationsMainContainer = styled.div`
         font-weight: 700;
     }
 `
-
 export const InstallationsMainContent = styled.div`
     background-color: ${background.light};
     border: 1px solid ${background.blueLeve};
@@ -45,6 +44,7 @@ export const InstallationsMainContent = styled.div`
 export const TitleContainer = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
 
     h2 {
@@ -55,6 +55,15 @@ export const TitleContainer = styled.div`
         
         margin-left: 4px;
     }
+
+    .deleteIcon { 
+      color: ${background.grey}
+    }
+`
+export const TitleIconsContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 `
 
 export const HomeIconStyled = styled(HomeIcon)`

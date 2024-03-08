@@ -24,13 +24,39 @@ export const useStoreUser = create((set) => ({
         nationality: "",
 
         clientId: "",
-
+        accessToken: "",
+        refreshToken: "",
     },
     updateUser: (newUser) =>
         set((state) => ({
             user: {
                 ...state.user,
                 ...newUser
+            }
+        })),
+    clearUser: () =>
+        set(() => ({
+            user: {
+                uuid: "",
+                name: "",
+                email: "",
+                phone: null,
+                cep: "",
+                cost: 0,
+                companyName: "",
+                discount: 0,
+                isCompany: false,
+                isLowCost: false,
+                isOutOfRange: false,
+                birthDate: "",
+                rg: "",
+                cpf: "",
+                maritalStatus: "",
+                profession: "",
+                nationality: "",
+                clientId: "",
+                accessToken: "",
+                refreshToken: "",
             }
         }))
 }));
@@ -53,6 +79,20 @@ export const useStoreAddress = create((set) => ({
                 ...state.address,
                 ...newAddress
             }
+        })),
+    clearAddress: () =>
+        set(() => ({
+            address: {
+                street: "",
+                number: "",
+                neighborhood: "",
+                cityId: 0,
+                stateId: 0,
+                city: "",
+                state: "",
+                cep: "",
+                installationNumber: "",
+            }
         }))
 }));
 
@@ -70,6 +110,17 @@ export const useStoreCompany = create((set) => ({
             company: {
                 ...state.company,
                 ...newCompany
+            }
+        })),
+    clearCompany: () =>
+        set(() => ({
+            company: {
+                name: "",
+                email: "",
+                phone: "",
+                corporateReason: "",
+                cnpj: "",
+                responsibleName: "",
             }
         }))
 }));
@@ -94,7 +145,21 @@ export const useStoreClickSign = create((set) => ({
                 ...newValue.batch
             }
         }))
-    }
+    },
+    clearClickSign: () =>
+        set(() => ({
+            data: {
+                key: "",
+                request_signature_key: "",
+                url: "",
+                signer_key: "",
+                document_keys: [],
+                summary: false,
+                created_at: "",
+                updated_at: "",
+                opened: false
+            }
+        }))
 }));
 
 
@@ -110,5 +175,9 @@ export const useStoreInstallations = create((set) => ({
     })),
     deleteInstallation: (index) => set((state) => ({
         installations: state.installations.filter((_, i) => i !== index)
-    }))
+    })),
+    clearInstallations: () =>
+        set(() => ({
+            installations: []
+        }))
 }));

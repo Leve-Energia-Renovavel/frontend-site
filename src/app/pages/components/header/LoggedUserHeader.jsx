@@ -1,4 +1,4 @@
-import { useStoreAddress, useStoreInstallations, useStoreUser } from '@/app/hooks/useStore';
+import { useStoreAddress, useStoreCompany, useStoreInstallations, useStoreUser } from '@/app/hooks/useStore';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Box, Select } from "@mui/material";
 import Image from 'next/image';
@@ -13,6 +13,19 @@ export default function LoggedUserHeader() {
     const user = useStoreUser().user
     const address = useStoreAddress().address
     const mainInstallation = useStoreInstallations().installations[0]
+
+    const storeUser = useStoreUser()
+    const storeAddress = useStoreAddress()
+    const storeCompany = useStoreCompany()
+    const storeInstallation = useStoreInstallations()
+
+    const handleLogout = () => {
+        storeUser.clearUser()
+        storeAddress.clearAddress()
+        storeCompany.clearCompany()
+        storeInstallation.clearInstallations()
+        router.push("/")
+    }
 
     return (
         <>
@@ -64,7 +77,7 @@ export default function LoggedUserHeader() {
                     <MenuItem>
                         <HeaderButton
                             text="Sair"
-                            onClick={() => router.push("/")} />
+                            onClick={() => handleLogout()} />
                     </MenuItem>
                 </Ul>
             </Nav>
