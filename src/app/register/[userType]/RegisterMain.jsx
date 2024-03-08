@@ -30,9 +30,9 @@ export default function RegisterMain() {
 
     const uuid = "b2fc67d3-a48e-47d2-972e-629da4dafcfc"   //teste um
 
-    if (uuid == "b2fc67d3-a48e-47d2-972e-629da4dafcfc") {
-        throw new Error("Erro no Servidor")
-    }
+    // if (uuid == "b2fc67d3-a48e-47d2-972e-629da4dafcfc") {
+    //     throw new Error("Erro no Servidor")
+    // }
 
     // const uuid = "bc2ad4c7-c9c7-4743-8f70-50431af52565" //teste dois
 

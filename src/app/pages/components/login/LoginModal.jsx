@@ -8,6 +8,7 @@ import { useRef, useState } from 'react';
 import leveLogo from '../../../../resources/img/leve-logo-blue.jpg';
 import { forgotPasswordSchema, loginSchema } from './schema';
 import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginContentContainer, LoginForm, LoginIconContainer, LoginTitleContainer, SnackbarMessageAlert } from './styles';
+import { logIn } from '@/app/service/user-service/UserService';
 
 export default function LoginModal({ isOpen, openModal, closeModal }) {
 
@@ -28,9 +29,9 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
     }
 
     const loginValidation = async (data) => {
-        const response = await loginSchema.validate(data, { abortEarly: false })
-            .then(() => {
-
+        return await loginSchema.validate(data, { abortEarly: false })
+            .then(async () => {
+                return await logIn(data)
             })
             .catch((err) => {
                 console.log(err.errors);
@@ -59,6 +60,7 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
             }
 
             const response = loginValidation(data)
+            console.log("handleSubmit response ===>>", response)
 
         } else {
             const data = { email: loginRef.email.current.value }
