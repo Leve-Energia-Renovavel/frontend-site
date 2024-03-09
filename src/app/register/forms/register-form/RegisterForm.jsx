@@ -21,6 +21,8 @@ import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { companySchema, userSchema } from "./schema";
 import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, SnackbarMessageAlert, fileInputStyles } from "./styles";
+import { allCities } from "@/app/utils/form-options/citiesOptions";
+import { FixedSizeList as List } from 'react-window';
 
 export default function RegisterForm() {
 
@@ -41,6 +43,10 @@ export default function RegisterForm() {
     const { street, neighborhood, city, state, stateId, cityId } = storeAddress.address
 
     const [stateValue, setStateValue] = useState(stateOptions[stateId] || null);
+
+    const meuID = stateValue?.cod_estados || 26
+
+    const allCitiesByState = allCities.filter(city => city.hasOwnProperty(meuID)).map(city => city[meuID]);
 
     const fetchCEP = useGetCEP();
     const fetchCNPJ = useGetCNPJ();
@@ -136,10 +142,10 @@ export default function RegisterForm() {
         }
 
         console.log("submitData ==>>", submitData)
-        
+
         const response = await schemaValidation(isCompany, submitData)
         console.log("registerForm response ==>>", response)
-        
+
         if (requestSuccessful(response.status) || hasToSignContract(response?.data?.message)) {
             console.log("Data successfully saved!")
 
@@ -214,6 +220,19 @@ export default function RegisterForm() {
         storeAddress.updateAddress({ stateId: value })
         store.updateUser({ cep: "" })
     }
+
+    const Row = ({ index, style }) => {
+        const city = allCitiesByState[0][index];
+        const cityValue = Object.values(city)[0];
+
+        return (
+            <div style={style}>
+                <MenuItem key={cityValue.cod_cidades} value={cityValue.cod_cidades}>
+                    {cityValue.nome}
+                </MenuItem>
+            </div>
+        );
+    };
 
     return (
         <>
@@ -382,7 +401,29 @@ export default function RegisterForm() {
                         })}
                     </TextField>
 
-                    <TextField className="formInput" defaultValue={city.toUpperCase() || ''} inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} required />
+                    <TextField
+                        select
+                        label="Cidade"
+                        placeholder="Cidade"
+                        variant="outlined"
+                        className="formInput"
+                        defaultValue={city.toUpperCase() || ''}
+                        InputLabelProps={{
+                            component: 'span',
+                        }}
+                        inputRef={addressRefs.city}
+                        required>
+                        <List
+                            height={150}
+                            itemCount={allCitiesByState[0].length}
+                            itemSize={35}
+                            width={300}
+                        >
+                            {Row}
+                        </List>
+                    </TextField>
+
+                    {/* <TextField className="formInput" defaultValue={city.toUpperCase() || ''} inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} required /> */}
 
                     <FormLastRow>
                         <TextField
@@ -436,7 +477,8 @@ export default function RegisterForm() {
                         </FileUploadContainer>
                     ) : null}
 
-                    {/* <Button onClick={() => router.push('/dashboard')}>Dashboard</Button> */}
+                    <Button onClick={() => router.push('/dashboard')}>Dashboard</Button>
+                    <Button onClick={() => handleCities()}>TESTE CITIES</Button>
 
                 </FormContent>
                 {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}

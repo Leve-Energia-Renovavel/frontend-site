@@ -38,7 +38,7 @@ export default function RegisterMain() {
 
                     const instalacao = userResponse?.data?.instalacao
                     const consumer = userResponse?.data?.instalacao?.consumidor
-                    const isCompany = userResponse?.data?.instalacao?.cnpj ? true : false
+                    const isCompany = consumer?.type == "PJ" ? true : false
                     const cep = consumer?.cep
 
                     store.updateUser({
