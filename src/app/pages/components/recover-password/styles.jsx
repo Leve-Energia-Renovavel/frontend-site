@@ -1,5 +1,19 @@
+import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import { background } from "../../styles";
+import { Alert } from "@mui/material";
+import { background, notification } from "../../styles";
+
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const RecoverPasswordContainer = styled.div`
     display: flex;
