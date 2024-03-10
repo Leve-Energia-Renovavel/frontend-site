@@ -1,4 +1,7 @@
-import { getAccessToken, logIn } from '@/app/service/user-service/UserService';
+import { useStoreUser } from '@/app/hooks/useStore';
+import { recoverPassword } from '@/app/service/login-service/LoginService';
+import { getAccessToken } from '@/app/service/user-service/UserService';
+import { requestSuccessful } from '@/app/service/utils/Validations';
 import CloseIcon from '@mui/icons-material/Close';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -9,9 +12,6 @@ import { useRef, useState } from 'react';
 import leveLogo from '../../../../resources/img/leve-logo-blue.jpg';
 import { forgotPasswordSchema, loginSchema } from './schema';
 import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginContentContainer, LoginForm, LoginIconContainer, LoginTitleContainer, SnackbarMessageAlert, SnackbarMessageNotification } from './styles';
-import { useStoreUser } from '@/app/hooks/useStore';
-import { requestSuccessful } from '@/app/service/utils/Validations';
-import { recoverPassword } from '@/app/service/login-service/LoginService';
 
 export default function LoginModal({ isOpen, openModal, closeModal }) {
 
@@ -81,8 +81,8 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
                 username: "dalbenmilton@gmail.com",
                 password: "123456",
                 grant_type: "password",
-                client_id: 3,
-                client_secret: "Ne3XLQEfGYzkhwDAtIYcknkn8cbRXGL2Ya0vFY7r",
+                client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
+                client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
                 scope: ""
             }
 

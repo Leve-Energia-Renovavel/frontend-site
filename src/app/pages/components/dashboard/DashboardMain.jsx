@@ -3,7 +3,7 @@
 
 import { useStoreAddress, useStoreInstallations, useStoreUser } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
-import { Typography } from "@mui/material";
+import { Alert, Typography } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -12,7 +12,7 @@ import MemberGetMember from "../member-get-member/MemberGetMember";
 import DashboardButton from "../utils/buttons/DashboardButton";
 import FormButton from "../utils/buttons/FormButton";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
-import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, MemberGetMemberContainer, NewInstallationButtonContainer, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, YourInfo, YourInfoContainer } from "./styles";
+import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, MemberGetMemberContainer, NewInstallationButtonContainer, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, WarningsContainer, YourInfo, YourInfoContainer } from "./styles";
 import { getInstallationsByUUID } from "@/app/service/installation-service/InstallationService";
 
 export default function DashboardMain() {
@@ -30,6 +30,8 @@ export default function DashboardMain() {
     const installation = installations[0]
 
     const [isLoading, setIsLoading] = useState(true)
+    
+    const distributorName = user.distributor ? user.distributor : "distribuidora"
 
     useEffect(() => {
         const fetchDashboardData = async () => {
@@ -80,8 +82,8 @@ export default function DashboardMain() {
                     storeInstallations.addInstallation({
                         address: installation.endereco,
                         number: installation.numero,
-                        city: installation.cidade || address.city || "CHURROS",
-                        state: installation.uf || address.city || "CHU",
+                        city: installation.cidade || address.city,
+                        state: installation.uf || address.city,
                         zipCode: installation.cep,
                         amount: 80.75,
                         dueDate: "05/02/2024",
@@ -101,9 +103,16 @@ export default function DashboardMain() {
         fetchCustomerData();
     }, []);
 
+    const handleConnectToDistributor = () =>{ 
+        router.push(`https://cliente.leveenergia.com.br/cadastro/distribuidora-login/${user.uuid}`)
+    }
 
     return (
         <Container>
+            {user.hasSyncDistribuitorData ? <></>
+                : <WarningsContainer>
+                    <Alert severity="warning">Conecte a conta da sua {distributorName} à Leve para uma melhor experiência! <span className="connectToDistributor" onClick={() => handleConnectToDistributor()}>Conectar conta</span></Alert>
+                </WarningsContainer>}
             <Main>
                 <NextBillContainer>
                     <TitleContainer>

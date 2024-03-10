@@ -414,6 +414,22 @@ export const BillDetails = styled.div`
 export const MemberGetMemberContainer = styled.div`
   padding: 0 1rem;
 `
+export const WarningsContainer = styled.div`
+  margin: 0 auto;
+  width: 80vw;
+  max-width: 80vw;
+
+  padding: 1rem;
+
+  .connectToDistributor{ 
+    text-decoration: underline;
+
+    &:hover { 
+      cursor: pointer;
+    }
+  }
+
+`
 
 export const SkeletonDiv = styled(Skeleton)`
     background-color: grey;

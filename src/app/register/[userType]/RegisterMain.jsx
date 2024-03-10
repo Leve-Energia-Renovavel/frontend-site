@@ -11,10 +11,6 @@ import FormBanner from "../banners/form-banner/FormBanner";
 import RegisterForm from "../forms/register-form/RegisterForm";
 import ResultEconomy from "../result-economy/ResultEconomy";
 
-const isNotValidUserType = (userType) => {
-    return userType != 'cpf' && userType != 'cnpj'
-}
-
 export default function RegisterMain() {
 
     const search = useSearchParams()

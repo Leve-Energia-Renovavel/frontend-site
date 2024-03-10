@@ -26,6 +26,11 @@ export const useStoreUser = create((set) => ({
         clientId: "",
         accessToken: "",
         refreshToken: "",
+        
+        distributor: "", 
+        hasSyncDistributorData: false,
+
+        memberGetMemberCode: "X36UY",
     },
     updateUser: (newUser) =>
         set((state) => ({

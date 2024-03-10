@@ -1,10 +1,24 @@
-import React from 'react';
-import { CodeButton, MemberGetMemberContainer, MemberGetMemberMain, SendInviteAndShareContainer, SendInviteButton, ShareButton, TitleContainer } from './styles';
-import { Typography } from '@mui/material';
+"use client"
+
+import { useStoreUser } from '@/app/hooks/useStore';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { Typography } from '@mui/material';
+import { useState } from 'react';
+import { CodeButton, MemberGetMemberContainer, MemberGetMemberMain, SendInviteAndShareContainer, SendInviteButton, ShareButton, TitleContainer } from './styles';
 export default function MemberGetMember() {
+
+    const storeUser = useStoreUser()
+    const user = useStoreUser().user
+
+    const [copiedToClipboard, setCopiedToClipboard] = useState(false)
+
+    const handleCopyToClipboard = () => {
+        setCopiedToClipboard(current => !current)
+        navigator.clipboard.writeText(user.memberGetMemberCode)
+    }
+
     return (
         <MemberGetMemberContainer>
             <TitleContainer>
@@ -12,9 +26,14 @@ export default function MemberGetMember() {
                     Eles só precisam usar seu código na hora da inscrição =)</Typography>
             </TitleContainer>
             <MemberGetMemberMain>
-                <CodeButton>
-                    <ContentCopyIcon />
-                    X36UY
+                <CodeButton onClick={() => handleCopyToClipboard()}>
+                    {!copiedToClipboard ?
+                        <>
+                            <ContentCopyIcon />
+                            {user.memberGetMemberCode}
+                        </> :
+                        <span>Copiado!</span>
+                    }
                 </CodeButton>
                 <SendInviteAndShareContainer>
                     <SendInviteButton>
