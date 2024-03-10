@@ -175,7 +175,7 @@ export const NextBillValue = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
-
+  
   .referenceMonth {
     color: ${background.mediumGrey};
     font-weight: 600;
@@ -186,6 +186,12 @@ export const NextBillValue = styled.div`
     color: ${background.textLeve};
     font-weight: 500;
     font-size: 2rem;
+    white-space: nowrap;
+  }
+  
+  .nextBillNotFound {
+    font-weight: 500;
+    font-size: 1.2rem;
     white-space: nowrap;
   }
 `

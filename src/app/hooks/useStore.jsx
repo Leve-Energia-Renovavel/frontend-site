@@ -26,8 +26,8 @@ export const useStoreUser = create((set) => ({
         clientId: "",
         accessToken: "",
         refreshToken: "",
-        
-        distributor: "", 
+
+        distributor: "",
         hasSyncDistributorData: false,
 
         memberGetMemberCode: "X36UY",
@@ -62,6 +62,11 @@ export const useStoreUser = create((set) => ({
                 clientId: "",
                 accessToken: "",
                 refreshToken: "",
+
+                distributor: "",
+                hasSyncDistributorData: false,
+
+                memberGetMemberCode: "",
             }
         }))
 }));
@@ -183,5 +188,94 @@ export const useStoreInstallations = create((set) => ({
     clearInstallations: () =>
         set(() => ({
             installations: []
+        }))
+}));
+
+
+export const useStoreNextBill = create((set) => ({
+    exists: true,
+    nextBill: {
+        referenceMonth: "01/2024",
+        value: "99,99",
+        dueDate: "05/04/2024",
+        paymentStatus: "pendente",
+    },
+    updateNextBill: (newBill) =>
+        set((state) => ({
+            nextBill: {
+                ...state.nextBill,
+                ...newBill
+            }
+        })),
+    clearCompany: () =>
+        set(() => ({
+            nextBill: {
+                referenceMonth: "",
+                value: "",
+                dueDate: "",
+                paymentStatus: "",
+            }
+        }))
+}));
+
+
+
+export const useStoreUserEconomy = create((set) => ({
+    userEconomy: {
+        value: 571.99,
+        energyValue: 7533,
+        accumulatedEnergyValue: 0,
+        co2: 0,
+        economySince: "18/09/2023",
+    },
+    updateUserEconomy: (newUserEconomy) =>
+        set((state) => ({
+            userEconomy: {
+                ...state.userEconomy,
+                ...newUserEconomy
+            }
+        })),
+    clearUser: () =>
+        set(() => ({
+            userEconomy: {
+                value: 571.99,
+                energyValue: 7533,
+                accumulatedEnergyValue: 0,
+                co2: 0,
+                economySince: "18/09/2023",
+            },
+        }))
+}));
+
+export const useStoreBillingHistory = create((set) => ({
+    billings: [
+        {
+            id: "1",
+            referenceYear: "2023",
+            referenceMonth: "Julho",
+            value: "R$ 999,00",
+            status: "Pago"
+        },
+        {
+            id: "2",
+            referenceYear: "2023",
+            referenceMonth: "Julho",
+            value: "R$ 999,00",
+            status: "Pago"
+        },
+        {
+            id: "3",
+            referenceYear: "2023",
+            referenceMonth: "Julho",
+            value: "R$ 999,00",
+            status: "Pago"
+        },
+    ],
+    addInstallation: (newBilling) => set((state) => ({
+        billings: [...state.billings, newBilling]
+    })),
+    clearInstallations: () =>
+        set(() => ({
+            billings: []
         }))
 }));
