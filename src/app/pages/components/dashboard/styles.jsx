@@ -213,6 +213,7 @@ export const NextBillInfo = styled.div`
   }
   
   .paymentStatus { 
+    white-space: nowrap;
     font-weight: 800;
     color: ${props => props.status ? statusHelper[props.status] : background.mediumGrey};
   }

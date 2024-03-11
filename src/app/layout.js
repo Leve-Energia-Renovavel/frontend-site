@@ -1,7 +1,7 @@
-import "./globals.css"
-import WhatsAppFAB from "./pages/components/fabWhatsapp/WhatsappFAB"
-import Footer from "./pages/components/footer/Footer"
-import Header from "./pages/components/header/Header"
+import "./globals.css";
+import WhatsAppFAB from "./pages/components/fabWhatsapp/WhatsappFAB";
+import Footer from "./pages/components/footer/Footer";
+import Header from "./pages/components/header/Header";
 
 export const metadata = {
   title: 'Leve Energia Renovavel',

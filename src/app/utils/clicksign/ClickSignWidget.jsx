@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useStoreClickSign } from '@/app/hooks/useStore';
+import { useStoreClickSign, useStoreUser } from '@/app/hooks/useStore';
 import ContractFormProgress from '@/app/register/forms/contract-signature-form/ContractFormProgress';
 import ContractFormTitle from '@/app/register/forms/contract-signature-form/ContractFormTitle';
 import { FormHeader } from '@/app/register/forms/contract-signature-form/styles';
@@ -13,6 +13,8 @@ export default function ClicksignWidget() {
 
     const storeClicksign = useStoreClickSign()
     const clickSign = storeClicksign.data
+
+    const storeUser = useStoreUser()
 
     const [widget, setWidget] = useState(null);
 
@@ -29,10 +31,9 @@ export default function ClicksignWidget() {
 
             widgetInstance.mount('clicksign-container');
 
-            // Callback que será disparado quando o documento for assinado
             widgetInstance.on('signed', function (event) {
+                storeUser.updateUser({ hasSignContract: true })
                 router.push(`/register/success`)
-
             });
 
             setWidget(widgetInstance);

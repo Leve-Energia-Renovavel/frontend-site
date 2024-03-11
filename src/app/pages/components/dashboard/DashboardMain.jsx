@@ -3,8 +3,11 @@
 
 import { useStoreAddress, useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser, useStoreUserEconomy } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
+import { billHasToBePaid, billingStatusOptions } from "@/app/utils/form-options/billingStatusOptions";
+import { formatDate } from "@/app/utils/formatters/dateFormatter";
 import { Alert, Typography } from "@mui/material";
 import axios from "axios";
+import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import HistorySpendingChart from "../charts/HistorySpendingChart";
@@ -13,15 +16,10 @@ import DashboardButton from "../utils/buttons/DashboardButton";
 import FormButton from "../utils/buttons/FormButton";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
 import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, MemberGetMemberContainer, NewInstallationButtonContainer, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, WarningsContainer, YourInfo, YourInfoContainer } from "./styles";
-import { getInstallationsByUUID } from "@/app/service/installation-service/InstallationService";
-import { billingStatusOptions } from "@/app/utils/form-options/billingStatusOptions";
-import { useCookies } from 'next-client-cookies';
-import { formatDate } from "@/app/utils/formatters/dateFormatter";
 
 export default function DashboardMain() {
 
     const router = useRouter()
-    const cookies = useCookies()
 
     const storeUser = useStoreUser()
     const storeAddress = useStoreAddress()
@@ -38,6 +36,8 @@ export default function DashboardMain() {
     const nextBills = useStoreNextBills().nextBills
     const billings = useStoreBillingHistory().billings
 
+    const nextBill = nextBills[0]
+
     const [isLoading, setIsLoading] = useState(true)
 
     const distributorName = user.distributor ? user.distributor : "distribuidora"
@@ -46,7 +46,7 @@ export default function DashboardMain() {
         const fetchDashboardData = async () => {
             try {
                 const headers = {
-                    Authorization: `Bearer ${cookies.get('accessToken')}`
+                    Authorization: `Bearer ${Cookies.get('accessToken')}`
                 };
 
                 const uuidMilton = "20d04059-a75b-403b-910e-e59096a1370b"
@@ -59,6 +59,9 @@ export default function DashboardMain() {
                     const ciclosConsumo = response?.data?.ciclosConsumo
                     const instalacao = response?.data?.instalacao
                     const outrasInstalacoes = response?.data?.outras_instalacoes
+                    const economia = response?.data?.economia
+                    const carbonCredits = response?.data?.co_dois
+                    const receivedCredits = response?.data?.creditos_recebidos
 
                     storeUser.updateUser({
                         name: consumidor?.nome,
@@ -132,13 +135,18 @@ export default function DashboardMain() {
                         }
                         storeBilling.addBilling(newBilling)
 
-                        if(newBilling.status == "due" || newBilling.status == "pendant") { 
+                        if (billHasToBePaid[newBilling.status]) {
+                            storeNextBills.updateExists(true)
                             storeNextBills.addNextBill(newBilling)
                         }
                     })
 
                     storeEconomy.updateUserEconomy({
                         economySince: formatDate(consumidor?.created_at),
+                        value: economia,
+                        carbonCredits: carbonCredits?.toFixed(2),
+                        receivedCredits: receivedCredits?.toFixed(2),
+
                     })
 
                 } else {
@@ -186,6 +194,10 @@ export default function DashboardMain() {
         router.push(`https://cliente.leveenergia.com.br/cadastro/distribuidora-login/${user.uuid}`)
     }
 
+    const handlePayBill = (url) => {
+        window.open(url, '_blank');
+    };
+
     return (
         <Container>
             {user.hasSyncDistribuitorData ? <></>
@@ -215,9 +227,9 @@ export default function DashboardMain() {
                                         )}
                                     {isLoading ? <SkeletonDiv className="grid-item" /> :
                                         (
-                                            <NextBillInfo status={nextBill?.paymentStatus} className="loaded-grid-item">
+                                            <NextBillInfo status={nextBill?.status} className="loaded-grid-item">
                                                 <Typography className="title">Status</Typography>
-                                                <Typography className="paymentStatus">{nextBill?.paymentStatus?.toUpperCase()}</Typography>
+                                                <Typography className="paymentStatus">{billingStatusOptions[nextBill?.status]?.toUpperCase()}</Typography>
                                             </NextBillInfo>
                                         )}
                                     {isLoading ? <SkeletonDiv className="grid-item" /> :
@@ -235,7 +247,7 @@ export default function DashboardMain() {
                         {storeNextBills.exists ?
                             <PaymentButtonContainer>
                                 <DashboardButton text="Ver todas faturas" onClick={() => router.push('/invoices')} />
-                                <FormButton text="Pagar" />
+                                <FormButton text="Pagar" onClick={() => handlePayBill(nextBill.urlBill)} />
                             </PaymentButtonContainer>
                             : <>
                             </>
@@ -249,11 +261,11 @@ export default function DashboardMain() {
                     <YourInfo>
                         <Info>
                             <span>Quanto voce economizou</span>
-                            <span className="economyValue">{`R$ ${userEconomy?.value.toString().replace('.', ',')}`}</span>
+                            <span className="economyValue">{`${userEconomy?.value.toString().replace('.', ',')}`}</span>
                         </Info>
                         <Info>
                             <span>Creditos recebidos</span>
-                            <span className="economyData">{`${userEconomy?.energyValue} kWh`}</span>
+                            <span className="economyData">{`${userEconomy?.receivedCredits} kWh`}</span>
                         </Info>
                         <Info>
                             <span>Creditos acumulados</span>
@@ -261,7 +273,7 @@ export default function DashboardMain() {
                         </Info>
                         <Info>
                             <span>CO2 nao emitido</span>
-                            <span className="economyData">{`${userEconomy?.co2} kWh`}</span>
+                            <span className="economyData">{`${userEconomy?.carbonCredits} kWh`}</span>
                         </Info>
                         <Info>
                             <span>Economizando desde</span>
@@ -323,5 +335,6 @@ export default function DashboardMain() {
                 <MemberGetMember />
             </MemberGetMemberContainer>
         </Container >
+
     );
 }

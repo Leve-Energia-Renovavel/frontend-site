@@ -28,6 +28,8 @@ export const useStoreUser = create((set) => ({
         refreshToken: "",
 
         distributor: "",
+
+        hasSignContract: false,
         hasSyncDistributorData: false,
 
         memberGetMemberCode: "",
@@ -284,11 +286,12 @@ export const useStoreNextBills = create((set) => ({
 
 export const useStoreUserEconomy = create((set) => ({
     userEconomy: {
-        value: 571.99,
-        energyValue: 7533,
+        value: 0,
+        energyValue: 0,
         accumulatedEnergyValue: 0,
-        co2: 0,
-        economySince: "18/09/2023",
+        carbonCredits: 0,
+        receivedCredits: 0,
+        economySince: "",
     },
     updateUserEconomy: (newUserEconomy) =>
         set((state) => ({
@@ -300,11 +303,12 @@ export const useStoreUserEconomy = create((set) => ({
     clearUser: () =>
         set(() => ({
             userEconomy: {
-                value: 571.99,
-                energyValue: 7533,
+                value: 0,
+                energyValue: 0,
                 accumulatedEnergyValue: 0,
-                co2: 0,
-                economySince: "18/09/2023",
+                carbonCredits: 0,
+                receivedCredits: 0,
+                economySince: "",
             },
         }))
 }));

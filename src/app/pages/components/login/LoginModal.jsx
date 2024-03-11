@@ -1,3 +1,5 @@
+"use client"
+
 import { useStoreUser } from '@/app/hooks/useStore';
 import { recoverPassword } from '@/app/service/login-service/LoginService';
 import { getAccessToken } from '@/app/service/user-service/UserService';
@@ -6,7 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Backdrop, Divider, IconButton, InputAdornment, Modal, Snackbar, TextField, Typography } from '@mui/material';
-import { useCookies } from 'next-client-cookies';
+import Cookies from 'js-cookie';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
@@ -17,7 +19,6 @@ import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, Login
 export default function LoginModal({ isOpen, openModal, closeModal }) {
 
     const router = useRouter()
-    const cookies = useCookies()
 
     const store = useStoreUser()
     const user = useStoreUser().user
@@ -46,8 +47,8 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
                         accessToken: response?.data?.access_token,
                         refreshToken: response?.data?.refresh_token
                     })
-                    cookies.set("accessToken", response?.data?.access_token)
-                    cookies.set("refreshToken", response?.data?.refresh_token)
+                    Cookies.set('accessToken', response?.data?.access_token)
+                    Cookies.set('refreshToken', response?.data?.refresh_token)
                 }
                 return response
             })

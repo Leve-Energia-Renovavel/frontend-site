@@ -7,4 +7,9 @@ export const statusHelper = {
     atencaoFocus: statusColors["warningFocus"],
     pendente: statusColors["pending"],
     pendenteFocus: statusColors["pendingFocus"],
+    
+    paid: statusColors["paid"],
+    due: statusColors["warning"],
+    warning: statusColors["warning"],
+    pending: statusColors["pending"],
 }
