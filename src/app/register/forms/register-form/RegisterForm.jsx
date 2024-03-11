@@ -401,7 +401,7 @@ export default function RegisterForm() {
                         })}
                     </TextField>
 
-                    <TextField
+                    {/* <TextField
                         select
                         label="Cidade"
                         placeholder="Cidade"
@@ -421,9 +421,9 @@ export default function RegisterForm() {
                         >
                             {Row}
                         </List>
-                    </TextField>
+                    </TextField> */}
 
-                    {/* <TextField className="formInput" defaultValue={city.toUpperCase() || ''} inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} required /> */}
+                    <TextField className="formInput" defaultValue={city.toUpperCase() || ''} inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} required />
 
                     <FormLastRow>
                         <TextField
