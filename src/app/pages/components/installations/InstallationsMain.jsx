@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreInstallations } from "@/app/hooks/useStore";
+import { useStoreInstallations, useStoreMainInstallation } from "@/app/hooks/useStore";
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton, TextField, Typography } from "@mui/material";
 import axios from "axios";
@@ -20,6 +20,7 @@ export default function InstallationsMain() {
 
     const storeInstallations = useStoreInstallations()
     const installations = useStoreInstallations().installations
+    const mainInstallation = useStoreMainInstallation().mainInstallation
 
     const [openForm, setOpenForm] = useState(false)
     const [installationCost, setInstallationCost] = useState()

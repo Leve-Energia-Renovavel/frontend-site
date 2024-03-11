@@ -30,7 +30,7 @@ export const useStoreUser = create((set) => ({
         distributor: "",
         hasSyncDistributorData: false,
 
-        memberGetMemberCode: "X36UY",
+        memberGetMemberCode: "",
     },
     updateUser: (newUser) =>
         set((state) => ({
@@ -172,11 +172,77 @@ export const useStoreClickSign = create((set) => ({
 }));
 
 
+export const useStoreMainInstallation = create((set) => ({
+    mainInstallation: {
+        uuid: "",
+        id: "",
+        address: "",
+        street: "",
+        number: "",
+        neighborhood: "",
+        cityId: 0,
+        stateId: 0,
+        city: "",
+        state: "",
+        cep: "",
+        installationNumber: "",
+
+        percentageAllocatedEnergy: "",
+        kwhContracted: "",
+        discount: "",
+
+        clientId: "",
+        isSelected: "",
+        status: ""
+
+
+    },
+    updateMainInstallation: (newMainInstallation) =>
+        set((state) => ({
+            mainInstallation: {
+                ...state.mainInstallation,
+                ...newMainInstallation
+            }
+        })),
+    clearMainInstallation: () =>
+        set(() => ({
+            mainInstallation: {
+                uuid: "",
+                id: "",
+                address: "",
+                street: "",
+                number: "",
+                neighborhood: "",
+                cityId: 0,
+                stateId: 0,
+                city: "",
+                state: "",
+                cep: "",
+                installationNumber: "",
+
+                percentageAllocatedEnergy: "",
+                kwhContracted: "",
+                discount: "",
+
+                clientId: "",
+                isSelected: "",
+                status: ""
+            }
+        }))
+}));
+
+
 export const useStoreInstallations = create((set) => ({
     installations: [],
-    addInstallation: (newInstallation) => set((state) => ({
-        installations: [...state.installations, newInstallation]
-    })),
+    addInstallation: (newInstallation) => set((state) => {
+        const exists = state.installations.some(installation => installation.uuid === newInstallation.uuid);
+        if (!exists) {
+            return {
+                installations: [...state.installations, newInstallation]
+            };
+        }
+        return state;
+    }),
     updateInstallation: (index, updatedInstallation) => set((state) => ({
         installations: state.installations.map((installation, i) =>
             i === index ? { ...installation, ...updatedInstallation } : installation
@@ -192,29 +258,25 @@ export const useStoreInstallations = create((set) => ({
 }));
 
 
-export const useStoreNextBill = create((set) => ({
-    exists: true,
-    nextBill: {
-        referenceMonth: "01/2024",
-        value: "99,99",
-        dueDate: "05/04/2024",
-        paymentStatus: "pendente",
-    },
-    updateNextBill: (newBill) =>
-        set((state) => ({
-            nextBill: {
-                ...state.nextBill,
-                ...newBill
+
+export const useStoreNextBills = create((set) => ({
+    exists: false,
+    nextBills: [],
+    updateExists: (exists) => set({ exists }),
+    addNextBill: (newBilling) => set((state) => {
+        if (newBilling.value) {
+            const exists = state.nextBills.some(bill => bill.uuid === newBilling.uuid);
+            if (!exists) {
+                return {
+                    nextBills: [...state.nextBills, newBilling]
+                };
             }
-        })),
-    clearCompany: () =>
+        }
+        return state;
+    }),
+    clearNextBills: () =>
         set(() => ({
-            nextBill: {
-                referenceMonth: "",
-                value: "",
-                dueDate: "",
-                paymentStatus: "",
-            }
+            nextBills: []
         }))
 }));
 
@@ -248,32 +310,18 @@ export const useStoreUserEconomy = create((set) => ({
 }));
 
 export const useStoreBillingHistory = create((set) => ({
-    billings: [
-        {
-            id: "1",
-            referenceYear: "2023",
-            referenceMonth: "Julho",
-            value: "R$ 999,00",
-            status: "Pago"
-        },
-        {
-            id: "2",
-            referenceYear: "2023",
-            referenceMonth: "Julho",
-            value: "R$ 999,00",
-            status: "Pago"
-        },
-        {
-            id: "3",
-            referenceYear: "2023",
-            referenceMonth: "Julho",
-            value: "R$ 999,00",
-            status: "Pago"
-        },
-    ],
-    addBilling: (newBilling) => set((state) => ({
-        billings: [...state.billings, newBilling]
-    })),
+    billings: [],
+    addBilling: (newBilling) => set((state) => {
+        if (newBilling.value) {
+            const exists = state.billings.some(bill => bill.uuid === newBilling.uuid);
+            if (!exists) {
+                return {
+                    billings: [...state.billings, newBilling]
+                };
+            }
+        }
+        return state;
+    }),
     clearBillings: () =>
         set(() => ({
             billings: []

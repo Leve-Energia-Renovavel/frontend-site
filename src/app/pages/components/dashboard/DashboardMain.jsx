@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreAddress, useStoreBillingHistory, useStoreInstallations, useStoreNextBill, useStoreUser, useStoreUserEconomy } from "@/app/hooks/useStore";
+import { useStoreAddress, useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser, useStoreUserEconomy } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { Alert, Typography } from "@mui/material";
 import axios from "axios";
@@ -14,24 +14,29 @@ import FormButton from "../utils/buttons/FormButton";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
 import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, MemberGetMemberContainer, NewInstallationButtonContainer, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, WarningsContainer, YourInfo, YourInfoContainer } from "./styles";
 import { getInstallationsByUUID } from "@/app/service/installation-service/InstallationService";
+import { billingStatusOptions } from "@/app/utils/form-options/billingStatusOptions";
+import { useCookies } from 'next-client-cookies';
+import { formatDate } from "@/app/utils/formatters/dateFormatter";
 
 export default function DashboardMain() {
 
     const router = useRouter()
+    const cookies = useCookies()
 
     const storeUser = useStoreUser()
     const storeAddress = useStoreAddress()
     const storeInstallations = useStoreInstallations()
-    const storeNextBill = useStoreNextBill()
+    const storeMainInstallation = useStoreMainInstallation()
+    const storeNextBills = useStoreNextBills()
+    const storeBilling = useStoreBillingHistory()
+    const storeEconomy = useStoreUserEconomy()
 
     const user = useStoreUser().user
     const userEconomy = useStoreUserEconomy().userEconomy
     const address = useStoreAddress().address
     const installations = useStoreInstallations().installations
-    const nextBill = useStoreNextBill().nextBill
+    const nextBills = useStoreNextBills().nextBills
     const billings = useStoreBillingHistory().billings
-
-    const installation = installations[0]
 
     const [isLoading, setIsLoading] = useState(true)
 
@@ -41,70 +46,140 @@ export default function DashboardMain() {
         const fetchDashboardData = async () => {
             try {
                 const headers = {
-                    Authorization: `Bearer ${user.accessToken}`
+                    Authorization: `Bearer ${cookies.get('accessToken')}`
                 };
 
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/${user.uuid}`, { headers });
+                const uuidMilton = "20d04059-a75b-403b-910e-e59096a1370b"
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/${uuidMilton}`, { headers });
                 console.log("Dashboard data response ===>>>", response)
 
                 if (requestSuccessful(response.status)) {
-                    // Handle dashboard data response if needed
+
+                    const consumidor = response?.data?.consumidor
+                    const ciclosConsumo = response?.data?.ciclosConsumo
+                    const instalacao = response?.data?.instalacao
+                    const outrasInstalacoes = response?.data?.outras_instalacoes
+
+                    storeUser.updateUser({
+                        name: consumidor?.nome,
+                        phone: consumidor?.telefone,
+                        email: consumidor?.email,
+                        cost: instalacao?.valor_base_consumo,
+                        cep: consumidor?.cep,
+                        discount: instalacao?.desconto,
+
+                        cpf: consumidor?.cpf,
+                        cost: consumidor?.valor,
+                        rg: consumidor?.rg,
+
+                        nationality: consumidor?.nacionalidade,
+                        maritalStatus: consumidor?.estado_civil,
+                        memberGetMemberCode: consumidor?.ref_code,
+                    });
+
+                    const updatedMainInstallation = {
+                        id: instalacao?.id,
+                        uuid: instalacao?.uuid,
+                        address: instalacao?.nome,
+                        street: instalacao?.nome,
+                        number: instalacao?.numero,
+                        cityId: instalacao?.cidade_id,
+                        stateId: instalacao?.estado_id,
+                        neighborhood: instalacao?.bairro,
+                        zipCode: instalacao?.cep,
+                        amount: instalacao?.valor_base_consumo,
+                        dueDate: consumidor?.dia_fatura,
+                        status: instalacao?.situacao,
+                        installationNumber: instalacao?.numero_instalacao,
+
+                        percentageAllocatedEnergy: instalacao?.porcentagem_energia_alocada,
+                        kwhContracted: instalacao?.kwh_contratado,
+                        discount: instalacao?.desconto,
+
+                        clientId: instalacao?.clientes_id,
+                        isSelected: instalacao?.selecionada,
+                        status: instalacao?.status
+                    }
+
+                    storeMainInstallation.updateMainInstallation(updatedMainInstallation)
+                    storeInstallations.addInstallation(updatedMainInstallation);
+
+                    outrasInstalacoes?.forEach(installation => {
+                        const otherInstallation = {
+                            uuid: installation?.uuid,
+                            address: installation?.endereco,
+                            neighborhood: installation?.bairro,
+                            number: installation?.numero,
+                        }
+
+                        storeInstallations.addInstallation(otherInstallation);
+                    });
+
+                    ciclosConsumo?.forEach(bill => {
+                        const newBilling = {
+                            uuid: bill.uuid,
+                            installationId: bill.cliente_instalacao_id,
+
+                            energyConsumed: bill.consumo,
+                            energyInjected: bill.energia_injetada,
+                            availability: bill.disponibilidade,
+
+                            value: bill.valor_fatura,
+                            dueDate: bill.vencimento_fatura,
+                            status: bill.pagamento_status,
+                            urlBill: bill.url_fatura,
+                            urlPayment: bill.url_pagamento,
+                        }
+                        storeBilling.addBilling(newBilling)
+
+                        if(newBilling.status == "due" || newBilling.status == "pendant") { 
+                            storeNextBills.addNextBill(newBilling)
+                        }
+                    })
+
+                    storeEconomy.updateUserEconomy({
+                        economySince: formatDate(consumidor?.created_at),
+                    })
+
                 } else {
                     console.error("Failed to fetch dashboard data");
                 }
             } catch (error) {
                 console.error("Error fetching dashboard data:", error);
+            } finally {
+                setIsLoading(false);
             }
         };
 
-        const fetchCustomerData = async () => {
+        const fetchUpdatedAddress = async () => {
+            const cep = user?.cep
             try {
-                const uuid = "b2fc67d3-a48e-47d2-972e-629da4dafcfc";
-                const response = await getInstallationsByUUID(uuid);
-                console.log("Customer data response ===>>>", response);
+                const addressResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, {
+                    params: { cep: cep },
+                    withCredentials: false
+                });
 
-                if (requestSuccessful(response.status)) {
-                    const instalacao = response?.data?.instalacao;
-                    const consumer = response?.data?.instalacao?.consumidor;
-                    const cep = consumer?.cep;
-
-                    storeUser.updateUser({
-                        name: consumer?.nome + " " + consumer?.sobrenome,
-                        phone: consumer?.telefone,
-                        email: consumer?.email,
-                        cost: instalacao?.valor_base_consumo,
-                        cep: cep,
-                        discount: instalacao?.desconto,
-                    });
-
+                if (requestSuccessful(addressResponse?.status)) {
+                    const address = addressResponse?.data
                     storeAddress.updateAddress({
-                        cityId: consumer?.cidade_id,
-                        stateId: consumer?.estado_id,
-                    });
-
-                    const installation = response.data.instalacao;
-                    storeInstallations.addInstallation({
-                        address: installation.endereco,
-                        number: installation.numero,
-                        city: installation.cidade || address.city,
-                        state: installation.uf || address.city,
-                        zipCode: installation.cep,
-                        amount: 80.75,
-                        dueDate: "05/02/2024",
-                        status: installation.situacao,
-                    });
+                        street: address?.logradouro,
+                        neighborhood: address?.bairro,
+                        city: address?.cidade,
+                        state: address?.uf,
+                        cep: address?.cep,
+                    })
                 } else {
-                    console.error("Failed to fetch customer data");
+                    console.error("Failed to fetch updated address data");
                 }
             } catch (error) {
-                console.error("Error fetching customer data:", error);
+                console.error("Error fetching updated address data:", error);
             } finally {
                 setIsLoading(false);
             }
         };
 
         fetchDashboardData();
-        fetchCustomerData();
+        fetchUpdatedAddress();
     }, []);
 
     const handleConnectToDistributor = () => {
@@ -124,7 +199,7 @@ export default function DashboardMain() {
                     </TitleContainer>
                     <NextBill>
                         <NextBillGrid>
-                            {storeNextBill.exists ?
+                            {storeNextBills.exists ?
                                 <>
                                     {isLoading ? <SkeletonDiv className="grid-item" /> :
                                         (<NextBillValue className="loaded-grid-item">
@@ -142,7 +217,7 @@ export default function DashboardMain() {
                                         (
                                             <NextBillInfo status={nextBill?.paymentStatus} className="loaded-grid-item">
                                                 <Typography className="title">Status</Typography>
-                                                <Typography className="paymentStatus">{nextBill?.paymentStatus.toUpperCase()}</Typography>
+                                                <Typography className="paymentStatus">{nextBill?.paymentStatus?.toUpperCase()}</Typography>
                                             </NextBillInfo>
                                         )}
                                     {isLoading ? <SkeletonDiv className="grid-item" /> :
@@ -157,7 +232,7 @@ export default function DashboardMain() {
                                 </>
                             }
                         </NextBillGrid>
-                        {storeNextBill.exists ?
+                        {storeNextBills.exists ?
                             <PaymentButtonContainer>
                                 <DashboardButton text="Ver todas faturas" onClick={() => router.push('/invoices')} />
                                 <FormButton text="Pagar" />
@@ -228,10 +303,10 @@ export default function DashboardMain() {
                             <>
                                 {billings.map((bill) => {
                                     return (
-                                        <BillDetails key={bill.id}>
-                                            <span>{`${bill.referenceYear} - ${bill.referenceMonth}`}</span>
+                                        <BillDetails key={bill.uuid}>
+                                            <span>{`${bill.dueDate}`}</span>
                                             <span>{`R$ ${bill.value}`}</span>
-                                            <span>{bill.status} </span>
+                                            <span>{billingStatusOptions[bill.status]} </span>
                                         </BillDetails>
                                     )
                                 })}

@@ -15,40 +15,24 @@ import { useState } from 'react';
 import { background, statusColors } from '../../styles';
 import NewInstallationButton from '../utils/buttons/NewInstallationButton';
 import { TimelineContentButtonContainer, TimelineContentContainer } from './styles';
+import { useStoreBillingHistory } from '@/app/hooks/useStore';
+import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 
 export default function TimelineMain() {
 
-    const [invoices, setInvoices] = useState([
-        {
-            id: "1",
-            referenceMonth: "01/2024",
-            dueDate: "02/2024",
-            value: "80,75",
-            status: "pending"
-        },
-        {
-            id: "2",
-            referenceMonth: "12/2023",
-            dueDate: "01/2024",
-            value: "80,75",
-            status: "paid"
-        },
-        {
-            id: "3",
-            referenceMonth: "11/2023",
-            dueDate: "12/2023",
-            value: "80,75",
-            status: "paid"
-        },
-        {
-            id: "4",
-            referenceMonth: "10/2023",
-            dueDate: "11/2023",
-            value: "80,75",
-            status: "paid"
-        },
-    ])
+    const storeBilling = useStoreBillingHistory()
+    const billings = useStoreBillingHistory().billings
 
+    // const newBilling = {
+    //     uuid: bill.uuid,
+    //     energyConsumed: bill.consumo,
+    //     energyInjected: bill.energia_injetada,
+    //     availability: bill.disponibilidade,
+    //     value: bill.valor_fatura,
+    //     dueDate: bill.vencimento_fatura,
+    //     installationId: bill.cliente_instalacao_id,
+    //     status: bill.pagamento_status
+    // }
 
     function checkInvoice(invoice) {
         console.log("TimelineMain checkInvoice ===>>", invoice)
@@ -57,12 +41,12 @@ export default function TimelineMain() {
     return (
         <div>
             <Timeline position="right" sx={{ color: background.blueLeve, maxWidth: "10vw" }}>
-                {invoices.map((invoice) => {
+                {billings.map((invoice) => {
                     return (
                         <TimelineItem key={invoice.id}>
                             <TimelineOppositeContent>
                                 <div>
-                                    <Typography sx={{ fontWeight: 500 }}>{invoice.referenceMonth}</Typography>
+                                    <Typography sx={{ fontWeight: 500 }}>{invoice.dueDate}</Typography>
                                 </div>
                             </TimelineOppositeContent>
                             <TimelineSeparator>
@@ -73,7 +57,7 @@ export default function TimelineMain() {
                             </TimelineSeparator>
                             <TimelineContent>
                                 <TimelineContentContainer>
-                                    <Typography sx={{ fontWeight: 700, color: background.grey }}>{invoice.referenceMonth}</Typography>
+                                    <Typography sx={{ fontWeight: 700, color: background.grey }}>{invoice.dueDate}</Typography>
                                     <Typography sx={{ fontWeight: 700, fontSize: '2rem' }}>R$ {invoice.value}</Typography>
                                     <div style={{ display: "flex", gap: "1rem", padding: "1rem 1rem 0 0" }}>
                                         <div style={{ marginRight: "2rem" }}>
@@ -82,7 +66,7 @@ export default function TimelineMain() {
                                         </div>
                                         <div>
                                             <Typography sx={{ color: background.grey }}>Status: </Typography>
-                                            <Typography sx={{ color: statusColors[invoice.status], fontWeight: 700 }}>{translationHelper[invoice.status].toUpperCase()}</Typography>
+                                            <Typography sx={{ color: statusColors[invoice.status], fontWeight: 700 }}>{billingStatusOptions[invoice.status]?.toUpperCase()}</Typography>
                                         </div>
                                     </div>
 

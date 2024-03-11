@@ -235,7 +235,7 @@ export const YourInfo = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2 columns with equal width */
   grid-template-rows: repeat(3, auto); /* 3 rows with auto height */
-  gap: 1.5rem;
+  gap: 1rem;
 
   height: 100%;
   max-height: 50vh;

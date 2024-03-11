@@ -95,6 +95,11 @@ export const MenuItem = styled.li`
             padding: 0 .5rem;
         }
     }
+    
+    .helloUser {
+        font-weight: bold;
+
+    }
 
 `;
 export const HeaderMenuItem = styled.li`

@@ -6,6 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Backdrop, Divider, IconButton, InputAdornment, Modal, Snackbar, TextField, Typography } from '@mui/material';
+import { useCookies } from 'next-client-cookies';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
@@ -16,6 +17,8 @@ import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, Login
 export default function LoginModal({ isOpen, openModal, closeModal }) {
 
     const router = useRouter()
+    const cookies = useCookies()
+
     const store = useStoreUser()
     const user = useStoreUser().user
 
@@ -38,11 +41,14 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
         return await loginSchema.validate(data, { abortEarly: false })
             .then(async () => {
                 const response = await getAccessToken(data)
-
-                store.updateUser({
-                    accessToken: response?.access_token,
-                    refreshToken: response?.refresh_token
-                })
+                if (requestSuccessful(response.status)) {
+                    store.updateUser({
+                        accessToken: response?.data?.access_token,
+                        refreshToken: response?.data?.refresh_token
+                    })
+                    cookies.set("accessToken", response?.data?.access_token)
+                    cookies.set("refreshToken", response?.data?.refresh_token)
+                }
                 return response
             })
             .catch((err) => {

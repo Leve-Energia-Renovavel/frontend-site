@@ -6,12 +6,15 @@ import InputMask from "react-input-mask";
 import FormButton from "../utils/buttons/FormButton";
 import { ProfileChangePasswordContent, ProfileContainer, ProfileMainContent, ProfileSecondaryEmailContent } from "./styles";
 import { useRef } from "react";
-import { useStoreAddress, useStoreUser } from "@/app/hooks/useStore";
+import { useStoreAddress, useStoreMainInstallation, useStoreUser } from "@/app/hooks/useStore";
+import { maritalStatusOptions, nationalityOptions, professionOptions } from "@/app/utils/form-options/formOptions";
+
 
 export default function ProfileMain() {
 
     const user = useStoreUser().user
-    const address = useStoreAddress().address
+    // const address = useStoreAddress().address
+    const address = useStoreMainInstallation().mainInstallation
 
     const secondaryEmailRef = useRef(null)
 
@@ -57,9 +60,11 @@ export default function ProfileMain() {
                             label="Estado Civil"
                             className="formInput"
                         >
-                            <MenuItem value={"solteiro"}>Solteiro(a)</MenuItem>
-                            <MenuItem value={"casado"}>Casado(a)</MenuItem>
-                            <MenuItem value={"viuvo"}>Viúvo(a)</MenuItem>
+                            {maritalStatusOptions?.map((maritalStatus) => {
+                                return (
+                                    <MenuItem key={maritalStatus.label} value={maritalStatus.value}>{maritalStatus.label}</MenuItem>
+                                )
+                            })}
                         </TextField>
                         <TextField
                             value={user.nationality || ''}
@@ -70,8 +75,11 @@ export default function ProfileMain() {
                             placeholder="Nacionalidade"
                             type="text"
                             disabled>
-                            <MenuItem value={"brasileiro"}>Brasileiro(a)</MenuItem>
-                            <MenuItem value={"estrangeiro"}>Estrangeiro(a)</MenuItem>
+                            {nationalityOptions?.map((nationality) => {
+                                return (
+                                    <MenuItem key={nationality.label} value={nationality.value}>{nationality.label}</MenuItem>
+                                )
+                            })}
                         </TextField>
                     </>
 
@@ -84,10 +92,11 @@ export default function ProfileMain() {
                         variant="outlined"
                         placeholder="Profissão"
                         type="text">
-                        <MenuItem value={"autonomo"}>Autônomo(a)</MenuItem>
-                        <MenuItem value={"assalariado"}>Assalariado(a)</MenuItem>
-                        <MenuItem value={"aposentado"}>Aposentado(a)</MenuItem>
-                        <MenuItem value={"estudante"}>Estudante</MenuItem>
+                        {professionOptions?.map((profession) => {
+                            return (
+                                <MenuItem key={profession.label} value={profession.value}>{profession.label}</MenuItem>
+                            )
+                        })}
                     </TextField>
 
                     <InputMask mask="99999-999" value={user.cep || ''} disabled>
