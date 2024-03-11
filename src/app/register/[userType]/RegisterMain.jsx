@@ -10,6 +10,7 @@ import RegisterBannerSuccess from "../banners/banner-success/RegisterBanner";
 import FormBanner from "../banners/form-banner/FormBanner";
 import RegisterForm from "../forms/register-form/RegisterForm";
 import ResultEconomy from "../result-economy/ResultEconomy";
+import Cookies from "js-cookie";
 
 export default function RegisterMain() {
 
@@ -54,6 +55,7 @@ export default function RegisterMain() {
                     }
 
                     store.updateUser(updatedUser);
+                    Cookies.set('leveUserIsCompany', isCompany)
                     Cookies.set('leveUsername', consumer?.nome)
                     Cookies.set('leveUser', updatedUser)
 
