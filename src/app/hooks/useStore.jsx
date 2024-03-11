@@ -271,10 +271,10 @@ export const useStoreBillingHistory = create((set) => ({
             status: "Pago"
         },
     ],
-    addInstallation: (newBilling) => set((state) => ({
+    addBilling: (newBilling) => set((state) => ({
         billings: [...state.billings, newBilling]
     })),
-    clearInstallations: () =>
+    clearBillings: () =>
         set(() => ({
             billings: []
         }))

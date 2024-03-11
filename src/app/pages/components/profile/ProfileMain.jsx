@@ -10,8 +10,8 @@ import { useStoreAddress, useStoreUser } from "@/app/hooks/useStore";
 
 export default function ProfileMain() {
 
-    const user = useStoreUser()
-    const address = useStoreAddress()
+    const user = useStoreUser().user
+    const address = useStoreAddress().address
 
     const secondaryEmailRef = useRef(null)
 
