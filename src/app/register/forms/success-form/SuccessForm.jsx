@@ -24,7 +24,7 @@ export default function SuccessForm() {
 
     const distribuitor = "cemig".toUpperCase()
 
-    const handleFinishSignup = async (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
 
         const loginValue = loginRef.current.value
@@ -39,6 +39,9 @@ export default function SuccessForm() {
             setHasSync(true)
         }
 
+    }
+
+    const handleFinishSignup = async () => {
         try {
             const data = { uuid: user.uuid }
             const response = await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/finalizar-cadastro`, data)
@@ -49,7 +52,6 @@ export default function SuccessForm() {
         } catch (error) {
             console.error(error)
         }
-
     }
 
     return (
@@ -71,7 +73,7 @@ export default function SuccessForm() {
                                 insira
                                 suas informações de login e senha que você usa no portal da <span className="bold">{distribuitor}</span>.</Typography>
 
-                            <Form method="POST" onSubmit={handleFinishSignup}>
+                            <Form method="POST" onSubmit={handleSubmit}>
                                 <FormControl>
                                     <TextField label={`Login da ${distribuitor}`} variant="outlined" placeholder="Login" type="text" required inputRef={loginRef} />
                                 </FormControl>
@@ -80,7 +82,7 @@ export default function SuccessForm() {
                                 </FormControl>
                                 <ButtonContainer>
                                     <DefaultButton variant="contained" text={"Vincular minha conta de luz"} isSubmit={true} />
-                                    <Typography className="skipBinding" onClick={handleFinishSignup}>Fazer isso mais tarde</Typography>
+                                    <Typography className="skipBinding" onClick={handleSubmit}>Fazer isso mais tarde</Typography>
                                 </ButtonContainer>
                             </Form>
                         </>
@@ -100,7 +102,7 @@ export default function SuccessForm() {
                     <SimpleFormContent>
                         <Typography variant="h3">Sucesso!</Typography>
                         <Typography className="orientations">Agora você já pode curtir sua vida mais Leve 😉</Typography>
-                        <DefaultButton variant="contained" text={"Acessar minha conta"} onClick={() => router.push(`/dashboard`)} />
+                        <DefaultButton variant="contained" text={"Acessar minha conta"} onClick={() => handleFinishSignup()} />
                     </SimpleFormContent>
                 )}
             </FormContainer>

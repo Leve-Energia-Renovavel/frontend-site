@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import logo from "../../../../resources/img/logo-header.png";
 import HeaderButton from '../utils/buttons/HeaderButton';
 import { HeaderMenuItem, LogoContainer, MenuItem, Nav, Ul, installationFieldStyle } from "./styles";
+import Cookies from 'js-cookie';
 
 export default function LoggedUserHeader() {
     const router = useRouter()
@@ -26,6 +27,8 @@ export default function LoggedUserHeader() {
         storeInstallation.clearInstallations()
         router.push("/")
     }
+
+    const username = user.name || Cookies.get('leveUsername')
 
     return (
         <>
@@ -55,7 +58,7 @@ export default function LoggedUserHeader() {
                             <HeaderMenuItem
                                 value={20}>
                                 <span onClick={() => router.push("/installations")}>
-                                    Ver Minhas Instalações
+                                    Ver Meus Endereços
                                 </span>
                             </HeaderMenuItem>
                             <HeaderMenuItem
@@ -67,7 +70,7 @@ export default function LoggedUserHeader() {
                         </Select>
                     </Box>
                     <MenuItem>
-                        <Link href="/dashboard" className='helloUser'>Olá{user ? (`, ${user.name}`) : ", Usuário Leve"}</Link>
+                        <Link href="/dashboard" className='helloUser'>Olá{username ? (`, ${username}`) : ", Usuário Leve"}</Link>
                     </MenuItem>
                     <MenuItem>
                         <HeaderButton

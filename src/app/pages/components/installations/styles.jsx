@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { background } from "../../styles";
+import { background, notification } from "../../styles";
 import HomeIcon from '@mui/icons-material/Home';
 import { keyframes } from "@emotion/react";
 
@@ -57,7 +57,11 @@ export const TitleContainer = styled.div`
     }
 
     .deleteIcon { 
-      color: ${background.grey}
+      color: ${background.grey};
+      
+      &:hover {
+        color: ${notification.alert}
+      }
     }
 `
 export const TitleIconsContainer = styled.div`

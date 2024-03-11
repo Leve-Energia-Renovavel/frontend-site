@@ -26,6 +26,7 @@ export default function RegisterMain() {
         const fetchData = async () => {
 
             store.updateUser({ uuid: uuid });
+            Cookies.set('leveUUID', uuid)
 
             try {
                 const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
@@ -37,7 +38,8 @@ export default function RegisterMain() {
                     const isCompany = consumer?.type == "PJ" ? true : false
                     const cep = consumer?.cep
 
-                    store.updateUser({
+
+                    const updatedUser = {
                         name: consumer?.nome + " " + consumer?.sobrenome,
                         phone: consumer?.telefone,
                         email: consumer?.email,
@@ -49,12 +51,19 @@ export default function RegisterMain() {
                         discount: instalacao?.desconto,
                         clientId: instalacao?.clientes_id,
 
-                    });
+                    }
 
-                    storeAddress.updateAddress({
+                    store.updateUser(updatedUser);
+                    Cookies.set('leveUsername', consumer?.nome)
+                    Cookies.set('leveUser', updatedUser)
+
+                    const updatedAddress = {
                         cityId: consumer?.cidade_id,
                         stateId: consumer?.estado_id,
-                    })
+                    }
+
+                    storeAddress.updateAddress(updatedAddress)
+                    Cookies.set('leveAddress', updatedAddress)
 
                     const addressResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, {
                         params: { cep: cep },
@@ -65,13 +74,16 @@ export default function RegisterMain() {
 
                         const address = addressResponse?.data
 
-                        storeAddress.updateAddress({
+                        const updatedFullAddress = {
                             street: address?.logradouro,
                             neighborhood: address?.bairro,
                             city: address?.cidade,
                             state: address?.uf,
                             cep: address?.cep,
-                        })
+                        }
+
+                        storeAddress.updateAddress(updatedFullAddress)
+                        Cookies.set('leveAddress', updatedFullAddress)
 
                     }
                 }

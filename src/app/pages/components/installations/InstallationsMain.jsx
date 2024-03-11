@@ -1,29 +1,32 @@
 "use client"
 
-import { useStoreInstallations, useStoreMainInstallation } from "@/app/hooks/useStore";
+import { useStoreInstallations } from "@/app/hooks/useStore";
+import { requestSuccessful } from "@/app/service/utils/Validations";
+import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
+import { statesAcronymOptions } from "@/app/utils/form-options/statesIdOptions";
+import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from '@mui/icons-material/Search';
-import { IconButton, TextField, Typography } from "@mui/material";
+import { IconButton, MenuItem, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
-import FormButton from "../utils/buttons/FormButton";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
-import { ButtonContainer, InstallationsMainContainer as Container, FormContentNewInstallation, HomeIconStyled, InstallationsMainContent, InstallationsTitleContainer, MainInstallationInfoContainer as MainInstallationInfo, NewInstallationContent, TitleContainer, TitleIconsContainer } from "./styles";
 import NewInstallationButtonConfirm from "../utils/buttons/NewInstallationButtonConfirm";
-import DeleteIcon from '@mui/icons-material/Delete';
+import { ButtonContainer, InstallationsMainContainer as Container, FormContentNewInstallation, HomeIconStyled, InstallationsMainContent, MainInstallationInfoContainer as MainInstallationInfo, NewInstallationContent, TitleContainer, TitleIconsContainer } from "./styles";
 
 export default function InstallationsMain() {
-
 
     const router = useRouter()
 
     const storeInstallations = useStoreInstallations()
     const installations = useStoreInstallations().installations
-    const mainInstallation = useStoreMainInstallation().mainInstallation
 
     const [openForm, setOpenForm] = useState(false)
     const [installationCost, setInstallationCost] = useState()
+
+    const [stateValue, setStateValue] = useState(null);
+
 
     const newInstallationRef = {
         address: useRef(null),
@@ -44,12 +47,14 @@ export default function InstallationsMain() {
         try {
             const response = await axios.get(url);
             console.log(response)
-            if (response.status === 200) {
-                newInstallationRef.address.current.value = response.data.logradouro
-                newInstallationRef.neighborhood.current.value = response.data.bairro
-                newInstallationRef.zipCode.current.value = response.data.cep
-                newInstallationRef.city.current.value = response.data.localidade
-                newInstallationRef.state.current.value = response.data.uf
+            if (response?.status === 200) {
+                newInstallationRef.address.current.value = response?.data.logradouro
+                newInstallationRef.neighborhood.current.value = response?.data.bairro
+                newInstallationRef.zipCode.current.value = response?.data.cep
+                newInstallationRef.city.current.value = response?.data.localidade
+                newInstallationRef.state.current.value = response?.data.uf
+
+                setStateValue(stateOptions[statesAcronymOptions[response?.data.uf]])
 
             }
         } catch (error) {
@@ -57,22 +62,41 @@ export default function InstallationsMain() {
         }
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
 
         const data = {
-            address: newInstallationRef.address.current.value,
-            addressNumber: newInstallationRef.addressNumber.current.value,
-            zipCode: newInstallationRef.zipCode.current.value,
-            addressComplement: newInstallationRef.addressComplement.current.value,
-            neighborhood: newInstallationRef.neighborhood.current.value,
-            state: newInstallationRef.state.current.value,
-            city: newInstallationRef.city.current.value,
-            cost: newInstallationRef.cost.current.value,
-            installationNumber: newInstallationRef.installationNumber.current.value
+            endereco: newInstallationRef.address.current.value,
+            numero: newInstallationRef.addressNumber.current.value,
+            cep: newInstallationRef.zipCode.current.value,
+            bairro: newInstallationRef.neighborhood.current.value,
+            valor_base_consumo: newInstallationRef.cost.current.value,
+            numero_instalacao: newInstallationRef.installationNumber.current.value,
+
+            cidade_id: newInstallationRef.city.current.value,
+            estado_id: statesAcronymOptions[newInstallationRef.state.current.value],
         }
 
-        storeInstallations.addInstallation(data);
+        console.log("add installation data ===>>", data)
+        try {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/add-uc`);
+            console.log("add installation response ===>>", response)
+            console.log(response)
+            if (requestSuccessful(response.status)) {
+                // const otherInstallation = {
+                //     uuid: installation?.uuid,
+                //     address: installation?.endereco,
+                //     neighborhood: installation?.bairro,
+                //     number: installation?.numero,
+                // }
+
+                // storeInstallations.addInstallation(otherInstallation);
+
+            }
+        } catch (error) {
+            console.error('Error fetching CEP data:', error);
+        }
+
         setOpenForm(false)
 
     }
@@ -90,6 +114,9 @@ export default function InstallationsMain() {
     const handleDeleteInstallation = (installation, index) => {
         storeInstallations.deleteInstallation(index)
     }
+    const handleChangeState = (value) => {
+        setStateValue(stateOptions[value])
+    }
 
     return (
         <Container>
@@ -100,7 +127,7 @@ export default function InstallationsMain() {
                         <TitleContainer>
                             <TitleIconsContainer>
                                 <HomeIconStyled />
-                                <Typography variant="h2">Meu Endereço</Typography>
+                                <Typography variant="h2">{`Meu Endereço ${index === 0 ? "Principal" : ""}`}</Typography>
                             </TitleIconsContainer>
                             {installations.length > 1 && <IconButton onClick={() => handleDeleteInstallation(installation, index)}>
                                 <DeleteIcon className="deleteIcon" />
@@ -112,12 +139,14 @@ export default function InstallationsMain() {
                             <Typography variant="h3">CEP: {installation.zipCode}</Typography>
                         </MainInstallationInfo>
                         <ButtonContainer>
-                            <NewInstallationButton text="Editar Endereço" onClick={() => router.push("/profile")} />
-                            {!openForm ? <NewInstallationButton text="Adicionar Novo Endereço" onClick={() => setOpenForm(true)} /> : null}
+                            <NewInstallationButton text={`Editar Endereço ${index === 0 ? "Principal" : ""}`} onClick={() => router.push("/profile")} />
                         </ButtonContainer>
                     </InstallationsMainContent>
                 )
             })}
+            <div style={{ margin: '0 auto' }}>
+                {!openForm ? <NewInstallationButton text="Adicionar Novo Endereço" onClick={() => setOpenForm(true)} /> : null}
+            </div>
 
             {openForm ?
                 (
@@ -144,7 +173,28 @@ export default function InstallationsMain() {
                                 <TextField className="formInput" inputRef={newInstallationRef.addressComplement} label="Complemento" variant="outlined" placeholder="Complemento" type="text" />
                                 <TextField className="formInput" inputRef={newInstallationRef.neighborhood} label="Bairro" variant="outlined" placeholder="Bairro" type="text" InputLabelProps={{ shrink: true }} />
 
-                                <TextField className="formInput" inputRef={newInstallationRef.state} label="Estado" variant="outlined" placeholder="Estado" type="text" InputLabelProps={{ shrink: true }} />
+                                {/* <TextField className="formInput" inputRef={newInstallationRef.state} label="Estado" variant="outlined" placeholder="Estado" type="text" InputLabelProps={{ shrink: true }} /> */}
+                                <TextField
+                                    id="state"
+                                    select
+                                    value={stateValue ? stateValue.cod_estados : ''}
+                                    onChange={(event) => handleChangeState(event.target.value)}
+                                    label="Estado"
+                                    placeholder="Estado"
+                                    variant="outlined"
+                                    className="formInput"
+                                    InputLabelProps={{
+                                        component: 'span',
+                                    }}
+                                    inputRef={newInstallationRef.state}
+                                    required>
+                                    {Object.values(stateOptions).map((state) => {
+                                        return (
+                                            <MenuItem key={state.cod_estados} value={state.cod_estados}>{state.sigla}</MenuItem>
+                                        )
+                                    })}
+                                </TextField>
+
                                 <TextField className="formInput" inputRef={newInstallationRef.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} />
 
                                 <TextField
