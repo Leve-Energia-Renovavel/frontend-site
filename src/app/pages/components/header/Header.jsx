@@ -123,7 +123,7 @@ export default function Header() {
                     </LogoContainer>
                     <MenuBurguer onClick={() => setMenuOpen(!isMenuOpen)} />
                     {isMenuOpen && (
-                        <MobileHeader isMenuOpen={isMenuOpen} closeMenu={closeMobileMenu} />
+                        <MobileHeader isMenuOpen={isMenuOpen} closeMenu={closeMobileMenu} openModal={openLoginModal} closeModal={closeLoginModal}/>
                     )}
                 </MobileHeaderContainer>
             )}

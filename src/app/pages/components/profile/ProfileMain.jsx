@@ -103,12 +103,12 @@ export default function ProfileMain() {
                         {() => <TextField className="formInput" label="CEP" variant="outlined" placeholder="CEP" type="text" InputLabelProps={{ shrink: true }} disabled />}
                     </InputMask>
 
-                    <TextField className="formInput" label="Endereço" value={address.street || ''} variant="outlined" placeholder="Endereço" type="text" InputLabelProps={{ shrink: true }} />
+                    <TextField className="formInput" label="Endereço" value={address.street || ''} variant="outlined" placeholder="Endereço" type="text" InputLabelProps={{ shrink: true }} disabled/>
                     <InputMask mask="99999" value={address.number || ''} disabled>
                         {() => <TextField className="formInput" label="Nº" variant="outlined" placeholder="Nº" type="text" disabled />}
                     </InputMask>
 
-                    <TextField className="formInput" label="Complemento" value={address.complement || ''} variant="outlined" placeholder="Complemento" type="text" />
+                    <TextField className="formInput" label="Complemento" value={address.complement || ''} variant="outlined" placeholder="Complemento" type="text" disabled/>
                     <TextField className="formInput" label="Bairro" value={address.neighborhood || ''} variant="outlined" placeholder="Bairro" type="text" InputLabelProps={{ shrink: true }} disabled />
 
                     <TextField className="formInput" label="Estado" value={address.state || ''} variant="outlined" placeholder="Estado" type="text" InputLabelProps={{ shrink: true }} disabled />

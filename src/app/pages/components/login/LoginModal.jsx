@@ -75,23 +75,16 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
 
         if (!forgotPassword) {
 
-            // const data = {
-            //     username: loginRef.email.current.value,
-            //     password: loginRef.password.current.value,
-            //     grant_type: "password",
-            //     client_secret: "Ne3XLQEfGYzkhwDAtIYcknkn8cbRXGL2Ya0vFY7r",
-            //     client_id: user.clientId,
-            //     scope: ""
-            // }
-
             const data = {
-                username: "dalbenmilton@gmail.com",
-                password: "123456",
+                username: loginRef.email.current.value,
+                password: loginRef.password.current.value,
                 grant_type: "password",
                 client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
                 client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
                 scope: ""
             }
+
+            console.log("login data ===>>", data)
 
 
             const response = await loginValidation(data)

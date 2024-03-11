@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation';
 import logo from "../../../../resources/img/logo-header.png";
 import HeaderButton from '../utils/buttons/HeaderButton';
 import { HeaderMenuItem, LogoContainer, MenuItem, Nav, Ul, installationFieldStyle } from "./styles";
-import { useEffect } from 'react';
 
 export default function LoggedUserHeader() {
     const router = useRouter()

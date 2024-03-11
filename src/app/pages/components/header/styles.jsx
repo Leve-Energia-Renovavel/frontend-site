@@ -2,6 +2,7 @@ import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import MenuIcon from '@mui/icons-material/Menu';
 import { background } from "../../styles";
+import { Button } from "@mui/material";
 
 const fadeInUp = keyframes`
   from {
@@ -242,6 +243,16 @@ export const NavMobile = styled.nav`
 
 export const UlMobile = styled.ul`
   list-style-type: none;
+
+  .menuButton{
+      animation: ${fadeInUp} 0.5s ease-out;
+  }
+  `;
+export const MobileButtonContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    animation: ${fadeInUp} 0.8s ease-out;
   `;
 
 export const MenuItemMobile = styled.li`
@@ -295,3 +306,77 @@ export const installationFieldStyle = {
         fill: "white !important",
     },
 }
+
+
+export const MobileHeaderButtonContained = styled(Button)`
+    text-transform: none;
+    color: ${background.blueLeve};
+    border-color: ${background.blueLeve};
+    background-color: ${background.yellowLeve};
+    border-radius: 13px;
+    cursor: pointer;
+    margin: 2rem;
+    height: 3rem;
+    padding: 1rem 4rem;
+    
+    @media (max-width: 1500px) {
+        margin: 1rem;
+        height: 3rem;
+        padding: 1rem 3rem;
+    }
+    
+    span { 
+        font-family: "Metropolis";
+        font-size: 18px;
+        line-height: 18px;
+        font-weight: 500;
+
+        @media (max-width: 1200px) {
+        font-size: 16px;
+        line-height: 16px;
+        }
+    }
+
+    &:hover {
+        background-color: ${background.light};
+        color: ${background.blueLeve};
+        border: 1px solid ${background.blueLeve};
+    }
+`;
+
+
+export const MobileHeaderButtonOutlined = styled(Button)`
+    text-transform: none;
+    color: ${background.yellowLeve};
+    border: 1px solid ${background.yellowLeve};
+    background-color: ${background.blueLeve};
+    border-radius: 13px;
+    cursor: pointer;
+    margin: 2rem;
+    height: 3rem;
+    padding: 1rem 4rem;
+    
+    @media (max-width: 1500px) {
+        margin: 1rem;
+        height: 3rem;
+        padding: 1rem 3rem;
+    }
+    
+    span { 
+        font-family: "Metropolis";
+        font-size: 18px;
+        line-height: 18px;
+        font-weight: 500;
+
+        @media (max-width: 1200px) {
+        font-size: 16px;
+        line-height: 16px;
+        }
+    }
+
+    &:hover {
+        background-color: ${background.light};
+        color: ${background.blueLeve};
+        border: 1px solid ${background.blueLeve};
+    }
+`;
