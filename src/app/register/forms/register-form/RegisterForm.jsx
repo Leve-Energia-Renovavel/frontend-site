@@ -29,7 +29,7 @@ export default function RegisterForm() {
     const store = useStoreUser()
     const storeAddress = useStoreAddress()
     const storeCompany = useStoreCompany()
-
+    
     const router = useRouter()
 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,10 +38,11 @@ export default function RegisterForm() {
     const [socialContractFile, setSocialContractFile] = useState(null);
     const [energyExtractFile, setEnergyExtractFile] = useState(null);
     const [validationErrors, setValidationErrors] = useState([]);
-
+    
     const { name, email, phone, cep, companyName, cost, isCompany } = store.user
     const { street, neighborhood, city, state, stateId, cityId } = storeAddress.address
-
+    const company = useStoreCompany().company
+    
     const [stateValue, setStateValue] = useState(stateOptions[stateId] || null);
 
     const meuID = stateValue?.cod_estados || 26
