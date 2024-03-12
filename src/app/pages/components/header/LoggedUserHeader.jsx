@@ -15,7 +15,7 @@ export default function LoggedUserHeader() {
     const address = useStoreAddress().address
     const mainInstallation = useStoreMainInstallation().mainInstallation
 
-    const mainAddress = Cookies.get('leveAddress').street
+    const mainAddress = Cookies.get('leveAddress')?.street
 
 
     const storeUser = useStoreUser()
