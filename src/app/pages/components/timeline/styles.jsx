@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
+import { Timeline, TimelineItem, TimelineOppositeContent } from "@mui/lab";
+import { background } from "../../styles";
 
 const fadeInUp = keyframes`
   from {
@@ -31,3 +33,14 @@ export const TimelineContentContainer = styled.div`
 export const TimelineContentButtonContainer = styled.div`
     padding: 1rem 1rem 1rem 0;
     `
+
+export const TimeLineStyled = styled(Timeline)`
+    color: ${background.blueLeve}; 
+    max-width: 20vw;
+`
+export const TimeLineItemStyled = styled(TimelineItem)`
+    color: ${background.blueLeve}; 
+    max-width: 20vw;
+`
+export const TimeLineOppositeContentStyled = styled(TimelineOppositeContent)`
+`

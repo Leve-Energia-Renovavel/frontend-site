@@ -44,7 +44,7 @@ export default function InvoicesMain() {
                             </NextBillButtonContainer>
                         </>
                     ) :
-                        <Typography variant='h2'>Nao ha faturas em aberto</Typography>}
+                        <Typography variant='subtitle1' className='noOpenInvoices'>Não há faturas em aberto</Typography>}
                 </InvoicesMainCardContainer>
             </InvoicesMainContainer>
             <div>

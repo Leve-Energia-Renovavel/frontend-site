@@ -71,6 +71,13 @@ export const InvoicesMainCardContainer = styled.div`
     @media (max-width: 600px) {
       margin: 1rem;
     }
+
+    .noOpenInvoices { 
+      font-family: "Metropolis", sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: ${background.grey};
+    }
 `
 export const InvoicesTimelineContainer = styled.div`
     border-radius: 4px;

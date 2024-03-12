@@ -147,6 +147,8 @@ export default function RegisterForm() {
         }
 
         console.log("submitData ==>>", submitData)
+        Cookies.set("leveSubmitData", submitData)
+
 
         const response = await schemaValidation(isCompany, submitData)
         console.log("registerForm response ==>>", response)
@@ -180,6 +182,28 @@ export default function RegisterForm() {
             setValidationErrors(["Ocorreu um erro inesperado. Por favor, tente novamente"])
         }
 
+    }
+
+    if (Cookies.get("leveSubmitData")) {
+        const submitData = Cookies.get("leveSubmitData")
+
+        userRefs.name.current.value = submitData.nome
+        userRefs.email.current.value = submitData.email
+        userRefs.phone.current.value = submitData.telefone
+        addressRefs.addressCep.current.value = submitData.cep
+        addressRefs.address.current.value = submitData.endereco
+        addressRefs.addressNumber.current.value = submitData.numero
+        addressRefs.neighborhood.current.value = submitData.bairro
+        addressRefs.complement.current.value = submitData.complemento
+        storeAddress.address.stateId = submitData.estado_id
+        storeAddress.address.cityId = submitData.cidade_id
+        userRefs.rg.current.value = submitData.rg
+        userRefs.birthDate.current.value = submitData.data_nascimento
+        userRefs.nationality.current.value = submitData.nacionalidade
+        userRefs.profession.current.value = submitData.profissao
+        userRefs.maritalStatus.current.value = submitData.estado_civil
+        userRefs.cpf.current.value = submitData.cpf
+        addressRefs.installationNumber.current.value = submitData.numero_instalacao
     }
 
     const closeModal = () => {

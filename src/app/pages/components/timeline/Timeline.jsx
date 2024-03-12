@@ -15,7 +15,7 @@ import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import { Typography } from '@mui/material';
 import { background, statusColors } from '../../styles';
 import NewInstallationButton from '../utils/buttons/NewInstallationButton';
-import { TimelineContentButtonContainer, TimelineContentContainer } from './styles';
+import { TimeLineItemStyled, TimeLineOppositeContentStyled, TimeLineStyled, TimelineContentButtonContainer, TimelineContentContainer } from './styles';
 
 export default function TimelineMain() {
 
@@ -67,6 +67,19 @@ export default function TimelineMain() {
                     )
                 })}
             </Timeline>
+            {/* <TimeLineStyled>
+                {billings.slice(1).map((invoice) => {
+                    return (
+                        <TimeLineItemStyled key={invoice.id}>
+                            <TimeLineOppositeContentStyled>
+                                <div>
+                                    <Typography sx={{ fontWeight: 500 }}>{invoice.dueDate}</Typography>
+                                </div>
+                            </TimeLineOppositeContentStyled>
+                        </TimeLineItemStyled>
+                    )
+                })}
+            </TimeLineStyled> */}
         </div>
 
     );
