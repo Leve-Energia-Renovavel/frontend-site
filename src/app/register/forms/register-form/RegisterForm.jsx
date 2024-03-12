@@ -69,13 +69,8 @@ export default function RegisterForm() {
     };
 
     const companyRefs = {
-        companyName: useRef(null),
-        corporateReason: useRef(null),
+        razao_social: useRef(null),
         cnpj: useRef(null),
-        responsibleName: useRef(null),
-        companyEmail: useRef(null),
-        companyPhone: useRef(null),
-
         socialContract: useRef(null),
         energyExtract: useRef(null),
     }
@@ -95,7 +90,8 @@ export default function RegisterForm() {
         var response = null
         if (isCompany) {
             response = await companySchema.validate(data, { abortEarly: false })
-                .then(() => {
+                .then(async () => {
+                    return await signUp(data)
 
                 })
                 .catch((err) => {
@@ -126,6 +122,8 @@ export default function RegisterForm() {
 
         const submitData = {
             uuid: uuid,
+            razao_social: companyRefs.razao_social.current.value,
+            cnpj: companyRefs.cnpj.current.value,
             nome: userRefs.name.current.value,
             email: userRefs.email.current.value,
             telefone: userRefs.phone.current.value,
@@ -275,20 +273,23 @@ export default function RegisterForm() {
                 <FormContent acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
                     {isCompany ? (
                         <>
-                            <TextField className="formInput" defaultValue={company.name || ''} inputRef={companyRefs.companyName} label="Nome da Empresa" variant="outlined" placeholder="Nome da Empresa" type="text" InputLabelProps={{ shrink: true }} required />
-                            <TextField className="formInput" defaultValue={company.corporateReason || ''} inputRef={companyRefs.corporateReason} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" InputLabelProps={{ shrink: true }} required />
-                            <InputMask mask="99.999.999/9999-99">
-                                {() => <TextField className="formInput" inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text" required
-                                    InputProps={{
-                                        endAdornment: <SearchIcon
-                                            sx={{ cursor: 'pointer' }}
-                                            onClick={() => fetchCNPJ(companyRefs.cnpj.current.value)} />,
-                                    }} />}
-                            </InputMask>
-                            <TextField className="formInput" inputRef={companyRefs.responsibleName} defaultValue={name || ''} label="Nome Completo do Responsável" variant="outlined" placeholder="Nome Completo do Responsável" type="text" InputLabelProps={{ shrink: true }} required />
-                            <TextField inputRef={companyRefs.companyEmail} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" InputLabelProps={{ shrink: true }} required />
+                            <FormRow>
+                                <TextField className="formInput" defaultValue={company.razao_social || ''} inputRef={companyRefs.razao_social} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" InputLabelProps={{ shrink: true }} required />
+                                <InputMask mask="99.999.999/9999-99">
+                                    {() => <TextField className="formInput" inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text" required
+                                        InputProps={{
+                                            endAdornment: <SearchIcon
+                                                sx={{ cursor: 'pointer' }}
+                                                onClick={() => fetchCNPJ(companyRefs.cnpj.current.value)} />,
+                                        }} />}
+                                </InputMask>
+                            </FormRow>
+                            <FormRow>
+                                <TextField className="formInput" inputRef={userRefs.name} defaultValue={name || ''} label="Nome Completo do Responsável" variant="outlined" placeholder="Nome Completo do Responsável" type="text" InputLabelProps={{ shrink: true }} required />
+                                <TextField inputRef={userRefs.email} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" InputLabelProps={{ shrink: true }} required />
+                            </FormRow>
                             <InputMask mask="(99) 99999-9999" value={formatPhoneNumber(company.phone) || ""} onChange={(e) => storeCompany.updateCompany({ phone: e.target.value })}>
-                                {() => <TextField sx={{ width: '300px' }} inputRef={companyRefs.companyPhone} className="formInput" label="Telefone do Responsável" variant="outlined" placeholder="Telefone do Responsável" type="text" InputLabelProps={{ shrink: true }} required />}
+                                {() => <TextField inputRef={userRefs.phone} className="formInput" label="Telefone do Responsável" variant="outlined" placeholder="Telefone do Responsável" type="text" InputLabelProps={{ shrink: true }} required />}
                             </InputMask>
 
                         </>
@@ -303,63 +304,62 @@ export default function RegisterForm() {
                                 {() => <TextField
                                     inputRef={userRefs.phone} className="formInput" label="Celular" placeholder="Celular" variant="outlined" type="text" InputLabelProps={{ shrink: true }} required />}
                             </InputMask>
-                            {isForeigner ?
-                                (<InputMask mask="*******-*" required >
-                                    {() => <TextField inputRef={userRefs.rg} className="formInput" label="RNE" variant="outlined" placeholder="RNE" type="text" InputLabelProps={{ shrink: true }} required />}
-                                </InputMask>)
-                                :
-                                (<InputMask mask="********-*" required >
-                                    {() => <TextField inputRef={userRefs.rg} className="formInput" label="RG" variant="outlined" placeholder="RG" type="text" InputLabelProps={{ shrink: true }} required />}
-                                </InputMask>)}
-                            <InputMask mask="999.999.999-99" required >
-                                {() => <TextField inputRef={userRefs.cpf} className="formInput" label="CPF" variant="outlined" placeholder="CPF" type="text" InputLabelProps={{ shrink: true }} required />}
-                            </InputMask>
-
-                            <InputMask mask="99/99/9999" required>
-                                {() => <TextField inputRef={userRefs.birthDate} className="formInput" label="Data de Nascimento" variant="outlined" placeholder="Data de Nascimento" type="text" required />}
-                            </InputMask>
-                            <TextField
-                                id="maritalStatus"
-                                placeholder={"test"}
-                                select
-                                defaultValue={""}
-                                label="Estado Civil"
-                                className="formInput"
-                                InputLabelProps={{
-                                    component: 'span',
-                                }}
-                                inputRef={userRefs.maritalStatus || ''}>
-                                {maritalStatusOptions?.map((maritalStatus) => {
-                                    return (
-                                        <MenuItem key={maritalStatus.label} value={maritalStatus.value}>{maritalStatus.label}</MenuItem>
-                                    )
-                                })}
-                            </TextField>
-
-                            <TextField
-                                id="nationality"
-                                select
-                                defaultValue={""}
-                                inputRef={userRefs.nationality}
-                                className="formInput"
-                                label="Nacionalidade"
-                                variant="outlined"
-                                placeholder="Nacionalidade"
-                                type="text"
-                                onChange={(event) => handleNationalityChange(event.target.value)}
-                                InputLabelProps={{
-                                    component: 'span',
-                                }}
-                                required>
-                                {nationalityOptions?.map((nationality) => {
-                                    return (
-                                        <MenuItem key={nationality.label} value={nationality.value}>{nationality.label}</MenuItem>
-                                    )
-                                })}
-                            </TextField>
                         </>
-
                     )}
+                    {isForeigner ?
+                        (<InputMask mask="*******-*" required >
+                            {() => <TextField inputRef={userRefs.rg} className="formInput" label="RNE" variant="outlined" placeholder="RNE" type="text" InputLabelProps={{ shrink: true }} required />}
+                        </InputMask>)
+                        :
+                        (<InputMask mask="********-*" required >
+                            {() => <TextField inputRef={userRefs.rg} className="formInput" label="RG" variant="outlined" placeholder="RG" type="text" InputLabelProps={{ shrink: true }} required />}
+                        </InputMask>)}
+                    <InputMask mask="999.999.999-99" required >
+                        {() => <TextField inputRef={userRefs.cpf} className="formInput" label="CPF" variant="outlined" placeholder="CPF" type="text" InputLabelProps={{ shrink: true }} required />}
+                    </InputMask>
+
+                    <InputMask mask="99/99/9999" required>
+                        {() => <TextField inputRef={userRefs.birthDate} className="formInput" label="Data de Nascimento" variant="outlined" placeholder="Data de Nascimento" type="text" required />}
+                    </InputMask>
+                    <TextField
+                        id="maritalStatus"
+                        placeholder={"test"}
+                        select
+                        defaultValue={""}
+                        label="Estado Civil"
+                        className="formInput"
+                        InputLabelProps={{
+                            component: 'span',
+                        }}
+                        inputRef={userRefs.maritalStatus || ''}>
+                        {maritalStatusOptions?.map((maritalStatus) => {
+                            return (
+                                <MenuItem key={maritalStatus.label} value={maritalStatus.value}>{maritalStatus.label}</MenuItem>
+                            )
+                        })}
+                    </TextField>
+
+                    <TextField
+                        id="nationality"
+                        select
+                        defaultValue={""}
+                        inputRef={userRefs.nationality}
+                        className="formInput"
+                        label="Nacionalidade"
+                        variant="outlined"
+                        placeholder="Nacionalidade"
+                        type="text"
+                        onChange={(event) => handleNationalityChange(event.target.value)}
+                        InputLabelProps={{
+                            component: 'span',
+                        }}
+                        required>
+                        {nationalityOptions?.map((nationality) => {
+                            return (
+                                <MenuItem key={nationality.label} value={nationality.value}>{nationality.label}</MenuItem>
+                            )
+                        })}
+                    </TextField>
                     <TextField
                         id="profession"
                         select

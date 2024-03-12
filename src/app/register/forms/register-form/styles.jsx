@@ -90,7 +90,7 @@ export const FormHeader = styled.div`
 
 export const FormContent = styled.form`
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
+  grid-template-columns: 1fr 200px 1fr; 
   grid-gap: 20px 40px;
   background-color: ${background.light};
   max-width: 100%;
