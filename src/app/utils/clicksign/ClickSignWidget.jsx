@@ -14,7 +14,7 @@ export default function ClicksignWidget() {
 
     const storeClicksign = useStoreClickSign()
     const clickSign = storeClicksign.data
-    const clickSignKey = useStoreClickSign().data.key || Cookies.get("clickSignKey")
+    const clickSignKey = Cookies.get("clickSignKey")
 
     const storeUser = useStoreUser()
 
