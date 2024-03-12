@@ -40,16 +40,17 @@ export default function MemberGetMember() {
                 Authorization: `Bearer ${Cookies.get('accessToken')}`
             };
             const data = {
-                invitedEmail: invitedEmailRef.current.value,
+                send_mail: invitedEmailRef.current.value,
             }
             try {
-                const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}`, data, { headers })
+                const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/send-code`, data, { headers })
                 if (requestSuccessful(response.status)) {
-
+                    setNotifications([response?.data?.message])
                 }
 
             } catch (error) {
                 console.error(error)
+                setValidationErrors([error?.response?.data?.message])
             }
         }
     }
