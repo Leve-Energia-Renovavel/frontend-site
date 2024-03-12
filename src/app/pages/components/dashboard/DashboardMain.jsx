@@ -313,7 +313,7 @@ export default function DashboardMain() {
                     <HistoryBilling>
                         {billings.length > 0 ?
                             <>
-                                {billings.map((bill) => {
+                                {billings.slice(0, 3).map((bill) => {
                                     return (
                                         <BillDetails key={bill.uuid}>
                                             <span>{`${bill.dueDate}`}</span>
@@ -322,6 +322,9 @@ export default function DashboardMain() {
                                         </BillDetails>
                                     )
                                 })}
+                                {billings.length > 2 && <div style={{ display: "flex", justifyContent: "center" }}>
+                                    <Typography variant="subtitle1" className="seeMoreBillings" onClick={() => router.push(`/invoices`)}> Ver mais</Typography>
+                                </div>}
                             </>
                             :
                             <BillDetails>

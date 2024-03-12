@@ -386,6 +386,17 @@ export const HistoryBilling = styled.div`
     flex-direction: column;
 
     justify-content: center;
+
+    .seeMoreBillings { 
+      color: ${background.blueLeve};
+      font-weight: 500;
+      font-size: 1.2rem;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      } 
+    }
 `
 export const BillDetails = styled.div`
     display: flex;

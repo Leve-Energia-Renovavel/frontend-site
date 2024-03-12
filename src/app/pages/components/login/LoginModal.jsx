@@ -150,9 +150,7 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
                                                     {passwordVisibible == "password" ? <VisibilityIcon /> : <VisibilityOffIcon />}
                                                 </IconButton>
                                             </InputAdornment>
-                                    }}
-
-                                />
+                                    }} />
                                 : <></>}
                             <LoginButtonContainer>
                                 <LoginButton onClick={handleSubmit}>

@@ -26,7 +26,14 @@ export const InstallationsMainContainer = styled.div`
         font-size: 1.5rem;
         color: ${background.blueLeve};
         font-weight: 700;
-    }
+      }
+      
+      .noInstallationRegistered {
+        font-family: "Metropolis", sans-serif;
+        font-size: 1rem;
+        color: ${background.blueLeve};
+        font-weight: 500;
+        }
 `
 export const InstallationsMainContent = styled.div`
     background-color: ${background.light};

@@ -126,29 +126,36 @@ export default function InstallationsMain() {
     return (
         <Container>
             <Typography variant="h1">Meus Endereços</Typography>
-            {installations.map((installation, index) => {
-                return (
-                    <InstallationsMainContent key={installation.address}>
-                        <TitleContainer>
-                            <TitleIconsContainer>
-                                <HomeIconStyled />
-                                <Typography variant="h2">{`Meu Endereço ${index === 0 ? "Principal" : ""}`}</Typography>
-                            </TitleIconsContainer>
-                            {installations.length > 1 && <IconButton onClick={() => handleDeleteInstallation(installation, index)}>
-                                <DeleteIcon className="deleteIcon" />
-                            </IconButton>}
-                        </TitleContainer>
-                        <MainInstallationInfo>
-                            <Typography variant="h3" className="mainAddress">{installation.address}</Typography>
-                            <Typography variant="h3">{installation.city} - {installation.state}</Typography>
-                            <Typography variant="h3">CEP: {installation.zipCode}</Typography>
-                        </MainInstallationInfo>
-                        <ButtonContainer>
-                            <NewInstallationButton text={`Editar Endereço ${index === 0 ? "Principal" : ""}`} onClick={() => router.push("/profile")} />
-                        </ButtonContainer>
-                    </InstallationsMainContent>
-                )
-            })}
+            {installations.length >= 1 ?
+                (<>
+                    {installations.map((installation, index) => {
+                        return (
+                            <InstallationsMainContent key={installation.address}>
+                                <TitleContainer>
+                                    <TitleIconsContainer>
+                                        <HomeIconStyled />
+                                        <Typography variant="h2">{`Meu Endereço ${index === 0 ? "Principal" : ""}`}</Typography>
+                                    </TitleIconsContainer>
+                                    {installations.length > 1 && <IconButton onClick={() => handleDeleteInstallation(installation, index)}>
+                                        <DeleteIcon className="deleteIcon" />
+                                    </IconButton>}
+                                </TitleContainer>
+                                <MainInstallationInfo>
+                                    <Typography variant="h3" className="mainAddress">{installation.address}</Typography>
+                                    <Typography variant="h3">{installation.city} - {installation.state}</Typography>
+                                    <Typography variant="h3">CEP: {installation.zipCode}</Typography>
+                                </MainInstallationInfo>
+                                <ButtonContainer>
+                                    <NewInstallationButton text={`Editar Endereço ${index === 0 ? "Principal" : ""}`} onClick={() => router.push("/profile")} />
+                                </ButtonContainer>
+                            </InstallationsMainContent>
+                        )
+                    })}
+                </>) :
+                <>
+                    <Typography variant="subtitle1" className="noInstallationRegistered">Não há endereços cadastrados</Typography>
+                </>}
+
             <div style={{ margin: '0 auto' }}>
                 {!openForm ? <NewInstallationButton text="Adicionar Novo Endereço" onClick={() => setOpenForm(true)} /> : null}
             </div>
