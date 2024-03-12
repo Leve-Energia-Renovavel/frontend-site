@@ -16,9 +16,12 @@ export default function ClicksignWidget() {
     const clickSign = storeClicksign.data
     const clickSignKey = Cookies.get("clickSignKey")
 
+    const key = clickSignKey ? clickSignKey : clickSign.key
+
     const storeUser = useStoreUser()
 
     console.log("store Clicksign ===>>", clickSign)
+    console.log("clickSignKey ===>>", clickSignKey)
 
     const [widget, setWidget] = useState(null);
 
@@ -28,7 +31,7 @@ export default function ClicksignWidget() {
         }
 
         const run = () => {
-            const widgetInstance = new Clicksign(clickSignKey);
+            const widgetInstance = new Clicksign(key);
 
             widgetInstance.endpoint = 'https://app.clicksign.com';
             widgetInstance.origin = window.location.protocol + '//' + window.location.host;
