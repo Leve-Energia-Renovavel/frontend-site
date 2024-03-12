@@ -20,9 +20,10 @@ import RegisterModal from "../../modals/installation-number-modal/InstallationNu
 import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { companySchema, userSchema } from "./schema";
-import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, SnackbarMessageAlert, fileInputStyles } from "./styles";
+import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, SnackbarMessageAlert, SnackbarMessageNotification, fileInputStyles } from "./styles";
 import { allCities } from "@/app/utils/form-options/citiesOptions";
 import { FixedSizeList as List } from 'react-window';
+import Cookies from "js-cookie";
 
 export default function RegisterForm() {
 
@@ -38,6 +39,9 @@ export default function RegisterForm() {
     const [socialContractFile, setSocialContractFile] = useState(null);
     const [energyExtractFile, setEnergyExtractFile] = useState(null);
     const [validationErrors, setValidationErrors] = useState([]);
+    const [notifications, setNotifications] = useState([])
+
+    const uuid = store.user.uuid || Cookies.get('leveUUID')
 
     const { name, email, phone, cep, companyName, cost, isCompany } = store.user
     const { street, neighborhood, city, state, stateId, cityId } = storeAddress.address
@@ -121,7 +125,7 @@ export default function RegisterForm() {
         event.preventDefault()
 
         const submitData = {
-            uuid: store.user.uuid,
+            uuid: uuid,
             nome: userRefs.name.current.value,
             email: userRefs.email.current.value,
             telefone: userRefs.phone.current.value,
@@ -171,6 +175,9 @@ export default function RegisterForm() {
             })
 
             router.push(`/register/contract-signature`)
+        } else {
+            // setValidationErrors([response?.response?.data?.message])
+            setValidationErrors(["Ocorreu um erro inesperado. Por favor, tente novamente"])
         }
 
     }
@@ -501,6 +508,28 @@ export default function RegisterForm() {
                             >
                                 {error}
                             </SnackbarMessageAlert>
+                        </Snackbar>
+                    )
+                })}
+            </>
+            <>
+                {notifications.map((notification, index) => {
+                    return (
+                        <Snackbar
+                            key={index}
+                            open={notifications.length >= 1}
+                            autoHideDuration={6000}
+                            message={notification}
+                            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                            onClose={() => setNotifications([])}>
+                            <SnackbarMessageNotification
+                                sx={{ marginBottom: `${index * 5}rem` }}
+                                severity="error"
+                                variant="filled"
+                                onClose={() => setNotifications([])}
+                            >
+                                {notification}
+                            </SnackbarMessageNotification>
                         </Snackbar>
                     )
                 })}

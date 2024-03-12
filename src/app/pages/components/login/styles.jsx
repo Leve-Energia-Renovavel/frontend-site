@@ -30,6 +30,19 @@ export const LoginBox = styled(Box)`
     border-radius: 13px;
 
     padding: 1rem 2rem;
+
+    @media (max-width: 600px) {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        top: 0;
+        left: 0;
+        transform: none;
+
+        overflow: auto;
+
+        padding: 1rem 1rem;
+    }
 `
 export const LoginIconContainer = styled.div`
     display: flex;
@@ -53,6 +66,11 @@ export const LoginTitleContainer = styled.div`
     .logoLeve { 
         width: 20%;
         height: 20%;
+
+        @media (max-width: 600px) {
+            width: 70%;
+            height: 70%;
+        }
     }
 `
 
@@ -68,6 +86,7 @@ export const LoginContentContainer = styled.div`
     height: auto;
 
     padding: 2rem;
+
 `
 
 export const LoginForm = styled.form`
@@ -82,8 +101,14 @@ export const LoginForm = styled.form`
         border-radius: 4px;
 
         margin: 0 auto;
-
+        
         width: 30vw;
+        
+        @media (max-width: 600px) {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 90vw;
+        }
     }
 `
 
@@ -100,15 +125,18 @@ export const LoginButtonContainer = styled.form`
         color: ${background.higherGrey};
         
         margin: 1rem auto;
-
+        
         &:hover {
             cursor: pointer;
             text-decoration: underline;
-    
         }
 
         .divider {
             margin-top: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            margin: 2.5rem auto;
         }
     }
     
@@ -120,7 +148,6 @@ export const LoginButtonContainer = styled.form`
             font-weight: 700;
             cursor: pointer;
             text-decoration: underline;
-
         }
     }
 `
@@ -142,11 +169,16 @@ export const LoginButton = styled(Button)`
         font-size: 18px;
         line-height: 18px;
         font-weight: 600;
-
+        
         @media (max-width: 1200px) {
-        font-size: 16px;
-        line-height: 16px;
+            font-size: 16px;
+            line-height: 16px;
         }
+    }
+
+    @media (max-width: 600px) {
+        width: 100%;
+        max-width: 75vw;
     }
 
     &:hover {
