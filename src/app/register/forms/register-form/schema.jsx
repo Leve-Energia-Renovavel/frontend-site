@@ -90,29 +90,15 @@ export const userSchema = yup.object({
 
             return true;
         }),
-    numero_instalacao: yup.string().required('O campo Número de Instalação é obrigatório')
+    numero_instalacao: yup.string()
 });
 
-export const companySchema = yup.object({
-    "company": {
-        "companyName": "Empresa do Marcos",
-        "corporateReason": "Razao Social da Empresa do Marcos",
-        "cnpj": "07.526.557/0001-00",
-        "responsibleName": "Marcos Vinicius Ferreira",
-        "companyEmail": "marcosferreiraf22@gmail.com",
-        "companyPhone": "(11) 98933-2002"
-    },
-    "address": {
-        "address": "Rua das Rosas",
-        "addressNumber": "999__",
-        "addressCep": "30670-515",
-        "addressComplement": "casa rosa",
-        "neighborhood": "Vila Ecologica",
-        "state": "MG",
-        "city": "Belo Horizonte",
-        "installationNumber": "010203040506070809"
-    }
-});
+export const companySchema = userSchema.concat(
+    yup.object({
+        razao_social: yup.string().required(),
+        cnpj: yup.string().required()
+    })
+);
 
 
 
