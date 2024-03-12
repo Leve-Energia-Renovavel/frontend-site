@@ -84,9 +84,6 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
                 scope: ""
             }
 
-            console.log("login data ===>>", data)
-
-
             const response = await loginValidation(data)
             if (requestSuccessful(response?.status)) {
                 router.push(`/dashboard`)

@@ -14,6 +14,7 @@ import InputMask from "react-input-mask";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
 import NewInstallationButtonConfirm from "../utils/buttons/NewInstallationButtonConfirm";
 import { ButtonContainer, InstallationsMainContainer as Container, FormContentNewInstallation, HomeIconStyled, InstallationsMainContent, MainInstallationInfoContainer as MainInstallationInfo, NewInstallationContent, TitleContainer, TitleIconsContainer } from "./styles";
+import Cookies from "js-cookie";
 
 export default function InstallationsMain() {
 
@@ -65,6 +66,10 @@ export default function InstallationsMain() {
     const handleSubmit = async (event) => {
         event.preventDefault()
 
+        const headers = {
+            Authorization: `Bearer ${Cookies.get('accessToken')}`
+        };
+
         const data = {
             endereco: newInstallationRef.address.current.value,
             numero: newInstallationRef.addressNumber.current.value,
@@ -79,7 +84,7 @@ export default function InstallationsMain() {
 
         console.log("add installation data ===>>", data)
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/add-uc`);
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/add-uc`, data, { headers });
             console.log("add installation response ===>>", response)
             console.log(response)
             if (requestSuccessful(response.status)) {

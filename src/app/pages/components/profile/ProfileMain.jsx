@@ -12,6 +12,7 @@ import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import FormButton from "../utils/buttons/FormButton";
 import { ProfileChangePasswordContent, ProfileContainer, ProfileMainContent, ProfileSecondaryEmailContent, SnackbarMessageAlert, SnackbarMessageNotification } from "./styles";
+import Cookies from "js-cookie";
 
 
 export default function ProfileMain() {
@@ -34,12 +35,16 @@ export default function ProfileMain() {
     const handleChangePassword = async () => {
         if (oldPasswordRef.current.value !== "" && newPasswordConfirmationRef.current.value !== "") {
 
+            const headers = {
+                Authorization: `Bearer ${Cookies.get('accessToken')}`
+            };
+
             const data = {
                 last_pass: oldPasswordRef.current.value,
                 new_pass: newPasswordConfirmationRef.current.value,
             }
             try {
-                const response = await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/change-pass`, data)
+                const response = await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/change-pass`, data, { headers })
                 console.log(response)
                 if (requestSuccessful(response.status)) {
 
@@ -58,12 +63,16 @@ export default function ProfileMain() {
     const handleSecondaryEmail = async () => {
         if (secondaryEmailRef.current.value !== "") {
 
+            const headers = {
+                Authorization: `Bearer ${Cookies.get('accessToken')}`
+            };
+
             const data = {
                 email_secondary: secondaryEmailRef.current.value,
                 secondary_send: "on"
             }
             try {
-                const response = await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/add-secondary-email`, data)
+                const response = await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/add-secondary-email`, data, { headers })
                 console.log(response)
                 if (requestSuccessful(response.status)) {
 
