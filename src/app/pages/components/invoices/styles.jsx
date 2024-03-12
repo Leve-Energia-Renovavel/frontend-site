@@ -20,7 +20,7 @@ export const InvoiceContainer = styled.div`
     flex-direction: row;
     
     padding: 2rem;
-
+    
     overflow: auto; //for timeline height
     max-width: 100vw;
 
@@ -29,6 +29,10 @@ export const InvoiceContainer = styled.div`
         font-size: 1.5rem;
         color: ${background.blueLeve};
         font-weight: 700;
+      }
+
+    @media (max-width: 600px) {
+      flex-direction: column;
     }
 `
 
@@ -46,6 +50,11 @@ export const InvoicesMainContent = styled.div`
 export const InvoicesMainContainer = styled.div`
     width: 40vw;
     max-width: 40vw;
+    
+    @media (max-width: 600px) {
+      width: 100%;
+      max-width: 100vw;
+    }
 `
 export const InvoicesMainCardContainer = styled.div`
     display: flex;
@@ -58,6 +67,10 @@ export const InvoicesMainCardContainer = styled.div`
 
     margin: 0 2rem 0 0;
     padding: 1rem 2rem;
+    
+    @media (max-width: 600px) {
+      margin: 1rem;
+    }
 `
 export const InvoicesTimelineContainer = styled.div`
     border-radius: 4px;
@@ -75,6 +88,10 @@ export const NextBillTitleContainer = styled.div`
         font-size: 1.5rem;
         font-weight: 700;
         color: ${background.grey};
+      }
+      
+      @media (max-width: 600px) {
+      flex-direction: column;
     }
 `
 

@@ -70,19 +70,19 @@ export default function MobileHeader(props) {
                                 </> :
                                 <>
                                     <MenuItemMobile>
-                                        <Link href="/dashboard">Início</Link>
+                                        <a onClick={() => handleNavigation("/dashboard")}>Início</a>
                                     </MenuItemMobile>
                                     <MenuItemMobile>
-                                        <Link href="/profile">Meu Perfil</Link>
+                                        <a onClick={() => handleNavigation("/profile")}>Meu Perfil</a>
                                     </MenuItemMobile>
                                     <MenuItemMobile>
-                                        <Link href="/invoices">Minhas Faturas</Link>
+                                        <a onClick={() => handleNavigation("/invoices")}>Minhas Faturas</a>
                                     </MenuItemMobile>
                                     <MenuItemMobile>
-                                        <Link href="/installations">Meus Endereços</Link>
+                                        <a onClick={() => handleNavigation("/installations")}>Meus Endereços</a>
                                     </MenuItemMobile>
                                     <MenuItemMobile>
-                                        <Link href="https://leveenergia.com.br/">Sair</Link>
+                                        <a onClick={() => handleNavigation("https://leveenergia.com.br/")}>Sair</a>
                                     </MenuItemMobile>
                                 </>}
                         </UlMobile>

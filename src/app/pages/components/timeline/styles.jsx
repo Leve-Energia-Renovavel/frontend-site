@@ -22,6 +22,11 @@ export const TimelineContentContainer = styled.div`
     animation: ${fadeInUp} 0.5s ease-out;
     
     margin-left: 4rem;
+    
+    @media (max-width: 600px) {
+        width: 100%;
+        max-width: 80vw;
+    }
     `
 export const TimelineContentButtonContainer = styled.div`
     padding: 1rem 1rem 1rem 0;
