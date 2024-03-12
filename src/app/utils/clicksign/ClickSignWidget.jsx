@@ -18,6 +18,8 @@ export default function ClicksignWidget() {
 
     const storeUser = useStoreUser()
 
+    console.log("store Clicksign ===>>", clickSign)
+
     const [widget, setWidget] = useState(null);
 
     useEffect(() => {

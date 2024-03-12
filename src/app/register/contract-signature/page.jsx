@@ -20,8 +20,8 @@ export default function ContractSignature() {
             try {
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${user.uuid}`);
                 if (requestSuccessful(response.status)) {
-                    console.log("contract signature response ===>>", response.data)
-                    const clicksignReg = response?.data?.instalacao?.document_key
+                    console.log("contract signature response ===>>", response)
+                    const clicksignReg = response.data.instalacao.document_key
                     Cookies.set("clickSignKey", response.data.instalacao.document_key)
 
                     storeClicksign.updateClicksignKey(clicksignReg);
