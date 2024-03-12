@@ -4,7 +4,7 @@
 import { useStoreAddress, useStoreUser } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import axios from "axios";
-import { useSearchParams } from "next/navigation";
+import { notFound, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import RegisterBannerSuccess from "../banners/banner-success/RegisterBanner";
 import FormBanner from "../banners/form-banner/FormBanner";
@@ -19,6 +19,10 @@ export default function RegisterMain() {
     const storeAddress = useStoreAddress()
 
     const uuid = search.get("uuid")
+
+    if (!uuid) {
+        notFound()
+    }
 
     var isLowCost = store.user.isLowCost
     var isOutOfRange = store.user.isOutOfRange

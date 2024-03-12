@@ -15,6 +15,9 @@ export default function LoggedUserHeader() {
     const address = useStoreAddress().address
     const mainInstallation = useStoreMainInstallation().mainInstallation
 
+    const mainAddress = Cookies.get('leveAddress').street
+
+
     const storeUser = useStoreUser()
     const storeAddress = useStoreAddress()
     const storeCompany = useStoreCompany()
@@ -52,7 +55,8 @@ export default function LoggedUserHeader() {
                             <HeaderMenuItem value={10} style={{ display: 'none' }}
                             >
                                 <span onClick={() => router.push("/dashboard")}>
-                                    {mainInstallation ? (`${mainInstallation?.address}, ${mainInstallation?.number}`) : "Minha instalação"}
+                                    {/* {mainInstallation ? (`${mainInstallation?.address}, ${mainInstallation?.number}`) : "Minha instalação"} */}
+                                    {mainAddress !== "" ? mainAddress : mainInstallation.address != "" ? mainInstallation?.address : "Minha instalação"}
                                 </span>
                             </HeaderMenuItem>
                             <HeaderMenuItem
