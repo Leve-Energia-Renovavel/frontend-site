@@ -149,11 +149,17 @@ export const useStoreClickSign = create((set) => ({
         updated_at: "",
         opened: false
     },
+    updateClicksignKey: (newKey) => set((state) => ({
+        data: {
+            ...state.data,
+            key: newKey
+        }
+    })),
     updateClickSign: (newClickSign) => {
         set((state) => ({
             data: {
-                ...state.clicksign_reg,
-                ...newClickSign.batch
+                ...state.data,
+                ...newClickSign
             }
         }))
     },
