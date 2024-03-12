@@ -120,28 +120,53 @@ export default function RegisterForm() {
     const handleSubmit = async (event) => {
         event.preventDefault()
 
-        const submitData = {
-            uuid: uuid,
-            razao_social: companyRefs.razao_social.current.value,
-            cnpj: companyRefs.cnpj.current.value,
-            nome: userRefs.name.current.value,
-            email: userRefs.email.current.value,
-            telefone: userRefs.phone.current.value,
-            cep: addressRefs.addressCep.current.value,
-            endereco: addressRefs.address.current.value,
-            numero: parseFloat(addressRefs.addressNumber.current.value.replace(/[^0-9.]/g, "")),
-            bairro: addressRefs.neighborhood.current.value,
-            complemento: addressRefs.complement.current.value,
-            estado_id: storeAddress.address.stateId,
-            cidade_id: storeAddress.address.cityId,
-            valor: cost,
-            rg: userRefs.rg.current.value,
-            data_nascimento: userRefs.birthDate.current.value,
-            nacionalidade: userRefs.nationality.current.value,
-            profissao: userRefs.profession.current.value,
-            estado_civil: userRefs.maritalStatus.current.value,
-            cpf: userRefs.cpf.current.value,
-            numero_instalacao: addressRefs.installationNumber.current.value
+        var submitData = {}
+        if (isCompany) {
+            submitData = {
+                uuid: uuid,
+                razao_social: companyRefs.razao_social.current.value,
+                cnpj: companyRefs.cnpj.current.value,
+                nome: userRefs.name.current.value,
+                email: userRefs.email.current.value,
+                telefone: userRefs.phone.current.value,
+                cep: addressRefs.addressCep.current.value,
+                endereco: addressRefs.address.current.value,
+                numero: parseFloat(addressRefs.addressNumber.current.value.replace(/[^0-9.]/g, "")),
+                bairro: addressRefs.neighborhood.current.value,
+                complemento: addressRefs.complement.current.value,
+                estado_id: storeAddress.address.stateId,
+                cidade_id: storeAddress.address.cityId,
+                valor: cost,
+                rg: userRefs.rg.current.value,
+                data_nascimento: userRefs.birthDate.current.value,
+                nacionalidade: userRefs.nationality.current.value,
+                profissao: userRefs.profession.current.value,
+                estado_civil: userRefs.maritalStatus.current.value,
+                cpf: userRefs.cpf.current.value,
+                numero_instalacao: addressRefs.installationNumber.current.value
+            }
+        } else {
+            submitData = {
+                uuid: uuid,
+                nome: userRefs.name.current.value,
+                email: userRefs.email.current.value,
+                telefone: userRefs.phone.current.value,
+                cep: addressRefs.addressCep.current.value,
+                endereco: addressRefs.address.current.value,
+                numero: parseFloat(addressRefs.addressNumber.current.value.replace(/[^0-9.]/g, "")),
+                bairro: addressRefs.neighborhood.current.value,
+                complemento: addressRefs.complement.current.value,
+                estado_id: storeAddress.address.stateId,
+                cidade_id: storeAddress.address.cityId,
+                valor: cost,
+                rg: userRefs.rg.current.value,
+                data_nascimento: userRefs.birthDate.current.value,
+                nacionalidade: userRefs.nationality.current.value,
+                profissao: userRefs.profession.current.value,
+                estado_civil: userRefs.maritalStatus.current.value,
+                cpf: userRefs.cpf.current.value,
+                numero_instalacao: addressRefs.installationNumber.current.value
+            }
         }
 
         console.log("submitData ==>>", submitData)
