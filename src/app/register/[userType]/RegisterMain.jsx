@@ -20,9 +20,9 @@ export default function RegisterMain() {
 
     const uuid = search.get("uuid")
 
-    if (!uuid) {
-        notFound()
-    }
+    // if (!uuid) {
+    //     notFound()
+    // }
 
     var isLowCost = store.user.isLowCost
     var isOutOfRange = store.user.isOutOfRange
