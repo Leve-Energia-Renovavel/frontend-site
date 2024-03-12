@@ -4,15 +4,11 @@
 import { useStoreClickSign, useStoreUser } from '@/app/hooks/useStore';
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import ClicksignWidget from '@/app/utils/clicksign/ClickSignWidget';
-import { Typography } from '@mui/material';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { useEffect } from 'react';
 import AlmostThereBanner from '../banners/banner-almost-there/AlmostThereBanner';
 import FormBanner from '../banners/form-banner/FormBanner';
-
-const accessNotValid = (user) => {
-    return !user?.address
-}
 
 export default function ContractSignature() {
 
@@ -26,6 +22,8 @@ export default function ContractSignature() {
                 if (requestSuccessful(response.status)) {
                     console.log("contract signature response ===>>", response.data)
                     const clicksignReg = response?.data?.instalacao?.document_key
+                    Cookies.set("clickSignKey", response.data.instalacao.document_key)
+
                     storeClicksign.updateClicksignKey(clicksignReg);
                 }
             } catch (error) {

@@ -7,12 +7,14 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Clicksign from "./embedded";
 import { ClicksignWidgetContainer } from './styles';
+import Cookies from 'js-cookie';
 
 export default function ClicksignWidget() {
     const router = useRouter()
 
     const storeClicksign = useStoreClickSign()
     const clickSign = storeClicksign.data
+    const clickSignKey = useStoreClickSign().data.key || Cookies.get("clickSignKey")
 
     const storeUser = useStoreUser()
 
@@ -24,7 +26,7 @@ export default function ClicksignWidget() {
         }
 
         const run = () => {
-            const widgetInstance = new Clicksign(clickSign.key);
+            const widgetInstance = new Clicksign(clickSignKey);
 
             widgetInstance.endpoint = 'https://app.clicksign.com';
             widgetInstance.origin = window.location.protocol + '//' + window.location.host;
