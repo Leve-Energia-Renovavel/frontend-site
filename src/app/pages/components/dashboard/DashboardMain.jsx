@@ -15,7 +15,7 @@ import MemberGetMember from "../member-get-member/MemberGetMember";
 import DashboardButton from "../utils/buttons/DashboardButton";
 import FormButton from "../utils/buttons/FormButton";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
-import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, MemberGetMemberContainer, NewInstallationButtonContainer, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, WarningsContainer, YourInfo, YourInfoContainer } from "./styles";
+import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, MemberGetMemberContainer, NewInstallationButtonContainer, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillNotFound, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, UserEconomyNotFound, WarningsContainer, YourInfo, YourInfoContainer } from "./styles";
 
 export default function DashboardMain() {
 
@@ -198,6 +198,15 @@ export default function DashboardMain() {
         window.open(url, '_blank');
     };
 
+    function areAllKeysEmpty(obj) {
+        for (const key in obj) {
+            if (obj[key] !== "") {
+                return false;
+            }
+        }
+        return true;
+    }
+
     return (
         <Container>
             {user.hasSyncDistribuitorData ? <></>
@@ -209,80 +218,84 @@ export default function DashboardMain() {
                     <TitleContainer>
                         <h1>Próxima fatura</h1>
                     </TitleContainer>
-                    <NextBill>
-                        <NextBillGrid>
-                            {storeNextBills.exists ?
-                                <>
-                                    {isLoading ? <SkeletonDiv className="grid-item" /> :
-                                        (<NextBillValue className="loaded-grid-item">
-                                            <Typography className="referenceMonth">01/2024</Typography>
-                                            <Typography className="billValue">R$ {nextBill?.value.toString().replace('.', ',')}</Typography>
-                                        </NextBillValue>)}
-                                    {isLoading ? <SkeletonDiv className="grid-item" /> :
-                                        (
-                                            <NextBillInfo className="loaded-grid-item">
-                                                <Typography className="title">Vencimento</Typography>
-                                                <Typography className="content">{nextBill?.dueDate}</Typography>
-                                            </NextBillInfo>
-                                        )}
-                                    {isLoading ? <SkeletonDiv className="grid-item" /> :
-                                        (
-                                            <NextBillInfo status={nextBill?.status} className="loaded-grid-item">
-                                                <Typography className="title">Status</Typography>
-                                                <Typography className="paymentStatus">{billingStatusOptions[nextBill?.status]?.toUpperCase()}</Typography>
-                                            </NextBillInfo>
-                                        )}
-                                    {isLoading ? <SkeletonDiv className="grid-item" /> :
-                                        <div className="loaded-grid-item"></div>
-                                    }
-                                </> :
-                                <>
-                                    {isLoading ? <SkeletonDiv className="grid-item" /> :
-                                        (<NextBillValue className="loaded-grid-item">
-                                            <Typography className="nextBillNotFound">Não há dados de faturamento</Typography>
-                                        </NextBillValue>)}
-                                </>
-                            }
-                        </NextBillGrid>
-                        {storeNextBills.exists ?
-                            <PaymentButtonContainer>
-                                <DashboardButton text="Ver todas faturas" onClick={() => router.push('/invoices')} />
-                                <FormButton text="Pagar" onClick={() => handlePayBill(nextBill.urlBill)} />
-                            </PaymentButtonContainer>
-                            : <>
-                            </>
-                        }
-                    </NextBill>
+                    {storeNextBills.exists ?
+                        <NextBill>
+                            <NextBillGrid>
+                                {isLoading ? <SkeletonDiv className="grid-item" /> :
+                                    (<NextBillValue className="loaded-grid-item">
+                                        <Typography className="referenceMonth">01/2024</Typography>
+                                        <Typography className="billValue">R$ {nextBill?.value.toString().replace('.', ',')}</Typography>
+                                    </NextBillValue>)}
+                                {isLoading ? <SkeletonDiv className="grid-item" /> :
+                                    (
+                                        <NextBillInfo className="loaded-grid-item">
+                                            <Typography className="title">Vencimento</Typography>
+                                            <Typography className="content">{nextBill?.dueDate}</Typography>
+                                        </NextBillInfo>
+                                    )}
+                                {isLoading ? <SkeletonDiv className="grid-item" /> :
+                                    (
+                                        <NextBillInfo status={nextBill?.status} className="loaded-grid-item">
+                                            <Typography className="title">Status</Typography>
+                                            <Typography className="paymentStatus">{billingStatusOptions[nextBill?.status]?.toUpperCase()}</Typography>
+                                        </NextBillInfo>
+                                    )}
+                                {isLoading ? <SkeletonDiv className="grid-item" /> :
+                                    <div className="loaded-grid-item"></div>
+                                }
+                            </NextBillGrid>
+                        </NextBill>
+                        :
+                        <>
+                            {isLoading ? <SkeletonDiv className="grid-item" /> :
+                                (<NextBillNotFound className="loaded-grid-item">
+                                    <Typography className="nextBillNotFound">Não há dados de faturamento</Typography>
+                                </NextBillNotFound>)}
+                        </>
+                    }
+                    {storeNextBills.exists ?
+                        <PaymentButtonContainer>
+                            <DashboardButton text="Ver todas faturas" onClick={() => router.push('/invoices')} />
+                            <FormButton text="Pagar" onClick={() => handlePayBill(nextBill.urlBill)} />
+                        </PaymentButtonContainer>
+                        : <>
+                        </>
+                    }
                 </NextBillContainer>
                 <YourInfoContainer>
                     <TitleContainer>
                         <h1>Você de Leve</h1>
                     </TitleContainer>
-                    <YourInfo>
-                        <Info>
-                            <span>Quanto voce economizou</span>
-                            <span className="economyValue">{`${userEconomy?.value.toString().replace('.', ',')}`}</span>
-                        </Info>
-                        <Info>
-                            <span>Creditos recebidos</span>
-                            <span className="economyData">{`${userEconomy?.receivedCredits} kWh`}</span>
-                        </Info>
-                        <Info>
-                            <span>Creditos acumulados</span>
-                            <span className="economyData">{`${userEconomy?.accumulatedEnergyValue} kWh`}</span>
-                        </Info>
-                        <Info>
-                            <span>CO2 nao emitido</span>
-                            <span className="economyData">{`${userEconomy?.carbonCredits} kWh`}</span>
-                        </Info>
-                        <Info>
-                            <span>Economizando desde</span>
-                            <span className="economyData">{`${userEconomy?.economySince}`}</span>
-                        </Info>
-                        <NewInstallationButtonContainer>
-                            <NewInstallationButton text="Adicionar Novo Endereço" onClick={() => router.push("/installations")} />
-                        </NewInstallationButtonContainer>
-                    </YourInfo>
+                    {!areAllKeysEmpty(userEconomy) ?
+                        <YourInfo>
+                            <Info>
+                                <span>Quanto você economizou</span>
+                                <span className="economyValue">{`${userEconomy.value ? userEconomy.value.toString().replace('.', ',') : `R$ 0,00`}`}</span>
+                            </Info>
+                            <Info>
+                                <span>Créditos recebidos</span>
+                                <span className="economyData">{`${userEconomy.receivedCredits ? userEconomy.receivedCredits : `0`} kWh`}</span>
+                            </Info>
+                            <Info>
+                                <span>Créditos acumulados</span>
+                                <span className="economyData">{`${userEconomy.accumulatedEnergyValue ? userEconomy?.accumulatedEnergyValue : `0`} kWh`}</span>
+                            </Info>
+                            <Info>
+                                <span>CO2 não emitido</span>
+                                <span className="economyData">{`${userEconomy.carbonCredits ? userEconomy?.carbonCredits : `0`} kWh`}</span>
+                            </Info>
+                            <Info>
+                                <span>Economizando desde</span>
+                                <span className="economyData">{`${userEconomy.economySince ? userEconomy.economySince : `0`}`}</span>
+                            </Info>
+                            <NewInstallationButtonContainer>
+                                <NewInstallationButton text="Adicionar Novo Endereço" onClick={() => router.push("/installations")} />
+                            </NewInstallationButtonContainer>
+                        </YourInfo>
+                        : <UserEconomyNotFound>
+                            <Typography className="notFoundEconomy">Ainda não há dados de economia</Typography>
+                        </UserEconomyNotFound>
+                    }
                 </YourInfoContainer>
             </Main>
             <HistoryContainer>

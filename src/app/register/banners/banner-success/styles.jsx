@@ -16,20 +16,24 @@ const fadeInUp = keyframes`
 
 export const BannerContainer = styled.div`
     background-color: ${background.blueLeve};
-    height: 140vh;
+    height: 60rem;
     max-width: 100vw;
     padding: 9rem 13.5rem;
     
     @media (min-width: 2000px) and (max-width: 2150px) {
-        height: 120vh;
+        top: 60rem;
+    }
+      
+    @media (min-width: 1200px) and (max-width: 1500px) {
+        top: 80rem;
     }
     
-    @media (max-width: 1100px) {
-        height: 55vh;
+    @media (max-width: 1200px) {
+        height: 20rem;
         padding: 8rem 2rem;
     }
     @media (max-width: 600px) {
-        height: 55vh;
+        height: 20rem;
         padding: 8rem 2rem;
     }
 `

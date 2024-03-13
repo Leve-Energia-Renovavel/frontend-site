@@ -11,7 +11,7 @@ export default function HistorySpendingChart() {
     var chartWidth = windowWidth / 3;
 
     if (isMobile) {
-        chartWidth = windowWidth / 1.2;
+        chartWidth = windowWidth / 1.3;
     }
 
     useEffect(() => {

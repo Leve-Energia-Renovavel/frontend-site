@@ -15,7 +15,8 @@ import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import { Typography } from '@mui/material';
 import { background, statusColors } from '../../styles';
 import NewInstallationButton from '../utils/buttons/NewInstallationButton';
-import { TimeLineItemStyled, TimeLineOppositeContentStyled, TimeLineStyled, TimelineContentButtonContainer, TimelineContentContainer } from './styles';
+import { TimelineItemStyled, TimelineOppositeContentStyled, TimelineStyled, TimelineContentButtonContainer, TimelineContentContainer, TimelineSeparatorStyled, TimelineConnectorStyled, TimelineDotStyled, TimelineContentStyled, TimelineDiv, TimelineDueDateDiv, DueDateContainer, DueDate } from './styles';
+import TimelineButton from '../utils/buttons/TimelineButton';
 
 export default function TimelineMain() {
 
@@ -28,58 +29,46 @@ export default function TimelineMain() {
 
     return (
         <div>
-            <Timeline position="right" sx={{ color: background.blueLeve, maxWidth: "10vw" }}>
+            <TimelineStyled position="right">
                 {billings.slice(1).map((invoice) => {
                     return (
-                        <TimelineItem key={invoice.id}>
-                            <TimelineOppositeContent>
-                                <div>
-                                    <Typography sx={{ fontWeight: 500 }}>{invoice.dueDate}</Typography>
-                                </div>
-                            </TimelineOppositeContent>
-                            <TimelineSeparator>
-                                <TimelineDot sx={{ backgroundColor: statusColors[invoice.status] }}>
+                        <TimelineItemStyled key={invoice.id}>
+                            <TimelineOppositeContentStyled>
+                                <DueDateContainer>
+                                    <DueDate className='dueDate'>{invoice.dueDate}</DueDate>
+                                </DueDateContainer>
+                            </TimelineOppositeContentStyled>
+                            <TimelineSeparatorStyled>
+                                <TimelineDotStyled status={invoice.status}>
                                     {invoice.status == "paid" ? <PriceCheckIcon /> : <LocalAtmIcon />}
-                                </TimelineDot>
-                                <TimelineConnector />
-                            </TimelineSeparator>
-                            <TimelineContent>
+                                </TimelineDotStyled>
+                                <TimelineConnectorStyled />
+                            </TimelineSeparatorStyled>
+                            <TimelineContentStyled>
                                 <TimelineContentContainer>
-                                    <Typography sx={{ fontWeight: 700, color: background.grey }}>{invoice.dueDate}</Typography>
-                                    <Typography sx={{ fontWeight: 700, fontSize: '2rem' }}>R$ {invoice.value}</Typography>
-                                    <div style={{ display: "flex", gap: "1rem", padding: "1rem 1rem 0 0" }}>
-                                        <div style={{ marginRight: "2rem" }}>
-                                            <Typography sx={{ color: background.grey }}>Vencimento: </Typography>
-                                            <Typography sx={{ color: background.grey, fontWeight: 700 }}>{invoice.dueDate}</Typography>
-                                        </div>
+                                    <Typography className='invoiceDueDate'>{invoice.dueDate}</Typography>
+                                    <Typography className='invoiceValue'>R$ {invoice.value}</Typography>
+                                    <TimelineDiv status={invoice.status}>
+                                        <TimelineDueDateDiv>
+                                            <Typography className='colorGrey'>Vencimento: </Typography>
+                                            <Typography className='invoiceDueDate'>{invoice.dueDate}</Typography>
+                                        </TimelineDueDateDiv>
                                         <div>
-                                            <Typography sx={{ color: background.grey }}>Status: </Typography>
-                                            <Typography sx={{ color: statusHelper[invoice.status], fontWeight: 700 }}>{billingStatusOptions[invoice.status]?.toUpperCase()}</Typography>
+                                            <Typography className='colorGrey'>Status: </Typography>
+                                            <Typography className='billingStatus'>{billingStatusOptions[invoice.status]?.toUpperCase()}</Typography>
                                         </div>
-                                    </div>
+                                    </TimelineDiv>
 
                                     <TimelineContentButtonContainer>
-                                        <NewInstallationButton text="Ver Fatura" onClick={() => checkInvoice(invoice.urlBill)} />
+                                        <TimelineButton text="Ver Fatura" onClick={() => checkInvoice(invoice.urlBill)}/>
+                                        {/* <NewInstallationButton text="Ver Fatura" onClick={() => checkInvoice(invoice.urlBill)} /> */}
                                     </TimelineContentButtonContainer>
                                 </TimelineContentContainer>
-                            </TimelineContent>
-                        </TimelineItem>
+                            </TimelineContentStyled>
+                        </TimelineItemStyled>
                     )
                 })}
-            </Timeline>
-            {/* <TimeLineStyled>
-                {billings.slice(1).map((invoice) => {
-                    return (
-                        <TimeLineItemStyled key={invoice.id}>
-                            <TimeLineOppositeContentStyled>
-                                <div>
-                                    <Typography sx={{ fontWeight: 500 }}>{invoice.dueDate}</Typography>
-                                </div>
-                            </TimeLineOppositeContentStyled>
-                        </TimeLineItemStyled>
-                    )
-                })}
-            </TimeLineStyled> */}
+            </TimelineStyled>
         </div>
 
     );

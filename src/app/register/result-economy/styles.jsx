@@ -21,10 +21,9 @@ export const ResultEconomyContainer = styled.div`
   border-radius: 5px;
   margin: 0 auto;
   background-color: ${background.light};
-
   
   position: absolute;
-  top: 75vh;
+  top: 35rem;
   left: 50vw;
   transform: translate(-50%, -50%);
   z-index: 100;
@@ -35,13 +34,13 @@ export const ResultEconomyContainer = styled.div`
   max-width: 80vw;
   
   @media (min-width: 2000px) and (max-width: 2150px) {
-    top: 60vh;
+    top: 55rem;
   }
   @media (min-width: 1200px) and (max-width: 1500px) {
-    top: 90vh;
+    top: 37rem;
   }
   
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     top: 105vh;
     width: 100vw;
     max-width: 100vw;
@@ -54,7 +53,7 @@ export const ResultEconomyContainer = styled.div`
   }
 
   @media (max-width: 600px) {
-    top: 105vh;
+    top: 40rem;
     width: 100vw;
     max-width: 100vw;
 
@@ -91,7 +90,7 @@ export const ResultEconomyComparissonContent = styled.div`
     
     animation: ${fadeInUp} 0.5s ease-out;
     
-    @media (max-width: 600px) {
+    @media (max-width: 770px) {
       flex-direction: column;
       padding: 2rem 1rem;  //must be equal to ResultEconomyToUnderstandContent
     }
@@ -108,7 +107,7 @@ export const TodayPriceInfo = styled.div`
   flex: 1; 
   max-width: 50%;
   
-  @media (max-width: 600px) {
+  @media (max-width: 770px) {
     max-width: 100%;
     text-align: center;
   }
@@ -137,7 +136,7 @@ export const TodayPriceInfo = styled.div`
 
     white-space: nowrap;
     
-    @media (max-width: 600px) {
+    @media (max-width: 770px) {
       padding-bottom: .5rem;
     }
   }
@@ -148,11 +147,11 @@ export const LeveEconomyInfo = styled.div`
   max-width: 50%;
   margin-right: auto;
   
-  @media (max-width: 600px) {
+  @media (max-width: 770px) {
     max-width: 100%;
     text-align: center;
     margin-right: 0;
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
 
   h1 {
@@ -181,7 +180,7 @@ export const LeveEconomyInfo = styled.div`
 
     white-space: nowrap;
 
-    @media (max-width: 600px) {
+    @media (max-width: 770px) {
       padding-bottom: .5rem;
     }
   }
@@ -194,7 +193,7 @@ export const ResultEconomyToUnderstandContent = styled.div`
 
   animation: ${fadeInUp} 1s ease-out;
   
-  @media (max-width: 600px) {
+  @media (max-width: 770px) {
     flex-direction: column;
     padding: 2rem 1rem; //must be equal to ResultEconomyComparissonContent
   }
@@ -206,7 +205,7 @@ export const ResultEconomyDiscount = styled.div`
   flex-direction: column;
   max-width: 50%;
   
-  @media (max-width: 600px) {
+  @media (max-width: 770px) {
     max-width: 100%;
     text-align: center;
   }
@@ -220,7 +219,7 @@ export const ResultEconomyDiscount = styled.div`
     margin-left: 1rem;
     border-radius: 0.5rem;
     
-    @media (max-width: 600px) {
+    @media (max-width: 770px) {
       margin: 0 auto;
     }
   }
@@ -274,7 +273,7 @@ export const LeveMonthlyDiscount = styled.div`
     line-height: normal;
     max-width: 60%;
     
-    @media (max-width: 600px) {
+    @media (max-width: 770px) {
       max-width: 80%;
       text-align: left;
 
@@ -285,6 +284,7 @@ export const LeveMonthlyDiscount = styled.div`
   
   img {
     margin: 0 1.5rem; 
+    width: auto;
     max-width: 30%;
     height: auto;
     
@@ -300,7 +300,7 @@ export const ResultEconomyDiscountGraph = styled.div`
   flex-direction: column;
   max-width: 65%;
   
-  @media (max-width: 600px) {
+  @media (max-width: 770px) {
       max-width: 100%;
     }
 
@@ -311,7 +311,7 @@ export const ResultEconomyDiscountGraph = styled.div`
     font-weight: 400;
     line-height: normal;
     
-    @media (max-width: 600px) {
+    @media (max-width: 770px) {
       font-size: 1.2rem;
       margin: 2rem auto;
     }
@@ -326,7 +326,7 @@ export const ResultEconomyDiscountGraph = styled.div`
       height: auto;
       margin: 0 auto;
     }
-    @media (max-width: 600px) {
+    @media (max-width: 770px) {
       width: 90vw;
       height: auto;
       margin: 0 auto;

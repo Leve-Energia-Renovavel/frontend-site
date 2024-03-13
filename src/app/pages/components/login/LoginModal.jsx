@@ -102,6 +102,14 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
 
     }
 
+    const handleKeyPress = (event) => {
+
+        if (event.key === 'Enter') {
+            event.preventDefault(); // Prevent form submission
+            handleSubmit(event); // Call your form submission function
+        }
+    };
+
     return (
         <>
             <Modal
@@ -142,6 +150,7 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
                                     placeholder="Senha"
                                     type={passwordVisibible}
                                     required
+                                    onKeyDown={(event) => handleKeyPress(event)}
                                     InputProps={{
                                         endAdornment:
                                             <InputAdornment position="end">

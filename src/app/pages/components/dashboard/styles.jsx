@@ -195,6 +195,27 @@ export const NextBillValue = styled.div`
     white-space: nowrap;
   }
 `
+export const NextBillNotFound = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  height: 5.7rem;
+
+  animation: ${fadeInUp} 0.5s ease-out;
+  
+  border: 1px solid ${background.blueLeve};
+  border-radius: 4px;
+
+  padding: 1rem;
+  
+  .nextBillNotFound {
+    font-weight: 500;
+    font-size: 1.2rem;
+    white-space: nowrap;
+  }
+`
 export const NextBillInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -300,6 +321,27 @@ export const UserEconomyInfos = styled.div`
       font-size: 12px;
     }
     
+  }
+`
+export const UserEconomyNotFound = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  height: 5.7rem;
+
+  animation: ${fadeInUp} 0.5s ease-out;
+  
+  border: 1px solid ${background.blueLeve};
+  border-radius: 4px;
+
+  padding: 1rem;
+
+  .notFoundEconomy {
+    font-weight: 500;
+    font-size: 1.2rem;
+    white-space: nowrap;
   }
 `
 

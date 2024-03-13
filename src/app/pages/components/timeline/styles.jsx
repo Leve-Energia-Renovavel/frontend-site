@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/react";
-import { Timeline, TimelineItem, TimelineOppositeContent } from "@mui/lab";
-import { background } from "../../styles";
+import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineOppositeContent, TimelineSeparator } from "@mui/lab";
+import { background, statusColors } from "../../styles";
+import { Typography } from "@mui/material";
+import { statusHelper } from "@/app/utils/helper/StyleHelpers";
 
 const fadeInUp = keyframes`
   from {
@@ -24,23 +26,95 @@ export const TimelineContentContainer = styled.div`
     animation: ${fadeInUp} 0.5s ease-out;
     
     margin-left: 4rem;
+
+    .invoiceDueDate {
+        font-weight: 700;
+        color: ${background.grey}
+    }
+    .invoiceValue {
+        font-weight: 700;
+        font-size: 2rem;
+    }
+
+    .colorGrey {
+        color: ${background.grey};
+    }
     
     @media (max-width: 600px) {
         width: 100%;
-        max-width: 80vw;
+        max-width: 100vw;
+    }
+    @media (max-width: 500px) {
+        margin-left: 1rem;
+        width: 100%;
+        max-width: 70vw;
+    }
+    @media (max-width: 400px) {
+        margin-left: 0rem;
+        max-width: 70vw;
     }
     `
 export const TimelineContentButtonContainer = styled.div`
     padding: 1rem 1rem 1rem 0;
-    `
+    
+    @media (max-width: 600px) {
+        padding: 2rem 1rem 1rem 0;
+    }
+`
 
-export const TimeLineStyled = styled(Timeline)`
+export const TimelineStyled = styled(Timeline)`
     color: ${background.blueLeve}; 
     max-width: 20vw;
 `
-export const TimeLineItemStyled = styled(TimelineItem)`
+export const TimelineItemStyled = styled(TimelineItem)`
     color: ${background.blueLeve}; 
     max-width: 20vw;
 `
-export const TimeLineOppositeContentStyled = styled(TimelineOppositeContent)`
+export const TimelineOppositeContentStyled = styled(TimelineOppositeContent)`
 `
+export const TimelineSeparatorStyled = styled(TimelineSeparator)`
+
+    @media (max-width: 600px) {
+        margin-left: -90px;
+    }
+`
+
+export const TimelineDotStyled = styled(TimelineDot)`
+    background-color: ${props => props.status ? statusColors[props.status] : background.mediumGrey};
+`
+export const TimelineConnectorStyled = styled(TimelineConnector)`
+`
+export const TimelineContentStyled = styled(TimelineContent)`
+`
+
+export const TimelineDiv = styled.div`
+    display: flex;
+    gap: 1rem; 
+    padding: 1rem 1rem 0 0;
+
+    .billingStatus {
+        color:  ${props => props.status ? statusHelper[props.status] : background.mediumGrey}; 
+        font-weight: 700;
+
+        @media (max-width: 600px) {
+            font-size: .8rem;
+            white-space: nowrap;
+        }
+    }
+`
+export const DueDateContainer = styled.div`
+
+    .dueDate {
+        font-weight: 500;
+    }
+`
+export const TimelineDueDateDiv = styled.div`
+    margin-right: 2rem; 
+`
+export const DueDate = styled(Typography)`
+    @media (max-width: 600px) {
+        display: none;
+    }
+`
+
+

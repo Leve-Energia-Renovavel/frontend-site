@@ -101,7 +101,7 @@ export default function MemberGetMember() {
                         {!copiedToClipboard ?
                             <>
                                 <ContentCopyIcon />
-                                {user.memberGetMemberCode}
+                                {user.memberGetMemberCode ? user.memberGetMemberCode : "X4UHB28"}
                             </> :
                             <span>Copiado!</span>
                         }

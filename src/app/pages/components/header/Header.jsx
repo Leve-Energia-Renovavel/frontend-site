@@ -22,6 +22,8 @@ export default function Header() {
 
     const [openLogin, setOpenLogin] = useState(false);
 
+    const homeUrl = "https://wp-homolog.leveenergia.com.br/"
+
 
     const headerHelper = {
         '/': false,
@@ -73,7 +75,7 @@ export default function Header() {
                                         loading="eager" priority={true}
                                         src={logo}
                                         alt="Leve Energia Logo"
-                                        onClick={() => router.push("/")}
+                                        onClick={() => router.push(homeUrl)}
                                     />
                                 </LogoContainer>
                                 <NavContainer>
@@ -118,7 +120,7 @@ export default function Header() {
                             alt="Leve Energia Logo"
                             width={200}
                             height={60}
-                            onClick={() => router.push("/")}
+                            onClick={() => router.push(homeUrl)}
                         />
                     </LogoContainer>
                     <MenuBurguer onClick={() => setMenuOpen(!isMenuOpen)} />

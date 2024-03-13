@@ -292,11 +292,11 @@ export const useStoreNextBills = create((set) => ({
 
 export const useStoreUserEconomy = create((set) => ({
     userEconomy: {
-        value: 0,
-        energyValue: 0,
-        accumulatedEnergyValue: 0,
-        carbonCredits: 0,
-        receivedCredits: 0,
+        value: "",
+        energyValue: "",
+        accumulatedEnergyValue: "",
+        carbonCredits: "",
+        receivedCredits: "",
         economySince: "",
     },
     updateUserEconomy: (newUserEconomy) =>
@@ -309,11 +309,11 @@ export const useStoreUserEconomy = create((set) => ({
     clearUser: () =>
         set(() => ({
             userEconomy: {
-                value: 0,
-                energyValue: 0,
-                accumulatedEnergyValue: 0,
-                carbonCredits: 0,
-                receivedCredits: 0,
+                value: "",
+                energyValue: "",
+                accumulatedEnergyValue: "",
+                carbonCredits: "",
+                receivedCredits: "",
                 economySince: "",
             },
         }))

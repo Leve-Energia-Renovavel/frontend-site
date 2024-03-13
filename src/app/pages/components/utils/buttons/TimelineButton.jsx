@@ -1,6 +1,6 @@
-import { MobileHeaderButtonContained as Button } from "./styles";
+import { TimelineButtonStyled as Button } from "./styles";
 
-export default function MobileHeaderButtonContained({ onClick, isSubmit, ...props }) {
+export default function TimelineButton({ onClick, isSubmit, ...props }) {
     return (
         <Button
             type={isSubmit ? 'submit' : 'button'}

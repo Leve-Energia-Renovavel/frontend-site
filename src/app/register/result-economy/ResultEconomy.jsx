@@ -18,6 +18,7 @@ export default function ResultEconomy() {
 
     const isCompany = store.user.isCompany
     const cost = store.user.cost;
+    const todayCost = cost.toFixed(2).replace(".", ",");
 
     const location = isCompany ? 'empresa' : 'residência'
     const percentageDiscount = store.user.discount == 0 ? 0.1 : store.user.discount
@@ -36,7 +37,7 @@ export default function ResultEconomy() {
             <Header>
                 <TodayPriceInfo>
                     <Typography variant="subtitle1">Hoje você paga a Concessionária</Typography>
-                    <Typography variant="h1">R$ {cost} 😢</Typography>
+                    <Typography variant="h1">R$ {todayCost} 😢</Typography>
                 </TodayPriceInfo>
                 <LeveEconomyInfo>
                     <Typography variant="subtitle1" >Com a Leve você pagará:</Typography>

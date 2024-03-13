@@ -26,7 +26,7 @@ export const FormContainer = styled.div`
   background-color: ${background.light};
   
   position: absolute;
-  top: 170vh;
+  top: 40rem;
   left: 50vw;
   transform: translate(-50%, -50%);
   z-index: 100;
@@ -34,22 +34,22 @@ export const FormContainer = styled.div`
   width: 60vw;
 
   @media (min-width: 2000px) and (max-width: 2150px) {
-    top: 135vh;
+    top: 50rem;
   }
 
   @media (max-width: 2000px) {
-    top: 170vh;
+    top: 75rem;
   }
   
   @media (max-width: 1600px) {
-    top: 175vh;
+    top: 75rem;
   }
   
   @media (min-width: 1200px) and (max-width: 1500px) {
-    top: 180vh;
+    top: 80rem;
   }
   
-  @media (max-width: 1100px) {
+  @media (max-width: 1200px) {
     width: 100vw;
     max-width: 100vw;
     

@@ -533,7 +533,7 @@ export default function RegisterForm() {
                         </FileUploadContainer>
                     ) : null}
 
-                    {/* <Button onClick={() => router.push('/dashboard')}>Dashboard</Button> */}
+                    <Button onClick={() => router.push('/dashboard')}>Dashboard</Button>
 
                 </FormContent>
                 {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}

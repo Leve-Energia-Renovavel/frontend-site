@@ -17,6 +17,7 @@ export default function LoggedUserHeader() {
 
     const mainAddress = Cookies.get('leveAddress')?.street
 
+    const homeUrl = "https://wp-homolog.leveenergia.com.br/"
 
     const storeUser = useStoreUser()
     const storeAddress = useStoreAddress()
@@ -41,7 +42,7 @@ export default function LoggedUserHeader() {
                     className='logoImage'
                     src={logo}
                     alt="Leve Energia Logo"
-                    onClick={() => router.push("/")}
+                    onClick={() => router.push(homeUrl)}
                 />
             </LogoContainer>
             <Nav>
@@ -56,7 +57,7 @@ export default function LoggedUserHeader() {
                             >
                                 <span onClick={() => router.push("/dashboard")}>
                                     {/* {mainInstallation ? (`${mainInstallation?.address}, ${mainInstallation?.number}`) : "Minha instalação"} */}
-                                    {mainAddress !== "" ? mainAddress : mainInstallation.address != "" ? mainInstallation?.address : "Minha instalação"}
+                                    {mainInstallation.address !== "" ? mainInstallation.address : mainAddress ? mainAddress : "Minha instalação"}
                                 </span>
                             </HeaderMenuItem>
                             <HeaderMenuItem

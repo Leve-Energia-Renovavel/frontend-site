@@ -1,4 +1,4 @@
-import { MobileHeaderButtonOutlined as Button } from '../../header/styles';
+import { MobileHeaderButtonOutlined as Button } from "./styles";
 
 export default function MobileHeaderButtonOutlined({ onClick, isSubmit, ...props }) {
     return (

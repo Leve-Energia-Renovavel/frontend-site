@@ -53,6 +53,7 @@ export const CodeButton = styled(Button)`
   background-color: ${background.grey};
   color: ${background.white};
   border-radius: 8px;
+  gap: .5rem;
 
   padding: 1rem 2rem;
   
@@ -69,6 +70,7 @@ export const SendInviteButton = styled(Button)`
   background-color: ${statusColors.warning};
   color: ${background.white};
   border-radius: 8px;
+  gap: .5rem;
   
   padding: 1rem 2rem;
   
@@ -87,6 +89,7 @@ export const ShareButton = styled(Button)`
   background-color: ${statusColors.paid};
   color: ${background.white};
   border-radius: 8px;
+  gap: .5rem;
 
   padding: 1rem 2rem;
 
