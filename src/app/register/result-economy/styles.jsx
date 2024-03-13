@@ -121,8 +121,7 @@ export const TodayPriceInfo = styled.div`
     color: ${background.orangeLeve}; 
     margin: 2rem 0;
     
-    white-space: nowrap;
-    
+    white-space: nowrap; 
   }
 
 
@@ -139,6 +138,16 @@ export const TodayPriceInfo = styled.div`
     @media (max-width: 770px) {
       padding-bottom: .5rem;
     }
+  }
+  .distributorName {
+    font-family: "Metropolis", sans-serif, system-ui, -apple-system;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding-bottom: 1rem;
+
+    white-space: nowrap;
   }
   `;
 

@@ -20,10 +20,6 @@ export default function RegisterMain() {
 
     const uuid = search.get("uuid")
 
-    // if (!uuid) {
-    //     notFound()
-    // }
-
     var isLowCost = store.user.isLowCost
     var isOutOfRange = store.user.isOutOfRange
 
@@ -39,15 +35,15 @@ export default function RegisterMain() {
                 if (requestSuccessful(userResponse.status)) {
 
                     const instalacao = userResponse?.data?.instalacao
-                    const consumer = userResponse?.data?.instalacao?.consumidor
-                    const isCompany = consumer?.type == "PJ" ? true : false
-                    const cep = consumer?.cep
-
+                    const distribuidora = userResponse?.data?.distribuidora
+                    const consumidor = userResponse?.data?.instalacao?.consumidor
+                    const isCompany = consumidor?.type == "PJ" ? true : false
+                    const cep = consumidor?.cep
 
                     const updatedUser = {
-                        name: consumer?.nome + " " + consumer?.sobrenome,
-                        phone: consumer?.telefone,
-                        email: consumer?.email,
+                        name: consumidor?.nome + " " + consumidor?.sobrenome,
+                        phone: consumidor?.telefone,
+                        email: consumidor?.email,
                         cost: instalacao?.valor_base_consumo,
                         cep: cep,
 
@@ -56,20 +52,21 @@ export default function RegisterMain() {
                         discount: instalacao?.desconto,
                         clientId: instalacao?.clientes_id,
 
+                        distributor: distribuidora?.nome,
+                        distributorPhotoUrl: distribuidora?.foto_numero_instalacao
                     }
 
                     store.updateUser(updatedUser);
-                    Cookies.set('leveUserIsCompany', isCompany)
-                    Cookies.set('leveUsername', consumer?.nome)
-                    Cookies.set('leveUser', updatedUser)
+                    Cookies.set('leveIsCompany', isCompany)
+                    Cookies.set('leveUser', JSON.stringify(updatedUser))
 
                     const updatedAddress = {
-                        cityId: consumer?.cidade_id,
-                        stateId: consumer?.estado_id,
+                        cityId: consumidor?.cidade_id,
+                        stateId: consumidor?.estado_id,
                     }
 
                     storeAddress.updateAddress(updatedAddress)
-                    Cookies.set('leveAddress', updatedAddress)
+                    Cookies.set('leveAddress', JSON.stringify(updatedAddress))
 
                     const addressResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, {
                         params: { cep: cep },
@@ -79,7 +76,6 @@ export default function RegisterMain() {
                     if (requestSuccessful(addressResponse?.status)) {
 
                         const address = addressResponse?.data
-
                         const updatedFullAddress = {
                             street: address?.logradouro,
                             neighborhood: address?.bairro,
@@ -89,7 +85,7 @@ export default function RegisterMain() {
                         }
 
                         storeAddress.updateAddress(updatedFullAddress)
-                        Cookies.set('leveAddress', updatedFullAddress)
+                        Cookies.set('leveAddress', JSON.stringify(updatedFullAddress))
 
                     }
                 }

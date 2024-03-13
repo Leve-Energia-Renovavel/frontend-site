@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreAddress, useStoreCompany, useStoreUser } from "@/app/hooks/useStore";
+import { useStoreAddress, useStoreCompany, useStoreCookies, useStoreUser } from "@/app/hooks/useStore";
 import useGetCEP from '@/app/hooks/utils/useGetCEP';
 import useGetCNPJ from "@/app/hooks/utils/useGetCNPJ";
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
@@ -30,6 +30,7 @@ export default function RegisterForm() {
     const store = useStoreUser()
     const storeAddress = useStoreAddress()
     const storeCompany = useStoreCompany()
+    const { hasDataCookies, setDataCookies } = useStoreCookies();
 
     const router = useRouter()
 
@@ -44,7 +45,7 @@ export default function RegisterForm() {
 
     const uuid = store.user.uuid || Cookies.get('leveUUID')
 
-    const { name, email, phone, cep, companyName, cost, isCompany } = store.user
+    const { name, email, phone, cep, companyName, cost, isCompany, distributor } = store.user
     const { street, neighborhood, city, state, stateId, cityId } = storeAddress.address
     const company = useStoreCompany().company
 
@@ -67,6 +68,7 @@ export default function RegisterForm() {
         profession: useRef(null),
         email: useRef(null),
         phone: useRef(null),
+        cost: useRef(null),
     };
 
     const companyRefs = {
@@ -117,7 +119,6 @@ export default function RegisterForm() {
     }
 
 
-
     const handleSubmit = async (event) => {
         event.preventDefault()
         setIsLoading(true)
@@ -138,7 +139,7 @@ export default function RegisterForm() {
                 complemento: addressRefs.complement.current.value,
                 estado_id: storeAddress.address.stateId,
                 cidade_id: storeAddress.address.cityId,
-                valor: cost,
+                valor: parseInt(userRefs.cost.current.value.replace(/[^0-9]/g, ""), 10) / 100,
                 rg: userRefs.rg.current.value,
                 data_nascimento: userRefs.birthDate.current.value,
                 nacionalidade: userRefs.nationality.current.value,
@@ -160,7 +161,7 @@ export default function RegisterForm() {
                 complemento: addressRefs.complement.current.value,
                 estado_id: storeAddress.address.stateId,
                 cidade_id: storeAddress.address.cityId,
-                valor: cost,
+                valor: parseInt(userRefs.cost.current.value.replace(/[^0-9]/g, ""), 10) / 100,
                 rg: userRefs.rg.current.value,
                 data_nascimento: userRefs.birthDate.current.value,
                 nacionalidade: userRefs.nationality.current.value,
@@ -171,8 +172,8 @@ export default function RegisterForm() {
             }
         }
 
-        console.log("submitData ==>>", submitData)
-        Cookies.set("leveSubmitData", submitData)
+        Cookies.set("leveData", JSON.stringify(submitData))
+        setDataCookies();
 
         const response = await schemaValidation(isCompany, submitData)
         console.log("registerForm response ==>>", response)
@@ -210,28 +211,6 @@ export default function RegisterForm() {
 
     }
 
-    // if (Cookies.get("leveSubmitData")) {
-    //     const submitData = Cookies.get("leveSubmitData")
-
-    //     userRefs.name.current.value = submitData.nome
-    //     userRefs.email.current.value = submitData.email
-    //     userRefs.phone.current.value = submitData.telefone
-    //     addressRefs.addressCep.current.value = submitData.cep
-    //     addressRefs.address.current.value = submitData.endereco
-    //     addressRefs.addressNumber.current.value = submitData.numero
-    //     addressRefs.neighborhood.current.value = submitData.bairro
-    //     addressRefs.complement.current.value = submitData.complemento
-    //     storeAddress.address.stateId = submitData.estado_id
-    //     storeAddress.address.cityId = submitData.cidade_id
-    //     userRefs.rg.current.value = submitData.rg
-    //     userRefs.birthDate.current.value = submitData.data_nascimento
-    //     userRefs.nationality.current.value = submitData.nacionalidade
-    //     userRefs.profession.current.value = submitData.profissao
-    //     userRefs.maritalStatus.current.value = submitData.estado_civil
-    //     userRefs.cpf.current.value = submitData.cpf
-    //     addressRefs.installationNumber.current.value = submitData.numero_instalacao
-    // }
-
     const closeModal = () => {
         setIsModalOpen(false)
     }
@@ -262,9 +241,39 @@ export default function RegisterForm() {
         setIsForeigner(value === "estrangeira");
     };
 
+
     useEffect(() => {
         setStateValue(stateOptions[stateId] || null)
-    }, [storeAddress])
+
+        const cookies = Cookies.get("leveData")
+
+        if (cookies) {
+            const submitData = JSON.parse(cookies)
+            storeAddress.address.stateId = submitData.estado_id
+            storeAddress.address.cityId = submitData.cidade_id
+
+            userRefs.name.current.value = submitData.nome
+            userRefs.email.current.value = submitData.email
+            userRefs.phone.current.value = submitData.telefone
+            userRefs.rg.current.value = submitData.rg ? submitData.rg : store.user.rg
+            userRefs.birthDate.current.value = submitData.data_nascimento
+            userRefs.nationality.current.value = submitData.nacionalidade
+            userRefs.profession.current.value = submitData.profissao
+            userRefs.maritalStatus.current.value = submitData.estado_civil
+            userRefs.cost.current.value = submitData.valor
+            userRefs.cpf.current.value = submitData.cpf
+
+            addressRefs.addressCep.current.value = submitData.cep
+            addressRefs.address.current.value = submitData.endereco
+            addressRefs.addressNumber.current.value = submitData.numero
+            addressRefs.neighborhood.current.value = submitData.bairro
+            addressRefs.complement.current.value = submitData.complemento
+            addressRefs.installationNumber.current.value = submitData.numero_instalacao
+
+            setDataCookies();
+
+        }
+    }, [storeAddress, hasDataCookies])
 
 
     const handleChangeState = (value) => {
@@ -340,21 +349,32 @@ export default function RegisterForm() {
                             {() => <TextField inputRef={userRefs.rg} className="formInput" label="RNE" variant="outlined" placeholder="RNE" type="text" InputLabelProps={{ shrink: true }} required />}
                         </InputMask>)
                         :
-                        (<InputMask mask="********-*" required >
-                            {() => <TextField inputRef={userRefs.rg} className="formInput" label="RG" variant="outlined" placeholder="RG" type="text" InputLabelProps={{ shrink: true }} required />}
+                        (<InputMask mask="********-*" required defaultValue={store.user.rg ? store.user.rg : ""}>
+                            {() => <TextField
+                                inputRef={userRefs.rg}
+                                className="formInput"
+                                label="RG"
+                                variant="outlined"
+                                placeholder="RG"
+                                type="text"
+                                required
+                                InputLabelProps={hasDataCookies ? { shrink: true } : {}}
+                            />}
                         </InputMask>)}
-                    <InputMask mask="999.999.999-99" required >
-                        {() => <TextField inputRef={userRefs.cpf} className="formInput" label="CPF" variant="outlined" placeholder="CPF" type="text" InputLabelProps={{ shrink: true }} required />}
+                    <InputMask mask="999.999.999-99" required defaultValue={store.user.cpf ? store.user.cpf : ""}>
+                        {() => <TextField inputRef={userRefs.cpf} className="formInput" label="CPF" variant="outlined" placeholder="CPF" type="text" required
+                            InputLabelProps={hasDataCookies ? { shrink: true } : {}} />}
                     </InputMask>
 
-                    <InputMask mask="99/99/9999" required>
-                        {() => <TextField inputRef={userRefs.birthDate} className="formInput" label="Data de Nascimento" variant="outlined" placeholder="Data de Nascimento" type="text" required />}
+                    <InputMask mask="99/99/9999" required defaultValue={store.user.birthDate ? store.user.birthDate : ""}>
+                        {() => <TextField inputRef={userRefs.birthDate} className="formInput" label="Data de Nascimento" variant="outlined" placeholder="Data de Nascimento" type="text" required
+                            InputLabelProps={hasDataCookies ? { shrink: true } : {}} />}
                     </InputMask>
                     <TextField
                         id="maritalStatus"
                         placeholder={"test"}
                         select
-                        defaultValue={""}
+                        defaultValue={store.user.maritalStatus ? store.user.maritalStatus : ""}
                         label="Estado Civil"
                         className="formInput"
                         InputLabelProps={{
@@ -371,7 +391,7 @@ export default function RegisterForm() {
                     <TextField
                         id="nationality"
                         select
-                        defaultValue={""}
+                        defaultValue={store.user.nationality ? store.user.nationality : ""}
                         inputRef={userRefs.nationality}
                         className="formInput"
                         label="Nacionalidade"
@@ -392,7 +412,7 @@ export default function RegisterForm() {
                     <TextField
                         id="profession"
                         select
-                        defaultValue={""}
+                        defaultValue={store.user.profession ? store.user.profession : ""}
                         inputRef={userRefs.profession}
                         className="formInput"
                         label="Profissão"
@@ -410,9 +430,20 @@ export default function RegisterForm() {
                         })}
                     </TextField>
 
-                    <div style={{ margin: 'auto', }}>
+                    <TextField
+                        className="formInput"
+                        inputRef={userRefs.cost}
+                        defaultValue={cost.toFixed(2).replace(".", ",") || ''}
+                        label="Custo Mensal em R$"
+                        variant="outlined"
+                        placeholder="Custo Mensal em R$"
+                        type="text"
+                        InputLabelProps={{ shrink: true }}
+                        required />
+
+                    {/* <div style={{ margin: 'auto', }}>
                         <Divider sx={{ width: '107px', border: '1px solid #A0A0A0' }} />
-                    </div>
+                    </div> */}
 
                     <InputMask mask="99999-999"
                         value={cep || ''}
@@ -437,7 +468,7 @@ export default function RegisterForm() {
                         {() => <TextField className="formInput" inputRef={addressRefs.addressNumber} label="Nº" variant="outlined" placeholder="Nº" type="text" required />}
                     </InputMask>
 
-                    <TextField className="formInput" inputRef={addressRefs.complement} label="Complemento" variant="outlined" placeholder="Complemento" type="text" />
+                    <TextField className="formInput" inputRef={addressRefs.complement} label="Complemento" variant="outlined" placeholder="Complemento" type="text" InputLabelProps={{ shrink: true }} />
                     <TextField className="formInput" defaultValue={neighborhood || ''} inputRef={addressRefs.neighborhood} label="Bairro" variant="outlined" placeholder="Bairro" type="text" InputLabelProps={{ shrink: true }} required />
 
                     <TextField
@@ -483,12 +514,14 @@ export default function RegisterForm() {
                         </List>
                     </TextField> */}
 
-                    <TextField className="formInput" defaultValue={city.toUpperCase() || ''} inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} required />
+                    <TextField className="formInput" defaultValue={city.toUpperCase() || ''} inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text"
+                        InputLabelProps={{ shrink: true }} required />
 
                     <FormLastRow>
                         <TextField
                             className="installationNumberField"
-                            inputRef={addressRefs.installationNumber} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text" />
+                            inputRef={addressRefs.installationNumber} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text"
+                            InputLabelProps={{ shrink: true }} />
                         <Typography
                             className="linkInstallationNumberTutorial"
                             variant="body2" onClick={() => setIsModalOpen(true)}>Não encontrou o número? <a >Clique aqui para saber onde encontrá-lo.</a></Typography>
@@ -544,7 +577,7 @@ export default function RegisterForm() {
                     {/* <Button onClick={() => router.push('/dashboard')}>Dashboard</Button> */}
 
                 </FormContent>
-                {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}
+                {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={distributor ? distributor.toLowerCase() : ""} />}
             </FormContainer >
             <>
                 {validationErrors.map((error, index) => {

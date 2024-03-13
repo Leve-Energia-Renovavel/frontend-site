@@ -12,15 +12,34 @@ import FormBannerContract from '../banners/form-banner-contract/FormBannerContra
 
 export default function ContractSignature() {
 
-    const user = useStoreUser().user
+    const store = useStoreUser()
+    const storedUser = useStoreUser().user
+    const user = storedUser ? storedUser : JSON.parse(Cookies.get('leveUser'))
+
     const storeClicksign = useStoreClickSign()
+
+    const uuid = Cookies.get('leveUUID') ? Cookies.get('leveUUID') : user.uuid
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${user.uuid}`);
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
                 if (requestSuccessful(response.status)) {
-                    console.log("contract signature response ===>>", response)
+
+                    const consumidor = response?.data?.instalacao?.consumidor
+                    const cep = consumidor?.cep
+
+                    const updatedUser = {
+                        name: consumidor?.nome + " " + consumidor?.sobrenome,
+                        phone: consumidor?.telefone,
+                        email: consumidor?.email,
+                        cep: cep,
+
+                    }
+                    
+                    store.updateUser(updatedUser);
+                    Cookies.set('leveUser', JSON.stringify(updatedUser))
+
                     const clicksignReg = response.data.instalacao.document_key
                     Cookies.set("clickSignKey", response.data.instalacao.document_key)
 

@@ -28,6 +28,7 @@ export const useStoreUser = create((set) => ({
         refreshToken: "",
 
         distributor: "",
+        distributorPhotoUrl: "",
 
         hasSignContract: false,
         hasSyncDistributorData: false,
@@ -50,26 +51,33 @@ export const useStoreUser = create((set) => ({
                 phone: null,
                 cep: "",
                 cost: 0,
+
                 companyName: "",
+
                 discount: 0,
                 isCompany: false,
                 isLowCost: false,
                 isOutOfRange: false,
+
                 birthDate: "",
                 rg: "",
                 cpf: "",
                 maritalStatus: "",
                 profession: "",
                 nationality: "",
+
                 clientId: "",
                 accessToken: "",
                 refreshToken: "",
 
                 distributor: "",
+                distributorPhotoUrl: "",
+
+                hasSignContract: false,
                 hasSyncDistributorData: false,
 
                 memberGetMemberCode: "",
-            }
+            },
         }))
 }));
 
@@ -336,4 +344,9 @@ export const useStoreBillingHistory = create((set) => ({
         set(() => ({
             billings: []
         }))
+}));
+
+export const useStoreCookies = create((set) => ({
+    hasDataCookies: false,
+    setDataCookies: () => set({ hasDataCookies: true }),
 }));

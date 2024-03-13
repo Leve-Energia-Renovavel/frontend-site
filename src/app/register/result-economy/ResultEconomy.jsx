@@ -22,6 +22,7 @@ export default function ResultEconomy() {
 
     const location = isCompany ? 'empresa' : 'residência'
     const percentageDiscount = store.user.discount == 0 ? 0.1 : store.user.discount
+    const distributor = store.user.distributor ? store.user.distributor.toUpperCase() : "distribuidora"
 
     const [simulationCost, setSimulationCost] = useState(cost)
 
@@ -36,7 +37,7 @@ export default function ResultEconomy() {
         <Container>
             <Header>
                 <TodayPriceInfo>
-                    <Typography variant="subtitle1">Hoje você paga a Concessionária</Typography>
+                    <Typography variant="subtitle1">Hoje você paga a <span className='distributorName'>{distributor}</span></Typography>
                     <Typography variant="h1">R$ {todayCost} 😢</Typography>
                 </TodayPriceInfo>
                 <LeveEconomyInfo>

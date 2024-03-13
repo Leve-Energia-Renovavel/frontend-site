@@ -49,8 +49,9 @@ export default function DashboardMain() {
                     Authorization: `Bearer ${Cookies.get('accessToken')}`
                 };
 
-                const uuidMilton = "20d04059-a75b-403b-910e-e59096a1370b"
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/${uuidMilton}`, { headers });
+                const uuid = user.uuid || Cookies.get('leveUUID')
+
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/${uuid}`, { headers });
                 console.log("Dashboard data response ===>>>", response)
 
                 if (requestSuccessful(response.status)) {
