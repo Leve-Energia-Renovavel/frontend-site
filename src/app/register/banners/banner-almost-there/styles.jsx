@@ -16,7 +16,7 @@ const fadeInUp = keyframes`
 
 export const BannerContainer = styled.div`
     background-color: ${background.primary};
-    height: 70vh;
+    height: 30rem;
     max-width: 100vw;
     padding: 8rem 13.5rem;
 

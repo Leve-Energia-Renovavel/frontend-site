@@ -16,17 +16,23 @@ export const ClicksignWidgetContainer = styled.div`
   transform: translate(-50%, -50%);
   z-index: 100;
   
+  @media (max-width: 2150px) {
+      top: 46rem;
+  }
   @media (max-width: 1800px) {
-      top: 90vh;
+      top: 45rem;
   }
   @media (max-width: 1500px) {
-      top: 90vh;
+      top: 45rem;
   }
   @media (max-width: 1300px) {
-      top: 90vh;
+      top: 45rem;
+  }
+  @media (max-width: 1200px) {
+      top: 45rem;
   }
   @media (max-width: 900px) {
-      top: 90vh;
+      top: 40rem;
   }
 
   @media (max-width: 600px) {

@@ -20,9 +20,6 @@ export default function ClicksignWidget() {
 
     const storeUser = useStoreUser()
 
-    console.log("store Clicksign ===>>", clickSign)
-    console.log("clickSignKey ===>>", clickSignKey)
-
     const [widget, setWidget] = useState(null);
 
     useEffect(() => {
@@ -56,7 +53,7 @@ export default function ClicksignWidget() {
                 widget.unmount();
             }
         };
-    }, []);
+    }, [clickSignKey, key]);
 
     return (
         <ClicksignWidgetContainer>

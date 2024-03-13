@@ -8,7 +8,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useEffect } from 'react';
 import AlmostThereBanner from '../banners/banner-almost-there/AlmostThereBanner';
-import FormBanner from '../banners/form-banner/FormBanner';
+import FormBannerContract from '../banners/form-banner-contract/FormBannerContract';
 
 export default function ContractSignature() {
 
@@ -37,11 +37,8 @@ export default function ContractSignature() {
     return (
         <>
             <AlmostThereBanner userData={user} />
-            {/* {storeClicksign.data.key != '' ? <ClicksignWidget />
-                : <Typography>Carregando dados...</Typography>
-            } */}
             <ClicksignWidget />
-            <FormBanner />
+            <FormBannerContract />
         </>
     );
 }

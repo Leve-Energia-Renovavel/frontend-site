@@ -2,7 +2,7 @@
 
 import { notFound } from "next/navigation";
 import AlmostThere from "../banners/banner-almost-there/AlmostThereBanner";
-import FormBanner from "../banners/form-banner/FormBanner";
+import FormBannerContract from "../banners/form-banner-contract/FormBannerContract";
 import ContractAuthForm from "../forms/contract-auth-form/ContractAuthForm";
 
 const loadUserData = () => {
@@ -34,7 +34,7 @@ export default function ContractAuthentication() {
         <div>
             <AlmostThere />
             <ContractAuthForm />
-            <FormBanner />
+            <FormBannerContract />
         </div>
     );
 }
