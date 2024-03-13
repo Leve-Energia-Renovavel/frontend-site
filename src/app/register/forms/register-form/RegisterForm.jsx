@@ -12,7 +12,7 @@ import { maritalStatusOptions, nationalityOptions, professionOptions } from "@/a
 import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import SearchIcon from '@mui/icons-material/Search';
-import { Button, Divider, MenuItem, Snackbar, TextField, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Divider, MenuItem, Snackbar, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
@@ -35,6 +35,7 @@ export default function RegisterForm() {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isForeigner, setIsForeigner] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [socialContractFile, setSocialContractFile] = useState(null);
     const [energyExtractFile, setEnergyExtractFile] = useState(null);
@@ -119,6 +120,7 @@ export default function RegisterForm() {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+        setIsLoading(true)
 
         var submitData = {}
         if (isCompany) {
@@ -203,6 +205,8 @@ export default function RegisterForm() {
             // setValidationErrors([response?.response?.data?.message])
             setValidationErrors(["Ocorreu um erro inesperado. Por favor, tente novamente"])
         }
+
+        setIsLoading(false)
 
     }
 
@@ -488,7 +492,11 @@ export default function RegisterForm() {
                         <Typography
                             className="linkInstallationNumberTutorial"
                             variant="body2" onClick={() => setIsModalOpen(true)}>Não encontrou o número? <a >Clique aqui para saber onde encontrá-lo.</a></Typography>
-                        <FormButton className="formInput" variant="outlined" type="submit" text="Continuar" />
+                        {isLoading ?
+                            <Box sx={{ margin: "0 auto" }}>
+                                <CircularProgress />
+                            </Box>
+                            : <FormButton className="formInput" variant="outlined" type="submit" text="Continuar" />}
                     </FormLastRow>
 
                     {isCompany ? (
@@ -533,7 +541,7 @@ export default function RegisterForm() {
                         </FileUploadContainer>
                     ) : null}
 
-                    <Button onClick={() => router.push('/dashboard')}>Dashboard</Button>
+                    {/* <Button onClick={() => router.push('/dashboard')}>Dashboard</Button> */}
 
                 </FormContent>
                 {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={"cemig"} />}

@@ -7,7 +7,7 @@ import { requestSuccessful } from '@/app/service/utils/Validations';
 import CloseIcon from '@mui/icons-material/Close';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { Backdrop, Divider, IconButton, InputAdornment, Modal, Snackbar, TextField, Typography } from '@mui/material';
+import { Backdrop, Box, CircularProgress, Divider, IconButton, InputAdornment, Modal, Snackbar, TextField, Typography } from '@mui/material';
 import Cookies from 'js-cookie';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -24,6 +24,7 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
     const user = useStoreUser().user
 
     const [forgotPassword, setForgotPassword] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     const [passwordVisibible, setPasswordVisibible] = useState("password")
     const [validationErrors, setValidationErrors] = useState([])
     const [notifications, setNotifications] = useState([])
@@ -72,6 +73,7 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+        setIsLoading(true)
 
         if (!forgotPassword) {
 
@@ -99,6 +101,8 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
                 setNotifications([response?.data?.message])
             }
         }
+
+        setIsLoading(false)
 
     }
 
@@ -162,9 +166,14 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
                                     }} />
                                 : <></>}
                             <LoginButtonContainer>
-                                <LoginButton onClick={handleSubmit}>
-                                    {!forgotPassword ? <span>Entrar</span> : <span>Recuperar Senha</span>}
-                                </LoginButton>
+                                {isLoading ?
+                                    <Box sx={{ margin: "0 auto" }}>
+                                        <CircularProgress />
+                                    </Box>
+                                    :
+                                    <LoginButton onClick={handleSubmit}>
+                                        {!forgotPassword ? <span>Entrar</span> : <span>Recuperar Senha</span>}
+                                    </LoginButton>}
                                 {!forgotPassword ?
                                     <Typography className='forgotPassword' variant='subtitle1' onClick={() => setForgotPassword(true)}>
                                         Esqueci minha senha
