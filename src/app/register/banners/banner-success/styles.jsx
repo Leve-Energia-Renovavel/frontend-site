@@ -28,6 +28,9 @@ export const BannerContainer = styled.div`
         top: 80rem;
     }
     
+    @media (max-width: 1400px) {
+        height: 65rem;
+    }
     @media (max-width: 1200px) {
         height: 20rem;
         padding: 8rem 2rem;

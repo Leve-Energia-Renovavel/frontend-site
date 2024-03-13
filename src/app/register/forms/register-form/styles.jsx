@@ -38,15 +38,15 @@ export const FormContainer = styled.div`
   }
 
   @media (max-width: 2000px) {
-    top: 75rem;
+    top: 80rem;
   }
   
   @media (max-width: 1600px) {
-    top: 75rem;
+    top: 80rem;
   }
   
   @media (min-width: 1200px) and (max-width: 1500px) {
-    top: 80rem;
+    top: 85rem;
   }
   
   @media (max-width: 1200px) {
