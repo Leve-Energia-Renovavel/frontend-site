@@ -82,7 +82,7 @@ export default function Header() {
                                     <Nav>
                                         <Ul>
                                             <MenuItem>
-                                                <Link href="/">A Leve</Link>
+                                                <Link href="https://leveenergia.com.br/">A Leve</Link>
                                             </MenuItem>
                                             <MenuItem>
                                                 <Link href="https://leveenergia.com.br/#comofunciona">Como funciona</Link>

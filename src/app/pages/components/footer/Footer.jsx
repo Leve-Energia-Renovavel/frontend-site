@@ -40,14 +40,14 @@ export default function Footer() {
                 </AddressContainer>
 
                 <PagesContainer>
-                    <Link href="/" className='pageLink'>Sobre a Leve</Link>
-                    <Link href="/about" className='pageLink'>Como funciona</Link>
-                    <Link href="/beneficios" className='pageLink'>Benefícios</Link>
-                    <Link href="/quem-pode-ser-leve" className='pageLink'>Quem pode ser Leve</Link>
-                    <Link href="/blog" className='pageLink'>Blog</Link>
-                    <Link href="/sou-gerador" className="pageLinkGenerator">Sou gerador e quero ser Leve</Link>
-                    <Link href="/politica-de-privacidade" className='pageLink'>Política de Privacidade</Link>
-                    <Link href="/termos-de-uso" className='pageLink'>Termos de Uso</Link>
+                    <Link href="https://leveenergia.com.br/" className='pageLink'>Sobre a Leve</Link>
+                    <Link href="https://leveenergia.com.br/#comofunciona" className='pageLink'>Como funciona</Link>
+                    <Link href="https://leveenergia.com.br/#beneficios" className='pageLink'>Benefícios</Link>
+                    <Link href="https://leveenergia.com.br/#serleve" className='pageLink'>Quem pode ser Leve</Link>
+                    <Link href="https://leveenergia.com.br/blog/" className='pageLink'>Blog</Link>
+                    <Link href="https://leveenergia.com.br/sou-gerador" className="pageLinkGenerator">Sou gerador e quero ser Leve</Link>
+                    <Link href="https://leveenergia.com.br/politica-de-privacidade" className='pageLink'>Política de Privacidade</Link>
+                    <Link href="https://leveenergia.com.br/termos-de-uso" className='pageLink'>Termos de Uso</Link>
                 </PagesContainer>
 
                 <ContactContainer>
