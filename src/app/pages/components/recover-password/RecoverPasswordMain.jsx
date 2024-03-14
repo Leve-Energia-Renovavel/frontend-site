@@ -46,13 +46,17 @@ export default function RecoverPasswordMain() {
 
     const handleRecoverPassword = async () => {
 
+        const headers = {
+            Authorization: `Bearer ${Cookies.get('accessToken')}`
+        };
+
         const data = {
             newPassword: userRefs.newPassword.current.value,
             confirmNewPassword: userRefs.confirmNewPassword.current.value
         }
 
         try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/recovery-pass/`, data);
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/recovery-pass/`, data, { headers });
             if (requestSuccessful(response.status)) {
                 setNotifications(["Senha redefinida com sucesso!"])
             }

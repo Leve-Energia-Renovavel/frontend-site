@@ -186,7 +186,6 @@ export default function DashboardMain() {
                 setIsLoading(false);
             }
         };
-
         fetchDashboardData();
         fetchUpdatedAddress();
     }, []);

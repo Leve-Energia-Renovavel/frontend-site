@@ -35,7 +35,8 @@ export default function MemberGetMember() {
         setModalOpen(true)
     }
     const handleSendInvite = async () => {
-        if (invitedEmailRef.current.value != "") {
+        const invitedEmail = invitedEmailRef.current.value
+        if (invitedEmail) {
             const headers = {
                 Authorization: `Bearer ${Cookies.get('accessToken')}`
             };
@@ -46,12 +47,15 @@ export default function MemberGetMember() {
                 const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/send-code`, data, { headers })
                 if (requestSuccessful(response.status)) {
                     setNotifications([response?.data?.message])
+                    setModalOpen(false)
                 }
 
             } catch (error) {
                 console.error(error)
                 setValidationErrors([error?.response?.data?.message])
             }
+        } else {
+            setValidationErrors(["Informe um e-mail válido"])
         }
     }
 

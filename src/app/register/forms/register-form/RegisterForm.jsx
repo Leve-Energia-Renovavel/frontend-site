@@ -52,6 +52,7 @@ export default function RegisterForm() {
     const { street, neighborhood, city, state, stateId, cityId } = storeAddress.address
     const company = useStoreCompany().company
 
+    const [userCost, setUserCost] = useState(cost || null)
     const [stateValue, setStateValue] = useState(stateOptions[stateId] || null);
 
     const meuID = stateValue?.cod_estados || 26
@@ -102,7 +103,7 @@ export default function RegisterForm() {
                 })
                 .catch((err) => {
                     console.log(err.errors);
-                    setValidationErrors(err.errors)
+                    return err.errors
                 });
 
         } else {
@@ -113,7 +114,6 @@ export default function RegisterForm() {
                 })
                 .catch((err) => {
                     console.log(err.errors);
-                    setValidationErrors(err.errors)
                     return err.errors
                 });
         }
@@ -206,8 +206,8 @@ export default function RegisterForm() {
 
             router.push(`/register/contract-signature`)
         } else {
-            // setValidationErrors([response?.response?.data?.message])
-            setValidationErrors(["Ocorreu um erro inesperado. Por favor, tente novamente"])
+            setValidationErrors([response?.response?.data?.message])
+            // setValidationErrors(["Ocorreu um erro inesperado. Por favor, tente novamente"])
         }
 
         setIsLoading(false)
@@ -288,6 +288,17 @@ export default function RegisterForm() {
 
         storeAddress.updateAddress({ stateId: value })
         store.updateUser({ cep: "" })
+    }
+    const handleChangeUserCost = (event) => {
+        var newCost = event.target.value
+
+        newCost = newCost.replace(/\D/g, '');
+
+        const integerPart = newCost.slice(0, -2);
+        const decimalPart = newCost.slice(-2);
+        newCost = integerPart + ',' + decimalPart;
+
+        setUserCost(newCost)
     }
 
     const Row = ({ index, style }) => {
@@ -435,7 +446,9 @@ export default function RegisterForm() {
                     <TextField
                         className="formInput"
                         inputRef={userRefs.cost}
-                        defaultValue={cost.toFixed(2).replace(".", ",") || ''}
+                        value={userCost}
+                        // defaultValue={cost.toFixed(2).replace(".", ",") || ''}
+                        onChange={(event) => handleChangeUserCost(event)}
                         label="Custo Mensal em R$"
                         variant="outlined"
                         placeholder="Custo Mensal em R$"
@@ -448,7 +461,7 @@ export default function RegisterForm() {
                     </div> */}
 
                     <InputMask mask="99999-999"
-                        value={cep || ''}
+                        defaultValue={store.user.cep ? store.user.cep : ""}
                         onChange={(e) => store.updateUser({ cep: e.target.value })}>
                         {() => <TextField
                             className="formInput"
