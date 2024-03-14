@@ -46,6 +46,7 @@ export default function SuccessForm() {
             const data = { uuid: user.uuid }
             const response = await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/finalizar-cadastro`, data)
             if (requestSuccessful(response.status)) {
+                Cookies.set('accessToken', response.data.access_token)
                 router.push(`/dashboard`)
             }
 
