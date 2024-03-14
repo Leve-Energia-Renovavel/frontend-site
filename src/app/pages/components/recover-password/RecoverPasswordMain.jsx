@@ -26,23 +26,23 @@ export default function RecoverPasswordMain() {
         confirmNewPassword: useRef(null),
     };
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/`);
-                if (requestSuccessful(response.status)) {
-                    setValidatedToken(true)
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/`);
+    //             if (requestSuccessful(response.status)) {
+    //                 setValidatedToken(true)
 
-                }
-            } catch (error) {
-                console.error(error);
-                setValidationErrors(error)
-            }
+    //             }
+    //         } catch (error) {
+    //             console.error(error);
+    //             setValidationErrors(error)
+    //         }
 
-        };
+    //     };
 
-        fetchData();
-    }, []);
+    //     fetchData();
+    // }, []);
 
     const handleRecoverPassword = async () => {
 
@@ -115,7 +115,7 @@ export default function RecoverPasswordMain() {
                 <TextField className="formInput" label="Confirmar Nova Senha" variant="outlined" placeholder="Confirmar Nova Senha" type="text" required />
             </RecoverPasswordFormContainer>} */}
             <>
-                {validationErrors.map((error, index) => {
+                {validationErrors?.map((error, index) => {
                     return (
                         <Snackbar
                             key={index}
@@ -137,7 +137,7 @@ export default function RecoverPasswordMain() {
                 })}
             </>
             <>
-                {notifications.map((notification, index) => {
+                {notifications?.map((notification, index) => {
                     return (
                         <Snackbar
                             key={index}
