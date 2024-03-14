@@ -60,7 +60,7 @@ export default function MemberGetMember() {
     }
 
     const handleShareWhatsapp = () => {
-        const link = `https://api.whatsapp.com/send?text=Segue%20link%20disponibilizado%20pela%20Leve%20para%20que%20possa%20conhecer%20o%20processo%20de%20opt-in%20ao%20programa%20de%20economia%20Martins/Tribanco.%0A%0AUse%20meu%20c%C3%B3digo%20de%20indica%C3%A7%C3%A3o%20e%20garanta%2020%%20de%20desconto%20na%20sua%20fatura%20da%20CEMIG%0A${user.memberGetMemberCode}%0A%0AAcesse:%20https://cliente.leveenergia.com.br/cadastro/`
+        const link = `Eu%20já%20garanti%20economia%20na%20fatura%20de%20energia%20da%20minha%20casa!%20Quer%20saber%20a%20melhor%20parte?%20Você%20também%20pode%20economizar.%20Utilize%20meu%20código%20${user.memberGetMemberCode}%20e%20garanta%20até%2020%%20de%20desconto%20você%20também!%20Acesse%20agora%20mesmo:%20https://cliente.leveenergia.com.br/cadastro/`
         window.open(link, '_blank');
 
     }

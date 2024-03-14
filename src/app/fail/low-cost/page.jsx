@@ -1,9 +1,9 @@
-import LowCostMain from "@/app/pages/components/low-cost/LowCostMain";
+import RegisterBannerFailCost from "@/app/register/banners/banner-fail-cost/FailCostBanner";
 
 export default function LowCost() {
     return (
         <>
-            <LowCostMain />
+            <RegisterBannerFailCost />
         </>
     );
 }
