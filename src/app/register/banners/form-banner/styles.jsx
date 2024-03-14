@@ -11,10 +11,10 @@ export const FormBannerContainer = styled.div`
     padding: 17rem;
   }
   @media (max-width: 2000px) {
-    padding: 17rem;
+    padding: 18rem;
   }
   @media (max-width: 1800px) {
-    padding: 17rem;
+    padding: 19rem;
   }
   @media (max-width: 1300px) {
     padding: 20rem;

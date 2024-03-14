@@ -16,15 +16,24 @@ const fadeInUp = keyframes`
 
 export const BannerContainer = styled.div`
     background-color: ${background.blueLeve};
-    height: 50vh;
+    height: 28rem;
     max-width: 100vw;
     padding: 10rem 15rem;
 
+    @media (max-width: 1200px) {
+        height: 32rem;
+        max-width: 100vw;
+        padding: 10rem 10rem;
+    }
+    @media (max-width: 900px) {
+        height: 35rem;
+        max-width: 100vw;
+        padding: 10rem 8rem;
+    }
     @media (max-width: 600px) {
         height: 100vh;
         max-width: 100vw;
-        padding: 15dvh 2rem;  //padding top for header
-
+        padding: 8rem 2rem;
     }
 `
 
@@ -54,7 +63,6 @@ export const ContentContainer = styled.div`
         font-weight: bold;
         margin-top: 2rem;
     }
-
 `
 
 export const ButtonContainer = styled.div`
@@ -70,6 +78,8 @@ export const ButtonContainer = styled.div`
         border-radius: 12px;
         cursor: pointer;
         padding: 1rem 4rem;
+
+        white-space: nowrap;
         
         &:hover {
             background-color: ${background.white};

@@ -4,13 +4,13 @@
 import { useStoreAddress, useStoreUser } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import axios from "axios";
+import Cookies from "js-cookie";
 import { notFound, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import RegisterBannerSuccess from "../banners/banner-success/RegisterBanner";
 import FormBanner from "../banners/form-banner/FormBanner";
 import RegisterForm from "../forms/register-form/RegisterForm";
 import ResultEconomy from "../result-economy/ResultEconomy";
-import Cookies from "js-cookie";
 
 export default function RegisterMain() {
 
@@ -20,8 +20,9 @@ export default function RegisterMain() {
 
     const uuid = search.get("uuid")
 
-    var isLowCost = store.user.isLowCost
-    var isOutOfRange = store.user.isOutOfRange
+    if (!uuid) {
+        notFound()
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -33,11 +34,11 @@ export default function RegisterMain() {
                 const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
                 console.log("userResponse ===>>", userResponse)
                 if (requestSuccessful(userResponse.status)) {
-
+                    
                     const instalacao = userResponse?.data?.instalacao
                     const distribuidora = userResponse?.data?.distribuidora
                     const consumidor = userResponse?.data?.instalacao?.consumidor
-                    const isCompany = consumidor?.type == "PJ" ? true : false
+
                     const cep = consumidor?.cep
 
                     const updatedUser = {
@@ -47,7 +48,7 @@ export default function RegisterMain() {
                         cost: instalacao?.valor_base_consumo,
                         cep: cep,
 
-                        isCompany: isCompany,
+                        isCompany: consumidor.type == "PJ",
 
                         discount: instalacao?.desconto,
                         clientId: instalacao?.clientes_id,
@@ -57,7 +58,7 @@ export default function RegisterMain() {
                     }
 
                     store.updateUser(updatedUser);
-                    Cookies.set('leveIsCompany', isCompany)
+                    Cookies.set('leveIsCompany', consumidor.type == "PJ")
                     Cookies.set('leveUser', JSON.stringify(updatedUser))
 
                     const updatedAddress = {
@@ -98,18 +99,12 @@ export default function RegisterMain() {
     }, []);
 
     return (
-        <div>
-            {/* {isLowCost && <RegisterBannerFailCost />} */}
-            {/* {!isLowCost && isOutOfRange && <RegisterBannerFailRegion />} */}
-            {/* {!isLowCost && !isOutOfRange && */}
-            <>
-                <RegisterBannerSuccess />
-                <ResultEconomy />
-                <FormBanner />
-                <RegisterForm />
-            </>
-            {/* } */}
-        </div>
+        <>
+            <RegisterBannerSuccess />
+            <ResultEconomy />
+            <FormBanner />
+            <RegisterForm />
+        </>
     )
 }
 

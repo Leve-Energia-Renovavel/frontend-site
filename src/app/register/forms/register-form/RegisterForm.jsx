@@ -44,8 +44,11 @@ export default function RegisterForm() {
     const [notifications, setNotifications] = useState([])
 
     const uuid = store.user.uuid || Cookies.get('leveUUID')
+    const isCompany = store.user.isCompany
 
-    const { name, email, phone, cep, companyName, cost, isCompany, distributor } = store.user
+    const user = Cookies.get('leveUser') ? JSON.parse(Cookies.get('leveUser')) : store.user
+
+    const { name, email, phone, cep, companyName, cost, distributor } = user
     const { street, neighborhood, city, state, stateId, cityId } = storeAddress.address
     const company = useStoreCompany().company
 
@@ -271,7 +274,6 @@ export default function RegisterForm() {
             addressRefs.installationNumber.current.value = submitData.numero_instalacao
 
             setDataCookies();
-
         }
     }, [storeAddress, hasDataCookies])
 

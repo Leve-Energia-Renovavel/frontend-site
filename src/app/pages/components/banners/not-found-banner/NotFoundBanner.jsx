@@ -1,8 +1,6 @@
-import React from 'react';
-import { BannerContainer, ButtonContainer, ContentContainer } from './styles';
 import { Button, Typography } from '@mui/material';
-import DefaultButton from '../../utils/buttons/DefaultButton';
 import { useRouter } from 'next/navigation';
+import { BannerContainer, ButtonContainer, ContentContainer } from './styles';
 
 export default function NotFoundBanner() {
 
