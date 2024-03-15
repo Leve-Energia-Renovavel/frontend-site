@@ -315,8 +315,16 @@ export default function DashboardMain() {
                                 <SkeletonDiv className="grid-item" />
                                 <SkeletonDiv className="grid-item" />
                             </>
-                        ) :
-                            <HistorySpendingChart />}
+                        ) : (
+                            billings.length > 1 ? <HistorySpendingChart /> :
+
+                                (
+                                    <div style={{ margin: "auto", textAlign: "center" }}>
+                                        <Typography className="notFoundHistorySpending">Não há dados de consumo</Typography>
+                                    </div>
+
+                                )
+                        )}
                     </HistorySpendingGrid>
                 </HistorySpendingContainer>
                 <HistoryBillingContainer>

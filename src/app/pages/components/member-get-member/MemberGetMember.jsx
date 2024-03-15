@@ -60,7 +60,7 @@ export default function MemberGetMember() {
     }
 
     const handleShareWhatsapp = () => {
-        const link = `Eu%20já%20garanti%20economia%20na%20fatura%20de%20energia%20da%20minha%20casa!%20Quer%20saber%20a%20melhor%20parte?%20Você%20também%20pode%20economizar.%20Utilize%20meu%20código%20${user.memberGetMemberCode}%20e%20garanta%20até%2020%%20de%20desconto%20você%20também!%20Acesse%20agora%20mesmo:%20https://cliente.leveenergia.com.br/cadastro/`
+        const link = `https://api.whatsapp.com/send?text=Eu%20já%20garanti%20economia%20na%20fatura%20de%20energia%20da%20minha%20casa!%20Quer%20saber%20a%20melhor%20parte?%20Você%20também%20pode%20economizar.%20Utilize%20meu%20código%20${user.memberGetMemberCode}%20e%20garanta%20até%2020%%20de%20desconto%20você%20também!%20Acesse%20agora%20mesmo:%20https://cliente.leveenergia.com.br/cadastro/`
         window.open(link, '_blank');
 
     }

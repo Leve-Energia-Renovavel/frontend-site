@@ -381,6 +381,13 @@ export const HistoryContainer = styled.div`
 export const HistorySpendingContainer = styled.div`
     display: flex;
     flex-direction: column;
+
+    .notFoundHistorySpending {
+      font-weight: 500;
+      font-size: 1.5rem;
+      white-space: nowrap;
+      color: ${background.blueLeve};
+    }
 `
 export const HistorySpendingGrid = styled.div`
     display: grid;

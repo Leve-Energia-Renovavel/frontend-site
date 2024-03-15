@@ -21,11 +21,11 @@ export default function MobileHeader(props) {
 
     const headerHelper = {
         '/': false,
-        '/register': false,
-        '/dashboard': true,
-        '/profile': true,
-        '/invoices': true,
-        '/installations': true,
+        '/register/': false,
+        '/dashboard/': true,
+        '/profile/': true,
+        '/invoices/': true,
+        '/installations/': true,
     }
 
     const isLoggedUser = headerHelper[pathname];

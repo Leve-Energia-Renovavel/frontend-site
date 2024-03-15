@@ -24,19 +24,18 @@ export default function Header() {
 
     const homeUrl = "https://wp-homolog.leveenergia.com.br/"
 
-
     const headerHelper = {
         '/': false,
-        '/register': false,
-        '/dashboard': true,
-        '/profile': true,
-        '/invoices': true,
-        '/installations': true,
+        '/register/': false,
+        '/dashboard/': true,
+        '/profile/': true,
+        '/invoices/': true,
+        '/installations/': true,
     }
 
-    const isLoggedUser = headerHelper[pathname];
-
     const mobileWidth = 900
+
+    const isLoggedUser = headerHelper[pathname]
 
     useEffect(() => {
         const handleResize = () => {
@@ -125,7 +124,7 @@ export default function Header() {
                     </LogoContainer>
                     <MenuBurguer onClick={() => setMenuOpen(!isMenuOpen)} />
                     {isMenuOpen && (
-                        <MobileHeader isMenuOpen={isMenuOpen} closeMenu={closeMobileMenu} openModal={openLoginModal} closeModal={closeLoginModal}/>
+                        <MobileHeader isMenuOpen={isMenuOpen} closeMenu={closeMobileMenu} openModal={openLoginModal} closeModal={closeLoginModal} />
                     )}
                 </MobileHeaderContainer>
             )}

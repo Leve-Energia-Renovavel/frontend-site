@@ -1,13 +1,13 @@
 import { useStoreAddress, useStoreCompany, useStoreInstallations, useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Box, Select } from "@mui/material";
+import Cookies from 'js-cookie';
 import Image from 'next/image';
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
 import logo from "../../../../resources/img/logo-header.png";
 import HeaderButton from '../utils/buttons/HeaderButton';
 import { HeaderMenuItem, LogoContainer, MenuItem, Nav, Ul, installationFieldStyle } from "./styles";
-import Cookies from 'js-cookie';
 
 export default function LoggedUserHeader() {
     const router = useRouter()
@@ -55,7 +55,7 @@ export default function LoggedUserHeader() {
                             sx={installationFieldStyle}>
                             <HeaderMenuItem value={10} style={{ display: 'none' }}
                             >
-                                <span onClick={() => router.push("/dashboard")}>
+                                <span className="mainInstallation" onClick={() => router.push("/dashboard")} style={{ fontSize: "1.2rem" }}>
                                     {/* {mainInstallation ? (`${mainInstallation?.address}, ${mainInstallation?.number}`) : "Minha instalação"} */}
                                     {mainInstallation.address !== "" ? mainInstallation.address : mainAddress ? mainAddress : "Minha instalação"}
                                 </span>
