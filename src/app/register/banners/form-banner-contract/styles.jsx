@@ -8,13 +8,13 @@ export const FormBannerContainer = styled.div`
   background-color: ${background.light};
   
   @media (min-width: 2000px) and (max-width: 2150px) {
-    padding: 17rem;
+    padding: 20rem;
   }
   @media (max-width: 2000px) {
-    padding: 17rem;
+    padding: 20rem;
   }
   @media (max-width: 1800px) {
-    padding: 17rem;
+    padding: 18rem;
   }
   @media (max-width: 1300px) {
     padding: 20rem;
