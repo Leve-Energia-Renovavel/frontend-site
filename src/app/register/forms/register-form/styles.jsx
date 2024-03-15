@@ -26,15 +26,18 @@ export const FormContainer = styled.div`
   background-color: ${background.light};
   
   position: absolute;
-  top: 40rem;
+  top: 80rem;
   left: 50vw;
   transform: translate(-50%, -50%);
   z-index: 100;
   
   width: 60vw;
 
-  @media (min-width: 2000px) and (max-width: 2150px) {
-    top: 50rem;
+  @media (max-width: 2400px) {
+    top: 80rem;
+  }
+  @media (max-width: 2150px) {
+    top: 80rem;
   }
 
   @media (max-width: 2000px) {

@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
-
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useStoreAddress, useStoreUser } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import axios from "axios";
@@ -13,7 +12,6 @@ import RegisterForm from "../forms/register-form/RegisterForm";
 import ResultEconomy from "../result-economy/ResultEconomy";
 
 export default function RegisterMain() {
-
     const search = useSearchParams()
     const store = useStoreUser()
     const storeAddress = useStoreAddress()
@@ -39,7 +37,7 @@ export default function RegisterMain() {
                     const distribuidora = userResponse?.data?.distribuidora
                     const consumidor = userResponse?.data?.instalacao?.consumidor
 
-                    const cep = consumidor?.cep
+                    const cep = consumidor.cep
 
                     const updatedUser = {
                         name: consumidor?.nome + " " + consumidor?.sobrenome,
@@ -48,7 +46,7 @@ export default function RegisterMain() {
                         cost: instalacao?.valor_base_consumo,
                         cep: cep,
 
-                        isCompany: consumidor.type == "PJ",
+                        isCompany: consumidor.type == "PJ" ? true : false,
 
                         discount: instalacao?.desconto,
                         clientId: instalacao?.clientes_id,
@@ -58,7 +56,7 @@ export default function RegisterMain() {
                     }
 
                     store.updateUser(updatedUser);
-                    Cookies.set('leveIsCompany', consumidor.type == "PJ")
+                    Cookies.set('leveIsCompany', consumidor.type == "PJ" ? true : false)
                     Cookies.set('leveUser', JSON.stringify(updatedUser))
 
                     const updatedAddress = {
@@ -103,7 +101,7 @@ export default function RegisterMain() {
             <RegisterBannerSuccess />
             <ResultEconomy />
             <FormBanner />
-            <RegisterForm />
+            <RegisterForm suppressHydrationWarning={true} />
         </>
     )
 }

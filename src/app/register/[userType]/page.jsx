@@ -1,4 +1,3 @@
-import { usePathname } from "next/navigation";
 import RegisterMain from "./RegisterMain";
 
 export function generateStaticParams() {
@@ -17,13 +16,10 @@ export function getStaticPaths() {
 
 export default function Register() {
 
-
-
-
     return (
-        <div>
+        <>
             <RegisterMain />
-        </div>
+        </>
     )
 }
 

@@ -37,6 +37,7 @@ export default function RegisterForm() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isForeigner, setIsForeigner] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [isCompany, setIsCompany] = useState(false);
 
     const [socialContractFile, setSocialContractFile] = useState(null);
     const [energyExtractFile, setEnergyExtractFile] = useState(null);
@@ -44,11 +45,13 @@ export default function RegisterForm() {
     const [notifications, setNotifications] = useState([])
 
     const uuid = store.user.uuid || Cookies.get('leveUUID')
-    const isCompany = store.user.isCompany
 
-    const user = Cookies.get('leveUser') ? JSON.parse(Cookies.get('leveUser')) : store.user
+    const user = store.user || JSON.parse(Cookies.get('leveUser'))
 
     const { name, email, phone, cep, companyName, cost, distributor } = user
+
+    const userIsCompany = user.isCompany
+
     const { street, neighborhood, city, state, stateId, cityId } = storeAddress.address
     const company = useStoreCompany().company
 
@@ -278,6 +281,14 @@ export default function RegisterForm() {
     }, [storeAddress, hasDataCookies])
 
 
+    useEffect(() => {
+        const cookies = Cookies.get("leveIsCompany")
+        if (cookies || userIsCompany) {
+            setIsCompany(true)
+        }
+    }, [])
+
+
     const handleChangeState = (value) => {
         setStateValue(stateOptions[value])
         addressRefs.address.current.value = ""
@@ -316,47 +327,63 @@ export default function RegisterForm() {
 
     return (
         <>
-            <FormContainer>
+            <FormContainer isCompany={userIsCompany}>
                 <FormHeader>
                     <RegisterFormTitle />
                     <RegisterFormProgress />
                 </FormHeader>
                 <FormContent acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
-                    {isCompany ? (
-                        <>
-                            <FormRow>
-                                <TextField className="formInput" defaultValue={company.razao_social || ''} inputRef={companyRefs.razao_social} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" InputLabelProps={{ shrink: true }} required />
-                                <InputMask mask="99.999.999/9999-99">
-                                    {() => <TextField className="formInput" inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text" required
-                                        InputProps={{
-                                            endAdornment: <SearchIcon
-                                                sx={{ cursor: 'pointer' }}
-                                                onClick={() => fetchCNPJ(companyRefs.cnpj.current.value)} />,
-                                        }} />}
-                                </InputMask>
-                            </FormRow>
-                            <FormRow>
-                                <TextField className="formInput" inputRef={userRefs.name} defaultValue={name || ''} label="Nome Completo do Responsável" variant="outlined" placeholder="Nome Completo do Responsável" type="text" InputLabelProps={{ shrink: true }} required />
-                                <TextField inputRef={userRefs.email} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" InputLabelProps={{ shrink: true }} required />
-                            </FormRow>
-                            <InputMask mask="(99) 99999-9999" value={formatPhoneNumber(company.phone) || ""} onChange={(e) => storeCompany.updateCompany({ phone: e.target.value })}>
-                                {() => <TextField inputRef={userRefs.phone} className="formInput" label="Telefone do Responsável" variant="outlined" placeholder="Telefone do Responsável" type="text" InputLabelProps={{ shrink: true }} required />}
+                    {isCompany && (
+                        <FormRow suppressHydrationWarning={true}>
+                            <TextField className="formInput" defaultValue={company.razao_social || ''} inputRef={companyRefs.razao_social} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" InputLabelProps={{ shrink: true }} required />
+                            <InputMask mask="99.999.999/9999-99">
+                                {() => <TextField className="formInput" inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text" required
+                                    InputProps={{
+                                        endAdornment: <SearchIcon
+                                            sx={{ cursor: 'pointer' }}
+                                            onClick={() => fetchCNPJ(companyRefs.cnpj.current.value)} />,
+                                    }} />}
                             </InputMask>
+                        </FormRow>)}
+                    <FormRow>
+                        <TextField
+                            className="formInput"
+                            inputRef={userRefs.name}
+                            defaultValue={name || ''}
+                            label={`Nome Completo ${isCompany ? 'do Responsável' : ''}`}
+                            variant="outlined"
+                            placeholder={`Nome Completo ${isCompany ? 'do Responsável' : ''}`}
+                            type="text"
+                            InputLabelProps={{ shrink: true }}
+                            required
+                        />
+                        <TextField
+                            inputRef={userRefs.email}
+                            defaultValue={email || ''}
+                            className="formInput"
+                            label={`Email ${isCompany ? 'do Responsável' : ''}`}
+                            variant="outlined"
+                            placeholder={`Email ${isCompany ? 'do Responsável' : ''}`}
+                            type="text"
+                            InputLabelProps={{ shrink: true }}
+                            required
+                        />
+                    </FormRow>
 
-                        </>
-                    ) : (
-                        <>
-                            <FormRow>
-                                <TextField inputRef={userRefs.name} defaultValue={name || ''} className="formInput" label="Nome Completo" variant="outlined" placeholder="Nome Completo" type="text" required InputLabelProps={{ shrink: true }} />
-                                <TextField inputRef={userRefs.email} defaultValue={email || ''} className="formInput" label="Email" variant="outlined" placeholder="Email" type="text" required InputLabelProps={{ shrink: true }} />
-                            </FormRow>
-
-                            <InputMask mask="(99) 99999-9999" required value={formatPhoneNumber(phone) || ""} onChange={(e) => store.updateUser({ phone: e.target.value })}>
-                                {() => <TextField
-                                    inputRef={userRefs.phone} className="formInput" label="Celular" placeholder="Celular" variant="outlined" type="text" InputLabelProps={{ shrink: true }} required />}
-                            </InputMask>
-                        </>
-                    )}
+                    <InputMask mask="(99) 99999-9999" value={formatPhoneNumber(phone) || ""} onChange={(e) => storeCompany.updateCompany({ phone: e.target.value })}>
+                        {() => (
+                            <TextField
+                                inputRef={userRefs.phone}
+                                className="formInput"
+                                label={`Telefone ${isCompany ? 'do Responsável' : ''}`}
+                                variant="outlined"
+                                placeholder={`Telefone ${isCompany ? 'do Responsável' : ''}`}
+                                type="text"
+                                InputLabelProps={{ shrink: true }}
+                                required
+                            />
+                        )}
+                    </InputMask>
                     {isForeigner ?
                         (<InputMask mask="*******-*" required >
                             {() => <TextField inputRef={userRefs.rg} className="formInput" label="RNE" variant="outlined" placeholder="RNE" type="text" InputLabelProps={{ shrink: true }} required />}
@@ -446,8 +473,7 @@ export default function RegisterForm() {
                     <TextField
                         className="formInput"
                         inputRef={userRefs.cost}
-                        value={userCost}
-                        // defaultValue={cost.toFixed(2).replace(".", ",") || ''}
+                        value={userCost || user.cost || ""}
                         onChange={(event) => handleChangeUserCost(event)}
                         label="Custo Mensal em R$"
                         variant="outlined"
@@ -461,7 +487,7 @@ export default function RegisterForm() {
                     </div> */}
 
                     <InputMask mask="99999-999"
-                        defaultValue={store.user.cep ? store.user.cep : ""}
+                        defaultValue={user.cep ? user.cep : ""}
                         onChange={(e) => store.updateUser({ cep: e.target.value })}>
                         {() => <TextField
                             className="formInput"

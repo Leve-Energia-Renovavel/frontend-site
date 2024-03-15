@@ -12,7 +12,7 @@ export const useStoreUser = create((set) => ({
         companyName: "",
 
         discount: 0,
-        isCompany: false,
+        isCompany: null,
         isLowCost: false,
         isOutOfRange: false,
 
