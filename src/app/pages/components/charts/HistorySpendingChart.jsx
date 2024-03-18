@@ -41,10 +41,12 @@ export default function HistorySpendingChart() {
     }, {});
 
     // Convert aggregated data into arrays for chart
-    const chartData = Object.keys(aggregatedData).map(dueDate => ({
-        category: dueDate,
-        value: aggregatedData[dueDate]
-    }));
+    const chartData = Object.keys(aggregatedData)
+        .slice(-12)
+        .map(dueDate => ({
+            category: dueDate,
+            value: aggregatedData[dueDate]
+        }));
 
     return (
         <>

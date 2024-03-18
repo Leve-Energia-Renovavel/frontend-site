@@ -349,4 +349,29 @@ export const useStoreBillingHistory = create((set) => ({
 export const useStoreCookies = create((set) => ({
     hasDataCookies: false,
     setDataCookies: () => set({ hasDataCookies: true }),
-}));
+}))
+
+
+
+useStoreNextBills.subscribe(
+    ({ nextBills, exists }) => {
+        localStorage.setItem('nextBills', JSON.stringify(nextBills));
+        localStorage.setItem('exists', JSON.stringify(exists));
+    },
+    state => ({ nextBills: state.nextBills, exists: state.exists })
+);
+
+useStoreUserEconomy.subscribe(
+    ({ userEconomy }) => {
+        localStorage.setItem('userEconomy', JSON.stringify(userEconomy));
+    },
+    state => state.userEconomy
+);
+
+
+useStoreBillingHistory.subscribe(
+    ({ billings }) => {
+        localStorage.setItem('billingHistory', JSON.stringify(billings));
+    },
+    state => state.billings
+);

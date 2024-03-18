@@ -106,6 +106,8 @@ export default function DashboardMain() {
                     }
 
                     storeMainInstallation.updateMainInstallation(updatedMainInstallation)
+                    Cookies.set('leveMainInstallation', JSON.stringify(updatedMainInstallation))
+
                     storeInstallations.addInstallation(updatedMainInstallation);
 
                     outrasInstalacoes?.forEach(installation => {
@@ -118,6 +120,8 @@ export default function DashboardMain() {
 
                         storeInstallations.addInstallation(otherInstallation);
                     });
+
+                    Cookies.set('leveAllInstallations', JSON.stringify(installations))
 
                     ciclosConsumo?.forEach(bill => {
                         const newBilling = {
@@ -139,16 +143,23 @@ export default function DashboardMain() {
                         if (billHasToBePaid[newBilling.status]) {
                             storeNextBills.updateExists(true)
                             storeNextBills.addNextBill(newBilling)
+                            Cookies.set('leveNextBillExists', true)
+                            Cookies.set('leveNextBills', JSON.stringify(newBilling))
                         }
                     })
 
-                    storeEconomy.updateUserEconomy({
+                    Cookies.set('leveAllBillings', JSON.stringify(billings))
+
+                    const updatedUserEconomy = {
                         economySince: formatDate(consumidor?.created_at),
                         value: economia,
                         carbonCredits: carbonCredits?.toFixed(2),
                         receivedCredits: receivedCredits?.toFixed(2),
+                    }
 
-                    })
+                    storeEconomy.updateUserEconomy(updatedUserEconomy)
+                    Cookies.set('leveUserEconomy', JSON.stringify(updatedUserEconomy))
+
 
                 } else {
                     console.error("Failed to fetch dashboard data");

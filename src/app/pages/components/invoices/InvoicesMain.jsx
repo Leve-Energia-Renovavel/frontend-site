@@ -3,19 +3,40 @@
 import { useStoreBillingHistory, useStoreNextBills } from '@/app/hooks/useStore';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import { Typography } from '@mui/material';
-import Timeline from '../timeline/Timeline';
+import dynamic from 'next/dynamic';
 import FormButton from '../utils/buttons/FormButton';
 import { InvoiceContainer as Container, InvoicesMainCardContainer, InvoicesMainContainer, InvoicesTimelineContainer, NextBillButtonContainer, NextBillDetail, NextBillTitleContainer } from './styles';
 
+const Timeline = dynamic(() => import('../timeline/Timeline'), { ssr: false });
+
+
 export default function InvoicesMain() {
 
-    const billings = useStoreBillingHistory().billings
+    const storeBilling = useStoreBillingHistory().billings
+    const billings = JSON.parse(localStorage.getItem('billingHistory')) || storeBilling
+
     const nextBill = billings[0]
 
     const storeNextBill = useStoreNextBills()
+    const nextBillExists = JSON.parse(localStorage.getItem('exists') || false);
+
 
     const handlePayBill = (url) => {
         window.open(url, '_blank');
+    }
+
+    function getReferenceMonth(dueDate) {
+        const dateParts = dueDate.split('/');
+        const day = parseInt(dateParts[0], 10);
+        const month = parseInt(dateParts[1], 10);
+        const year = parseInt(dateParts[2], 10);
+        const parsedDate = new Date(year, month - 1, day);
+
+        parsedDate.setMonth(parsedDate.getMonth() - 1);
+
+        const monthBefore = `${parsedDate.getMonth() + 1 < 10 ? '0' : ''}${parsedDate.getMonth() + 1}/${parsedDate.getFullYear()}`;
+
+        return monthBefore;
     }
 
     return (
@@ -23,12 +44,12 @@ export default function InvoicesMain() {
             <InvoicesMainContainer>
                 <Typography variant='h1'>Suas Faturas</Typography>
                 <InvoicesMainCardContainer>
-                    {storeNextBill.exists ? (
+                    {nextBillExists ? (
                         <>
                             <NextBillTitleContainer>
                             </NextBillTitleContainer>
                             <NextBillDetail>
-                                <Typography className="referenceMonth">01/2024</Typography>
+                                <Typography className="referenceMonth">{getReferenceMonth(nextBill.dueDate)}</Typography>
                                 <Typography className="billValue">R$ {nextBill?.value.toString().replace('.', ',')}</Typography>
                             </NextBillDetail>
                             <NextBillDetail>

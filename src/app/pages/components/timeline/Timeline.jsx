@@ -2,26 +2,16 @@
 
 import { useStoreBillingHistory } from '@/app/hooks/useStore';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
-import { statusHelper } from '@/app/utils/helper/StyleHelpers';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';
-import Timeline from '@mui/lab/Timeline';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineDot from '@mui/lab/TimelineDot';
-import TimelineItem from '@mui/lab/TimelineItem';
-import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
-import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import { Typography } from '@mui/material';
-import { background, statusColors } from '../../styles';
-import NewInstallationButton from '../utils/buttons/NewInstallationButton';
-import { TimelineItemStyled, TimelineOppositeContentStyled, TimelineStyled, TimelineContentButtonContainer, TimelineContentContainer, TimelineSeparatorStyled, TimelineConnectorStyled, TimelineDotStyled, TimelineContentStyled, TimelineDiv, TimelineDueDateDiv, DueDateContainer, DueDate } from './styles';
 import TimelineButton from '../utils/buttons/TimelineButton';
+import { DueDate, DueDateContainer, TimelineConnectorStyled, TimelineContentButtonContainer, TimelineContentContainer, TimelineContentStyled, TimelineDiv, TimelineDotStyled, TimelineDueDateDiv, TimelineItemStyled, TimelineOppositeContentStyled, TimelineSeparatorStyled, TimelineStyled } from './styles';
 
 export default function TimelineMain() {
 
-    const storeBilling = useStoreBillingHistory()
-    const billings = useStoreBillingHistory().billings
+    const storeBilling = useStoreBillingHistory().billings
+    const billings = JSON.parse(localStorage.getItem('billingHistory')) || storeBilling
 
     const checkInvoice = (url) => {
         window.open(url, '_blank');
@@ -60,7 +50,7 @@ export default function TimelineMain() {
                                     </TimelineDiv>
 
                                     <TimelineContentButtonContainer>
-                                        <TimelineButton text="Ver Fatura" onClick={() => checkInvoice(invoice.urlBill)}/>
+                                        <TimelineButton text="Ver Fatura" onClick={() => checkInvoice(invoice.urlBill)} />
                                         {/* <NewInstallationButton text="Ver Fatura" onClick={() => checkInvoice(invoice.urlBill)} /> */}
                                     </TimelineContentButtonContainer>
                                 </TimelineContentContainer>

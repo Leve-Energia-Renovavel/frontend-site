@@ -10,6 +10,7 @@ import { ClicksignWidgetContainer } from './styles';
 import Cookies from 'js-cookie';
 
 export default function ClicksignWidget() {
+    
     const router = useRouter()
 
     const storeClicksign = useStoreClickSign()

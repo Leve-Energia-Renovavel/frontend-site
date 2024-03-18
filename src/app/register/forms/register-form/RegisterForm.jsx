@@ -196,7 +196,7 @@ export default function RegisterForm() {
                 nationality: submitData.nacionalidade,
             });
 
-            storeAddress.updateAddress({
+            const updatedAddress = {
                 street: submitData.endereco,
                 number: submitData.numero,
                 neighborhood: submitData.bairro,
@@ -204,8 +204,10 @@ export default function RegisterForm() {
                 state: addressRefs.state.current.value,
                 cep: submitData.cep,
                 installationNumber: submitData.numero_instalacao,
+            }
 
-            })
+            storeAddress.updateAddress(updatedAddress)
+            Cookies.set('leveAddress', JSON.stringify(updatedAddress))
 
             router.push(`/register/contract-signature`)
         } else {
@@ -266,8 +268,8 @@ export default function RegisterForm() {
             userRefs.nationality.current.value = submitData.nacionalidade
             userRefs.profession.current.value = submitData.profissao
             userRefs.maritalStatus.current.value = submitData.estado_civil
-            userRefs.cost.current.value = submitData.valor
-            userRefs.cpf.current.value = submitData.cpf
+            userRefs.cost.current.value = submitData.valor ? submitData.valor : store.user.cost
+            userRefs.cpf.current.value = submitData.cpf ? submitData.cpf : store.user.cpf
 
             addressRefs.addressCep.current.value = submitData.cep
             addressRefs.address.current.value = submitData.endereco
