@@ -8,9 +8,8 @@ export default function ContractAuthentication() {
 
     return (
         <>
-            <AlmostThere />
-            <ContractAuthForm />
-            <FormBannerContract />
+            {/* <ContractAuthForm />
+            <FormBannerContract /> */}
         </>
     );
 }
