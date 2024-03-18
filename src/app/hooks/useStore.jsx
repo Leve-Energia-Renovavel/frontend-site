@@ -351,6 +351,21 @@ export const useStoreCookies = create((set) => ({
     setDataCookies: () => set({ hasDataCookies: true }),
 }))
 
+const createLocalStorageSubscription = (store, key) => {
+    store.subscribe(
+        state => {
+            localStorage.setItem(key, JSON.stringify(state));
+        },
+        state => state
+    );
+};
+
+createLocalStorageSubscription(useStoreUser, 'user');
+createLocalStorageSubscription(useStoreAddress, 'address');
+createLocalStorageSubscription(useStoreCompany, 'company');
+createLocalStorageSubscription(useStoreClickSign, 'clickSign');
+createLocalStorageSubscription(useStoreMainInstallation, 'mainInstallation');
+createLocalStorageSubscription(useStoreInstallations, 'installations');
 
 
 useStoreNextBills.subscribe(

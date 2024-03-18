@@ -37,7 +37,7 @@ export default function RegisterForm() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isForeigner, setIsForeigner] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [isCompany, setIsCompany] = useState(false);
+    // const [isCompany, setIsCompany] = useState(false);
 
     const [socialContractFile, setSocialContractFile] = useState(null);
     const [energyExtractFile, setEnergyExtractFile] = useState(null);
@@ -46,11 +46,11 @@ export default function RegisterForm() {
 
     const uuid = store.user.uuid || Cookies.get('leveUUID')
 
-    const user = store.user || JSON.parse(Cookies.get('leveUser'))
+    const user = JSON.parse(localStorage.getItem('user')) || store.user
 
-    const { name, email, phone, cep, companyName, cost, distributor } = user
+    const isCompany = user.user.isCompany
 
-    const userIsCompany = user.isCompany
+    const { name, email, phone, cep, companyName, cost, distributor } = user.user
 
     const { street, neighborhood, city, state, stateId, cityId } = storeAddress.address
     const company = useStoreCompany().company
@@ -283,14 +283,6 @@ export default function RegisterForm() {
     }, [storeAddress, hasDataCookies])
 
 
-    useEffect(() => {
-        // const cookies = Cookies.get("leveIsCompany")
-        if (userIsCompany) {
-            setIsCompany(true)
-        }
-    }, [])
-
-
     const handleChangeState = (value) => {
         setStateValue(stateOptions[value])
         addressRefs.address.current.value = ""
@@ -329,7 +321,7 @@ export default function RegisterForm() {
 
     return (
         <>
-            <FormContainer isCompany={userIsCompany}>
+            <FormContainer isCompany={isCompany}>
                 <FormHeader>
                     <RegisterFormTitle />
                     <RegisterFormProgress />

@@ -1,5 +1,6 @@
 "use client"
 /* eslint-disable react-hooks/exhaustive-deps */
+import dynamic from "next/dynamic";
 import { useStoreAddress, useStoreUser } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import axios from "axios";
@@ -9,7 +10,10 @@ import { useEffect } from "react";
 import RegisterBannerSuccess from "../banners/banner-success/RegisterBanner";
 import FormBanner from "../banners/form-banner/FormBanner";
 import RegisterForm from "../forms/register-form/RegisterForm";
-import ResultEconomy from "../result-economy/ResultEconomy";
+// import ResultEconomy from "../result-economy/ResultEconomy";
+
+const ResultEconomy = dynamic(() => import('../result-economy/ResultEconomy'), { ssr: false });
+
 
 export default function RegisterMain() {
     const search = useSearchParams()
@@ -57,8 +61,6 @@ export default function RegisterMain() {
                     }
 
                     store.updateUser(updatedUser);
-                    // Cookies.set('leveIsCompany', consumidor.type == "PJ" ? true : false)
-                    Cookies.set('leveUser', JSON.stringify(updatedUser))
 
                     const updatedAddress = {
                         cityId: consumidor?.cidade_id,
@@ -66,7 +68,10 @@ export default function RegisterMain() {
                     }
 
                     storeAddress.updateAddress(updatedAddress)
-                    Cookies.set('leveAddress', JSON.stringify(updatedAddress))
+
+                    // Cookies.set('leveIsCompany', consumidor.type == "PJ" ? true : false)
+                    // Cookies.set('leveUser', JSON.stringify(updatedUser))
+                    // Cookies.set('leveAddress', JSON.stringify(updatedAddress))
 
                     const addressResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, {
                         params: { cep: cep },
@@ -85,7 +90,7 @@ export default function RegisterMain() {
                         }
 
                         storeAddress.updateAddress(updatedFullAddress)
-                        Cookies.set('leveAddress', JSON.stringify(updatedFullAddress))
+                        // Cookies.set('leveAddress', JSON.stringify(updatedFullAddress))
 
                     }
                 }

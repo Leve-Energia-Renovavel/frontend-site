@@ -1,5 +1,6 @@
+import dynamic from "next/dynamic";
 import BlankBanner from "./pages/components/banners/blank-banner/BlankBanner";
-import RegisterMain from "./register/[userType]/RegisterMain";
+const RegisterMain = dynamic(() => import("./register/[userType]/RegisterMain"), { ssr: false });
 
 export default function Home() {
 
