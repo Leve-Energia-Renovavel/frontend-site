@@ -57,7 +57,7 @@ export default function RegisterMain() {
                     }
 
                     store.updateUser(updatedUser);
-                    Cookies.set('leveIsCompany', consumidor.type == "PJ" ? true : false)
+                    // Cookies.set('leveIsCompany', consumidor.type == "PJ" ? true : false)
                     Cookies.set('leveUser', JSON.stringify(updatedUser))
 
                     const updatedAddress = {
