@@ -1,3 +1,5 @@
+import Cookies from "js-cookie";
+
 export const loadBrowserInfos = () => {
     const browserInfo = {
         name: window.navigator.userAgent,
@@ -16,7 +18,7 @@ export const clearBrowserData = () => {
     for (const cookie in cookies) {
         Cookies.remove(cookie);
     }
-    
+
     if (typeof window !== 'undefined') {
         localStorage.clear();
     }

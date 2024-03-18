@@ -9,11 +9,10 @@ import { notFound, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import RegisterBannerSuccess from "../banners/banner-success/RegisterBanner";
 import FormBanner from "../banners/form-banner/FormBanner";
-import RegisterForm from "../forms/register-form/RegisterForm";
 import { clearBrowserData } from "@/app/utils/browser/BrowserUtils";
 
 const ResultEconomy = dynamic(() => import('../result-economy/ResultEconomy'), { ssr: false });
-
+const RegisterForm = dynamic(() => import('../forms/register-form/RegisterForm'), { ssr: false });
 
 export default function RegisterMain() {
     const search = useSearchParams()
@@ -37,7 +36,6 @@ export default function RegisterMain() {
             try {
                 const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
                 console.log("userResponse ===>>", userResponse)
-                console.log("USER TYPE ===>>", userResponse.data.instalacao.consumidor.type)
                 if (requestSuccessful(userResponse.status)) {
 
                     const instalacao = userResponse?.data?.instalacao
@@ -71,10 +69,6 @@ export default function RegisterMain() {
 
                     storeAddress.updateAddress(updatedAddress)
 
-                    // Cookies.set('leveIsCompany', consumidor.type == "PJ" ? true : false)
-                    // Cookies.set('leveUser', JSON.stringify(updatedUser))
-                    // Cookies.set('leveAddress', JSON.stringify(updatedAddress))
-
                     const addressResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, {
                         params: { cep: cep },
                         withCredentials: false
@@ -92,7 +86,6 @@ export default function RegisterMain() {
                         }
 
                         storeAddress.updateAddress(updatedFullAddress)
-                        // Cookies.set('leveAddress', JSON.stringify(updatedFullAddress))
 
                     }
                 }
