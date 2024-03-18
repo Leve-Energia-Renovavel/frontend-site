@@ -11,6 +11,7 @@ import { ButtonContainer, Form, FormContainer, FormContent, FormHeader, SimpleFo
 import { useStoreUser } from "@/app/hooks/useStore";
 import axios from "axios";
 import { requestSuccessful } from "@/app/service/utils/Validations";
+import Cookies from "js-cookie";
 
 export default function SuccessForm() {
     const router = useRouter()
@@ -43,7 +44,7 @@ export default function SuccessForm() {
 
     const handleFinishSignup = async () => {
         try {
-            const data = { uuid: user.uuid }
+            const data = { uuid: Cookies.get("leveUUID") }
             const response = await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/finalizar-cadastro`, data)
             if (requestSuccessful(response.status)) {
                 Cookies.set('accessToken', response.data.access_token)

@@ -7,12 +7,16 @@ import useGetCNPJ from "@/app/hooks/utils/useGetCNPJ";
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
 import { signUp } from "@/app/service/user-service/UserService";
 import { hasToSignContract, requestSuccessful } from "@/app/service/utils/Validations";
+import { findCityIdByName } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
+import { allCities } from "@/app/utils/form-options/citiesOptions";
 import { maritalStatusOptions, nationalityOptions, professionOptions } from "@/app/utils/form-options/formOptions";
+import { statesAcronymOptions } from "@/app/utils/form-options/statesIdOptions";
 import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, Button, CircularProgress, Divider, MenuItem, Snackbar, TextField, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, MenuItem, Snackbar, TextField, Typography } from "@mui/material";
+import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
@@ -21,10 +25,6 @@ import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { companySchema, userSchema } from "./schema";
 import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, SnackbarMessageAlert, SnackbarMessageNotification, fileInputStyles } from "./styles";
-import { allCities } from "@/app/utils/form-options/citiesOptions";
-import { FixedSizeList as List } from 'react-window';
-import Cookies from "js-cookie";
-import { statesAcronymOptions } from "@/app/utils/form-options/statesIdOptions";
 
 export default function RegisterForm() {
 
@@ -58,9 +58,9 @@ export default function RegisterForm() {
     const [userCost, setUserCost] = useState(cost || null)
     const [stateValue, setStateValue] = useState(stateOptions[stateId] || stateOptions[(statesAcronymOptions[state])] || null);
 
-    const meuID = stateValue?.cod_estados || 26
+    const estadoID = stateValue?.cod_estados || 26
 
-    const allCitiesByState = allCities.filter(city => city.hasOwnProperty(meuID)).map(city => city[meuID]);
+    const allCitiesByState = allCities.filter(city => city.hasOwnProperty(estadoID)).map(city => city[estadoID]);
 
     const fetchCEP = useGetCEP();
     const fetchCNPJ = useGetCNPJ();
@@ -137,8 +137,8 @@ export default function RegisterForm() {
             numero: parseFloat(addressRefs.addressNumber.current.value.replace(/[^0-9.]/g, "")),
             bairro: addressRefs.neighborhood.current.value,
             complemento: addressRefs.complement.current.value,
-            estado_id: storeAddress.address.stateId,
-            cidade_id: storeAddress.address.cityId,
+            estado_id: storeAddress.address.stateId || stateValue.cod_estados,
+            cidade_id: storeAddress.address.cityId || await findCityIdByName(addressRefs.city.current.value),
             valor: parseInt(userRefs.cost.current.value.replace(/[^0-9]/g, ""), 10) / 100,
             rg: userRefs.rg.current.value,
             data_nascimento: userRefs.birthDate.current.value,
@@ -152,6 +152,8 @@ export default function RegisterForm() {
             submitData["razao_social"] = companyRefs.razao_social.current.value
             submitData["cnpj"] = companyRefs.cnpj.current.value
         }
+
+        console.log("submitData --->>>", submitData)
 
         setDataCookies();
 
@@ -184,7 +186,12 @@ export default function RegisterForm() {
 
             router.push(`/register/contract-signature`)
         } else {
-            setValidationErrors([response?.response?.data?.message])
+            if (!response?.response?.data?.message) {
+                setValidationErrors(response)
+            } else {
+                setValidationErrors([response.response.data.message])
+
+            }
         }
 
         setIsLoading(false)
@@ -308,7 +315,7 @@ export default function RegisterForm() {
                         />
                     </FormRow>
 
-                    <InputMask mask="(99) 99999-9999" value={formatPhoneNumber(phone) || ""} onChange={(e) => storeCompany.updateCompany({ phone: e.target.value })}>
+                    <InputMask mask="(99) 99999-9999" value={formatPhoneNumber(phone) || ""} onChange={(e) => store.updateUser({ phone: e.target.value })}>
                         {() => (
                             <TextField
                                 inputRef={userRefs.phone}
@@ -424,9 +431,7 @@ export default function RegisterForm() {
                         <Divider sx={{ width: '107px', border: '1px solid #A0A0A0' }} />
                     </div> */}
 
-                    <InputMask mask="99999-999"
-                        defaultValue={cep ? cep : ""}
-                        onChange={(e) => store.updateUser({ cep: e.target.value })}>
+                    <InputMask mask="99999-999" value={cep || ""} onChange={(e) => storeAddress.updateAddress({ cep: e.target.value })}>
                         {() => <TextField
                             className="formInput"
                             inputRef={addressRefs.addressCep}
