@@ -282,8 +282,8 @@ export default function RegisterForm() {
 
 
     useEffect(() => {
-        const cookies = Cookies.get("leveIsCompany")
-        if (cookies || userIsCompany) {
+        // const cookies = Cookies.get("leveIsCompany")
+        if (userIsCompany) {
             setIsCompany(true)
         }
     }, [])
