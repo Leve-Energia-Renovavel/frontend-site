@@ -1,10 +1,9 @@
-import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
+import styled from '@emotion/styled';
 
-import cemigLogo from '../../../../resources/img/cemig_logo.png'
-import cpflLogo from '../../../../resources/img/cpfl_logo.png'
-import leveLogo from '../../../../resources/img/leve-logo-blue.jpg'
 import Image from 'next/image';
+import cemigLogo from '../../../../resources/img/cemig_logo.png';
+import leveLogo from '../../../../resources/img/leve-logo-blue.jpg';
 
 
 const moveFirst = keyframes`

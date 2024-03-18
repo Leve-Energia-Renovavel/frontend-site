@@ -1,16 +1,16 @@
 "use client"
 
-import { Box, Modal, Typography } from '@mui/material';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import logo from "../../../../resources/img/logo-header.png";
+import LoginModal from '../login/LoginModal';
 import DefaultButton from '../utils/buttons/DefaultButton';
-import LoggedUserHeader from './LoggedUserHeader';
 import MobileHeader from './MobileHeader';
 import { ButtonContainer, HeaderContainer, LogoContainer, MenuBurguer, MenuItem, MobileHeaderContainer, Nav, NavContainer, Ul } from './styles';
-import LoginModal from '../login/LoginModal';
+const LoggedUserHeader = dynamic(() => import('./LoggedUserHeader'), { ssr: false });
 
 export default function Header() {
 

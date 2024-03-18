@@ -2,32 +2,32 @@
 
 import { useStoreInstallations } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
+import { findCityIdByName } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { statesAcronymOptions } from "@/app/utils/form-options/statesIdOptions";
 import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton, MenuItem, TextField, Typography } from "@mui/material";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
 import NewInstallationButtonConfirm from "../utils/buttons/NewInstallationButtonConfirm";
 import { ButtonContainer, InstallationsMainContainer as Container, FormContentNewInstallation, HomeIconStyled, InstallationsMainContent, MainInstallationInfoContainer as MainInstallationInfo, NewInstallationContent, TitleContainer, TitleIconsContainer } from "./styles";
-import Cookies from "js-cookie";
 
 export default function InstallationsMain() {
 
-    const router = useRouter()
-
     const storeInstallations = useStoreInstallations()
-    const installations = useStoreInstallations().installations
+    const allInstallations = JSON.parse(localStorage.getItem('installations')) || storeInstallations.installations
+    const installations = allInstallations.installations
 
     const [openForm, setOpenForm] = useState(false)
+    const [isMainEdition, setIsMainEdition] = useState(false)
+    const [isEdition, setIsEdition] = useState(false)
     const [installationCost, setInstallationCost] = useState()
 
     const [stateValue, setStateValue] = useState(null);
-
 
     const newInstallationRef = {
         address: useRef(null),
@@ -48,14 +48,14 @@ export default function InstallationsMain() {
         try {
             const response = await axios.get(url);
             console.log(response)
-            if (response?.status === 200) {
+            if (requestSuccessful(response.status)) {
                 newInstallationRef.address.current.value = response?.data.logradouro
                 newInstallationRef.neighborhood.current.value = response?.data.bairro
                 newInstallationRef.zipCode.current.value = response?.data.cep
                 newInstallationRef.city.current.value = response?.data.localidade
                 newInstallationRef.state.current.value = response?.data.uf
 
-                setStateValue(stateOptions[statesAcronymOptions[response?.data.uf]])
+                setStateValue(stateOptions[(statesAcronymOptions[response?.data.uf])])
 
             }
         } catch (error) {
@@ -78,8 +78,8 @@ export default function InstallationsMain() {
             valor_base_consumo: newInstallationRef.cost.current.value,
             numero_instalacao: newInstallationRef.installationNumber.current.value,
 
-            cidade_id: newInstallationRef.city.current.value,
-            estado_id: statesAcronymOptions[newInstallationRef.state.current.value],
+            cidade_id: await findCityIdByName(newInstallationRef.city.current.value, stateValue.cod_estados),
+            estado_id: stateValue.cod_estados,
         }
 
         console.log("add installation data ===>>", data)
@@ -116,16 +116,18 @@ export default function InstallationsMain() {
 
         setInstallationCost(newCost)
     }
-    const handleDeleteInstallation = (installation, index) => {
-        storeInstallations.deleteInstallation(index)
-    }
+    // const handleDeleteInstallation = (installation, index) => {
+    //     storeInstallations.deleteInstallation(index)
+    // }
     const handleChangeState = (value) => {
         setStateValue(stateOptions[value])
     }
 
     return (
         <Container>
-            <Typography variant="h1">Meus Endereços</Typography>
+            <div style={{ marginLeft: '5rem' }}>
+                <Typography variant="h1">Meus Endereços</Typography>
+            </div>
             {installations.length >= 1 ?
                 (<>
                     {installations.map((installation, index) => {
@@ -136,17 +138,87 @@ export default function InstallationsMain() {
                                         <HomeIconStyled />
                                         <Typography variant="h2">{`Meu Endereço ${index === 0 ? "Principal" : ""}`}</Typography>
                                     </TitleIconsContainer>
-                                    {installations.length > 1 && <IconButton onClick={() => handleDeleteInstallation(installation, index)}>
+                                    {/* {installations.length > 1 && <IconButton onClick={() => handleDeleteInstallation(installation, index)}>
                                         <DeleteIcon className="deleteIcon" />
-                                    </IconButton>}
+                                    </IconButton>} */}
                                 </TitleContainer>
                                 <MainInstallationInfo>
-                                    <Typography variant="h3" className="mainAddress">{installation.address}</Typography>
-                                    <Typography variant="h3">{installation.city} - {installation.state}</Typography>
-                                    <Typography variant="h3">CEP: {installation.zipCode}</Typography>
+                                    <TextField
+                                        label="CEP"
+                                        value={`${installation.zipCode}`}
+                                        disabled={index === 0 ? !isMainEdition : !isEdition}
+                                        InputLabelProps={{ shrink: true }}
+                                    />
+                                    <TextField
+                                        label="Endereço"
+                                        className="mainAddress"
+                                        value={installation.address}
+                                        disabled={index === 0 ? !isMainEdition : !isEdition}
+                                        InputLabelProps={{ shrink: true }}
+
+                                    />
+                                    <TextField
+                                        label="Estado"
+                                        value={`${installation.state}`}
+                                        disabled={index === 0 ? !isMainEdition : !isEdition}
+                                        InputLabelProps={{ shrink: true }}
+
+                                    />
+                                    <TextField
+                                        label="Cidade"
+                                        value={`${installation.city}`}
+                                        disabled={index === 0 ? !isMainEdition : !isEdition}
+                                        InputLabelProps={{ shrink: true }}
+
+                                    />
+                                    <TextField
+                                        label="Bairro"
+                                        value={`${installation.city}`}
+                                        disabled={index === 0 ? !isMainEdition : !isEdition}
+                                        InputLabelProps={{ shrink: true }}
+
+                                    />
+                                    <TextField
+                                        label="Número de Instalação"
+                                        value={`${installation.city}`}
+                                        disabled={index === 0 ? !isMainEdition : !isEdition}
+                                        InputLabelProps={{ shrink: true }}
+
+                                    />
+
                                 </MainInstallationInfo>
                                 <ButtonContainer>
-                                    <NewInstallationButton text={`Editar Endereço ${index === 0 ? "Principal" : ""}`} onClick={() => router.push("/profile")} />
+                                    {index === 0 ? (
+                                        <>
+                                            {!isMainEdition && (
+                                                <NewInstallationButton
+                                                    text="Editar Endereço Principal"
+                                                    onClick={() => setIsMainEdition(true)}
+                                                />
+                                            )}
+                                            {isMainEdition && (
+                                                <NewInstallationButton
+                                                    text="Cancelar"
+                                                    onClick={() => setIsMainEdition(false)}
+                                                />
+                                            )}
+                                        </>
+                                    ) : (
+                                        <>
+                                            {!isEdition && (
+                                                <NewInstallationButton
+                                                    text="Editar Endereço"
+                                                    onClick={() => setIsEdition(true)}
+                                                />
+                                            )}
+                                            {isEdition && (
+                                                <NewInstallationButton
+                                                    text="Cancelar"
+                                                    onClick={() => setIsEdition(false)}
+                                                />
+                                            )}
+                                        </>
+                                    )}
                                 </ButtonContainer>
                             </InstallationsMainContent>
                         )
@@ -185,7 +257,6 @@ export default function InstallationsMain() {
                                 <TextField className="formInput" inputRef={newInstallationRef.addressComplement} label="Complemento" variant="outlined" placeholder="Complemento" type="text" />
                                 <TextField className="formInput" inputRef={newInstallationRef.neighborhood} label="Bairro" variant="outlined" placeholder="Bairro" type="text" InputLabelProps={{ shrink: true }} />
 
-                                {/* <TextField className="formInput" inputRef={newInstallationRef.state} label="Estado" variant="outlined" placeholder="Estado" type="text" InputLabelProps={{ shrink: true }} /> */}
                                 <TextField
                                     id="state"
                                     select

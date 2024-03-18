@@ -138,7 +138,7 @@ export default function RegisterForm() {
             bairro: addressRefs.neighborhood.current.value,
             complemento: addressRefs.complement.current.value,
             estado_id: storeAddress.address.stateId || stateValue.cod_estados,
-            cidade_id: storeAddress.address.cityId || await findCityIdByName(addressRefs.city.current.value),
+            cidade_id: storeAddress.address.cityId || await findCityIdByName(addressRefs.city.current.value, stateValue.cod_estados),
             valor: parseInt(userRefs.cost.current.value.replace(/[^0-9]/g, ""), 10) / 100,
             rg: userRefs.rg.current.value,
             data_nascimento: userRefs.birthDate.current.value,

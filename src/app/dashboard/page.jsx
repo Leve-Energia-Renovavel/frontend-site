@@ -1,5 +1,7 @@
+
+import dynamic from "next/dynamic";
 import DashboardBanner from "../pages/components/banners/dashboard-banner/DashboardBanner";
-import DashboardMain from "../pages/components/dashboard/DashboardMain";
+const DashboardMain = dynamic(() => import("../pages/components/dashboard/DashboardMain"), { ssr: false });
 
 export default function Dashboard() {
 

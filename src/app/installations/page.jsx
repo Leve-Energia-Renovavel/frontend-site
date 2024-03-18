@@ -1,5 +1,6 @@
+import dynamic from "next/dynamic";
 import InstallationsBanner from "../pages/components/banners/installations-banner/InstallationsBanner";
-import InstallationsMain from "../pages/components/installations/InstallationsMain";
+const InstallationsMain = dynamic(() => import("../pages/components/installations/InstallationsMain"), { ssr: false });
 
 export default function Installations() {
     return (

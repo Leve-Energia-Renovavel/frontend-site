@@ -1,8 +1,9 @@
 import axios from "axios";
+import { requestSuccessful } from "./Validations";
 
-export const findCityIdByName = async (cityName) => {
+export const findCityIdByName = async (cityName, stateId) => {
     try {
-        const data = { estado_id: stateValue.cod_estados }
+        const data = { estado_id: stateId }
         const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/cidades-estados`, data)
         if (requestSuccessful(response.status)) {
             for (const city of response.data.cidades) {

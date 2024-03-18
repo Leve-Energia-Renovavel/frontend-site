@@ -11,18 +11,21 @@ import { HeaderMenuItem, LogoContainer, MenuItem, Nav, Ul, installationFieldStyl
 
 export default function LoggedUserHeader() {
     const router = useRouter()
-    const user = useStoreUser().user
-    const address = useStoreAddress().address
-    const mainInstallation = useStoreMainInstallation().mainInstallation
-
-    const mainAddress = Cookies.get('leveAddress')?.street
-
-    const homeUrl = "https://wp-homolog.leveenergia.com.br/"
 
     const storeUser = useStoreUser()
     const storeAddress = useStoreAddress()
     const storeCompany = useStoreCompany()
     const storeInstallation = useStoreInstallations()
+    const storeMainInstallation = useStoreMainInstallation()
+
+    const mainInstallation = JSON.parse(localStorage.getItem('mainInstallation')) || storeMainInstallation.mainInstallation
+    const mainAddress = JSON.parse(localStorage.getItem('address')) || storeAddress.address
+    const user = JSON.parse(localStorage.getItem('user')) || storeUser.user
+
+    const { address, neighborhood, number, stateId, uuid, zipCode } = mainInstallation.mainInstallation
+    const { name } = user.user
+
+    const homeUrl = "https://wp-homolog.leveenergia.com.br/"
 
     const handleLogout = () => {
         storeUser.clearUser()
@@ -32,7 +35,6 @@ export default function LoggedUserHeader() {
         router.push("/")
     }
 
-    const username = user.name || Cookies.get('leveUsername')
 
     return (
         <>
@@ -56,8 +58,7 @@ export default function LoggedUserHeader() {
                             <HeaderMenuItem value={10} style={{ display: 'none' }}
                             >
                                 <span className="mainInstallation" onClick={() => router.push("/dashboard")} style={{ fontSize: "1.2rem" }}>
-                                    {/* {mainInstallation ? (`${mainInstallation?.address}, ${mainInstallation?.number}`) : "Minha instalação"} */}
-                                    {mainInstallation.address !== "" ? mainInstallation.address : mainAddress ? mainAddress : "Minha instalação"}
+                                    {address !== "" ? address : mainAddress ? mainAddress : "Minha instalação"}
                                 </span>
                             </HeaderMenuItem>
                             <HeaderMenuItem
@@ -75,7 +76,7 @@ export default function LoggedUserHeader() {
                         </Select>
                     </Box>
                     <MenuItem>
-                        <Link href="/dashboard" className='helloUser'>Olá{username ? (`, ${username}`) : ", Usuário Leve"}</Link>
+                        <Link href="/dashboard" className='helloUser'>Olá{name ? (`, ${name}`) : ", Usuário Leve"}</Link>
                     </MenuItem>
                     <MenuItem>
                         <HeaderButton

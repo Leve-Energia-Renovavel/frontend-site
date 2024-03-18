@@ -83,8 +83,21 @@ export const HomeIconStyled = styled(HomeIcon)`
     
     `
 export const MainInstallationInfoContainer = styled.div`
-    display: flex;
-    flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  grid-gap: 20px 40px;
+  background-color: ${background.light};
+  max-width: 100%;
+
+  @media (max-width: 600px) {
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(1,1fr);
+
+    div { 
+      grid-row: span 1;
+      grid-column: span 1;
+    }
+  }
     
     h3 {
         margin: 6px 0;

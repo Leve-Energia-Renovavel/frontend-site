@@ -18,13 +18,26 @@ const fadeInUp = keyframes`
 
 export const BannerContainer = styled.div`
     background-color: ${background.primary};
-    height: 70vh;
+    height: 30rem;
     max-width: 100vw;
-    padding: 8rem 15rem;
+    padding: 8rem 13.5rem;
 
+    @media (max-width: 1300px) {
+        padding: 7rem 4rem;
+    }
+    @media (max-width: 900px) {
+        padding: 7rem 2rem;
+    }
+    @media (max-width: 900px) {
+        padding: 7rem 2rem;
+    }
     @media (max-width: 600px) {
-        height: 80vh;
-        padding: 8rem 2rem;
+        height: 60vh;
+        padding: 7rem 2rem;
+    }
+    @media (max-width: 400px) {
+        height: 60vh;
+        padding: 7rem 2rem;
     }
 `
 
