@@ -16,7 +16,8 @@ const fadeInUp = keyframes`
 `
 export const ProfileContainer = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    max-width: 100vw;
     
     padding: 2rem;
 
@@ -43,13 +44,20 @@ export const ProfileMainContent = styled.div`
     padding: 2rem;
     margin: 1rem auto;
   
-    width: 80vw;
-    max-width: 100vw;
+    width: 60vw;
+    max-width: 80vw;
+`
+export const ProfileSecondaryContent = styled.div`
+    padding: 0 2rem;
+  
+    width: 30vw;
+    max-width: 50vw;
 `
 export const ProfileChangePasswordContent = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
+    gap: 1rem;
     
     background-color: ${background.light};
     border: 1px solid ${background.blueLeve};
@@ -58,12 +66,11 @@ export const ProfileChangePasswordContent = styled.div`
     padding: 2rem;
     margin: 1rem auto;
     
-    width: 80vw;
-    max-width: 100vw;
+    width: 30vw;
+    max-width: 50vw;
     
     .changePasswordInput {
-        margin: 0 1rem;
-        width: 30vw;
+        width: 100%;
         max-width: 50vw;
     }
     
@@ -90,12 +97,12 @@ export const ProfileSecondaryEmailContent = styled.div`
     padding: 2rem;
     margin: 1rem auto;
     
-    width: 80vw;
-    max-width: 100vw;
+    width: 30vw;
+    max-width: 40vw;
     
     .secondaryEmailInput {
         margin: 0 1rem 0 0;
-        width: 30vw;
+        width: 100%;
         max-width: 50vw;
     }
     

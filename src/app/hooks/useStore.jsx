@@ -229,6 +229,7 @@ export const useStoreMainInstallation = create((set) => ({
                 street: "",
                 number: "",
                 neighborhood: "",
+                complement: "",
                 cityId: 0,
                 stateId: 0,
                 city: "",

@@ -24,6 +24,7 @@ import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHe
 import { allCities } from "@/app/utils/form-options/citiesOptions";
 import { FixedSizeList as List } from 'react-window';
 import Cookies from "js-cookie";
+import { statesAcronymOptions } from "@/app/utils/form-options/statesIdOptions";
 
 export default function RegisterForm() {
 
@@ -37,7 +38,6 @@ export default function RegisterForm() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isForeigner, setIsForeigner] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    // const [isCompany, setIsCompany] = useState(false);
 
     const [socialContractFile, setSocialContractFile] = useState(null);
     const [energyExtractFile, setEnergyExtractFile] = useState(null);
@@ -50,13 +50,13 @@ export default function RegisterForm() {
 
     const isCompany = user.user.isCompany
 
-    const { name, email, phone, cep, companyName, cost, distributor } = user.user
+    const { name, email, phone, companyName, cost, distributor } = user.user
 
-    const { street, neighborhood, city, state, stateId, cityId } = storeAddress.address
+    const { street, neighborhood, city, state, stateId, cityId, cep } = storeAddress.address
     const company = useStoreCompany().company
 
     const [userCost, setUserCost] = useState(cost || null)
-    const [stateValue, setStateValue] = useState(stateOptions[stateId] || null);
+    const [stateValue, setStateValue] = useState(stateOptions[stateId] || stateOptions[(statesAcronymOptions[state])] || null);
 
     const meuID = stateValue?.cod_estados || 26
 
@@ -121,64 +121,38 @@ export default function RegisterForm() {
                 });
         }
         return response
-
     }
-
 
     const handleSubmit = async (event) => {
         event.preventDefault()
         setIsLoading(true)
 
-        var submitData = {}
+        var submitData = {
+            uuid: uuid,
+            nome: userRefs.name.current.value,
+            email: userRefs.email.current.value,
+            telefone: userRefs.phone.current.value,
+            cep: addressRefs.addressCep.current.value,
+            endereco: addressRefs.address.current.value,
+            numero: parseFloat(addressRefs.addressNumber.current.value.replace(/[^0-9.]/g, "")),
+            bairro: addressRefs.neighborhood.current.value,
+            complemento: addressRefs.complement.current.value,
+            estado_id: storeAddress.address.stateId,
+            cidade_id: storeAddress.address.cityId,
+            valor: parseInt(userRefs.cost.current.value.replace(/[^0-9]/g, ""), 10) / 100,
+            rg: userRefs.rg.current.value,
+            data_nascimento: userRefs.birthDate.current.value,
+            nacionalidade: userRefs.nationality.current.value,
+            profissao: userRefs.profession.current.value,
+            estado_civil: userRefs.maritalStatus.current.value,
+            cpf: userRefs.cpf.current.value,
+            numero_instalacao: addressRefs.installationNumber.current.value
+        }
         if (isCompany) {
-            submitData = {
-                uuid: uuid,
-                razao_social: companyRefs.razao_social.current.value,
-                cnpj: companyRefs.cnpj.current.value,
-                nome: userRefs.name.current.value,
-                email: userRefs.email.current.value,
-                telefone: userRefs.phone.current.value,
-                cep: addressRefs.addressCep.current.value,
-                endereco: addressRefs.address.current.value,
-                numero: parseFloat(addressRefs.addressNumber.current.value.replace(/[^0-9.]/g, "")),
-                bairro: addressRefs.neighborhood.current.value,
-                complemento: addressRefs.complement.current.value,
-                estado_id: storeAddress.address.stateId,
-                cidade_id: storeAddress.address.cityId,
-                valor: parseInt(userRefs.cost.current.value.replace(/[^0-9]/g, ""), 10) / 100,
-                rg: userRefs.rg.current.value,
-                data_nascimento: userRefs.birthDate.current.value,
-                nacionalidade: userRefs.nationality.current.value,
-                profissao: userRefs.profession.current.value,
-                estado_civil: userRefs.maritalStatus.current.value,
-                cpf: userRefs.cpf.current.value,
-                numero_instalacao: addressRefs.installationNumber.current.value
-            }
-        } else {
-            submitData = {
-                uuid: uuid,
-                nome: userRefs.name.current.value,
-                email: userRefs.email.current.value,
-                telefone: userRefs.phone.current.value,
-                cep: addressRefs.addressCep.current.value,
-                endereco: addressRefs.address.current.value,
-                numero: parseFloat(addressRefs.addressNumber.current.value.replace(/[^0-9.]/g, "")),
-                bairro: addressRefs.neighborhood.current.value,
-                complemento: addressRefs.complement.current.value,
-                estado_id: storeAddress.address.stateId,
-                cidade_id: storeAddress.address.cityId,
-                valor: parseInt(userRefs.cost.current.value.replace(/[^0-9]/g, ""), 10) / 100,
-                rg: userRefs.rg.current.value,
-                data_nascimento: userRefs.birthDate.current.value,
-                nacionalidade: userRefs.nationality.current.value,
-                profissao: userRefs.profession.current.value,
-                estado_civil: userRefs.maritalStatus.current.value,
-                cpf: userRefs.cpf.current.value,
-                numero_instalacao: addressRefs.installationNumber.current.value
-            }
+            submitData["razao_social"] = companyRefs.razao_social.current.value
+            submitData["cnpj"] = companyRefs.cnpj.current.value
         }
 
-        Cookies.set("leveData", JSON.stringify(submitData))
         setDataCookies();
 
         const response = await schemaValidation(isCompany, submitData)
@@ -207,12 +181,10 @@ export default function RegisterForm() {
             }
 
             storeAddress.updateAddress(updatedAddress)
-            Cookies.set('leveAddress', JSON.stringify(updatedAddress))
 
             router.push(`/register/contract-signature`)
         } else {
             setValidationErrors([response?.response?.data?.message])
-            // setValidationErrors(["Ocorreu um erro inesperado. Por favor, tente novamente"])
         }
 
         setIsLoading(false)
@@ -251,48 +223,20 @@ export default function RegisterForm() {
 
 
     useEffect(() => {
-        setStateValue(stateOptions[stateId] || null)
-
-        const cookies = Cookies.get("leveData")
-
-        if (cookies) {
-            const submitData = JSON.parse(cookies)
-            storeAddress.address.stateId = submitData.estado_id
-            storeAddress.address.cityId = submitData.cidade_id
-
-            userRefs.name.current.value = submitData.nome
-            userRefs.email.current.value = submitData.email
-            userRefs.phone.current.value = submitData.telefone
-            userRefs.rg.current.value = submitData.rg ? submitData.rg : store.user.rg
-            userRefs.birthDate.current.value = submitData.data_nascimento
-            userRefs.nationality.current.value = submitData.nacionalidade
-            userRefs.profession.current.value = submitData.profissao
-            userRefs.maritalStatus.current.value = submitData.estado_civil
-            userRefs.cost.current.value = submitData.valor ? submitData.valor : store.user.cost
-            userRefs.cpf.current.value = submitData.cpf ? submitData.cpf : store.user.cpf
-
-            addressRefs.addressCep.current.value = submitData.cep
-            addressRefs.address.current.value = submitData.endereco
-            addressRefs.addressNumber.current.value = submitData.numero
-            addressRefs.neighborhood.current.value = submitData.bairro
-            addressRefs.complement.current.value = submitData.complemento
-            addressRefs.installationNumber.current.value = submitData.numero_instalacao
-
-            setDataCookies();
-        }
+        setStateValue(stateOptions[stateId] || stateOptions[(statesAcronymOptions[state])] || null)
     }, [storeAddress, hasDataCookies])
 
 
     const handleChangeState = (value) => {
         setStateValue(stateOptions[value])
-        addressRefs.address.current.value = ""
-        addressRefs.addressNumber.current.value = ""
-        addressRefs.addressCep.current.value = ""
-        addressRefs.complement.current.value = ""
-        addressRefs.city.current.value = ""
+        // addressRefs.address.current.value = ""
+        // addressRefs.addressNumber.current.value = ""
+        // addressRefs.addressCep.current.value = ""
+        // addressRefs.neighborhood.current.value = ""
+        // addressRefs.complement.current.value = ""
+        // addressRefs.city.current.value = ""
 
-        storeAddress.updateAddress({ stateId: value })
-        store.updateUser({ cep: "" })
+        // storeAddress.updateAddress({ stateId: value, cep: "", neighborhood: "" })
     }
     const handleChangeUserCost = (event) => {
         var newCost = event.target.value
@@ -481,7 +425,7 @@ export default function RegisterForm() {
                     </div> */}
 
                     <InputMask mask="99999-999"
-                        defaultValue={user.cep ? user.cep : ""}
+                        defaultValue={cep ? cep : ""}
                         onChange={(e) => store.updateUser({ cep: e.target.value })}>
                         {() => <TextField
                             className="formInput"
@@ -509,7 +453,7 @@ export default function RegisterForm() {
                     <TextField
                         id="state"
                         select
-                        value={stateValue ? stateValue.cod_estados : ''}
+                        value={stateValue ? stateValue.cod_estados : ""}
                         onChange={(event) => handleChangeState(event.target.value)}
                         label="Estado"
                         placeholder="Estado"

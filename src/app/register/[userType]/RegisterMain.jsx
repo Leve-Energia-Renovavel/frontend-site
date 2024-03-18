@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import RegisterBannerSuccess from "../banners/banner-success/RegisterBanner";
 import FormBanner from "../banners/form-banner/FormBanner";
 import RegisterForm from "../forms/register-form/RegisterForm";
-// import ResultEconomy from "../result-economy/ResultEconomy";
+import { clearBrowserData } from "@/app/utils/browser/BrowserUtils";
 
 const ResultEconomy = dynamic(() => import('../result-economy/ResultEconomy'), { ssr: false });
 
@@ -28,6 +28,8 @@ export default function RegisterMain() {
 
     useEffect(() => {
         const fetchData = async () => {
+
+            clearBrowserData();
 
             store.updateUser({ uuid: uuid });
             Cookies.set('leveUUID', uuid)

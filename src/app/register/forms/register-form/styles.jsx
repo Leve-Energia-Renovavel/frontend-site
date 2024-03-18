@@ -161,23 +161,23 @@ export const FormLastRow = styled.div`
   }
 
   .installationNumberField {
-    border-color: #0075FF;
+    border-color:  ${background.blueLeve};
 
       & label {
-        color: #0075FF;
+        color:  ${background.blueLeve};
       }
 
       & .MuiOutlinedInput-root {
         & fieldset {
-          border-color: #0075FF;
+          border-color: ${background.grey};
         }
 
         &:hover fieldset {
-          border-color: #0075FF;
+          border-color: ${background.blueLeve};
         }
 
         &.Mui-focused fieldset {
-          border-color: #0075FF;
+          border-color: ${background.blueLeve};
         }
       }
   }

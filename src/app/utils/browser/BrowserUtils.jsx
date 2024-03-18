@@ -9,3 +9,23 @@ export const loadBrowserInfos = () => {
     }
     return browserInfo
 }
+
+
+export const clearBrowserData = () => {
+    const cookies = Cookies.get();
+    for (const cookie in cookies) {
+        Cookies.remove(cookie);
+    }
+    
+    if (typeof window !== 'undefined') {
+        localStorage.clear();
+    }
+
+    if (caches) {
+        caches.keys().then(cacheNames => {
+            cacheNames.forEach(cacheName => {
+                caches.delete(cacheName);
+            });
+        });
+    }
+}

@@ -90,6 +90,7 @@ export default function DashboardMain() {
                         cityId: instalacao?.cidade_id,
                         stateId: instalacao?.estado_id,
                         neighborhood: instalacao?.bairro,
+                        complement: instalacao?.complemento,
                         zipCode: instalacao?.cep,
                         amount: instalacao?.valor_base_consumo,
                         dueDate: consumidor?.dia_fatura,
