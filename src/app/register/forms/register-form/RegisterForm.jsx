@@ -153,12 +153,9 @@ export default function RegisterForm() {
             submitData["cnpj"] = companyRefs.cnpj.current.value
         }
 
-        console.log("submitData --->>>", submitData)
-
         setDataCookies();
 
         const response = await schemaValidation(isCompany, submitData)
-        console.log("registerForm response ==>>", response)
 
         if (requestSuccessful(response.status) || hasToSignContract(response?.data?.message)) {
             console.log("Data successfully saved!")

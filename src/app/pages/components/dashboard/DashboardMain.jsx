@@ -52,7 +52,6 @@ export default function DashboardMain() {
                 const uuid = user.uuid || Cookies.get('leveUUID')
 
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/${uuid}`, { headers });
-                console.log("Dashboard data response ===>>>", response)
 
                 if (requestSuccessful(response.status)) {
 
@@ -115,6 +114,11 @@ export default function DashboardMain() {
                             address: installation?.endereco,
                             neighborhood: installation?.bairro,
                             number: installation?.numero,
+                            zipCode: installation?.cep,
+                            cityId: installation?.cidade_id,
+                            stateId: installation?.estado_id,
+                            status: installation?.situacao,
+                            installationNumber: installation?.numero_instalacao,
                         }
 
                         storeInstallations.addInstallation(otherInstallation);

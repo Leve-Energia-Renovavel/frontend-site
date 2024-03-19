@@ -58,12 +58,12 @@ export default function ProfileMain() {
                 const response = await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/change-pass`, data, { headers })
                 console.log(response)
                 if (requestSuccessful(response.status)) {
-
-                    setNotifications()
+                    setNotifications([response.data.message])
                 }
 
             } catch (error) {
                 console.log(error)
+                setValidationErrors([error.response.data.message])
 
             }
         } else {
@@ -84,11 +84,8 @@ export default function ProfileMain() {
             }
             try {
                 const response = await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/add-secondary-email`, data, { headers })
-                console.log(response)
                 if (requestSuccessful(response.status)) {
-
-                    setNotifications()
-
+                    setNotifications([response.data.message])
                 }
 
             } catch (error) {

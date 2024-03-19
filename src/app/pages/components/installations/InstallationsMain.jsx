@@ -4,17 +4,18 @@ import { useStoreInstallations } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { findCityIdByName } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
+import { allCities } from "@/app/utils/form-options/citiesOptions";
 import { statesAcronymOptions } from "@/app/utils/form-options/statesIdOptions";
-import DeleteIcon from '@mui/icons-material/Delete';
+import { statusOptions } from "@/app/utils/form-options/statusOptions";
 import SearchIcon from '@mui/icons-material/Search';
-import { IconButton, MenuItem, TextField, Typography } from "@mui/material";
+import { MenuItem, Snackbar, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
 import NewInstallationButtonConfirm from "../utils/buttons/NewInstallationButtonConfirm";
-import { ButtonContainer, InstallationsMainContainer as Container, FormContentNewInstallation, HomeIconStyled, InstallationsMainContent, MainInstallationInfoContainer as MainInstallationInfo, NewInstallationContent, TitleContainer, TitleIconsContainer } from "./styles";
+import { ButtonContainer, InstallationsMainContainer as Container, FormContentNewInstallation, HomeIconStyled, InstallationsMainContent, MainInstallationInfoContainer as MainInstallationInfo, MainTitleContainer, NewInstallationContent, SnackbarMessageAlert, SnackbarMessageNotification, TitleContainer, TitleIconsContainer } from "./styles";
 
 export default function InstallationsMain() {
 
@@ -27,7 +28,10 @@ export default function InstallationsMain() {
     const [isEdition, setIsEdition] = useState(false)
     const [installationCost, setInstallationCost] = useState()
 
-    const [stateValue, setStateValue] = useState(null);
+    const [stateValue, setStateValue] = useState();
+
+    const [validationErrors, setValidationErrors] = useState([])
+    const [notifications, setNotifications] = useState([])
 
     const newInstallationRef = {
         address: useRef(null),
@@ -49,13 +53,14 @@ export default function InstallationsMain() {
             const response = await axios.get(url);
             console.log(response)
             if (requestSuccessful(response.status)) {
-                newInstallationRef.address.current.value = response?.data.logradouro
-                newInstallationRef.neighborhood.current.value = response?.data.bairro
-                newInstallationRef.zipCode.current.value = response?.data.cep
-                newInstallationRef.city.current.value = response?.data.localidade
-                newInstallationRef.state.current.value = response?.data.uf
+                newInstallationRef.address.current.value = response?.data?.logradouro
+                newInstallationRef.neighborhood.current.value = response?.data?.bairro
+                newInstallationRef.zipCode.current.value = response?.data?.cep
+                newInstallationRef.city.current.value = response?.data?.localidade
+                newInstallationRef.state.current.value = response?.data?.uf
 
-                setStateValue(stateOptions[(statesAcronymOptions[response?.data.uf])])
+                const id = statesAcronymOptions[response.data.uf]
+                setStateValue(stateOptions[id])
 
             }
         } catch (error) {
@@ -75,17 +80,15 @@ export default function InstallationsMain() {
             numero: newInstallationRef.addressNumber.current.value,
             cep: newInstallationRef.zipCode.current.value,
             bairro: newInstallationRef.neighborhood.current.value,
-            valor_base_consumo: newInstallationRef.cost.current.value,
+            valor_base_consumo: parseFloat(newInstallationRef.cost.current.value.replace(",", ".")),
             numero_instalacao: newInstallationRef.installationNumber.current.value,
 
             cidade_id: await findCityIdByName(newInstallationRef.city.current.value, stateValue.cod_estados),
             estado_id: stateValue.cod_estados,
         }
 
-        console.log("add installation data ===>>", data)
         try {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/add-uc`, data, { headers });
-            console.log("add installation response ===>>", response)
             console.log(response)
             if (requestSuccessful(response.status)) {
                 // const otherInstallation = {
@@ -116,18 +119,52 @@ export default function InstallationsMain() {
 
         setInstallationCost(newCost)
     }
-    // const handleDeleteInstallation = (installation, index) => {
-    //     storeInstallations.deleteInstallation(index)
-    // }
+
+    const handleEditInstallation = () => {
+        setIsMainEdition(current => !current)
+        setValidationErrors(["Ainda não é possível editar um Endereço cadastrado."])
+    }
+
     const handleChangeState = (value) => {
         setStateValue(stateOptions[value])
     }
 
+    const getCity = async (stateId, cityId) => {
+        if (stateId && cityId) {
+            const data = {
+                estado_id: stateId,
+                cidade_id: cityId
+            }
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/cidades-estados`, data)
+            console.log("getCity response ===>>", response)
+        }
+
+    }
+
+    function getCityName(stateID, cityID) {
+        for (const stateCities of allCities) {
+            const cities = stateCities[stateID];
+            if (cities) {
+                for (const city of cities) {
+                    const cityData = city[cityID];
+                    if (cityData) {
+                        return cityData.nome;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    useEffect(() => {
+
+    }, [stateValue])
+
     return (
         <Container>
-            <div style={{ marginLeft: '5rem' }}>
+            <MainTitleContainer>
                 <Typography variant="h1">Meus Endereços</Typography>
-            </div>
+            </MainTitleContainer>
             {installations.length >= 1 ?
                 (<>
                     {installations.map((installation, index) => {
@@ -138,17 +175,19 @@ export default function InstallationsMain() {
                                         <HomeIconStyled />
                                         <Typography variant="h2">{`Meu Endereço ${index === 0 ? "Principal" : ""}`}</Typography>
                                     </TitleIconsContainer>
+                                    <Typography variant="subititle1">{statusOptions[installation.status]}</Typography>
                                     {/* {installations.length > 1 && <IconButton onClick={() => handleDeleteInstallation(installation, index)}>
                                         <DeleteIcon className="deleteIcon" />
                                     </IconButton>} */}
                                 </TitleContainer>
                                 <MainInstallationInfo>
-                                    <TextField
-                                        label="CEP"
-                                        value={`${installation.zipCode}`}
-                                        disabled={index === 0 ? !isMainEdition : !isEdition}
-                                        InputLabelProps={{ shrink: true }}
-                                    />
+                                    <InputMask mask="99999-999" value={`${installation.zipCode || ""}`} disabled={index === 0 ? !isMainEdition : !isEdition}>
+                                        {() => <TextField label="CEP"
+                                            value={`${installation.zipCode || ""}`}
+                                            disabled={index === 0 ? !isMainEdition : !isEdition}
+                                            InputLabelProps={{ shrink: true }}
+                                        />}
+                                    </InputMask>
                                     <TextField
                                         label="Endereço"
                                         className="mainAddress"
@@ -159,28 +198,28 @@ export default function InstallationsMain() {
                                     />
                                     <TextField
                                         label="Estado"
-                                        value={`${installation.state}`}
+                                        value={`${stateOptions[installation.stateId]?.nome}`}
                                         disabled={index === 0 ? !isMainEdition : !isEdition}
                                         InputLabelProps={{ shrink: true }}
 
                                     />
                                     <TextField
                                         label="Cidade"
-                                        value={`${installation.city}`}
+                                        value={`${getCityName(installation.stateId, installation.cityId) || ""}`}
                                         disabled={index === 0 ? !isMainEdition : !isEdition}
                                         InputLabelProps={{ shrink: true }}
 
                                     />
                                     <TextField
                                         label="Bairro"
-                                        value={`${installation.city}`}
+                                        value={`${installation.neighborhood}`}
                                         disabled={index === 0 ? !isMainEdition : !isEdition}
                                         InputLabelProps={{ shrink: true }}
 
                                     />
                                     <TextField
                                         label="Número de Instalação"
-                                        value={`${installation.city}`}
+                                        value={`${installation.installationNumber ? installation.installationNumber : ""}`}
                                         disabled={index === 0 ? !isMainEdition : !isEdition}
                                         InputLabelProps={{ shrink: true }}
 
@@ -193,13 +232,13 @@ export default function InstallationsMain() {
                                             {!isMainEdition && (
                                                 <NewInstallationButton
                                                     text="Editar Endereço Principal"
-                                                    onClick={() => setIsMainEdition(true)}
+                                                    onClick={() => handleEditInstallation()}
                                                 />
                                             )}
                                             {isMainEdition && (
                                                 <NewInstallationButton
                                                     text="Cancelar"
-                                                    onClick={() => setIsMainEdition(false)}
+                                                    onClick={() => handleEditInstallation()}
                                                 />
                                             )}
                                         </>
@@ -235,7 +274,9 @@ export default function InstallationsMain() {
             {openForm ?
                 (
                     <>
-                        <Typography variant="h1">Novo Endereço</Typography>
+                        <MainTitleContainer>
+                            <Typography variant="h1">Novo Endereço</Typography>
+                        </MainTitleContainer>
                         <NewInstallationContent>
                             <FormContentNewInstallation acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
                                 <InputMask mask="99999-999">
@@ -291,6 +332,50 @@ export default function InstallationsMain() {
                         </NewInstallationContent>
                     </>
                 ) : null}
+            <>
+                {validationErrors.map((error, index) => {
+                    return (
+                        <Snackbar
+                            key={index}
+                            open={validationErrors.length >= 1}
+                            autoHideDuration={3000}
+                            message={error}
+                            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                            onClose={() => setValidationErrors([])}>
+                            <SnackbarMessageAlert
+                                sx={{ marginBottom: `${index * 5}rem` }}
+                                severity="error"
+                                variant="filled"
+                                onClose={() => setValidationErrors([])}
+                            >
+                                {error}
+                            </SnackbarMessageAlert>
+                        </Snackbar>
+                    )
+                })}
+            </>
+            <>
+                {notifications.map((notification, index) => {
+                    return (
+                        <Snackbar
+                            key={index}
+                            open={notifications.length >= 1}
+                            autoHideDuration={6000}
+                            message={notification}
+                            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                            onClose={() => setNotifications([])}>
+                            <SnackbarMessageNotification
+                                sx={{ marginBottom: `${index * 5}rem` }}
+                                severity="error"
+                                variant="filled"
+                                onClose={() => setNotifications([])}
+                            >
+                                {notification}
+                            </SnackbarMessageNotification>
+                        </Snackbar>
+                    )
+                })}
+            </>
         </Container>
     );
 }

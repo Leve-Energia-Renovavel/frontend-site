@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { background, notification } from "../../styles";
 import HomeIcon from '@mui/icons-material/Home';
 import { keyframes } from "@emotion/react";
+import { Alert } from "@mui/material";
 
 const fadeInUp = keyframes`
   from {
@@ -71,10 +72,49 @@ export const TitleContainer = styled.div`
       }
     }
 `
+
+
+export const MainTitleContainer = styled.div`
+    margin-left: 7rem;
+    margin-top: 2rem;
+    
+    @media (max-width: 2200px) {
+      margin-left: 11rem;
+    }
+    @media (max-width: 2000px) {
+      margin-left: 10rem;
+    }
+    @media (max-width: 1800px) {
+      margin-left: 9rem;
+    }
+    @media (max-width: 1500px) {
+      margin-left: 7rem;
+    }
+    @media (max-width: 1350px) {
+      margin-left: 6rem;
+    }
+    @media (max-width: 1200px) {
+      margin-left: 5rem;
+    }
+    @media (max-width: 1000px) {
+      margin-left: 4rem;
+    }
+    @media (max-width: 800px) {
+      margin-left: 3rem;
+    }
+    @media (max-width: 700px) {
+      margin-left: 2rem;
+    }
+    @media (max-width: 500px) {
+      margin-left: 1rem;
+    }
+`
 export const TitleIconsContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    margin-bottom: 1.5rem;
 `
 
 export const HomeIconStyled = styled(HomeIcon)`
@@ -207,4 +247,37 @@ export const FormContentNewInstallation = styled.form`
         max-width: 90%;
       }
   }
+`
+
+export const SnackbarMessageAlert = styled(Alert)`
+  font-family: "Metropolis";
+  font-size: 1rem;
+  background-color: ${notification.alert};
+  border-radius: 10px;
+  padding: 1rem;
+  align-items: center;
+
+  animation: ${fadeInUp} 0.5s ease-out;
+
+  @media screen and (max-width: 600px) {
+    padding: .3rem;
+    font-size: 1rem; 
+  }
+
+`
+export const SnackbarMessageNotification = styled(Alert)`
+  font-family: "Metropolis";
+  font-size: 1rem;
+  background-color: ${notification.success};
+  border-radius: 10px;
+  padding: 1rem;
+  align-items: center;
+
+  animation: ${fadeInUp} 0.5s ease-out;
+
+  @media screen and (max-width: 600px) {
+    padding: .3rem;
+    font-size: 1rem; 
+  }
+
 `
