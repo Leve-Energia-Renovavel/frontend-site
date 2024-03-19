@@ -18,10 +18,11 @@ const fadeInUp = keyframes`
 export const RecoverPasswordContainer = styled.div`
     display: flex;
     flex-direction: column;
+    
     background-color: ${background.blueLeve};
-
+    
     padding: 2rem;
-
+    text-align: center;
 `
 export const RecoverPasswordTitleContainer = styled.div`
 
@@ -38,16 +39,28 @@ h1 {
 export const RecoverPasswordFormContainer = styled.div`
     display: flex;
     flex-direction: column;
+    gap: 1rem;
     
-    margin: 0 auto;
-    width: 80vw;
+    width: 50vw;
     padding: 2rem;
-
-    margin: 2rem;
-
     
     border-radius: 8px;
     background-color: ${background.light};
+    
+    margin: 2rem auto;
+
+    h6 { 
+      font-family: "Metropolis";
+      font-style: bold;
+      font-weight: 500;
+      line-height: 1rem;
+      font-size: 1rem;
+      color: ${background.blueLeve};
+    }
+    
+    @media (max-width: 600px) {
+      width: 80vw;
+  }
 
 `
 

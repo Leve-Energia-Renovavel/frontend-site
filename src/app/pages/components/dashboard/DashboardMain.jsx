@@ -301,61 +301,75 @@ export default function DashboardMain() {
                 </YourInfoContainer>
             </Main>
             <HistoryContainer>
-                <HistorySpendingContainer>
-                    <TitleContainer>
-                        <h1>Histórico de consumo e economia</h1>
-                    </TitleContainer>
-                    <HistorySpendingGrid>
-                        {isLoading ? (
-                            <>
-                                <SkeletonDiv className="grid-item" />
-                                <SkeletonDiv className="grid-item" />
-                                <SkeletonDiv className="grid-item" />
-                                <SkeletonDiv className="grid-item" />
-                                <SkeletonDiv className="grid-item" />
-                                <SkeletonDiv className="grid-item" />
-                                <SkeletonDiv className="grid-item" />
-                                <SkeletonDiv className="grid-item" />
-                            </>
-                        ) : (
-                            billings.length > 1 ? <HistorySpendingChart /> :
 
-                                (
+
+                {billings.length > 0 ? (
+                    <HistorySpendingContainer>
+                        <TitleContainer>
+                            <h1>Histórico de consumo e economia</h1>
+                        </TitleContainer>
+                        <HistorySpendingGrid>
+                            {isLoading ? (
+                                <>
+                                    <SkeletonDiv className="grid-item" />
+                                    <SkeletonDiv className="grid-item" />
+                                    <SkeletonDiv className="grid-item" />
+                                    <SkeletonDiv className="grid-item" />
+                                    <SkeletonDiv className="grid-item" />
+                                    <SkeletonDiv className="grid-item" />
+                                    <SkeletonDiv className="grid-item" />
+                                    <SkeletonDiv className="grid-item" />
+                                </>
+                            ) : (
+                                billings.length > 1 ? <HistorySpendingChart /> :
                                     <div style={{ margin: "auto", textAlign: "center" }}>
                                         <Typography className="notFoundHistorySpending">Não há dados de consumo</Typography>
                                     </div>
+                            )}
+                        </HistorySpendingGrid>
+                    </HistorySpendingContainer>
+                ) : (
+                    <div>
+                        <TitleContainer>
+                            <h1>Histórico de consumo e economia</h1>
+                        </TitleContainer>
+                        <NextBillNotFound className="loaded-grid-item">
+                            <Typography className="nextBillNotFound">Não há dados de consumo</Typography>
+                        </NextBillNotFound>
+                    </div>
+                )}
 
-                                )
-                        )}
-                    </HistorySpendingGrid>
-                </HistorySpendingContainer>
-                <HistoryBillingContainer>
-                    <TitleContainer>
-                        <h1>Histórico de contas</h1>
-                    </TitleContainer>
-                    <HistoryBilling>
-                        {billings.length > 0 ?
-                            <>
-                                {billings.slice(0, 3).map((bill) => {
-                                    return (
-                                        <BillDetails key={bill.uuid}>
-                                            <span>{`${bill.dueDate}`}</span>
-                                            <span>{`R$ ${bill.value}`}</span>
-                                            <span>{billingStatusOptions[bill.status]} </span>
-                                        </BillDetails>
-                                    )
-                                })}
-                                {billings.length > 2 && <div style={{ display: "flex", justifyContent: "center" }}>
+                {billings.length > 0 ? (
+                    <HistoryBillingContainer>
+                        <TitleContainer>
+                            <h1>Histórico de contas</h1>
+                        </TitleContainer>
+                        <HistoryBilling>
+                            {billings.slice(0, 3).map((bill) => (
+                                <BillDetails key={bill.uuid}>
+                                    <span>{`${bill.dueDate}`}</span>
+                                    <span>{`R$ ${bill.value}`}</span>
+                                    <span>{billingStatusOptions[bill.status]} </span>
+                                </BillDetails>
+                            ))}
+                            {billings.length > 2 && (
+                                <div style={{ display: "flex", justifyContent: "center" }}>
                                     <Typography variant="subtitle1" className="seeMoreBillings" onClick={() => router.push(`/invoices`)}> Ver mais</Typography>
-                                </div>}
-                            </>
-                            :
-                            <BillDetails>
-                                <span>Não há dados de contas</span>
-                            </BillDetails>
-                        }
-                    </HistoryBilling>
-                </HistoryBillingContainer>
+                                </div>
+                            )}
+                        </HistoryBilling>
+                    </HistoryBillingContainer>
+                ) : (
+                    <div>
+                        <TitleContainer>
+                            <h1>Histórico de contas</h1>
+                        </TitleContainer>
+                        <NextBillNotFound className="loaded-grid-item">
+                            <Typography className="nextBillNotFound">Não há dados de contas</Typography>
+                        </NextBillNotFound>
+                    </div>
+                )}
+
             </HistoryContainer>
             <MemberGetMemberContainer>
                 <MemberGetMember />

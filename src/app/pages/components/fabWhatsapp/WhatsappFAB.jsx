@@ -17,6 +17,7 @@ const WhatsAppFAB = () => {
         '/profile/': true,
         '/invoices/': true,
         '/installations/': true,
+        '/recover-password/': true,
     }
 
     const helperToPath = {

@@ -364,18 +364,20 @@ export const HistoryContainer = styled.div`
     @media (max-width: 1300px) {
       grid-template-columns: 1fr;
       grid-template-rows: 1fr;
-      grid-gap: 1.5rem;
+      grid-gap: 1rem;
+
+      max-width: 90vw;
+      padding: 1rem 2rem;
     }
-    
+
     @media (max-width: 600px) {
       grid-template-columns: 1fr;
       grid-template-rows: 1fr;
-      grid-gap: 1.5rem;
-      
-      margin: 0;
-      padding: 1rem 1rem;
+      grid-gap: 1rem;
 
-    }
+      max-width: 100vw;
+      padding: 1rem 1rem;
+     }
 `
 
 export const HistorySpendingContainer = styled.div`

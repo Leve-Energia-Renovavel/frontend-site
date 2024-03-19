@@ -2,7 +2,7 @@
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { IconButton, InputAdornment, Snackbar, TextField } from "@mui/material";
+import { IconButton, InputAdornment, Snackbar, TextField, Typography } from "@mui/material";
 import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { RecoverPasswordContainer, RecoverPasswordFormContainer, RecoverPasswordTitleContainer, SnackbarMessageAlert, SnackbarMessageNotification } from "./styles";
@@ -70,11 +70,12 @@ export default function RecoverPasswordMain() {
     return (
         <RecoverPasswordContainer>
             <RecoverPasswordTitleContainer>
-                <h1>Recuperar Senha</h1>
+                <Typography variant='h1'>Recuperar Senha</Typography>
             </RecoverPasswordTitleContainer>
 
-            {validatedToken &&
+            {!validatedToken &&
                 <RecoverPasswordFormContainer>
+                    <Typography variant='subtitle1'>Crie e confirme sua nova senha nos campos abaixo:</Typography>
                     <TextField className="formInput"
                         inputRef={userRefs.newPassword}
                         label="Nova Senha"
@@ -112,7 +113,8 @@ export default function RecoverPasswordMain() {
 
                     />
                     <DefaultButton variant="outlined" text="Redefinir Senha" onClick={() => handleRecoverPassword()} />
-                </RecoverPasswordFormContainer>}
+                </RecoverPasswordFormContainer>
+            }
 
             {/* {validatedToken && <RecoverPasswordFormContainer>
                 <TextField className="formInput" label="Nova Senha" variant="outlined" placeholder="Nova Senha" type="text" required />
