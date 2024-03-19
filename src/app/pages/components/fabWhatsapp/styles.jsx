@@ -1,6 +1,5 @@
 
-import styled from "@emotion/styled"
-import { background } from "../../styles"
+import styled from "@emotion/styled";
 
 export const FABContainer = styled.div`
   position: fixed;
@@ -17,14 +16,14 @@ export const WhatsappLink = styled.a`
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
-  background-color: #25d366; /* WhatsApp color */
+  background-color: #25d366;
   color: white;
   font-size: 5rem;
   text-decoration: none;
   transition: background-color 0.3s ease;
 
   &:hover {
-      background-color: #00fd5d; /* Darker WhatsApp color on hover */
+      background-color: #00fd5d;
 
   }
 `

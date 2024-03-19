@@ -4,14 +4,43 @@
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Link from 'next/link';
 import { FABContainer, WhatsappLink } from './styles';
+import { usePathname } from 'next/navigation';
 
 const WhatsAppFAB = () => {
+
+    const pathname = usePathname()
+
+    const helper = {
+        '/': false,
+        '/register/': false,
+        '/dashboard/': true,
+        '/profile/': true,
+        '/invoices/': true,
+        '/installations/': true,
+    }
+
+    const helperToPath = {
+        '/': "no+cadastro+da",
+        '/register/': "no+cadastro+da",
+        '/dashboard/': "no+painel+da",
+        '/profile/': "no+meu+perfil+da",
+        '/invoices/': "na+pagina+de+faturas+da",
+        '/installations/': "na+pagina+de+enderecos+da",
+    }
+
+    const isLoggedUser = helper[pathname]
+    const location = helperToPath[pathname]
+
     return (
         <FABContainer>
-            <Link target="_blank" rel="noopener noreferrer" href="https://api.whatsapp.com/send/?phone=551151942681&text=Ol%C3%A1%2C+estou+no+site+Leve+Energia+e+tenho+uma+d%C3%BAvida%E2%80%A6&type=phone_number&app_absent=0" />
-            <WhatsappLink >
-                <WhatsAppIcon sx={{ fontSize: 40, }} />
-            </WhatsappLink>
+            {isLoggedUser ? null : (
+                <>
+                    <Link target="_blank" rel="noopener noreferrer" href={`https://api.whatsapp.com/send/?phone=551151942681&text=Ol%C3%A1%2C+estou+${location}+Leve+Energia+e+tenho+uma+d%C3%BAvida%E2%80%A6&type=phone_number&app_absent=0`} />
+                    <WhatsappLink >
+                        <WhatsAppIcon sx={{ fontSize: 40, }} />
+                    </WhatsappLink>
+                </>
+            )}
         </FABContainer >
     );
 };

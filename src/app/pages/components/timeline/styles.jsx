@@ -26,6 +26,7 @@ export const TimelineContentContainer = styled.div`
     animation: ${fadeInUp} 0.5s ease-out;
     
     margin-left: 4rem;
+    margin-bottom: 1rem;
 
     .invoiceDueDate {
         font-weight: 700;
@@ -40,6 +41,16 @@ export const TimelineContentContainer = styled.div`
         color: ${background.grey};
     }
     
+    @media (max-width: 1300px) {
+        width: 30vw;
+        max-width: 30vw;
+        margin-left: 2rem;
+
+    }
+    @media (max-width: 900px) {
+        width: 100%;
+        max-width: 100vw;
+    }
     @media (max-width: 600px) {
         width: 100%;
         max-width: 100vw;
@@ -74,6 +85,9 @@ export const TimelineOppositeContentStyled = styled(TimelineOppositeContent)`
 `
 export const TimelineSeparatorStyled = styled(TimelineSeparator)`
 
+    @media (max-width: 1300px) {
+        margin-left: -3rem;
+    }
     @media (max-width: 600px) {
         margin-left: -90px;
     }
@@ -106,6 +120,9 @@ export const DueDateContainer = styled.div`
 
     .dueDate {
         font-weight: 500;
+        @media (max-width: 1800px) {
+            display: none;
+        }
     }
 `
 export const TimelineDueDateDiv = styled.div`

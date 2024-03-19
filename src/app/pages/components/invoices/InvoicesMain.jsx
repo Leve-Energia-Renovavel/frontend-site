@@ -5,7 +5,7 @@ import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOpti
 import { Typography } from '@mui/material';
 import dynamic from 'next/dynamic';
 import FormButton from '../utils/buttons/FormButton';
-import { InvoiceContainer as Container, InvoicesMainCardContainer, InvoicesMainContainer, InvoicesTimelineContainer, NextBillButtonContainer, NextBillDetail, NextBillTitleContainer } from './styles';
+import { InvoiceContainer as Container, InvoicesMainCardContainer, InvoicesMainContainer, InvoicesTimelineContainer, NextBillButtonContainer, NextBillDetail, NextBillTitleContainer, PreviousInvoicesContainer } from './styles';
 
 const Timeline = dynamic(() => import('../timeline/Timeline'), { ssr: false });
 
@@ -68,12 +68,12 @@ export default function InvoicesMain() {
                         <Typography variant='subtitle1' className='noOpenInvoices'>Não há faturas em aberto</Typography>}
                 </InvoicesMainCardContainer>
             </InvoicesMainContainer>
-            <div>
+            <PreviousInvoicesContainer>
                 <Typography variant='h1'>Faturas Anteriores</Typography>
                 <InvoicesTimelineContainer>
                     <Timeline />
                 </InvoicesTimelineContainer>
-            </div>
+            </PreviousInvoicesContainer>
         </Container >
 
     );
