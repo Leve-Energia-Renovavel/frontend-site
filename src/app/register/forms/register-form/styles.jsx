@@ -98,7 +98,7 @@ export const FormContent = styled.form`
   background-color: ${background.light};
   max-width: 100%;
 
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     grid-template-rows: repeat(1, 1fr);
     grid-template-columns: repeat(1,1fr);
 

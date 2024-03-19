@@ -20,12 +20,16 @@ export const ProfileContainer = styled.div`
     max-width: 100vw;
     
     padding: 2rem;
-
+    
     h1 {
-        font-family: "Metropolis", sans-serif;
-        font-size: 1.5rem;
-        color: ${background.blueLeve};
-        font-weight: 700;
+      font-family: "Metropolis", sans-serif;
+      font-size: 1.5rem;
+      color: ${background.blueLeve};
+      font-weight: 700;
+    }
+
+    @media (max-width: 1000px) {
+      flex-direction: column;
     }
 
     @media (max-width: 600px) {
@@ -46,12 +50,22 @@ export const ProfileMainContent = styled.div`
   
     width: 60vw;
     max-width: 80vw;
+
+    @media (max-width: 1000px) {
+      width: 80vw;
+      max-width: 80vw;
+    }
 `
 export const ProfileSecondaryContent = styled.div`
     padding: 0 2rem;
   
     width: 30vw;
     max-width: 50vw;
+    
+    @media (max-width: 1000px) {
+      width: 100%;
+      max-width: 100vw;
+    }
 `
 export const ProfileChangePasswordContent = styled.div`
     display: flex;
@@ -69,9 +83,17 @@ export const ProfileChangePasswordContent = styled.div`
     width: 30vw;
     max-width: 50vw;
     
+    @media (max-width: 1000px) {
+      width: 80vw;
+      max-width: 80vw;
+    }
+    
     .changePasswordInput {
         width: 100%;
         max-width: 50vw;
+        @media (max-width: 1000px) {
+          max-width: 80vw;
+        }
     }
     
     @media (max-width: 600px) {
@@ -99,11 +121,20 @@ export const ProfileSecondaryEmailContent = styled.div`
     
     width: 30vw;
     max-width: 40vw;
+
+    @media (max-width: 1000px) {
+      width: 80vw;
+      max-width: 80vw;
+    }
     
     .secondaryEmailInput {
         margin: 0 1rem 0 0;
         width: 100%;
         max-width: 50vw;
+        
+        @media (max-width: 1000px) {
+          max-width: 80vw;
+        }
     }
     
     @media (max-width: 600px) {

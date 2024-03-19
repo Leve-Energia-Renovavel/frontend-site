@@ -140,8 +140,6 @@ export default function DashboardMain() {
                         if (billHasToBePaid[newBilling.status]) {
                             storeNextBills.updateExists(true)
                             storeNextBills.addNextBill(newBilling)
-                            Cookies.set('leveNextBillExists', true)
-                            Cookies.set('leveNextBills', JSON.stringify(newBilling))
                         }
                     })
 
