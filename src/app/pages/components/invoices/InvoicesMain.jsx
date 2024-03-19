@@ -42,7 +42,7 @@ export default function InvoicesMain() {
     return (
         <Container>
             <InvoicesMainContainer>
-                <Typography variant='h1'>Suas Faturas</Typography>
+                <Typography variant='h1' className='yourInvoices'>Suas Faturas</Typography>
                 <InvoicesMainCardContainer>
                     {nextBillExists ? (
                         <>
@@ -69,7 +69,7 @@ export default function InvoicesMain() {
                 </InvoicesMainCardContainer>
             </InvoicesMainContainer>
             <PreviousInvoicesContainer>
-                <Typography variant='h1'>Faturas Anteriores</Typography>
+                <Typography variant='h1' className='previousInvoices'>Faturas Anteriores</Typography>
                 <InvoicesTimelineContainer>
                     <Timeline />
                 </InvoicesTimelineContainer>

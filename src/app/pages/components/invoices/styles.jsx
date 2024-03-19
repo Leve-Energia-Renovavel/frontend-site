@@ -52,6 +52,9 @@ export const InvoicesMainContent = styled.div`
     
     width: 100vw;
     max-width: 100vw;
+
+
+    
 `
 export const InvoicesMainContainer = styled.div`
     width: 40vw;
@@ -60,6 +63,41 @@ export const InvoicesMainContainer = styled.div`
     @media (max-width: 600px) {
       width: 100%;
       max-width: 100vw;
+    }
+    .yourInvoices {
+      margin-left: 15rem;
+
+      @media (max-width: 2500px) {
+        margin-left: 25rem;
+      }
+      @media (max-width: 2000px) {
+        margin-left: 20rem;
+      }
+      @media (max-width: 1800px) {
+        margin-left: 18rem;
+      }
+      @media (max-width: 1600px) {
+        margin-left: 15rem;
+      }
+      @media (max-width: 1500px) {
+        margin-left: 12rem;
+      }
+      
+      @media (max-width: 1500px) {
+        margin-left: 12rem;
+      }
+
+      @media (max-width: 1400px) {
+      margin-left: 10rem;
+      }
+    
+      @media (max-width: 1200px) {
+          margin-left: 8rem;
+      }
+      @media (max-width: 1000px) {
+          margin-left: 1rem;
+      }
+
     }
 `
 export const InvoicesMainCardContainer = styled.div`
@@ -71,12 +109,40 @@ export const InvoicesMainCardContainer = styled.div`
 
     border-radius: 4px;
 
-    margin: 0 2rem 0 0;
+    margin: 1rem 2rem 0 15rem;
     padding: 1rem 2rem;
-
-    width: 30vw;
-    max-width: 40vw;
     
+    width: 30vw;
+    max-width: 20vw;
+    
+    @media (max-width: 2500px) {
+      margin: 0 2rem 0 25rem;
+    }
+    @media (max-width: 2000px) {
+      margin: 0 2rem 0 20rem;
+    }
+    @media (max-width: 1800px) {
+      margin: 0 2rem 0 18rem;
+    }
+    @media (max-width: 1600px) {
+      margin: 0 2rem 0 15rem;
+    }
+    @media (max-width: 1500px) {
+      margin: 0 2rem 0 12rem;
+    }
+    @media (max-width: 1400px) {
+      margin: 0 2rem 0 10rem;
+      width: 30vw;
+      max-width: 25vw;
+    }
+    @media (max-width: 1300px) {
+      margin: 0 2rem 0 10rem;      
+      width: 30vw;
+      max-width: 25vw;
+    }
+    @media (max-width: 1200px) {
+      margin: 0 2rem 0 8rem;
+    }
     @media (max-width: 1000px) {
       width: 40vw;
       max-width: 40vw;
@@ -105,7 +171,42 @@ export const InvoicesTimelineContainer = styled.div`
 export const PreviousInvoicesContainer = styled.div`
 
     @media (max-width: 600px) {
+      margin-top: 2rem;
+    }
+
+    .previousInvoices {
+      white-space: nowrap;
+      margin-left: 12rem;
+      
+      @media (max-width: 2500px) {
+        margin-left: 18rem;
+      }
+      @media (max-width: 2000px) {
+        margin-left: 18rem;
+      }
+      @media (max-width: 1900px) {
+        margin-left: 17rem;
+      }
+      @media (max-width: 1800px) {
+        margin-left: 12rem;
+      }
+      @media (max-width: 1400px) {
+        margin: 0 2rem 0 10rem;
+        width: 30vw;
+        max-width: 25vw;
+      }
+      
+      @media (max-width: 1300px) {
+        margin-left: 7rem;
+      }
+      @media (max-width: 600px) {
+        margin-left: 4rem;
       margin-top: 3rem;
+    }
+      @media (max-width: 400px) {
+        margin-left: 3rem;
+      margin-top: 3rem;
+    }
     }
 `
 export const NextBillTitleContainer = styled.div`
