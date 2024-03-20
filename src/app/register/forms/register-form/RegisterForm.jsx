@@ -50,7 +50,7 @@ export default function RegisterForm() {
 
     const isCompany = user.user.isCompany
 
-    const { name, email, phone, companyName, cost, distributor } = user.user
+    const { name, email, phone, companyName, cost, distributor } = user?.user
 
     const { street, neighborhood, city, state, stateId, cityId, cep } = storeAddress.address
     const company = useStoreCompany().company

@@ -30,10 +30,10 @@ export default function ProfileMain() {
     const company = JSON.parse(localStorage.getItem('company')) || storeCompany.company
     const mainInstallation = JSON.parse(localStorage.getItem('mainInstallation')) || storeMainInstallation.mainInstallation
 
-    const isCompany = user.user.isCompany
+    const isCompany = user?.user.isCompany
 
-    const { name, email, phone, rg, cpf, cep, birthDate, companyName, nationality, maritalStatus, profession, cost, distributor } = user.user
-    const { address, number, cityId, city, neighborhood, complement, stateId, street, zipCode, installationNumber } = mainInstallation.mainInstallation
+    const { name, email, phone, rg, cpf, cep, birthDate, companyName, nationality, maritalStatus, profession, cost, distributor } = user?.user
+    const { address, number, cityId, city, neighborhood, complement, stateId, street, zipCode, installationNumber } = mainInstallation?.mainInstallation
 
     const secondaryEmailRef = useRef(null)
     const oldPasswordRef = useRef(null)
