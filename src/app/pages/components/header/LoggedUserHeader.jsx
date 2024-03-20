@@ -23,7 +23,7 @@ export default function LoggedUserHeader() {
     const user = JSON.parse(localStorage.getItem('user')) || storeUser.user
 
     const { address, neighborhood, number, stateId, uuid, zipCode } = mainInstallation?.mainInstallation
-    const { name } = user.user
+    const { name } = user?.user
 
     const homeUrl = "https://wp-homolog.leveenergia.com.br/"
 

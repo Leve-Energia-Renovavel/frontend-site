@@ -48,7 +48,7 @@ export default function RegisterForm() {
 
     const user = JSON.parse(localStorage.getItem('user')) || store.user
 
-    const isCompany = user.user.isCompany
+    const isCompany = user?.user.isCompany
 
     const { name, email, phone, companyName, cost, distributor } = user?.user
 
