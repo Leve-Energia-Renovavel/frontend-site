@@ -40,7 +40,8 @@ export default function ProfileMain() {
     const newPasswordConfirmationRef = useRef(null)
 
     const handleSubmit = () => {
-        console.log("ProfileMain handleSubmit")
+        setValidationErrors(["Ainda não é possível editar perfil."])
+
     }
 
     const handleChangePassword = async () => {

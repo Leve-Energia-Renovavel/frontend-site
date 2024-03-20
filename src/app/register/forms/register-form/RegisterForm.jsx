@@ -173,6 +173,7 @@ export default function RegisterForm() {
                 street: submitData.endereco,
                 number: submitData.numero,
                 neighborhood: submitData.bairro,
+                complement: submitData.complemento,
                 city: addressRefs.city.current.value,
                 state: addressRefs.state.current.value,
                 cep: submitData.cep,
