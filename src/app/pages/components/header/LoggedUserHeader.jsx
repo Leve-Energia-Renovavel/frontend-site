@@ -1,7 +1,6 @@
 import { useStoreAddress, useStoreCompany, useStoreInstallations, useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Box, Select } from "@mui/material";
-import Cookies from 'js-cookie';
 import Image from 'next/image';
 import Link from "next/link";
 import { useRouter } from 'next/navigation';
@@ -21,9 +20,10 @@ export default function LoggedUserHeader() {
     const mainInstallation = JSON.parse(localStorage.getItem('mainInstallation')) || storeMainInstallation.mainInstallation
     const mainAddress = JSON.parse(localStorage.getItem('address')) || storeAddress.address
     const user = JSON.parse(localStorage.getItem('user')) || storeUser.user
-
-    const { address, neighborhood, number, stateId, uuid, zipCode } = mainInstallation?.mainInstallation
-    const { name } = user?.user
+    
+    const {street, installationNumber } = mainAddress?.address ?? (storeAddress?.address || {})
+    const { address, neighborhood, number, stateId, uuid, zipCode } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+    const { name } = user?.user ?? (storeUser?.user || {})
 
     const homeUrl = "https://wp-homolog.leveenergia.com.br/"
 
@@ -58,7 +58,7 @@ export default function LoggedUserHeader() {
                             <HeaderMenuItem value={10} style={{ display: 'none' }}
                             >
                                 <span className="mainInstallation" onClick={() => router.push("/dashboard")} style={{ fontSize: "1.2rem" }}>
-                                    {address !== "" ? address : mainAddress ? mainAddress : "Minha instalação"}
+                                    {address !== "" ? address : street ? street : "Minha instalação"}
                                 </span>
                             </HeaderMenuItem>
                             <HeaderMenuItem

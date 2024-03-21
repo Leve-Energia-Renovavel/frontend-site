@@ -2,6 +2,8 @@ import { useStoreAddress } from "@/app/hooks/useStore";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import axios from 'axios';
 import { requestSuccessful } from "../../service/utils/Validations";
+import { findCityIdByName } from "@/app/service/utils/addressUtilsService";
+import { statesAcronymOptions } from "@/app/utils/form-options/statesIdOptions";
 
 function findStateId(uf) {
     for (const id in stateOptions) {
@@ -30,6 +32,7 @@ const useGetCEP = () => {
                     city: address?.cidade,
                     state: address?.uf,
                     stateId: findStateId(address?.uf),
+                    cityId: await findCityIdByName(address?.cidade, statesAcronymOptions[address?.uf]),
                     cep: address?.cep,
                 });
             }

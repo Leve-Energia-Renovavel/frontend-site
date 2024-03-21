@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import RegisterBannerSuccess from "../banners/banner-success/RegisterBanner";
 import FormBanner from "../banners/form-banner/FormBanner";
 import { clearBrowserData } from "@/app/utils/browser/BrowserUtils";
+import { formatBasicBirthDate, formatBirthDate } from "@/app/utils/date/DateUtils";
 
 const ResultEconomy = dynamic(() => import('../result-economy/ResultEconomy'), { ssr: false });
 const RegisterForm = dynamic(() => import('../forms/register-form/RegisterForm'), { ssr: false });
@@ -51,7 +52,17 @@ export default function RegisterMain() {
                         cost: instalacao?.valor_base_consumo,
                         cep: cep,
 
-                        isCompany: consumidor.type == "PJ" ? true : false,
+                        cpf: consumidor?.cpf !== "" ? consumidor.cpf : "",
+                        rg: consumidor?.rg !== "" ? consumidor.cpf : "",
+                        birthDate: consumidor?.data_nascimento !== "" ? formatBasicBirthDate(consumidor?.data_nascimento) : "",
+
+                        isCompany: consumidor?.type == "PJ" ? true : false,
+                        cnpj: consumidor?.type == "PJ" ? instalacao?.cnpj : "",
+                        companyName: consumidor?.type == "PJ" ? instalacao?.razao_social : "",
+
+                        nationality: consumidor?.nacionalidade,
+                        profession: consumidor?.profissao,
+                        maritalStatus: consumidor?.estado_civil,
 
                         discount: instalacao?.desconto,
                         clientId: instalacao?.clientes_id,
@@ -65,6 +76,7 @@ export default function RegisterMain() {
                     const updatedAddress = {
                         cityId: consumidor?.cidade_id,
                         stateId: consumidor?.estado_id,
+                        installationNumber: instalacao?.numero_instalacao
                     }
 
                     storeAddress.updateAddress(updatedAddress)

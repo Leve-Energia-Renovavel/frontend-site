@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+
 export const getCurrentDate = () => {
     const currentDate = new Date();
 
@@ -12,4 +14,13 @@ export const getCurrentDate = () => {
     const formattedDateTime = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 
     return formattedDateTime;
+}
+
+
+export const formatBirthDate = (receivedDate) => {
+    return format(new Date(receivedDate), 'dd/MM/yyyy');
+}
+export const formatBasicBirthDate = (receivedDate) => {
+    const [year, month, day] = receivedDate.split('-');
+    return `${day}/${month}/${year}`;
 }

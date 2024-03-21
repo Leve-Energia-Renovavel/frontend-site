@@ -31,6 +31,7 @@ export default function RegisterForm() {
     const store = useStoreUser()
     const storeAddress = useStoreAddress()
     const storeCompany = useStoreCompany()
+
     const { hasDataCookies, setDataCookies } = useStoreCookies();
 
     const router = useRouter()
@@ -47,13 +48,13 @@ export default function RegisterForm() {
     const uuid = store.user.uuid || Cookies.get('leveUUID')
 
     const user = JSON.parse(localStorage.getItem('user')) || store.user
+    const address = JSON.parse(localStorage.getItem('address')) || storeAddress.address
 
+    const company = useStoreCompany().company
     const isCompany = user?.user.isCompany
 
-    const { name, email, phone, companyName, cost, distributor } = user?.user
-
-    const { street, neighborhood, city, state, stateId, cityId, cep } = storeAddress.address
-    const company = useStoreCompany().company
+    const { name, email, phone, cost, distributor, cpf, rg, companyName, cnpj } = user?.user ?? (store?.user || {})
+    const { street, neighborhood, city, state, stateId, cityId, cep, installationNumber } = address?.address ?? (storeAddress?.address || {})
 
     const [userCost, setUserCost] = useState(cost || null)
     const [stateValue, setStateValue] = useState(stateOptions[stateId] || stateOptions[(statesAcronymOptions[state])] || null);
@@ -169,6 +170,14 @@ export default function RegisterForm() {
                 nationality: submitData.nacionalidade,
             });
 
+            if (isCompany) {
+                store.updateUser({
+                    companyName: submitData.razao_social,
+
+                });
+
+            }
+
             const updatedAddress = {
                 street: submitData.endereco,
                 number: submitData.numero,
@@ -184,11 +193,12 @@ export default function RegisterForm() {
 
             router.push(`/register/contract-signature`)
         } else {
-            if (!response?.response?.data?.message) {
-                setValidationErrors(response)
-            } else {
+            if (response.data.message == "Fora de rateio") {
+                setValidationErrors([response.data.message])
+                //         router.push(`/fail/low-cost/`)
+            }
+            if (response?.response?.data?.message) {
                 setValidationErrors([response.response.data.message])
-
             }
         }
 
@@ -278,9 +288,9 @@ export default function RegisterForm() {
                 <FormContent acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
                     {isCompany && (
                         <FormRow suppressHydrationWarning={true}>
-                            <TextField className="formInput" defaultValue={company.razao_social || ''} inputRef={companyRefs.razao_social} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" InputLabelProps={{ shrink: true }} required />
-                            <InputMask mask="99.999.999/9999-99">
-                                {() => <TextField className="formInput" inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text" required
+                            <TextField className="formInput" defaultValue={company.razao_social || companyName || ''} inputRef={companyRefs.razao_social} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" InputLabelProps={{ shrink: true }} required />
+                            <InputMask mask="99.999.999/9999-99" defaultValue={company.cnpj || cnpj || ''}>
+                                {() => <TextField className="formInput" defaultValue={company.cnpj || cnpj || ''} inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text" required
                                     InputProps={{
                                         endAdornment: <SearchIcon
                                             sx={{ cursor: 'pointer' }}
@@ -328,11 +338,11 @@ export default function RegisterForm() {
                         )}
                     </InputMask>
                     {isForeigner ?
-                        (<InputMask mask="*******-*" required >
+                        (<InputMask mask="*******-*" required defaultValue={rg || store.user.rg || ""}>
                             {() => <TextField inputRef={userRefs.rg} className="formInput" label="RNE" variant="outlined" placeholder="RNE" type="text" InputLabelProps={{ shrink: true }} required />}
                         </InputMask>)
                         :
-                        (<InputMask mask="********-*" required defaultValue={store.user.rg ? store.user.rg : ""}>
+                        (<InputMask mask="********-*" required defaultValue={rg || store.user.rg || ""}>
                             {() => <TextField
                                 inputRef={userRefs.rg}
                                 className="formInput"
@@ -344,7 +354,7 @@ export default function RegisterForm() {
                                 InputLabelProps={hasDataCookies ? { shrink: true } : {}}
                             />}
                         </InputMask>)}
-                    <InputMask mask="999.999.999-99" required defaultValue={store.user.cpf ? store.user.cpf : ""}>
+                    <InputMask mask="999.999.999-99" required defaultValue={store.user.cpf || cpf || ""}>
                         {() => <TextField inputRef={userRefs.cpf} className="formInput" label="CPF" variant="outlined" placeholder="CPF" type="text" required
                             InputLabelProps={hasDataCookies ? { shrink: true } : {}} />}
                     </InputMask>
@@ -416,7 +426,7 @@ export default function RegisterForm() {
                     <TextField
                         className="formInput"
                         inputRef={userRefs.cost}
-                        value={userCost || user.cost || ""}
+                        value={userCost || cost || ""}
                         onChange={(event) => handleChangeUserCost(event)}
                         label="Custo Mensal em R$"
                         variant="outlined"
@@ -496,11 +506,12 @@ export default function RegisterForm() {
                         </List>
                     </TextField> */}
 
-                    <TextField className="formInput" defaultValue={city.toUpperCase() || ''} inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text"
+                    <TextField className="formInput" defaultValue={city?.toUpperCase() || ''} inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text"
                         InputLabelProps={{ shrink: true }} required />
 
                     <FormLastRow>
                         <TextField
+                            defaultValue={storeAddress.address.installationNumber || installationNumber || ''}
                             className="installationNumberField"
                             inputRef={addressRefs.installationNumber} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text"
                             InputLabelProps={{ shrink: true }} />

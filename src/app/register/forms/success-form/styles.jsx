@@ -11,21 +11,30 @@ export const FormContainer = styled.div`
   background-color: ${background.light};
   
   position: absolute;
-  top: ${(props) => props.isDown ? `65vh` : `75vh`};
+  top: ${(props) => props.isDown ? `30rem` : `42rem`};
   left: 50vw;
   transform: translate(-50%, -50%);
   z-index: 100;
   
   width: 60vw;
 
-  @media (min-width: 1800px) and (max-width: 2150px) {
-    top: 75vh;
+  @media (max-width: 2500px) {
+    top: 33rem;
   }
-  @media (max-width: 1100px) {
-    top: 80vh;
+  @media (max-width: 2150px) {
+    top: 33rem;
+  }
+  @media (max-width: 1700px) {
+    top: 33rem;
+  }
+  @media (max-width: 1500px) {
+    top: 33rem;
+  }
+  @media (max-width: 1300px) {
+    top: 35rem;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 1100px) {
     width: 100vw;
     max-width: 100vw;
 

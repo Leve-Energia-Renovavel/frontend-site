@@ -1,7 +1,7 @@
 "use client"
 
 import CongratulationsBanner from '../banners/banner-congratulations/CongratulationsBanner';
-import FormBanner from '../banners/form-banner/FormBanner';
+import FormBannerSuccess from '../banners/form-banner-success/FormBannerSuccess';
 import SuccessForm from '../forms/success-form/SuccessForm';
 
 export default function Page() {
@@ -9,7 +9,7 @@ export default function Page() {
         <>
             <CongratulationsBanner />
             <SuccessForm />
-            <FormBanner />
+            <FormBannerSuccess />
         </>
     );
 }

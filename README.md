@@ -25,7 +25,7 @@ npm install
 Install all dependencies:
 
 ```bash
-npm install axios dotenv react-router-dom react-input-mask @mui/material @mui/icons-material @emotion/react @emotion/styled @mui/x-charts @mui/lab react-confetti-explosion sharp
+npm install axios dotenv date-fns zustand react-router-dom react-input-mask @mui/material @mui/icons-material @emotion/react @emotion/styled @mui/x-charts @mui/lab react-confetti-explosion sharp
 ```
 
 Run locally:

@@ -10,6 +10,7 @@ export const useStoreUser = create((set) => ({
         cost: 0,
 
         companyName: "",
+        cnpj: "",
 
         discount: 0,
         isCompany: null,
