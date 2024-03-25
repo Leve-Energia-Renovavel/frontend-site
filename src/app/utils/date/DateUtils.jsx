@@ -21,6 +21,8 @@ export const formatBirthDate = (receivedDate) => {
     return format(new Date(receivedDate), 'dd/MM/yyyy');
 }
 export const formatBasicBirthDate = (receivedDate) => {
-    const [year, month, day] = receivedDate.split('-');
-    return `${day}/${month}/${year}`;
+    if(receivedDate) {
+        const [year, month, day] = receivedDate.split('-');
+        return `${day}/${month}/${year}`;
+    } else return ""
 }

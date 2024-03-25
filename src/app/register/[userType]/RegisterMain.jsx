@@ -54,7 +54,7 @@ export default function RegisterMain() {
 
                         cpf: consumidor?.cpf !== "" ? consumidor.cpf : "",
                         rg: consumidor?.rg !== "" ? consumidor.cpf : "",
-                        birthDate: consumidor?.data_nascimento !== "" ? formatBasicBirthDate(consumidor?.data_nascimento) : "",
+                        birthDate: consumidor?.data_nascimento ? formatBasicBirthDate(consumidor?.data_nascimento) : "",
 
                         isCompany: consumidor?.type == "PJ" ? true : false,
                         cnpj: consumidor?.type == "PJ" ? instalacao?.cnpj : "",
