@@ -6,9 +6,10 @@ import { BannerContainer, ContentContainer } from "./styles";
 
 export default function RegisterBannerSuccess(props) {
 
-    const user = useStoreUser().user
+    const store = useStoreUser()
+    const user = JSON.parse(localStorage.getItem('user')) || store.user
 
-    const name = user.name;
+    const name = user?.user?.name ?? (user?.name || {})
     const fullName = name.split(" ");
     const firstName = fullName[0]
 
