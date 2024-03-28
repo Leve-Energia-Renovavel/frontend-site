@@ -4,7 +4,7 @@
 import { useStoreAddress, useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser, useStoreUserEconomy } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { billHasToBePaid, billingStatusOptions } from "@/app/utils/form-options/billingStatusOptions";
-import { formatDate } from "@/app/utils/formatters/dateFormatter";
+import { formatDate, formatMonthAndYear } from "@/app/utils/formatters/dateFormatter";
 import { Alert, Typography } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -229,7 +229,7 @@ export default function DashboardMain() {
                             <NextBillGrid>
                                 {isLoading ? <SkeletonDiv className="grid-item" /> :
                                     (<NextBillValue className="loaded-grid-item">
-                                        <Typography className="referenceMonth">01/2024</Typography>
+                                        <Typography className="referenceMonth">{formatMonthAndYear(nextBill?.dueDate)}</Typography>
                                         <Typography className="billValue">R$ {nextBill?.value.toString().replace('.', ',')}</Typography>
                                     </NextBillValue>)}
                                 {isLoading ? <SkeletonDiv className="grid-item" /> :
