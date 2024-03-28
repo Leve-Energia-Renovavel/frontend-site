@@ -53,7 +53,7 @@ pipelines:
               - out/**
 
       - step:
-          name: Upload to Production S3
+          name: Upload to Dev S3
           script:
             - apt-get update && apt-get install -y python3-pip python3-venv
             - python3 -m venv myenv
@@ -61,5 +61,17 @@ pipelines:
             - pip install awscli
             - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
             - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-            - aws s3 sync ./out s3://$PROD_AWS_BUCKET/
+            - aws s3 sync ./out s3://$DEV_AWS_BUCKET_PROD/
+            - deactivate
+      - step:
+          name: CloudFront Invalidation
+          script:
+            - apt-get update && apt-get install -y python3-pip python3-venv
+            - python3 -m venv myenv
+            - source myenv/bin/activate
+            - pip install awscli
+            - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+            - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+            - aws configure set region $AWS_REGION  # Defina a região do seu CloudFront
+            - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID_PROD --paths "/*"
             - deactivate
