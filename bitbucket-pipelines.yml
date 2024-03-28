@@ -61,7 +61,7 @@ pipelines:
             - pip install awscli
             - aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
             - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-            - aws s3 sync ./out s3://$DEV_AWS_BUCKET_PROD/
+            - aws s3 sync ./out s3://$PROD_AWS_BUCKET/
             - deactivate
       - step:
           name: CloudFront Invalidation
