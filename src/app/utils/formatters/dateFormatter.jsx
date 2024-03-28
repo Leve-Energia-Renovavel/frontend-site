@@ -9,8 +9,9 @@ export const formatDate = (dateString) => {
 }
 
 export const formatMonthAndYear = (dateString) => {
-    const date = new Date(dateString);
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear().toString();
-    return `${month}/${year}`;
+    const [month, day, year] = dateString.split('/');
+    const date = new Date(`${year}-${month}-${day}`);
+    const formattedMonth = (date.getMonth() + 2).toString().padStart(2, '0');
+    const formattedYear = date.getFullYear().toString();
+    return `${formattedMonth}/${formattedYear}`;
 }
