@@ -8,6 +8,7 @@ pipelines:
           caches:
             - node
           script:
+            - mv .env.dev .env
             - npm install
             - npm run build
           artifacts:
@@ -45,6 +46,7 @@ pipelines:
           caches:
             - node
           script:
+            - mv .env.master .env
             - npm install
             - npm run build
           artifacts:
