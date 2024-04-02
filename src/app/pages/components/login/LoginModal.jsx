@@ -91,7 +91,7 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
                 router.push(`/dashboard`)
                 closeModal()
             } else if (response?.data.error) {
-                setValidationErrors([response?.data.message])
+                setValidationErrors(["E-mail ou senha estão incorretos"])
 
             } else {
                 setValidationErrors([response?.response?.data?.message])
