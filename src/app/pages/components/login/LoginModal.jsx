@@ -87,9 +87,12 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
             }
 
             const response = await loginValidation(data)
-            if (requestSuccessful(response?.status)) {
+            if (response?.status === 200 && response?.data.access_token) {
                 router.push(`/dashboard`)
                 closeModal()
+            } else if (response?.data.error) {
+                setValidationErrors([response?.data.message])
+
             } else {
                 setValidationErrors([response?.response?.data?.message])
             }
@@ -108,8 +111,8 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            event.preventDefault(); 
-            handleSubmit(event); 
+            event.preventDefault();
+            handleSubmit(event);
         }
     };
 
