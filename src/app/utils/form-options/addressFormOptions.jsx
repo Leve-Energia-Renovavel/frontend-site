@@ -1,6 +1,5 @@
 
 export const stateOptions = {
-
     1: {
         cod_estados: 1,
         sigla: "AC",
