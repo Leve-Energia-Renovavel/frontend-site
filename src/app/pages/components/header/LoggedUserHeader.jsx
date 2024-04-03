@@ -3,13 +3,16 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Box, Select } from "@mui/material";
 import Image from 'next/image';
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import logo from "../../../../resources/img/logo-header.png";
 import HeaderButton from '../utils/buttons/HeaderButton';
 import { HeaderMenuItem, LogoContainer, MenuItem, Nav, Ul, installationFieldStyle } from "./styles";
+import { pathHelper } from '@/app/utils/helper/pathHelper';
 
 export default function LoggedUserHeader() {
+
     const router = useRouter()
+    const pathname = usePathname()
 
     const storeUser = useStoreUser()
     const storeAddress = useStoreAddress()
@@ -35,6 +38,14 @@ export default function LoggedUserHeader() {
         router.push("/")
     }
 
+    const handleClickLogo = () => {
+        if (pathHelper[pathname]) {
+            router.push('/dashboard')
+        } else {
+            router.push(homeUrl)
+        }
+    }
+
 
     return (
         <>
@@ -44,7 +55,7 @@ export default function LoggedUserHeader() {
                     className='logoImage'
                     src={logo}
                     alt="Leve Energia Logo"
-                    onClick={() => router.push(homeUrl)}
+                    onClick={() => handleClickLogo()}
                 />
             </LogoContainer>
             <Nav>

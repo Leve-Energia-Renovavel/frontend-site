@@ -22,7 +22,8 @@ export const DashboardContainer = styled.div`
     display: flex;
     flex-direction: column;
 
-    max-width: 100vw;
+    max-width: 1500px;
+    margin: 0 auto;
 `
 
 export const TitleContainer = styled.div`

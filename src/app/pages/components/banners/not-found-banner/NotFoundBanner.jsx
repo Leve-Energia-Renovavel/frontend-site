@@ -10,7 +10,6 @@ export default function NotFoundBanner() {
         <BannerContainer>
             <ContentContainer>
                 <Typography variant="body1" component="h1">Página não encontrada... 😥</Typography>
-                <Typography variant="subtitle1" className="boldSubtitle">Se não é pra ser Leve, eu nem quero!</Typography>
                 <Typography variant="subtitle1" className="subtitle">Não gaste energia à toa, clique no botão abaixo para voltar para a tela inicial. </Typography>
             </ContentContainer>
             <ButtonContainer>

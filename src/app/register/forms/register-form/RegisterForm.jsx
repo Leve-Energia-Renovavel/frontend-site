@@ -239,6 +239,10 @@ export default function RegisterForm() {
 
     useEffect(() => {
         setStateValue(stateOptions[stateId] || stateOptions[(statesAcronymOptions[state])] || null)
+
+        if (cost < 150) {
+            store.updateUser({ cost: cost * 100 })
+        }
     }, [storeAddress, hasDataCookies])
 
 
@@ -247,9 +251,6 @@ export default function RegisterForm() {
         // addressRefs.address.current.value = ""
         // addressRefs.addressNumber.current.value = ""
         // addressRefs.addressCep.current.value = ""
-        // addressRefs.neighborhood.current.value = ""
-        // addressRefs.complement.current.value = ""
-        // addressRefs.city.current.value = ""
 
         // storeAddress.updateAddress({ stateId: value, cep: "", neighborhood: "" })
     }
@@ -566,8 +567,6 @@ export default function RegisterForm() {
                             </FileUploadItem>
                         </FileUploadContainer>
                     ) : null}
-
-                    {/* <Button onClick={() => router.push('/dashboard')}>Dashboard</Button> */}
 
                 </FormContent>
                 {isModalOpen && <RegisterModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={distributor ? distributor.toLowerCase() : ""} />}

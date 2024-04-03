@@ -5,33 +5,13 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Link from 'next/link';
 import { FABContainer, WhatsappLink } from './styles';
 import { usePathname } from 'next/navigation';
+import { helperToPath, pathHelper } from '@/app/utils/helper/pathHelper';
 
 const WhatsAppFAB = () => {
 
     const pathname = usePathname()
 
-    const helper = {
-        '/': false,
-        '/register/': false,
-        '/login/': false,
-        '/dashboard/': true,
-        '/profile/': true,
-        '/invoices/': true,
-        '/installations/': true,
-        '/recover-password/': true,
-    }
-
-    const helperToPath = {
-        '/': "no+cadastro+da",
-        '/register/': "no+cadastro+da",
-        '/login/': "no+login+da",
-        '/dashboard/': "no+painel+da",
-        '/profile/': "no+meu+perfil+da",
-        '/invoices/': "na+pagina+de+faturas+da",
-        '/installations/': "na+pagina+de+enderecos+da",
-    }
-
-    const isLoggedUser = helper[pathname]
+    const isLoggedUser = pathHelper[pathname]
     const location = helperToPath[pathname]
 
     return (
