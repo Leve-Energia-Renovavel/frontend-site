@@ -440,7 +440,9 @@ export default function RegisterForm() {
                         <Divider sx={{ width: '107px', border: '1px solid #A0A0A0' }} />
                     </div> */}
 
-                    <InputMask mask="99999-999" value={cep || ""} onChange={(e) => storeAddress.updateAddress({ cep: e.target.value })}>
+                    <InputMask mask="99999-999" value={cep || ""}
+                        onChange={(e) => storeAddress.updateAddress({ cep: e.target.value })}
+                        onBlur={(e) => fetchCEP(addressRefs.addressCep.current.value)}>
                         {() => <TextField
                             className="formInput"
                             inputRef={addressRefs.addressCep}
@@ -450,10 +452,9 @@ export default function RegisterForm() {
                             type="text"
                             InputLabelProps={{ shrink: true }}
                             InputProps={{
-                                endAdornment: <SearchIcon
-                                    sx={{ cursor: 'pointer' }}
-                                    onClick={() => fetchCEP(addressRefs.addressCep.current.value)} />,
-                            }} required />}
+                                endAdornment: <SearchIcon sx={{ cursor: 'pointer' }} />,
+                            }}
+                            required />}
                     </InputMask>
 
                     <TextField className="formInput" defaultValue={street || ''} inputRef={addressRefs.address} label="Endereço" variant="outlined" placeholder="Endereço" type="text" InputLabelProps={{ shrink: true }} required />

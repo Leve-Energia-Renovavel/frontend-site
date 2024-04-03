@@ -10,6 +10,7 @@ import LoginModal from '../login/LoginModal';
 import DefaultButton from '../utils/buttons/DefaultButton';
 import MobileHeader from './MobileHeader';
 import { ButtonContainer, HeaderContainer, LogoContainer, MenuBurguer, MenuItem, MobileHeaderContainer, Nav, NavContainer, Ul } from './styles';
+import { headerHelper } from '@/app/utils/helper/pathHelper';
 const LoggedUserHeader = dynamic(() => import('./LoggedUserHeader'), { ssr: false });
 
 export default function Header() {
@@ -23,15 +24,6 @@ export default function Header() {
     const [openLogin, setOpenLogin] = useState(false);
 
     const homeUrl = "https://leveenergia.com.br/"
-
-    const headerHelper = {
-        '/': false,
-        '/register/': false,
-        '/dashboard/': true,
-        '/profile/': true,
-        '/invoices/': true,
-        '/installations/': true,
-    }
 
     const mobileWidth = 900
 

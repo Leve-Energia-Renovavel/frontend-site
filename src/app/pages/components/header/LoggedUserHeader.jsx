@@ -46,7 +46,6 @@ export default function LoggedUserHeader() {
         }
     }
 
-
     return (
         <>
             <LogoContainer>
@@ -74,13 +73,13 @@ export default function LoggedUserHeader() {
                             </HeaderMenuItem>
                             <HeaderMenuItem
                                 value={20}>
-                                <span onClick={() => router.push("/installations")}>
+                                <span onClick={() => router.push("/dashboard/installations")}>
                                     Ver Meus Endereços
                                 </span>
                             </HeaderMenuItem>
                             <HeaderMenuItem
                                 value={30}>
-                                <span onClick={() => router.push("/installations")}>
+                                <span onClick={() => router.push("/dashboard/installations")}>
                                     Adicionar Novo Endereço
                                 </span>
                             </HeaderMenuItem>
@@ -92,7 +91,7 @@ export default function LoggedUserHeader() {
                     <MenuItem>
                         <HeaderButton
                             text="Meu Perfil"
-                            onClick={() => router.push("/profile")} />
+                            onClick={() => router.push("/dashboard/profile")} />
                     </MenuItem>
                     <MenuItem>
                         <HeaderButton

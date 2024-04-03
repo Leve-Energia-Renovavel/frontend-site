@@ -1,31 +1,21 @@
+import { headerHelper } from '@/app/utils/helper/pathHelper';
 import CloseIcon from '@mui/icons-material/Close';
 import { Modal } from '@mui/material';
-import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import MobileHeaderButtonOutlined from '../utils/buttons/MobileHeaderButtonOutlined';
 import MobileHeaderButtonContained from '../utils/buttons/MobileHeaderButtonContained';
+import MobileHeaderButtonOutlined from '../utils/buttons/MobileHeaderButtonOutlined';
 import { MenuItemMobile, MobileButtonContainer, MobileMenu, NavContainer, NavMobile, UlMobile } from './styles';
 
 
 export default function MobileHeader(props) {
 
     const router = useRouter()
+    const pathname = usePathname()
     const { isMenuOpen, closeMenu } = props;
 
     const handleNavigation = (path) => {
         closeMenu()
         router.push(`${path}`)
-    }
-
-    const pathname = usePathname()
-
-    const headerHelper = {
-        '/': false,
-        '/register/': false,
-        '/dashboard/': true,
-        '/profile/': true,
-        '/invoices/': true,
-        '/installations/': true,
     }
 
     const isLoggedUser = headerHelper[pathname];
@@ -73,13 +63,13 @@ export default function MobileHeader(props) {
                                         <a onClick={() => handleNavigation("/dashboard")}>Início</a>
                                     </MenuItemMobile>
                                     <MenuItemMobile>
-                                        <a onClick={() => handleNavigation("/profile")}>Meu Perfil</a>
+                                        <a onClick={() => handleNavigation("/dashboard/profile")}>Meu Perfil</a>
                                     </MenuItemMobile>
                                     <MenuItemMobile>
-                                        <a onClick={() => handleNavigation("/invoices")}>Minhas Faturas</a>
+                                        <a onClick={() => handleNavigation("/dashboard/invoices")}>Minhas Faturas</a>
                                     </MenuItemMobile>
                                     <MenuItemMobile>
-                                        <a onClick={() => handleNavigation("/installations")}>Meus Endereços</a>
+                                        <a onClick={() => handleNavigation("/dashboard/installations")}>Meus Endereços</a>
                                     </MenuItemMobile>
                                     <MenuItemMobile>
                                         <a onClick={() => handleNavigation("https://leveenergia.com.br/")}>Sair</a>

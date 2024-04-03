@@ -280,7 +280,14 @@ export default function InstallationsMain() {
                         <NewInstallationContent>
                             <FormContentNewInstallation acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
                                 <InputMask mask="99999-999">
-                                    {() => <TextField className="formInput" inputRef={newInstallationRef.zipCode} label="CEP" variant="outlined" placeholder="CEP" type="text" InputLabelProps={{ shrink: true }}
+                                    {() => <TextField
+                                        className="formInput"
+                                        inputRef={newInstallationRef.zipCode}
+                                        label="CEP"
+                                        variant="outlined"
+                                        placeholder="CEP"
+                                        type="text"
+                                        InputLabelProps={{ shrink: true }}
                                         InputProps={{
                                             endAdornment: <SearchIcon
                                                 sx={{ cursor: 'pointer' }}

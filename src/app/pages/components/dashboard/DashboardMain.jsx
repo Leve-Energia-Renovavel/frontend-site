@@ -261,7 +261,7 @@ export default function DashboardMain() {
                     }
                     {storeNextBills.exists ?
                         <PaymentButtonContainer>
-                            <DashboardButton text="Ver todas faturas" onClick={() => router.push('/invoices')} />
+                            <DashboardButton text="Ver todas faturas" onClick={() => router.push('/dashboard/invoices')} />
                             <FormButton text="Pagar" onClick={() => handlePayBill(nextBill.urlBill)} />
                         </PaymentButtonContainer>
                         : <>
@@ -295,7 +295,7 @@ export default function DashboardMain() {
                                 <span className="economyData">{`${userEconomy.economySince ? userEconomy.economySince : `0`}`}</span>
                             </Info>
                             <NewInstallationButtonContainer>
-                                <NewInstallationButton text="Adicionar Novo Endereço" onClick={() => router.push("/installations")} />
+                                <NewInstallationButton text="Adicionar Novo Endereço" onClick={() => router.push("/dashboard/installations")} />
                             </NewInstallationButtonContainer>
                         </YourInfo>
                         : <UserEconomyNotFound>
@@ -358,7 +358,7 @@ export default function DashboardMain() {
                             ))}
                             {billings.length > 2 && (
                                 <div style={{ display: "flex", justifyContent: "center" }}>
-                                    <Typography variant="subtitle1" className="seeMoreBillings" onClick={() => router.push(`/invoices`)}> Ver mais</Typography>
+                                    <Typography variant="subtitle1" className="seeMoreBillings" onClick={() => router.push(`/dashboard/invoices`)}> Ver mais</Typography>
                                 </div>
                             )}
                         </HistoryBilling>
