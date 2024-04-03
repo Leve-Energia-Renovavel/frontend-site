@@ -13,6 +13,7 @@ const WhatsAppFAB = () => {
     const helper = {
         '/': false,
         '/register/': false,
+        '/login/': false,
         '/dashboard/': true,
         '/profile/': true,
         '/invoices/': true,
@@ -23,6 +24,7 @@ const WhatsAppFAB = () => {
     const helperToPath = {
         '/': "no+cadastro+da",
         '/register/': "no+cadastro+da",
+        '/login/': "no+login+da",
         '/dashboard/': "no+painel+da",
         '/profile/': "no+meu+perfil+da",
         '/invoices/': "na+pagina+de+faturas+da",

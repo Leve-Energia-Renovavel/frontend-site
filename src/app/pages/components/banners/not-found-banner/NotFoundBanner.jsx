@@ -16,7 +16,7 @@ export default function NotFoundBanner() {
             <ButtonContainer>
                 <Button
                     disableElevation={true}
-                    onClick={() => router.push("https://wp-homolog.leveenergia.com.br/")}
+                    onClick={() => router.push("https://leveenergia.com.br/")}
                     className='backToMainPage'>Voltar para Tela Inicial</Button>
             </ButtonContainer>
         </BannerContainer>

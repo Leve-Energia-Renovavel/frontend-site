@@ -20,12 +20,12 @@ export default function LoggedUserHeader() {
     const mainInstallation = JSON.parse(localStorage.getItem('mainInstallation')) || storeMainInstallation.mainInstallation
     const mainAddress = JSON.parse(localStorage.getItem('address')) || storeAddress.address
     const user = JSON.parse(localStorage.getItem('user')) || storeUser.user
-    
-    const {street, installationNumber } = mainAddress?.address ?? (storeAddress?.address || {})
+
+    const { street, installationNumber } = mainAddress?.address ?? (storeAddress?.address || {})
     const { address, neighborhood, number, stateId, uuid, zipCode } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
     const { name } = user?.user ?? (storeUser?.user || {})
 
-    const homeUrl = "https://wp-homolog.leveenergia.com.br/"
+    const homeUrl = "https://leveenergia.com.br/"
 
     const handleLogout = () => {
         storeUser.clearUser()

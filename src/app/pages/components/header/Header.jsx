@@ -22,7 +22,7 @@ export default function Header() {
 
     const [openLogin, setOpenLogin] = useState(false);
 
-    const homeUrl = "https://wp-homolog.leveenergia.com.br/"
+    const homeUrl = "https://leveenergia.com.br/"
 
     const headerHelper = {
         '/': false,

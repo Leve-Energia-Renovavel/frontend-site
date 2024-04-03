@@ -10,7 +10,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Backdrop, Box, CircularProgress, Divider, IconButton, InputAdornment, Modal, Snackbar, TextField, Typography } from '@mui/material';
 import Cookies from 'js-cookie';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import leveLogo from '../../../../resources/img/leve-logo-blue.jpg';
 import { forgotPasswordSchema, loginSchema } from './schema';
@@ -19,6 +19,7 @@ import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, Login
 export default function LoginModal({ isOpen, openModal, closeModal }) {
 
     const router = useRouter()
+    const pathname = usePathname()
 
     const store = useStoreUser()
     const user = useStoreUser().user
@@ -28,6 +29,9 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
     const [passwordVisibible, setPasswordVisibible] = useState("password")
     const [validationErrors, setValidationErrors] = useState([])
     const [notifications, setNotifications] = useState([])
+
+    const hideClose = pathname == '/login/' ? true : false
+    const homeUrl = "https://leveenergia.com.br/"
 
     const loginRef = {
         email: useRef(null),
@@ -136,9 +140,14 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
                 <LoginBox>
                     <LoginIconContainer>
                         <div style={{ marginLeft: 'auto' }}>
-                            <IconButton onClick={closeModal}>
-                                <CloseIcon />
-                            </IconButton>
+                            {hideClose ?
+                                <IconButton onClick={() => router.push(homeUrl)}>
+                                    <CloseIcon />
+                                </IconButton>
+                                :
+                                <IconButton onClick={closeModal}>
+                                    <CloseIcon />
+                                </IconButton>}
                         </div>
                     </LoginIconContainer>
                     <LoginTitleContainer>
