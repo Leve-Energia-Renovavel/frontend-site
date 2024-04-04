@@ -8,6 +8,8 @@ export default function RegisterBannerFailRegion(props) {
 
     const router = useRouter()
 
+    const homeUrl = "https://leveenergia.com.br/"
+
     return (
         <BannerContainer>
             <ContentContainer>
@@ -20,7 +22,7 @@ export default function RegisterBannerFailRegion(props) {
             <ButtonContainer>
                 <Button
                     disableElevation={true}
-                    onClick={() => router.push("/")}
+                    onClick={() => router.push(homeUrl)}
                     className='backToMainPage'>Voltar para Tela Inicial</Button>
             </ButtonContainer>
         </BannerContainer>
