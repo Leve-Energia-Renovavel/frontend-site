@@ -88,9 +88,10 @@ export default function InstallationsMain() {
         }
 
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/add-uc`, data, { headers });
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/add-uc`, data, { headers });
             console.log(response)
             if (requestSuccessful(response.status)) {
+                const newInstallation = response.data
                 // const otherInstallation = {
                 //     uuid: installation?.uuid,
                 //     address: installation?.endereco,
@@ -98,7 +99,7 @@ export default function InstallationsMain() {
                 //     number: installation?.numero,
                 // }
 
-                // storeInstallations.addInstallation(otherInstallation);
+                storeInstallations.addInstallation(otherInstallation);
 
             }
         } catch (error) {
