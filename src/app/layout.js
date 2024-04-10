@@ -1,3 +1,4 @@
+import { usePathname } from "next/navigation";
 import "./globals.css";
 import WhatsAppFAB from "./pages/components/fabWhatsapp/WhatsappFAB";
 import Footer from "./pages/components/footer/Footer";

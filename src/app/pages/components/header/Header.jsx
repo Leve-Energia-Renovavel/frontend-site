@@ -56,9 +56,11 @@ export default function Header() {
 
     return (
         <>
-            {!isMobile ? (
+            {isLoggedUser == "newhomedesktop" && typeof isLoggedUser !== 'boolean' && <></>}
+
+            {!isMobile && typeof isLoggedUser === 'boolean' && (
                 <HeaderContainer>
-                    {!isLoggedUser ?
+                    {!isLoggedUser &&
                         (
                             <>
                                 <LogoContainer>
@@ -95,14 +97,11 @@ export default function Header() {
                                     <DefaultButton variant="outlined" text="Já sou Leve" onClick={() => setOpenLogin(true)} />
                                 </ButtonContainer>
                             </>
-                        ) : (
-
-                            <LoggedUserHeader />
                         )}
-
+                    {isLoggedUser && <LoggedUserHeader />}
                 </HeaderContainer>
-
-            ) : (
+            )}
+            {isMobile && (
                 <MobileHeaderContainer>
                     <LogoContainer>
                         <Image className='logoImage'
