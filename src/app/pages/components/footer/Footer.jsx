@@ -1,5 +1,6 @@
 "use client"
 
+import dynamic from 'next/dynamic';
 import { Typography } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,6 +11,9 @@ import DefaultButton from '../utils/buttons/DefaultButton';
 import InputWithButton from '../utils/inputs/InputWithButton';
 import { usePathname } from 'next/navigation';
 import { headerHelper } from '@/app/utils/helper/pathHelper';
+
+const NewFooter = dynamic(() => import('../new-footer/NewFooter'), { ssr: false });
+
 
 export default function Footer() {
 
@@ -26,7 +30,7 @@ export default function Footer() {
 
     return (
         <>
-            {isLoggedUser == "newhomedesktop" && typeof isLoggedUser !== 'boolean' && <></>}
+            {isLoggedUser == "newhomedesktop" && typeof isLoggedUser !== 'boolean' && <NewFooter />}
             {typeof isLoggedUser === 'boolean' && (
                 <FooterContainer>
                     <LogoContainer>

@@ -33,6 +33,7 @@ export const button = {
 export const newBackground = {
     yellow: "#E1FF0F",
     orange: "#FF7133",
+    orangeLight: "#ff814b",
     green: "#005940",
     white: "#FCFCFA",
 }
