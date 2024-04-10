@@ -33,6 +33,7 @@ export const useStoreUser = create((set) => ({
 
         hasSignContract: false,
         hasSyncDistributorData: false,
+        hasFetchedData: false,
 
         memberGetMemberCode: "",
     },
@@ -93,6 +94,8 @@ export const useStoreAddress = create((set) => ({
         state: "",
         cep: "",
         installationNumber: "",
+        hasFetchedData: false,
+
     },
     updateAddress: (newAddress) =>
         set((state) => ({

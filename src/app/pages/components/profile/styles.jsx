@@ -58,13 +58,20 @@ export const ProfileMainContent = styled.div`
 `
 export const ProfileSecondaryContent = styled.div`
     padding: 0 2rem;
+
+    margin-top: 2.5rem;
   
     width: 30vw;
     max-width: 50vw;
+
     
     @media (max-width: 1000px) {
       width: 100%;
       max-width: 100vw;
+    }
+
+    h1 {
+      white-space: nowrap;
     }
 `
 export const ProfileChangePasswordContent = styled.div`

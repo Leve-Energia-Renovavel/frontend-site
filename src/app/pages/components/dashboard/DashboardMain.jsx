@@ -78,6 +78,8 @@ export default function DashboardMain() {
                         nationality: consumidor?.nacionalidade,
                         maritalStatus: consumidor?.estado_civil,
                         memberGetMemberCode: consumidor?.ref_code,
+
+                        hasFetchedData: true,
                     });
 
                     const updatedMainInstallation = {
@@ -161,8 +163,6 @@ export default function DashboardMain() {
                 }
             } catch (error) {
                 console.error("Error fetching dashboard data:", error);
-            } finally {
-                setIsLoading(false);
             }
         };
 
@@ -182,18 +182,24 @@ export default function DashboardMain() {
                         city: address?.cidade,
                         state: address?.uf,
                         cep: address?.cep,
+                        hasFetchedData: true,
+
                     })
                 } else {
                     console.error("Failed to fetch updated address data");
                 }
             } catch (error) {
                 console.error("Error fetching updated address data:", error);
-            } finally {
-                setIsLoading(false);
             }
         };
-        fetchDashboardData();
-        fetchUpdatedAddress();
+        if (!user.hasFetchedData) {
+            fetchDashboardData();
+        }
+        if (!address.hasFetchedData) {
+            fetchUpdatedAddress();
+        }
+        setIsLoading(false);
+
     }, []);
 
     const handleConnectToDistributor = () => {
@@ -215,10 +221,11 @@ export default function DashboardMain() {
 
     return (
         <Container>
-            {user.hasSyncDistribuitorData ? <></>
+            {/* {user.hasSyncDistribuitorData ? <></>
                 : <WarningsContainer>
                     <Alert severity="warning">Conecte a conta da sua {distributorName} à Leve para uma melhor experiência! <span className="connectToDistributor" onClick={() => handleConnectToDistributor()}>Conectar conta</span></Alert>
-                </WarningsContainer>}
+                </WarningsContainer>} */}
+            <WarningsContainer />
             <Main>
                 <NextBillContainer>
                     <TitleContainer>
