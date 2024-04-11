@@ -47,6 +47,20 @@ export const HomeMainContent = styled.div`
     
     width: 70vw;
     max-width: 70vw;
+
+    h1 { 
+      font-family: var(--font-graphie);
+      font-weight: 600;
+      font-size: 80px;
+      max-width: 400px;
+    }
+
+    .underline { 
+      font-family: var(--font-graphie);
+      font-weight: 600;
+      text-decoration: underline;
+      font-size: 80px;
+    }
 `
 export const HomeFormContainer = styled.div`
   display: flex;
@@ -78,18 +92,27 @@ export const HomeMainForm = styled.div`
     height: 75vh;
 
     h2 {
+      font-family: var(--font-graphie);
+      font-weight: 600;
       color: ${newBackground.yellow};
+      white-space: nowrap;
       /* font-size: 41px; */
       font-size: 2rem;
     }
     
     p {
+      font-family: var(--font-graphie);
+      font-weight: 500;
       color: ${newBackground.white};
-      font-size: 17px;
+      /* font-size: 17px; */
+      font-size: .8rem;
     }
     .highlighted {
+      font-family: var(--font-graphie);
+      font-weight: 500;
       color: ${newBackground.yellow};
-      font-size: 17px;
+      /* font-size: 17px; */
+      font-size: .8rem;
     }
 
     .homeFormInput {
@@ -99,8 +122,9 @@ export const HomeMainForm = styled.div`
       margin-bottom: 10px;
 
         & label {
+          font-family: var(--font-graphie);
+          font-weight: 700;
           font-size: 17px;
-          font-weight: 500;
           color:  ${newBackground.orange};
           margin-top: 4px;
         }
@@ -117,12 +141,14 @@ export const HomeMainForm = styled.div`
 export const UserTypeFormContainer = styled.div`
     display: flex;
     flex-direction: column;
+
 `
 export const UserTypeFormButtonContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 1rem;
+    padding: 1rem;
 `
 
 export const HomeMainTitle = styled(Typography)`

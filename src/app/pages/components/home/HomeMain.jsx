@@ -12,7 +12,7 @@ import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-ba
 import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, HomeContentContainer, HomeFormContainer, HomeMainContent, HomeMainTitle, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles"
 export default function HomeMain() {
 
-    const [selectedUserType, setSelectedUserType] = useState(null);
+    const [selectedUserType, setSelectedUserType] = useState('Residencia');
 
     const nameRef = useRef()
     const emailRef = useRef()
@@ -28,9 +28,8 @@ export default function HomeMain() {
             <HomeContentContainer>
                 <HomeMainContent image={bannerImage}>
                     <Image src={logoLeve} width={370} height={62} alt={"banner da Leve com uma mulher sorrindo ao usar notebook"} />
-                    <HomeMainTitle variant="h1">A energia do futuro é Leve</HomeMainTitle>
+                    <HomeMainTitle variant="h1">A energia do futuro é <span className='underline'>Leve</span></HomeMainTitle>
                 </HomeMainContent>
-
                 <HomeFormContainer>
                     <FormContainer>
                         <Form>
@@ -65,18 +64,7 @@ export default function HomeMain() {
                                 type="text"
                                 required
                             />
-                            <InputMask mask="99999-999">
-                                {() => <TextField
-                                    className="homeFormInput"
 
-                                    inputRef={cepRef}
-                                    label={`CEP`}
-                                    placeholder={`CEP`}
-                                    variant="outlined"
-                                    type="text"
-                                    required
-                                />}
-                            </InputMask>
                             <UserTypeFormContainer>
                                 <Typography variant="body1">Quero economizar na minha:</Typography>
                                 <UserTypeFormButtonContainer>
@@ -94,6 +82,18 @@ export default function HomeMain() {
                                     </Select>
                                 </UserTypeFormButtonContainer>
                             </UserTypeFormContainer>
+                            <InputMask mask="99999-999">
+                                {() => <TextField
+                                    className="homeFormInput"
+
+                                    inputRef={cepRef}
+                                    label={`CEP`}
+                                    placeholder={`CEP`}
+                                    variant="outlined"
+                                    type="text"
+                                    required
+                                />}
+                            </InputMask>
                         </Form>
                     </FormContainer>
                     <FormButton

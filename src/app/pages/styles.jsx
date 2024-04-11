@@ -1,3 +1,63 @@
+import localFont from 'next/font/local'
+
+export const graphie = localFont({
+    src: [
+        {
+            path: '../../resources/fonts/graphie/Graphie-Thin.otf',
+            weight: '100',
+            style: 'normal',
+        },
+        {
+            path: '../../resources/fonts/graphie/Graphie-Light.otf',
+            weight: '300',
+            style: 'normal',
+        },
+        {
+            path: '../../resources/fonts/graphie/Graphie-Book.otf',
+            weight: '400',
+            style: 'normal',
+        },
+        {
+            path: '../../resources/fonts/graphie/Graphie-Regular.otf',
+            weight: '400',
+            style: 'normal',
+        },
+        {
+            path: '../../resources/fonts/graphie/Graphie-SemiBold.otf',
+            weight: '600',
+            style: 'normal',
+        },
+        {
+            path: '../../resources/fonts/graphie/Graphie-Bold.otf',
+            weight: '700',
+            style: 'normal',
+        },
+        {
+            path: '../../resources/fonts/graphie/Graphie-ExtraBold.otf',
+            weight: '800',
+            style: 'normal',
+        },
+        {
+            path: '../../resources/fonts/graphie/Graphie-ExtraLight.otf',
+            weight: '200',
+            style: 'normal',
+        },
+        {
+            path: '../../resources/fonts/graphie/Graphie-ThinItalic.otf',
+            weight: '100',
+            style: 'italic',
+        },
+        {
+            path: '../../resources/fonts/graphie/Graphie-LightItalic.otf',
+            weight: '300',
+            style: 'italic',
+        },
+        // ... Add entries for other italic weights if available
+    ],
+    display: 'swap', // Controls font loading behavior (optional)
+    variable: '--font-graphie', // CSS variable name for the font (optional)
+});
+
 
 export const theme = {
     primary: "#1779ba",
