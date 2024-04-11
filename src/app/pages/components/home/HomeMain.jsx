@@ -9,9 +9,10 @@ import { useRef, useState } from "react"
 import InputMask from "react-input-mask"
 import logoLeve from "../../../../resources/icons/small/leve-new-logo-small.svg"
 import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.png"
-import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, HomeContentContainer, HomeFormContainer, HomeMainContent, HomeMainTitle, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles"
+import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, HomeContentContainer, HomeFormContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles"
 export default function HomeMain() {
 
+    const [simulationCost, setSimulationCost] = useState(150)
     const [selectedUserType, setSelectedUserType] = useState('Residencia');
 
     const nameRef = useRef()
@@ -95,6 +96,17 @@ export default function HomeMain() {
                                 />}
                             </InputMask>
                         </Form>
+                        <HomeMainFormSimulationContainer>
+                            <Typography variant="subtitle1">Valor médio da fatura: <span className='simulationCost'>R$ {simulationCost}</span></Typography>
+                            <FormSlider
+                                onChange={(event) => setSimulationCost(event.target.value)}
+                                value={simulationCost}
+                                step={10}
+                                defaultValue={150}
+                                min={150}
+                                max={3000}
+                                valueLabelDisplay="off" />
+                        </HomeMainFormSimulationContainer>
                     </FormContainer>
                     <FormButton
                         endIcon={<ArrowForwardIcon />}>

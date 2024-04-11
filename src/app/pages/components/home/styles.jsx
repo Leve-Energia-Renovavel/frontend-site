@@ -1,6 +1,6 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Button, Typography } from "@mui/material";
+import { Button, Slider, Typography } from "@mui/material";
 import { newBackground } from "../../styles";
 
 const fadeInUp = keyframes`
@@ -146,6 +146,30 @@ export const HomeMainForm = styled.div`
 
     }
 `
+export const HomeMainFormSimulationContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 2rem;
+
+    h6 {
+      font-family: "Graphie";
+      font-size: 15px;
+      font-weight: 900;
+      color:${newBackground.green};
+
+    }
+
+    .simulationCost {
+      font-family: "Graphie";
+      font-size: 21px;
+      font-weight: 900;
+      color:${newBackground.orange};
+    }
+
+`
 export const UserTypeFormContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -216,5 +240,22 @@ export const FormButton = styled(Button)`
   & .MuiButton-endIcon {
     margin-left: auto;
   }
-
 `
+
+export const FormSlider = styled(Slider)`
+    color: ${newBackground.green};
+    height: 5px;
+    margin-bottom: 1rem;
+    
+    & .MuiSlider-thumb {
+        background-color: ${newBackground.orange};
+        height: 12px;
+        width: 12px;
+    }
+    
+    & .MuiSlider-rail {
+      background-color: ${newBackground.orange};
+      height: 5px;
+    } 
+
+`;
