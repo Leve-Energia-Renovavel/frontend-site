@@ -22,7 +22,7 @@ export const HomeContainer = styled.div`
     max-width: 100vw;
     margin: 0 auto;
     background-color: ${newBackground.white};
-    `
+`
 export const HomeContentContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -259,3 +259,107 @@ export const FormSlider = styled(Slider)`
     } 
 
 `;
+
+
+
+export const HomeSecondarySectionContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    height: 60rem; //check this height later...
+
+    padding: 5rem;
+
+    /* max-width: 100vw; */
+    margin: 0 auto;
+    background-color: ${newBackground.white};
+`
+
+export const HomeSecondaryBoxesContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+
+    gap: 1.5rem;
+`
+
+export const HomeSecondaryBoxContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 300px;
+    width: 300px;
+
+    padding: 1rem;
+
+    border-radius: 20px;
+
+    background-color: ${props => props.color};
+
+    .boxDescription {
+      font-family: "Graphie";
+      font-size: 18px;
+      font-weight: 500;
+      color: ${props => props.descriptionColor};
+
+      margin-bottom: 20px;
+    }
+`
+export const HomeSecondaryBoxTitle = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+
+    h6 {
+      font-family: "Graphie";
+      font-size: 25px;
+      font-weight: 600;
+      color: ${props => props.titleColor};
+    }
+`
+
+export const HomeSecondaryImagesContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    gap: 1.5rem;
+`
+export const HomeSecondaryImagesContent = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    background-image: url(${props => props.image.src});
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+
+    height: 420px;
+    width: 620px;
+
+    border-radius: 20px;
+
+    padding: 1rem;
+    /* margin-bottom: 5rem; */
+
+    h6 {
+      font-family: "Graphie";
+      font-size: 32px;
+      font-weight: 600;
+      color: ${newBackground.white}
+    }
+
+    .arrowIcon {
+      font-size: 50px;
+      color: ${newBackground.yellow};
+      
+      &:hover {
+        color: ${newBackground.green};
+        background-color: ${newBackground.yellow};
+        border-radius: 30px;
+      }
+    }
+`

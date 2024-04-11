@@ -1,15 +1,20 @@
 "use client"
 
-import HomeIcon from '@mui/icons-material/Home'
-import StoreIcon from '@mui/icons-material/Store'
+import { homeBoxes } from '@/app/utils/helper/homeBoxesHelper';
+import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { TextField, Typography } from "@mui/material"
-import Image from "next/image"
-import { useRef, useState } from "react"
-import InputMask from "react-input-mask"
-import logoLeve from "../../../../resources/icons/small/leve-new-logo-small.svg"
-import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.png"
-import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, HomeContentContainer, HomeFormContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles"
+import HomeIcon from '@mui/icons-material/Home';
+import StoreIcon from '@mui/icons-material/Store';
+import { TextField, Typography } from "@mui/material";
+import Image from "next/image";
+import { useRef, useState } from "react";
+import InputMask from "react-input-mask";
+import logoLeve from "../../../../resources/icons/small/leve-new-logo-small.svg";
+import companyCardImage from "../../../../resources/img/large/leve-confraternizacao-image-large.png";
+import homeCardImage from "../../../../resources/img/large/leve-familia-brincando-image-large.png";
+import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.png";
+import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, HomeContentContainer as HomeBanner, HomeFormContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
+
 export default function HomeMain() {
 
     const [simulationCost, setSimulationCost] = useState(150)
@@ -26,7 +31,7 @@ export default function HomeMain() {
 
     return (
         <Container>
-            <HomeContentContainer>
+            <HomeBanner>
                 <HomeMainContent image={bannerImage}>
                     <Image src={logoLeve} width={370} height={62} alt={"banner da Leve com uma mulher sorrindo ao usar notebook"} />
                     <HomeMainTitle variant="h1">A energia do futuro é <span className='underline'>Leve</span></HomeMainTitle>
@@ -112,8 +117,39 @@ export default function HomeMain() {
                         endIcon={<ArrowForwardIcon />}>
                         <span>Calcular desconto</span></FormButton>
                 </HomeFormContainer>
+            </HomeBanner>
 
-            </HomeContentContainer>
+            <HomeSecondarySectionContainer>
+                <HomeSecondaryBoxesContainer>
+                    {homeBoxes.map((box) => {
+                        return (
+                            <HomeSecondaryBoxContent color={box.backgroundColor} descriptionColor={box.descriptionColor} key={box.description}>
+                                <HomeSecondaryBoxTitle titleColor={box.titleColor} >
+                                    <Image src={box.icon} width={30} height={30} alt={box.description} />
+                                    <Typography variant="subtitle1">{box.title}</Typography>
+                                </HomeSecondaryBoxTitle>
+                                <Typography variant="subtitle1" className='boxDescription'>{box.description}</Typography>
+                            </HomeSecondaryBoxContent>
+                        )
+                    })}
+                </HomeSecondaryBoxesContainer>
+
+                <HomeSecondaryImagesContainer>
+                    <HomeSecondaryImagesContent image={homeCardImage}>
+                        <Typography variant="subtitle1">Para a sua residência</Typography>
+                        <ArrowCircleRightOutlinedIcon className='arrowIcon' />
+                    </HomeSecondaryImagesContent>
+                    <HomeSecondaryImagesContent image={companyCardImage}>
+                        <Typography variant="subtitle1">Para o seu comércio ou empresa</Typography>
+                        <ArrowCircleRightOutlinedIcon className='arrowIcon' />
+                    </HomeSecondaryImagesContent>
+                </HomeSecondaryImagesContainer>
+
+
+
+            </HomeSecondarySectionContainer>
+
+
         </Container>
     )
 }
