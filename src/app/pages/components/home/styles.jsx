@@ -1,7 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import { background, newBackground } from "../../styles";
-import { Typography, Button } from "@mui/material"
+import { Button, Typography } from "@mui/material";
+import { newBackground } from "../../styles";
 
 const fadeInUp = keyframes`
   from {
@@ -20,17 +20,23 @@ export const HomeContainer = styled.div`
     flex-direction: column;
     
     max-width: 100vw;
+    margin: 0 auto;
     background-color: ${newBackground.white};
     `
 export const HomeContentContainer = styled.div`
     display: flex;
     flex-direction: row;
     gap: 30px;
-
-    max-width: 1500px;
+    
+    
     height: 100vh;
-
+    max-width: 1920px;
+    
     padding: 27px 39px;
+
+    @media (max-width: 900px) {
+        flex-wrap: wrap;
+    }
 `
 export const HomeMainContent = styled.div`
     display: flex;
@@ -49,15 +55,17 @@ export const HomeMainContent = styled.div`
     max-width: 70vw;
 
     h1 { 
-      font-family: var(--font-graphie);
-      font-weight: 600;
+      font-family: "Graphie";
+      font-weight: 500;
+      text-align: left;
+
       font-size: 80px;
-      max-width: 400px;
+      max-width: 370px;
     }
 
     .underline { 
-      font-family: var(--font-graphie);
-      font-weight: 600;
+      font-family: "Graphie";
+      font-weight: 500;
       text-decoration: underline;
       font-size: 80px;
     }
@@ -92,7 +100,7 @@ export const HomeMainForm = styled.div`
     height: 75vh;
 
     h2 {
-      font-family: var(--font-graphie);
+      font-family: "Graphie";
       font-weight: 600;
       color: ${newBackground.yellow};
       white-space: nowrap;
@@ -101,14 +109,14 @@ export const HomeMainForm = styled.div`
     }
     
     p {
-      font-family: var(--font-graphie);
+      font-family: "Graphie";
       font-weight: 500;
       color: ${newBackground.white};
       /* font-size: 17px; */
       font-size: .8rem;
     }
     .highlighted {
-      font-family: var(--font-graphie);
+      font-family: "Graphie";
       font-weight: 500;
       color: ${newBackground.yellow};
       /* font-size: 17px; */
@@ -122,7 +130,7 @@ export const HomeMainForm = styled.div`
       margin-bottom: 10px;
 
         & label {
-          font-family: var(--font-graphie);
+          font-family: "Graphie";
           font-weight: 700;
           font-size: 17px;
           color:  ${newBackground.orange};
@@ -148,7 +156,7 @@ export const UserTypeFormButtonContainer = styled.div`
     flex-direction: row;
     justify-content: center;
     gap: 1rem;
-    padding: 1rem;
+    padding: 1rem 0;
 `
 
 export const HomeMainTitle = styled(Typography)`
@@ -164,9 +172,13 @@ export const FormSelect = styled(Button)`
   color: ${newBackground.white};
   border: 1px solid ${newBackground.yellow};
   border-radius: 10px;
+
+  font-family: "Graphie";
   font-size: 17px;
   text-transform: none;
   padding: 0.8rem 2rem;
+
+  width: 100%;
   
   &:hover {
     cursor: pointer;
@@ -182,9 +194,16 @@ export const FormButton = styled(Button)`
   color: ${newBackground.green};
   border-radius: 30px;
 
-  font-size: 20px;
-  font-weight: 700;
-  text-transform: none;
+  span {
+    font-family: "Graphie";
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: none;
+
+    margin-left: auto;
+
+  }
+
 
   margin: 1rem 0;
   

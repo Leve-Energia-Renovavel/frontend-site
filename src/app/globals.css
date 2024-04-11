@@ -5,6 +5,12 @@
 
 @import url('https://fonts.cdnfonts.com/css/metropolis-2');
 
+@import url('https://use.typekit.net/hfo1jru.css');
+
+/* @font-face {
+    font-family: 'Graphie';
+    src: url('../resources//fonts/graphie/Graphie-SemiBold.otf') format('opentype');
+} */
 
 *,
 html {

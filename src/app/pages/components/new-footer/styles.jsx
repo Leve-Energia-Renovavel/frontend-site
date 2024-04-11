@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";
 import { newBackground } from "../../styles";
-
 export const FooterContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -22,7 +21,7 @@ export const FooterPrimaryContainer = styled.div`
     align-items: center;
 
     h2 {
-        font-family: var(--font-graphie);
+        font-family: "Graphie";
         font-size: 70px;
         font-weight: 600;
 
@@ -36,14 +35,14 @@ export const FooterPrimaryContainer = styled.div`
     }
     
     h3{ 
-        font-family: var(--font-graphie);
+        font-family: "Graphie";
         color: ${newBackground.green};
         font-size: 32px;
-        font-weight: 700;
+        font-weight: 500;
         margin-bottom: 20px; //change later...
     }
     h4{
-        font-family: var(--font-graphie);
+        font-family: "Graphie";
         font-weight: 500;
         color: ${newBackground.green};
         
@@ -103,7 +102,7 @@ export const FooterButton = styled(Button)`
   text-transform: none;
   padding: 0.5rem 1.5rem;
 
-  font-family: var(--font-graphie);
+  font-family: "Graphie";
   font-size: 20px;
   font-weight: 500;
 

@@ -98,7 +98,7 @@ export default function HomeMain() {
                     </FormContainer>
                     <FormButton
                         endIcon={<ArrowForwardIcon />}>
-                        <span style={{ marginLeft: "auto", fontWeight: "bold" }}>Calcular desconto</span></FormButton>
+                        <span>Calcular desconto</span></FormButton>
                 </HomeFormContainer>
 
             </HomeContentContainer>

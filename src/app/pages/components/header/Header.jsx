@@ -11,6 +11,8 @@ import DefaultButton from '../utils/buttons/DefaultButton';
 import MobileHeader from './MobileHeader';
 import { ButtonContainer, HeaderContainer, LogoContainer, MenuBurguer, MenuItem, MobileHeaderContainer, Nav, NavContainer, Ul } from './styles';
 import { headerHelper } from '@/app/utils/helper/pathHelper';
+import NewHeader from '../new-header/NewHeader';
+import NewLoginModal from '../new-login/NewLoginModal';
 const LoggedUserHeader = dynamic(() => import('./LoggedUserHeader'), { ssr: false });
 
 export default function Header() {
@@ -101,7 +103,7 @@ export default function Header() {
                     {isLoggedUser && <LoggedUserHeader />}
                 </HeaderContainer>
             )}
-            {isMobile && (
+            {isMobile && typeof isLoggedUser === 'boolean' && (
                 <MobileHeaderContainer>
                     <LogoContainer>
                         <Image className='logoImage'
@@ -119,10 +121,17 @@ export default function Header() {
                     )}
                 </MobileHeaderContainer>
             )}
+            {isMobile && typeof isLoggedUser !== 'boolean' && (
+                <NewHeader openModal={openLoginModal} closeModal={closeLoginModal} />
+            )}
 
 
-            {openLogin &&
+            {openLogin && typeof isLoggedUser === 'boolean' &&
                 <LoginModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />
+            }
+
+            {openLogin && typeof isLoggedUser !== 'boolean' &&
+                <NewLoginModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />
             }
 
         </>
