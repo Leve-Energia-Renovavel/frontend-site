@@ -1,5 +1,5 @@
 import { Typography, IconButton } from "@mui/material"
-import { FooterContainer as Container, FooterButton, FooterPrimaryContainer, FooterSecondaryContainer, FooterSocialMediaContainer } from './styles'
+import { FooterContainer as Container, FooterButton, FooterPrimaryContainer, FooterSecondaryContainer, FooterSocialMediaContainer, LeveLogoImage } from './styles'
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -45,7 +45,7 @@ export default function NewFooter() {
               <MailOutlineIcon className="socialIcon" />
             </IconButton>
           </FooterSocialMediaContainer>
-          <Image src={logoLeve} width={253} height={115} alt={"banner da Leve com uma mulher sorrindo ao usar notebook"} />
+          <Image src={logoLeve} className="leveLogoImage" alt={"banner da Leve com uma mulher sorrindo ao usar notebook"} />
           <Typography variant="h6">©2024 - Todos os direitos reservados - Leve Energia Renovável</Typography>
         </FooterSecondaryContainer>
       </Container>
