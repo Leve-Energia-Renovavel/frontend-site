@@ -12,6 +12,7 @@ import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { allCities } from "@/app/utils/form-options/citiesOptions";
 import { maritalStatusOptions, nationalityOptions, professionOptions } from "@/app/utils/form-options/formOptions";
 import { statesAcronymOptions } from "@/app/utils/form-options/statesIdOptions";
+import { costValidation } from "@/app/utils/formatters/costFormatter";
 import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import SearchIcon from '@mui/icons-material/Search';
@@ -128,6 +129,8 @@ export default function RegisterForm() {
         event.preventDefault()
         setIsLoading(true)
 
+        const validatedCost = costValidation(userRefs.cost.current.value)
+
         var submitData = {
             uuid: uuid,
             nome: userRefs.name.current.value,
@@ -140,7 +143,7 @@ export default function RegisterForm() {
             complemento: addressRefs.complement.current.value,
             estado_id: storeAddress.address.stateId || stateValue.cod_estados,
             cidade_id: storeAddress.address.cityId || await findCityIdByName(addressRefs.city.current.value, stateValue.cod_estados),
-            valor: parseInt(userRefs.cost.current.value.replace(/[^0-9]/g, ""), 10) / 100,
+            valor: validatedCost,
             rg: userRefs.rg.current.value,
             data_nascimento: userRefs.birthDate.current.value,
             nacionalidade: userRefs.nationality.current.value,
@@ -190,12 +193,11 @@ export default function RegisterForm() {
             }
 
             storeAddress.updateAddress(updatedAddress)
-
             router.push(`/register/contract-signature`)
+
         } else {
-            if (response.data.message == "Fora de rateio") {
+            if (response?.data?.message) {
                 setValidationErrors([response.data.message])
-                //         router.push(`/fail/low-cost/`)
             }
             if (response?.response?.data?.message) {
                 setValidationErrors([response.response.data.message])
@@ -239,10 +241,6 @@ export default function RegisterForm() {
 
     useEffect(() => {
         setStateValue(stateOptions[stateId] || stateOptions[(statesAcronymOptions[state])] || null)
-
-        if (cost < 150) {
-            store.updateUser({ cost: cost * 100 })
-        }
     }, [storeAddress, hasDataCookies])
 
 
