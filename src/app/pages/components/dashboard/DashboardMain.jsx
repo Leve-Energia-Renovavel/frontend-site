@@ -49,9 +49,7 @@ export default function DashboardMain() {
                     Authorization: `Bearer ${Cookies.get('accessToken')}`
                 };
 
-                const uuid = user.uuid || Cookies.get('leveUUID')
-
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/${uuid}`, { headers });
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
 
                 if (requestSuccessful(response.status)) {
 
@@ -215,10 +213,6 @@ export default function DashboardMain() {
 
     return (
         <Container>
-            {user.hasSyncDistribuitorData ? <></>
-                : <WarningsContainer>
-                    <Alert severity="warning">Conecte a conta da sua {distributorName} à Leve para uma melhor experiência! <span className="connectToDistributor" onClick={() => handleConnectToDistributor()}>Conectar conta</span></Alert>
-                </WarningsContainer>}
             <Main>
                 <NextBillContainer>
                     <TitleContainer>
