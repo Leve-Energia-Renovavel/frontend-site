@@ -21,7 +21,7 @@ export default function ResultEconomy() {
     const todayCost = cost.toFixed(2).replace(".", ",");
 
     const location = isCompany ? 'empresa' : 'residência'
-    const discount = store.user.discount
+    const discount = store.user.discount !== 0 ? store.user.discount : 10
     const distributor = store.user.distributor ? store.user.distributor.toUpperCase() : "distribuidora"
 
     const [simulationCost, setSimulationCost] = useState(cost)
