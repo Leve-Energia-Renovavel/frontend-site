@@ -62,7 +62,7 @@ export const LoginTitleContainer = styled.div`
         line-height: 1.5rem;
         color: ${newBackground.orange};
 
-        margin-top: 1rem;
+        margin-top: 6rem;
     }
 
     .logoLeve { 
@@ -161,7 +161,7 @@ export const LoginButtonContainer = styled.form`
 export const LoginButton = styled(Button)`
     text-transform: none;
     color: ${newBackground.yellow};
-    border-color: ${newBackground.yellow};
+    border-color: ${newBackground.white};
     background-color: ${newBackground.orange};
     border-radius: 13px;
     cursor: pointer;

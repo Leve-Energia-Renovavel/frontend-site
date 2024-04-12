@@ -214,10 +214,6 @@ export default function DashboardMain() {
 
     return (
         <Container>
-            {/* {user.hasSyncDistribuitorData ? <></>
-                : <WarningsContainer>
-                    <Alert severity="warning">Conecte a conta da sua {distributorName} à Leve para uma melhor experiência! <span className="connectToDistributor" onClick={() => handleConnectToDistributor()}>Conectar conta</span></Alert>
-                </WarningsContainer>} */}
             <WarningsContainer />
             <Main>
                 <NextBillContainer>

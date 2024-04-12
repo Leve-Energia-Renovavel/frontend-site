@@ -34,7 +34,7 @@ export default function HomeMain() {
         <Container>
             <HomeBanner>
                 <HomeMainContent image={bannerImage}>
-                    <Image src={logoLeve} width={370} height={62} alt={"banner da Leve com uma mulher sorrindo ao usar notebook"} />
+                    <Image src={logoLeve} className='logoLeve' alt={"Logo Leve"} />
                     <HomeMainTitle variant="h1">A energia do futuro é <span className='underline'>Leve</span></HomeMainTitle>
                 </HomeMainContent>
                 <HomeFormContainer>

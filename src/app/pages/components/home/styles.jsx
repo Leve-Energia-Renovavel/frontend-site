@@ -20,6 +20,7 @@ export const HomeContainer = styled.div`
     flex-direction: column;
     
     max-width: 100vw;
+    max-width: 1920px;
     margin: 0 auto;
     background-color: ${newBackground.white};
 `
@@ -28,14 +29,15 @@ export const HomeContentContainer = styled.div`
     flex-direction: row;
     gap: 30px;
     
-    
     height: 100vh;
-    max-width: 1920px;
     
     padding: 27px 39px;
+    
+    @media (max-width: 600px) {
+      margin-top: 74px;
+      flex-wrap: wrap;
 
-    @media (max-width: 900px) {
-        flex-wrap: wrap;
+      padding: 1rem 1.5rem;
     }
 `
 export const HomeMainContent = styled.div`
@@ -46,6 +48,7 @@ export const HomeMainContent = styled.div`
     background-image: url(${props => props.image.src});
     background-repeat: no-repeat;
     background-size: cover; 
+    background-position: center;
 
     border-radius: 35px;
 
@@ -53,7 +56,7 @@ export const HomeMainContent = styled.div`
     
     width: 70vw;
     max-width: 70vw;
-
+    
     h1 { 
       font-family: "Graphie";
       font-weight: 500;
@@ -61,6 +64,10 @@ export const HomeMainContent = styled.div`
 
       font-size: 80px;
       max-width: 370px;
+      
+      @media (max-width: 600px) {
+        font-size: 40px;
+      }
     }
 
     .underline { 
@@ -68,6 +75,32 @@ export const HomeMainContent = styled.div`
       font-weight: 500;
       text-decoration: underline;
       font-size: 80px;
+
+      @media (max-width: 600px) {
+        font-size: 40px;
+      }
+    }
+
+    .logoLeve {
+      width:370px;
+      height:62px;
+      
+      @media (max-width: 600px) {
+        width:220px;
+        height:30px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      padding: 1rem;
+      width: 100vw;
+      max-width: 100vw;
+
+      height: 80vh;
+
+      background-size: cover; 
+      background-position: center;
+
     }
 `
 export const HomeFormContainer = styled.div`
