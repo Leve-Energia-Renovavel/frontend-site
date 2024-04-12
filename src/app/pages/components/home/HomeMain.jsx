@@ -13,7 +13,8 @@ import logoLeve from "../../../../resources/icons/small/leve-new-logo-small.svg"
 import companyCardImage from "../../../../resources/img/large/leve-confraternizacao-image-large.png";
 import homeCardImage from "../../../../resources/img/large/leve-familia-brincando-image-large.png";
 import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.png";
-import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, HomeContentContainer as HomeBanner, HomeFormContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
+import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, HomeContentContainer as HomeBanner, HomeFormContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionTitleContainer, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
+import soleImage from "../../../../resources/icons/large/sole-icon-large.png"
 
 export default function HomeMain() {
 
@@ -148,6 +149,16 @@ export default function HomeMain() {
 
 
             </HomeSecondarySectionContainer>
+            <HomeThirdSectionContainer>
+                <HomeThirdSectionTitleContainer>
+                    <Typography variant="subtitle1" className='sectionTitle'>Com adesão <span className='highlighted'>100% digital</span>, você garante <span className='highlighted'>energia solar por assinatura</span> para sua casa e/ou seu negócio.</Typography>
+                    <Typography variant="subtitle1" className='sectionSubtitle'>É simples, rápido, sem obras e livre de burocracias!</Typography>
+                </HomeThirdSectionTitleContainer>
+                <HomeThirdSectionSoleContainer>
+                    <Image src={soleImage} className="sole" width={315} height={315} alt={"Imagem de Sole, personagem da Leve, carregando uma placa solar"} />
+                </HomeThirdSectionSoleContainer>
+
+            </HomeThirdSectionContainer>
 
 
         </Container>

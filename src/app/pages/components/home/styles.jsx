@@ -245,7 +245,6 @@ export const FormButton = styled(Button)`
 export const FormSlider = styled(Slider)`
     color: ${newBackground.green};
     height: 5px;
-    margin-bottom: 1rem;
     
     & .MuiSlider-thumb {
         background-color: ${newBackground.orange};
@@ -362,4 +361,55 @@ export const HomeSecondaryImagesContent = styled.div`
         border-radius: 30px;
       }
     }
+`
+
+export const HomeThirdSectionContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: ${newBackground.orange};
+
+    gap: 2rem;
+
+    height: auto;
+    max-width: 100vw;
+    
+    padding: 3rem 3rem 0 3rem;
+`
+export const HomeThirdSectionTitleContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    max-width: 950px;
+
+    text-align: left;
+
+    
+    h6 {
+      font-family: "Graphie";
+      font-size: 50px;
+
+      line-height: 50px;
+    }
+
+    .sectionTitle {
+      color: ${newBackground.white};
+      font-weight: 200;
+      
+    }
+    .sectionSubtitle {
+      color: ${newBackground.yellow};
+      font-weight: 500;
+
+    }
+    .highlighted {
+      font-weight: 500;
+    }
+`
+
+export const HomeThirdSectionSoleContainer = styled.div`
+
+  .sole {
+    margin-top: 5rem;
+  }
 `
