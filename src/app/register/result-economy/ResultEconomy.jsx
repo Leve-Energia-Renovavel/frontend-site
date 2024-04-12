@@ -21,13 +21,13 @@ export default function ResultEconomy() {
     const todayCost = cost.toFixed(2).replace(".", ",");
 
     const location = isCompany ? 'empresa' : 'residência'
-    const percentageDiscount = store.user.discount == 0 ? 0.1 : store.user.discount
+    const discount = store.user.discount !== 0 ? store.user.discount : 10
     const distributor = store.user.distributor ? store.user.distributor.toUpperCase() : "distribuidora"
 
     const [simulationCost, setSimulationCost] = useState(cost)
 
-    const leveCost = parseFloat(cost - (cost * percentageDiscount)).toFixed(2).replace(".", ",");
-    const leveYearTotalDiscount = parseFloat(((simulationCost * percentageDiscount) * 12)).toFixed(2).replace(".", ",");
+    const leveCost = parseFloat(cost - (cost / discount)).toFixed(2).replace(".", ",");
+    const leveYearTotalDiscount = parseFloat(((simulationCost / discount) * 12)).toFixed(2).replace(".", ",");
 
     useEffect(() => {
         setSimulationCost(cost)
@@ -52,7 +52,7 @@ export default function ResultEconomy() {
                 <Banner>
                     <LeveMonthlyDiscount>
                         <Image src={icon} alt='ícone de porcentagem de desconto da Leve' loading="eager" priority={true} />
-                        <Typography variant="h1">Tenha {percentageDiscount * 100}% de desconto todo mês!</Typography>
+                        <Typography variant="h1">Tenha {discount}% de desconto todo mês!</Typography>
                     </LeveMonthlyDiscount>
                     <Typography variant="subtitle1">Em 1 ano com a Leve a sua {location} economizará</Typography>
                     <Typography variant="h1" className='yearDiscountLeve'>R$ {leveYearTotalDiscount}</Typography>
