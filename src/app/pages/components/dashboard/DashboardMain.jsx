@@ -5,7 +5,7 @@ import { useStoreAddress, useStoreBillingHistory, useStoreInstallations, useStor
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { billHasToBePaid, billingStatusOptions } from "@/app/utils/form-options/billingStatusOptions";
 import { formatDate, formatMonthAndYear } from "@/app/utils/formatters/dateFormatter";
-import { Alert, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
@@ -49,12 +49,9 @@ export default function DashboardMain() {
                     Authorization: `Bearer ${Cookies.get('accessToken')}`
                 };
 
-                const uuid = user.uuid || Cookies.get('leveUUID')
-
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/${uuid}`, { headers });
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
 
                 if (requestSuccessful(response.status)) {
-
                     const consumidor = response?.data?.consumidor
                     const ciclosConsumo = response?.data?.ciclosConsumo
                     const instalacao = response?.data?.instalacao
@@ -192,12 +189,8 @@ export default function DashboardMain() {
                 console.error("Error fetching updated address data:", error);
             }
         };
-        if (!user.hasFetchedData) {
-            fetchDashboardData();
-        }
-        if (!address.hasFetchedData) {
-            fetchUpdatedAddress();
-        }
+        fetchDashboardData();
+        fetchUpdatedAddress();
         setIsLoading(false);
 
     }, []);
