@@ -118,7 +118,7 @@ export const FooterSecondaryContainer = styled.div`
     }
 
     @media (max-width: 600px) {
-        background-size: 400px;
+        background-size: 430px;
         background-position: end;
     }
 `

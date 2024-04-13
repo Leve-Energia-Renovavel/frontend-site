@@ -116,7 +116,19 @@ export const LoginForm = styled.form`
             width: 100%;
             max-width: 90vw;
         }
+
+        .MuiInputLabel-root {
+            color: ${newBackground.orange};
+        }
+
+        &:hover .MuiOutlinedInput-notchedOutline {
+            border-color: ${newBackground.orange};
+        }
+        & .MuiSelect-select:focus {
+            background-color: ${newBackground.orange};
+        }
     }
+    
 `
 
 export const LoginButtonContainer = styled.form`

@@ -18,11 +18,15 @@ const fadeInUp = keyframes`
 export const HomeContainer = styled.div`
     display: flex;
     flex-direction: column;
+    background-color: ${newBackground.white};
     
-    max-width: 100vw;
     max-width: 1920px;
     margin: 0 auto;
-    background-color: ${newBackground.white};
+    padding: 3rem;
+    
+    @media (max-width: 600px) {
+      padding: 0;
+    }
 `
 export const HomeContentContainer = styled.div`
     display: flex;
@@ -34,10 +38,12 @@ export const HomeContentContainer = styled.div`
     padding: 27px 39px;
     
     @media (max-width: 600px) {
-      margin-top: 74px;
+      margin-top: 60px;
       flex-wrap: wrap;
-
+      
       padding: 1rem 1.5rem;
+
+      height: auto;
     }
 `
 export const HomeMainContent = styled.div`
@@ -96,27 +102,33 @@ export const HomeMainContent = styled.div`
       width: 100vw;
       max-width: 100vw;
 
-      height: 80vh;
+      height: 70vh;
 
-      background-size: cover; 
-      background-position: center;
-
+      border-radius: 15px;
     }
 `
 export const HomeFormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
-`
+
+  width: 30vw;
+  max-width: 30vw;
+  
+  `
 export const HomeMainFormContainer = styled.div`
     background-color: ${newBackground.white};
     border: 1px solid ${newBackground.orange};
-
+    
     border-radius: 35px;
-
-    width: 30vw;
-    max-width: 30vw;
+    
     height: 85vh;
+    
+    @media (max-width: 600px) {
+      height: auto;
+      width: 90vw;
+      max-width: 100vw;
+      border-radius: 15px;
+    }
 `
 export const HomeMainForm = styled.div`
     display: flex;
@@ -125,12 +137,20 @@ export const HomeMainForm = styled.div`
     background-color: ${newBackground.orange};
 
     border-radius: 35px;
-
+    
     padding: 2rem;
     
     width: 30vw;
     max-width: 30vw;
     height: 75vh;
+    
+    @media (max-width: 600px) {
+      padding: 1.5rem;
+      width: 90vw;
+      max-width: 100vw;
+
+      border-radius: 15px;
+    }
 
     h2 {
       font-family: "Graphie";
@@ -139,6 +159,13 @@ export const HomeMainForm = styled.div`
       white-space: nowrap;
       /* font-size: 41px; */
       font-size: 2rem;
+      text-align: left;
+      
+      @media (max-width: 600px) {
+        font-size: 1.5rem;
+        /* font-size: 40px; */
+        margin-bottom: 6px;
+      }
     }
     
     p {
@@ -147,6 +174,10 @@ export const HomeMainForm = styled.div`
       color: ${newBackground.white};
       /* font-size: 17px; */
       font-size: .8rem;
+
+      @media (max-width: 600px) {
+        margin-bottom: 6px;
+      }
     }
     .highlighted {
       font-family: "Graphie";
@@ -214,6 +245,11 @@ export const UserTypeFormButtonContainer = styled.div`
     justify-content: center;
     gap: 1rem;
     padding: 1rem 0;
+    
+    @media (max-width: 600px) {
+      gap: .5rem;
+      padding: .5rem 0;
+    }
 `
 
 export const HomeMainTitle = styled(Typography)`
@@ -250,6 +286,12 @@ export const FormButton = styled(Button)`
   background-color: ${newBackground.yellow};
   color: ${newBackground.green};
   border-radius: 30px;
+  
+  margin: 1rem 0;
+  
+  @media (max-width: 600px) {
+    width: 90vw;
+  }
 
   span {
     font-family: "Graphie";
@@ -260,9 +302,6 @@ export const FormButton = styled(Button)`
     margin-left: auto;
 
   }
-
-
-  margin: 1rem 0;
   
   &:hover {
     background-color: ${newBackground.orange};
@@ -278,6 +317,10 @@ export const FormButton = styled(Button)`
 export const FormSlider = styled(Slider)`
     color: ${newBackground.green};
     height: 5px;
+    
+    @media (max-width: 600px) {
+      height: 10px;
+    }
     
     & .MuiSlider-thumb {
         background-color: ${newBackground.orange};
@@ -297,22 +340,38 @@ export const FormSlider = styled(Slider)`
 export const HomeSecondarySectionContainer = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-
-    height: 60rem; //check this height later...
-
-    padding: 5rem;
-
-    /* max-width: 100vw; */
-    margin: 0 auto;
     background-color: ${newBackground.white};
+    gap: 2rem;
+    
+    margin: 0 auto;
+    
+    padding: 5rem 2rem;
+    
+    height: auto;
+    max-width: 1920px;
+    
+    @media (max-width: 600px) {
+      width: 100vw;
+      max-width: 100vw;
+
+      padding: 15px;
+
+    }
 `
 
 export const HomeSecondaryBoxesContainer = styled.div`
     display: flex;
     flex-direction: row;
 
-    gap: 1.5rem;
+    margin: 0 auto;
+
+    gap: 2rem;
+    
+    @media (max-width: 600px) {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem;
+    }
 `
 
 export const HomeSecondaryBoxContent = styled.div`
@@ -334,8 +393,30 @@ export const HomeSecondaryBoxContent = styled.div`
       font-size: 18px;
       font-weight: 500;
       color: ${props => props.descriptionColor};
-
+      
       margin-bottom: 20px;
+      
+      @media (max-width: 600px) {
+        margin-bottom: 4px;
+        font-size: 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      width: 180px;
+      height: 180px;
+
+      padding: .8rem;
+
+      border-radius: 15px;
+    }
+    @media (max-width: 415px) {
+      width: 150px;
+      height: 150px;
+
+      padding: .8rem;
+
+      border-radius: 15px;
     }
 `
 export const HomeSecondaryBoxTitle = styled.div`
@@ -349,6 +430,20 @@ export const HomeSecondaryBoxTitle = styled.div`
       font-size: 25px;
       font-weight: 600;
       color: ${props => props.titleColor};
+      
+      @media (max-width: 600px) {
+        font-size: 18px;
+      }
+    }
+
+    .titleIcon {
+      width: 30px;
+      height: 30px;
+      
+      @media (max-width: 600px) {
+        height: 20px;
+        width: 20px;
+      }
     }
 `
 
@@ -357,7 +452,11 @@ export const HomeSecondaryImagesContainer = styled.div`
     flex-direction: row;
     justify-content: center;
 
-    gap: 1.5rem;
+    gap: 2rem;
+    
+    @media (max-width: 600px) {
+      flex-wrap: wrap;
+    }
 `
 export const HomeSecondaryImagesContent = styled.div`
     display: flex;
@@ -367,21 +466,34 @@ export const HomeSecondaryImagesContent = styled.div`
     background-image: url(${props => props.image.src});
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     cursor: pointer;
 
     height: 420px;
     width: 620px;
 
     border-radius: 20px;
-
+    
     padding: 1rem;
     /* margin-bottom: 5rem; */
+    
+    @media (max-width: 600px) {
+      height: 250px;
+      width: 330px;
+
+      border-radius: 15px;
+    }
 
     h6 {
       font-family: "Graphie";
       font-size: 32px;
       font-weight: 600;
-      color: ${newBackground.white}
+      color: ${newBackground.white};
+      
+      @media (max-width: 600px) {
+        font-size: 21px;
+      }
+      
     }
 
     .arrowIcon {
@@ -403,11 +515,17 @@ export const HomeThirdSectionContainer = styled.div`
     background-color: ${newBackground.orange};
 
     gap: 2rem;
-
+    
     height: auto;
     max-width: 100vw;
     
     padding: 3rem 3rem 0 3rem;
+    
+    @media (max-width: 600px) {
+      flex-wrap: wrap;
+      padding: 3rem 2rem 0 2rem;
+      gap: 0;
+    }
 `
 export const HomeThirdSectionTitleContainer = styled.div`
     display: flex;
@@ -421,8 +539,13 @@ export const HomeThirdSectionTitleContainer = styled.div`
     h6 {
       font-family: "Graphie";
       font-size: 50px;
-
+      
       line-height: 50px;
+      
+      @media (max-width: 600px) {
+        font-size: 21px;
+        line-height: 21px;
+      }
     }
 
     .sectionTitle {
@@ -434,6 +557,10 @@ export const HomeThirdSectionTitleContainer = styled.div`
       color: ${newBackground.yellow};
       font-weight: 500;
 
+      @media (max-width: 600px) {
+        margin-top: 24px;
+      }
+
     }
     .highlighted {
       font-weight: 500;
@@ -444,5 +571,13 @@ export const HomeThirdSectionSoleContainer = styled.div`
 
   .sole {
     margin-top: 5rem;
+    width:315px;
+    height:315px;
+    
+    @media (max-width: 600px) {
+      margin-top: 2rem;
+      width: 220px;
+      height: 220px;
+    }
   }
 `

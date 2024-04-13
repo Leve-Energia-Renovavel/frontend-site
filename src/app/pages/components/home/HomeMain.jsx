@@ -126,7 +126,7 @@ export default function HomeMain() {
                         return (
                             <HomeSecondaryBoxContent color={box.backgroundColor} descriptionColor={box.descriptionColor} key={box.description}>
                                 <HomeSecondaryBoxTitle titleColor={box.titleColor} >
-                                    <Image src={box.icon} width={30} height={30} alt={box.description} />
+                                    <Image src={box.icon} className="titleIcon" alt={box.description} />
                                     <Typography variant="subtitle1">{box.title}</Typography>
                                 </HomeSecondaryBoxTitle>
                                 <Typography variant="subtitle1" className='boxDescription'>{box.description}</Typography>
@@ -155,7 +155,7 @@ export default function HomeMain() {
                     <Typography variant="subtitle1" className='sectionSubtitle'>É simples, rápido, sem obras e livre de burocracias!</Typography>
                 </HomeThirdSectionTitleContainer>
                 <HomeThirdSectionSoleContainer>
-                    <Image src={soleImage} className="sole" width={315} height={315} alt={"Imagem de Sole, personagem da Leve, carregando uma placa solar"} />
+                    <Image src={soleImage} className="sole" alt={"Imagem de Sole, personagem da Leve, carregando uma placa solar"} />
                 </HomeThirdSectionSoleContainer>
 
             </HomeThirdSectionContainer>
