@@ -10,7 +10,7 @@ import LoginModal from '../login/LoginModal';
 import DefaultButton from '../utils/buttons/DefaultButton';
 import MobileHeader from './MobileHeader';
 import { ButtonContainer, HeaderContainer, LogoContainer, MenuBurguer, MenuItem, MobileHeaderContainer, Nav, NavContainer, Ul } from './styles';
-import { headerHelper } from '@/app/utils/helper/pathHelper';
+import { headerHelper, newHeaderHelper } from '@/app/utils/helper/pathHelper';
 import NewHeader from '../new-header/NewHeader';
 import NewLoginModal from '../new-login/NewLoginModal';
 const LoggedUserHeader = dynamic(() => import('./LoggedUserHeader'), { ssr: false });
@@ -30,6 +30,8 @@ export default function Header() {
     const mobileWidth = 900
 
     const isLoggedUser = headerHelper[pathname]
+
+    const isNewHeader = newHeaderHelper[pathname] 
 
     useEffect(() => {
         const handleResize = () => {

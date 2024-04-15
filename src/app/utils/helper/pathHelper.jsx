@@ -40,3 +40,16 @@ export const headerHelper = {
     '/fail/low-cost/': false,
     '/connection/': true,
 }
+export const newHeaderHelper = {
+    '/': false,
+    '/home/': true,
+    '/register/': false,
+    '/dashboard/': false,
+    '/dashboard/profile/': false,
+    '/dashboard/invoices/': false,
+    '/dashboard/installations/': false,
+    '/recover-password/': false,
+    '/fail/out-of-range/': false,
+    '/fail/low-cost/': false,
+    '/connection/': false,
+}
