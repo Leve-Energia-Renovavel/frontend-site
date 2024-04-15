@@ -10,6 +10,7 @@ export const pathHelper = {
     '/recover-password/': true,
     '/fail/out-of-range/': false,
     '/fail/low-cost/': false,
+    '/connection/': true,
 }
 
 export const helperToPath = {
@@ -23,6 +24,7 @@ export const helperToPath = {
     '/installations/': "na+pagina+de+enderecos+da",
     '/fail/out-of-range/': "na+pagina+de+fora+da+regiao+de+cobertura+da",
     '/fail/low-cost/': "na+pagina+de+baixo+custo+da",
+    '/connection/': "na+pagina+de+conexao+do+perfil+da",
 }
 
 export const headerHelper = {
@@ -36,4 +38,5 @@ export const headerHelper = {
     '/recover-password/': true,
     '/fail/out-of-range/': false,
     '/fail/low-cost/': false,
+    '/connection/': true,
 }

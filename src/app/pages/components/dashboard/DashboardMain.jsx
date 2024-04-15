@@ -29,7 +29,7 @@ export default function DashboardMain() {
     const storeBilling = useStoreBillingHistory()
     const storeEconomy = useStoreUserEconomy()
 
-    const user = useStoreUser().user
+    const user = storeUser.user
     const userEconomy = useStoreUserEconomy().userEconomy
     const address = useStoreAddress().address
     const installations = useStoreInstallations().installations
@@ -44,9 +44,10 @@ export default function DashboardMain() {
 
     useEffect(() => {
         const fetchDashboardData = async () => {
+
             try {
                 const headers = {
-                    Authorization: `Bearer ${Cookies.get('accessToken')}`
+                    "Authorization": `Bearer ${Cookies.get('accessToken')}`
                 };
 
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
@@ -164,12 +165,11 @@ export default function DashboardMain() {
         };
 
         const fetchUpdatedAddress = async () => {
-            const cep = user?.cep
+            const data = {
+                cep: user.cep
+            }
             try {
-                const addressResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, {
-                    params: { cep: cep },
-                    withCredentials: false
-                });
+                const addressResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, data);
 
                 if (requestSuccessful(addressResponse?.status)) {
                     const address = addressResponse?.data
