@@ -469,6 +469,14 @@ export const HomeSecondaryImagesContent = styled.div`
     background-position: center;
     cursor: pointer;
 
+    transition: filter 0.5s ease; /* Smooth transition for the filter property */
+
+
+    /* Darken the background image on hover */
+    &:hover {
+        filter: brightness(0.8); /* Adjust the brightness value to darken/lighten */
+    }
+
     height: 420px;
     width: 620px;
 
