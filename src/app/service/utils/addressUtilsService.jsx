@@ -7,7 +7,7 @@ export const findCityIdByName = async (cityName, stateId) => {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/cidades-estados`, data)
         if (requestSuccessful(response.status)) {
             for (const city of response.data.cidades) {
-                if (city.nome.toUpperCase() === cityName.toUpperCase()) {
+                if (city.nome.toUpperCase() === cityName.toUpperCase() && city.estados_cod_estados === stateId) {
                     return city.cod_cidades;
                 }
             }

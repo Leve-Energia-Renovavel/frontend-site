@@ -7,6 +7,7 @@ export const pathHelper = {
     '/dashboard/invoices/': true,
     '/dashboard/installations/': true,
     '/recover-password/': true,
+    '/connection/': true,
 }
 
 export const helperToPath = {
@@ -17,6 +18,7 @@ export const helperToPath = {
     '/profile/': "no+meu+perfil+da",
     '/invoices/': "na+pagina+de+faturas+da",
     '/installations/': "na+pagina+de+enderecos+da",
+    '/connection/': "na+pagina+de+conexao+do+perfil+da",
 }
 
 export const headerHelper = {
@@ -27,4 +29,5 @@ export const headerHelper = {
     '/dashboard/invoices/': true,
     '/dashboard/installations/': true,
     '/recover-password/': true,
+    '/connection/': true,
 }
