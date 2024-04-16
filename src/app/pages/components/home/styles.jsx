@@ -1,7 +1,8 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Button, Slider, Typography } from "@mui/material";
-import { newBackground } from "../../styles";
+import { newBackground, notification } from "../../styles";
+import { Alert } from "@mui/material";
 
 const fadeInUp = keyframes`
   from {
@@ -130,7 +131,7 @@ export const HomeMainFormContainer = styled.div`
       border-radius: 15px;
     }
 `
-export const HomeMainForm = styled.div`
+export const HomeMainForm = styled.form`
     display: flex;
     flex-direction: column;
 
@@ -523,6 +524,8 @@ export const HomeThirdSectionContainer = styled.div`
     background-color: ${newBackground.orange};
 
     gap: 2rem;
+
+    border-radius: 30px;
     
     height: auto;
     max-width: 100vw;
@@ -588,4 +591,46 @@ export const HomeThirdSectionSoleContainer = styled.div`
       height: 220px;
     }
   }
+`
+
+
+
+
+
+
+
+
+
+export const SnackbarMessageAlert = styled(Alert)`
+  font-family: "Metropolis";
+  font-size: 1rem;
+  background-color: ${notification.alert};
+  border-radius: 10px;
+  padding: 1rem;
+  align-items: center;
+
+  animation: ${fadeInUp} 0.5s ease-out;
+
+  @media screen and (max-width: 600px) {
+    padding: .3rem;
+    font-size: 1rem; 
+  }
+
+`
+
+export const SnackbarMessageNotification = styled(Alert)`
+  font-family: "Metropolis";
+  font-size: 1rem;
+  background-color: ${notification.success};
+  border-radius: 10px;
+  padding: 1rem;
+  align-items: center;
+
+  animation: ${fadeInUp} 0.5s ease-out;
+
+  @media screen and (max-width: 600px) {
+    padding: .3rem;
+    font-size: 1rem; 
+  }
+
 `

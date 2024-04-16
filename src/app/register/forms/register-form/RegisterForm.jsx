@@ -156,9 +156,7 @@ export default function RegisterForm() {
             submitData["razao_social"] = companyRefs.razao_social.current.value
             submitData["cnpj"] = companyRefs.cnpj.current.value
         }
-
-        console.log("submitData ===>>>", submitData)
-
+        
         setDataCookies();
 
         const response = await schemaValidation(isCompany, submitData)

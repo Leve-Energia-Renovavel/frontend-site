@@ -7,8 +7,8 @@ import perfilLeve from "../../../../resources/icons/small/leve-perfil-icone-smal
 export default function NewHeader({ isOpen, openModal, closeModal }) {
     return (
         <MobileNewHeaderContainer>
-            <Image src={logoLeve} width={144} height={24} alt={"Logo da Leve na cor laranja"} />
-            <Image src={perfilLeve} width={30} height={30} alt={"Perfil Leve"} onClick={openModal} />
+            <Image src={logoLeve} className='logoLeve' alt={"Logo da Leve na cor laranja"} />
+            <Image src={perfilLeve} className='profile' alt={"Perfil Leve"} onClick={openModal} />
         </MobileNewHeaderContainer>
     )
 }

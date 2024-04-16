@@ -31,7 +31,7 @@ export default function Header() {
 
     const isLoggedUser = headerHelper[pathname]
 
-    const isNewHeader = newHeaderHelper[pathname] 
+    const isNewHeader = newHeaderHelper[pathname]
 
     useEffect(() => {
         const handleResize = () => {
@@ -123,10 +123,13 @@ export default function Header() {
                     )}
                 </MobileHeaderContainer>
             )}
+
+            {typeof isLoggedUser !== 'boolean' && (
+                <NewHeader openModal={openLoginModal} closeModal={closeLoginModal} />
+            )}
             {isMobile && typeof isLoggedUser !== 'boolean' && (
                 <NewHeader openModal={openLoginModal} closeModal={closeLoginModal} />
             )}
-
 
             {openLogin && typeof isLoggedUser === 'boolean' &&
                 <LoginModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />
