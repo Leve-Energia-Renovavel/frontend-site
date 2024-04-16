@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { Button } from "@mui/material";
 import { newBackground } from "../../styles";
 
 export const MobileNewHeaderContainer = styled.header`
@@ -12,14 +11,15 @@ export const MobileNewHeaderContainer = styled.header`
 
     width: 100vw;
     max-width: 1920px;
+    margin: 0 auto;
 
     height: 74px;
     padding: 0 6rem;
-    text-align: center;
     
     position: fixed;
     top: 0;
-    left: 0;
+    left: 0; 
+    right: 0; 
     z-index: 1000;
     
     @media (max-width: 1100px) {

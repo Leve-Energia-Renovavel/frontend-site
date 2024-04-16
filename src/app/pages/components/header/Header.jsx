@@ -60,8 +60,6 @@ export default function Header() {
 
     return (
         <>
-            {isLoggedUser == "newhomedesktop" && typeof isLoggedUser !== 'boolean' && <></>}
-
             {!isMobile && typeof isLoggedUser === 'boolean' && (
                 <HeaderContainer>
                     {!isLoggedUser &&
@@ -127,7 +125,7 @@ export default function Header() {
             {typeof isLoggedUser !== 'boolean' && (
                 <NewHeader openModal={openLoginModal} closeModal={closeLoginModal} />
             )}
-            
+
             {isMobile && typeof isLoggedUser !== 'boolean' && (
                 <NewHeader openModal={openLoginModal} closeModal={closeLoginModal} />
             )}
