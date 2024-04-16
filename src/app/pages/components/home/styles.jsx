@@ -762,6 +762,79 @@ export const HomeFifthSectionDescriptionContainer = styled.div`
     }
 }
 `
+export const HomeSixthSectionContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: ${newBackground.white};
+
+    gap: 2rem;
+
+    padding: 2rem 2rem 1rem 2rem;
+
+    .sectionTitle {
+      font-family: "Graphie";
+      font-size: 34px;
+      font-weight: 600;
+      color: ${newBackground.green};
+      
+      @media (max-width: 600px) {
+        font-size: 21px;
+        line-height: 21px;
+      }
+    }
+`
+export const HomeSixthSectionTitleContainer = styled.div`
+  text-align: center;
+
+
+`
+export const HomeSixthSectionCardContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    max-width: 990px;
+
+    gap: 1rem;
+
+    @media (max-width: 600px) {
+      flex-wrap: wrap;
+    }
+`
+export const HomeSixthSectionCard = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    
+    border-radius: 25px;
+
+    width: 180px;
+    height: 180px;
+
+    @media (max-width: 600px) {
+      width: 120px;
+      height: 120px;
+    }
+
+    .brandLogo{ 
+      @media (max-width: 600px) {
+      width: 90px;
+      height: auto;
+      }
+    }
+
+`
+
+
+
+
+
+
+
 
 
 

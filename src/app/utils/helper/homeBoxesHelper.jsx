@@ -9,6 +9,16 @@ import solarPanelIcon from "../../../resources/icons/small/leve-painel-solar-ico
 import batteryIcon from "../../../resources/icons/small/leve-recarregar-energia-icone-small.png"
 import economyIcon from "../../../resources/icons/small/leve-economia-icone-small.png"
 
+import estacioLogo from "../../../resources/img/small/logo-estacio-small.png"
+import estaparLogo from "../../../resources/img/small/logo-estapar-small.png"
+import localizaLogo from "../../../resources/img/small/logo-localiza-small.png"
+import lorealLogo from "../../../resources/img/small/logo-loreal-small.png"
+import martinsLogo from "../../../resources/img/small/logo-martins-small.png"
+import rdLogo from "../../../resources/img/small/logo-raia-drogasil-small.png"
+import rennerLogo from "../../../resources/img/small/logo-renner-small.png"
+import timLogo from "../../../resources/img/small/logo-tim-small.png"
+import tribancoLogo from "../../../resources/img/small/logo-tribanco-small.png"
+
 export const homeBoxes = [
     {
         icon: fastIcon,
@@ -61,5 +71,44 @@ export const homeTutorialCards = [
     {
         icon: economyIcon,
         description: "Pronto! Você tem energia (créditos de energia solar) na sua casa ou no seu negócio, com muita economia todos os meses.",
+    },
+]
+
+export const brands = [
+    {
+        company: "Estácio",
+        logo: estacioLogo,
+    },
+    {
+        company: "Estapar",
+        logo: estaparLogo,
+    },
+    {
+        company: "Localiza",
+        logo: localizaLogo,
+    },
+    {
+        company: "L'Oréal",
+        logo: lorealLogo,
+    },
+    {
+        company: "Grupo Martins",
+        logo: martinsLogo,
+    },
+    {
+        company: "Raia Drogasil",
+        logo: rdLogo,
+    },
+    {
+        company: "Renner",
+        logo: rennerLogo,
+    },
+    {
+        company: "Tim",
+        logo: timLogo,
+    },
+    {
+        company: "Tribanco",
+        logo: tribancoLogo,
     },
 ]

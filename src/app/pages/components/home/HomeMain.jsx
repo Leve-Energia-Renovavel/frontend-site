@@ -1,25 +1,23 @@
 "use client"
 
-import { homeBoxes, homeTutorialCards } from '@/app/utils/helper/homeBoxesHelper';
+import { startSignUp } from '@/app/service/lead-service/LeadService';
+import { brands, homeBoxes, homeTutorialCards } from '@/app/utils/helper/homeBoxesHelper';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
-import { TextField, Typography, Snackbar, IconButton } from "@mui/material";
+import { Snackbar, TextField, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
+import soleImage from "../../../../resources/icons/large/sole-icon-large.png";
 import logoLeve from "../../../../resources/icons/small/leve-new-logo-small.svg";
 import companyCardImage from "../../../../resources/img/large/leve-confraternizacao-image-large.png";
 import homeCardImage from "../../../../resources/img/large/leve-familia-brincando-image-large.png";
 import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.png";
 import secondBannerImage from "../../../../resources/img/large/leve-pai-e-filho-image-large.png";
-import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, HomeContentContainer as HomeBanner, HomeFifthSectionBanner, HomeFifthSectionBannerContainer, HomeFifthSectionContainer, HomeFifthSectionContentContainer, HomeFifthSectionDescriptionContainer, HomeFifthSectionTitleContainer, HomeFormContainer, HomeFourthSectionCard, HomeFourthSectionCardContainer, HomeFourthSectionContainer, HomeFourthSectionDescription, HomeFourthSectionIcon, HomeFourthSectionTitle, HomeFourthSectionTitleContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionTitleContainer, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
-import soleImage from "../../../../resources/icons/large/sole-icon-large.png"
 import { leadSchema } from './schema';
-import { startSignUp } from '@/app/service/lead-service/LeadService';
-import { requestSuccessful } from '@/app/service/utils/Validations';
-import { newBackground } from '../../styles';
+import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, HomeContentContainer as HomeBanner, HomeFifthSectionBanner, HomeFifthSectionBannerContainer, HomeFifthSectionContainer, HomeFifthSectionContentContainer, HomeFifthSectionDescriptionContainer, HomeFifthSectionTitleContainer, HomeFormContainer, HomeFourthSectionCard, HomeFourthSectionCardContainer, HomeFourthSectionContainer, HomeFourthSectionDescription, HomeFourthSectionIcon, HomeFourthSectionTitle, HomeFourthSectionTitleContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeSixthSectionCard, HomeSixthSectionCardContainer, HomeSixthSectionContainer, HomeSixthSectionTitleContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionTitleContainer, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 
 export default function HomeMain() {
 
@@ -257,8 +255,26 @@ export default function HomeMain() {
                             <Typography variant="subtitle1" className='sectionDescription'>Saiba mais sobre como podemos proporcionar isso <ArrowForwardIcon /></Typography>
                         </HomeFifthSectionDescriptionContainer>
                     </HomeFifthSectionContentContainer>
-
                 </HomeFifthSectionContainer>
+
+
+                <HomeSixthSectionContainer>
+                    <HomeSixthSectionTitleContainer>
+                        <Typography variant="subtitle1" className='sectionTitle'>Empresas que confiam na Leve Energia:</Typography>
+                    </HomeSixthSectionTitleContainer>
+
+                    <HomeSixthSectionCardContainer>
+                        {brands.map((brand, index) => {
+                            return (
+                                <HomeSixthSectionCard key={brand.company}>
+                                    <Image src={brand.logo} alt={brand.company} className='brandLogo'/>
+                                </HomeSixthSectionCard>
+                            )
+                        })}
+
+                    </HomeSixthSectionCardContainer>
+
+                </HomeSixthSectionContainer>
 
 
             </Container>
