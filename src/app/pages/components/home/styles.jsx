@@ -1,7 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Button, Slider, Typography } from "@mui/material";
-import { newBackground, notification } from "../../styles";
+import { background, newBackground, notification } from "../../styles";
 import { Alert } from "@mui/material";
 
 const fadeInUp = keyframes`
@@ -470,12 +470,10 @@ export const HomeSecondaryImagesContent = styled.div`
     background-position: center;
     cursor: pointer;
 
-    transition: filter 0.5s ease; /* Smooth transition for the filter property */
+    transition: filter 0.5s ease; 
 
-
-    /* Darken the background image on hover */
     &:hover {
-        filter: brightness(0.8); /* Adjust the brightness value to darken/lighten */
+        filter: brightness(0.8);
     }
 
     height: 420px;
@@ -594,9 +592,176 @@ export const HomeThirdSectionSoleContainer = styled.div`
 `
 
 
+export const HomeFourthSectionContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: ${newBackground.white};
 
+    gap: 2rem;
 
+    padding: 2rem;
 
+    .sectionTitle {
+      font-family: "Graphie";
+      font-size: 34px;
+      font-weight: 600;
+      color: ${newBackground.green};
+    }
+`
+export const HomeFourthSectionTitleContainer = styled.div`
+  text-align: center;
+`
+export const HomeFourthSectionCardContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    gap: 1rem;
+
+    @media (max-width: 600px) {
+      flex-wrap: wrap;
+    }
+`
+export const HomeFourthSectionCard = styled.div`
+    display: flex;
+    flex-direction: column;
+    
+    border: 1px solid #ccc;
+    
+    border-radius: 25px;
+    width: 280px;
+    max-width: 300px;
+    
+    padding: 2rem;
+`
+export const HomeFourthSectionIcon = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+
+    .titleIcon {
+      width: 65px;
+      height: 65px;
+    }
+`
+export const HomeFourthSectionTitle = styled.div`
+
+  .cardTitle {
+    font-family: "Graphie";
+    font-size: 42px;
+    font-weight: 600;
+    color: ${newBackground.green};
+  }
+`
+export const HomeFourthSectionDescription = styled.div`
+  .cardDescription {
+    font-family: "Graphie";
+    font-size: 17px;
+    font-weight: 500;
+    color: ${newBackground.green};
+
+    line-height: 17px;
+  }
+`
+
+export const HomeFifthSectionContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    background-color: ${newBackground.green};
+
+    gap: 2rem;
+    
+    border-radius: 30px;
+    
+    height: auto;
+    max-width: 100vw;
+    
+    @media (max-width: 600px) {
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+`
+export const HomeFifthSectionBannerContainer = styled.div`
+  height: auto;
+  `
+export const HomeFifthSectionBanner = styled.div`
+    height: 350px;
+    width: 490px;
+
+    background-image: url(${props => props.image.src});
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center;
+    
+    border-radius: 30px;
+
+    @media (max-width: 600px) {
+      width: 100vw;
+      height: 15rem;
+    }
+`
+
+export const HomeFifthSectionContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 100%;
+
+  padding: 30px;
+
+  @media (max-width: 600px) {
+    gap: 4rem;
+  }
+`
+export const HomeFifthSectionTitleContainer = styled.div`
+  text-align: start;
+  
+  .sectionTitle {
+    font-family: "Graphie";
+    font-size: 34px;
+    font-weight: 600;
+    color: ${newBackground.white};
+    
+    line-height: 34px;
+    
+    max-width: 650px;
+    margin-right: auto;
+    
+    @media (max-width: 600px) {
+      font-size: 21px;
+      line-height: 25px;
+    }
+  }
+  `
+export const HomeFifthSectionDescriptionContainer = styled.div`
+  
+  .sectionDescription {
+    font-family: "Graphie";
+    font-size: 21px;
+    line-height: 21px;
+    font-weight: 500;
+    color: ${newBackground.yellow};
+    
+    text-decoration: underline;
+    max-width: 300px;
+    margin-left: auto;
+    
+    @media (max-width: 600px) {
+      text-align: end;
+      max-width: 220px;
+      font-size: 17px;
+      line-height: 17px;
+    }
+    
+    &:hover {
+      color: ${newBackground.orange};
+      cursor: pointer;
+    }
+}
+`
 
 
 

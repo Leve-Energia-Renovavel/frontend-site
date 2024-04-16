@@ -1,11 +1,11 @@
 "use client"
 
-import { homeBoxes } from '@/app/utils/helper/homeBoxesHelper';
+import { homeBoxes, homeTutorialCards } from '@/app/utils/helper/homeBoxesHelper';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
-import { TextField, Typography, Snackbar } from "@mui/material";
+import { TextField, Typography, Snackbar, IconButton } from "@mui/material";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
@@ -13,11 +13,13 @@ import logoLeve from "../../../../resources/icons/small/leve-new-logo-small.svg"
 import companyCardImage from "../../../../resources/img/large/leve-confraternizacao-image-large.png";
 import homeCardImage from "../../../../resources/img/large/leve-familia-brincando-image-large.png";
 import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.png";
-import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, HomeContentContainer as HomeBanner, HomeFormContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionTitleContainer, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
+import secondBannerImage from "../../../../resources/img/large/leve-pai-e-filho-image-large.png";
+import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, HomeContentContainer as HomeBanner, HomeFifthSectionBanner, HomeFifthSectionBannerContainer, HomeFifthSectionContainer, HomeFifthSectionContentContainer, HomeFifthSectionDescriptionContainer, HomeFifthSectionTitleContainer, HomeFormContainer, HomeFourthSectionCard, HomeFourthSectionCardContainer, HomeFourthSectionContainer, HomeFourthSectionDescription, HomeFourthSectionIcon, HomeFourthSectionTitle, HomeFourthSectionTitleContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionTitleContainer, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 import soleImage from "../../../../resources/icons/large/sole-icon-large.png"
 import { leadSchema } from './schema';
 import { startSignUp } from '@/app/service/lead-service/LeadService';
 import { requestSuccessful } from '@/app/service/utils/Validations';
+import { newBackground } from '../../styles';
 
 export default function HomeMain() {
 
@@ -207,6 +209,7 @@ export default function HomeMain() {
 
 
                 </HomeSecondarySectionContainer>
+
                 <HomeThirdSectionContainer>
                     <HomeThirdSectionTitleContainer>
                         <Typography variant="subtitle1" className='sectionTitle'>Com adesão <span className='highlighted'>100% digital</span>, você garante <span className='highlighted'>energia solar por assinatura</span> para sua casa e/ou seu negócio.</Typography>
@@ -215,8 +218,47 @@ export default function HomeMain() {
                     <HomeThirdSectionSoleContainer>
                         <Image src={soleImage} className="sole" alt={"Imagem de Sole, personagem da Leve, carregando uma placa solar"} />
                     </HomeThirdSectionSoleContainer>
-
                 </HomeThirdSectionContainer>
+
+                <HomeFourthSectionContainer>
+                    <HomeFourthSectionTitleContainer>
+                        <Typography variant="subtitle1" className='sectionTitle'>Como funciona na prática:</Typography>
+                    </HomeFourthSectionTitleContainer>
+
+                    <HomeFourthSectionCardContainer >
+                        {homeTutorialCards.map((card, index) => {
+                            return (
+                                <HomeFourthSectionCard key={index}>
+                                    <HomeFourthSectionIcon>
+                                        <Image src={card.icon} className="titleIcon" alt={card.description} />
+                                    </HomeFourthSectionIcon>
+                                    <HomeFourthSectionTitle>
+                                        <Typography variant="subtitle1" className='cardTitle'>{`${index}.`}</Typography>
+                                    </HomeFourthSectionTitle>
+                                    <HomeFourthSectionDescription>
+                                        <Typography variant="subtitle1" className='cardDescription'>{card.description}</Typography>
+                                    </HomeFourthSectionDescription>
+                                </HomeFourthSectionCard>
+
+                            )
+                        })}
+                    </HomeFourthSectionCardContainer>
+                </HomeFourthSectionContainer>
+
+                <HomeFifthSectionContainer>
+                    <HomeFifthSectionBannerContainer>
+                        <HomeFifthSectionBanner image={secondBannerImage} />
+                    </HomeFifthSectionBannerContainer>
+                    <HomeFifthSectionContentContainer>
+                        <HomeFifthSectionTitleContainer>
+                            <Typography variant="subtitle1" className='sectionTitle'>Nós acreditamos que você merece um dinheiro extra na sua conta para investir no que realmente importa para você e sua família.</Typography>
+                        </HomeFifthSectionTitleContainer>
+                        <HomeFifthSectionDescriptionContainer>
+                            <Typography variant="subtitle1" className='sectionDescription'>Saiba mais sobre como podemos proporcionar isso <ArrowForwardIcon /></Typography>
+                        </HomeFifthSectionDescriptionContainer>
+                    </HomeFifthSectionContentContainer>
+
+                </HomeFifthSectionContainer>
 
 
             </Container>

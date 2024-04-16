@@ -127,6 +127,7 @@ export default function Header() {
             {typeof isLoggedUser !== 'boolean' && (
                 <NewHeader openModal={openLoginModal} closeModal={closeLoginModal} />
             )}
+            
             {isMobile && typeof isLoggedUser !== 'boolean' && (
                 <NewHeader openModal={openLoginModal} closeModal={closeLoginModal} />
             )}

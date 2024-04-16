@@ -4,6 +4,11 @@ import safeIcon from "../../../resources/icons/small/leve-protecao-yellow-icone-
 import sustainableIcon from "../../../resources/icons/small/leve-folha-icone-small.svg"
 import { newBackground } from "@/app/pages/styles"
 
+import signIcon from "../../../resources/icons/small/leve-energia-clique-icone-small.png"
+import solarPanelIcon from "../../../resources/icons/small/leve-painel-solar-icone-small.png"
+import batteryIcon from "../../../resources/icons/small/leve-recarregar-energia-icone-small.png"
+import economyIcon from "../../../resources/icons/small/leve-economia-icone-small.png"
+
 export const homeBoxes = [
     {
         icon: fastIcon,
@@ -38,4 +43,23 @@ export const homeBoxes = [
         descriptionColor: newBackground.white
     },
 
+]
+
+export const homeTutorialCards = [
+    {
+        icon: signIcon,
+        description: "Você assina o seu plano de energia com a Leve.",
+    },
+    {
+        icon: solarPanelIcon,
+        description: "A Leve gera os seus créditos de energia nas usinas solares.",
+    },
+    {
+        icon: batteryIcon,
+        description: "Injeta a energia na sua distribuidora local, para que chegue para você da mesma forma como é hoje.",
+    },
+    {
+        icon: economyIcon,
+        description: "Pronto! Você tem energia (créditos de energia solar) na sua casa ou no seu negócio, com muita economia todos os meses.",
+    },
 ]
