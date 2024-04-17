@@ -88,7 +88,12 @@ export default function HomeMain() {
 
             if (requestSuccessful(response?.status)) {
                 const uuid = response?.data?.uuid
-                router.push("/signup")
+                // router.push("/signup")
+                //  setar uuid no storeUser
+                //  para mandar para o novo signup
+                //  e pegar as infos do cliente
+
+
             } else {
                 setValidationErrors([response?.message])
             }
@@ -119,9 +124,11 @@ export default function HomeMain() {
                                     placeholder={`Nome Completo`}
                                     variant="outlined"
                                     type="text"
+                                    disabled={isLoading}
                                     required
                                 />
-                                <InputMask mask="(99) 99999-9999">
+                                <InputMask mask="(99) 99999-9999"
+                                    disabled={isLoading}>
                                     {() => <TextField
                                         className="homeFormInput"
                                         inputRef={phoneRef}
@@ -129,6 +136,7 @@ export default function HomeMain() {
                                         placeholder={`Telefone`}
                                         variant="outlined"
                                         type="text"
+                                        disabled={isLoading}
                                         required
                                     />}
                                 </InputMask>
@@ -139,6 +147,7 @@ export default function HomeMain() {
                                     placeholder={`E-mail`}
                                     variant="outlined"
                                     type="text"
+                                    disabled={isLoading}
                                     required
                                 />
 
@@ -159,7 +168,7 @@ export default function HomeMain() {
                                         </Select>
                                     </UserTypeFormButtonContainer>
                                 </UserTypeFormContainer>
-                                <InputMask mask="99999-999">
+                                <InputMask mask="99999-999" disabled={isLoading}>
                                     {() => <TextField
                                         className="homeFormInput"
 
@@ -168,6 +177,7 @@ export default function HomeMain() {
                                         placeholder={`CEP`}
                                         variant="outlined"
                                         type="text"
+                                        disabled={isLoading}
                                         required
                                     />}
                                 </InputMask>

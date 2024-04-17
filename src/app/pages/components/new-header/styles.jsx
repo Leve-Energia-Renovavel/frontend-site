@@ -49,6 +49,9 @@ export const LoginBox = styled(Box)`
     background-color: ${newBackground.white};
 
     width: 60vw;
+
+    box-shadow: 5px 10px 15px 20px rgba(0, 0, 0, 0.1);
+    
     height: 80vh;
 
     border-width: 0px 1px 1px 1px;
