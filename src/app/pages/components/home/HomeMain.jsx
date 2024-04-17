@@ -17,10 +17,15 @@ import homeCardImage from "../../../../resources/img/large/leve-familia-brincand
 import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.png";
 import secondBannerImage from "../../../../resources/img/large/leve-pai-e-filho-image-large.png";
 import { leadSchema } from './schema';
-import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, HomeContentContainer as HomeBanner, HomeFifthSectionBanner, HomeFifthSectionBannerContainer, HomeFifthSectionContainer, HomeFifthSectionContentContainer, HomeFifthSectionDescriptionContainer, HomeFifthSectionTitleContainer, HomeFormContainer, HomeFourthSectionCard, HomeFourthSectionCardContainer, HomeFourthSectionContainer, HomeFourthSectionDescription, HomeFourthSectionIcon, HomeFourthSectionTitle, HomeFourthSectionTitleContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeSixthSectionCard, HomeSixthSectionCardContainer, HomeSixthSectionContainer, HomeSixthSectionTitleContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionTitleContainer, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
+import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, HomeContentContainer as HomeBanner, HomeFifthSectionBanner, HomeFifthSectionBannerContainer, HomeFifthSectionContainer, HomeFifthSectionContentContainer, HomeFifthSectionDescriptionContainer, HomeFifthSectionTitleContainer, HomeFormContainer, HomeFourthSectionCard, HomeFourthSectionCardContainer, HomeFourthSectionContainer, HomeFourthSectionDescription, HomeFourthSectionIcon, HomeFourthSectionTitle, HomeFourthSectionTitleContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeSixthSectionCard, HomeSixthSectionCardContainer, HomeSixthSectionContainer, HomeSixthSectionTitleContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionTitleContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
+import { useRouter } from 'next/navigation';
+import { requestSuccessful } from '@/app/service/utils/Validations';
 
 export default function HomeMain() {
 
+    const router = useRouter()
+
+    const [isLoading, setLoading] = useState(false)
     const [simulationCost, setSimulationCost] = useState(150)
     const [selectedUserType, setSelectedUserType] = useState('Residencia');
 
@@ -53,9 +58,9 @@ export default function HomeMain() {
                 return await startSignUp(data)
 
             })
-            .catch((err) => {
-                console.log(err.errors);
-                return err.errors
+            .catch((error) => {
+                console.log(error);
+                return error
             });
 
         return response
@@ -63,25 +68,33 @@ export default function HomeMain() {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+        setLoading(true)
 
-        const submitData = {
-            nome: nameRef.current.value,
-            email: emailRef.current.value,
-            telefone: phoneRef.current.value,
-            cep: cepRef.current.value,
-            valor: simulationCost,
-            redirect_to: "www.leveenergia.com.br",
-            type: selectedUserType === "Residencia" ? "PF" : "PJ"
+        const isValidString = /^[a-zA-Z\s]+$/.test(nameRef.current.value);
+
+        if (isValidString) {
+            const submitData = {
+                nome: nameRef.current.value,
+                email: emailRef.current.value,
+                telefone: phoneRef.current.value,
+                cep: cepRef.current.value,
+                valor: simulationCost,
+                redirect_to: "www.leveenergia.com.br",
+                type: selectedUserType === "Residencia" ? "PF" : "PJ"
+            }
+
+            const response = await schemaValidation(submitData)
+
+            if (requestSuccessful(response?.status)) {
+                const uuid = response?.data?.uuid
+                router.push("/signup")
+            } else {
+                setValidationErrors([response?.message])
+            }
+
+        } else {
+            setValidationErrors(["Nome inválido. Por favor, revise as informações"])
         }
-
-        console.log("submitData ===>>", submitData)
-
-        const response = await schemaValidation(submitData)
-        console.log("response ===>>", response)
-
-        // if (requestSuccessful(response.status)) {
-
-        // }
 
     }
 
@@ -173,8 +186,8 @@ export default function HomeMain() {
                         <FormButton
                             type='submit'
                             form='leadForm'
-                            endIcon={<ArrowForwardIcon />}>
-                            <span>Calcular desconto</span></FormButton>
+                            endIcon={isLoading ? <ArrowForwardIcon /> : <ArrowForwardIcon sx={{ display: "none" }} />}>
+                            {isLoading ? <Loading size={20} /> : <span>Calcular desconto</span>}</FormButton>
                     </HomeFormContainer>
                 </HomeBanner>
 
@@ -267,7 +280,7 @@ export default function HomeMain() {
                         {brands.map((brand, index) => {
                             return (
                                 <HomeSixthSectionCard key={brand.company}>
-                                    <Image src={brand.logo} alt={brand.company} className='brandLogo'/>
+                                    <Image src={brand.logo} alt={brand.company} className='brandLogo' />
                                 </HomeSixthSectionCard>
                             )
                         })}

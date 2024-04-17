@@ -1,6 +1,6 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Button, Slider, Typography } from "@mui/material";
+import { Button, Slider, Typography, CircularProgress } from "@mui/material";
 import { background, newBackground, notification } from "../../styles";
 import { Alert } from "@mui/material";
 
@@ -534,6 +534,7 @@ export const HomeThirdSectionContainer = styled.div`
       flex-wrap: wrap;
       padding: 3rem 2rem 0 2rem;
       gap: 0;
+      border-radius: 0px;
     }
 `
 export const HomeThirdSectionTitleContainer = styled.div`
@@ -681,6 +682,7 @@ export const HomeFifthSectionContainer = styled.div`
     @media (max-width: 600px) {
       flex-wrap: wrap;
       gap: 1rem;
+      border-radius: 0px;
     }
 `
 export const HomeFifthSectionBannerContainer = styled.div`
@@ -700,6 +702,8 @@ export const HomeFifthSectionBanner = styled.div`
     @media (max-width: 600px) {
       width: 100vw;
       height: 15rem;
+      border-radius: 0px;
+
     }
 `
 
@@ -870,5 +874,13 @@ export const SnackbarMessageNotification = styled(Alert)`
     padding: .3rem;
     font-size: 1rem; 
   }
+
+`
+
+
+export const Loading = styled(CircularProgress)`
+  color: ${newBackground.green};
+  width: 10px;
+  height: 10px;
 
 `
