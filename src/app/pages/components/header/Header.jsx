@@ -14,21 +14,20 @@ import NewLoginModal from '../new-login/NewLoginModal';
 import DefaultButton from '../utils/buttons/DefaultButton';
 import MobileHeader from './MobileHeader';
 import { ButtonContainer, HeaderContainer, LogoContainer, MenuBurguer, MenuItem, MobileHeaderContainer, Nav, NavContainer, Ul } from './styles';
+import Cookies from 'js-cookie';
 
 const LoggedUserHeader = dynamic(() => import('./LoggedUserHeader'), { ssr: false });
 const NewLoggedModal = dynamic(() => import('../new-header/NewLoggedModal'), { ssr: false });
 
 export default function Header() {
 
-    const store = useStoreUser()
     const router = useRouter()
     const pathname = usePathname()
 
-    const user = store.user
+    const user = JSON.parse(localStorage.getItem('user'))
 
     const [isMobile, setIsMobile] = useState(false);
     const [isMenuOpen, setMenuOpen] = useState(false);
-
     const [openLogin, setOpenLogin] = useState(false);
 
     const homeUrl = "https://leveenergia.com.br/"
@@ -37,7 +36,7 @@ export default function Header() {
 
     const isLoggedUser = headerHelper[pathname]
     const isNewHeader = newHeaderHelper[pathname]
-    const loggedUser = user ? true : false
+    const loggedUser = user?.user?.name ? true : false
 
     useEffect(() => {
         const handleResize = () => {
