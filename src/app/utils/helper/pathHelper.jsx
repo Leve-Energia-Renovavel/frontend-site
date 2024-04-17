@@ -16,6 +16,7 @@ export const pathHelper = {
 export const helperToPath = {
     '/': "no+cadastro+da",
     '/home/': "na+home+da",
+    '/signup/': "na+tela+de+cadastro+da",
     '/register/': "no+cadastro+da",
     '/login/': "no+login+da",
     '/dashboard/': "no+painel+da",
@@ -30,6 +31,7 @@ export const helperToPath = {
 export const headerHelper = {
     '/': false,
     '/home/': "newhomedesktop",
+    '/signup/': "newhomedesktop",
     '/register/': false,
     '/dashboard/': true,
     '/dashboard/profile/': true,
@@ -43,6 +45,7 @@ export const headerHelper = {
 export const newHeaderHelper = {
     '/': false,
     '/home/': true,
+    '/signup/': true,
     '/register/': false,
     '/dashboard/': false,
     '/dashboard/profile/': false,

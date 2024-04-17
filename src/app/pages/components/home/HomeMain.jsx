@@ -20,6 +20,7 @@ import { leadSchema } from './schema';
 import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, HomeContentContainer as HomeBanner, HomeFifthSectionBanner, HomeFifthSectionBannerContainer, HomeFifthSectionContainer, HomeFifthSectionContentContainer, HomeFifthSectionDescriptionContainer, HomeFifthSectionTitleContainer, HomeFormContainer, HomeFourthSectionCard, HomeFourthSectionCardContainer, HomeFourthSectionContainer, HomeFourthSectionDescription, HomeFourthSectionIcon, HomeFourthSectionTitle, HomeFourthSectionTitleContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeSixthSectionCard, HomeSixthSectionCardContainer, HomeSixthSectionContainer, HomeSixthSectionTitleContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionTitleContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 import { useRouter } from 'next/navigation';
 import { requestSuccessful } from '@/app/service/utils/Validations';
+import { clearBrowserData } from '@/app/utils/browser/BrowserUtils';
 
 export default function HomeMain() {
 

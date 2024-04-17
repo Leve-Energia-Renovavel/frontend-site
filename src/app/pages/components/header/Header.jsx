@@ -1,5 +1,7 @@
 "use client"
 
+import { useStoreUser } from '@/app/hooks/useStore';
+import { headerHelper, newHeaderHelper } from '@/app/utils/helper/pathHelper';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,18 +9,22 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import logo from "../../../../resources/img/logo-header.png";
 import LoginModal from '../login/LoginModal';
+import NewHeader from '../new-header/NewHeader';
+import NewLoginModal from '../new-login/NewLoginModal';
 import DefaultButton from '../utils/buttons/DefaultButton';
 import MobileHeader from './MobileHeader';
 import { ButtonContainer, HeaderContainer, LogoContainer, MenuBurguer, MenuItem, MobileHeaderContainer, Nav, NavContainer, Ul } from './styles';
-import { headerHelper, newHeaderHelper } from '@/app/utils/helper/pathHelper';
-import NewHeader from '../new-header/NewHeader';
-import NewLoginModal from '../new-login/NewLoginModal';
+
 const LoggedUserHeader = dynamic(() => import('./LoggedUserHeader'), { ssr: false });
+const NewLoggedModal = dynamic(() => import('../new-header/NewLoggedModal'), { ssr: false });
 
 export default function Header() {
 
+    const store = useStoreUser()
     const router = useRouter()
     const pathname = usePathname()
+
+    const user = store.user
 
     const [isMobile, setIsMobile] = useState(false);
     const [isMenuOpen, setMenuOpen] = useState(false);
@@ -30,8 +36,8 @@ export default function Header() {
     const mobileWidth = 900
 
     const isLoggedUser = headerHelper[pathname]
-
     const isNewHeader = newHeaderHelper[pathname]
+    const loggedUser = user ? true : false
 
     useEffect(() => {
         const handleResize = () => {
@@ -126,7 +132,7 @@ export default function Header() {
                 <NewHeader openModal={openLoginModal} closeModal={closeLoginModal} />
             )}
 
-            {isMobile && typeof isLoggedUser !== 'boolean' && (
+            {isMobile && typeof isLoggedUser !== 'boolean' && !loggedUser && (
                 <NewHeader openModal={openLoginModal} closeModal={closeLoginModal} />
             )}
 
@@ -134,8 +140,11 @@ export default function Header() {
                 <LoginModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />
             }
 
-            {openLogin && typeof isLoggedUser !== 'boolean' &&
+            {openLogin && typeof isLoggedUser !== 'boolean' && !loggedUser &&
                 <NewLoginModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />
+            }
+            {openLogin && typeof isLoggedUser !== 'boolean' && loggedUser &&
+                <NewLoggedModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />
             }
 
         </>
