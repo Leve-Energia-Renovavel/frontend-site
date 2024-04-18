@@ -7,6 +7,7 @@ export const FooterContainer = styled.div`
     flex-direction: column;
 
     max-width: 1920px;
+    /* max-width: 1366px; */
     margin: 0 auto;
 
     background: linear-gradient(

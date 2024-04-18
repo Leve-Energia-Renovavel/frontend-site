@@ -1,8 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Button, Slider, Typography, CircularProgress } from "@mui/material";
-import { background, newBackground, notification } from "../../styles";
-import { Alert } from "@mui/material";
+import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/material";
+import { newBackground, notification } from "../../styles";
 
 const fadeInUp = keyframes`
   from {
@@ -21,9 +20,10 @@ export const HomeContainer = styled.div`
     flex-direction: column;
     background-color: ${newBackground.white};
     
-    max-width: 1920px;
+    /* max-width: 1920px; */
+    max-width: 1366px;
     margin: 0 auto;
-    padding: 3rem;
+    padding: 0 3rem;
     
     @media (max-width: 600px) {
       padding: 0;
@@ -32,11 +32,12 @@ export const HomeContainer = styled.div`
 export const HomeContentContainer = styled.div`
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    gap: 1rem;
     
-    height: 100vh;
+    height: 90vh;
     
-    padding: 27px 39px;
+    /* padding: 27px 39px; */
+    margin-top: 74px;
     
     @media (max-width: 600px) {
       margin-top: 60px;
@@ -48,55 +49,20 @@ export const HomeContentContainer = styled.div`
     }
 `
 export const HomeMainContent = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
     background-image: url(${props => props.image.src});
     background-repeat: no-repeat;
     background-size: cover; 
-    background-position: center;
+    background-position: 80% 20%;
 
-    border-radius: 35px;
+    border-radius: 15px;
 
-    padding: 2rem;
+    padding: 32px 38px;
     
-    width: 70vw;
-    max-width: 70vw;
-    
-    h1 { 
-      font-family: "Graphie";
-      font-weight: 500;
-      text-align: left;
+    width: 900px;
+    max-width: 900px;
 
-      font-size: 80px;
-      max-width: 370px;
-      
-      @media (max-width: 600px) {
-        font-size: 40px;
-      }
-    }
-
-    .underline { 
-      font-family: "Graphie";
-      font-weight: 500;
-      text-decoration: underline;
-      font-size: 80px;
-
-      @media (max-width: 600px) {
-        font-size: 40px;
-      }
-    }
-
-    .logoLeve {
-      width:370px;
-      height:62px;
-      
-      @media (max-width: 600px) {
-        width:220px;
-        height:30px;
-      }
-    }
+    max-height: 750px;
 
     @media (max-width: 600px) {
       padding: 1rem;
@@ -108,42 +74,106 @@ export const HomeMainContent = styled.div`
       border-radius: 15px;
     }
 `
+
+export const HomeContent = styled.div`
+  display: flex; 
+  flex-direction: column; 
+  justify-content: end; 
+  height: 100%; 
+`
+
+export const HomeMainTitleContainer = styled.div`
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: end;
+
+  h1 { 
+      font-family: "Graphie";
+      font-weight: 600;
+      text-align: left;
+
+      font-size: 89px;
+      line-height: 89px;
+      max-width: 420px;
+      
+      @media (max-width: 600px) {
+        font-size: 40px;
+      }
+    }
+
+    .underline { 
+      font-family: "Graphie";
+      font-weight: 600;
+      text-decoration: underline;
+      font-size: 89px;
+
+      @media (max-width: 600px) {
+        font-size: 40px;
+      }
+    }
+`
+
+
+export const HomeSubtitleContainer = styled.div`
+  display : flex ;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  color: ${newBackground.white};
+
+  gap: 1rem;
+
+  .moreAboutLeve {
+    font-family: "Graphie";
+    font-size: 12px;
+  }
+  
+  .arrowIcon {
+    transform: scale(1.5);
+  }
+
+  &:hover { 
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  `
+
+
 export const HomeFormContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  width: 30vw;
-  max-width: 30vw;
-  
-  `
+  width: 388px;
+  max-width: 388px;  
+`
+
 export const HomeMainFormContainer = styled.div`
     background-color: ${newBackground.white};
     border: 1px solid ${newBackground.orange};
+
+    border-radius: 15px;
     
-    border-radius: 35px;
-    
-    height: 85vh;
+    /* height: 85vh; */
+    height: 680px;
     
     @media (max-width: 600px) {
       height: auto;
       width: 90vw;
       max-width: 100vw;
-      border-radius: 15px;
     }
 `
 export const HomeMainForm = styled.form`
     display: flex;
     flex-direction: column;
-
     background-color: ${newBackground.orange};
 
-    border-radius: 35px;
+    border-radius: 15px;
     
     padding: 2rem;
     
-    width: 30vw;
-    max-width: 30vw;
-    height: 75vh;
+    height: auto;
+    overflow: hidden;
     
     @media (max-width: 600px) {
       padding: 1.5rem;
@@ -152,29 +182,16 @@ export const HomeMainForm = styled.form`
 
       border-radius: 15px;
     }
-
-    h2 {
-      font-family: "Graphie";
-      font-weight: 600;
-      color: ${newBackground.yellow};
-      white-space: nowrap;
-      /* font-size: 41px; */
-      font-size: 2rem;
-      text-align: left;
-      
-      @media (max-width: 600px) {
-        font-size: 1.5rem;
-        /* font-size: 40px; */
-        margin-bottom: 6px;
-      }
-    }
     
     p {
       font-family: "Graphie";
       font-weight: 500;
       color: ${newBackground.white};
-      /* font-size: 17px; */
-      font-size: .8rem;
+      font-size: 14px;
+      line-height: 14px;
+
+      margin-top: 17px;
+      margin-bottom: 30px;
 
       @media (max-width: 600px) {
         margin-bottom: 6px;
@@ -184,31 +201,51 @@ export const HomeMainForm = styled.form`
       font-family: "Graphie";
       font-weight: 500;
       color: ${newBackground.yellow};
-      /* font-size: 17px; */
-      font-size: .8rem;
+      font-size: 14px;
+      line-height: 14px;
     }
 
     .homeFormInput {
       background-color: ${newBackground.white};
       border-radius: 10px;
-      height: 60px;
-      margin-bottom: 10px;
+      height: 42px;
+      margin-bottom: 8px;
 
         & label {
           font-family: "Graphie";
-          font-weight: 700;
-          font-size: 17px;
+          font-weight: 500;
+          font-size: 14px;
           color:  ${newBackground.orange};
-          margin-top: 4px;
         }
-
+        
+        &:focus-within label,
+        & input:focus + label {
+            margin-top: 8px;
+        }
+        
         & .MuiOutlinedInput-root {
           & fieldset {
+            height: 42px;
             border-radius: 10px;
             border-color: ${newBackground.white};
           }
         }
 
+    }
+`
+export const FormTitleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+
+  h2 {
+      font-family: "Graphie";
+      font-weight: 600;
+      color: ${newBackground.yellow};
+      white-space: nowrap;
+      font-size: 27px;
+      text-align: left;
     }
 `
 export const HomeMainFormSimulationContainer = styled.div`
@@ -217,14 +254,20 @@ export const HomeMainFormSimulationContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    margin: 0 2rem;
+    /* margin: 0 2rem; */
+    margin: 0 43px;
 
     h6 {
       font-family: "Graphie";
-      font-size: 15px;
+      font-size: 17px;
       font-weight: 900;
       color:${newBackground.green};
 
+    }
+
+    .averageUserCost { 
+      margin: 0;
+      margin-top: 25px;
     }
 
     .simulationCost {
@@ -239,12 +282,18 @@ export const UserTypeFormContainer = styled.div`
     display: flex;
     flex-direction: column;
 
+    .chooseWhereToEconomy {
+      margin: 17px 0 0 0;  //25px - 8px from margin-bottom of .homeFormInput
+    }
+
 `
 export const UserTypeFormButtonContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
+
     gap: 1rem;
+    
     padding: 1rem 0;
     
     @media (max-width: 600px) {
@@ -263,22 +312,24 @@ export const HomeMainTitle = styled(Typography)`
 `
 export const FormSelect = styled(Button)`
   background-color: ${newBackground.orange};
-  color: ${newBackground.white};
   border: 1px solid ${newBackground.yellow};
   border-radius: 10px;
-
+  
   font-family: "Graphie";
-  font-size: 17px;
+  font-size: 14px;
+  color: ${props => props.selected ? newBackground.yellow : newBackground.white};
+  font-weight: 400;
   text-transform: none;
-  padding: 0.8rem 2rem;
+  padding: 0.5rem 2rem;
 
   width: 100%;
+  max-width: 161px;
   
   &:hover {
     cursor: pointer;
   }
   
-  ${props => props.selected && `background-image: linear-gradient(to left, ${newBackground.yellow}, transparent 70%);`}
+  ${props => props.selected && `background-image: linear-gradient(to left, ${newBackground.yellow}, transparent 50%);`}
   
   `
 
@@ -317,7 +368,7 @@ export const FormButton = styled(Button)`
 
 export const FormSlider = styled(Slider)`
     color: ${newBackground.green};
-    height: 5px;
+    height: 8px;
     
     @media (max-width: 600px) {
       height: 10px;
@@ -330,8 +381,9 @@ export const FormSlider = styled(Slider)`
     }
     
     & .MuiSlider-rail {
-      background-color: ${newBackground.orange};
-      height: 5px;
+      background-color: ${newBackground.yellow};
+      height: 8px;
+      opacity: 1;
     } 
 
 `;
@@ -342,31 +394,29 @@ export const HomeSecondarySectionContainer = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${newBackground.white};
-    gap: 2rem;
+
+    gap: 80px;
     
-    margin: 0 auto;
-    
-    padding: 5rem 2rem;
-    
+    padding: 2rem 0;
+
     height: auto;
-    max-width: 1920px;
+    /* max-width: 1920px; */
+    max-width: 1366px;
     
     @media (max-width: 600px) {
       width: 100vw;
       max-width: 100vw;
 
       padding: 15px;
-
     }
 `
 
 export const HomeSecondaryBoxesContainer = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: center;
 
-    margin: 0 auto;
-
-    gap: 2rem;
+    gap: 1rem;
     
     @media (max-width: 600px) {
       flex-wrap: wrap;
@@ -379,19 +429,20 @@ export const HomeSecondaryBoxContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-radius: 15px;
 
-    height: 300px;
-    width: 300px;
+    height: 170px;
+    /* width: 287px; */
+    width: 310px;
 
     padding: 1rem;
-
-    border-radius: 20px;
 
     background-color: ${props => props.color};
 
     .boxDescription {
       font-family: "Graphie";
-      font-size: 18px;
+      font-size: 17px;
+      line-height: 17px;
       font-weight: 500;
       color: ${props => props.descriptionColor};
       
@@ -428,7 +479,7 @@ export const HomeSecondaryBoxTitle = styled.div`
 
     h6 {
       font-family: "Graphie";
-      font-size: 25px;
+      font-size: 27px;
       font-weight: 600;
       color: ${props => props.titleColor};
       
@@ -453,8 +504,8 @@ export const HomeSecondaryImagesContainer = styled.div`
     flex-direction: row;
     justify-content: center;
 
-    gap: 2rem;
-    
+    gap: 1rem;
+  
     @media (max-width: 600px) {
       flex-wrap: wrap;
     }
@@ -493,7 +544,7 @@ export const HomeSecondaryImagesContent = styled.div`
 
     h6 {
       font-family: "Graphie";
-      font-size: 32px;
+      font-size: 27px;
       font-weight: 600;
       color: ${newBackground.white};
       
@@ -523,13 +574,13 @@ export const HomeThirdSectionContainer = styled.div`
 
     gap: 2rem;
 
-    border-radius: 30px;
+    border-radius: 10px;
     
     height: auto;
-    max-width: 100vw;
+    width: 100%;
     
-    padding: 3rem 3rem 0 3rem;
-    
+    padding: 0 3rem 0 3rem;
+
     @media (max-width: 600px) {
       flex-wrap: wrap;
       padding: 3rem 2rem 0 2rem;
@@ -540,17 +591,19 @@ export const HomeThirdSectionContainer = styled.div`
 export const HomeThirdSectionTitleContainer = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    max-width: 950px;
+    max-width: 590px;
 
     text-align: left;
-
     
     h6 {
       font-family: "Graphie";
-      font-size: 50px;
-      
-      line-height: 50px;
+      font-size: 34px;
+      line-height: 34px;
+
+      max-height: 115px;
       
       @media (max-width: 600px) {
         font-size: 21px;
@@ -563,26 +616,47 @@ export const HomeThirdSectionTitleContainer = styled.div`
       font-weight: 200;
       
     }
-    .sectionSubtitle {
-      color: ${newBackground.yellow};
-      font-weight: 500;
 
-      @media (max-width: 600px) {
-        margin-top: 24px;
-      }
-
-    }
     .highlighted {
       font-weight: 500;
     }
 `
 
-export const HomeThirdSectionSoleContainer = styled.div`
+export const HomeThirdSectionSubTitle = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    max-width: 300px;
+    margin-left: 28px;
+
+    h6 {
+      font-family: "Graphie";
+      font-size: 34px;
+      line-height: 34px;
+      
+      @media (max-width: 600px) {
+        font-size: 21px;
+        line-height: 21px;
+      }
+    }
+
+    .sectionSubtitle {
+          color: ${newBackground.yellow};
+          font-weight: 500;
+
+          @media (max-width: 600px) {
+            margin-top: 24px;
+          }
+
+        }
+`
+
+export const HomeThirdSectionSoleContainer = styled.div`
   .sole {
     margin-top: 5rem;
-    width:315px;
-    height:315px;
+    width:250px;
+    height:250px;
     
     @media (max-width: 600px) {
       margin-top: 2rem;
@@ -603,6 +677,7 @@ export const HomeFourthSectionContainer = styled.div`
     gap: 2rem;
 
     padding: 2rem;
+    margin-bottom: 64px; //80px - 16px from banner below
 
     .sectionTitle {
       font-family: "Graphie";

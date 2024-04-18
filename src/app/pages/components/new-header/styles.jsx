@@ -3,16 +3,6 @@ import { Box, Button } from "@mui/material";
 import { newBackground } from "../../styles";
 import { keyframes } from "@emotion/react";
 
-const modalAppear = keyframes`
-    from {
-    opacity: 0;
-    transform: translateY(-50%);
-}
-    to {
-    opacity: 1;
-    transform: translateY(0);
-}
-`
 export const MobileNewHeaderContainer = styled.header`
     display: flex;
     align-items: center;
@@ -21,8 +11,10 @@ export const MobileNewHeaderContainer = styled.header`
     overflow: hidden;
     background-color: ${newBackground.white};
 
-    width: 100vw;
-    max-width: 1920px;
+    border-radius: 10px;
+
+    width: 1366px;
+    max-width: 100vw;
     margin: 0 auto;
 
     height: 74px;
@@ -34,19 +26,22 @@ export const MobileNewHeaderContainer = styled.header`
     right: 0; 
     z-index: 1000;
     
+    @media (min-width: 1500px) and (max-width: 1700px) {
+        padding: 0 0 0 6rem ;
+    }
     @media (max-width: 1100px) {
         padding: 0 30px;
     }
 
     .profile {
-        width:40px; 
-        height:40px;
+        width:45px; 
+        height:45px;
         cursor: pointer;
     }
 
     .logoLeve {
-        width:144px; 
-        height:24px;
+        width: 200px; 
+        height: 33px;
         cursor: pointer;
     }
 `

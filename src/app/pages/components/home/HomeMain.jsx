@@ -8,19 +8,20 @@ import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOu
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
+import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import { Snackbar, TextField, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import soleImage from "../../../../resources/icons/large/sole-icon-large.png";
-import logoLeve from "../../../../resources/icons/small/leve-new-logo-small.svg";
+import economyIcon from "../../../../resources/icons/small/economy-icon-small.png";
 import companyCardImage from "../../../../resources/img/large/leve-confraternizacao-image-large.png";
 import homeCardImage from "../../../../resources/img/large/leve-familia-brincando-image-large.png";
 import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.png";
 import secondBannerImage from "../../../../resources/img/large/leve-pai-e-filho-image-large.png";
 import { leadSchema } from './schema';
-import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, HomeContentContainer as HomeBanner, HomeFifthSectionBanner, HomeFifthSectionBannerContainer, HomeFifthSectionContainer, HomeFifthSectionContentContainer, HomeFifthSectionDescriptionContainer, HomeFifthSectionTitleContainer, HomeFormContainer, HomeFourthSectionCard, HomeFourthSectionCardContainer, HomeFourthSectionContainer, HomeFourthSectionDescription, HomeFourthSectionIcon, HomeFourthSectionTitle, HomeFourthSectionTitleContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeSixthSectionCard, HomeSixthSectionCardContainer, HomeSixthSectionContainer, HomeSixthSectionTitleContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionTitleContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
+import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeFifthSectionBanner, HomeFifthSectionBannerContainer, HomeFifthSectionContainer, HomeFifthSectionContentContainer, HomeFifthSectionDescriptionContainer, HomeFifthSectionTitleContainer, HomeFormContainer, HomeFourthSectionCard, HomeFourthSectionCardContainer, HomeFourthSectionContainer, HomeFourthSectionDescription, HomeFourthSectionIcon, HomeFourthSectionTitle, HomeFourthSectionTitleContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeSubtitleContainer, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeSixthSectionCard, HomeSixthSectionCardContainer, HomeSixthSectionContainer, HomeSixthSectionTitleContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionTitleContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer, HomeMainTitleContainer, HomeContent, HomeThirdSectionSubTitle } from "./styles";
 
 export default function HomeMain() {
 
@@ -68,6 +69,15 @@ export default function HomeMain() {
         return response
     }
 
+    const handleScroll = () => {
+        const element = document.getElementById('howLeveWorks');
+        if (element) {
+            window.scrollTo({ top: element.offsetTop - 60, behavior: 'smooth' });
+        } else {
+            window.scrollTo({ top: 500, behavior: 'smooth' })
+        }
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault()
         setLoading(true)
@@ -106,13 +116,23 @@ export default function HomeMain() {
             <Container>
                 <HomeBanner>
                     <HomeMainContent image={bannerImage}>
-                        <Image src={logoLeve} className='logoLeve' alt={"Logo Leve"} />
-                        <HomeMainTitle variant="h1">A energia do futuro é <span className='underline'>Leve</span></HomeMainTitle>
+                        <HomeContent>
+                            <HomeMainTitleContainer>
+                                <HomeMainTitle variant="h1">A energia do futuro é <span className='underline'>Leve</span></HomeMainTitle>
+                                <HomeSubtitleContainer onClick={() => handleScroll()}>
+                                    <Typography variant="subtitle1" className='moreAboutLeve'>Mais sobre a Leve</Typography>
+                                    <ArrowCircleDownIcon className='arrowIcon' />
+                                </HomeSubtitleContainer>
+                            </HomeMainTitleContainer>
+                        </HomeContent>
                     </HomeMainContent>
                     <HomeFormContainer>
                         <FormContainer>
-                            <Form id='leadForm' onSubmit={handleSubmit} >
-                                <Typography variant="h2">Simule sua economia real:</Typography>
+                            <Form id='leadForm' onSubmit={handleSubmit}>
+                                <FormTitleContainer>
+                                    <Image src={economyIcon} className='logoLeve' alt={"Logo Leve"} />
+                                    <Typography variant="h2">Simule sua economia real:</Typography>
+                                </FormTitleContainer>
                                 <Typography variant="body1">Em <span className="highlighted">3 cliques</span>, você garante <span className="highlighted">energia solar por assinatura</span> e reduz sua despesa na conta de luz todos os meses:</Typography>
                                 <TextField
                                     inputRef={nameRef}
@@ -149,7 +169,7 @@ export default function HomeMain() {
                                 />
 
                                 <UserTypeFormContainer>
-                                    <Typography variant="body1">Quero economizar na minha:</Typography>
+                                    <Typography className='chooseWhereToEconomy'>Quero economizar na minha:</Typography>
                                     <UserTypeFormButtonContainer>
                                         <Select
                                             startIcon={<StoreIcon />}
@@ -168,7 +188,6 @@ export default function HomeMain() {
                                 <InputMask mask="99999-999" disabled={isLoading}>
                                     {() => <TextField
                                         className="homeFormInput"
-
                                         inputRef={cepRef}
                                         label={`CEP`}
                                         placeholder={`CEP`}
@@ -180,7 +199,7 @@ export default function HomeMain() {
                                 </InputMask>
                             </Form>
                             <HomeMainFormSimulationContainer>
-                                <Typography variant="subtitle1">Valor médio da fatura: <span className='simulationCost'>R$ {simulationCost}</span></Typography>
+                                <Typography variant="subtitle1" className='averageUserCost'>Valor médio da fatura: <span className='simulationCost'>R$ {simulationCost}</span></Typography>
                                 <FormSlider
                                     onChange={(event) => setSimulationCost(event.target.value)}
                                     value={simulationCost}
@@ -224,22 +243,21 @@ export default function HomeMain() {
                             <ArrowCircleRightOutlinedIcon className='arrowIcon' />
                         </HomeSecondaryImagesContent>
                     </HomeSecondaryImagesContainer>
-
-
-
                 </HomeSecondarySectionContainer>
 
                 <HomeThirdSectionContainer>
                     <HomeThirdSectionTitleContainer>
                         <Typography variant="subtitle1" className='sectionTitle'>Com adesão <span className='highlighted'>100% digital</span>, você garante <span className='highlighted'>energia solar por assinatura</span> para sua casa e/ou seu negócio.</Typography>
-                        <Typography variant="subtitle1" className='sectionSubtitle'>É simples, rápido, sem obras e livre de burocracias!</Typography>
                     </HomeThirdSectionTitleContainer>
                     <HomeThirdSectionSoleContainer>
                         <Image src={soleImage} className="sole" alt={"Imagem de Sole, personagem da Leve, carregando uma placa solar"} />
                     </HomeThirdSectionSoleContainer>
+                    <HomeThirdSectionSubTitle>
+                        <Typography variant="subtitle1" className='sectionSubtitle'>É simples, rápido, sem obras e livre de burocracias!</Typography>
+                    </HomeThirdSectionSubTitle>
                 </HomeThirdSectionContainer>
 
-                <HomeFourthSectionContainer>
+                <HomeFourthSectionContainer id="howLeveWorks">
                     <HomeFourthSectionTitleContainer>
                         <Typography variant="subtitle1" className='sectionTitle'>Como funciona na prática:</Typography>
                     </HomeFourthSectionTitleContainer>
@@ -298,7 +316,7 @@ export default function HomeMain() {
                 </HomeSixthSectionContainer>
 
 
-            </Container>
+            </Container >
 
             <>
                 {validationErrors.map((error, index) => {
