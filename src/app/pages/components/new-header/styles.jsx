@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { Box, Button } from "@mui/material";
 import { newBackground } from "../../styles";
-import { keyframes } from "@emotion/react";
 
 export const MobileNewHeaderContainer = styled.header`
     display: flex;
@@ -11,7 +10,7 @@ export const MobileNewHeaderContainer = styled.header`
     overflow: hidden;
     background-color: ${newBackground.white};
 
-    border-radius: 10px;
+    border-radius: 0 0 10px 10px;
 
     width: 1366px;
     max-width: 100vw;

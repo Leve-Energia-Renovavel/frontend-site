@@ -54,17 +54,18 @@ export const HomeMainContent = styled.div`
     background-repeat: no-repeat;
     background-size: cover; 
     background-position: 80% 20%;
-
+    
     border-radius: 15px;
-
+    
     padding: 32px 38px;
     
     width: 900px;
     max-width: 900px;
-
+    
     max-height: 750px;
-
+    
     @media (max-width: 600px) {
+      background-position: 50% 50%;
       padding: 1rem;
       width: 100vw;
       max-width: 100vw;
@@ -87,6 +88,13 @@ export const HomeMainTitleContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: end;
+  
+  @media (max-width: 600px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
 
   h1 { 
       font-family: "Graphie";
@@ -98,7 +106,9 @@ export const HomeMainTitleContainer = styled.div`
       max-width: 420px;
       
       @media (max-width: 600px) {
-        font-size: 40px;
+        text-align: center;
+        font-size: 42px;
+        line-height: 42px;
       }
     }
 
@@ -121,8 +131,14 @@ export const HomeSubtitleContainer = styled.div`
   justify-content: end;
   align-items: center;
   color: ${newBackground.white};
-
+  
   gap: 1rem;
+  
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
 
   .moreAboutLeve {
     font-family: "Graphie";
@@ -581,6 +597,16 @@ export const HomeThirdSectionContainer = styled.div`
     
     padding: 0 3rem 0 3rem;
 
+    .rowToBeReversed {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      
+      @media (max-width: 600px) {
+        flex-direction: column-reverse;
+      }
+    }
+
     @media (max-width: 600px) {
       flex-wrap: wrap;
       padding: 3rem 2rem 0 2rem;
@@ -614,7 +640,7 @@ export const HomeThirdSectionTitleContainer = styled.div`
     .sectionTitle {
       color: ${newBackground.white};
       font-weight: 200;
-      
+
     }
 
     .highlighted {
@@ -684,10 +710,15 @@ export const HomeFourthSectionContainer = styled.div`
       font-size: 34px;
       font-weight: 600;
       color: ${newBackground.green};
+
+      @media (max-width: 600px) {
+          font-size: 21px;
+      }
     }
 `
 export const HomeFourthSectionTitleContainer = styled.div`
   text-align: center;
+
 `
 export const HomeFourthSectionCardContainer = styled.div`
     display: flex;
@@ -711,6 +742,19 @@ export const HomeFourthSectionCard = styled.div`
     max-width: 300px;
     
     padding: 2rem;
+
+    .invisible { 
+      @media (max-width: 600px) {
+      flex-direction: row-reverse;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      flex-direction: row-reverse;
+      width: 327px;
+      height: auto;
+      padding: 1rem;
+    }
 `
 export const HomeFourthSectionIcon = styled.div`
     display: flex;
@@ -720,6 +764,11 @@ export const HomeFourthSectionIcon = styled.div`
     .titleIcon {
       width: 65px;
       height: 65px;
+      
+      @media (max-width: 600px) {
+        width: 50px;
+        height: 50px;
+      }
     }
 `
 export const HomeFourthSectionTitle = styled.div`
@@ -729,6 +778,10 @@ export const HomeFourthSectionTitle = styled.div`
     font-size: 42px;
     font-weight: 600;
     color: ${newBackground.green};
+    
+    @media (max-width: 600px) {
+      font-size: 34px;
+    }
   }
 `
 export const HomeFourthSectionDescription = styled.div`
@@ -889,14 +942,14 @@ export const HomeSixthSectionCard = styled.div`
     align-items: center;
     border: 1px solid #ccc;
     
-    border-radius: 25px;
+    border-radius: 15px;
 
     width: 180px;
     height: 180px;
 
     @media (max-width: 600px) {
-      width: 120px;
-      height: 120px;
+      width: 150px;
+      height: 94px;
     }
 
     .brandLogo{ 

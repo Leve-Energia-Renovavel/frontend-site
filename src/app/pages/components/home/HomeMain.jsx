@@ -249,12 +249,14 @@ export default function HomeMain() {
                     <HomeThirdSectionTitleContainer>
                         <Typography variant="subtitle1" className='sectionTitle'>Com adesão <span className='highlighted'>100% digital</span>, você garante <span className='highlighted'>energia solar por assinatura</span> para sua casa e/ou seu negócio.</Typography>
                     </HomeThirdSectionTitleContainer>
-                    <HomeThirdSectionSoleContainer>
-                        <Image src={soleImage} className="sole" alt={"Imagem de Sole, personagem da Leve, carregando uma placa solar"} />
-                    </HomeThirdSectionSoleContainer>
-                    <HomeThirdSectionSubTitle>
-                        <Typography variant="subtitle1" className='sectionSubtitle'>É simples, rápido, sem obras e livre de burocracias!</Typography>
-                    </HomeThirdSectionSubTitle>
+                    <div className='rowToBeReversed'>
+                        <HomeThirdSectionSoleContainer>
+                            <Image src={soleImage} className="sole" alt={"Imagem de Sole, personagem da Leve, carregando uma placa solar"} />
+                        </HomeThirdSectionSoleContainer>
+                        <HomeThirdSectionSubTitle>
+                            <Typography variant="subtitle1" className='sectionSubtitle'>É simples, rápido, sem obras e livre de burocracias!</Typography>
+                        </HomeThirdSectionSubTitle>
+                    </div>
                 </HomeThirdSectionContainer>
 
                 <HomeFourthSectionContainer id="howLeveWorks">
@@ -269,12 +271,14 @@ export default function HomeMain() {
                                     <HomeFourthSectionIcon>
                                         <Image src={card.icon} className="titleIcon" alt={card.description} />
                                     </HomeFourthSectionIcon>
-                                    <HomeFourthSectionTitle>
-                                        <Typography variant="subtitle1" className='cardTitle'>{`${index}.`}</Typography>
-                                    </HomeFourthSectionTitle>
-                                    <HomeFourthSectionDescription>
-                                        <Typography variant="subtitle1" className='cardDescription'>{card.description}</Typography>
-                                    </HomeFourthSectionDescription>
+                                    <div className='invisible'>
+                                        <HomeFourthSectionTitle>
+                                            <Typography variant="subtitle1" className='cardTitle'>{`${index}.`}</Typography>
+                                        </HomeFourthSectionTitle>
+                                        <HomeFourthSectionDescription>
+                                            <Typography variant="subtitle1" className='cardDescription'>{card.description}</Typography>
+                                        </HomeFourthSectionDescription>
+                                    </div>
                                 </HomeFourthSectionCard>
 
                             )
