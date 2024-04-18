@@ -24,7 +24,8 @@ export default function Header() {
     const router = useRouter()
     const pathname = usePathname()
 
-    const user = JSON.parse(localStorage.getItem('user'))
+    const store = useStoreUser()
+    const user = JSON.parse(localStorage.getItem('user')) || store.user
 
     const [isMobile, setIsMobile] = useState(false);
     const [isMenuOpen, setMenuOpen] = useState(false);

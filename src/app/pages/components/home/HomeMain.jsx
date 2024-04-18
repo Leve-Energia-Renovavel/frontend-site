@@ -1,6 +1,8 @@
 "use client"
 
+import { useStoreUser } from '@/app/hooks/useStore';
 import { startSignUp } from '@/app/service/lead-service/LeadService';
+import { requestSuccessful } from '@/app/service/utils/Validations';
 import { brands, homeBoxes, homeTutorialCards } from '@/app/utils/helper/homeBoxesHelper';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -8,6 +10,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
 import { Snackbar, TextField, Typography } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import soleImage from "../../../../resources/icons/large/sole-icon-large.png";
@@ -18,13 +21,11 @@ import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-ba
 import secondBannerImage from "../../../../resources/img/large/leve-pai-e-filho-image-large.png";
 import { leadSchema } from './schema';
 import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, HomeContentContainer as HomeBanner, HomeFifthSectionBanner, HomeFifthSectionBannerContainer, HomeFifthSectionContainer, HomeFifthSectionContentContainer, HomeFifthSectionDescriptionContainer, HomeFifthSectionTitleContainer, HomeFormContainer, HomeFourthSectionCard, HomeFourthSectionCardContainer, HomeFourthSectionContainer, HomeFourthSectionDescription, HomeFourthSectionIcon, HomeFourthSectionTitle, HomeFourthSectionTitleContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeSixthSectionCard, HomeSixthSectionCardContainer, HomeSixthSectionContainer, HomeSixthSectionTitleContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionTitleContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
-import { useRouter } from 'next/navigation';
-import { requestSuccessful } from '@/app/service/utils/Validations';
-import { clearBrowserData } from '@/app/utils/browser/BrowserUtils';
 
 export default function HomeMain() {
 
     const router = useRouter()
+    const store = useStoreUser()
 
     const [isLoading, setLoading] = useState(false)
     const [simulationCost, setSimulationCost] = useState(150)
@@ -88,11 +89,7 @@ export default function HomeMain() {
 
             if (requestSuccessful(response?.status)) {
                 const uuid = response?.data?.uuid
-                // router.push("/signup")
-                //  setar uuid no storeUser
-                //  para mandar para o novo signup
-                //  e pegar as infos do cliente
-
+                router.push(`/signup/?uuid=${uuid}`)
 
             } else {
                 setValidationErrors([response?.message])
