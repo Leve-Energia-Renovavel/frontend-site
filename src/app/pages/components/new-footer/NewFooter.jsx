@@ -8,7 +8,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
 import logoLeve from "../../../../resources/icons/small/leve-logo-white-icon-small.png";
-import { FooterContainer as Container, FooterButton, FooterPrimaryContainer, FooterSecondaryContainer, FooterSocialMediaContainer } from './styles';
+import { FooterContainer as Container, FooterButton, FooterPrimaryContainer, FooterSecondaryContainer, FooterSocialMediaContainer, MyNiceDiv } from './styles';
 
 import sunImage from "../../../../resources/icons/small/ellipse-small.png";
 
@@ -62,6 +62,10 @@ export default function NewFooter() {
           </FooterSocialMediaContainer>
           <Image src={logoLeve} className="leveLogoImage" alt={"banner da Leve com uma mulher sorrindo ao usar notebook"} />
           <Typography variant="h6">©2024 - Todos os direitos reservados - Leve Energia Renovável</Typography>
+
+          <MyNiceDiv>
+            <Image src={sunImage} className='sunImage' alt={"Imagem de um sol de pondo, ao fundo do logo da Leve"} />
+          </MyNiceDiv>
         </FooterSecondaryContainer>
       </Container>
     </>

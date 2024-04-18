@@ -6,6 +6,8 @@ export const FooterContainer = styled.div`
     display: flex;
     flex-direction: column;
 
+    overflow: hidden;
+
     max-width: 1920px;
     /* max-width: 1366px; */
     margin: 0 auto;
@@ -28,6 +30,8 @@ export const FooterContainer = styled.div`
         
         gap: 3rem; //change later...
     }
+
+
 `
 export const FooterPrimaryContainer = styled.div`
     display: flex;
@@ -93,10 +97,12 @@ export const FooterSecondaryContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    background-image: url(${props => props.image.src});
+    overflow: hidden;
+
+    /* background-image: url(${props => props.image.src});
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 800px;
+    background-size: 800px; */
 
     h6 {
         color: ${newBackground.white};
@@ -126,6 +132,30 @@ export const FooterSecondaryContainer = styled.div`
         background-position: end;
     }
 `
+export const MyNiceDiv = styled.div`
+    position: fixed; /* Ensure the container remains fixed */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1200px; /* Adjust the height to fit the sun image */
+    overflow: hidden; /* Hide the bottom half of the sun image */
+    z-index: -1; /* Move the container behind other content */
+    
+    .sunImage { 
+        position: absolute; /* Ensure the sun image remains absolutely positioned */
+        bottom: -418px; /* Position the sun image at the bottom of its container */
+        left: 50%; /* Position the sun image horizontally centered */
+        transform: translateX(-50%) scaleY(-1); 
+        width: 1200px; /* Adjust the width of the sun image */
+        height: 1200px; /* Adjust the height of the sun image */
+        border-radius: 50%; /* Make the sun image round */
+        
+        @media (max-width: 700px) {
+            width: 800px; 
+            height: 800px; 
+        }
+    }
+`;
 export const FooterSocialMediaContainer = styled.div`
     display: flex;
     flex-direction: row;

@@ -312,10 +312,7 @@ export default function HomeMain() {
                         })}
 
                     </HomeSixthSectionCardContainer>
-
                 </HomeSixthSectionContainer>
-
-
             </Container >
 
             <>
