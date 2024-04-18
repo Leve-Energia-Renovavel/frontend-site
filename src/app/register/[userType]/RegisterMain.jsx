@@ -1,5 +1,6 @@
-"use client"
 /* eslint-disable react-hooks/exhaustive-deps */
+"use client"
+
 import { useStoreAddress, useStoreUser } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { clearBrowserData } from "@/app/utils/browser/BrowserUtils";

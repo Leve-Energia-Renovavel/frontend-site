@@ -1,8 +1,7 @@
-import React from 'react'
-import { MobileNewHeaderContainer } from './styles'
 import Image from "next/image"
 import logoLeve from "../../../../resources/icons/small/leve-logo-orange-icon-small.svg"
 import perfilLeve from "../../../../resources/icons/small/leve-perfil-icone-small.svg"
+import { MobileNewHeaderContainer } from './styles'
 
 export default function NewHeader({ isOpen, openModal, closeModal }) {
     return (

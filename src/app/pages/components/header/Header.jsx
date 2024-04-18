@@ -14,7 +14,6 @@ import NewLoginModal from '../new-login/NewLoginModal';
 import DefaultButton from '../utils/buttons/DefaultButton';
 import MobileHeader from './MobileHeader';
 import { ButtonContainer, HeaderContainer, LogoContainer, MenuBurguer, MenuItem, MobileHeaderContainer, Nav, NavContainer, Ul } from './styles';
-import Cookies from 'js-cookie';
 
 const LoggedUserHeader = dynamic(() => import('./LoggedUserHeader'), { ssr: false });
 const NewLoggedModal = dynamic(() => import('../new-header/NewLoggedModal'), { ssr: false });
@@ -25,7 +24,7 @@ export default function Header() {
     const pathname = usePathname()
 
     const store = useStoreUser()
-    const user = JSON.parse(localStorage.getItem('user')) || store.user
+    const user = JSON.parse(window.localStorage.getItem('user')) || store.user
 
     const [isMobile, setIsMobile] = useState(false);
     const [isMenuOpen, setMenuOpen] = useState(false);

@@ -7,7 +7,7 @@ import { FABContainer, WhatsappLink } from './styles';
 import { usePathname } from 'next/navigation';
 import { helperToPath, pathHelper } from '@/app/utils/helper/pathHelper';
 
-const WhatsAppFAB = () => {
+export default function WhatsAppFAB() {
 
     const pathname = usePathname()
 
@@ -28,5 +28,3 @@ const WhatsAppFAB = () => {
         </FABContainer >
     );
 };
-
-export default WhatsAppFAB;
