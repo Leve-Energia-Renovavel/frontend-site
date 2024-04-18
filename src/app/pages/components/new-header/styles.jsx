@@ -1,7 +1,18 @@
 import styled from "@emotion/styled";
 import { Box, Button } from "@mui/material";
 import { newBackground } from "../../styles";
+import { keyframes } from "@emotion/react";
 
+const modalAppear = keyframes`
+    from {
+    opacity: 0;
+    transform: translateY(-50%);
+}
+    to {
+    opacity: 1;
+    transform: translateY(0);
+}
+`
 export const MobileNewHeaderContainer = styled.header`
     display: flex;
     align-items: center;
@@ -49,10 +60,11 @@ export const LoginBox = styled(Box)`
     background-color: ${newBackground.white};
 
     width: 60vw;
+    height: 80vh;
 
     box-shadow: 5px 10px 15px 20px rgba(0, 0, 0, 0.1);
+
     
-    height: 80vh;
 
     border-width: 0px 1px 1px 1px;
     border-style: solid;
@@ -63,6 +75,8 @@ export const LoginBox = styled(Box)`
     @media (max-width: 900px) {
         width: 100%;
         height: 100%;
+        height: auto;
+
         border-radius: 0;
         top: 0;
         left: 0;

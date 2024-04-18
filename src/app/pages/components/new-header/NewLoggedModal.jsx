@@ -1,7 +1,8 @@
 "use client"
 
 import { clearBrowserData } from "@/app/utils/browser/BrowserUtils";
-import { Backdrop, Modal, Typography } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
+import { Backdrop, IconButton, Modal, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import soleProfile from "../../../../resources/icons/large/sole-icon-profile-large.png";
@@ -62,7 +63,12 @@ export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
                         },
                     },
                 }}>
-                <LoginBox>
+                <LoginBox className="animation">
+                    <div>
+                        <IconButton onClick={closeModal}>
+                            <CloseIcon />
+                        </IconButton>
+                    </div>
                     <MenuContent>
                         <MenuHeaderContent>
                             <Image src={soleProfile} className="sole" alt="Imagem do Solem, mascote da Leve" />
