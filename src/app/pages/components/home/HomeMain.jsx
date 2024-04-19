@@ -12,7 +12,7 @@ import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import { Snackbar, TextField, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import soleImage from "../../../../resources/icons/large/sole-icon-large.png";
 import economyIcon from "../../../../resources/icons/small/economy-icon-small.png";
@@ -23,8 +23,9 @@ import secondBannerImage from "../../../../resources/img/large/leve-pai-e-filho-
 import { leadSchema } from './schema';
 import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeFifthSectionBanner, HomeFifthSectionBannerContainer, HomeFifthSectionContainer, HomeFifthSectionContentContainer, HomeFifthSectionDescriptionContainer, HomeFifthSectionTitleContainer, HomeFormContainer, HomeFourthSectionCard, HomeFourthSectionCardContainer, HomeFourthSectionContainer, HomeFourthSectionDescription, HomeFourthSectionIcon, HomeFourthSectionTitle, HomeFourthSectionTitleContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeSubtitleContainer, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeSixthSectionCard, HomeSixthSectionCardContainer, HomeSixthSectionContainer, HomeSixthSectionTitleContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionTitleContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer, HomeMainTitleContainer, HomeContent, HomeThirdSectionSubTitle } from "./styles";
 import useOnScreen from '@/app/hooks/useOnScreen';
+import axios from 'axios';
 
-export default function HomeMain() {
+export default function HomeMain(textsInitial) {
 
     const boxesRef = useRef(null)
     const imagesRef = useRef(null)
@@ -127,33 +128,20 @@ export default function HomeMain() {
 
     }
 
+    const [texts, setInfo] = useState(textsInitial);
 
-    const texts = {
-        title: "A energia do futuro é ",
-        leve: "Leve",
-        about: "Mais sobre a Leve",
-        simulate: "Simule sua economia real:",
-        in: "Em ",
-        threeClicks: "3 cliques ",
-        guarantee: ", você garante ",
-        solarEnergy: "energia solar por assinatura",
-        reduceInvoices: " e reduz sua despesa na conta de luz todos os meses:",
-        iWantToEconomy: "Quero economizar na minha:",
-        company: "Empresa",
-        house: "Residência",
-        averageCost: "Valor médio da fatura:",
-        discountCalculate: "Calcular desconto",
-        forYourHouse: "Para a sua residência",
-        forYourCompany: "Para o seu comércio ou empresa",
-        accession: "Com adesão ",
-        hundredDigital: "100% digital",
-        houseOrBusiness: " para sua casa e/ou seu negócio.",
-        simpleFastFree: "É simples, rápido, sem obras e livre de burocracias!",
-        howItWorks: "Como funciona na prática:",
-        weBelieve: "Nós acreditamos que você merece um dinheiro extra na sua conta para investir no que realmente importa para você e sua família.",
-        moreToKnow: "Saiba mais sobre como podemos proporcionar isso ",
-        brandsThatTrust: "Empresas que confiam na Leve Energia:",
-    }
+    useEffect(() => {
+      async function fetchInfo() {
+        try {
+          const response = await axios.get('/info.json');
+          setInfo(response.data);
+        } catch (error) {
+          console.error('Error fetching info:', error);
+        }
+      }
+  
+      fetchInfo();
+    }, []);
 
     return (
         <>
@@ -412,4 +400,21 @@ export default function HomeMain() {
         </>
 
     )
+}
+
+export async function getStaticProps() {
+	let textsInitial;
+  try {
+    const response = await axios.get('/info.json');
+    textsInitial = response.data;
+   
+  } catch (error) {
+    console.error('Error fetching JSON:', error);
+  }
+
+	return {
+		props: {
+			textsInitial
+		}
+	};
 }
