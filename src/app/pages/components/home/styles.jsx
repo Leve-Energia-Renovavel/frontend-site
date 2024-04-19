@@ -47,7 +47,8 @@ export const HomeContentContainer = styled.div`
       margin-top: 60px;
       flex-wrap: wrap;
       
-      padding: 1rem 1.5rem;
+      /* padding: 1rem 1.5rem; */
+      padding: 0;
 
       height: auto;
     }
@@ -73,6 +74,8 @@ export const HomeMainContent = styled.div`
       padding: 1rem;
       width: 100vw;
       max-width: 100vw;
+
+      margin: 0 24px;
 
       height: 70vh;
 
@@ -181,7 +184,7 @@ export const HomeMainFormContainer = styled.div`
     
     @media (max-width: 600px) {
       height: auto;
-      width: 90vw;
+      width: 100%;
       max-width: 100vw;
     }
 `
@@ -199,10 +202,10 @@ export const HomeMainForm = styled.form`
     
     @media (max-width: 600px) {
       padding: 1.5rem;
-      width: 90vw;
+      width: 100%;
       max-width: 100vw;
 
-      border-radius: 15px;
+      border-radius: 0;
     }
     
     p {
@@ -270,6 +273,7 @@ export const FormTitleContainer = styled.div`
       white-space: nowrap;
       font-size: 27px;
       text-align: left;
+
     }
 `
 export const HomeMainFormSimulationContainer = styled.div`
@@ -286,9 +290,10 @@ export const HomeMainFormSimulationContainer = styled.div`
       font-size: 17px;
       font-weight: 900;
       color:${newBackground.green};
-
+      
+      white-space: nowrap;
     }
-
+    
     .averageUserCost { 
       margin: 0;
       margin-top: 25px;
@@ -367,6 +372,7 @@ export const FormButton = styled(Button)`
   
   @media (max-width: 600px) {
     width: 90vw;
+    margin: 1rem auto;
   }
 
   span {

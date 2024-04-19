@@ -197,6 +197,7 @@ export default function HomeMain() {
                                         placeholder={`Telefone`}
                                         variant="outlined"
                                         type="text"
+                                        inputProps={{ inputMode: 'numeric' }}
                                         disabled={isLoading}
                                         required
                                     />}
@@ -244,7 +245,7 @@ export default function HomeMain() {
                                 </InputMask>
                             </Form>
                             <HomeMainFormSimulationContainer>
-                                <Typography variant="subtitle1" className='averageUserCost'>{texts.averageCost}<span className='simulationCost'>R$ {simulationCost}</span></Typography>
+                                <Typography variant="subtitle1" className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}</span></Typography>
                                 <FormSlider
                                     onChange={(event) => setSimulationCost(event.target.value)}
                                     value={simulationCost}
