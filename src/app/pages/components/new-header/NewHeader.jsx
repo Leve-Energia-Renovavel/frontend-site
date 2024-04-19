@@ -6,8 +6,8 @@ import { MobileNewHeaderContainer } from './styles'
 export default function NewHeader({ isOpen, openModal, closeModal }) {
     return (
         <MobileNewHeaderContainer>
-            <Image src={logoLeve} className='logoLeve' alt={"Logo da Leve na cor laranja"} />
-            <Image src={perfilLeve} className='profile' alt={"Perfil Leve"} onClick={openModal} />
+            <Image src={logoLeve} className='logoLeve' alt={"Logo da Leve na cor laranja"} loading="eager" priority={true} />
+            <Image src={perfilLeve} className='profile' alt={"Perfil Leve"} onClick={openModal} loading="eager" priority={true} />
         </MobileNewHeaderContainer>
     )
 }

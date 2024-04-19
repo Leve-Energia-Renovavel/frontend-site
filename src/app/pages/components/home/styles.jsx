@@ -1,4 +1,4 @@
-import { keyframes } from "@emotion/react";
+import { css, keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/material";
 import { newBackground, notification } from "../../styles";
@@ -13,6 +13,10 @@ const fadeInUp = keyframes`
     opacity: 1;
     transform: translateY(0);
   }
+`;
+
+const fadeInUpAnimation = css`
+  animation: ${fadeInUp} 2s ease;
 `;
 
 export const HomeContainer = styled.div`
@@ -34,7 +38,7 @@ export const HomeContentContainer = styled.div`
     flex-direction: row;
     gap: 1rem;
     
-    height: 90vh;
+    height: auto;
     
     /* padding: 27px 39px; */
     margin-top: 74px;
@@ -88,6 +92,8 @@ export const HomeMainTitleContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: end;
+
+  animation: ${fadeInUp} 0.5s ease-out;
   
   @media (max-width: 600px) {
     flex-direction: column;
@@ -254,6 +260,8 @@ export const FormTitleContainer = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 6px;
+
+  animation: ${fadeInUp} 0.5s ease-out;  
 
   h2 {
       font-family: "Graphie";
@@ -434,10 +442,14 @@ export const HomeSecondaryBoxesContainer = styled.div`
 
     gap: 1rem;
     
+    @media (max-width: 1000px) {
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
     @media (max-width: 600px) {
       flex-wrap: wrap;
       justify-content: center;
-      gap: 1.2rem;
+      gap: 0.5rem;
     }
 `
 
@@ -446,6 +458,8 @@ export const HomeSecondaryBoxContent = styled.div`
     flex-direction: column;
     justify-content: space-between;
     border-radius: 15px;
+
+    ${(props) => props.visible && fadeInUpAnimation};
 
     height: 170px;
     /* width: 287px; */
@@ -520,29 +534,32 @@ export const HomeSecondaryImagesContainer = styled.div`
     flex-direction: row;
     justify-content: center;
 
+    ${(props) => props.visible && fadeInUpAnimation};
+        
     gap: 1rem;
-  
+    
     @media (max-width: 600px) {
       flex-wrap: wrap;
     }
-`
+    `
 export const HomeSecondaryImagesContent = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
+    
     background-image: url(${props => props.image.src});
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     cursor: pointer;
-
+    
     transition: filter 0.5s ease; 
 
+    
     &:hover {
-        filter: brightness(0.8);
+      filter: brightness(0.8);
     }
-
+    
     height: 420px;
     width: 620px;
 
@@ -620,6 +637,8 @@ export const HomeThirdSectionTitleContainer = styled.div`
     justify-content: center;
     align-items: center;
 
+    ${(props) => props.visible && fadeInUpAnimation};
+
     max-width: 590px;
 
     text-align: left;
@@ -653,6 +672,8 @@ export const HomeThirdSectionSubTitle = styled.div`
     justify-content: center;
     align-items: center;
 
+    ${(props) => props.visible && fadeInUpAnimation};
+
     max-width: 300px;
     margin-left: 28px;
 
@@ -683,6 +704,8 @@ export const HomeThirdSectionSoleContainer = styled.div`
     margin-top: 5rem;
     width:250px;
     height:250px;
+
+    ${(props) => props.visible && fadeInUpAnimation};
     
     @media (max-width: 600px) {
       margin-top: 2rem;
@@ -724,6 +747,8 @@ export const HomeFourthSectionCardContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
+
+    ${(props) => props.visible && fadeInUpAnimation};
 
     gap: 1rem;
 
@@ -927,6 +952,8 @@ export const HomeSixthSectionCardContainer = styled.div`
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
+
+    ${(props) => props.visible && fadeInUpAnimation};
 
     max-width: 990px;
 

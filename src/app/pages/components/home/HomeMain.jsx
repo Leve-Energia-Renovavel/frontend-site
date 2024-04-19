@@ -22,8 +22,23 @@ import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-ba
 import secondBannerImage from "../../../../resources/img/large/leve-pai-e-filho-image-large.png";
 import { leadSchema } from './schema';
 import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeFifthSectionBanner, HomeFifthSectionBannerContainer, HomeFifthSectionContainer, HomeFifthSectionContentContainer, HomeFifthSectionDescriptionContainer, HomeFifthSectionTitleContainer, HomeFormContainer, HomeFourthSectionCard, HomeFourthSectionCardContainer, HomeFourthSectionContainer, HomeFourthSectionDescription, HomeFourthSectionIcon, HomeFourthSectionTitle, HomeFourthSectionTitleContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeSubtitleContainer, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeSixthSectionCard, HomeSixthSectionCardContainer, HomeSixthSectionContainer, HomeSixthSectionTitleContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionTitleContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer, HomeMainTitleContainer, HomeContent, HomeThirdSectionSubTitle } from "./styles";
+import useOnScreen from '@/app/hooks/useOnScreen';
 
 export default function HomeMain() {
+
+    const boxesRef = useRef(null)
+    const imagesRef = useRef(null)
+    const soleRef = useRef(null)
+    const textsRef = useRef(null)
+    const tutorialRef = useRef(null)
+    const brandsRef = useRef(null)
+
+    const visibleBoxes = useOnScreen(boxesRef)
+    const visibleImages = useOnScreen(imagesRef)
+    const visibleSole = useOnScreen(soleRef)
+    const visibleTexts = useOnScreen(textsRef)
+    const visibleTutorial = useOnScreen(tutorialRef)
+    const visibleBrands = useOnScreen(brandsRef)
 
     const router = useRouter()
     const store = useStoreUser()
@@ -43,6 +58,7 @@ export default function HomeMain() {
     const handleSelect = (userType) => {
         setSelectedUserType(userType);
     };
+
 
     const handlePreSignup = (userType) => {
         const element = document.getElementById('leadForm');
@@ -111,6 +127,34 @@ export default function HomeMain() {
 
     }
 
+
+    const texts = {
+        title: "A energia do futuro é ",
+        leve: "Leve",
+        about: "Mais sobre a Leve",
+        simulate: "Simule sua economia real:",
+        in: "Em ",
+        threeClicks: "3 cliques ",
+        guarantee: ", você garante ",
+        solarEnergy: "energia solar por assinatura",
+        reduceInvoices: " e reduz sua despesa na conta de luz todos os meses:",
+        iWantToEconomy: "Quero economizar na minha:",
+        company: "Empresa",
+        house: "Residência",
+        averageCost: "Valor médio da fatura:",
+        discountCalculate: "Calcular desconto",
+        forYourHouse: "Para a sua residência",
+        forYourCompany: "Para o seu comércio ou empresa",
+        accession: "Com adesão ",
+        hundredDigital: "100% digital",
+        houseOrBusiness: " para sua casa e/ou seu negócio.",
+        simpleFastFree: "É simples, rápido, sem obras e livre de burocracias!",
+        howItWorks: "Como funciona na prática:",
+        weBelieve: "Nós acreditamos que você merece um dinheiro extra na sua conta para investir no que realmente importa para você e sua família.",
+        moreToKnow: "Saiba mais sobre como podemos proporcionar isso ",
+        brandsThatTrust: "Empresas que confiam na Leve Energia:",
+    }
+
     return (
         <>
             <Container>
@@ -118,9 +162,9 @@ export default function HomeMain() {
                     <HomeMainContent image={bannerImage}>
                         <HomeContent>
                             <HomeMainTitleContainer>
-                                <HomeMainTitle variant="h1">A energia do futuro é <span className='underline'>Leve</span></HomeMainTitle>
+                                <HomeMainTitle variant="h1">{texts.title}<span className='underline'>{texts.leve}</span></HomeMainTitle>
                                 <HomeSubtitleContainer onClick={() => handleScroll()}>
-                                    <Typography variant="subtitle1" className='moreAboutLeve'>Mais sobre a Leve</Typography>
+                                    <Typography variant="subtitle1" className='moreAboutLeve'>{texts.about}</Typography>
                                     <ArrowCircleDownIcon className='arrowIcon' />
                                 </HomeSubtitleContainer>
                             </HomeMainTitleContainer>
@@ -130,10 +174,10 @@ export default function HomeMain() {
                         <FormContainer>
                             <Form id='leadForm' onSubmit={handleSubmit}>
                                 <FormTitleContainer>
-                                    <Image src={economyIcon} className='logoLeve' alt={"Logo Leve"} />
-                                    <Typography variant="h2">Simule sua economia real:</Typography>
+                                    <Image src={economyIcon} className='logoLeve' alt={"Logo Leve"} loading="eager" priority={true} />
+                                    <Typography variant="h2">{texts.simulate}</Typography>
                                 </FormTitleContainer>
-                                <Typography variant="body1">Em <span className="highlighted">3 cliques</span>, você garante <span className="highlighted">energia solar por assinatura</span> e reduz sua despesa na conta de luz todos os meses:</Typography>
+                                <Typography variant="body1">{texts.in}<span className="highlighted">{texts.threeClicks}</span>{texts.guarantee}<span className="highlighted">{texts.solarEnergy}</span>{texts.reduceInvoices}</Typography>
                                 <TextField
                                     inputRef={nameRef}
                                     className="homeFormInput"
@@ -169,19 +213,19 @@ export default function HomeMain() {
                                 />
 
                                 <UserTypeFormContainer>
-                                    <Typography className='chooseWhereToEconomy'>Quero economizar na minha:</Typography>
+                                    <Typography className='chooseWhereToEconomy'>{texts.iWantToEconomy}</Typography>
                                     <UserTypeFormButtonContainer>
                                         <Select
                                             startIcon={<StoreIcon />}
                                             onClick={() => handleSelect('Empresa')}
                                             selected={selectedUserType === 'Empresa'} >
-                                            Empresa
+                                            {texts.company}
                                         </Select>
                                         <Select
                                             startIcon={<HomeIcon />}
                                             onClick={() => handleSelect('Residencia')}
                                             selected={selectedUserType === 'Residencia'}>
-                                            Residência
+                                            {texts.house}
                                         </Select>
                                     </UserTypeFormButtonContainer>
                                 </UserTypeFormContainer>
@@ -194,12 +238,13 @@ export default function HomeMain() {
                                         variant="outlined"
                                         type="text"
                                         disabled={isLoading}
+                                        inputProps={{ inputMode: 'numeric' }}
                                         required
                                     />}
                                 </InputMask>
                             </Form>
                             <HomeMainFormSimulationContainer>
-                                <Typography variant="subtitle1" className='averageUserCost'>Valor médio da fatura: <span className='simulationCost'>R$ {simulationCost}</span></Typography>
+                                <Typography variant="subtitle1" className='averageUserCost'>{texts.averageCost}<span className='simulationCost'>R$ {simulationCost}</span></Typography>
                                 <FormSlider
                                     onChange={(event) => setSimulationCost(event.target.value)}
                                     value={simulationCost}
@@ -214,7 +259,7 @@ export default function HomeMain() {
                             type='submit'
                             form='leadForm'
                             endIcon={isLoading ? <ArrowForwardIcon /> : <ArrowForwardIcon sx={{ display: "none" }} />}>
-                            {isLoading ? <Loading size={20} /> : <span>Calcular desconto</span>}</FormButton>
+                            {isLoading ? <Loading size={20} /> : <span>{texts.discountCalculate}</span>}</FormButton>
                     </HomeFormContainer>
                 </HomeBanner>
 
@@ -222,9 +267,9 @@ export default function HomeMain() {
                     <HomeSecondaryBoxesContainer>
                         {homeBoxes.map((box) => {
                             return (
-                                <HomeSecondaryBoxContent color={box.backgroundColor} descriptionColor={box.descriptionColor} key={box.description}>
+                                <HomeSecondaryBoxContent ref={boxesRef} visible={visibleBoxes} color={box.backgroundColor} descriptionColor={box.descriptionColor} key={box.description}>
                                     <HomeSecondaryBoxTitle titleColor={box.titleColor} >
-                                        <Image src={box.icon} className="titleIcon" alt={box.description} />
+                                        <Image src={box.icon} className="titleIcon" alt={box.description} loading="eager" priority={true} />
                                         <Typography variant="subtitle1">{box.title}</Typography>
                                     </HomeSecondaryBoxTitle>
                                     <Typography variant="subtitle1" className='boxDescription'>{box.description}</Typography>
@@ -233,43 +278,43 @@ export default function HomeMain() {
                         })}
                     </HomeSecondaryBoxesContainer>
 
-                    <HomeSecondaryImagesContainer>
-                        <HomeSecondaryImagesContent image={homeCardImage} onClick={() => handlePreSignup("Residencia")}>
-                            <Typography variant="subtitle1">Para a sua residência</Typography>
+                    <HomeSecondaryImagesContainer ref={imagesRef} visible={visibleImages}>
+                        <HomeSecondaryImagesContent image={homeCardImage} onClick={() => handlePreSignup("Residencia")} >
+                            <Typography variant="subtitle1">{texts.forYourHouse}</Typography>
                             <ArrowCircleRightOutlinedIcon className='arrowIcon' />
                         </HomeSecondaryImagesContent>
                         <HomeSecondaryImagesContent image={companyCardImage} onClick={() => handlePreSignup("Empresa")}>
-                            <Typography variant="subtitle1">Para o seu comércio ou empresa</Typography>
+                            <Typography variant="subtitle1">{texts.forYourCompany}</Typography>
                             <ArrowCircleRightOutlinedIcon className='arrowIcon' />
                         </HomeSecondaryImagesContent>
                     </HomeSecondaryImagesContainer>
                 </HomeSecondarySectionContainer>
 
                 <HomeThirdSectionContainer>
-                    <HomeThirdSectionTitleContainer>
-                        <Typography variant="subtitle1" className='sectionTitle'>Com adesão <span className='highlighted'>100% digital</span>, você garante <span className='highlighted'>energia solar por assinatura</span> para sua casa e/ou seu negócio.</Typography>
+                    <HomeThirdSectionTitleContainer ref={textsRef} visible={visibleTexts}>
+                        <Typography variant="subtitle1" className='sectionTitle'>{texts.accession}<span className='highlighted'>{texts.hundredDigital}</span>{texts.guarantee}<span className='highlighted'>{texts.solarEnergy}</span>{texts.houseOrBusiness}</Typography>
                     </HomeThirdSectionTitleContainer>
                     <div className='rowToBeReversed'>
-                        <HomeThirdSectionSoleContainer>
-                            <Image src={soleImage} className="sole" alt={"Imagem de Sole, personagem da Leve, carregando uma placa solar"} />
+                        <HomeThirdSectionSoleContainer ref={soleRef} visible={visibleSole}>
+                            <Image src={soleImage} className="sole" alt={"Imagem de Sole, personagem da Leve, carregando uma placa solar"} loading="eager" priority={true} />
                         </HomeThirdSectionSoleContainer>
-                        <HomeThirdSectionSubTitle>
-                            <Typography variant="subtitle1" className='sectionSubtitle'>É simples, rápido, sem obras e livre de burocracias!</Typography>
+                        <HomeThirdSectionSubTitle ref={textsRef} visible={visibleTexts}>
+                            <Typography variant="subtitle1" className='sectionSubtitle'>{texts.simpleFastFree}</Typography>
                         </HomeThirdSectionSubTitle>
                     </div>
                 </HomeThirdSectionContainer>
 
                 <HomeFourthSectionContainer id="howLeveWorks">
                     <HomeFourthSectionTitleContainer>
-                        <Typography variant="subtitle1" className='sectionTitle'>Como funciona na prática:</Typography>
+                        <Typography variant="subtitle1" className='sectionTitle'>{texts.howItWorks}</Typography>
                     </HomeFourthSectionTitleContainer>
 
-                    <HomeFourthSectionCardContainer >
+                    <HomeFourthSectionCardContainer ref={tutorialRef} visible={visibleTutorial}>
                         {homeTutorialCards.map((card, index) => {
                             return (
                                 <HomeFourthSectionCard key={index}>
                                     <HomeFourthSectionIcon>
-                                        <Image src={card.icon} className="titleIcon" alt={card.description} />
+                                        <Image src={card.icon} className="titleIcon" alt={card.description} loading="eager" priority={true} />
                                     </HomeFourthSectionIcon>
                                     <div className='invisible'>
                                         <HomeFourthSectionTitle>
@@ -292,10 +337,10 @@ export default function HomeMain() {
                     </HomeFifthSectionBannerContainer>
                     <HomeFifthSectionContentContainer>
                         <HomeFifthSectionTitleContainer>
-                            <Typography variant="subtitle1" className='sectionTitle'>Nós acreditamos que você merece um dinheiro extra na sua conta para investir no que realmente importa para você e sua família.</Typography>
+                            <Typography variant="subtitle1" className='sectionTitle'>{texts.weBelieve}</Typography>
                         </HomeFifthSectionTitleContainer>
                         <HomeFifthSectionDescriptionContainer>
-                            <Typography variant="subtitle1" className='sectionDescription'>Saiba mais sobre como podemos proporcionar isso <ArrowForwardIcon /></Typography>
+                            <Typography variant="subtitle1" className='sectionDescription'>{texts.moreToKnow}<ArrowForwardIcon /></Typography>
                         </HomeFifthSectionDescriptionContainer>
                     </HomeFifthSectionContentContainer>
                 </HomeFifthSectionContainer>
@@ -303,14 +348,14 @@ export default function HomeMain() {
 
                 <HomeSixthSectionContainer>
                     <HomeSixthSectionTitleContainer>
-                        <Typography variant="subtitle1" className='sectionTitle'>Empresas que confiam na Leve Energia:</Typography>
+                        <Typography variant="subtitle1" className='sectionTitle'>{texts.brandsThatTrust}</Typography>
                     </HomeSixthSectionTitleContainer>
 
-                    <HomeSixthSectionCardContainer>
+                    <HomeSixthSectionCardContainer ref={brandsRef} visible={visibleBrands}>
                         {brands.map((brand, index) => {
                             return (
                                 <HomeSixthSectionCard key={brand.company}>
-                                    <Image src={brand.logo} alt={brand.company} className='brandLogo' />
+                                    <Image src={brand.logo} alt={brand.company} className='brandLogo' loading="eager" priority={true} />
                                 </HomeSixthSectionCard>
                             )
                         })}

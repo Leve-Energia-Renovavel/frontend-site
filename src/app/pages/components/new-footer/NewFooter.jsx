@@ -28,16 +28,24 @@ export default function NewFooter() {
     window.open(linkTo[socialMedia], '_blank');
   };
 
+  const texts = {
+    title: "Temos a melhor solução de energia para você",
+    ourTeam: "Fale com o nosso time agora mesmo!",
+    weAreReady: "Estamos prontos para te atender da melhor maneira:",
+    callConsultant: "Falar com um consultor",
+    rights: "©2024 - Todos os direitos reservados - Leve Energia Renovável",
+  }
+
   return (
     <>
       <Container>
         <FooterPrimaryContainer>
-          <Typography variant="h2">Temos a melhor solução de energia para você</Typography>
-          <Typography variant="h3">Fale com o nosso time agora mesmo!</Typography>
-          <Typography variant="h4">Estamos prontos para te atender da melhor maneira:</Typography>
+          <Typography variant="h2">{texts.title}</Typography>
+          <Typography variant="h3">{texts.ourTeam}</Typography>
+          <Typography variant="h4">{texts.weAreReady}</Typography>
           <FooterButton
             startIcon={<QuestionAnswerIcon />}
-          >Falar com um consultor</FooterButton>
+          >{texts.callConsultant}</FooterButton>
         </FooterPrimaryContainer>
         <FooterSecondaryContainer image={sunImage}>
           <FooterSocialMediaContainer >
@@ -60,11 +68,11 @@ export default function NewFooter() {
               <MailOutlineIcon className="socialIcon" />
             </IconButton>
           </FooterSocialMediaContainer>
-          <Image src={logoLeve} className="leveLogoImage" alt={"banner da Leve com uma mulher sorrindo ao usar notebook"} />
-          <Typography variant="h6">©2024 - Todos os direitos reservados - Leve Energia Renovável</Typography>
+          <Image src={logoLeve} className="leveLogoImage" alt={"Logo da Leve Energia Renovável"} loading="eager" priority={true} />
+          <Typography variant="h6">{texts.rights}</Typography>
 
           <MyNiceDiv>
-            <Image src={sunImage} className='sunImage' alt={"Imagem de um sol de pondo, ao fundo do logo da Leve"} />
+            <Image src={sunImage} className='sunImage' alt={"Imagem de um sol de pondo, ao fundo do logo da Leve"} loading="eager" priority={true} />
           </MyNiceDiv>
         </FooterSecondaryContainer>
       </Container>
