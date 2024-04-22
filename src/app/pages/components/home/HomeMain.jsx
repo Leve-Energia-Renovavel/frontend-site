@@ -280,7 +280,7 @@ export default function HomeMain() {
                                     </HomeFourthSectionIcon>
                                     <div className='invisible'>
                                         <HomeFourthSectionTitle>
-                                            <Typography variant="subtitle1" className='cardTitle'>{`${index}.`}</Typography>
+                                            <Typography variant="subtitle1" className='cardTitle'>{`${index + 1}.`}</Typography>
                                         </HomeFourthSectionTitle>
                                         <HomeFourthSectionDescription>
                                             <Typography variant="subtitle1" className='cardDescription'>{card.description}</Typography>
