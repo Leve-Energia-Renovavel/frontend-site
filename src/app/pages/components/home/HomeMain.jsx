@@ -4,16 +4,17 @@ import { useStoreUser } from '@/app/hooks/useStore';
 import { startSignUp } from '@/app/service/lead-service/LeadService';
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import { brands, homeBoxes, homeTutorialCards } from '@/app/utils/helper/homeBoxesHelper';
+import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
-import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import { Snackbar, TextField, Typography } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
+import infoJson from '../../../../../public/info.json';
 import soleImage from "../../../../resources/icons/large/sole-icon-large.png";
 import economyIcon from "../../../../resources/icons/small/economy-icon-small.png";
 import companyCardImage from "../../../../resources/img/large/leve-confraternizacao-image-large.png";
@@ -21,25 +22,10 @@ import homeCardImage from "../../../../resources/img/large/leve-familia-brincand
 import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.png";
 import secondBannerImage from "../../../../resources/img/large/leve-pai-e-filho-image-large.png";
 import { leadSchema } from './schema';
-import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeFifthSectionBanner, HomeFifthSectionBannerContainer, HomeFifthSectionContainer, HomeFifthSectionContentContainer, HomeFifthSectionDescriptionContainer, HomeFifthSectionTitleContainer, HomeFormContainer, HomeFourthSectionCard, HomeFourthSectionCardContainer, HomeFourthSectionContainer, HomeFourthSectionDescription, HomeFourthSectionIcon, HomeFourthSectionTitle, HomeFourthSectionTitleContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeSubtitleContainer, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeSixthSectionCard, HomeSixthSectionCardContainer, HomeSixthSectionContainer, HomeSixthSectionTitleContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionTitleContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer, HomeMainTitleContainer, HomeContent, HomeThirdSectionSubTitle } from "./styles";
-import useOnScreen from '@/app/hooks/useOnScreen';
-import axios from 'axios';
+import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeContent, HomeFifthSectionBanner, HomeFifthSectionBannerContainer, HomeFifthSectionContainer, HomeFifthSectionContentContainer, HomeFifthSectionDescriptionContainer, HomeFifthSectionTitleContainer, HomeFormContainer, HomeFourthSectionCard, HomeFourthSectionCardContainer, HomeFourthSectionContainer, HomeFourthSectionDescription, HomeFourthSectionIcon, HomeFourthSectionTitle, HomeFourthSectionTitleContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeMainTitleContainer, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeSixthSectionCard, HomeSixthSectionCardContainer, HomeSixthSectionContainer, HomeSixthSectionTitleContainer, HomeSubtitleContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionSubTitle, HomeThirdSectionTitleContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 
-export default function HomeMain(textsInitial) {
 
-    const boxesRef = useRef(null)
-    const imagesRef = useRef(null)
-    const soleRef = useRef(null)
-    const textsRef = useRef(null)
-    const tutorialRef = useRef(null)
-    const brandsRef = useRef(null)
-
-    const visibleBoxes = useOnScreen(boxesRef)
-    const visibleImages = useOnScreen(imagesRef)
-    const visibleSole = useOnScreen(soleRef)
-    const visibleTexts = useOnScreen(textsRef)
-    const visibleTutorial = useOnScreen(tutorialRef)
-    const visibleBrands = useOnScreen(brandsRef)
+export default function HomeMain() {
 
     const router = useRouter()
     const store = useStoreUser()
@@ -128,20 +114,7 @@ export default function HomeMain(textsInitial) {
 
     }
 
-    const [texts, setInfo] = useState(textsInitial);
-
-    useEffect(() => {
-      async function fetchInfo() {
-        try {
-          const response = await axios.get('/info.json');
-          setInfo(response.data);
-        } catch (error) {
-          console.error('Error fetching info:', error);
-        }
-      }
-  
-      fetchInfo();
-    }, []);
+    const texts = infoJson
 
     return (
         <>
@@ -247,7 +220,7 @@ export default function HomeMain(textsInitial) {
                         <FormButton
                             type='submit'
                             form='leadForm'
-                            endIcon={isLoading ? <ArrowForwardIcon /> : <ArrowForwardIcon sx={{ display: "none" }} />}>
+                            endIcon={!isLoading ? <ArrowForwardIcon /> : <ArrowForwardIcon sx={{ display: "none" }} />}>
                             {isLoading ? <Loading size={20} /> : <span>{texts.discountCalculate}</span>}</FormButton>
                     </HomeFormContainer>
                 </HomeBanner>
@@ -256,7 +229,7 @@ export default function HomeMain(textsInitial) {
                     <HomeSecondaryBoxesContainer>
                         {homeBoxes.map((box) => {
                             return (
-                                <HomeSecondaryBoxContent ref={boxesRef} visible={visibleBoxes} color={box.backgroundColor} descriptionColor={box.descriptionColor} key={box.description}>
+                                <HomeSecondaryBoxContent color={box.backgroundColor} descriptionColor={box.descriptionColor} key={box.description}>
                                     <HomeSecondaryBoxTitle titleColor={box.titleColor} >
                                         <Image src={box.icon} className="titleIcon" alt={box.description} loading="eager" priority={true} />
                                         <Typography variant="subtitle1">{box.title}</Typography>
@@ -267,7 +240,7 @@ export default function HomeMain(textsInitial) {
                         })}
                     </HomeSecondaryBoxesContainer>
 
-                    <HomeSecondaryImagesContainer ref={imagesRef} visible={visibleImages}>
+                    <HomeSecondaryImagesContainer >
                         <HomeSecondaryImagesContent image={homeCardImage} onClick={() => handlePreSignup("Residencia")} >
                             <Typography variant="subtitle1">{texts.forYourHouse}</Typography>
                             <ArrowCircleRightOutlinedIcon className='arrowIcon' />
@@ -280,14 +253,14 @@ export default function HomeMain(textsInitial) {
                 </HomeSecondarySectionContainer>
 
                 <HomeThirdSectionContainer>
-                    <HomeThirdSectionTitleContainer ref={textsRef} visible={visibleTexts}>
+                    <HomeThirdSectionTitleContainer >
                         <Typography variant="subtitle1" className='sectionTitle'>{texts.accession}<span className='highlighted'>{texts.hundredDigital}</span>{texts.guarantee}<span className='highlighted'>{texts.solarEnergy}</span>{texts.houseOrBusiness}</Typography>
                     </HomeThirdSectionTitleContainer>
                     <div className='rowToBeReversed'>
-                        <HomeThirdSectionSoleContainer ref={soleRef} visible={visibleSole}>
+                        <HomeThirdSectionSoleContainer >
                             <Image src={soleImage} className="sole" alt={"Imagem de Sole, personagem da Leve, carregando uma placa solar"} loading="eager" priority={true} />
                         </HomeThirdSectionSoleContainer>
-                        <HomeThirdSectionSubTitle ref={textsRef} visible={visibleTexts}>
+                        <HomeThirdSectionSubTitle >
                             <Typography variant="subtitle1" className='sectionSubtitle'>{texts.simpleFastFree}</Typography>
                         </HomeThirdSectionSubTitle>
                     </div>
@@ -298,7 +271,7 @@ export default function HomeMain(textsInitial) {
                         <Typography variant="subtitle1" className='sectionTitle'>{texts.howItWorks}</Typography>
                     </HomeFourthSectionTitleContainer>
 
-                    <HomeFourthSectionCardContainer ref={tutorialRef} visible={visibleTutorial}>
+                    <HomeFourthSectionCardContainer >
                         {homeTutorialCards.map((card, index) => {
                             return (
                                 <HomeFourthSectionCard key={index}>
@@ -340,7 +313,7 @@ export default function HomeMain(textsInitial) {
                         <Typography variant="subtitle1" className='sectionTitle'>{texts.brandsThatTrust}</Typography>
                     </HomeSixthSectionTitleContainer>
 
-                    <HomeSixthSectionCardContainer ref={brandsRef} visible={visibleBrands}>
+                    <HomeSixthSectionCardContainer >
                         {brands.map((brand, index) => {
                             return (
                                 <HomeSixthSectionCard key={brand.company}>
@@ -400,21 +373,4 @@ export default function HomeMain(textsInitial) {
         </>
 
     )
-}
-
-export async function getStaticProps() {
-	let textsInitial;
-  try {
-    const response = await axios.get('/info.json');
-    textsInitial = response.data;
-   
-  } catch (error) {
-    console.error('Error fetching JSON:', error);
-  }
-
-	return {
-		props: {
-			textsInitial
-		}
-	};
 }
