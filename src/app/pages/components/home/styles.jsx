@@ -171,6 +171,36 @@ export const HomeFormContainer = styled.div`
 
   width: 388px;
   max-width: 388px;  
+
+  .privacyPolicyDisclaimer {
+    font-family: "Graphie";
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 500;
+    text-align: left;
+    color: ${newBackground.orange};
+
+    max-width: 360px;
+
+    margin: 0 auto;
+  }
+
+  .privacyPolicy {
+    font-family: "Graphie";
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-align: left;
+    color: ${newBackground.orange};
+    border-radius: 5px;
+
+    &:hover{
+      cursor: pointer;
+      color: ${newBackground.green};
+      background-color: ${newBackground.yellow};
+    }
+  }
 `
 
 export const HomeMainFormContainer = styled.div`
@@ -180,11 +210,11 @@ export const HomeMainFormContainer = styled.div`
     border-radius: 15px;
     
     /* height: 85vh; */
-    height: 680px;
+    height: 590px;
     
     @media (max-width: 600px) {
       height: auto;
-      width: 100%;
+      width: 100vw;
       max-width: 100vw;
     }
 `
@@ -280,7 +310,6 @@ export const HomeMainFormSimulationContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 
     /* margin: 0 2rem; */
     margin: 0 43px;

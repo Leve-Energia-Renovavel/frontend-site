@@ -221,7 +221,9 @@ export default function HomeMain() {
                             type='submit'
                             form='leadForm'
                             endIcon={!isLoading ? <ArrowForwardIcon /> : <ArrowForwardIcon sx={{ display: "none" }} />}>
-                            {isLoading ? <Loading size={20} /> : <span>{texts.discountCalculate}</span>}</FormButton>
+                            {isLoading ? <Loading size={20} /> : <span>{texts.discountCalculate}</span>}
+                        </FormButton>
+                        <Typography className='privacyPolicyDisclaimer'>Ao informar seu e-mail, você concorda em receber e-mails da Leve Energia Renovável e aceita nossa <span className='privacyPolicy'>Política de Privacidade</span>.</Typography>
                     </HomeFormContainer>
                 </HomeBanner>
 
