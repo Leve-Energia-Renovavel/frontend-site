@@ -8,6 +8,8 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { notFound, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
+import { SignUpContainer as Container } from './styles';
+import NewSimulateEconomy from '../new-simulate-economy/NewSimulateEconomy';
 
 export default function SignupMain() {
 
@@ -74,7 +76,6 @@ export default function SignupMain() {
                         stateId: consumidor?.estado_id,
                         installationNumber: instalacao?.numero_instalacao
                     }
-
                     storeAddress.updateAddress(updatedAddress)
 
                     const addressResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, {
@@ -84,9 +85,7 @@ export default function SignupMain() {
 
                     console.log("addressResponse ===>>", addressResponse)
 
-
                     if (requestSuccessful(addressResponse?.status)) {
-
                         const address = addressResponse?.data
                         const updatedFullAddress = {
                             street: address?.logradouro,
@@ -95,7 +94,6 @@ export default function SignupMain() {
                             state: address?.uf,
                             cep: address?.cep,
                         }
-
                         storeAddress.updateAddress(updatedFullAddress)
 
                     }
@@ -111,15 +109,9 @@ export default function SignupMain() {
 
     return (
         <>
-            <div>
-                <h1>CHurros</h1>
-                <h1>CHurros</h1>
-                <h1>CHurros</h1>
-                <h1>CHurros</h1>
-                <h1>CHurros</h1>
-                <h1>CHurros</h1>
-                <h1>CHurros</h1>
-                <h1>CHurros</h1>
-            </div></>
+            <Container>
+                <NewSimulateEconomy />
+            </Container>
+        </>
     )
 }
