@@ -14,7 +14,7 @@ import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
-import infoJson from '../../../../../public/info.json';
+import infoJson from '../../../../../public/home-info.json';
 import soleImage from "../../../../resources/icons/large/sole-icon-large.png";
 import economyIcon from "../../../../resources/icons/small/economy-icon-small.png";
 import companyCardImage from "../../../../resources/img/large/leve-confraternizacao-image-large.png";
