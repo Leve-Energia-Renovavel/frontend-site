@@ -60,7 +60,7 @@ export default function NewSimulateEconomy() {
                         <Typography variant='subtitle1'>Com a Leve você pagará:</Typography>
                         <LeveEconomy>
                             <Image src={leveLogo} alt={"Desconto com a Leve"} loading="eager" priority={true} />
-                            <Typography className='value'>R$ {leveEconomyValue}</Typography>
+                            <Typography className='value'>R${leveEconomyValue}</Typography>
                         </LeveEconomy>
                     </LeveEconomyContent>
                     <LeveEconomySecondaryContentContainer>

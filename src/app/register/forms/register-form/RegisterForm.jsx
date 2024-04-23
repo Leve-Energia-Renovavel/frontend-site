@@ -363,7 +363,6 @@ export default function RegisterForm() {
                     </InputMask>
                     <TextField
                         id="maritalStatus"
-                        placeholder={"test"}
                         select
                         defaultValue={store.user.maritalStatus ? store.user.maritalStatus : ""}
                         label="Estado Civil"

@@ -10,6 +10,7 @@ import { notFound, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { SignUpContainer as Container } from './styles';
 import NewSimulateEconomy from '../new-simulate-economy/NewSimulateEconomy';
+import SignupForm from './forms/SignupForm';
 
 export default function SignupMain() {
 
@@ -111,6 +112,7 @@ export default function SignupMain() {
         <>
             <Container>
                 <NewSimulateEconomy />
+                <SignupForm />
             </Container>
         </>
     )
