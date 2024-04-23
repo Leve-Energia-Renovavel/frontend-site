@@ -3,22 +3,25 @@
 import { useStoreAddress, useStoreCompany, useStoreUser } from '@/app/hooks/useStore';
 import useGetCEP from '@/app/hooks/utils/useGetCEP';
 import useGetCNPJ from '@/app/hooks/utils/useGetCNPJ';
+import { signUp } from '@/app/service/user-service/UserService';
+import { hasToSignContract, requestSuccessful } from '@/app/service/utils/Validations';
+import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
+import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
+import { statesAcronymOptions } from '@/app/utils/form-options/statesIdOptions';
+import { costValidation } from '@/app/utils/formatters/costFormatter';
+import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import InfoIcon from '@mui/icons-material/Info';
 import SearchIcon from '@mui/icons-material/Search';
-import { InputAdornment, MenuItem, Select, Typography } from '@mui/material';
+import { MenuItem, Typography } from '@mui/material';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import SignupFormHeader from './SignupFormHeader';
-import { FormTermsCheckbox as Checkbox, SignupFormContainer as Container, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, FormTermsContainer, FormTermsControl, FormTitleButton, FormTitleContainer, IconInfo, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupLinearProgress } from './styles';
-import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
-import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
-import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
-import { statesAcronymOptions } from '@/app/utils/form-options/statesIdOptions';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import InfoIcon from '@mui/icons-material/Info';
+import { companySchema, userSchema } from './schema';
+import { FormTermsCheckbox as Checkbox, SignupFormContainer as Container, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, FormTermsContainer, FormTermsControl, FormTitleButton, FormTitleContainer, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupLinearProgress } from './styles';
 
 export default function SignupForm() {
 
@@ -40,7 +43,7 @@ export default function SignupForm() {
   const stateValue = stateId ? stateId : stateOptions[(statesAcronymOptions[state])]
 
   const [isForeigner, setIsForeigner] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState([]);
   const [successMessage, setSuccessMessage] = useState([])
 
@@ -90,6 +93,115 @@ export default function SignupForm() {
   }
 
 
+  const schemaValidation = async (isCompany, data) => {
+    var response = null
+    if (isCompany) {
+      response = await companySchema.validate(data, { abortEarly: false })
+        .then(async () => {
+          return await signUp(data)
+
+        })
+        .catch((err) => {
+          console.log(err.errors);
+          return err.errors
+        });
+
+    } else {
+      response = await userSchema.validate(data, { abortEarly: false })
+        .then(async () => {
+          return await signUp(data)
+
+        })
+        .catch((err) => {
+          console.log(err.errors);
+          return err.errors
+        });
+    }
+    return response
+  }
+
+
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    setIsLoading(true)
+
+    const validatedCost = costValidation(userRefs.cost.current.value)
+
+    var submitData = {
+      uuid: uuid,
+      nome: userRefs.name.current.value,
+      email: userRefs.email.current.value,
+      telefone: userRefs.phone.current.value,
+      cep: addressRefs.addressCep.current.value,
+      endereco: addressRefs.address.current.value,
+      numero: parseFloat(addressRefs.addressNumber.current.value.replace(/[^0-9.]/g, "")),
+      bairro: addressRefs.neighborhood.current.value,
+      complemento: addressRefs.complement.current.value,
+      estado_id: storeAddress.address.stateId || stateValue.cod_estados,
+      cidade_id: storeAddress.address.cityId || await findCityIdByName(addressRefs.city.current.value, stateValue.cod_estados),
+      valor: validatedCost,
+      rg: userRefs.rg.current.value,
+      data_nascimento: userRefs.birthDate.current.value,
+      nacionalidade: userRefs.nationality.current.value,
+      profissao: userRefs.profession.current.value,
+      estado_civil: userRefs.maritalStatus.current.value,
+      cpf: userRefs.cpf.current.value,
+      numero_instalacao: addressRefs.installationNumber.current.value
+    }
+    if (isCompany) {
+      submitData["razao_social"] = companyRefs.razao_social.current.value
+      submitData["cnpj"] = companyRefs.cnpj.current.value
+    }
+
+    const response = await schemaValidation(isCompany, submitData)
+
+    if (requestSuccessful(response.status) || hasToSignContract(response?.data?.message)) {
+      console.log("Data successfully saved!")
+
+      store.updateUser({
+        birthDate: submitData.data_nascimento,
+        rg: submitData.rg,
+        cpf: submitData.cpf,
+        maritalStatus: submitData.estado_civil,
+        profession: submitData.profissao,
+        nationality: submitData.nacionalidade,
+      });
+
+      if (isCompany) {
+        store.updateUser({
+          companyName: submitData.razao_social,
+
+        });
+      }
+
+      const updatedAddress = {
+        street: submitData.endereco,
+        number: submitData.numero,
+        neighborhood: submitData.bairro,
+        complement: submitData.complemento,
+        city: addressRefs.city.current.value,
+        state: addressRefs.state.current.value,
+        cep: submitData.cep,
+        installationNumber: submitData.numero_instalacao,
+      }
+
+      storeAddress.updateAddress(updatedAddress)
+
+      router.push(`/register/contract-signature`)
+    } else {
+      if (response?.data?.message) {
+        setErrorMessage([response.data.message])
+      }
+      if (response?.response?.data?.message) {
+        setErrorMessage([response.response.data.message])
+      }
+    }
+
+    setIsLoading(false)
+
+  }
+
+
   return (
     <>
       <Container>
@@ -104,7 +216,7 @@ export default function SignupForm() {
           <SignupLinearProgress variant="determinate" value={25} />
           <Typography className="fillFormBelow">Preencha o cadastro abaixo:</Typography>
 
-          <Form acceptCharset="UTF-8" method="POST" onSubmit={console.log("submit")}>
+          <Form id='signupForm' acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
             {isCompany && (
               <FormRow>
                 <FormInput className="inputForm" defaultValue={company.razao_social || companyName || ''} inputRef={companyRefs.razao_social} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" InputLabelProps={{ shrink: true }} required />
@@ -342,6 +454,8 @@ export default function SignupForm() {
             <FormButtonContainer>
               <Typography className='requiredFields'>* Campos obrigatórios</Typography>
               <FormSubmitButton
+                type='submit'
+                form='signupForm'
                 endIcon={<ArrowForwardIcon />}>Continuar</FormSubmitButton>
             </FormButtonContainer>
           </FormFooter>
