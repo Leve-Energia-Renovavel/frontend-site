@@ -10,7 +10,9 @@ import { notFound, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { SignUpContainer as Container } from './styles';
 import NewSimulateEconomy from '../new-simulate-economy/NewSimulateEconomy';
-import SignupForm from './forms/SignupForm';
+
+import dynamic from 'next/dynamic';
+const SignupForm = dynamic(() => import('./forms/SignupForm'), { ssr: false });
 
 export default function SignupMain() {
 
