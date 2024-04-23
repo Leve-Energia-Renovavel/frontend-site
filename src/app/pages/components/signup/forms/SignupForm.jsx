@@ -6,17 +6,19 @@ import useGetCNPJ from '@/app/hooks/utils/useGetCNPJ';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SearchIcon from '@mui/icons-material/Search';
-import { MenuItem, Typography } from '@mui/material';
+import { InputAdornment, MenuItem, Select, Typography } from '@mui/material';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import SignupFormHeader from './SignupFormHeader';
-import { FormTermsCheckbox as Checkbox, SignupFormContainer as Container, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormRow, FormSubmitButton, FormTermsContainer, FormTermsControl, FormTitleButton, FormTitleContainer, SignupFormContentContainer, SignupLinearProgress } from './styles';
+import { FormTermsCheckbox as Checkbox, SignupFormContainer as Container, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, FormTermsContainer, FormTermsControl, FormTitleButton, FormTitleContainer, IconInfo, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupLinearProgress } from './styles';
 import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
 import { statesAcronymOptions } from '@/app/utils/form-options/statesIdOptions';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import InfoIcon from '@mui/icons-material/Info';
 
 export default function SignupForm() {
 
@@ -79,7 +81,7 @@ export default function SignupForm() {
   const handleChangeState = (value) => {
     const newStateId = value
     const newStateUf = stateOptions[value].sigla
-    storeAddress.updateAddress({stateId: newStateId, state: newStateUf})
+    storeAddress.updateAddress({ stateId: newStateId, state: newStateUf })
   }
   const handleTests = () => {
     console.log("user ===>", user.user)
@@ -312,10 +314,21 @@ export default function SignupForm() {
                 InputLabelProps={{ shrink: true }} required />
             </FormContent>
 
-            <button onClick={() => handleTests()}>TESTES</button>
+            <FormLastRow>
+              <InstallationInput
+                inputRef={addressRefs.installationNumber}
+                className="inputForm"
+                label={`Número de Instalação`}
+                variant="outlined"
+                placeholder={`Número de Instalação`}
+                type="text"
+                required />
+              <InstallationNumberDisclaimer>
+                <InfoIcon className='infoIcon' />
+                <Typography className='installationNumberDisclaimer'><span className='underlined'>Encontre este número</span> no canto superior direito de sua fatura atual.</Typography>
+              </InstallationNumberDisclaimer>
+            </FormLastRow>
           </Form>
-
-
 
           <FormDivider variant="middle" />
 

@@ -257,6 +257,7 @@ export const SimulateFooter = styled.div`
     }
     .yearEconomyValue {
         font-size: 34px;
+        padding: 10px;
         text-decoration: underline;
         font-weight: 700;
         color: ${newBackground.yellow};

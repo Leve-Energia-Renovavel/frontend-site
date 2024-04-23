@@ -6,9 +6,8 @@ import Image from 'next/image'
 import homeIcon from '../../../../resources/icons/small/local-home-icon-green-small.svg'
 import leveLogo from '../../../../resources/img/small/leve-logo-button-green-small.png'
 import { ContentContainer as Content, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomySecondaryContent, LeveEconomySecondaryContentContainer, PercentageIcon, SimulateContainer, SimulateFooter, SimulateHeader, SimulationContainer, SimulationSlider, TodayEconomy, TodayEconomyContainer, TodayEconomyContent } from './styles'
-import { newBackground } from '../../styles'
 
-export default function NewSimulateEconomy() {
+export default function NewResultEconomy() {
 
     const storeUser = useStoreUser()
     const user = JSON.parse(window.localStorage.getItem('user')) || store.user

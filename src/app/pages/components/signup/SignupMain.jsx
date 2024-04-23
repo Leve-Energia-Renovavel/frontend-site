@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
+import dynamic from 'next/dynamic';
 import { useStoreAddress, useStoreUser } from '@/app/hooks/useStore';
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import { clearBrowserData } from '@/app/utils/browser/BrowserUtils';
@@ -9,10 +10,9 @@ import Cookies from 'js-cookie';
 import { notFound, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { SignUpContainer as Container } from './styles';
-import NewSimulateEconomy from '../new-simulate-economy/NewSimulateEconomy';
 
-import dynamic from 'next/dynamic';
 const SignupForm = dynamic(() => import('./forms/SignupForm'), { ssr: false });
+const NewResultEconomy = dynamic(() => import('../new-result-economy/NewResultEconomy'), { ssr: false });
 
 export default function SignupMain() {
 
@@ -113,7 +113,7 @@ export default function SignupMain() {
     return (
         <>
             <Container>
-                <NewSimulateEconomy />
+                <NewResultEconomy />
                 <SignupForm />
             </Container>
         </>

@@ -154,7 +154,20 @@ export const FormRow = styled.div`
 `
 export const FormContent = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+    /* grid-template-columns: repeat(3, 1fr);  */
+    grid-template-columns: 1.35fr 1fr 1fr;
+
+    grid-column: span 3; 
+
+    gap: 10px;
+
+    margin-top: 7px;
+
+    
+`
+export const FormLastRow = styled.div`
+    display: grid;
+    grid-template-columns: 1.35fr 1fr 1fr;
     grid-column: span 3; 
 
     gap: 10px;
@@ -162,15 +175,18 @@ export const FormContent = styled.div`
     margin-top: 7px;
 `
 export const FormInput = styled(TextField)`
-    border-radius: 10px;
+    border-radius: 14px;
     
     && {
         background-color: ${newBackground.orangeTranslucent}; 
+        
+
     }
     
     .MuiOutlinedInput-input {
         border: 2px solid transparent;
         border-radius: 10px;  
+        
 
         // styles for the user input text
         font-family: "Graphie";
@@ -187,6 +203,8 @@ export const FormInput = styled(TextField)`
 
         && fieldset {
             border: none;
+            
+
         }     
         
         .MuiFormLabel-root {
@@ -194,13 +212,15 @@ export const FormInput = styled(TextField)`
             font-size: 14px;
             font-weight: 600;
             color: ${newBackground.orange};
-        }
 
-        &:focus fieldset {
-            border-color: ${newBackground.green}; /* Example: Change border color */
-            box-shadow: 0 0 0 2px ${newBackground.orange}; /* Example: Add a box shadow */
-        }
+            
 
+            
+            &:focus {
+                color: ${newBackground.orange};
+            }
+            
+        }
         
         /* .MuiInputLabel-outlined {
             transform: translate(14px, 16px) scale(1);
@@ -282,6 +302,94 @@ export const FormSubmitButton = styled(Button)`
         background-color: ${newBackground.green};
     }
 `
+
+
+export const InstallationInput = styled(TextField)`
+    border-radius: 10px;
+    
+    && {
+        background-color: ${newBackground.orangeTranslucent}; 
+    }
+    
+    .MuiOutlinedInput-input {
+        border: 2px solid ${newBackground.orange};
+        border-radius: 14px;  
+
+        // styles for the user input text
+        font-family: "Graphie";
+        font-size: 17px;
+        font-weight: 700;
+        color: ${newBackground.orange};
+
+        
+        &:focus {
+            background-color: ${newBackground.orangeFocused}; 
+            }
+        }
+
+        && fieldset {
+            border: none;
+        }     
+        
+        .MuiFormLabel-root {
+            font-family: "Graphie";
+            font-size: 14px;
+            font-weight: 600;
+            color: ${newBackground.orange};
+            
+            &:focus {
+                color: ${newBackground.orange};
+            }
+            
+        }
+`
+export const InstallationNumberDisclaimer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: ${newBackground.yellow};
+    border-radius: 10px;
+    
+    gap: 8px;
+    
+    padding: 7px;
+    
+    .installationNumberDisclaimer {
+        font-family: "Graphie";
+        font-size: 12px;
+        line-height: 12px;
+        font-weight: 500;
+        color: ${newBackground.green};
+    }
+    
+    .underlined {
+        font-family: "Graphie";
+        font-size: 12px;
+        font-weight: 600;
+        color: ${newBackground.green};
+        text-decoration: underline;
+    }
+    .infoIcon {
+        color: ${newBackground.green};
+    }
+    
+    &:hover {
+        cursor: pointer;
+        background-color: ${newBackground.green};
+        .installationNumberDisclaimer {
+            color: ${newBackground.yellow};
+        }
+        .underlined {
+            color: ${newBackground.yellow};
+        }
+        .infoIcon {
+            color: ${newBackground.yellow};
+        }
+    }
+
+`
+
 
 
 
