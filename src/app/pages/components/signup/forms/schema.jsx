@@ -1,18 +1,6 @@
+import { isOver110, isOver18, isValidDate } from '@/app/utils/date/DateUtils';
 import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
-import * as yup from 'yup'
-
-const isOver18 = (value) => {
-    if (!value) return false;
-
-    const [day, month, year] = value.split('/');
-    const userBirthday = new Date(`${year}-${month}-${day}`);
-
-    const today = new Date();
-    const ageDifference = today.getFullYear() - userBirthday.getFullYear();
-    const birthdayInThisYear = new Date(today.getFullYear(), userBirthday.getMonth(), userBirthday.getDate());
-
-    return ageDifference > 18 || (ageDifference === 18 && today >= birthdayInThisYear);
-};
+import * as yup from 'yup';
 
 export const userSchema = yup.object({
     uuid: yup.string().required(),
@@ -39,7 +27,9 @@ export const userSchema = yup.object({
         .required('O campo RG/RNE é obrigatório'),
     data_nascimento: yup.string()
         .required('O campo Data de Nascimento é obrigatório')
-        .test('is-over-18', 'Você deve ser maior de 18 anos', isOver18),
+        .test('is-valid-date', 'A data de nascimento é inválida', (value) => isValidDate(value))
+        .test('is-over-18', 'Você deve ser maior de 18 anos', isOver18)
+        .test('is-under-110', 'Data de nascimento inválida', (value) => isOver110(value)),
     nacionalidade: yup.string().required('O campo Nacionalidade é obrigatório')
         .oneOf(nationalityOptions.map(option => option.value), 'Valor de nacionalidade inválido'),
     profissao: yup.string().required('O campo Profissão é obrigatório')

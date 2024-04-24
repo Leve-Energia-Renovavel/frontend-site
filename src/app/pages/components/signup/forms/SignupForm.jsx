@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
 import { useStoreAddress, useStoreCompany, useStoreUser } from '@/app/hooks/useStore';
@@ -5,6 +6,7 @@ import useGetCEP from '@/app/hooks/utils/useGetCEP';
 import useGetCNPJ from '@/app/hooks/utils/useGetCNPJ';
 import { signUp } from '@/app/service/user-service/UserService';
 import { hasToSignContract, requestSuccessful } from '@/app/service/utils/Validations';
+import { findCityIdByName } from '@/app/service/utils/addressUtilsService';
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
 import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
 import { statesAcronymOptions } from '@/app/utils/form-options/statesIdOptions';
@@ -12,16 +14,17 @@ import { costValidation } from '@/app/utils/formatters/costFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 import InfoIcon from '@mui/icons-material/Info';
 import SearchIcon from '@mui/icons-material/Search';
-import { MenuItem, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, MenuItem, Snackbar, Typography } from '@mui/material';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import SignupFormHeader from './SignupFormHeader';
 import { companySchema, userSchema } from './schema';
-import { FormTermsCheckbox as Checkbox, SignupFormContainer as Container, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, FormTermsContainer, FormTermsControl, FormTitleButton, FormTitleContainer, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupLinearProgress } from './styles';
+import { FormTermsCheckbox as Checkbox, SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, FormTermsContainer, FormTermsControl, FormTitleButton, FormTitleContainer, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupLinearProgress, SnackbarMessageAlert, SnackbarMessageNotification, fileInputStyles } from './styles';
 
 export default function SignupForm() {
 
@@ -29,26 +32,32 @@ export default function SignupForm() {
   const store = useStoreUser()
   const storeAddress = useStoreAddress()
 
-
   const uuid = store.user.uuid || Cookies.get('leveUUID')
   const user = JSON.parse(localStorage.getItem('user')) || store.user
   const address = JSON.parse(localStorage.getItem('address')) || storeAddress.address
   const company = useStoreCompany().company
   const isCompany = user?.user.isCompany
 
-
   const { name, email, phone, cost, distributor, cpf, rg, companyName, cnpj } = user?.user ?? (store?.user || {})
   const { street, neighborhood, city, state, stateId, cityId, cep, installationNumber } = address?.address ?? (storeAddress?.address || {})
 
-  const stateValue = stateId ? stateId : stateOptions[(statesAcronymOptions[state])]
-
   const [isForeigner, setIsForeigner] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState([]);
-  const [successMessage, setSuccessMessage] = useState([])
+  const [errors, setErrorMessage] = useState([]);
+  const [notifications, setNotificationMessage] = useState([])
+  const [stateValue, setStateValue] = useState(stateId ? stateId : stateOptions[(statesAcronymOptions[state])]);
+
+  const [socialContractFile, setSocialContractFile] = useState(null);
+  const [energyExtractFile, setEnergyExtractFile] = useState(null);
 
   const fetchCEP = useGetCEP();
   const fetchCNPJ = useGetCNPJ();
+
+  const termsRefs = {
+    dontGenerateEnergy: useRef(null),
+    dontContractSameService: useRef(null),
+    dontParticipateGovernmentProgram: useRef(null),
+  };
 
   const userRefs = {
     name: useRef(null),
@@ -82,6 +91,8 @@ export default function SignupForm() {
   }
 
   const handleChangeState = (value) => {
+
+    setStateValue(stateOptions[value])
     const newStateId = value
     const newStateUf = stateOptions[value].sigla
     storeAddress.updateAddress({ stateId: newStateId, state: newStateUf })
@@ -89,7 +100,40 @@ export default function SignupForm() {
   const handleTests = () => {
     console.log("user ===>", user.user)
     console.log("address ===>", address.address)
-    console.log("stateValue ===>", stateValue)
+    console.log("stateValue ===>>>", stateValue)
+  }
+
+  const handleClickFiles = (fileType) => {
+    companyRefs[fileType].current.click();
+  }
+
+  const handleChangeFiles = (event, fileType) => {
+    console.log(event.target.files)
+    const fileUploaded = event.target.files[0];
+    if (fileType === 'socialContract') {
+      setSocialContractFile(fileUploaded);
+    } else if (fileType === 'energyExtract') {
+      setEnergyExtractFile(fileUploaded);
+    }
+  };
+
+  const handleDeleteFiles = (event, fileType) => {
+    if (fileType === 'socialContract') {
+      setSocialContractFile(null);
+    } else if (fileType === 'energyExtract') {
+      setEnergyExtractFile(null);
+    }
+  };
+
+  const allChecked = () => {
+    if (termsRefs.dontGenerateEnergy.current.checked &&
+      termsRefs.dontContractSameService.current.checked &&
+      termsRefs.dontParticipateGovernmentProgram.current.checked) {
+      return true
+    } else {
+      setErrorMessage(["É necessário aceitar os Termos para continuar."])
+      return false
+    }
   }
 
 
@@ -102,6 +146,7 @@ export default function SignupForm() {
 
         })
         .catch((err) => {
+          setErrorMessage(err.errors)
           console.log(err.errors);
           return err.errors
         });
@@ -113,6 +158,7 @@ export default function SignupForm() {
 
         })
         .catch((err) => {
+          setErrorMessage(err.errors)
           console.log(err.errors);
           return err.errors
         });
@@ -123,83 +169,93 @@ export default function SignupForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    setIsLoading(true)
 
-    const validatedCost = costValidation(userRefs.cost.current.value)
+    if (allChecked()) {
+      setIsLoading(true)
 
-    var submitData = {
-      uuid: uuid,
-      nome: userRefs.name.current.value,
-      email: userRefs.email.current.value,
-      telefone: userRefs.phone.current.value,
-      cep: addressRefs.addressCep.current.value,
-      endereco: addressRefs.address.current.value,
-      numero: parseFloat(addressRefs.addressNumber.current.value.replace(/[^0-9.]/g, "")),
-      bairro: addressRefs.neighborhood.current.value,
-      complemento: addressRefs.complement.current.value,
-      estado_id: storeAddress.address.stateId || stateValue.cod_estados,
-      cidade_id: storeAddress.address.cityId || await findCityIdByName(addressRefs.city.current.value, stateValue.cod_estados),
-      valor: validatedCost,
-      rg: userRefs.rg.current.value,
-      data_nascimento: userRefs.birthDate.current.value,
-      nacionalidade: userRefs.nationality.current.value,
-      profissao: userRefs.profession.current.value,
-      estado_civil: userRefs.maritalStatus.current.value,
-      cpf: userRefs.cpf.current.value,
-      numero_instalacao: addressRefs.installationNumber.current.value
-    }
-    if (isCompany) {
-      submitData["razao_social"] = companyRefs.razao_social.current.value
-      submitData["cnpj"] = companyRefs.cnpj.current.value
-    }
+      const validatedCost = costValidation(userRefs.cost.current.value)
 
-    const response = await schemaValidation(isCompany, submitData)
-
-    if (requestSuccessful(response.status) || hasToSignContract(response?.data?.message)) {
-      console.log("Data successfully saved!")
-
-      store.updateUser({
-        birthDate: submitData.data_nascimento,
-        rg: submitData.rg,
-        cpf: submitData.cpf,
-        maritalStatus: submitData.estado_civil,
-        profession: submitData.profissao,
-        nationality: submitData.nacionalidade,
-      });
-
+      var submitData = {
+        uuid: uuid,
+        nome: userRefs.name.current.value,
+        email: userRefs.email.current.value,
+        rg: userRefs.rg.current.value,
+        cpf: userRefs.cpf.current.value,
+        data_nascimento: userRefs.birthDate.current.value,
+        telefone: userRefs.phone.current.value,
+        cep: addressRefs.addressCep.current.value,
+        endereco: addressRefs.address.current.value,
+        numero: parseFloat(addressRefs.addressNumber.current.value.replace(/[^0-9.]/g, "")),
+        bairro: addressRefs.neighborhood.current.value,
+        complemento: addressRefs.complement.current.value,
+        estado_id: storeAddress.address.stateId || stateValue.cod_estados,
+        cidade_id: storeAddress.address.cityId || await findCityIdByName(addressRefs.city.current.value, stateValue.cod_estados),
+        valor: validatedCost,
+        nacionalidade: userRefs.nationality.current.value,
+        profissao: userRefs.profession.current.value,
+        estado_civil: userRefs.maritalStatus.current.value,
+        numero_instalacao: addressRefs.installationNumber.current.value
+      }
       if (isCompany) {
+        submitData["razao_social"] = companyRefs.razao_social.current.value
+        submitData["cnpj"] = companyRefs.cnpj.current.value
+      }
+
+      console.log("submitData ===>>>", submitData)
+
+      const response = await schemaValidation(isCompany, submitData)
+      console.log("response ===>>>", response)
+
+      if (requestSuccessful(response?.status) || hasToSignContract(response?.data?.message)) {
+        console.log("Data successfully saved!")
+
         store.updateUser({
-          companyName: submitData.razao_social,
-
+          birthDate: submitData.data_nascimento,
+          rg: submitData.rg,
+          cpf: submitData.cpf,
+          maritalStatus: submitData.estado_civil,
+          profession: submitData.profissao,
+          nationality: submitData.nacionalidade,
         });
+
+        if (isCompany) {
+          store.updateUser({
+            companyName: submitData.razao_social,
+          });
+        }
+
+        const updatedAddress = {
+          street: submitData.endereco,
+          number: submitData.numero,
+          neighborhood: submitData.bairro,
+          complement: submitData.complemento,
+          city: addressRefs.city.current.value,
+          state: addressRefs.state.current.value,
+          cityId: submitData.cidade_id,
+          stateId: submitData.estado_id,
+          cep: submitData.cep,
+          installationNumber: submitData.numero_instalacao,
+        }
+
+        storeAddress.updateAddress(updatedAddress)
+        router.push(`/signup/contract-signature`)
+
+      } else {
+        if (response?.data?.message) {
+          setErrorMessage([response.data.message])
+        }
+        if (response?.response?.data?.message) {
+          setErrorMessage([response.response.data.message])
+        }
       }
 
-      const updatedAddress = {
-        street: submitData.endereco,
-        number: submitData.numero,
-        neighborhood: submitData.bairro,
-        complement: submitData.complemento,
-        city: addressRefs.city.current.value,
-        state: addressRefs.state.current.value,
-        cep: submitData.cep,
-        installationNumber: submitData.numero_instalacao,
-      }
-
-      storeAddress.updateAddress(updatedAddress)
-
-      router.push(`/register/contract-signature`)
-    } else {
-      if (response?.data?.message) {
-        setErrorMessage([response.data.message])
-      }
-      if (response?.response?.data?.message) {
-        setErrorMessage([response.response.data.message])
-      }
+      setIsLoading(false)
     }
-
-    setIsLoading(false)
-
   }
+
+  useEffect(() => {
+    setStateValue(stateOptions[stateId] || stateOptions[(statesAcronymOptions[state])] || null)
+  }, [store, storeAddress])
 
 
   return (
@@ -212,7 +268,8 @@ export default function SignupForm() {
         </FormTitleContainer>
         <SignupFormContentContainer>
 
-          <SignupFormHeader />
+          <SignupFormHeader step={1} />
+
           <SignupLinearProgress variant="determinate" value={25} />
           <Typography className="fillFormBelow">Preencha o cadastro abaixo:</Typography>
 
@@ -223,8 +280,7 @@ export default function SignupForm() {
                 <InputMask mask="99.999.999/9999-99" defaultValue={company.cnpj || cnpj || ''}>
                   {() => <FormInput className="inputForm" defaultValue={company.cnpj || cnpj || ''} inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text" required
                     InputProps={{
-                      endAdornment: <SearchIcon
-                        sx={{ cursor: 'pointer' }}
+                      endAdornment: <SearchIcon className="searchIcon"
                         onClick={() => fetchCNPJ(companyRefs.cnpj.current.value)} />,
                     }} />}
                 </InputMask>
@@ -376,7 +432,7 @@ export default function SignupForm() {
                   type="text"
                   InputLabelProps={{ shrink: true }}
                   InputProps={{
-                    endAdornment: <SearchIcon sx={{ cursor: 'pointer' }} />,
+                    endAdornment: <SearchIcon className="searchIcon" />,
                   }}
                   required />}
               </InputMask>
@@ -440,28 +496,122 @@ export default function SignupForm() {
                 <Typography className='installationNumberDisclaimer'><span className='underlined'>Encontre este número</span> no canto superior direito de sua fatura atual.</Typography>
               </InstallationNumberDisclaimer>
             </FormLastRow>
+
+
+            {isCompany ? (
+              <FileUploadContainer>
+                <FileUploadItem>
+                  <Button
+                    className='documentUpload'
+                    startIcon={<FileUploadIcon />}
+                    onClick={() => handleClickFiles('socialContract')}>Enviar contrato social</Button>
+                  <input
+                    type="file"
+                    onChange={(event) => handleChangeFiles(event, 'socialContract')}
+                    ref={companyRefs.socialContract}
+                    style={{ display: 'none' }} />
+                  {socialContractFile && (
+                    <>
+                      <p>{socialContractFile.name}</p>
+                      <button
+                        style={fileInputStyles}
+                        onClick={(event) => handleDeleteFiles(event, 'socialContract')}>x</button>
+                    </>
+                  )}
+                </FileUploadItem>
+
+                <FileUploadItem>
+                  <Button
+                    className='documentUpload'
+                    startIcon={<FileUploadIcon />}
+                    onClick={() => handleClickFiles('energyExtract')}>Enviar fatura de energia</Button>
+                  <input
+                    type="file"
+                    onChange={(event) => handleChangeFiles(event, 'energyExtract')}
+                    ref={companyRefs.energyExtract}
+                    style={{ display: 'none' }} />
+                  {energyExtractFile && (
+                    <>
+                      <p>{energyExtractFile.name}</p>
+                      <button
+                        style={fileInputStyles}
+                        onClick={(event) => handleDeleteFiles(event, 'energyExtract')}>x</button>
+                    </>
+                  )}
+                </FileUploadItem>
+              </FileUploadContainer>
+            ) : null}
           </Form>
 
           <FormDivider variant="middle" />
 
           <FormFooter>
             <FormTermsContainer>
-              <FormTermsControl required control={<Checkbox />} label="Declaro que não possuo sistema de geração própria em minha residência/comércio" />
-              <FormTermsControl required control={<Checkbox />} label="Declaro que não estou contratando nenhum serviço similar ao da Leve Energia Renovável" />
-              <FormTermsControl required control={<Checkbox />} label="Declaro que não sou participante de nenhum programa governamental de subsídios na tarifa de energia" />
+              <FormTermsControl required control={<Checkbox inputRef={termsRefs.dontGenerateEnergy} />} label="Declaro que não possuo sistema de geração própria em minha residência/comércio" />
+              <FormTermsControl required control={<Checkbox inputRef={termsRefs.dontContractSameService} />} label="Declaro que não estou contratando nenhum serviço similar ao da Leve Energia Renovável" />
+              <FormTermsControl required control={<Checkbox inputRef={termsRefs.dontParticipateGovernmentProgram} />} label="Declaro que não sou participante de nenhum programa governamental de subsídios na tarifa de energia" />
             </FormTermsContainer>
 
             <FormButtonContainer>
               <Typography className='requiredFields'>* Campos obrigatórios</Typography>
-              <FormSubmitButton
-                type='submit'
-                form='signupForm'
-                endIcon={<ArrowForwardIcon />}>Continuar</FormSubmitButton>
+              {isLoading ?
+                <Box >
+                  <CircularProgress className='submitLoading' />
+                </Box>
+                : <FormSubmitButton
+                  type='submit'
+                  form='signupForm'
+                  endIcon={<ArrowForwardIcon />}>Continuar</FormSubmitButton>}
             </FormButtonContainer>
+            <button onClick={() => handleTests()}>testes</button>
           </FormFooter>
 
         </SignupFormContentContainer>
       </Container >
+      <>
+        {errors.map((error, index) => {
+          return (
+            <Snackbar
+              key={index}
+              open={errors.length >= 1}
+              autoHideDuration={3000}
+              message={error}
+              anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+              onClose={() => setErrorMessage([])}>
+              <SnackbarMessageAlert
+                sx={{ marginBottom: `${index * 5}rem` }}
+                severity="error"
+                variant="filled"
+                onClose={() => setErrorMessage([])}
+              >
+                {error}
+              </SnackbarMessageAlert>
+            </Snackbar>
+          )
+        })}
+      </>
+      <>
+        {notifications.map((notification, index) => {
+          return (
+            <Snackbar
+              key={index}
+              open={notifications.length >= 1}
+              autoHideDuration={6000}
+              message={notification}
+              anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+              onClose={() => setNotificationMessage([])}>
+              <SnackbarMessageNotification
+                sx={{ marginBottom: `${index * 5}rem` }}
+                severity="error"
+                variant="filled"
+                onClose={() => setNotificationMessage([])}
+              >
+                {notification}
+              </SnackbarMessageNotification>
+            </Snackbar>
+          )
+        })}
+      </>
     </>
   )
 }

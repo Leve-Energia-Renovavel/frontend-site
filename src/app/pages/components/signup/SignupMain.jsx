@@ -10,6 +10,7 @@ import Cookies from 'js-cookie';
 import { notFound, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { SignUpContainer as Container } from './styles';
+import { formatBasicBirthDate } from '@/app/utils/date/DateUtils';
 
 const SignupForm = dynamic(() => import('./forms/SignupForm'), { ssr: false });
 const NewResultEconomy = dynamic(() => import('../new-result-economy/NewResultEconomy'), { ssr: false });
@@ -54,7 +55,7 @@ export default function SignupMain() {
                         cep: cep,
 
                         cpf: consumidor?.cpf !== "" ? consumidor.cpf : "",
-                        rg: consumidor?.rg !== "" ? consumidor.cpf : "",
+                        rg: consumidor?.rg !== "" ? consumidor.rg : "",
                         birthDate: consumidor?.data_nascimento ? formatBasicBirthDate(consumidor?.data_nascimento) : "",
 
                         isCompany: consumidor?.type == "PJ" ? true : false,

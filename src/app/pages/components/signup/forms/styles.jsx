@@ -1,9 +1,21 @@
-import { newBackground } from "@/app/pages/styles";
+import { newBackground, notification } from "@/app/pages/styles";
 import styled from "@emotion/styled";
-import { Button, TextField, Checkbox, FormGroup, FormControlLabel } from "@mui/material";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import LinearProgress from '@mui/material/LinearProgress';
+import { Alert, Button, Checkbox, FormControlLabel, FormGroup, TextField, keyframes } from "@mui/material";
 import Divider from '@mui/material/Divider';
+import LinearProgress from '@mui/material/LinearProgress';
+
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const SignupFormContainer = styled.div`
     display: flex;
@@ -15,7 +27,7 @@ export const SignupFormContainer = styled.div`
 
     width: 1196px;
 
-    padding: 2rem 0;  //change later !!!!
+    padding: 2rem 0 0 0;  //change later !!!!
 `
 export const FormTitleContainer = styled.div`
     display: flex;
@@ -151,6 +163,8 @@ export const FormRow = styled.div`
     grid-column: span 3; 
 
     gap: 1rem;
+
+    margin: 10px 0;
 `
 export const FormContent = styled.div`
     display: grid;
@@ -179,23 +193,20 @@ export const FormInput = styled(TextField)`
     
     && {
         background-color: ${newBackground.orangeTranslucent}; 
-        
-
     }
     
     .MuiOutlinedInput-input {
         border: 2px solid transparent;
         border-radius: 10px;  
         
-
         // styles for the user input text
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 700;
         color: ${newBackground.orange};
-
         
         &:focus {
+            color: ${newBackground.orange};
             border: 2px solid ${newBackground.orange};
             background-color: ${newBackground.orangeFocused}; 
             }
@@ -203,8 +214,6 @@ export const FormInput = styled(TextField)`
 
         && fieldset {
             border: none;
-            
-
         }     
         
         .MuiFormLabel-root {
@@ -213,18 +222,45 @@ export const FormInput = styled(TextField)`
             font-weight: 600;
             color: ${newBackground.orange};
 
-            
-
-            
             &:focus {
                 color: ${newBackground.orange};
             }
-            
         }
         
         /* .MuiInputLabel-outlined {
             transform: translate(14px, 16px) scale(1);
         } */
+
+        .searchIcon { 
+            color:${newBackground.orange};
+            &:hover{
+                cursor: pointer;
+            }
+        }
+`
+
+export const FileUploadContainer = styled.div`
+  display: flex;
+  grid-template-columns: repeat(2, 1fr); 
+  grid-column: span 3; 
+  flex-direction: row;
+  flex-wrap: wrap;
+`
+export const FileUploadItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  margin-top: 25px;
+
+  .documentUpload {
+    font-family: "Graphie";
+    font-size: 14px;
+    font-weight: 600;
+    color: ${newBackground.orange};
+    text-decoration: underline;
+    text-transform: none;
+  }
 `
 
 export const FormDivider = styled(Divider)`
@@ -258,6 +294,7 @@ export const FormTermsControl = styled(FormControlLabel)`
     & .MuiFormControlLabel-label{
         font-family: "Graphie"; 
         font-size: 12px;
+        line-height: 12px;
         font-weight: 500;
         text-align: left;
     }
@@ -283,6 +320,11 @@ export const FormButtonContainer = styled.div`
             font-weight: 500;
             color: ${newBackground.orange};
     }
+
+    .submitLoading {
+        color: ${newBackground.orange};
+    }
+
 `
 
 export const FormSubmitButton = styled(Button)`
@@ -349,7 +391,7 @@ export const InstallationNumberDisclaimer = styled.div`
     justify-content: center;
     align-items: center;
     background-color: ${newBackground.yellow};
-    border-radius: 10px;
+    border-radius: 15px;
     
     gap: 8px;
     
@@ -390,6 +432,50 @@ export const InstallationNumberDisclaimer = styled.div`
 
 `
 
+
+export const SnackbarMessageAlert = styled(Alert)`
+  font-family: "Graphie";
+  font-size: 1rem;
+  background-color: ${notification.alert};
+  border-radius: 10px;
+  padding: 1rem;
+  align-items: center;
+
+  animation: ${fadeInUp} 0.5s ease-out;
+
+  @media screen and (max-width: 600px) {
+    padding: .3rem;
+    font-size: 1rem; 
+  }
+
+`
+
+export const SnackbarMessageNotification = styled(Alert)`
+  font-family: "Graphie";
+  font-size: 1rem;
+  background-color: ${notification.success};
+  border-radius: 10px;
+  padding: 1rem;
+  align-items: center;
+
+  animation: ${fadeInUp} 0.5s ease-out;
+
+  @media screen and (max-width: 600px) {
+    padding: .3rem;
+    font-size: 1rem; 
+  }
+
+`
+
+
+export const fileInputStyles = {
+    cursor: 'pointer',
+    backgroundColor: 'transparent',
+    padding: '0 5px',
+    marginLeft: '.5rem',
+    fontSize: '1rem',
+    fontWeight: 'bold',
+}
 
 
 

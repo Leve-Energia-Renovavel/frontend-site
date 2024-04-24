@@ -1,3 +1,5 @@
+import { grey } from "@mui/material/colors"
+
 export const theme = {
     primary: "#1779ba",
     primaryFocus: "#126195",
@@ -37,6 +39,7 @@ export const newBackground = {
     orangeTranslucent: "#FCEEE6",
     green: "#005940",
     white: "#FCFCFA",
+    grey: "#EFEFEC",
 }
 
 export const background = {

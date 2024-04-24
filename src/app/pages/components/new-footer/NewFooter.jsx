@@ -15,7 +15,6 @@ import sunImage from "../../../../resources/icons/small/ellipse-small.png";
 
 export default function NewFooter() {
 
-
   const linkTo = {
     "linkedin": "https://br.linkedin.com/company/leve-energia-renov%C3%A1vel",
     "facebook": "https://m.facebook.com/leveenergiaoficial",

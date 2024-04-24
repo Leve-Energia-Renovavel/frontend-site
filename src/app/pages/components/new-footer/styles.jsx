@@ -119,7 +119,7 @@ export const FooterSecondaryContainer = styled.div`
 
     .leveLogoImage {
         width:253px; 
-        height:115px;
+        height:auto;
 
         @media (max-width: 600px) {
             width:97px; 

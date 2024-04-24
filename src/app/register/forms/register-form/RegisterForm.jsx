@@ -156,7 +156,7 @@ export default function RegisterForm() {
             submitData["razao_social"] = companyRefs.razao_social.current.value
             submitData["cnpj"] = companyRefs.cnpj.current.value
         }
-        
+
         setDataCookies();
 
         const response = await schemaValidation(isCompany, submitData)
@@ -245,11 +245,6 @@ export default function RegisterForm() {
 
     const handleChangeState = (value) => {
         setStateValue(stateOptions[value])
-        // addressRefs.address.current.value = ""
-        // addressRefs.addressNumber.current.value = ""
-        // addressRefs.addressCep.current.value = ""
-
-        // storeAddress.updateAddress({ stateId: value, cep: "", neighborhood: "" })
     }
     const handleChangeUserCost = (event) => {
         var newCost = event.target.value
