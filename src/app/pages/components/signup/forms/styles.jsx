@@ -26,8 +26,15 @@ export const SignupFormContainer = styled.div`
     margin: 0 auto;
 
     width: 1196px;
-
+    
     padding: 2rem 0 0 0;  //change later !!!!
+    
+    @media (max-width: 600px) {
+        border-radius: 0;
+        width: 100vw;
+        max-width: 100vw;
+        padding: 1rem 0 0 0;
+    }
 `
 export const FormTitleContainer = styled.div`
     display: flex;
@@ -36,14 +43,21 @@ export const FormTitleContainer = styled.div`
     align-items: center;
 
     gap: 30px;
-
+    
     margin-bottom: 34px;  //margin for form header
-
+    
     h2 {
         font-family: "Graphie";
         font-size: 27px;
         font-weight: 500;
         color: ${newBackground.white};
+    }
+    
+    @media (max-width: 600px) {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 0 1rem;
+        margin-bottom: 24px;  //margin for form header
     }
 `
 export const FormTitleButton = styled(Button)`
@@ -82,6 +96,12 @@ export const SignupFormContentContainer = styled.div`
         font-size: 17px;
         font-weight: 500;
         color: ${newBackground.green};
+    }
+
+    @media (max-width: 600px) {
+        border-radius: 0;
+        width: 100vw;
+        max-width: 100vw;
     }
 `
 export const SignupFormHeaderContainer = styled.div`
@@ -156,7 +176,11 @@ export const SignupLinearProgress = styled(LinearProgress)`
 export const Form = styled.form`
     padding: 8px 100px;
     background-color: ${newBackground.white};
-    `
+
+    @media (max-width: 600px) {
+        padding: 8px 10px;
+    }
+`
 export const FormRow = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
@@ -165,6 +189,12 @@ export const FormRow = styled.div`
     gap: 1rem;
 
     margin: 10px 0;
+
+    @media (max-width: 600px) {
+        grid-template-rows: repeat(1, 1fr);
+        grid-template-columns: repeat(1,1fr);
+        grid-gap: 1rem;
+    }
 `
 export const FormContent = styled.div`
     display: grid;
@@ -177,7 +207,10 @@ export const FormContent = styled.div`
 
     margin-top: 7px;
 
-    
+    @media (max-width: 600px) {
+        grid-template-rows: repeat(1, 1fr);
+        grid-template-columns: repeat(1,1fr);
+    }
 `
 export const FormLastRow = styled.div`
     display: grid;
@@ -187,6 +220,11 @@ export const FormLastRow = styled.div`
     gap: 10px;
 
     margin-top: 7px;
+
+    @media (max-width: 600px) {
+        grid-template-rows: repeat(1, 1fr);
+        grid-template-columns: repeat(1,1fr);
+    }
 `
 export const FormInput = styled(TextField)`
     border-radius: 14px;
@@ -197,7 +235,7 @@ export const FormInput = styled(TextField)`
     
     .MuiOutlinedInput-input {
         border: 2px solid transparent;
-        border-radius: 10px;  
+        border-radius: 15px;  
         
         // styles for the user input text
         font-family: "Graphie";
@@ -272,8 +310,12 @@ export const FormFooter = styled.div`
     flex-direction: column;
 
     padding: 30px 100px;
-
+    
     gap: 30px;
+    
+    @media (max-width: 600px) {
+        padding: 10px;
+    }
 
 `
 export const FormTermsContainer = styled(FormGroup)`
@@ -283,6 +325,11 @@ export const FormTermsContainer = styled(FormGroup)`
     
     gap: 1rem;
     align-items: flex-start; /* Align items to the start */
+    
+    @media (max-width: 600px) {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 `
 export const FormTermsControl = styled(FormControlLabel)`
 

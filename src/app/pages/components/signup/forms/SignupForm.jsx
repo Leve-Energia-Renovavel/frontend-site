@@ -315,6 +315,7 @@ export default function SignupForm() {
                   <FormInput
                     inputRef={userRefs.phone}
                     className="inputForm"
+                    inputProps={{ inputMode: 'numeric' }}
                     label={`Telefone ${isCompany ? 'do Responsável' : ''}`}
                     variant="outlined"
                     placeholder={`Telefone ${isCompany ? 'do Responsável' : ''}`}
@@ -338,6 +339,7 @@ export default function SignupForm() {
                     placeholder="RG"
                     type="text"
                     required
+                    inputProps={{ inputMode: 'numeric' }}
                     InputLabelProps={rg || store.user.rg ? { shrink: true } : {}}
                   />}
                 </InputMask>)}
@@ -347,7 +349,15 @@ export default function SignupForm() {
               </InputMask>
 
               <InputMask mask="99/99/9999" required defaultValue={store.user.birthDate ? store.user.birthDate : ""}>
-                {() => <FormInput inputRef={userRefs.birthDate} className="inputForm" label="Data de Nascimento" variant="outlined" placeholder="Data de Nascimento" type="text" required
+                {() => <FormInput
+                  inputRef={userRefs.birthDate}
+                  className="inputForm"
+                  label="Data de Nascimento"
+                  variant="outlined"
+                  placeholder="Data de Nascimento"
+                  type="text"
+                  required
+                  inputProps={{ inputMode: 'numeric' }}
                   InputLabelProps={store.user.birthDate ? { shrink: true } : {}} />}
               </InputMask>
               <FormInput
@@ -356,6 +366,7 @@ export default function SignupForm() {
                 defaultValue={store.user.maritalStatus ? store.user.maritalStatus : ""}
                 label="Estado Civil"
                 className="inputForm"
+                inputProps={{ inputMode: 'numeric' }}
                 InputLabelProps={{
                   component: 'span',
                 }}
@@ -417,6 +428,7 @@ export default function SignupForm() {
                 variant="outlined"
                 placeholder="Custo Mensal em R$"
                 type="text"
+                inputProps={{ inputMode: 'numeric' }}
                 InputLabelProps={{ shrink: true }}
                 required />
 
@@ -430,6 +442,7 @@ export default function SignupForm() {
                   variant="outlined"
                   placeholder="CEP"
                   type="text"
+                  inputProps={{ inputMode: 'numeric' }}
                   InputLabelProps={{ shrink: true }}
                   InputProps={{
                     endAdornment: <SearchIcon className="searchIcon" />,
@@ -437,9 +450,24 @@ export default function SignupForm() {
                   required />}
               </InputMask>
 
-              <FormInput className="inputForm" defaultValue={street || ''} inputRef={addressRefs.address} label="Endereço" variant="outlined" placeholder="Endereço" type="text" InputLabelProps={{ shrink: true }} required />
+              <FormInput className="inputForm"
+                defaultValue={street || ''}
+                inputRef={addressRefs.address}
+                label="Endereço" variant="outlined"
+                placeholder="Endereço"
+                type="text"
+                InputLabelProps={{ shrink: true }} required />
+                
               <InputMask mask="99999">
-                {() => <FormInput className="inputForm" inputRef={addressRefs.addressNumber} label="Nº" variant="outlined" placeholder="Nº" type="text" required />}
+                {() => <FormInput
+                  className="inputForm"
+                  inputRef={addressRefs.addressNumber}
+                  label="Nº"
+                  variant="outlined"
+                  placeholder="Nº"
+                  type="text"
+                  inputProps={{ inputMode: 'numeric' }}
+                  required />}
               </InputMask>
 
               <FormInput className="inputForm"
@@ -496,7 +524,6 @@ export default function SignupForm() {
                 <Typography className='installationNumberDisclaimer'><span className='underlined'>Encontre este número</span> no canto superior direito de sua fatura atual.</Typography>
               </InstallationNumberDisclaimer>
             </FormLastRow>
-
 
             {isCompany ? (
               <FileUploadContainer>
@@ -563,7 +590,7 @@ export default function SignupForm() {
                   form='signupForm'
                   endIcon={<ArrowForwardIcon />}>Continuar</FormSubmitButton>}
             </FormButtonContainer>
-            <button onClick={() => handleTests()}>testes</button>
+            {/* <button onClick={() => handleTests()}>testes</button> */}
           </FormFooter>
 
         </SignupFormContentContainer>

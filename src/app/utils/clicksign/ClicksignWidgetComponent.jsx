@@ -1,27 +1,31 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useStoreClickSign, useStoreUser } from '@/app/hooks/useStore';
-import ContractFormProgress from '@/app/register/forms/contract-signature-form/ContractFormProgress';
-import ContractFormTitle from '@/app/register/forms/contract-signature-form/ContractFormTitle';
-import { FormHeader } from '@/app/register/forms/contract-signature-form/styles';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Clicksign from "./embedded";
-import { ClicksignWidgetContainer } from './styles';
+import { ClicksignComponentContainer as Container } from './styles';
 
-export default function ClicksignWidget() {
+export default function ClicksignWidgetComponent() {
 
     const router = useRouter()
 
+    const storeUser = useStoreUser()
     const storeClicksign = useStoreClickSign()
+
     const clickSign = storeClicksign.data
     const clickSignKey = Cookies.get("clickSignKey")
 
     const key = clickSignKey ? clickSignKey : clickSign.key
 
-    const storeUser = useStoreUser()
-
     const [widget, setWidget] = useState(null);
+
+    const button = document.querySelector('._XButton_1p73z_1');
+    if (button) {
+        button.addEventListener('click', () => {
+            console.log('Button clicked');
+        })
+    };
 
     useEffect(() => {
         if (widget) {
@@ -38,7 +42,7 @@ export default function ClicksignWidget() {
 
             widgetInstance.on('signed', function (event) {
                 storeUser.updateUser({ hasSignContract: true })
-                router.push(`/register/success`)
+                router.push(`/signup/success`)
             });
 
             setWidget(widgetInstance);
@@ -57,13 +61,10 @@ export default function ClicksignWidget() {
     }, [clickSignKey, key]);
 
     return (
-        <ClicksignWidgetContainer>
-            <FormHeader>
-                <ContractFormTitle />
-                <ContractFormProgress />
-            </FormHeader>
-            <div id="clicksign-container" />
-        </ClicksignWidgetContainer>
-
+        <>
+            <Container>
+                <div id="clicksign-container" />
+            </Container>
+        </>
     )
-};
+}

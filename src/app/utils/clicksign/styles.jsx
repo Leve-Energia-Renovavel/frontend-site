@@ -67,3 +67,18 @@ export const ClicksignWidgetContainer = styled.div`
     color: ${background.primary}
     }
 `;
+
+export const ClicksignComponentContainer = styled.div`
+  #clicksign-container {
+    margin: 60px auto 0 auto;
+
+    max-width: 900px; 
+    height: 27rem;
+    
+    @media (max-width: 600px) {
+        width: 90vw; 
+        max-width: 90vw; 
+        height: 70vh;
+    }
+  }
+`
