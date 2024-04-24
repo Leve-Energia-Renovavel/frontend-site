@@ -3,14 +3,16 @@
 
 import { useStoreClickSign, useStoreUser } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
-import ClicksignWidgetComponent from "@/app/utils/clicksign/ClicksignWidgetComponent";
 import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
 import { Typography } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import SignupFormHeader from "../signup/forms/SignupFormHeader";
 import { ContractSignatureContainer as Container, ContractSignatureForm, SignupLinearProgress } from "./styles";
+
+const SignupFormHeader = dynamic(() => import("../signup/forms/SignupFormHeader"), { ssr: false });
+const ClicksignWidgetComponent = dynamic(() => import("@/app/utils/clicksign/ClicksignWidgetComponent"), { ssr: false });
 
 export default function NewContractSignature() {
 
