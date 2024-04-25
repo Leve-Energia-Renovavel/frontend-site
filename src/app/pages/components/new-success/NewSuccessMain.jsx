@@ -1,11 +1,11 @@
 "use client"
 
-import dynamic from "next/dynamic";
+import dynamic from 'next/dynamic';
 import ConfettiExplosion from "react-confetti-explosion";
 import { NewSuccessContainer as Container, NewSuccessForm, SignupLinearProgress } from "./styles";
 
 const SignupFormHeader = dynamic(() => import("../signup/forms/SignupFormHeader"), { ssr: false });
-const NewSuccessFormContent = dynamic(() => import("./NewSuccessFormContent"), { ssr: false });
+const NewSuccessContent = dynamic(() => import('./NewSuccessFormContent'), { ssr: false });
 
 export default function NewSuccessMain() {
 
@@ -18,16 +18,11 @@ export default function NewSuccessMain() {
                     width={1900}
                     style={{ margin: "0 auto" }}
                     colors={['#005940', '#FF7133', '#E1FF0F', '#ff814b', '#66D805']} />
+
                 <SignupFormHeader step={4} />
                 <SignupLinearProgress variant="determinate" value={100} />
 
-                <NewSuccessFormContent />
-                <h1>churros</h1>
-                <h1>churros</h1>
-                <h1>churros</h1>
-                <h1>churros</h1>
-                <h1>churros</h1>
-
+                <NewSuccessContent />
             </NewSuccessForm>
         </Container>
     )

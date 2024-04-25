@@ -22,7 +22,7 @@ import homeCardImage from "../../../../resources/img/large/leve-familia-brincand
 import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.png";
 import secondBannerImage from "../../../../resources/img/large/leve-pai-e-filho-image-large.png";
 import { leadSchema } from './schema';
-import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeContent, HomeFifthSectionBanner, HomeFifthSectionBannerContainer, HomeFifthSectionContainer, HomeFifthSectionContentContainer, HomeFifthSectionDescriptionContainer, HomeFifthSectionTitleContainer, HomeFormContainer, HomeFourthSectionCard, HomeFourthSectionCardContainer, HomeFourthSectionContainer, HomeFourthSectionDescription, HomeFourthSectionIcon, HomeFourthSectionTitle, HomeFourthSectionTitleContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeMainTitleContainer, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeSixthSectionCard, HomeSixthSectionCardContainer, HomeSixthSectionContainer, HomeSixthSectionTitleContainer, HomeSubtitleContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionSubTitle, HomeThirdSectionTitleContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
+import { ButtonSimulateYourEconomy, HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeContent, HomeFifthSectionBanner, HomeFifthSectionBannerContainer, HomeFifthSectionContainer, HomeFifthSectionContentContainer, HomeFifthSectionDescriptionContainer, HomeFifthSectionTitleContainer, HomeFormContainer, HomeFourthSectionCard, HomeFourthSectionCardContainer, HomeFourthSectionContainer, HomeFourthSectionDescription, HomeFourthSectionIcon, HomeFourthSectionTitle, HomeFourthSectionTitleContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeMainTitleContainer, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeSixthSectionCard, HomeSixthSectionCardContainer, HomeSixthSectionContainer, HomeSixthSectionTitleContainer, HomeSubtitleContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionSubTitle, HomeThirdSectionTitleContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 
 
 export default function HomeMain() {
@@ -135,7 +135,7 @@ export default function HomeMain() {
                         <FormContainer>
                             <Form id='leadForm' onSubmit={handleSubmit}>
                                 <FormTitleContainer>
-                                    <Image src={economyIcon} className='logoLeve' alt={"Logo Leve"} loading="eager" priority={true} />
+                                    <Image src={economyIcon} className='economyIcon' alt={"Logo Leve"} loading="eager" priority={true} />
                                     <Typography variant="h2">{texts.simulate}</Typography>
                                 </FormTitleContainer>
                                 <Typography variant="body1">{texts.in}<span className="highlighted">{texts.threeClicks}</span>{texts.guarantee}<span className="highlighted">{texts.solarEnergy}</span>{texts.reduceInvoices}</Typography>
@@ -206,7 +206,7 @@ export default function HomeMain() {
                                 </InputMask>
                             </Form>
                             <HomeMainFormSimulationContainer>
-                                <Typography variant="subtitle1" className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}</span></Typography>
+                                <Typography variant="subtitle1" className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === 3000 ? "+" : ""}</span></Typography>
                                 <FormSlider
                                     onChange={(event) => setSimulationCost(event.target.value)}
                                     value={simulationCost}
@@ -289,10 +289,13 @@ export default function HomeMain() {
                                         </HomeFourthSectionDescription>
                                     </div>
                                 </HomeFourthSectionCard>
-
                             )
                         })}
                     </HomeFourthSectionCardContainer>
+
+                    <ButtonSimulateYourEconomy onClick={() => handlePreSignup()}>
+                        <span>{texts.simulateYourEconomy}</span>
+                    </ButtonSimulateYourEconomy>
                 </HomeFourthSectionContainer>
 
                 <HomeFifthSectionContainer>

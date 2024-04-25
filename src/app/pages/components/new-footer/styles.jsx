@@ -58,7 +58,7 @@ export const FooterPrimaryContainer = styled.div`
             font-size: 27px;
             max-width: 330px;
             
-            margin-top: 60px; //change later...
+            margin-top: 120px;
             margin-bottom: 20px; //change later...
         }
     }
@@ -99,10 +99,14 @@ export const FooterSecondaryContainer = styled.div`
 
     overflow: hidden;
 
-    /* background-image: url(${props => props.image.src});
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 800px; */
+
+
+    @media (max-width: 600px) {
+        background-image: url(${props => props.image.src});
+        background-repeat: no-repeat;
+        background-position: left;
+        background-size: 800px; 
+    }
 
     h6 {
         color: ${newBackground.white};
@@ -151,8 +155,8 @@ export const MyNiceDiv = styled.div`
         border-radius: 50%; /* Make the sun image round */
         
         @media (max-width: 700px) {
-            width: 800px; 
-            height: 800px; 
+            width: 650px; 
+            height: 650px; 
         }
     }
 `;

@@ -1,13 +1,11 @@
-"use client"
-
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { Typography } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import checkIcon from "../../../../resources/icons/small/check-icon-yellow-small.svg";
-import { FormButton } from './styles';
+import { FormButton, NewSuccessFormContent } from './styles';
 
-export default function NewSuccessFormContent() {
+export default function NewSuccessContent() {
 
     const router = useRouter()
 

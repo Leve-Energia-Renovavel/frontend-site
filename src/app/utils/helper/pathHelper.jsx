@@ -1,5 +1,5 @@
 export const pathHelper = {
-    '/': false,
+    '/': null,
     '/home/': null,
     '/register/': false,
     '/login/': false,
@@ -14,7 +14,7 @@ export const pathHelper = {
 }
 
 export const helperToPath = {
-    '/': "no+cadastro+da",
+    '/': "na+home+da",
     '/home/': "na+home+da",
     '/signup/': "na+tela+de+cadastro+da",
     '/register/': "no+cadastro+da",
@@ -29,7 +29,7 @@ export const helperToPath = {
 }
 
 export const headerHelper = {
-    '/': false,
+    '/': "newhomedesktop",
     '/home/': "newhomedesktop",
     '/signup/': "newhomedesktop",
     '/register/': false,
@@ -43,7 +43,7 @@ export const headerHelper = {
     '/connection/': true,
 }
 export const newHeaderHelper = {
-    '/': false,
+    '/': true,
     '/home/': true,
     '/signup/': true,
     '/register/': false,

@@ -1,21 +1,17 @@
-import fastIcon from "../../../resources/icons/small/leve-raio-yellow-icone-small.svg"
-import simpleIcon from "../../../resources/icons/small/leve-carregando-orange-icone-small.svg"
-import safeIcon from "../../../resources/icons/small/leve-protecao-yellow-icone-small.svg"
-import sustainableIcon from "../../../resources/icons/small/leve-folha-icone-small.svg"
 import { newBackground } from "@/app/pages/styles"
+import simpleIcon from "../../../resources/icons/small/leve-carregando-orange-icone-small.svg"
+import sustainableIcon from "../../../resources/icons/small/leve-folha-icone-small.svg"
+import safeIcon from "../../../resources/icons/small/leve-protecao-white-icone-small.svg"
+import fastIcon from "../../../resources/icons/small/leve-raio-yellow-icone-small.svg"
 
+import economyIcon from "../../../resources/icons/small/leve-economia-icone-small.png"
 import signIcon from "../../../resources/icons/small/leve-energia-clique-icone-small.png"
 import solarPanelIcon from "../../../resources/icons/small/leve-painel-solar-icone-small.png"
 import batteryIcon from "../../../resources/icons/small/leve-recarregar-energia-icone-small.png"
-import economyIcon from "../../../resources/icons/small/leve-economia-icone-small.png"
 
-import estacioLogo from "../../../resources/img/small/logo-estacio-small.png"
-import estaparLogo from "../../../resources/img/small/logo-estapar-small.png"
 import localizaLogo from "../../../resources/img/small/logo-localiza-small.png"
 import lorealLogo from "../../../resources/img/small/logo-loreal-small.png"
 import martinsLogo from "../../../resources/img/small/logo-martins-small.png"
-import rdLogo from "../../../resources/img/small/logo-raia-drogasil-small.png"
-import rennerLogo from "../../../resources/img/small/logo-renner-small.png"
 import timLogo from "../../../resources/img/small/logo-tim-small.png"
 import tribancoLogo from "../../../resources/img/small/logo-tribanco-small.png"
 
@@ -41,7 +37,7 @@ export const homeBoxes = [
         title: "Seguro",
         description: "A energia chegará para você da mesma forma que chega hoje.",
         backgroundColor: newBackground.orange,
-        titleColor: newBackground.yellow,
+        titleColor: newBackground.white,
         descriptionColor: newBackground.white
     },
     {
@@ -76,14 +72,6 @@ export const homeTutorialCards = [
 
 export const brands = [
     {
-        company: "Estácio",
-        logo: estacioLogo,
-    },
-    {
-        company: "Estapar",
-        logo: estaparLogo,
-    },
-    {
         company: "Localiza",
         logo: localizaLogo,
     },
@@ -94,14 +82,6 @@ export const brands = [
     {
         company: "Grupo Martins",
         logo: martinsLogo,
-    },
-    {
-        company: "Raia Drogasil",
-        logo: rdLogo,
-    },
-    {
-        company: "Renner",
-        logo: rennerLogo,
     },
     {
         company: "Tim",

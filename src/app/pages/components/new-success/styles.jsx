@@ -31,9 +31,16 @@ export const NewSuccessForm = styled.div`
 
     gap: 10px;
 
-    width: 1196px;
+    width: 100%;
+    max-width: 1196px;
 
     padding: 1rem;  //change later !!!!
+
+    @media (max-width: 600px) {
+        border-radius: 0;
+        width: 100vw;
+        max-width: 100vw;
+    }
 `
 export const NewSuccessFormContent = styled.div`
     display: flex;
@@ -45,6 +52,10 @@ export const NewSuccessFormContent = styled.div`
 
     .checkIcon {
         margin-top: 124px;
+        
+        @media (max-width: 600px) {
+            margin-top: 54px;
+        }
     }
 
     h1 {
@@ -53,6 +64,10 @@ export const NewSuccessFormContent = styled.div`
         line-height: 34px;
         font-weight: 600;
         color: ${newBackground.orange};
+
+        @media (max-width: 600px) {
+            text-align: center;
+        }
     }
     
     .info{
@@ -63,11 +78,14 @@ export const NewSuccessFormContent = styled.div`
         color: ${newBackground.green};
 
         max-width: 700px;
+        
+        @media (max-width: 600px) {
+            text-align: center;
+        }
     }
     
     .bold {
         font-weight: 600;
-
     }
 `
 
@@ -83,6 +101,10 @@ export const FormButton = styled(Button)`
 
   max-width: 290px;
   max-height: 42px;
+
+    @media (max-width: 600px) {
+        margin-top: 54px;
+    }
   
   span {
     font-family: "Graphie";

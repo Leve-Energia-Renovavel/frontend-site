@@ -75,7 +75,7 @@ export const HomeMainContent = styled.div`
       width: 100vw;
       max-width: 100vw;
 
-      margin: 0 24px;
+      margin: 1rem 24px;
 
       height: 70vh;
 
@@ -181,8 +181,13 @@ export const HomeFormContainer = styled.div`
     color: ${newBackground.orange};
 
     max-width: 360px;
-
+    
     margin: 0 auto;
+    
+    @media (max-width: 600px) {
+      max-width: 320px;
+      margin-bottom: 24px;
+    }
   }
 
   .privacyPolicy {
@@ -249,7 +254,9 @@ export const HomeMainForm = styled.form`
       margin-bottom: 30px;
 
       @media (max-width: 600px) {
-        margin-bottom: 6px;
+        text-align: center;
+        line-height: 18px;
+        margin: 20px;
       }
     }
     .highlighted {
@@ -293,8 +300,13 @@ export const FormTitleContainer = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 6px;
-
-  animation: ${fadeInUp} 0.5s ease-out;  
+  
+  animation: ${fadeInUp} 0.5s ease-out; 
+  
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 4px;
+  }
 
   h2 {
       font-family: "Graphie";
@@ -303,8 +315,19 @@ export const FormTitleContainer = styled.div`
       white-space: nowrap;
       font-size: 27px;
       text-align: left;
+      
+      @media (max-width: 600px) {
+        font-size: 27px;
+      }
 
+  }
+
+  .economyIcon {
+    @media (max-width: 600px) {
+      width: 32px;
+      height: 32px;
     }
+  }
 `
 export const HomeMainFormSimulationContainer = styled.div`
     display: flex;
@@ -339,6 +362,10 @@ export const HomeMainFormSimulationContainer = styled.div`
 export const UserTypeFormContainer = styled.div`
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 600px) {
+      margin-bottom: 1rem;
+    }
 
     .chooseWhereToEconomy {
       margin: 17px 0 0 0;  //25px - 8px from margin-bottom of .homeFormInput
@@ -381,7 +408,7 @@ export const FormSelect = styled(Button)`
   padding: 0.5rem 2rem;
 
   width: 100%;
-  max-width: 161px;
+  max-width: 250px;
   
   &:hover {
     cursor: pointer;
@@ -425,6 +452,35 @@ export const FormButton = styled(Button)`
   }
 `
 
+export const ButtonSimulateYourEconomy = styled(Button)`
+ padding: .5rem 2rem;
+  background-color: ${newBackground.orange};
+  color: ${newBackground.yellow};
+  border-radius: 30px;
+  
+  margin: 1rem 0 0 0;
+  
+  @media (max-width: 600px) {
+    margin: 0;
+  }
+
+  span {
+    font-family: "Graphie";
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: none;
+
+    margin-left: auto;
+  }
+  
+  &:hover {
+    background-color: ${newBackground.yellow};
+    color: ${newBackground.orange};
+    cursor: pointer;
+  }
+`
+
+
 export const FormSlider = styled(Slider)`
     color: ${newBackground.green};
     height: 8px;
@@ -457,7 +513,7 @@ export const HomeSecondarySectionContainer = styled.div`
     gap: 80px;
     
     padding: 2rem 0;
-
+    
     height: auto;
     /* max-width: 1920px; */
     max-width: 1366px;
@@ -465,6 +521,8 @@ export const HomeSecondarySectionContainer = styled.div`
     @media (max-width: 600px) {
       width: 100vw;
       max-width: 100vw;
+
+      gap: 40px;
 
       padding: 15px;
     }
@@ -552,7 +610,7 @@ export const HomeSecondaryBoxTitle = styled.div`
         font-size: 18px;
       }
     }
-
+    
     .titleIcon {
       width: 30px;
       height: 30px;
@@ -664,6 +722,8 @@ export const HomeThirdSectionContainer = styled.div`
       padding: 3rem 2rem 0 2rem;
       gap: 0;
       border-radius: 0px;
+      height: 430px;
+      z-index: 0;
     }
 `
 export const HomeThirdSectionTitleContainer = styled.div`
@@ -711,13 +771,14 @@ export const HomeThirdSectionSubTitle = styled.div`
 
     max-width: 300px;
     margin-left: 28px;
-
+    
     h6 {
       font-family: "Graphie";
       font-size: 34px;
       line-height: 34px;
       
       @media (max-width: 600px) {
+        margin-left: -10px;
         font-size: 21px;
         line-height: 21px;
       }
@@ -762,21 +823,25 @@ export const HomeFourthSectionContainer = styled.div`
 
     padding: 2rem;
     margin-bottom: 64px; //80px - 16px from banner below
-
+    
+    @media (max-width: 600px) {
+      margin-bottom: 12px;
+    }
+    
     .sectionTitle {
       font-family: "Graphie";
       font-size: 34px;
       font-weight: 600;
       color: ${newBackground.green};
-
+      
       @media (max-width: 600px) {
-          font-size: 21px;
+        font-size: 21px;
       }
     }
-`
+    `
 export const HomeFourthSectionTitleContainer = styled.div`
   text-align: center;
-
+  
 `
 export const HomeFourthSectionCardContainer = styled.div`
     display: flex;
@@ -866,11 +931,13 @@ export const HomeFifthSectionContainer = styled.div`
     
     height: auto;
     max-width: 100vw;
-    
+
     @media (max-width: 600px) {
+      overflow: auto;
+      max-width: 90vw;
+      margin: 0 auto;
       flex-wrap: wrap;
       gap: 1rem;
-      border-radius: 0px;
     }
 `
 export const HomeFifthSectionBannerContainer = styled.div`
@@ -888,7 +955,8 @@ export const HomeFifthSectionBanner = styled.div`
     border-radius: 30px;
 
     @media (max-width: 600px) {
-      width: 100vw;
+      width: 90vw;
+      max-width: 90vw;
       height: 15rem;
       border-radius: 0px;
 
@@ -991,10 +1059,13 @@ export const HomeSixthSectionCardContainer = styled.div`
     ${(props) => props.visible && fadeInUpAnimation};
 
     max-width: 990px;
-
+    
     gap: 1rem;
 
+    margin-bottom: 2rem;
+    
     @media (max-width: 600px) {
+      max-width: 100vw;
       flex-wrap: wrap;
     }
 `
@@ -1010,7 +1081,7 @@ export const HomeSixthSectionCard = styled.div`
     height: 180px;
 
     @media (max-width: 600px) {
-      width: 150px;
+      width: 140px;
       height: 94px;
     }
 
