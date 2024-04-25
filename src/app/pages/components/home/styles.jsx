@@ -408,7 +408,7 @@ export const FormSelect = styled(Button)`
   background-color: ${newBackground.orange};
   border: 1px solid ${newBackground.yellow};
   border-radius: 10px;
-  
+
   font-family: "Graphie";
   font-size: 14px;
   color: ${props => props.selected ? newBackground.yellow : newBackground.white};
@@ -432,6 +432,8 @@ export const FormButton = styled(Button)`
   background-color: ${newBackground.yellow};
   color: ${newBackground.green};
   border-radius: 30px;
+
+  height: 42px;
   
   margin: 1rem 0;
   
@@ -674,10 +676,12 @@ export const HomeSecondaryImagesContent = styled.div`
       height: 250px;
       width: 330px;
 
+      
       border-radius: 15px;
     }
-
+    
     h6 {
+      ${props => props.invertedBox ? "margin-top: auto" : ""};
       font-family: "Graphie";
       font-size: 27px;
       font-weight: 600;
@@ -690,6 +694,7 @@ export const HomeSecondaryImagesContent = styled.div`
     }
 
     .arrowIcon {
+      /* ${props => props.invertedBox ? "margin-top: auto" : ""}; */
       font-size: 50px;
       color: ${newBackground.yellow};
       

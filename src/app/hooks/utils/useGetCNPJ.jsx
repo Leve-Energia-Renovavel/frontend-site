@@ -1,15 +1,15 @@
-import { requestSuccessful } from "../../service/utils/Validations";
 import { useStoreCompany } from "@/app/hooks/useStore";
 import axios from "axios";
+import { requestSuccessful } from "../../service/utils/Validations";
 
 const useGetCNPJ = () => {
     const storeCompany = useStoreCompany()
-    const fetchData = async (value) => {
 
-        const cnpj = value.replace(/\D/g, '');
+    const fetchData = async (value) => {
+        const cnpj = value?.replace(/\D/g, '');
         try {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_FETCH_CNPJ}/${cnpj}`);
-            if (requestSuccessful(response.status)) {
+            if (requestSuccessful(response?.status)) {
                 const company = response?.data?.estabelecimento
                 storeCompany.updateCompany({
                     name: company?.nome_fantasia,

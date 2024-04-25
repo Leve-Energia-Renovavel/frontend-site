@@ -10,7 +10,7 @@ export default function NewSuccessContent() {
     const router = useRouter()
 
     const handleDashboard = () => {
-        router.push(`/dashboard`)
+        router.push(`/panel`)
     }
     return (
         <NewSuccessFormContent >

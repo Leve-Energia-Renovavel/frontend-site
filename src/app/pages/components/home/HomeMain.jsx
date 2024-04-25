@@ -39,7 +39,7 @@ export default function HomeMain() {
     const phoneRef = useRef()
     const cepRef = useRef()
 
-    const [validationErrors, setValidationErrors] = useState([]);
+    const [errors, setErrorMessage] = useState([]);
     const [notifications, setNotifications] = useState([])
 
     const handleSelect = (userType) => {
@@ -102,14 +102,15 @@ export default function HomeMain() {
 
             if (requestSuccessful(response?.status)) {
                 const uuid = response?.data?.uuid
+                setNotifications(["Simulação realizada com sucesso!"])
                 router.push(`/signup/?uuid=${uuid}`)
 
             } else {
-                setValidationErrors([response?.message])
+                setErrorMessage([response?.message])
             }
 
         } else {
-            setValidationErrors(["Nome inválido. Por favor, revise as informações"])
+            setErrorMessage(["Nome inválido. Por favor, revise as informações"])
         }
 
     }
@@ -247,7 +248,7 @@ export default function HomeMain() {
                             <Typography variant="subtitle1">{texts.forYourHouse}</Typography>
                             <ArrowCircleRightOutlinedIcon className='arrowIcon' />
                         </HomeSecondaryImagesContent>
-                        <HomeSecondaryImagesContent image={companyCardImage} onClick={() => handlePreSignup("Empresa")}>
+                        <HomeSecondaryImagesContent invertedBox={true} image={companyCardImage} onClick={() => handlePreSignup("Empresa")}>
                             <Typography variant="subtitle1">{texts.forYourCompany}</Typography>
                             <ArrowCircleRightOutlinedIcon className='arrowIcon' />
                         </HomeSecondaryImagesContent>
@@ -332,20 +333,20 @@ export default function HomeMain() {
             </Container >
 
             <>
-                {validationErrors.map((error, index) => {
+                {errors.map((error, index) => {
                     return (
                         <Snackbar
                             key={index}
-                            open={validationErrors.length >= 1}
+                            open={errors.length >= 1}
                             autoHideDuration={3000}
                             message={error}
                             anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-                            onClose={() => setValidationErrors([])}>
+                            onClose={() => setErrorMessage([])}>
                             <SnackbarMessageAlert
                                 sx={{ marginBottom: `${index * 5}rem` }}
                                 severity="error"
                                 variant="filled"
-                                onClose={() => setValidationErrors([])}
+                                onClose={() => setErrorMessage([])}
                             >
                                 {error}
                             </SnackbarMessageAlert>

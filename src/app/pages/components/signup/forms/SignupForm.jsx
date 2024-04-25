@@ -41,6 +41,7 @@ export default function SignupForm() {
   const { name, email, phone, cost, distributor, cpf, rg, companyName, cnpj } = user?.user ?? (store?.user || {})
   const { street, neighborhood, city, state, stateId, cityId, cep, installationNumber } = address?.address ?? (storeAddress?.address || {})
 
+  const [userCost, setUserCost] = useState(cost || null)
   const [isForeigner, setIsForeigner] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrorMessage] = useState([]);
@@ -52,6 +53,55 @@ export default function SignupForm() {
 
   const fetchCEP = useGetCEP();
   const fetchCNPJ = useGetCNPJ();
+
+  const handleChangeUserCost = (event) => {
+    var newCost = event.target.value
+
+    newCost = newCost.replace(/\D/g, '');
+
+    const integerPart = newCost.slice(0, -2);
+    const decimalPart = newCost.slice(-2);
+    newCost = integerPart + ',' + decimalPart;
+
+    setUserCost(newCost)
+  }
+
+  const handleGetCNPJ = async (cnpj) => {
+    if (cnpj !== "") {
+      setIsLoading(true)
+      console.log("Getting CEP data....")
+      try {
+        const response = await fetchCNPJ(cnpj)
+        if (requestSuccessful(response?.status)) {
+          console.log(response?.data)
+        }
+      } catch (error) {
+        // console.log("Error fetching CNPJ data: ", error)
+      } finally {
+        setIsLoading(false)
+      }
+    } else {
+      setErrorMessage(["Preencha o campo de CNPJ antes da busca"])
+    }
+  }
+  const handleGetCEP = async (cep) => {
+    if (cep !== "") {
+      setIsLoading(true)
+      console.log("Getting CEP data....")
+      try {
+        const response = await fetchCEP(cep)
+        if (requestSuccessful(response?.status)) {
+          console.log(response?.data)
+        }
+      } catch (error) {
+        // console.log("Error fetching CNPJ data: ", error)
+      } finally {
+        setIsLoading(false)
+      }
+    } else {
+      setErrorMessage(["Preencha o campo de CEP antes da busca"])
+    }
+  }
 
   const termsRefs = {
     dontGenerateEnergy: useRef(null),
@@ -245,6 +295,8 @@ export default function SignupForm() {
         }
 
         storeAddress.updateAddress(updatedAddress)
+
+        setNotificationMessage(["Cadastro realizado com sucesso!"])
         router.push(`/signup/contract-signature`)
 
       } else {
@@ -288,8 +340,11 @@ export default function SignupForm() {
                 <InputMask mask="99.999.999/9999-99" defaultValue={company.cnpj || cnpj || ''}>
                   {() => <FormInput className="inputForm" defaultValue={company.cnpj || cnpj || ''} inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text" required
                     InputProps={{
-                      endAdornment: <SearchIcon className="searchIcon"
-                        onClick={() => fetchCNPJ(companyRefs.cnpj.current.value)} />,
+                      endAdornment: !isLoading ? <SearchIcon className="searchIcon"
+                        onClick={() => handleGetCNPJ(companyRefs.cnpj.current.value)} /> :
+                        <Box>
+                          <CircularProgress className='formLoading' size={"25px"} />
+                        </Box>,
                     }} />}
                 </InputMask>
               </FormRow>)}
@@ -430,7 +485,7 @@ export default function SignupForm() {
               <FormInput
                 className="inputForm"
                 inputRef={userRefs.cost}
-                value={cost || ""}
+                value={userCost || cost || ""}
                 onChange={(event) => handleChangeUserCost(event)}
                 label="Custo Mensal em R$"
                 variant="outlined"
@@ -442,7 +497,7 @@ export default function SignupForm() {
 
               <InputMask mask="99999-999" value={cep || ""}
                 onChange={(e) => storeAddress.updateAddress({ cep: e.target.value })}
-                onBlur={(e) => fetchCEP(addressRefs.addressCep.current.value)}>
+                onBlur={(e) => handleGetCEP(addressRefs.addressCep.current.value)}>
                 {() => <FormInput
                   className="inputForm"
                   inputRef={addressRefs.addressCep}
@@ -453,7 +508,11 @@ export default function SignupForm() {
                   inputProps={{ inputMode: 'numeric' }}
                   InputLabelProps={{ shrink: true }}
                   InputProps={{
-                    endAdornment: <SearchIcon className="searchIcon" />,
+                    endAdornment: !isLoading ? <SearchIcon className="searchIcon"
+                      onClick={() => handleGetCNPJ(companyRefs.cnpj.current.value)} /> :
+                      <Box>
+                        <CircularProgress className='formLoading' size={"25px"} />
+                      </Box>,
                   }}
                   required />}
               </InputMask>

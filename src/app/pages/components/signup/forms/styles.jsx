@@ -232,7 +232,7 @@ export const FormInput = styled(TextField)`
     && {
         background-color: ${newBackground.orangeTranslucent}; 
     }
-    
+
     .MuiOutlinedInput-input {
         border: 2px solid transparent;
         border-radius: 15px;  
@@ -274,6 +274,10 @@ export const FormInput = styled(TextField)`
             &:hover{
                 cursor: pointer;
             }
+        }
+
+        .formLoading {
+            color: ${newBackground.orange};
         }
 `
 
