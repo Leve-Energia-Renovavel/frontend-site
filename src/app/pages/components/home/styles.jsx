@@ -273,6 +273,15 @@ export const HomeMainForm = styled.form`
       height: 42px;
       margin-bottom: 8px;
 
+      .MuiOutlinedInput-input {
+        
+        // styles for the user input text
+        font-family: "Graphie";
+        font-size: 17px;
+        font-weight: 700;
+        color: ${newBackground.orange};
+        }
+
         & label {
           font-family: "Graphie";
           font-weight: 500;

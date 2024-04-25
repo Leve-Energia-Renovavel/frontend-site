@@ -17,7 +17,7 @@ export const MobileNewHeaderContainer = styled.header`
     margin: 0 auto;
 
     height: 74px;
-    padding: 0 6rem;
+    padding: 0 4rem;
     
     position: fixed;
     top: 0;
@@ -25,9 +25,9 @@ export const MobileNewHeaderContainer = styled.header`
     right: 0; 
     z-index: 1000;
     
-    @media (min-width: 1500px) and (max-width: 1700px) {
-        padding: 0 0 0 6rem ;
-    }
+    /* @media (min-width: 1500px) and (max-width: 1700px) {
+        padding: 0 0 0 5rem ;
+    } */
     @media (max-width: 1100px) {
         padding: 0 30px;
     }

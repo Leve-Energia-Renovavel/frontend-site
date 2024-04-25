@@ -79,12 +79,13 @@ export const ContentContainer = styled.div`
     background-color: ${newBackground.white};
 
     gap: 1rem;
-
+    
     padding: 71px 202px 80px 202px;
     
     @media (max-width: 600px) {
         flex-wrap: wrap;
         padding: 35px 1rem;
+        gap: 2rem;
     }
 `
 export const TodayEconomyContainer = styled.div`
