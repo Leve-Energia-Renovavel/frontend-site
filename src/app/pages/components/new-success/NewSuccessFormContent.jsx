@@ -1,3 +1,5 @@
+"use client"
+
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { Typography } from '@mui/material';
 import Image from 'next/image';

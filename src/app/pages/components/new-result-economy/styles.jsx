@@ -14,6 +14,13 @@ export const SimulateContainer = styled.div`
     
     margin: 0 auto;
     padding: 1rem;
+    
+    width: 100%;
+    max-width: 100vw;
+    
+    @media (max-width: 600px) {
+        padding: 10px;
+    }
 `
 
 export const SimulateHeader = styled.div`
@@ -21,8 +28,6 @@ export const SimulateHeader = styled.div`
     flex-direction: row;
     align-items: center;
     background-color: ${newBackground.yellow};
-
-    gap: 10px;
 
     border-radius: 10px;
 
@@ -40,15 +45,34 @@ export const SimulateHeader = styled.div`
     h6 {
         font-family: "Graphie";
         font-size: 17px;
-        margin-left: 50px;
+        margin-left: 60px;
         font-weight: 500;
         color: ${newBackground.green};
-
+        
+        @media (max-width: 600px) {
+            margin: 10px 10px;
+            line-height: 17px;
+        }
     }
     .bold {
         font-weight: 600;
     }
+
+    @media (max-width: 600px) {
+        max-width: 100vw;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+    }
 `
+export const SimulateHeaderGoodNews = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 10px;
+`
+
 export const ContentContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -57,6 +81,11 @@ export const ContentContainer = styled.div`
     gap: 1rem;
 
     padding: 71px 202px 80px 202px;
+    
+    @media (max-width: 600px) {
+        flex-wrap: wrap;
+        padding: 35px 1rem;
+    }
 `
 export const TodayEconomyContainer = styled.div`
     display: flex;
@@ -196,6 +225,11 @@ export const LeveEconomySecondaryContentContainer = styled.div`
     gap: 30px;
 
     padding: 14px 34px;
+    
+    @media (max-width: 600px) {
+        align-items: center;
+        padding: 1rem 1rem;
+    }
 `
 export const LeveEconomySecondaryContent = styled.div`
     display: flex;
@@ -249,6 +283,10 @@ export const SimulateFooter = styled.div`
         font-size: 17px;
         font-weight: 300;
         color: ${newBackground.white};
+        
+        @media (max-width: 600px) {
+            line-height: 22px;
+        }
     }
     
     .underlined {
@@ -261,6 +299,20 @@ export const SimulateFooter = styled.div`
         text-decoration: underline;
         font-weight: 700;
         color: ${newBackground.yellow};
+        
+        @media (max-width: 600px) {
+            font-size: 27px;
+            white-space: nowrap;
+            display: block;
+            line-height: 20px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        flex-wrap: wrap;
+        text-align: center;
+        padding: 2rem;
+        margin-bottom: 1rem;
     }
 `
 
@@ -276,7 +328,6 @@ export const SimulationSlider = styled(Slider)`
     max-width: 300px;
 
     margin: 0 auto;
-
     
     & .MuiSlider-thumb {
         background-color: ${newBackground.yellow};

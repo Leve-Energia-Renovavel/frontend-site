@@ -10,10 +10,14 @@ export const ContractSignatureContainer = styled.div`
     margin: 74px auto 0 auto;   //margin-top for header
 
     padding: 74px 85px;
-
+    
     width: 100%;
     max-width: 100vw;
     height: auto;
+    
+    @media (max-width: 600px) {
+        padding: 50px;
+    }
 `
 export const ContractSignatureForm = styled.div`
     display: flex;
@@ -23,9 +27,16 @@ export const ContractSignatureForm = styled.div`
 
     gap: 10px;
 
-    width: 1196px;
-
+    width: 100%;
+    max-width: 1196px;
+    
     padding: 1rem;  //change later !!!!
+    
+    @media (max-width: 600px) {
+        border-radius: 0;
+        width: 100vw;
+        max-width: 100vw;
+    }
 
     .contractSignInfo {
         font-family: "Graphie";
@@ -44,7 +55,6 @@ export const ContractSignatureForm = styled.div`
 
         text-decoration: underline;
         background-color: ${newBackground.yellow};
-
     }
 `
 

@@ -5,7 +5,7 @@ import { Typography } from '@mui/material'
 import Image from 'next/image'
 import homeIcon from '../../../../resources/icons/small/local-home-icon-green-small.svg'
 import leveLogo from '../../../../resources/img/small/leve-logo-button-green-small.png'
-import { ContentContainer as Content, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomySecondaryContent, LeveEconomySecondaryContentContainer, PercentageIcon, SimulateContainer, SimulateFooter, SimulateHeader, SimulationContainer, SimulationSlider, TodayEconomy, TodayEconomyContainer, TodayEconomyContent } from './styles'
+import { ContentContainer as Content, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomySecondaryContent, LeveEconomySecondaryContentContainer, PercentageIcon, SimulateContainer, SimulateFooter, SimulateHeader, SimulateHeaderGoodNews, SimulationContainer, SimulationSlider, TodayEconomy, TodayEconomyContainer, TodayEconomyContent } from './styles'
 
 export default function NewResultEconomy() {
 
@@ -26,8 +26,10 @@ export default function NewResultEconomy() {
     return (
         <SimulateContainer>
             <SimulateHeader>
-                <Image src={homeIcon} className="homeIcon" alt={"Ícone local de casa"} loading="eager" priority={true} />
-                <Typography className='goodNews'>Boas notícias!</Typography>
+                <SimulateHeaderGoodNews>
+                    <Image src={homeIcon} className="homeIcon" alt={"Ícone local de casa"} loading="eager" priority={true} />
+                    <Typography className='goodNews'>Boas notícias!</Typography>
+                </SimulateHeaderGoodNews>
                 <Typography variant='subtitle1'><span className='bold'>A Leve já chegou na sua região!</span> Veja abaixo o resultado da sua economia:</Typography>
             </SimulateHeader>
 

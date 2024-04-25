@@ -125,6 +125,13 @@ export default function SignupForm() {
     }
   };
 
+  const handleScrollToForm = () => {
+    const element = document.getElementById('signupForm');
+    if (element) {
+      window.scrollTo({ top: element.offsetTop - 60, behavior: 'smooth' });
+    }
+  }
+
   const allChecked = () => {
     if (termsRefs.dontGenerateEnergy.current.checked &&
       termsRefs.dontContractSameService.current.checked &&
@@ -264,6 +271,7 @@ export default function SignupForm() {
         <FormTitleContainer>
           <Typography variant='h2'>Vamos começar a economizar com a Leve?</Typography>
           <FormTitleButton
+            onClick={() => handleScrollToForm()}
             endIcon={<ArrowDownwardIcon />}>Continuar</FormTitleButton>
         </FormTitleContainer>
         <SignupFormContentContainer>
@@ -457,7 +465,7 @@ export default function SignupForm() {
                 placeholder="Endereço"
                 type="text"
                 InputLabelProps={{ shrink: true }} required />
-                
+
               <InputMask mask="99999">
                 {() => <FormInput
                   className="inputForm"

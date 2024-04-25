@@ -1,5 +1,6 @@
 "use client"
 
+import dynamic from "next/dynamic";
 import ConfettiExplosion from "react-confetti-explosion";
 import { NewSuccessContainer as Container, NewSuccessForm, SignupLinearProgress } from "./styles";
 
@@ -21,6 +22,11 @@ export default function NewSuccessMain() {
                 <SignupLinearProgress variant="determinate" value={100} />
 
                 <NewSuccessFormContent />
+                <h1>churros</h1>
+                <h1>churros</h1>
+                <h1>churros</h1>
+                <h1>churros</h1>
+                <h1>churros</h1>
 
             </NewSuccessForm>
         </Container>
