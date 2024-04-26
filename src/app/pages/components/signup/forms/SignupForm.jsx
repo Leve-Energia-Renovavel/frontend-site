@@ -411,7 +411,14 @@ export default function SignupForm() {
                   />}
                 </InputMask>)}
               <InputMask mask="999.999.999-99" required defaultValue={store.user.cpf || cpf || ""}>
-                {() => <FormInput inputRef={userRefs.cpf} className="inputForm" label="CPF" variant="outlined" placeholder="CPF" type="text" required
+                {() => <FormInput inputRef={userRefs.cpf}
+                  className="inputForm"
+                  label="CPF"
+                  variant="outlined"
+                  placeholder="CPF"
+                  inputProps={{ inputMode: 'numeric' }}
+                  type="text"
+                  required
                   InputLabelProps={cpf || store.user.cpf ? { shrink: true } : {}} />}
               </InputMask>
 
