@@ -18,7 +18,6 @@ const useGetCEP = () => {
     const storeAddress = useStoreAddress();
 
     const fetchData = async (cep) => {
-
         console.log(`Getting from this CEP: ${cep}`)
         try {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, {

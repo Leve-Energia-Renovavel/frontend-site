@@ -175,6 +175,10 @@ export default function SignupForm() {
     }
   };
 
+  const handleNationalityChange = (value) => {
+    setIsForeigner(value === "estrangeira");
+  };
+
   const handleScrollToForm = () => {
     const element = document.getElementById('signupForm');
     if (element) {
@@ -446,6 +450,7 @@ export default function SignupForm() {
                 select
                 defaultValue={store.user.nationality ? store.user.nationality : ""}
                 inputRef={userRefs.nationality}
+                onChange={(event) => handleNationalityChange(event.target.value)}
                 className="inputForm"
                 label="Nacionalidade"
                 variant="outlined"
