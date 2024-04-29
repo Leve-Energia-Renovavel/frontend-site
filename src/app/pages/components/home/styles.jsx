@@ -900,10 +900,17 @@ export const HomeFourthSectionIcon = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: end;
+    
+    @media (max-width: 600px) {
+      flex-direction: column;
+      justify-content: start;
+    }
 
     .titleIcon {
       width: 65px;
       height: auto;
+
+      object-fit: contain;
       
       @media (max-width: 600px) {
         width: 50px;
