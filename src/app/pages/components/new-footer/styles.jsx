@@ -99,8 +99,6 @@ export const FooterSecondaryContainer = styled.div`
 
     overflow: hidden;
 
-
-
     @media (max-width: 600px) {
         background-image: url(${props => props.image.src});
         background-repeat: no-repeat;
@@ -122,7 +120,7 @@ export const FooterSecondaryContainer = styled.div`
     }
 
     .leveLogoImage {
-        width:253px; 
+        width:250px; 
         height:auto;
 
         @media (max-width: 600px) {

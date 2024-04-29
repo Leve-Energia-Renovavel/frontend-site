@@ -273,6 +273,10 @@ export const HomeMainForm = styled.form`
       height: 42px;
       margin-bottom: 8px;
 
+      .MuiInputBase-input {
+        display: none;
+      }
+
       .MuiOutlinedInput-input {
         
         // styles for the user input text

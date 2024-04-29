@@ -19,7 +19,7 @@ export const metadata = {
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
+  maximumScale: 5,
   userScalable: 0,
   colorScheme: 'light',
 }
@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
   return (
     <>
       <html lang="pt-BR">
-        <body suppressHydrationWarning={true}>
+        <body>
           <Header />
           {children}
           <WhatsAppFAB />
