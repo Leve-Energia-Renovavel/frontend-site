@@ -131,7 +131,7 @@ export default function NewLoginModal({ isOpen, openModal, closeModal }) {
                 slotProps={{
                     backdrop: {
                         sx: {
-                            backgroundColor: 'rgba(57, 67, 212, 0.4)',
+                            backgroundColor: 'rgba(0, 0, 0, 0.4)',
                         },
                     },
                 }}
@@ -151,7 +151,7 @@ export default function NewLoginModal({ isOpen, openModal, closeModal }) {
                         </div>
                     </LoginIconContainer>
                     <LoginTitleContainer>
-                        <Image className="logoLeve" loading="lazy"  src={leveLogo} alt="Ícone de formulário para completar o cadastro" />
+                        <Image className="logoLeve" loading="lazy" src={leveLogo} alt="Ícone de formulário para completar o cadastro" />
                         {!forgotPassword ? <h1>Entrar</h1> : <h1>Recuperar minha senha</h1>}
                     </LoginTitleContainer>
                     <LoginContentContainer>

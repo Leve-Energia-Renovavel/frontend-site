@@ -9,7 +9,7 @@ export const maritalStatusOptions = [
     },
     {
         label: "Viúvo(a)",
-        value: "viuvo",
+        value: "viúvo",
     },
 ]
 

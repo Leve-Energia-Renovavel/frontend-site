@@ -278,6 +278,8 @@ export const HomeMainForm = styled.form`
         // styles for the user input text
         font-family: "Graphie";
         font-size: 17px;
+        height: 0.4375em;
+        padding: 20px 14px;
         font-weight: 700;
         color: ${newBackground.orange};
         }
@@ -288,10 +290,9 @@ export const HomeMainForm = styled.form`
           font-size: 14px;
           color:  ${newBackground.orange};
         }
-        
-        &:focus-within label,
-        & input:focus + label {
-            margin-top: 8px;
+
+        & .MuiFormLabel-root-MuiInputLabel-root {
+          top: 10px;
         }
         
         & .MuiOutlinedInput-root {

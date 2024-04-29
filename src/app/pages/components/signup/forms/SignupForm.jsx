@@ -4,6 +4,7 @@
 import { useStoreAddress, useStoreCompany, useStoreUser } from '@/app/hooks/useStore';
 import useGetCEP from '@/app/hooks/utils/useGetCEP';
 import useGetCNPJ from '@/app/hooks/utils/useGetCNPJ';
+import InstallationNumberModal from '@/app/register/modals/installation-number-modal/InstallationNumberModal';
 import { signUp } from '@/app/service/user-service/UserService';
 import { hasToSignContract, requestSuccessful } from '@/app/service/utils/Validations';
 import { findCityIdByName } from '@/app/service/utils/addressUtilsService';
@@ -43,6 +44,7 @@ export default function SignupForm() {
 
   const [userCost, setUserCost] = useState(cost || null)
   const [isForeigner, setIsForeigner] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrorMessage] = useState([]);
   const [notifications, setNotificationMessage] = useState([])
@@ -103,6 +105,10 @@ export default function SignupForm() {
     }
   }
 
+  const closeModal = () => {
+    setIsModalOpen(false)
+}
+
   const termsRefs = {
     dontGenerateEnergy: useRef(null),
     dontContractSameService: useRef(null),
@@ -146,11 +152,6 @@ export default function SignupForm() {
     const newStateId = value
     const newStateUf = stateOptions[value].sigla
     storeAddress.updateAddress({ stateId: newStateId, state: newStateUf })
-  }
-  const handleTests = () => {
-    console.log("user ===>", user.user)
-    console.log("address ===>", address.address)
-    console.log("stateValue ===>>>", stateValue)
   }
 
   const handleClickFiles = (fileType) => {
@@ -597,8 +598,8 @@ export default function SignupForm() {
                 variant="outlined"
                 placeholder={`Número de Instalação`}
                 type="text"
-                required />
-              <InstallationNumberDisclaimer>
+                />
+              <InstallationNumberDisclaimer onClick={() => setIsModalOpen(true)}>
                 <InfoIcon className='infoIcon' />
                 <Typography className='installationNumberDisclaimer'><span className='underlined'>Encontre este número</span> no canto superior direito de sua fatura atual.</Typography>
               </InstallationNumberDisclaimer>
@@ -669,10 +670,11 @@ export default function SignupForm() {
                   form='signupForm'
                   endIcon={<ArrowForwardIcon />}>Continuar</FormSubmitButton>}
             </FormButtonContainer>
-            {/* <button onClick={() => handleTests()}>testes</button> */}
           </FormFooter>
 
         </SignupFormContentContainer>
+        {isModalOpen && <InstallationNumberModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={distributor ? distributor.toLowerCase() : ""} />}
+
       </Container >
       <>
         {errors.map((error, index) => {

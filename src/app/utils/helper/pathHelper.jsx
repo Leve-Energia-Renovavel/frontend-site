@@ -13,25 +13,10 @@ export const pathHelper = {
     '/connection/': true,
 }
 
-export const helperToPath = {
-    '/': "na+home+da",
-    '/home/': "na+home+da",
-    '/signup/': "na+tela+de+cadastro+da",
-    '/register/': "no+cadastro+da",
-    '/login/': "no+login+da",
-    '/dashboard/': "no+painel+da",
-    '/profile/': "no+meu+perfil+da",
-    '/invoices/': "na+pagina+de+faturas+da",
-    '/installations/': "na+pagina+de+enderecos+da",
-    '/fail/out-of-range/': "na+pagina+de+fora+da+regiao+de+cobertura+da",
-    '/fail/low-cost/': "na+pagina+de+baixo+custo+da",
-    '/connection/': "na+pagina+de+conexao+do+perfil+da",
-}
-
 export const headerHelper = {
-    '/': "newhomedesktop",
-    '/home/': "newhomedesktop",
-    '/signup/': "newhomedesktop",
+    '/': false,
+    '/home/': false,
+    '/signup/': false,
     '/register/': false,
     '/dashboard/': true,
     '/dashboard/profile/': true,
@@ -47,7 +32,7 @@ export const newHeaderHelper = {
     '/home/': true,
     '/signup/': true,
     '/register/': false,
-    '/dashboard/': false,
+    '/dashboard/': true,
     '/dashboard/profile/': false,
     '/dashboard/invoices/': false,
     '/dashboard/installations/': false,
