@@ -44,11 +44,11 @@ export default function NewFooter() {
               )
             })}
           </FooterSocialMediaContainer>
-          <Image src={logoLeve} className="leveLogoImage" alt={"Logo da Leve Energia Renovável"} loading="eager" priority={true} />
+          <Image src={logoLeve} className="leveLogoImage" alt={"Logo da Leve Energia Renovável"} priority  />
           <Typography variant="h6">{texts.rights}</Typography>
 
           <MyNiceDiv>
-            <Image src={sunImage} className='sunImage' alt={"Imagem de um sol se pondo, ao fundo do logo da Leve"} loading="eager" priority={true} />
+            <Image src={sunImage} className='sunImage' alt={"Imagem de um sol se pondo, ao fundo do logo da Leve"} loading="lazy" />
           </MyNiceDiv>
         </FooterSecondaryContainer>
       </Container>

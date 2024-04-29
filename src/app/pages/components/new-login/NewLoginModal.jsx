@@ -151,7 +151,7 @@ export default function NewLoginModal({ isOpen, openModal, closeModal }) {
                         </div>
                     </LoginIconContainer>
                     <LoginTitleContainer>
-                        <Image className="logoLeve" loading="eager" priority={true} src={leveLogo} alt="Ícone de formulário para completar o cadastro" />
+                        <Image className="logoLeve" loading="lazy"  src={leveLogo} alt="Ícone de formulário para completar o cadastro" />
                         {!forgotPassword ? <h1>Entrar</h1> : <h1>Recuperar minha senha</h1>}
                     </LoginTitleContainer>
                     <LoginContentContainer>

@@ -11,7 +11,7 @@ export default function BoxesContainer() {
                 return (
                     <Box color={box.backgroundColor} descriptionColor={box.descriptionColor} key={box.description}>
                         <BoxTitle titleColor={box.titleColor} >
-                            <Image src={box.icon} className="titleIcon" alt={box.description} loading="eager" priority={true} />
+                            <Image src={box.icon} className="titleIcon" alt={box.description} loading="lazy" />
                             <Typography variant="subtitle1">{box.title}</Typography>
                         </BoxTitle>
                         <Typography variant="subtitle1" className='boxDescription'>{box.description}</Typography>

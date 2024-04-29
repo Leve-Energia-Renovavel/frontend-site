@@ -8,7 +8,7 @@ import { CircularProgress } from "@mui/material";
 export default function LoadingMain() {
     return (
         <LoadingContainer>
-            {/* <Image className="logoLeve" loading="eager" priority={true} src={leveLogo} alt="Ícone de formulário para completar o cadastro" /> */}
+            {/* <Image className="logoLeve" loading="lazy"  src={leveLogo} alt="Ícone de formulário para completar o cadastro" /> */}
             <CircularProgress className="circularProgress" />
             <h1>Carregando...</h1>
         </LoadingContainer>

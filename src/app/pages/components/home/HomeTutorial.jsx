@@ -18,7 +18,7 @@ export default function TutorialContainer() {
                     return (
                         <Card key={index}>
                             <CardIcon>
-                                <Image src={card.icon} className="titleIcon" alt={card.description} loading="eager" priority={true} />
+                                <Image src={card.icon} className="titleIcon" alt={card.description} loading="lazy"  />
                             </CardIcon>
                             <div className='invisible'>
                                 <CardTitle>

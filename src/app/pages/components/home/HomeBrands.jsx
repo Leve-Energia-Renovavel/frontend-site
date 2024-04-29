@@ -17,7 +17,7 @@ export default function BrandsContainer() {
                 {brands.map((brand, index) => {
                     return (
                         <Card key={brand.company}>
-                            <Image src={brand.logo} alt={brand.company} className='brandLogo' loading="eager" priority={true} />
+                            <Image src={brand.logo} alt={brand.company} className='brandLogo' loading="lazy"  />
                         </Card>
                     )
                 })}

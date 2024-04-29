@@ -14,8 +14,8 @@ export default function NewHeader({ isOpen, openModal, closeModal }) {
 
     return (
         <MobileNewHeaderContainer>
-            <Image src={logoLeve} onClick={() => handleRedirect()} className='logoLeve' alt={"Logo da Leve na cor laranja"} loading="eager" priority={true} />
-            <Image src={perfilLeve} className='profile' alt={"Perfil Leve"} onClick={openModal} loading="eager" priority={true} />
+            <Image src={logoLeve} onClick={() => handleRedirect()} className='logoLeve' alt={"Logo da Leve na cor laranja"} priority />
+            <Image src={perfilLeve} className='profile' alt={"Perfil Leve"} onClick={openModal} loading="lazy"  />
         </MobileNewHeaderContainer>
     )
 }

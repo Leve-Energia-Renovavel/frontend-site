@@ -14,7 +14,7 @@ export default function HomeSoleBanner() {
             </HomeThirdSectionTitleContainer>
             <div className='rowToBeReversed'>
                 <HomeThirdSectionSoleContainer >
-                    <Image src={soleImage} className="sole" alt={"Imagem de Sole, personagem da Leve, carregando uma placa solar"} loading="eager" priority={true} />
+                    <Image src={soleImage} className="sole" alt={"Imagem de Sole, personagem da Leve, carregando uma placa solar"} loading="lazy"  />
                 </HomeThirdSectionSoleContainer>
                 <HomeThirdSectionSubTitle >
                     <Typography variant="subtitle1" className='sectionSubtitle'>{texts.simpleFastFree}</Typography>

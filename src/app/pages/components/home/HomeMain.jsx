@@ -27,6 +27,7 @@ const HomeEconomyBanner = dynamic(() => import('./HomeEconomyBanner'), { ssr: fa
 const HomeSoleBanner = dynamic(() => import('./HomeSoleBanner'), { ssr: false });
 const TutorialContainer = dynamic(() => import('./HomeTutorial'), { ssr: false });
 
+
 export default function HomeMain() {
 
     const router = useRouter()
@@ -118,6 +119,7 @@ export default function HomeMain() {
 
     const texts = infoJson
 
+
     return (
         <>
             <Container>
@@ -137,7 +139,7 @@ export default function HomeMain() {
                         <FormContainer>
                             <Form id='leadForm' onSubmit={handleSubmit}>
                                 <FormTitleContainer>
-                                    <Image src={economyIcon} className='economyIcon' alt={"Logo Leve"} loading="eager" priority={true} />
+                                    <Image src={economyIcon} className='economyIcon' alt={"Logo Leve"} priority  />
                                     <Typography variant="h2">{texts.simulate}</Typography>
                                 </FormTitleContainer>
                                 <Typography variant="body1">{texts.in}<span className="highlighted">{texts.threeClicks}</span>{texts.guarantee}<span className="highlighted">{texts.solarEnergy}</span>{texts.reduceInvoices}</Typography>

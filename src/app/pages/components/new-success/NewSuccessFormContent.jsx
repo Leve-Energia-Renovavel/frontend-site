@@ -16,8 +16,8 @@ export default function NewSuccessContent() {
         <NewSuccessFormContent >
             <Image
                 className='checkIcon'
-                loading="eager"
-                priority={true}
+                loading="lazy"
+                
                 src={checkIcon}
                 alt="Assinaturas feitas com sucesso!"
             />

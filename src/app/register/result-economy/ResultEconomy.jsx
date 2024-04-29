@@ -51,7 +51,7 @@ export default function ResultEconomy() {
             <Content>
                 <Banner>
                     <LeveMonthlyDiscount>
-                        <Image src={icon} alt='ícone de porcentagem de desconto da Leve' loading="eager" priority={true} />
+                        <Image src={icon} alt='ícone de porcentagem de desconto da Leve' loading="lazy"  />
                         <Typography variant="h1">Tenha {discount}% de desconto todo mês!</Typography>
                     </LeveMonthlyDiscount>
                     <Typography variant="subtitle1">Em 1 ano com a Leve a sua {location} economizará</Typography>
@@ -69,7 +69,7 @@ export default function ResultEconomy() {
 
                 <ResultEconomyDiscountGraph>
                     <Typography variant="subtitle1">Para entender: </Typography>
-                    <Image src={graphic} alt='desconto da Leve em um grafico explicativo' className='discountGraph' loading="eager" priority={true} />
+                    <Image src={graphic} alt='desconto da Leve em um grafico explicativo' className='discountGraph' loading="lazy"  />
                 </ResultEconomyDiscountGraph>
             </Content>
         </Container>

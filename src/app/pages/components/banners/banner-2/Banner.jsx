@@ -28,7 +28,7 @@ export default function Banner() {
             <RightContentContainer>
                 <StepContent>
                     <Image
-                        loading="eager" priority={true}
+                        loading="lazy" 
                         src={icon1} alt="Ícone de porcentagem para simular a economia de casa" />
                     <StepTitle>
                         <Typography variant="subtitle1" className="stepTitle">Passo 1</Typography>
@@ -36,21 +36,21 @@ export default function Banner() {
                     </StepTitle>
                 </StepContent>
                 <StepContent>
-                    <Image loading="eager" priority={true} src={icon2} alt="Ícone de formulário para completar o cadastro" />
+                    <Image loading="lazy"  src={icon2} alt="Ícone de formulário para completar o cadastro" />
                     <StepTitle>
                         <Typography variant="subtitle1" className="stepTitle">Passo 2</Typography>
                         <Typography variant="subtitle1" className="yellowSubtitle">Complete o cadastro</Typography>
                     </StepTitle>
                 </StepContent>
                 <StepContent>
-                    <Image loading="eager" priority={true} src={icon3} alt="Ícone de assinatura para assinar o contrato" />
+                    <Image loading="lazy"  src={icon3} alt="Ícone de assinatura para assinar o contrato" />
                     <StepTitle>
                         <Typography variant="subtitle1" className="stepTitle">Passo 3</Typography>
                         <Typography variant="subtitle1" className="yellowSubtitle">Assine o contrato</Typography>
                     </StepTitle>
                 </StepContent>
                 <StepContent>
-                    <Image loading="eager" priority={true} src={icon4} alt="Ícone de documento para completar o cadastro com uma selfie com os documentos em mãos" />
+                    <Image loading="lazy"  src={icon4} alt="Ícone de documento para completar o cadastro com uma selfie com os documentos em mãos" />
                     <StepTitle>
                         <Typography variant="subtitle1" className="whiteSubtitle">Precisaremos de uma selfie com seus documentos em mãos ao lado do seu sorriso</Typography>
                     </StepTitle>
