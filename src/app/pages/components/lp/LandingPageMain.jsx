@@ -10,6 +10,9 @@ import InputMask from "react-input-mask";
 import infoJson from '../../../../../public/home-info.json';
 import economyIcon from "../../../../resources/icons/small/economy-icon-small.png";
 import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.webp";
+import BrandsContainer from '../home/HomeBrands';
+import TutorialContainer from '../home/HomeTutorial';
+import BoxesContainer from './LandingPageBoxes';
 import { LandingPageContainer as Container, LandingPageContent as Content, LandingPageForm as Form, FormButton, LandingMainFormContainer as FormContainer, FormSlider, FormTitleContainer, LandingPageFormContainer, LandingPageFormSimulationContainer, Loading, LandingPageBanner as MainBanner, LandingPageMainContent as MainContent, LandingPageMainTitle as MainTitle, FormSelect as Select, LandingSubtitleContainer as SubtitleContainer, LandingPageTitleContainer as TitleContainer, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 
 export default function LandingPageMain() {
@@ -147,6 +150,13 @@ export default function LandingPageMain() {
                         <Typography className='privacyPolicyDisclaimer'>Ao informar seu e-mail, você concorda em receber e-mails da Leve Energia Renovável e aceita nossa <span className='privacyPolicy'>Política de Privacidade</span>.</Typography>
                     </LandingPageFormContainer>
                 </MainBanner>
+
+                <BoxesContainer />
+
+                <TutorialContainer />
+
+                <BrandsContainer />
+
             </Container>
         </>
     )
