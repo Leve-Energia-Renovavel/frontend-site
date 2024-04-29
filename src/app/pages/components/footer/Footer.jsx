@@ -33,7 +33,7 @@ export default function Footer() {
                 <FooterContainer>
                     <LogoContainer>
                         <Image
-                            loading="lazy" 
+                            loading="lazy"
                             src={logo}
                             alt="Leve Energia Logo"
                         />
