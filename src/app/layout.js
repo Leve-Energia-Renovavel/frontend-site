@@ -20,7 +20,7 @@ export const viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  userScalable: 0,
+  userScalable: 1,
   colorScheme: 'light',
 }
 
@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
 
   return (
     <>
-      <html lang="pt-BR">
+      <html lang="pt-BR" suppressHydrationWarning={true}>
         <body>
           <Header />
           {children}

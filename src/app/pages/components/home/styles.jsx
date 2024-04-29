@@ -906,11 +906,11 @@ export const HomeFourthSectionIcon = styled.div`
 
     .titleIcon {
       width: 65px;
-      height: 65px;
+      height: auto;
       
       @media (max-width: 600px) {
         width: 50px;
-        height: 50px;
+        height: auto;
       }
     }
 `

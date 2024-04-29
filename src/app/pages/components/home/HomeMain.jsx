@@ -139,7 +139,7 @@ export default function HomeMain() {
                         <FormContainer>
                             <Form id='leadForm' onSubmit={handleSubmit}>
                                 <FormTitleContainer>
-                                    <Image src={economyIcon} className='economyIcon' alt={"Logo Leve"} priority  />
+                                    <Image src={economyIcon} className='economyIcon' alt={"Logo Leve"} priority />
                                     <Typography variant="h2">{texts.simulate}</Typography>
                                 </FormTitleContainer>
                                 <Typography variant="body1">{texts.in}<span className="highlighted">{texts.threeClicks}</span>{texts.guarantee}<span className="highlighted">{texts.solarEnergy}</span>{texts.reduceInvoices}</Typography>
@@ -218,7 +218,9 @@ export default function HomeMain() {
                                     defaultValue={150}
                                     min={150}
                                     max={3000}
-                                    valueLabelDisplay="off" />
+                                    valueLabelDisplay="off"
+                                    aria-labelledby="simulationSlider"
+                                />
                             </HomeMainFormSimulationContainer>
                         </FormContainer>
                         <FormButton
