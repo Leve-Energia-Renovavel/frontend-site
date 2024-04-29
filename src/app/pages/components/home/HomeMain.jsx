@@ -15,9 +15,9 @@ import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import infoJson from '../../../../../public/home-info.json';
 import economyIcon from "../../../../resources/icons/small/economy-icon-small.png";
-import companyCardImage from "../../../../resources/img/large/leve-confraternizacao-image-large.png";
-import homeCardImage from "../../../../resources/img/large/leve-familia-brincando-image-large.png";
-import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.png";
+import companyCardImage from "../../../../resources/img/large/leve-confraternizacao-image-large.webp";
+import homeCardImage from "../../../../resources/img/large/leve-familia-brincando-image-large.webp";
+import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.webp";
 import { leadSchema } from './schema';
 import { ButtonSimulateYourEconomy, HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeContent, HomeFormContainer, HomeFourthSectionContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeMainTitleContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeSubtitleContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 
