@@ -1,34 +1,35 @@
 "use client"
 
-import { useStoreUser } from '@/app/hooks/useStore';
 import { startSignUp } from '@/app/service/lead-service/LeadService';
 import { requestSuccessful } from '@/app/service/utils/Validations';
-import { brands, homeBoxes, homeTutorialCards } from '@/app/utils/helper/homeBoxesHelper';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
 import { Snackbar, TextField, Typography } from "@mui/material";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import infoJson from '../../../../../public/home-info.json';
-import soleImage from "../../../../resources/icons/large/sole-icon-large.png";
 import economyIcon from "../../../../resources/icons/small/economy-icon-small.png";
 import companyCardImage from "../../../../resources/img/large/leve-confraternizacao-image-large.png";
 import homeCardImage from "../../../../resources/img/large/leve-familia-brincando-image-large.png";
 import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.png";
-import secondBannerImage from "../../../../resources/img/large/leve-pai-e-filho-image-large.png";
 import { leadSchema } from './schema';
-import { ButtonSimulateYourEconomy, HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeContent, HomeFifthSectionBanner, HomeFifthSectionBannerContainer, HomeFifthSectionContainer, HomeFifthSectionContentContainer, HomeFifthSectionDescriptionContainer, HomeFifthSectionTitleContainer, HomeFormContainer, HomeFourthSectionCard, HomeFourthSectionCardContainer, HomeFourthSectionContainer, HomeFourthSectionDescription, HomeFourthSectionIcon, HomeFourthSectionTitle, HomeFourthSectionTitleContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeMainTitleContainer, HomeSecondaryBoxContent, HomeSecondaryBoxTitle, HomeSecondaryBoxesContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeSixthSectionCard, HomeSixthSectionCardContainer, HomeSixthSectionContainer, HomeSixthSectionTitleContainer, HomeSubtitleContainer, HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionSubTitle, HomeThirdSectionTitleContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
+import { ButtonSimulateYourEconomy, HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeContent, HomeFormContainer, HomeFourthSectionContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeMainTitleContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeSubtitleContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 
+const BoxesContainer = dynamic(() => import('./HomeBoxes'), { ssr: false });
+const BrandsContainer = dynamic(() => import('./HomeBrands'), { ssr: false });
+const HomeEconomyBanner = dynamic(() => import('./HomeEconomyBanner'), { ssr: false });
+const HomeSoleBanner = dynamic(() => import('./HomeSoleBanner'), { ssr: false });
+const TutorialContainer = dynamic(() => import('./HomeTutorial'), { ssr: false });
 
 export default function HomeMain() {
 
     const router = useRouter()
-    const store = useStoreUser()
 
     const [isLoading, setLoading] = useState(false)
     const [simulationCost, setSimulationCost] = useState(150)
@@ -143,8 +144,8 @@ export default function HomeMain() {
                                 <TextField
                                     inputRef={nameRef}
                                     className="homeFormInput"
-                                    label={`Nome Completo`}
-                                    placeholder={`Nome Completo`}
+                                    label={`Nome Completo ${selectedUserType === 'Empresa' ? "do Responsável" : ""}`}
+                                    placeholder={`Nome Completo ${selectedUserType === 'Empresa' ? "do Responsável" : ""}`}
                                     variant="outlined"
                                     type="text"
                                     disabled={isLoading}
@@ -167,8 +168,8 @@ export default function HomeMain() {
                                 <TextField
                                     className="homeFormInput"
                                     inputRef={emailRef}
-                                    label={`E-mail`}
-                                    placeholder={`E-mail`}
+                                    label={`E-mail ${selectedUserType === 'Empresa' ? "do Responsável" : ""}`}
+                                    placeholder={`E-mail ${selectedUserType === 'Empresa' ? "do Responsável" : ""}`}
                                     variant="outlined"
                                     type="text"
                                     disabled={isLoading}
@@ -229,20 +230,7 @@ export default function HomeMain() {
                 </HomeBanner>
 
                 <HomeSecondarySectionContainer>
-                    <HomeSecondaryBoxesContainer>
-                        {homeBoxes.map((box) => {
-                            return (
-                                <HomeSecondaryBoxContent color={box.backgroundColor} descriptionColor={box.descriptionColor} key={box.description}>
-                                    <HomeSecondaryBoxTitle titleColor={box.titleColor} >
-                                        <Image src={box.icon} className="titleIcon" alt={box.description} loading="eager" priority={true} />
-                                        <Typography variant="subtitle1">{box.title}</Typography>
-                                    </HomeSecondaryBoxTitle>
-                                    <Typography variant="subtitle1" className='boxDescription'>{box.description}</Typography>
-                                </HomeSecondaryBoxContent>
-                            )
-                        })}
-                    </HomeSecondaryBoxesContainer>
-
+                    <BoxesContainer />
                     <HomeSecondaryImagesContainer >
                         <HomeSecondaryImagesContent image={homeCardImage} onClick={() => handlePreSignup("Residencia")} >
                             <Typography variant="subtitle1">{texts.forYourHouse}</Typography>
@@ -255,81 +243,19 @@ export default function HomeMain() {
                     </HomeSecondaryImagesContainer>
                 </HomeSecondarySectionContainer>
 
-                <HomeThirdSectionContainer>
-                    <HomeThirdSectionTitleContainer >
-                        <Typography variant="subtitle1" className='sectionTitle'>{texts.accession}<span className='highlighted'>{texts.hundredDigital}</span>{texts.guarantee}<span className='highlighted'>{texts.solarEnergy}</span>{texts.houseOrBusiness}</Typography>
-                    </HomeThirdSectionTitleContainer>
-                    <div className='rowToBeReversed'>
-                        <HomeThirdSectionSoleContainer >
-                            <Image src={soleImage} className="sole" alt={"Imagem de Sole, personagem da Leve, carregando uma placa solar"} loading="eager" priority={true} />
-                        </HomeThirdSectionSoleContainer>
-                        <HomeThirdSectionSubTitle >
-                            <Typography variant="subtitle1" className='sectionSubtitle'>{texts.simpleFastFree}</Typography>
-                        </HomeThirdSectionSubTitle>
-                    </div>
-                </HomeThirdSectionContainer>
+                <HomeSoleBanner />
 
                 <HomeFourthSectionContainer id="howLeveWorks">
-                    <HomeFourthSectionTitleContainer>
-                        <Typography variant="subtitle1" className='sectionTitle'>{texts.howItWorks}</Typography>
-                    </HomeFourthSectionTitleContainer>
-
-                    <HomeFourthSectionCardContainer >
-                        {homeTutorialCards.map((card, index) => {
-                            return (
-                                <HomeFourthSectionCard key={index}>
-                                    <HomeFourthSectionIcon>
-                                        <Image src={card.icon} className="titleIcon" alt={card.description} loading="eager" priority={true} />
-                                    </HomeFourthSectionIcon>
-                                    <div className='invisible'>
-                                        <HomeFourthSectionTitle>
-                                            <Typography variant="subtitle1" className='cardTitle'>{`${index + 1}.`}</Typography>
-                                        </HomeFourthSectionTitle>
-                                        <HomeFourthSectionDescription>
-                                            <Typography variant="subtitle1" className='cardDescription'>{card.description}</Typography>
-                                        </HomeFourthSectionDescription>
-                                    </div>
-                                </HomeFourthSectionCard>
-                            )
-                        })}
-                    </HomeFourthSectionCardContainer>
-
+                    <TutorialContainer />
                     <ButtonSimulateYourEconomy onClick={() => handlePreSignup()}>
                         <span>{texts.simulateYourEconomy}</span>
                     </ButtonSimulateYourEconomy>
                 </HomeFourthSectionContainer>
 
-                <HomeFifthSectionContainer>
-                    <HomeFifthSectionBannerContainer>
-                        <HomeFifthSectionBanner image={secondBannerImage} />
-                    </HomeFifthSectionBannerContainer>
-                    <HomeFifthSectionContentContainer>
-                        <HomeFifthSectionTitleContainer>
-                            <Typography variant="subtitle1" className='sectionTitle'>{texts.weBelieve}</Typography>
-                        </HomeFifthSectionTitleContainer>
-                        <HomeFifthSectionDescriptionContainer>
-                            <Typography variant="subtitle1" className='sectionDescription'>{texts.moreToKnow}<ArrowForwardIcon /></Typography>
-                        </HomeFifthSectionDescriptionContainer>
-                    </HomeFifthSectionContentContainer>
-                </HomeFifthSectionContainer>
+                <HomeEconomyBanner />
 
+                <BrandsContainer />
 
-                <HomeSixthSectionContainer>
-                    <HomeSixthSectionTitleContainer>
-                        <Typography variant="subtitle1" className='sectionTitle'>{texts.brandsThatTrust}</Typography>
-                    </HomeSixthSectionTitleContainer>
-
-                    <HomeSixthSectionCardContainer >
-                        {brands.map((brand, index) => {
-                            return (
-                                <HomeSixthSectionCard key={brand.company}>
-                                    <Image src={brand.logo} alt={brand.company} className='brandLogo' loading="eager" priority={true} />
-                                </HomeSixthSectionCard>
-                            )
-                        })}
-
-                    </HomeSixthSectionCardContainer>
-                </HomeSixthSectionContainer>
             </Container >
 
             <>
