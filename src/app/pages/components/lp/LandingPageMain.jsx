@@ -9,7 +9,7 @@ import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import infoJson from '../../../../../public/home-info.json';
 import economyIcon from "../../../../resources/icons/small/economy-icon-small.png";
-import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.png";
+import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.webp";
 import { LandingPageContainer as Container, LandingPageContent as Content, LandingPageForm as Form, FormButton, LandingMainFormContainer as FormContainer, FormSlider, FormTitleContainer, LandingPageFormContainer, LandingPageFormSimulationContainer, Loading, LandingPageBanner as MainBanner, LandingPageMainContent as MainContent, LandingPageMainTitle as MainTitle, FormSelect as Select, LandingSubtitleContainer as SubtitleContainer, LandingPageTitleContainer as TitleContainer, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 
 export default function LandingPageMain() {
