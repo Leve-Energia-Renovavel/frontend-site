@@ -273,8 +273,12 @@ export const HomeMainForm = styled.form`
       height: 42px;
       margin-bottom: 8px;
 
+      & .MuiInputLabel-shrink {
+        /* Styles for the focused label */
+        line-height: 2.4375em; 
+      }
+
       .MuiOutlinedInput-input {
-        
         // styles for the user input text
         font-family: "Graphie";
         font-size: 17px;
@@ -293,7 +297,7 @@ export const HomeMainForm = styled.form`
         }
 
         & .MuiFormLabel-root-MuiInputLabel-root {
-          top: 10px;
+          line-height: 2.4375em;
         }
         
         & .MuiOutlinedInput-root {
