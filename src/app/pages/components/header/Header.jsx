@@ -5,6 +5,7 @@ import { headerHelper } from '@/app/utils/helper/pathHelper';
 import dynamic from 'next/dynamic';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+
 import NewHeader from '../new-header/NewHeader';
 import NewLoginModal from '../new-login/NewLoginModal';
 

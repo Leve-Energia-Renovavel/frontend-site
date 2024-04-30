@@ -1,5 +1,7 @@
+import { GoogleTagManager } from '@next/third-parties/google';
 import dynamic from "next/dynamic";
 import "./globals.css";
+
 
 const Header = dynamic(() => import("./pages/components/header/Header"), { ssr: false });
 const NewFooter = dynamic(() => import("./pages/components/new-footer/NewFooter"), { ssr: false });
@@ -29,9 +31,10 @@ export default function RootLayout({ children }) {
     <>
       <html lang="pt-BR" suppressHydrationWarning={true}>
         <body>
-          <Header />
-          {children}
-          <NewFooter />
+        <GoogleTagManager gtmId="GTM-TTH843C" />
+            <Header />
+            {children}
+            <NewFooter />
         </body>
       </html>
     </>
