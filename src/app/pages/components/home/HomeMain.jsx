@@ -5,7 +5,7 @@ import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOu
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
-import { Snackbar, TextField, Typography } from "@mui/material";
+import { Snackbar, TextField } from "@mui/material";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
@@ -109,9 +109,9 @@ export default function HomeMain() {
                             <Form id='leadForm' onSubmit={handleSubmit}>
                                 <FormTitleContainer>
                                     <Image src={economyIcon} className='economyIcon' alt={"Logo Leve"} priority />
-                                    <Typography variant="h2">{texts.simulate}</Typography>
+                                    <h2>{texts.simulate}</h2>
                                 </FormTitleContainer>
-                                <Typography variant="body1">{texts.in}<span className="highlighted">{texts.threeClicks}</span>{texts.guarantee}<span className="highlighted">{texts.solarEnergy}</span>{texts.reduceInvoices}</Typography>
+                                <p variant="body1">{texts.in}<span className="highlighted">{texts.threeClicks}</span>{texts.guarantee}<span className="highlighted">{texts.solarEnergy}</span>{texts.reduceInvoices}</p>
                                 <TextField
                                     inputRef={nameRef}
                                     className="homeFormInput"
@@ -148,7 +148,7 @@ export default function HomeMain() {
                                 />
 
                                 <UserTypeFormContainer>
-                                    <Typography className='chooseWhereToEconomy'>{texts.iWantToEconomy}</Typography>
+                                    <p className='chooseWhereToEconomy'>{texts.iWantToEconomy}</p>
                                     <UserTypeFormButtonContainer>
                                         <Select
                                             startIcon={<StoreIcon />}
@@ -179,7 +179,7 @@ export default function HomeMain() {
                                 </InputMask>
                             </Form>
                             <HomeMainFormSimulationContainer>
-                                <Typography variant="subtitle1" className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === 3000 ? "+" : ""}</span></Typography>
+                                <h6 variant="subtitle1" className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === 3000 ? "+" : ""}</span></h6>
                                 <FormSlider
                                     onChange={(event) => setSimulationCost(event.target.value)}
                                     value={simulationCost}
@@ -198,7 +198,7 @@ export default function HomeMain() {
                             endIcon={!isLoading ? <ArrowForwardIcon /> : <ArrowForwardIcon sx={{ display: "none" }} />}>
                             {isLoading ? <Loading size={20} /> : <span>{texts.discountCalculate}</span>}
                         </FormButton>
-                        <Typography className='privacyPolicyDisclaimer'>Ao informar seu e-mail, você concorda em receber e-mails da Leve Energia Renovável e aceita nossa <span className='privacyPolicy'>Política de Privacidade</span>.</Typography>
+                        <p className='privacyPolicyDisclaimer'>Ao informar seu e-mail, você concorda em receber e-mails da Leve Energia Renovável e aceita nossa <span className='privacyPolicy'>Política de Privacidade</span>.</p>
                     </HomeFormContainer>
                 </HomeBanner>
 
@@ -206,11 +206,11 @@ export default function HomeMain() {
                     <BoxesContainer />
                     <HomeSecondaryImagesContainer >
                         <HomeSecondaryImagesContent image={homeCardImage} onClick={() => handlePreSignup("Residencia")} >
-                            <Typography variant="subtitle1">{texts.forYourHouse}</Typography>
+                            <h6 variant="subtitle1">{texts.forYourHouse}</h6>
                             <ArrowCircleRightOutlinedIcon className='arrowIcon' />
                         </HomeSecondaryImagesContent>
                         <HomeSecondaryImagesContent invertedBox={true} image={companyCardImage} onClick={() => handlePreSignup("Empresa")}>
-                            <Typography variant="subtitle1">{texts.forYourCompany}</Typography>
+                            <h6 variant="subtitle1">{texts.forYourCompany}</h6>
                             <ArrowCircleRightOutlinedIcon className='arrowIcon' />
                         </HomeSecondaryImagesContent>
                     </HomeSecondaryImagesContainer>

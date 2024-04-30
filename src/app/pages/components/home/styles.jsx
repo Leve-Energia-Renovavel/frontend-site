@@ -384,6 +384,7 @@ export const UserTypeFormContainer = styled.div`
 
     .chooseWhereToEconomy {
       margin: 17px 0 0 0;  //25px - 8px from margin-bottom of .homeFormInput
+      
     }
 
 `

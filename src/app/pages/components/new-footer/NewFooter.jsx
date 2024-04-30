@@ -1,4 +1,6 @@
 
+"use client"
+
 import { linkTo, socialMedia } from '@/app/utils/helper/footerHelper';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import { IconButton, Typography } from "@mui/material";

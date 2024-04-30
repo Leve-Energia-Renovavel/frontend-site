@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import "./globals.css";
 
 const Header = dynamic(() => import("./pages/components/header/Header"), { ssr: false });
-const Footer = dynamic(() => import("./pages/components/footer/Footer"), { ssr: false });
+const NewFooter = dynamic(() => import("./pages/components/new-footer/NewFooter"), { ssr: false });
 
 export const metadata = {
   title: 'Leve Energia Renovavel',
@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
         <body>
           <Header />
           {children}
-          <Footer />
+          <NewFooter />
         </body>
       </html>
     </>
