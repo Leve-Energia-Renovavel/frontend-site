@@ -2,6 +2,20 @@ import * as yup from 'yup'
 
 const nameRegex = /^[a-zA-Z\u00C0-\u017F\s]+$/;
 
+export const schemaValidation = async (data) => {
+    const response = await leadSchema.validate(data, { abortEarly: false })
+        .then(async () => {
+            return await startSignUp(data)
+
+        })
+        .catch((error) => {
+            console.log(error);
+            return error
+        });
+
+    return response
+}
+
 export const leadSchema = yup.object({
     nome: yup.string()
         .required('O campo Nome Completo é obrigatório')

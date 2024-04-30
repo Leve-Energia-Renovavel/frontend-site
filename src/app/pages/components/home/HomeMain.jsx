@@ -1,6 +1,5 @@
 "use client"
 
-import { startSignUp } from '@/app/service/lead-service/LeadService';
 import { informationNotAccepted, requestSuccessful } from '@/app/service/utils/Validations';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -16,7 +15,7 @@ import infoJson from '../../../../../public/home-info.json';
 import economyIcon from "../../../../resources/icons/small/economy-icon-small.png";
 import companyCardImage from "../../../../resources/img/large/leve-confraternizacao-image-large.webp";
 import homeCardImage from "../../../../resources/img/large/leve-familia-brincando-image-large.webp";
-import { leadSchema } from './schema';
+import { schemaValidation } from './schema';
 import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeFormContainer, HomeMainFormSimulationContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 
 const BoxesContainer = dynamic(() => import('./HomeBoxes'), { ssr: false });
@@ -24,7 +23,8 @@ const BrandsContainer = dynamic(() => import('./HomeBrands'), { ssr: false });
 const HomeEconomyBanner = dynamic(() => import('./HomeEconomyBanner'), { ssr: false });
 const HomeSoleBanner = dynamic(() => import('./HomeSoleBanner'), { ssr: false });
 const TutorialContainer = dynamic(() => import('./HomeTutorial'), { ssr: false });
-const HomeMainBanner = dynamic(() => import('./HomeMainBanner'), { ssr: false });
+
+import HomeMainBanner from './HomeMainBanner';
 
 
 export default function HomeMain() {
@@ -57,20 +57,6 @@ export default function HomeMain() {
 
         }
         setSelectedUserType(userType);
-    }
-
-    const schemaValidation = async (data) => {
-        const response = await leadSchema.validate(data, { abortEarly: false })
-            .then(async () => {
-                return await startSignUp(data)
-
-            })
-            .catch((error) => {
-                console.log(error);
-                return error
-            });
-
-        return response
     }
 
     const handleSubmit = async (event) => {
