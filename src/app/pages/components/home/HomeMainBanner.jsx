@@ -1,5 +1,4 @@
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
-import { Typography } from '@mui/material';
 import infoJson from '../../../../../public/home-info.json';
 import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.webp";
 import { HomeContent, HomeMainContent, HomeMainTitle, HomeMainTitleContainer, HomeSubtitleContainer } from './styles';
@@ -24,7 +23,7 @@ export default function HomeMainBanner() {
                 <HomeMainTitleContainer>
                     <HomeMainTitle variant="h1">{texts.title}<span className='underline'>{texts.leve}</span></HomeMainTitle>
                     <HomeSubtitleContainer onClick={() => handleScroll()}>
-                        <Typography variant="subtitle1" className='moreAboutLeve'>{texts.about}</Typography>
+                        <h6 className='moreAboutLeve'>{texts.about}</h6>
                         <ArrowCircleDownIcon className='arrowIcon' />
                     </HomeSubtitleContainer>
                 </HomeMainTitleContainer>
