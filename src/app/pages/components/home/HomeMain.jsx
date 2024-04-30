@@ -2,7 +2,6 @@
 
 import { startSignUp } from '@/app/service/lead-service/LeadService';
 import { informationNotAccepted, requestSuccessful } from '@/app/service/utils/Validations';
-import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
@@ -17,15 +16,15 @@ import infoJson from '../../../../../public/home-info.json';
 import economyIcon from "../../../../resources/icons/small/economy-icon-small.png";
 import companyCardImage from "../../../../resources/img/large/leve-confraternizacao-image-large.webp";
 import homeCardImage from "../../../../resources/img/large/leve-familia-brincando-image-large.webp";
-import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.webp";
 import { leadSchema } from './schema';
-import { ButtonSimulateYourEconomy, HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeContent, HomeFormContainer, HomeFourthSectionContainer, HomeMainContent, HomeMainFormSimulationContainer, HomeMainTitle, HomeMainTitleContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, HomeSubtitleContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
+import { ButtonSimulateYourEconomy, HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeFormContainer, HomeFourthSectionContainer, HomeMainFormSimulationContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 
 const BoxesContainer = dynamic(() => import('./HomeBoxes'), { ssr: false });
 const BrandsContainer = dynamic(() => import('./HomeBrands'), { ssr: false });
 const HomeEconomyBanner = dynamic(() => import('./HomeEconomyBanner'), { ssr: false });
 const HomeSoleBanner = dynamic(() => import('./HomeSoleBanner'), { ssr: false });
 const TutorialContainer = dynamic(() => import('./HomeTutorial'), { ssr: false });
+const HomeMainBanner = dynamic(() => import('./HomeMainBanner'));
 
 
 export default function HomeMain() {
@@ -74,15 +73,6 @@ export default function HomeMain() {
         return response
     }
 
-    const handleScroll = () => {
-        const element = document.getElementById('howLeveWorks');
-        if (element) {
-            window.scrollTo({ top: element.offsetTop - 60, behavior: 'smooth' });
-        } else {
-            window.scrollTo({ top: 500, behavior: 'smooth' })
-        }
-    }
-
     const handleSubmit = async (event) => {
         event.preventDefault()
         setLoading(true)
@@ -127,17 +117,7 @@ export default function HomeMain() {
         <>
             <Container>
                 <HomeBanner>
-                    <HomeMainContent image={bannerImage}>
-                        <HomeContent>
-                            <HomeMainTitleContainer>
-                                <HomeMainTitle variant="h1">{texts.title}<span className='underline'>{texts.leve}</span></HomeMainTitle>
-                                <HomeSubtitleContainer onClick={() => handleScroll()}>
-                                    <Typography variant="subtitle1" className='moreAboutLeve'>{texts.about}</Typography>
-                                    <ArrowCircleDownIcon className='arrowIcon' />
-                                </HomeSubtitleContainer>
-                            </HomeMainTitleContainer>
-                        </HomeContent>
-                    </HomeMainContent>
+                    <HomeMainBanner />
                     <HomeFormContainer>
                         <FormContainer>
                             <Form id='leadForm' onSubmit={handleSubmit}>
