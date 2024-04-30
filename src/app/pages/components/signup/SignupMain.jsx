@@ -23,13 +23,13 @@ export default function SignupMain() {
 
     const uuid = search.get("uuid")
 
-    if (!uuid) {
+    if (!uuid || uuid == "undefined") {
         notFound()
     }
-
+    
     useEffect(() => {
         const fetchData = async () => {
-
+            
             clearBrowserData();
 
             store.updateUser({ uuid: uuid });

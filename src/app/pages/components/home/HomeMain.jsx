@@ -24,7 +24,7 @@ const BrandsContainer = dynamic(() => import('./HomeBrands'), { ssr: false });
 const HomeEconomyBanner = dynamic(() => import('./HomeEconomyBanner'), { ssr: false });
 const HomeSoleBanner = dynamic(() => import('./HomeSoleBanner'), { ssr: false });
 const TutorialContainer = dynamic(() => import('./HomeTutorial'), { ssr: false });
-const HomeMainBanner = dynamic(() => import('./HomeMainBanner'));
+const HomeMainBanner = dynamic(() => import('./HomeMainBanner'), { ssr: false });
 
 
 export default function HomeMain() {
