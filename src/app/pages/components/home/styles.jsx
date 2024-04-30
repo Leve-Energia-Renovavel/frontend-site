@@ -248,10 +248,10 @@ export const HomeMainForm = styled.form`
       font-weight: 500;
       color: ${newBackground.white};
       font-size: 14px;
-      line-height: 14px;
+      line-height: 12px;
 
       margin-top: 17px;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
 
       @media (max-width: 600px) {
         text-align: center;
@@ -275,7 +275,8 @@ export const HomeMainForm = styled.form`
 
       & .MuiInputLabel-shrink {
         /* Styles for the focused label */
-        line-height: 2.4375em; 
+        /* line-height: 2.4375em;  */
+        line-height: 3em; 
       }
 
       .MuiOutlinedInput-input {

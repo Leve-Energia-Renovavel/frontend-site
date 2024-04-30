@@ -16,11 +16,10 @@ function findStateId(uf) {
 
 const useGetCEP = () => {
     const storeAddress = useStoreAddress();
-
     const fetchData = async (cep) => {
-        console.log(`Getting from this CEP: ${cep}`)
+        var response = null
         try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, {
+            response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, {
                 params: { cep: cep }
             });
 
@@ -40,6 +39,7 @@ const useGetCEP = () => {
         } catch (error) {
             console.error('Error fetching CEP data:', error);
         }
+        return response
     };
 
     return fetchData;

@@ -89,11 +89,13 @@ export default function SignupForm() {
   const handleGetCEP = async (cep) => {
     if (cep !== "") {
       setIsLoading(true)
-      console.log("Getting CEP data....")
       try {
         const response = await fetchCEP(cep)
         if (requestSuccessful(response?.status)) {
           console.log(response?.data)
+          setNotificationMessage(["Endereço encontrado com sucesso!"])
+        } else {
+          setErrorMessage(["Erro ao buscar o CEP. Por favor, preencha os dados manualmente."])
         }
       } catch (error) {
         // console.log("Error fetching CNPJ data: ", error)

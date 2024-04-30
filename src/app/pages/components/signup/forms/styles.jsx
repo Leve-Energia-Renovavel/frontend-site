@@ -233,6 +233,11 @@ export const FormInput = styled(TextField)`
         background-color: ${newBackground.orangeTranslucent}; 
     }
 
+    & .MuiInputLabel-shrink {
+        /* Styles for the focused label */
+        line-height: 2.8em; 
+      }
+
     .MuiOutlinedInput-input {
         border: 2px solid transparent;
         border-radius: 15px;  

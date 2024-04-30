@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { background } from "@/app/pages/styles";
+import { background, newBackground } from "@/app/pages/styles";
 
 export const ClicksignWidgetContainer = styled.div`
   border: 1px solid #ccc; 
@@ -74,7 +74,7 @@ export const ClicksignComponentContainer = styled.div`
 
     max-width: 900px; 
     height: 27rem;
-    
+
     @media (max-width: 600px) {
         width: 90vw; 
         max-width: 90vw; 
