@@ -251,7 +251,7 @@ export const HomeMainForm = styled.form`
       line-height: 12px;
 
       margin-top: 17px;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
 
       @media (max-width: 600px) {
         text-align: center;
