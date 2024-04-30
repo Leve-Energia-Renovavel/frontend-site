@@ -1,4 +1,5 @@
-import * as yup from 'yup'
+import * as yup from 'yup';
+import { startSignUp } from '../../../service/lead-service/LeadService';
 
 const nameRegex = /^[a-zA-Z\u00C0-\u017F\s]+$/;
 
