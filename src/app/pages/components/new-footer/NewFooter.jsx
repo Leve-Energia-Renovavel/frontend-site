@@ -4,7 +4,7 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
 import infoJson from '../../../../../public/footer-info.json';
-import sunImage from "../../../../resources/icons/small/ellipse-small.png";
+import sunImage from "../../../../resources/icons/small/ellipse-small.webp";
 import logoLeve from "../../../../resources/icons/small/leve-logo-white-icon-small.png";
 import { FooterContainer as Container, FooterButton, FooterPrimaryContainer, FooterSecondaryContainer, FooterSocialMediaContainer, MyNiceDiv } from './styles';
 
