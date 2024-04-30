@@ -1,6 +1,7 @@
 "use client"
-
+import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
 import { TextField, Typography } from "@mui/material";
@@ -9,11 +10,24 @@ import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import infoJson from '../../../../../public/home-info.json';
 import economyIcon from "../../../../resources/icons/small/economy-icon-small.png";
-import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.webp";
+import bannerImage from "../../../../resources/img/large/leve-paineis-solares-filtro-grao-image-large.webp";
 import BrandsContainer from '../home/HomeBrands';
 import TutorialContainer from '../home/HomeTutorial';
 import BoxesContainer from './LandingPageBoxes';
-import { LandingPageContainer as Container, LandingPageContent as Content, LandingPageForm as Form, FormButton, LandingMainFormContainer as FormContainer, FormSlider, FormTitleContainer, LandingPageFormContainer, LandingPageFormSimulationContainer, Loading, LandingPageBanner as MainBanner, LandingPageMainContent as MainContent, LandingPageMainTitle as MainTitle, FormSelect as Select, LandingSubtitleContainer as SubtitleContainer, LandingPageTitleContainer as TitleContainer, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
+import {
+    LandingPageContainer as Container, LandingPageContent as Content, LandingPageForm as Form, FormButton, LandingMainFormContainer as FormContainer, FormSlider, FormTitleContainer,
+    LandingPageBannerFooter,
+    LandingPageBannerSecondFooter,
+    LandingPageFormContainer, LandingPageFormSimulationContainer,
+    Loading, LandingPageBanner as MainBanner, LandingPageMainContent as MainContent, LandingPageMainTitle as MainTitle,
+    MoreAboutLeveFooter,
+    SecondSectionBanner,
+    SecondSectionContainer,
+    FormSelect as Select,
+    LandingPageSubtitle as Subtitle,
+    TutorialBannerContainer,
+    UserTypeFormButtonContainer, UserTypeFormContainer
+} from "./styles";
 
 export default function LandingPageMain() {
 
@@ -36,6 +50,15 @@ export default function LandingPageMain() {
         setSelectedUserType(userType);
     };
 
+    const handlePreSignup = () => {
+        const element = document.getElementById('leadForm');
+        if (element) {
+            window.scrollTo({ top: element.offsetTop - 60, behavior: 'smooth' });
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+
+        }
+    }
 
     const texts = infoJson
 
@@ -43,14 +66,20 @@ export default function LandingPageMain() {
         <>
             <Container>
                 <MainBanner>
-                    <MainContent image={bannerImage}>
+                    <MainContent>
                         <Content>
-                            <TitleContainer>
-                                <MainTitle variant="h1">{texts.title}<span className='underline'>{texts.leve}</span></MainTitle>
-                                <SubtitleContainer>
-                                    <Typography variant="subtitle1" className='moreAboutLeve'>{texts.about}</Typography>
-                                </SubtitleContainer>
-                            </TitleContainer>
+                            <MainTitle variant="h1">Imagine <span className='highlighted'>R$1.200</span> a mais na sua conta bancária todo final de ano…</MainTitle>
+                            <Subtitle>É exatamente isso que a <span className='underlined'>Leve Energia</span> pode fazer por você – e pelo seu bolso</Subtitle>
+                            <LandingPageBannerFooter>
+                                <LandingPageBannerSecondFooter>
+                                    <Typography variant='subtitle1' className='footerTitle'>Sem obras. Sem instalações.</Typography>
+                                    <Typography variant='subtitle1' className='footerSubtitle'>E sem gastar R$1 a mais sequer.</Typography>
+                                </LandingPageBannerSecondFooter>
+                                <MoreAboutLeveFooter>
+                                    <Typography variant='subtitle1'>Mais sobre a Leve</Typography>
+                                    <ArrowCircleDownIcon className='arrowIcon' />
+                                </MoreAboutLeveFooter>
+                            </LandingPageBannerFooter>
                         </Content>
                     </MainContent>
                     <LandingPageFormContainer>
@@ -151,9 +180,18 @@ export default function LandingPageMain() {
                     </LandingPageFormContainer>
                 </MainBanner>
 
-                <BoxesContainer />
+                <SecondSectionContainer image={bannerImage}>
+                    <BoxesContainer />
+                    <SecondSectionBanner>
+                        <Typography className='bannerTitle'>Viu como é Leve?</Typography>
+                        <Typography className='bannerDescription'>Clique no botão abaixo e veja que aqui a sua economia é real:</Typography>
+                        <Typography className='simulateButton' onClick={() => handlePreSignup()}>Simular agora</Typography>
+                    </SecondSectionBanner>
+                </SecondSectionContainer>
 
-                <TutorialContainer />
+                <TutorialBannerContainer>
+                    <TutorialContainer />
+                </TutorialBannerContainer>
 
                 <BrandsContainer />
 

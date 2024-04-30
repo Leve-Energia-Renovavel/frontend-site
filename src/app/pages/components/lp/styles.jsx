@@ -18,6 +18,7 @@ const fadeInUp = keyframes`
 export const LandingPageContainer = styled.div`
     display: flex;
     flex-direction: column;
+    
     background-color: ${newBackground.white};
     
     /* max-width: 1920px; */
@@ -54,11 +55,6 @@ export const LandingPageBanner = styled.div`
 
 export const LandingPageMainContent = styled.div`
 
-    background-image: url(${props => props.image.src});
-    background-repeat: no-repeat;
-    background-size: cover; 
-    background-position: 80% 20%;
-    
     border-radius: 15px;
     
     padding: 32px 38px;
@@ -85,93 +81,114 @@ export const LandingPageMainContent = styled.div`
 export const LandingPageContent = styled.div`
   display: flex; 
   flex-direction: column; 
-  justify-content: end; 
+  justify-content: center;
+  /* position: relative; */
   height: 100%; 
-`
-
-export const LandingPageTitleContainer = styled.div`
-  display: flex; 
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: end;
-
-  animation: ${fadeInUp} 0.5s ease-out;
-  
-  @media (max-width: 600px) {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-  }
-
-  h1 { 
-      font-family: "Graphie";
-      font-weight: 600;
-      text-align: left;
-
-      font-size: 89px;
-      line-height: 89px;
-      max-width: 420px;
-      
-      @media (max-width: 600px) {
-        text-align: center;
-        font-size: 42px;
-        line-height: 42px;
-      }
-    }
-
-    .underline { 
-      font-family: "Graphie";
-      font-weight: 600;
-      text-decoration: underline;
-      font-size: 89px;
-
-      @media (max-width: 600px) {
-        font-size: 40px;
-      }
-    }
 `
 
 export const LandingPageMainTitle = styled(Typography)`
     font-family: "Metropolis", sans-serif;
-    color: ${newBackground.yellow};
-    font-size: 5rem;
-    font-weight: bold;
-    max-width: 400px;
-    word-wrap: break-word;
+    color: ${newBackground.orange};
+    font-size: 55px;
+    line-height: 55px;
+    font-weight: 500;
+    max-width: 680px;
+    
+    .highlighted { 
+      background-color: ${newBackground.yellow};
+      border-radius: 12px;
+      font-size: 55px;
+      font-weight: 600;
+      padding: 0 2px;
+    }
 `
-
-export const LandingSubtitleContainer = styled.div`
-  display : flex ;
+export const LandingPageSubtitle = styled(Typography)`
+    font-family: "Graphie";
+    color: ${newBackground.orange};
+    font-size: 27px;
+    line-height: 30px;
+    font-weight: 600;
+    max-width: 650px;
+    
+    margin-top: 45px;
+    
+    .underlined {
+      font-weight: 600;
+      text-decoration: underline;
+    }
+`
+export const LandingPageBannerFooter = styled.div`
+  display: flex;
   flex-direction: row;
-  justify-content: end;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  background-color: ${newBackground.yellow};
+  width: 675px;
+  height: 85px;
+  border-radius: 10px;
+  `
+export const LandingPageBannerSecondFooter = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background-color: ${newBackground.green};
+  width: 473px;
+  height: 85px;
+  border-radius: 0 10px 10px 0;
+
+  .footerTitle {
+    font-family: "Graphie";
+    font-size: 21px;
+    line-height: 21px;
+    color: ${newBackground.yellow};
+
+    margin-left: 85px;
+  }
+  .footerSubtitle {
+    font-family: "Graphie";
+    font-size: 21px;
+    line-height: 21px;
+    color: ${newBackground.white};
+
+    margin-left: 85px;
+  }
+`
+export const MoreAboutLeveFooter = styled.div`
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  color: ${newBackground.white};
-  
-  gap: 1rem;
-  
-  @media (max-width: 600px) {
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 20px;
+  margin: auto;
+
+  gap: 6px;
+
+  &:hover {
+    h6 {
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .arrowIcon {
+      cursor: pointer;
+    }
   }
 
-  .moreAboutLeve {
+  h6 {
     font-family: "Graphie";
-    font-size: 12px;
+    font-size: 14px;
+    color: ${newBackground.green};
   }
   
   .arrowIcon {
-    transform: scale(1.5);
+    color: ${newBackground.green};
+    width: 32px;
+    height: 32px;
   }
 
-  &:hover { 
-    text-decoration: underline;
-    cursor: pointer;
-  }
-  `
 
-
+`
 
 export const LandingPageFormContainer = styled.div`
   display: flex;
@@ -493,5 +510,68 @@ export const Loading = styled(CircularProgress)`
   width: 10px;
   height: 10px;
 
+`
+
+
+export const SecondSectionContainer = styled.div`
+    background-image: url(${props => props.image.src});
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: 80% 20%;
+
+    border-radius: 10px;
+
+    height: 508px;
+
+    margin-top: 50px;
+
+    padding: 57px 85px;
+`
+
+export const SecondSectionBanner = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: ${newBackground.yellow};
+    border-radius: 32px;
+    
+    max-width: 792px;
+    height: 287px;
+    margin: 65px auto;
+
+    .bannerTitle {
+      font-family: "Graphie";
+      font-size: 55px;
+      font-weight: 600;
+      color: ${newBackground.green};
+
+      margin-top: 52px;
+    }
+    .bannerDescription {
+      font-family: "Graphie";
+      font-size: 21px;
+      font-weight: 500;
+      color: ${newBackground.green};
+
+      margin-top: 20px;
+    }
+    .simulateButton {
+      font-family: "Graphie";
+      color: ${newBackground.yellow};
+      background-color: ${newBackground.green};
+      padding: 8px 21px;
+      max-width: 200px;
+      border-radius: 32px;
+      margin: 30px auto 0 auto;
+
+      &:hover {
+        cursor: pointer;
+        background-color: ${newBackground.orange};
+      }
+     }
+    
+`
+export const TutorialBannerContainer = styled.div`
+  margin-top: 70px;
 `
 

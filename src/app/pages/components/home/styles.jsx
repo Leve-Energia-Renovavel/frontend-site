@@ -283,7 +283,6 @@ export const HomeMainForm = styled.form`
         font-family: "Graphie";
         font-size: 17px;
         height: 0.4375em;
-        line-height: 2.4375em;
         padding: 20px 14px;
         font-weight: 700;
         color: ${newBackground.orange};

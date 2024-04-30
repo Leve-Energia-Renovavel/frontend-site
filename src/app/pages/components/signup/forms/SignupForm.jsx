@@ -107,7 +107,7 @@ export default function SignupForm() {
 
   const closeModal = () => {
     setIsModalOpen(false)
-}
+  }
 
   const termsRefs = {
     dontGenerateEnergy: useRef(null),
@@ -598,7 +598,7 @@ export default function SignupForm() {
                 variant="outlined"
                 placeholder={`Número de Instalação`}
                 type="text"
-                />
+              />
               <InstallationNumberDisclaimer onClick={() => setIsModalOpen(true)}>
                 <InfoIcon className='infoIcon' />
                 <Typography className='installationNumberDisclaimer'><span className='underlined'>Encontre este número</span> no canto superior direito de sua fatura atual.</Typography>
@@ -656,7 +656,7 @@ export default function SignupForm() {
             <FormTermsContainer>
               <FormTermsControl required control={<Checkbox inputRef={termsRefs.dontGenerateEnergy} />} label="Declaro que não possuo sistema de geração própria em minha residência/comércio" />
               <FormTermsControl required control={<Checkbox inputRef={termsRefs.dontContractSameService} />} label="Declaro que não estou contratando nenhum serviço similar ao da Leve Energia Renovável" />
-              <FormTermsControl required control={<Checkbox inputRef={termsRefs.dontParticipateGovernmentProgram} />} label="Declaro que não sou participante de nenhum programa governamental de subsídios na tarifa de energia" />
+              <FormTermsControl required control={<Checkbox inputRef={termsRefs.dontParticipateGovernmentProgram} />} label="Declaro que não possuo nenhum serviço similar ao da Leve Energia Renovável" />
             </FormTermsContainer>
 
             <FormButtonContainer>

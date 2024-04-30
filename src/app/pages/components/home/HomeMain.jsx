@@ -17,7 +17,7 @@ import economyIcon from "../../../../resources/icons/small/economy-icon-small.pn
 import companyCardImage from "../../../../resources/img/large/leve-confraternizacao-image-large.webp";
 import homeCardImage from "../../../../resources/img/large/leve-familia-brincando-image-large.webp";
 import { leadSchema } from './schema';
-import { ButtonSimulateYourEconomy, HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeFormContainer, HomeFourthSectionContainer, HomeMainFormSimulationContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
+import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeFormContainer, HomeMainFormSimulationContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 
 const BoxesContainer = dynamic(() => import('./HomeBoxes'), { ssr: false });
 const BrandsContainer = dynamic(() => import('./HomeBrands'), { ssr: false });
@@ -232,12 +232,7 @@ export default function HomeMain() {
 
                 <HomeSoleBanner />
 
-                <HomeFourthSectionContainer id="howLeveWorks">
-                    <TutorialContainer />
-                    <ButtonSimulateYourEconomy onClick={() => handlePreSignup()}>
-                        <span>{texts.simulateYourEconomy}</span>
-                    </ButtonSimulateYourEconomy>
-                </HomeFourthSectionContainer>
+                <TutorialContainer />
 
                 <HomeEconomyBanner />
 
