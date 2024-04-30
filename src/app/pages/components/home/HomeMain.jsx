@@ -1,7 +1,7 @@
 "use client"
 
 import { startSignUp } from '@/app/service/lead-service/LeadService';
-import { requestSuccessful } from '@/app/service/utils/Validations';
+import { informationNotAccepted, requestSuccessful } from '@/app/service/utils/Validations';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -87,7 +87,7 @@ export default function HomeMain() {
         event.preventDefault()
         setLoading(true)
 
-        const isValidString = /^[a-zA-Z\s]+$/.test(nameRef.current.value);
+        const isValidString = /^[a-zA-Z\u00C0-\u017F\s]+$/.test(nameRef.current.value);
 
         if (isValidString) {
             const submitData = {
@@ -107,13 +107,26 @@ export default function HomeMain() {
                 setNotifications(["Simulação realizada com sucesso!"])
                 router.push(`/signup/?uuid=${uuid}`)
 
-            } else {
+            } if (informationNotAccepted(response?.status)) {
+                if (response?.data?.message === "Fora de rateio") {
+                    setErrorMessage(["Ainda não chegamos na sua região"])
+                    router.push(`/fail/out-of-range`)
+                }
+                if (response?.data?.message === "Seu consumo já é leve") {
+                    setErrorMessage(["Consumo baixo"])
+                    router.push(`/fail/low-cost`)
+                }
+            }
+
+            else {
                 setErrorMessage([response?.message])
             }
 
         } else {
             setErrorMessage(["Nome inválido. Por favor, revise as informações"])
         }
+
+        setLoading(false)
 
     }
 

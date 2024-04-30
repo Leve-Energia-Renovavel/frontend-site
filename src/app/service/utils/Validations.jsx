@@ -6,3 +6,7 @@ export const requestSuccessful = (status) => {
 export const hasToSignContract = (message) => {
     return message == "Tem contrato para assinar" || message == "cliente precisa assinar os contratos desta instalação"
 }
+
+export const informationNotAccepted = (status) => {
+    return status === 406
+}
