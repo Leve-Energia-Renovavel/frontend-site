@@ -1,8 +1,11 @@
 import * as yup from 'yup'
 
+const nameRegex = /^[a-zA-Z\u00C0-\u017F\s]+$/;
+
 export const leadSchema = yup.object({
     nome: yup.string()
         .required('O campo Nome Completo é obrigatório')
+        .matches(nameRegex, 'O nome deve conter apenas letras e espaços')
         .test('has-two-words', 'Nome e sobrenome são obrigatórios', (value) => {
             if (!value) return false;
             const words = value.trim().split(/\s+/);

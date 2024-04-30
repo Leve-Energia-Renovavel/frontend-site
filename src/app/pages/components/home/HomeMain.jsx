@@ -87,43 +87,34 @@ export default function HomeMain() {
         event.preventDefault()
         setLoading(true)
 
-        const isValidString = /^[a-zA-Z\u00C0-\u017F\s]+$/.test(nameRef.current.value);
+        const submitData = {
+            nome: nameRef.current.value,
+            email: emailRef.current.value,
+            telefone: phoneRef.current.value,
+            cep: cepRef.current.value,
+            valor: simulationCost,
+            redirect_to: "www.leveenergia.com.br",
+            type: selectedUserType === "Residencia" ? "PF" : "PJ"
+        }
 
-        if (isValidString) {
-            const submitData = {
-                nome: nameRef.current.value,
-                email: emailRef.current.value,
-                telefone: phoneRef.current.value,
-                cep: cepRef.current.value,
-                valor: simulationCost,
-                redirect_to: "www.leveenergia.com.br",
-                type: selectedUserType === "Residencia" ? "PF" : "PJ"
+        const response = await schemaValidation(submitData)
+
+        if (requestSuccessful(response?.status)) {
+            const uuid = response?.data?.uuid
+            setNotifications(["Simulação realizada com sucesso!"])
+            router.push(`/signup/?uuid=${uuid}`)
+
+        } if (informationNotAccepted(response?.status)) {
+            if (response?.data?.message === "Fora de rateio") {
+                router.push(`/fail/out-of-range`)
             }
-
-            const response = await schemaValidation(submitData)
-
-            if (requestSuccessful(response?.status)) {
-                const uuid = response?.data?.uuid
-                setNotifications(["Simulação realizada com sucesso!"])
-                router.push(`/signup/?uuid=${uuid}`)
-
-            } if (informationNotAccepted(response?.status)) {
-                if (response?.data?.message === "Fora de rateio") {
-                    setErrorMessage(["Ainda não chegamos na sua região"])
-                    router.push(`/fail/out-of-range`)
-                }
-                if (response?.data?.message === "Seu consumo já é leve") {
-                    setErrorMessage(["Consumo baixo"])
-                    router.push(`/fail/low-cost`)
-                }
+            if (response?.data?.message === "Seu consumo já é leve") {
+                router.push(`/fail/low-cost`)
             }
+        }
 
-            else {
-                setErrorMessage([response?.message])
-            }
-
-        } else {
-            setErrorMessage(["Nome inválido. Por favor, revise as informações"])
+        else {
+            setErrorMessage([response?.message])
         }
 
         setLoading(false)
@@ -131,7 +122,6 @@ export default function HomeMain() {
     }
 
     const texts = infoJson
-
 
     return (
         <>
