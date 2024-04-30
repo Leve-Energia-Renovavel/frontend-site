@@ -80,7 +80,7 @@ export default function MemberGetMember() {
                         </div>
                     </ModalIconContainer>
                     <ModalTitleContainer>
-                        <Image className="logoLeve" loading="eager" priority={true} src={leveLogo} alt="Ícone de formulário para completar o cadastro" />
+                        <Image className="logoLeve" loading="lazy"  src={leveLogo} alt="Ícone de formulário para completar o cadastro" />
                         <Typography variant="h1">Indique um Amigo</Typography>
                     </ModalTitleContainer>
                     <ModalContentContainer>

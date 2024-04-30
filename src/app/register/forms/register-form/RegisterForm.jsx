@@ -26,6 +26,7 @@ import RegisterFormProgress from "./RegisterFormProgress";
 import RegisterFormTitle from "./RegisterFormTitle";
 import { companySchema, userSchema } from "./schema";
 import { FileUploadContainer, FileUploadItem, FormContainer, FormContent, FormHeader, FormLastRow, FormRow, SnackbarMessageAlert, SnackbarMessageNotification, fileInputStyles } from "./styles";
+import { costValidation } from "@/app/utils/formatters/costFormatter";
 
 export default function RegisterForm() {
 
@@ -178,7 +179,6 @@ export default function RegisterForm() {
                     companyName: submitData.razao_social,
 
                 });
-
             }
 
             const updatedAddress = {
@@ -246,11 +246,6 @@ export default function RegisterForm() {
 
     const handleChangeState = (value) => {
         setStateValue(stateOptions[value])
-        // addressRefs.address.current.value = ""
-        // addressRefs.addressNumber.current.value = ""
-        // addressRefs.addressCep.current.value = ""
-
-        // storeAddress.updateAddress({ stateId: value, cep: "", neighborhood: "" })
     }
     const handleChangeUserCost = (event) => {
         var newCost = event.target.value
@@ -364,7 +359,6 @@ export default function RegisterForm() {
                     </InputMask>
                     <TextField
                         id="maritalStatus"
-                        placeholder={"test"}
                         select
                         defaultValue={store.user.maritalStatus ? store.user.maritalStatus : ""}
                         label="Estado Civil"

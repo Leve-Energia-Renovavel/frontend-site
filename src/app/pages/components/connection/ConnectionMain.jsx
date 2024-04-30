@@ -1,5 +1,5 @@
 "use client"
-import { clearBrowserData } from '@/app/utils/browser/BrowserUtils'
+
 import Cookies from 'js-cookie'
 import { notFound, useRouter, useSearchParams } from 'next/navigation'
 
@@ -7,8 +7,6 @@ export default function ConnectionMain() {
 
     const router = useRouter()
     const search = useSearchParams()
-
-    clearBrowserData()
 
     const token = search.get("token")
 

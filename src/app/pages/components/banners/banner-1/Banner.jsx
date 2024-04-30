@@ -17,7 +17,7 @@ export default function Banner(props) {
             </ContentContainer>
             <BannerImageContainer>
                 <Image
-                    loading="eager" priority={true}
+                    loading="lazy" 
                     className='logoImage'
                     src={bannerImage}
                     alt="Leve Energia Logo"

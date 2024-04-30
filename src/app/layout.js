@@ -1,7 +1,10 @@
+import { GoogleTagManager } from '@next/third-parties/google';
+import dynamic from "next/dynamic";
 import "./globals.css";
-import WhatsAppFAB from "./pages/components/fabWhatsapp/WhatsappFAB";
-import Footer from "./pages/components/footer/Footer";
-import Header from "./pages/components/header/Header";
+
+
+const Header = dynamic(() => import("./pages/components/header/Header"), { ssr: false });
+const NewFooter = dynamic(() => import("./pages/components/new-footer/NewFooter"), { ssr: false });
 
 export const metadata = {
   title: 'Leve Energia Renovavel',
@@ -17,8 +20,8 @@ export const metadata = {
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: 0,
+  maximumScale: 5,
+  userScalable: 1,
   colorScheme: 'light',
 }
 
@@ -26,12 +29,12 @@ export default function RootLayout({ children }) {
 
   return (
     <>
-      <html lang="pt-BR">
-        <body suppressHydrationWarning={true}>
-          <Header />
-          {children}
-          <WhatsAppFAB />
-          <Footer />
+      <html lang="pt-BR" suppressHydrationWarning={true}>
+        <body>
+        <GoogleTagManager gtmId="GTM-TTH843C" />
+            <Header />
+            {children}
+            <NewFooter />
         </body>
       </html>
     </>

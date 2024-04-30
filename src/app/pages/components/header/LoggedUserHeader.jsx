@@ -50,7 +50,7 @@ export default function LoggedUserHeader() {
         <>
             <LogoContainer>
                 <Image
-                    loading="eager" priority={true}
+                    loading="lazy" 
                     className='logoImage'
                     src={logo}
                     alt="Leve Energia Logo"

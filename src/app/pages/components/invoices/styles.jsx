@@ -97,6 +97,42 @@ export const InvoicesMainContainer = styled.div`
       @media (max-width: 1000px) {
           margin-left: 1rem;
       }
+    }
+
+      .breadcrumbs {
+      margin: .5rem 1rem 1rem 0;
+      margin-left: 15rem;
+
+      @media (max-width: 2500px) {
+        margin-left: 25rem;
+      }
+      @media (max-width: 2000px) {
+        margin-left: 20rem;
+      }
+      @media (max-width: 1800px) {
+        margin-left: 18rem;
+      }
+      @media (max-width: 1600px) {
+        margin-left: 15rem;
+      }
+      @media (max-width: 1500px) {
+        margin-left: 12rem;
+      }
+      
+      @media (max-width: 1500px) {
+        margin-left: 12rem;
+      }
+
+      @media (max-width: 1400px) {
+      margin-left: 10rem;
+      }
+    
+      @media (max-width: 1200px) {
+          margin-left: 8rem;
+      }
+      @media (max-width: 1000px) {
+          margin-left: 1rem;
+      }
 
     }
 `

@@ -93,6 +93,7 @@ export const useStoreAddress = create((set) => ({
         state: "",
         cep: "",
         installationNumber: "",
+
     },
     updateAddress: (newAddress) =>
         set((state) => ({

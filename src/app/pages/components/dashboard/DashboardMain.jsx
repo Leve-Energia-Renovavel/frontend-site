@@ -5,7 +5,7 @@ import { useStoreAddress, useStoreBillingHistory, useStoreInstallations, useStor
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { billHasToBePaid, billingStatusOptions } from "@/app/utils/form-options/billingStatusOptions";
 import { formatDate, formatMonthAndYear } from "@/app/utils/formatters/dateFormatter";
-import { Alert, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
@@ -44,15 +44,15 @@ export default function DashboardMain() {
 
     useEffect(() => {
         const fetchDashboardData = async () => {
+
             try {
                 const headers = {
-                    Authorization: `Bearer ${Cookies.get('accessToken')}`
+                    "Authorization": `Bearer ${Cookies.get('accessToken')}`
                 };
 
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
 
                 if (requestSuccessful(response.status)) {
-
                     const consumidor = response?.data?.consumidor
                     const ciclosConsumo = response?.data?.ciclosConsumo
                     const instalacao = response?.data?.instalacao
@@ -76,6 +76,8 @@ export default function DashboardMain() {
                         nationality: consumidor?.nacionalidade,
                         maritalStatus: consumidor?.estado_civil,
                         memberGetMemberCode: consumidor?.ref_code,
+
+                        hasFetchedData: true,
                     });
 
                     const updatedMainInstallation = {
@@ -159,14 +161,12 @@ export default function DashboardMain() {
                 }
             } catch (error) {
                 console.error("Error fetching dashboard data:", error);
-            } finally {
-                setIsLoading(false);
             }
         };
 
         const fetchUpdatedAddress = async () => {
             const data = {
-                cep: user?.cep
+                cep: user.cep
             }
             try {
                 const addressResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, data);
@@ -179,18 +179,20 @@ export default function DashboardMain() {
                         city: address?.cidade,
                         state: address?.uf,
                         cep: address?.cep,
+                        hasFetchedData: true,
+
                     })
                 } else {
                     console.error("Failed to fetch updated address data");
                 }
             } catch (error) {
                 console.error("Error fetching updated address data:", error);
-            } finally {
-                setIsLoading(false);
             }
         };
         fetchDashboardData();
         fetchUpdatedAddress();
+        setIsLoading(false);
+
     }, []);
 
     const handleConnectToDistributor = () => {
@@ -212,6 +214,7 @@ export default function DashboardMain() {
 
     return (
         <Container>
+            <WarningsContainer />
             <Main>
                 <NextBillContainer>
                     <TitleContainer>

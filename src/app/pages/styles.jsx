@@ -1,3 +1,4 @@
+import { grey } from "@mui/material/colors"
 
 export const theme = {
     primary: "#1779ba",
@@ -30,23 +31,35 @@ export const button = {
     background: "#FFD300",
 }
 
+export const newBackground = {
+    yellow: "#E1FF0F",
+    orange: "#FF7133",
+    orangeLight: "#ff814b",
+    orangeFocused: "#FDDCCB",
+    orangeTranslucent: "#FCEEE6",
+    green: "#005940",
+    white: "#FCFCFA",
+    grey: "#EFEFEC",
+}
+
 export const background = {
     primary: "#0075FF",
     secondary: "#FFD300",
     secondaryLight: "#fce053",
+    blueLeve: "#0075FF",
+    yellowLeve: "#FFE04C",
+    orangeLeve: "#EB641B",
+    error: "#F00",
     light: "#fefefe",
     dark: "#0a0a0a",
     lightBorder: "#e6e6e6",
-    grey: "#7F7F7F",
-    darkGrey: "#343434",
     mediumGrey: "#B0BEC5",
     higherGrey: "#a8a8a8",
-    yellowLeve: "#FFE04C",
-    blueLeve: "#0075FF",
+    grey: "#7F7F7F",
+    darkGrey: "#343434",
     white: "#FFFFFF",
     stroke: "#CACACB",
     greyLeve: "#F5F5F5",
-    orangeLeve: "#EB641B",
     textLeve: "#343434",
-    error: "#F00",
+
 }

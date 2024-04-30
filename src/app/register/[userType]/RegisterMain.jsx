@@ -1,21 +1,23 @@
-"use client"
 /* eslint-disable react-hooks/exhaustive-deps */
-import dynamic from "next/dynamic";
+"use client"
+
 import { useStoreAddress, useStoreUser } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
+import { clearBrowserData } from "@/app/utils/browser/BrowserUtils";
+import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
 import axios from "axios";
 import Cookies from "js-cookie";
+import dynamic from "next/dynamic";
 import { notFound, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import RegisterBannerSuccess from "../banners/banner-success/RegisterBanner";
 import FormBanner from "../banners/form-banner/FormBanner";
-import { clearBrowserData } from "@/app/utils/browser/BrowserUtils";
-import { formatBasicBirthDate, formatBirthDate } from "@/app/utils/date/DateUtils";
 
 const ResultEconomy = dynamic(() => import('../result-economy/ResultEconomy'), { ssr: false });
 const RegisterForm = dynamic(() => import('../forms/register-form/RegisterForm'), { ssr: false });
 
 export default function RegisterMain() {
+
     const search = useSearchParams()
     const store = useStoreUser()
     const storeAddress = useStoreAddress()
@@ -52,7 +54,7 @@ export default function RegisterMain() {
                         cep: cep,
 
                         cpf: consumidor?.cpf !== "" ? consumidor.cpf : "",
-                        rg: consumidor?.rg !== "" ? consumidor.cpf : "",
+                        rg: consumidor?.rg !== "" ? consumidor.rg : "",
                         birthDate: consumidor?.data_nascimento ? formatBasicBirthDate(consumidor?.data_nascimento) : "",
 
                         isCompany: consumidor?.type == "PJ" ? true : false,

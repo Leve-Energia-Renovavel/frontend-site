@@ -1,5 +1,6 @@
 export const pathHelper = {
-    '/': false,
+    '/': null,
+    '/home/': null,
     '/register/': false,
     '/login/': false,
     '/dashboard/': true,
@@ -7,27 +8,36 @@ export const pathHelper = {
     '/dashboard/invoices/': true,
     '/dashboard/installations/': true,
     '/recover-password/': true,
+    '/fail/out-of-range/': false,
+    '/fail/low-cost/': false,
     '/connection/': true,
-}
-
-export const helperToPath = {
-    '/': "no+cadastro+da",
-    '/register/': "no+cadastro+da",
-    '/login/': "no+login+da",
-    '/dashboard/': "no+painel+da",
-    '/profile/': "no+meu+perfil+da",
-    '/invoices/': "na+pagina+de+faturas+da",
-    '/installations/': "na+pagina+de+enderecos+da",
-    '/connection/': "na+pagina+de+conexao+do+perfil+da",
 }
 
 export const headerHelper = {
     '/': false,
+    '/home/': false,
+    '/signup/': false,
     '/register/': false,
     '/dashboard/': true,
     '/dashboard/profile/': true,
     '/dashboard/invoices/': true,
     '/dashboard/installations/': true,
     '/recover-password/': true,
+    '/fail/out-of-range/': false,
+    '/fail/low-cost/': false,
     '/connection/': true,
+}
+export const newHeaderHelper = {
+    '/': true,
+    '/home/': true,
+    '/signup/': true,
+    '/register/': false,
+    '/dashboard/': true,
+    '/dashboard/profile/': false,
+    '/dashboard/invoices/': false,
+    '/dashboard/installations/': false,
+    '/recover-password/': false,
+    '/fail/out-of-range/': false,
+    '/fail/low-cost/': false,
+    '/connection/': false,
 }

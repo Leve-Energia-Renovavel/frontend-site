@@ -77,7 +77,7 @@ export default function DistibuitorSyncData() {
     <Container>
       <FirstBox>
         <Image
-          loading="eager" priority={true}
+          loading="lazy" 
           src={leveLogo} alt='leve' objectFit='contain' objectPosition='left' />
       </FirstBox>
       <LastBox>

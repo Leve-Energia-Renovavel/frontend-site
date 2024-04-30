@@ -6,7 +6,7 @@ import { requestSuccessful } from "@/app/service/utils/Validations";
 import { maritalStatusOptions, nationalityOptions, professionOptions } from "@/app/utils/form-options/formOptions";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { IconButton, InputAdornment, MenuItem, Snackbar, TextField, Typography } from "@mui/material";
+import { IconButton, InputAdornment, MenuItem, Snackbar, TextField, Typography, Breadcrumbs, Link } from "@mui/material";
 import axios from "axios";
 import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
@@ -14,6 +14,7 @@ import FormButton from "../utils/buttons/FormButton";
 import { ProfileChangePasswordContent, ProfileContainer, ProfileMainContent, ProfileSecondaryContent, ProfileSecondaryEmailContent, SnackbarMessageAlert, SnackbarMessageNotification } from "./styles";
 import Cookies from "js-cookie";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
+import { background } from "../../styles";
 
 
 export default function ProfileMain() {
@@ -103,7 +104,17 @@ export default function ProfileMain() {
         <>
             <ProfileContainer>
                 <div>
-                    <Typography variant="h1">Seu Perfil</Typography>
+                    <Typography variant="h1">Meu Perfil</Typography>
+                    <Breadcrumbs aria-label="breadcrumb" separator={">"} style={{ padding: '1rem 1rem 0 0' }}>
+                        <Link
+                            underline="hover"
+                            color="inherit"
+                            href="/dashboard/"
+                        >
+                            Painel
+                        </Link>
+                        <Typography style={{ fontWeight: 'bold', color: background.blueLeve }}>Meu Perfil</Typography>
+                    </Breadcrumbs>
                     <ProfileMainContent>
                         <FormContent acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
                             {isCompany && (

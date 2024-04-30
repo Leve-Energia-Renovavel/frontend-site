@@ -2,10 +2,11 @@
 
 import { useStoreBillingHistory, useStoreNextBills } from '@/app/hooks/useStore';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
-import { Typography } from '@mui/material';
+import { Typography, Breadcrumbs, Link } from '@mui/material';
 import dynamic from 'next/dynamic';
 import FormButton from '../utils/buttons/FormButton';
 import { InvoiceContainer as Container, InvoicesMainCardContainer, InvoicesMainContainer, InvoicesTimelineContainer, NextBillButtonContainer, NextBillDetail, NextBillTitleContainer, PreviousInvoicesContainer } from './styles';
+import { background } from '../../styles';
 
 const Timeline = dynamic(() => import('../timeline/Timeline'), { ssr: false });
 
@@ -42,7 +43,17 @@ export default function InvoicesMain() {
     return (
         <Container>
             <InvoicesMainContainer>
-                <Typography variant='h1' className='yourInvoices'>Suas Faturas</Typography>
+                <Typography variant='h1' className='yourInvoices'>Faturas</Typography>
+                <Breadcrumbs aria-label="breadcrumb" separator={">"} className='breadcrumbs'>
+                    <Link
+                        underline="hover"
+                        color="inherit"
+                        href="/dashboard/"
+                    >
+                        Painel
+                    </Link>
+                    <Typography style={{ fontWeight: 'bold', color: background.blueLeve }}>Faturas</Typography>
+                </Breadcrumbs>
                 <InvoicesMainCardContainer>
                     {nextBillExists ? (
                         <>
