@@ -552,7 +552,7 @@ export const HomeSecondaryBoxesContainer = styled.div`
     justify-content: center;
 
     gap: 1rem;
-    
+
     @media (max-width: 1000px) {
       flex-wrap: wrap;
       gap: 1.2rem;

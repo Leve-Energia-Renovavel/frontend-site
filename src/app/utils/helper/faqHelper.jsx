@@ -38,6 +38,10 @@ export const questionsToBeAdded = [
 export const questions = [
 
     {
+        title: "O que muda na minha conta de luz?",
+        description: "Com a Leve, sua conta de luz fica mais sustentável e mais barata. Você continua recebendo a fatura da distribuidora de energia, que vai trazer a quantidade de créditos gerados pela parte da usina renovável que você alugou! Além da fatura de energia, você receberá também uma fatura da Leve referente à locação da parcela da usina. O mais importante é: as duas faturas juntas vão ser mais leves para o seu bolso que sua única fatura atual!"
+    },
+    {
         title: "Como funciona o pagamento da Leve?",
         description: "No final de cada mês, você receberá duas faturas: uma fatura da sua distribuidora de energia com valor reduzido, e a fatura digital da Leve, enviada por e-mail, referente à locação de uma parte da usina. Nosso compromisso é fazer com que a somatória das duas novas contas seja menor do que a sua conta de luz atual!"
     },

@@ -532,7 +532,9 @@ export const SecondSectionBanner = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: ${newBackground.yellow};
+    /* background-color: ${newBackground.yellow}; */
+    background: linear-gradient(to left, #ffffff 5%, ${newBackground.yellow});
+
     border-radius: 32px;
     
     max-width: 792px;
@@ -575,17 +577,64 @@ export const TutorialBannerContainer = styled.div`
   margin-top: 70px;
 `
 
+export const ContactBannerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #ffffff 30%, ${newBackground.orange});
+
+  h4 {
+    font-family: "Graphie";
+    color: ${newBackground.orange};
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 30px;
+  }
+
+  h5 {
+    font-family: "Graphie";
+    color: ${newBackground.orange};
+    font-size: 21px;
+    line-height: 21px;
+    font-weight: 600;
+
+    margin-top: 11px;
+  }
+
+  .contactButton {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    
+    font-family: "Graphie";
+    color: ${newBackground.yellow};
+    background-color: ${newBackground.green};
+    padding: 8px 21px;
+    max-width: 329px;
+    height: 42px;
+      border-radius: 32px;
+      margin: 30px auto 100px auto;
+
+      &:hover {
+        cursor: pointer;
+        background-color: ${newBackground.orange};
+      }
+     }
+
+
+`
 export const FaqBannerContainer = styled.div`
   display: flex;
   flex-direction: column;
   /* max-width: 994px; */
   width: 100%;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
 
   background-color: ${newBackground.orange};
 
   margin: 0 auto;
-  padding: 2rem;
+  padding: 3rem 2rem;
 
   text-align: center;
 
@@ -595,13 +644,52 @@ export const FaqBannerContainer = styled.div`
     font-size: 42px;
     line-height: 30px;
     font-weight: 500;
-
+    
     margin-top: 20px;
     margin-bottom: 40px;
   }
-
+  
   .faqIcon {
     margin: 0 auto;
+  }
+
+  .faqContainer {
+    margin-bottom: 1rem;
+    border-radius: 20px;
+
+    &:hover {
+      .arrowIcon{
+        background-color: ${newBackground.green};
+        color: ${newBackground.yellow};
+      }
+      .question {
+        color: ${newBackground.green};
+     }
+    }
+  }
+  
+  .question {
+    font-family: "Graphie";
+    color: ${newBackground.orange};
+    font-size: 27px;
+    font-weight: 600;
+  }
+
+  .answer{
+    font-family: "Graphie";
+    color: ${newBackground.green};
+    font-size: 17px;
+    line-height: 21px;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .arrowIcon{
+    background-color: ${newBackground.orange};
+    border-radius: 30px;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
   }
 
 `

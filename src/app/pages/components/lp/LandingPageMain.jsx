@@ -15,7 +15,9 @@ import bannerImage from "../../../../resources/img/large/leve-paineis-solares-fi
 import BrandsContainer from '../home/HomeBrands';
 import TutorialContainer from '../home/HomeTutorial';
 import BoxesContainer from './LandingPageBoxes';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import {
+    ContactBannerContainer,
     LandingPageContainer as Container, LandingPageContent as Content, FaqBannerContainer, LandingPageForm as Form, FormButton, LandingMainFormContainer as FormContainer, FormSlider, FormTitleContainer,
     LandingPageBannerFooter,
     LandingPageBannerSecondFooter,
@@ -197,9 +199,15 @@ export default function LandingPageMain() {
 
                 <BrandsContainer />
 
+                <ContactBannerContainer>
+                    <Typography variant='h4'>Ficou com alguma dúvida?</Typography>
+                    <Typography variant='h5'>Fale com o nosso time agora mesmo!</Typography>
+                    <Typography className='contactButton' onClick={() => handlePreSignup()}><WhatsAppIcon />Falar agora - WhatsApp Leve</Typography>
+                </ContactBannerContainer>
+
                 <FaqBannerContainer>
                     <Image src={faqIcon} className='faqIcon' alt={"Ícone de interrogação sobre dúvidas frequentes"} priority={false} loading='lazy' />
-                    <Typography className='faqTitle'variant='subtitle1'>Dúvidas frequentes</Typography>
+                    <Typography className='faqTitle' variant='subtitle1'>Dúvidas frequentes</Typography>
                     <FaqContainer />
                 </FaqBannerContainer>
 
