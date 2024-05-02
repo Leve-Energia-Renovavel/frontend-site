@@ -90,7 +90,8 @@ export default function HomeMain() {
         }
 
         else {
-            setErrorMessage([response?.message])
+            setErrorMessage(["Erro de servidor. Por favor, tente novamente mais tarde"])
+            // setErrorMessage([response?.message])
         }
 
         setLoading(false)
