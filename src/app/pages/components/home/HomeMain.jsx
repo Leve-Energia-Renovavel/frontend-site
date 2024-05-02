@@ -75,30 +75,34 @@ export default function HomeMain() {
 
         const response = await schemaValidation(submitData)
 
+        console.log("response ====>>>", response)
+
         if (requestSuccessful(response?.status)) {
             if (response?.data?.message === "Você já possui cadastro") {
                 setNotifications(["Você já possui cadastro! Faça login ou continue o cadastro pelo link enviado ao seu e-mail. "])
                 router.push(`/login`)
-                return
             }
-            if (response?.data?.message === "Você não completou seu cadastro, por favor continue através do link enviado em seu e-mail") {
+            else if (response?.data?.message === "Você não completou seu cadastro, por favor continue através do link enviado em seu e-mail") {
                 setNotifications(["Continue seu cadastro pelo link enviado ao seu e-mail. "])
-                return
+            } else {
+                const uuid = response?.data?.uuid
+                setNotifications(["Simulação realizada com sucesso!"])
+                router.push(`/signup/?uuid=${uuid}`)
             }
-            const uuid = response?.data?.uuid
-            setNotifications(["Simulação realizada com sucesso!"])
-            router.push(`/signup/?uuid=${uuid}`)
-            return
 
-        } if (informationNotAccepted(response?.status)) {
+        } else if (informationNotAccepted(response?.status)) {
             if (response?.data?.message === "Fora de rateio") {
                 router.push(`/fail/out-of-range`)
-                return
             }
-            if (response?.data?.message === "Seu consumo já é leve") {
+            else if (response?.data?.message === "Seu consumo já é leve") {
                 router.push(`/fail/low-cost`)
-                return
             }
+        }
+        else if (response?.message === "Seu consumo já é leve") {
+            router.push(`/fail/low-cost`)
+        }
+        else if (response?.message === "Fora de rateio") {
+            router.push(`/fail/out-of-range`)
         }
 
         else {
