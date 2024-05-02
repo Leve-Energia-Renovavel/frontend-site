@@ -79,6 +79,7 @@ export default function HomeMain() {
             if (response?.data?.message === "Você já possui cadastro") {
                 setNotifications(["Você já possui cadastro! Faça login ou continue o cadastro pelo link enviado ao seu e-mail. "])
                 router.push(`/login`)
+                return
             }
             if (response?.data?.message === "Você não completou seu cadastro, por favor continue através do link enviado em seu e-mail") {
                 setNotifications(["Continue seu cadastro pelo link enviado ao seu e-mail. "])
@@ -87,13 +88,16 @@ export default function HomeMain() {
             const uuid = response?.data?.uuid
             setNotifications(["Simulação realizada com sucesso!"])
             router.push(`/signup/?uuid=${uuid}`)
+            return
 
         } if (informationNotAccepted(response?.status)) {
             if (response?.data?.message === "Fora de rateio") {
                 router.push(`/fail/out-of-range`)
+                return
             }
             if (response?.data?.message === "Seu consumo já é leve") {
                 router.push(`/fail/low-cost`)
+                return
             }
         }
 

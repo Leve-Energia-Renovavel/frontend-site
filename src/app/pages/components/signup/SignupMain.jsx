@@ -37,6 +37,8 @@ export default function SignupMain() {
 
             try {
                 const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
+                console.log("userResponse ====>>>", userResponse)
+
                 if (requestSuccessful(userResponse.status)) {
 
                     const instalacao = userResponse?.data?.instalacao
@@ -84,6 +86,8 @@ export default function SignupMain() {
                         params: { cep: cep },
                         withCredentials: false
                     });
+
+                    console.log("addressResponse ====>>>", addressResponse)
 
                     if (requestSuccessful(addressResponse?.status)) {
                         const address = addressResponse?.data

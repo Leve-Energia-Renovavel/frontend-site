@@ -17,11 +17,9 @@ export default function NewResultEconomy() {
 
     const todayCost = cost.toFixed(2).toString().replace(".", ",")
 
-    const economyDifference = parseFloat(cost / discount).toFixed(2).replace(".", ",");
-
+    const percentageValue = parseFloat((cost * discount) / 100).toFixed(2).replace(".", ",");
     const leveEconomyValue = parseFloat(cost - (cost / discount)).toFixed(2).replace(".", ",");
     const leveYearTotalDiscount = parseFloat(((cost / discount) * 12)).toFixed(2).replace(".", ",");
-
 
     return (
         <SimulateContainer>
@@ -68,7 +66,7 @@ export default function NewResultEconomy() {
                         <PercentageIcon />
                         <LeveEconomySecondaryContent>
                             <Typography variant='subtitle1'>Economize aproximadamente:</Typography>
-                            <Typography className='economyDifference'><span className='underlined'>R$ {economyDifference}</span> todos os meses</Typography>
+                            <Typography className='economyDifference'><span className='underlined'>R$ {percentageValue}</span> todos os meses</Typography>
                         </LeveEconomySecondaryContent>
                     </LeveEconomySecondaryContentContainer>
                 </LeveEconomyContainer>
