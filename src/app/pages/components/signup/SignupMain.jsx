@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import dynamic from 'next/dynamic';
 import { useStoreAddress, useStoreUser } from '@/app/hooks/useStore';
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import { clearBrowserData } from '@/app/utils/browser/BrowserUtils';
+import { formatBasicBirthDate } from '@/app/utils/date/DateUtils';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import dynamic from 'next/dynamic';
 import { notFound, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { SignUpContainer as Container } from './styles';
-import { formatBasicBirthDate } from '@/app/utils/date/DateUtils';
 
 const SignupForm = dynamic(() => import('./forms/SignupForm'), { ssr: false });
 const NewResultEconomy = dynamic(() => import('../new-result-economy/NewResultEconomy'), { ssr: false });
@@ -26,10 +26,10 @@ export default function SignupMain() {
     if (!uuid || uuid == "undefined") {
         notFound()
     }
-    
+
     useEffect(() => {
         const fetchData = async () => {
-            
+
             clearBrowserData();
 
             store.updateUser({ uuid: uuid });
@@ -37,8 +37,6 @@ export default function SignupMain() {
 
             try {
                 const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
-                console.log("userResponse ===>>", userResponse)
-
                 if (requestSuccessful(userResponse.status)) {
 
                     const instalacao = userResponse?.data?.instalacao
@@ -86,8 +84,6 @@ export default function SignupMain() {
                         params: { cep: cep },
                         withCredentials: false
                     });
-
-                    console.log("addressResponse ===>>", addressResponse)
 
                     if (requestSuccessful(addressResponse?.status)) {
                         const address = addressResponse?.data
