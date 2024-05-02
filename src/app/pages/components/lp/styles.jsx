@@ -575,3 +575,34 @@ export const TutorialBannerContainer = styled.div`
   margin-top: 70px;
 `
 
+export const FaqBannerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* max-width: 994px; */
+  width: 100%;
+  border-radius: 10px;
+
+  background-color: ${newBackground.orange};
+
+  margin: 0 auto;
+  padding: 2rem;
+
+  text-align: center;
+
+  .faqTitle {
+    font-family: "Graphie";
+    color: ${newBackground.yellow};
+    font-size: 42px;
+    line-height: 30px;
+    font-weight: 500;
+
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+
+  .faqIcon {
+    margin: 0 auto;
+  }
+
+`
+

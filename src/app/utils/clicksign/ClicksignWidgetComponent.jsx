@@ -1,5 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useStoreClickSign, useStoreUser } from '@/app/hooks/useStore';
+import { requestSuccessful } from '@/app/service/utils/Validations';
+import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -20,12 +22,19 @@ export default function ClicksignWidgetComponent() {
 
     const [widget, setWidget] = useState(null);
 
-    const button = document.querySelector('._XButton_1p73z_1');
-    if (button) {
-        button.addEventListener('click', () => {
-            console.log('Button clicked');
-        })
-    };
+    const handleFinishSignup = async () => {
+        try {
+            const data = { uuid: Cookies.get("leveUUID") }
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/finalizar-cadastro`, data)
+            if (requestSuccessful(response.status)) {
+                Cookies.set('accessToken', response.data.access_token)
+                router.push(`/signup/success`)
+            }
+
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     useEffect(() => {
         if (widget) {
@@ -42,7 +51,7 @@ export default function ClicksignWidgetComponent() {
 
             widgetInstance.on('signed', function (event) {
                 storeUser.updateUser({ hasSignContract: true })
-                router.push(`/signup/success`)
+                handleFinishSignup()
             });
 
             setWidget(widgetInstance);

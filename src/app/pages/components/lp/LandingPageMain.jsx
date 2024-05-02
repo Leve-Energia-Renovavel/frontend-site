@@ -10,12 +10,13 @@ import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import infoJson from '../../../../../public/home-info.json';
 import economyIcon from "../../../../resources/icons/small/economy-icon-small.png";
+import faqIcon from "../../../../resources/icons/small/faq-icon-yellow-small.svg";
 import bannerImage from "../../../../resources/img/large/leve-paineis-solares-filtro-grao-image-large.webp";
 import BrandsContainer from '../home/HomeBrands';
 import TutorialContainer from '../home/HomeTutorial';
 import BoxesContainer from './LandingPageBoxes';
 import {
-    LandingPageContainer as Container, LandingPageContent as Content, LandingPageForm as Form, FormButton, LandingMainFormContainer as FormContainer, FormSlider, FormTitleContainer,
+    LandingPageContainer as Container, LandingPageContent as Content, FaqBannerContainer, LandingPageForm as Form, FormButton, LandingMainFormContainer as FormContainer, FormSlider, FormTitleContainer,
     LandingPageBannerFooter,
     LandingPageBannerSecondFooter,
     LandingPageFormContainer, LandingPageFormSimulationContainer,
@@ -28,6 +29,7 @@ import {
     TutorialBannerContainer,
     UserTypeFormButtonContainer, UserTypeFormContainer
 } from "./styles";
+import FaqContainer from '../faq/FaqContainer';
 
 export default function LandingPageMain() {
 
@@ -194,6 +196,14 @@ export default function LandingPageMain() {
                 </TutorialBannerContainer>
 
                 <BrandsContainer />
+
+                <FaqBannerContainer>
+                    <Image src={faqIcon} className='faqIcon' alt={"Ícone de interrogação sobre dúvidas frequentes"} priority={false} loading='lazy' />
+                    <Typography className='faqTitle'variant='subtitle1'>Dúvidas frequentes</Typography>
+                    <FaqContainer />
+                </FaqBannerContainer>
+
+
 
             </Container>
         </>

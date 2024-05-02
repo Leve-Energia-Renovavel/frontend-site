@@ -10,14 +10,15 @@ export default function NewSuccessContent() {
     const router = useRouter()
 
     const handleDashboard = () => {
-        router.push(`/panel`)
+        router.push(`/dashboard`)
+
     }
     return (
         <NewSuccessFormContent >
             <Image
                 className='checkIcon'
                 loading="lazy"
-                
+
                 src={checkIcon}
                 alt="Assinaturas feitas com sucesso!"
             />
