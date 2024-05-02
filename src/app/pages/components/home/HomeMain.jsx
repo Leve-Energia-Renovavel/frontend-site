@@ -76,6 +76,14 @@ export default function HomeMain() {
         const response = await schemaValidation(submitData)
 
         if (requestSuccessful(response?.status)) {
+            if (response?.data?.message === "Você já possui cadastro") {
+                setNotifications(["Você já possui cadastro! Faça login ou continue o cadastro pelo link enviado ao seu e-mail. "])
+                router.push(`/login`)
+            }
+            if (response?.data?.message === "Você não completou seu cadastro, por favor continue através do link enviado em seu e-mail") {
+                setNotifications(["Continue seu cadastro pelo link enviado ao seu e-mail. "])
+                return
+            }
             const uuid = response?.data?.uuid
             setNotifications(["Simulação realizada com sucesso!"])
             router.push(`/signup/?uuid=${uuid}`)

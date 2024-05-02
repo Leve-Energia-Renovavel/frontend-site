@@ -15,6 +15,11 @@ import martinsLogo from "../../../resources/img/small/logo-martins-small.png"
 import timLogo from "../../../resources/img/small/logo-tim-small.png"
 import tribancoLogo from "../../../resources/img/small/logo-tribanco-small.png"
 
+import estacioLogo from "../../../resources/img/small/logo-estacio-small.png"
+import estaparLogo from "../../../resources/img/small/logo-estapar-small.png"
+import raiaDrogasilLogo from "../../../resources/img/small/logo-raia-drogasil-small.png"
+import rennerLogo from "../../../resources/img/small/logo-renner-small.png"
+
 export const homeBoxes = [
     {
         icon: fastIcon,
@@ -90,5 +95,21 @@ export const brands = [
     {
         company: "Tribanco",
         logo: tribancoLogo,
+    },
+    {
+        company: "Renner",
+        logo: rennerLogo,
+    },
+    {
+        company: "Estacio",
+        logo: estacioLogo,
+    },
+    {
+        company: "Estapar",
+        logo: estaparLogo,
+    },
+    {
+        company: "Raia Drogasil",
+        logo: raiaDrogasilLogo,
     },
 ]
