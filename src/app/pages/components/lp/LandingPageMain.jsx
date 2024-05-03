@@ -2,20 +2,23 @@
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
+import { informationNotAccepted, requestSuccessful } from '@/app/service/utils/Validations';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
-import { TextField, Typography } from "@mui/material";
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { Snackbar, TextField, Typography } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import infoJson from '../../../../../public/home-info.json';
 import economyIcon from "../../../../resources/icons/small/economy-icon-small.png";
 import faqIcon from "../../../../resources/icons/small/faq-icon-yellow-small.svg";
 import bannerImage from "../../../../resources/img/large/leve-paineis-solares-filtro-grao-image-large.webp";
+import FaqContainer from '../faq/FaqContainer';
 import BrandsContainer from '../home/HomeBrands';
 import TutorialContainer from '../home/HomeTutorial';
 import BoxesContainer from './LandingPageBoxes';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import {
     ContactBannerContainer,
     LandingPageContainer as Container, LandingPageContent as Content, FaqBannerContainer, LandingPageForm as Form, FormButton, LandingMainFormContainer as FormContainer, FormSlider, FormTitleContainer,
@@ -27,13 +30,16 @@ import {
     SecondSectionBanner,
     SecondSectionContainer,
     FormSelect as Select,
+    SnackbarMessageAlert,
+    SnackbarMessageNotification,
     LandingPageSubtitle as Subtitle,
     TutorialBannerContainer,
     UserTypeFormButtonContainer, UserTypeFormContainer
 } from "./styles";
-import FaqContainer from '../faq/FaqContainer';
 
 export default function LandingPageMain() {
+
+    const router = useRouter()
 
     const [isLoading, setLoading] = useState(false)
     const [simulationCost, setSimulationCost] = useState(150)
@@ -44,9 +50,61 @@ export default function LandingPageMain() {
     const phoneRef = useRef()
     const cepRef = useRef()
 
+    const [errors, setErrorMessage] = useState([]);
+    const [notifications, setNotifications] = useState([])
+
+
     const handleSubmit = async (event) => {
         event.preventDefault()
         setLoading(true)
+
+        const submitData = {
+            nome: nameRef.current.value,
+            email: emailRef.current.value,
+            telefone: phoneRef.current.value,
+            cep: cepRef.current.value,
+            valor: simulationCost,
+            redirect_to: "www.leveenergia.com.br",
+            type: selectedUserType === "Residencia" ? "PF" : "PJ"
+        }
+
+        const response = await schemaValidation(submitData)
+
+        console.log("response ====>>>", response)
+
+        if (requestSuccessful(response?.status)) {
+            if (response?.data?.message === "Você já possui cadastro") {
+                setNotifications(["Você já possui cadastro! Faça login ou continue o cadastro pelo link enviado ao seu e-mail. "])
+                router.push(`/login`)
+            }
+            else if (response?.data?.message === "Você não completou seu cadastro, por favor continue através do link enviado em seu e-mail") {
+                setNotifications(["Continue seu cadastro pelo link enviado ao seu e-mail. "])
+            } else {
+                const uuid = response?.data?.uuid
+                setNotifications(["Simulação realizada com sucesso!"])
+                router.push(`/signup/?uuid=${uuid}`)
+            }
+
+        } else if (informationNotAccepted(response?.status)) {
+            if (response?.data?.message === "Fora de rateio") {
+                router.push(`/fail/out-of-range`)
+            }
+            else if (response?.data?.message === "Seu consumo já é leve") {
+                router.push(`/fail/low-cost`)
+            }
+        }
+        else if (response?.message === "Seu consumo já é leve") {
+            router.push(`/fail/low-cost`)
+        }
+        else if (response?.message === "Fora de rateio") {
+            router.push(`/fail/out-of-range`)
+        }
+
+        else {
+            setErrorMessage(["Erro de servidor. Por favor, tente novamente mais tarde"])
+            // setErrorMessage([response?.message])
+        }
+        setLoading(false)
     }
 
 
@@ -88,7 +146,7 @@ export default function LandingPageMain() {
                     </MainContent>
                     <LandingPageFormContainer>
                         <FormContainer>
-                            <Form id='leadForm' onSubmit={handleSubmit}>
+                            <Form id='leadForm' acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
                                 <FormTitleContainer>
                                     <Image src={economyIcon} className='economyIcon' alt={"Logo Leve"} priority />
                                     <Typography variant="h2">{texts.simulate}</Typography>
@@ -214,6 +272,50 @@ export default function LandingPageMain() {
 
 
             </Container>
+            <>
+                {errors.map((error, index) => {
+                    return (
+                        <Snackbar
+                            key={index}
+                            open={errors.length >= 1}
+                            autoHideDuration={3000}
+                            message={error}
+                            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                            onClose={() => setErrorMessage([])}>
+                            <SnackbarMessageAlert
+                                sx={{ marginBottom: `${index * 5}rem` }}
+                                severity="error"
+                                variant="filled"
+                                onClose={() => setErrorMessage([])}
+                            >
+                                {error}
+                            </SnackbarMessageAlert>
+                        </Snackbar>
+                    )
+                })}
+            </>
+            <>
+                {notifications.map((notification, index) => {
+                    return (
+                        <Snackbar
+                            key={index}
+                            open={notifications.length >= 1}
+                            autoHideDuration={6000}
+                            message={notification}
+                            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                            onClose={() => setNotifications([])}>
+                            <SnackbarMessageNotification
+                                sx={{ marginBottom: `${index * 5}rem` }}
+                                severity="error"
+                                variant="filled"
+                                onClose={() => setNotifications([])}
+                            >
+                                {notification}
+                            </SnackbarMessageNotification>
+                        </Snackbar>
+                    )
+                })}
+            </>
         </>
     )
 }

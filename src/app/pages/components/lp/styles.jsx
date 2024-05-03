@@ -1,7 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Typography, Slider, Button, CircularProgress } from "@mui/material";
-import { newBackground } from "../../styles";
+import { Typography, Slider, Button, CircularProgress, Alert } from "@mui/material";
+import { newBackground, notification } from "../../styles";
 
 const fadeInUp = keyframes`
   from {
@@ -82,7 +82,7 @@ export const LandingPageContent = styled.div`
   display: flex; 
   flex-direction: column; 
   justify-content: center;
-  /* position: relative; */
+  position: relative;
   height: 100%; 
   
   @media (max-width: 600px) {
@@ -815,3 +815,38 @@ export const FaqBannerContainer = styled.div`
 
 `
 
+
+
+export const SnackbarMessageAlert = styled(Alert)`
+  font-family: "Metropolis";
+  font-size: 1rem;
+  background-color: ${notification.alert};
+  border-radius: 10px;
+  padding: 1rem;
+  align-items: center;
+
+  animation: ${fadeInUp} 0.5s ease-out;
+
+  @media screen and (max-width: 600px) {
+    padding: .3rem;
+    font-size: 1rem; 
+  }
+
+`
+
+export const SnackbarMessageNotification = styled(Alert)`
+  font-family: "Metropolis";
+  font-size: 1rem;
+  background-color: ${notification.success};
+  border-radius: 10px;
+  padding: 1rem;
+  align-items: center;
+
+  animation: ${fadeInUp} 0.5s ease-out;
+
+  @media screen and (max-width: 600px) {
+    padding: .3rem;
+    font-size: 1rem; 
+  }
+
+`
