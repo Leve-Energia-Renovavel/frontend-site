@@ -25,11 +25,13 @@ export const MobileNewHeaderContainer = styled.header`
     right: 0; 
     z-index: 1000;
     
-    /* @media (min-width: 1500px) and (max-width: 1700px) {
-        padding: 0 0 0 5rem ;
-    } */
     @media (max-width: 1100px) {
         padding: 0 30px;
+    }
+    @media (max-width: 600px) {
+        width: 100vw;
+        max-width: 100vw;
+        margin: 0;
     }
 
     .profile {

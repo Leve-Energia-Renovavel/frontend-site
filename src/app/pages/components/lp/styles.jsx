@@ -28,12 +28,14 @@ export const LandingPageContainer = styled.div`
     
     @media (max-width: 600px) {
       padding: 0;
+      background: linear-gradient(to top, #ffffff 82%, ${newBackground.yellow} 90%,  #ffffff 98%);
     }
 `
 
 export const LandingPageBanner = styled.div`
     display: flex;
     flex-direction: row;
+
     gap: 1rem;
     
     height: auto;
@@ -44,17 +46,15 @@ export const LandingPageBanner = styled.div`
     @media (max-width: 600px) {
       margin-top: 60px;
       flex-wrap: wrap;
+      gap: 0;
       
       /* padding: 1rem 1.5rem; */
       padding: 0;
-
-      height: auto;
     }
 `
 
 
 export const LandingPageMainContent = styled.div`
-
     border-radius: 15px;
     
     padding: 32px 38px;
@@ -65,14 +65,14 @@ export const LandingPageMainContent = styled.div`
     max-height: 750px;
     
     @media (max-width: 600px) {
-      background-position: 50% 50%;
-      padding: 1rem;
+      padding: 0;
       width: 100vw;
       max-width: 100vw;
 
       margin: 1rem 24px;
 
-      height: 70vh;
+      /* height: 70vh; */
+      height: auto;
 
       border-radius: 15px;
     }
@@ -84,6 +84,13 @@ export const LandingPageContent = styled.div`
   justify-content: center;
   /* position: relative; */
   height: 100%; 
+  
+  @media (max-width: 600px) {
+    text-align: center;
+    justify-content: start;
+
+    height: 300px;
+  }
 `
 
 export const LandingPageMainTitle = styled(Typography)`
@@ -101,6 +108,18 @@ export const LandingPageMainTitle = styled(Typography)`
       font-weight: 600;
       padding: 0 2px;
     }
+
+    @media (max-width: 600px) {
+      font-size: 27px;
+      line-height: 30px;
+      white-space: normal;
+
+      margin-top: 24px;
+
+      .highlighted { 
+        font-size: 27px;
+      }
+    }
 `
 export const LandingPageSubtitle = styled(Typography)`
     font-family: "Graphie";
@@ -116,6 +135,15 @@ export const LandingPageSubtitle = styled(Typography)`
       font-weight: 600;
       text-decoration: underline;
     }
+
+    @media (max-width: 600px) {
+      font-size: 14px;
+      line-height: 17px;
+      
+      .underlined { 
+        font-size: 14px;
+      }
+    }
 `
 export const LandingPageBannerFooter = styled.div`
   display: flex;
@@ -129,7 +157,15 @@ export const LandingPageBannerFooter = styled.div`
   width: 675px;
   height: 85px;
   border-radius: 10px;
-  `
+
+  @media (max-width: 600px) {
+    position: static;
+    flex-direction: column;
+    max-width: 325px;
+    margin-top: auto;
+    text-align: center;
+  }
+`
 export const LandingPageBannerSecondFooter = styled.div`
   display: flex;
   flex-direction: column;
@@ -153,8 +189,23 @@ export const LandingPageBannerSecondFooter = styled.div`
     font-size: 21px;
     line-height: 21px;
     color: ${newBackground.white};
-
+    
     margin-left: 85px;
+  }
+  
+  @media (max-width: 600px) {
+    max-width: 325px;
+    border-radius: 10px 10px 0 0;
+    
+    .footerTitle {
+      margin: 0 auto;
+      font-size: 17px;
+    }
+    .footerSubtitle {
+      margin: 0 auto;
+      font-size: 17px;
+    }
+
   }
 `
 export const MoreAboutLeveFooter = styled.div`
@@ -185,6 +236,10 @@ export const MoreAboutLeveFooter = styled.div`
     color: ${newBackground.green};
     width: 32px;
     height: 32px;
+  }
+
+  @media (max-width: 600px) {
+    display: none;
   }
 
 
@@ -246,6 +301,7 @@ export const LandingMainFormContainer = styled.div`
       height: auto;
       width: 100vw;
       max-width: 100vw;
+      border-radius: 0 0 15px 15px;
     }
 `
 export const LandingPageForm = styled.form`
@@ -524,15 +580,22 @@ export const SecondSectionContainer = styled.div`
     height: 508px;
 
     margin-top: 50px;
-
+    
     padding: 57px 85px;
+    
+    @media (max-width: 600px) {
+      margin-top: 10px;
+      padding: 1rem 2rem;
+
+      text-align: center;
+    }
+
 `
 
 export const SecondSectionBanner = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: ${newBackground.yellow}; */
     background: linear-gradient(to left, #ffffff 5%, ${newBackground.yellow});
 
     border-radius: 32px;
@@ -571,6 +634,25 @@ export const SecondSectionBanner = styled.div`
         background-color: ${newBackground.orange};
       }
      }
+
+     @media (max-width: 600px) {
+      height: auto;
+      padding: 0 1rem 1rem 1rem;
+      background: linear-gradient(to bottom, #ffffff 5%, ${newBackground.yellow});
+
+
+      .bannerTitle {
+        font-size: 27px;
+        margin-top: 22px;
+      }
+      .bannerDescription {
+      font-size: 14px;
+      margin-top: 10px;
+      }
+      .simulateButton {
+      margin: 10px auto 0 auto;
+      }
+    }
     
 `
 export const TutorialBannerContainer = styled.div`
@@ -621,6 +703,20 @@ export const ContactBannerContainer = styled.div`
         background-color: ${newBackground.orange};
       }
      }
+     
+     
+     @media (max-width: 600px) {
+      text-align: center;
+      h4 {
+        font-size: 21px;
+        font-weight: 700;
+      }
+      
+      h5 {
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
 
 
 `
@@ -690,6 +786,31 @@ export const FaqBannerContainer = styled.div`
     padding: 8px;
     width: 40px;
     height: 40px;
+  }
+
+  @media (max-width: 600px) {
+    padding: 2rem 1rem;
+
+    .faqTitle {
+    font-size: 21px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    }
+    .faqIcon {
+    width: 31px;
+    height: 31px;
+    }
+
+    .question {
+    font-size: 14px;
+  }
+    .answer{
+      font-size: 14px;
+  }
+    .arrowIcon{
+    width: 32px;
+    height: 32px;
+  }
   }
 
 `
