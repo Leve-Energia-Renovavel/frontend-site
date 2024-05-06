@@ -1,5 +1,4 @@
 "use client"
-import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import { informationNotAccepted, requestSuccessful } from '@/app/service/utils/Validations';
@@ -11,7 +10,8 @@ import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
-import infoJson from '../../../../../public/home-info.json';
+import infoJsonHome from '../../../../../public/home-info.json';
+import infoJsonLp from '../../../../../public/lp-info.json';
 import economyIcon from "../../../../resources/icons/small/economy-icon-small.png";
 import faqIcon from "../../../../resources/icons/small/faq-icon-yellow-small.svg";
 import bannerImage from "../../../../resources/img/large/leve-paineis-solares-filtro-grao-image-large.webp";
@@ -19,20 +19,18 @@ import FaqContainer from '../faq/FaqContainer';
 import BrandsContainer from '../home/HomeBrands';
 import TutorialContainer from '../home/HomeTutorial';
 import BoxesContainer from './LandingPageBoxes';
+import LandingPageMainContent from './LandingPageMainContent';
 import {
     ContactBannerContainer,
-    LandingPageContainer as Container, LandingPageContent as Content, FaqBannerContainer, LandingPageForm as Form, FormButton, LandingMainFormContainer as FormContainer, FormSlider, FormTitleContainer,
-    LandingPageBannerFooter,
-    LandingPageBannerSecondFooter,
+    LandingPageContainer as Container,
+    FaqBannerContainer, LandingPageForm as Form, FormButton, LandingMainFormContainer as FormContainer, FormSlider, FormTitleContainer,
     LandingPageFormContainer, LandingPageFormSimulationContainer,
-    Loading, LandingPageBanner as MainBanner, LandingPageMainContent as MainContent, LandingPageMainTitle as MainTitle,
-    MoreAboutLeveFooter,
+    Loading, LandingPageBanner as MainBanner,
     SecondSectionBanner,
     SecondSectionContainer,
     FormSelect as Select,
     SnackbarMessageAlert,
     SnackbarMessageNotification,
-    LandingPageSubtitle as Subtitle,
     TutorialBannerContainer,
     UserTypeFormButtonContainer, UserTypeFormContainer
 } from "./styles";
@@ -69,9 +67,6 @@ export default function LandingPageMain() {
         }
 
         const response = await schemaValidation(submitData)
-
-        console.log("response ====>>>", response)
-
         if (requestSuccessful(response?.status)) {
             if (response?.data?.message === "Você já possui cadastro") {
                 setNotifications(["Você já possui cadastro! Faça login ou continue o cadastro pelo link enviado ao seu e-mail. "])
@@ -122,28 +117,14 @@ export default function LandingPageMain() {
         }
     }
 
-    const texts = infoJson
+    const texts = infoJsonHome
+    const lpTexts = infoJsonLp
 
     return (
         <>
             <Container>
                 <MainBanner>
-                    <MainContent>
-                        <Content>
-                            <MainTitle variant="h1">Imagine <span className='highlighted'>R$1.200</span> a mais na sua conta bancária todo final de ano…</MainTitle>
-                            <Subtitle>É exatamente isso que a <span className='underlined'>Leve Energia</span> pode fazer por você – e pelo seu bolso</Subtitle>
-                            <LandingPageBannerFooter>
-                                <LandingPageBannerSecondFooter>
-                                    <Typography variant='subtitle1' className='footerTitle'>Sem obras. Sem instalações.</Typography>
-                                    <Typography variant='subtitle1' className='footerSubtitle'>E sem gastar R$1 a mais sequer.</Typography>
-                                </LandingPageBannerSecondFooter>
-                                <MoreAboutLeveFooter>
-                                    <Typography variant='subtitle1'>Mais sobre a Leve</Typography>
-                                    <ArrowCircleDownIcon className='arrowIcon' />
-                                </MoreAboutLeveFooter>
-                            </LandingPageBannerFooter>
-                        </Content>
-                    </MainContent>
+                    <LandingPageMainContent />
                     <LandingPageFormContainer>
                         <FormContainer>
                             <Form id='leadForm' acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
@@ -238,16 +219,17 @@ export default function LandingPageMain() {
                             endIcon={!isLoading ? <ArrowForwardIcon /> : <ArrowForwardIcon sx={{ display: "none" }} />}>
                             {isLoading ? <Loading size={20} /> : <span>{texts.discountCalculate}</span>}
                         </FormButton>
-                        <Typography className='privacyPolicyDisclaimer'>Ao informar seu e-mail, você concorda em receber e-mails da Leve Energia Renovável e aceita nossa <span className='privacyPolicy'>Política de Privacidade</span>.</Typography>
+                        <p className='privacyPolicyDisclaimer'>{texts.agreedToReceiveEmails}<span className='privacyPolicy'>{texts.privacyPolicy}</span>.</p>
+
                     </LandingPageFormContainer>
                 </MainBanner>
 
                 <SecondSectionContainer image={bannerImage}>
                     <BoxesContainer />
                     <SecondSectionBanner>
-                        <Typography className='bannerTitle'>Viu como é Leve?</Typography>
-                        <Typography className='bannerDescription'>Clique no botão abaixo e veja que aqui a sua economia é real:</Typography>
-                        <Typography className='simulateButton' onClick={() => handlePreSignup()}>Simular agora</Typography>
+                        <Typography className='bannerTitle'>{lpTexts.seeHowItsLeve}</Typography>
+                        <Typography className='bannerDescription'>{lpTexts.callToActionButtonTitle}</Typography>
+                        <Typography className='simulateButton' onClick={() => handlePreSignup()}>{lpTexts.simulateNow}</Typography>
                     </SecondSectionBanner>
                 </SecondSectionContainer>
 
@@ -258,18 +240,16 @@ export default function LandingPageMain() {
                 <BrandsContainer />
 
                 <ContactBannerContainer>
-                    <Typography variant='h4'>Ficou com alguma dúvida?</Typography>
-                    <Typography variant='h5'>Fale com o nosso time agora mesmo!</Typography>
-                    <Typography className='contactButton' onClick={() => handlePreSignup()}><WhatsAppIcon />Falar agora - WhatsApp Leve</Typography>
+                    <Typography variant='h4'>{lpTexts.anyDoubt}</Typography>
+                    <Typography variant='h5'>{lpTexts.contactOutTeam}</Typography>
+                    <Typography className='contactButton' onClick={() => handlePreSignup()}><WhatsAppIcon />{lpTexts.whatsappLeve}</Typography>
                 </ContactBannerContainer>
 
                 <FaqBannerContainer>
                     <Image src={faqIcon} className='faqIcon' alt={"Ícone de interrogação sobre dúvidas frequentes"} priority={false} loading='lazy' />
-                    <Typography className='faqTitle' variant='subtitle1'>Dúvidas frequentes</Typography>
+                    <Typography className='faqTitle' variant='subtitle1'>{lpTexts.faqTitle}</Typography>
                     <FaqContainer />
                 </FaqBannerContainer>
-
-
 
             </Container>
             <>

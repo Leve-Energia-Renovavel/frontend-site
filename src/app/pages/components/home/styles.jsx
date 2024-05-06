@@ -570,8 +570,6 @@ export const HomeSecondaryBoxContent = styled.div`
     justify-content: space-between;
     border-radius: 15px;
 
-    ${(props) => props.visible && fadeInUpAnimation};
-
     height: 170px;
     /* width: 287px; */
     width: 310px;
@@ -604,7 +602,7 @@ export const HomeSecondaryBoxContent = styled.div`
       border-radius: 15px;
     }
     @media (max-width: 415px) {
-      width: 150px;
+      width: 140px;
       height: 150px;
 
       padding: .8rem;
@@ -626,6 +624,9 @@ export const HomeSecondaryBoxTitle = styled.div`
       
       @media (max-width: 600px) {
         font-size: 18px;
+      }
+      @media (max-width: 415px) {
+        font-size: 16px;
       }
     }
     

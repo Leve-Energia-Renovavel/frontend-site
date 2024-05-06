@@ -74,9 +74,6 @@ export default function HomeMain() {
         }
 
         const response = await schemaValidation(submitData)
-
-        console.log("response ====>>>", response)
-
         if (requestSuccessful(response?.status)) {
             if (response?.data?.message === "Você já possui cadastro") {
                 setNotifications(["Você já possui cadastro! Faça login ou continue o cadastro pelo link enviado ao seu e-mail. "])
@@ -215,7 +212,7 @@ export default function HomeMain() {
                             endIcon={!isLoading ? <ArrowForwardIcon /> : <ArrowForwardIcon sx={{ display: "none" }} />}>
                             {isLoading ? <Loading size={20} /> : <span>{texts.discountCalculate}</span>}
                         </FormButton>
-                        <p className='privacyPolicyDisclaimer'>Ao informar seu e-mail, você concorda em receber e-mails da Leve Energia Renovável e aceita nossa <span className='privacyPolicy'>Política de Privacidade</span>.</p>
+                        <p className='privacyPolicyDisclaimer'>{texts.agreedToReceiveEmails}<span className='privacyPolicy'>{texts.privacyPolicy}</span>.</p>
                     </HomeFormContainer>
                 </HomeBanner>
 
