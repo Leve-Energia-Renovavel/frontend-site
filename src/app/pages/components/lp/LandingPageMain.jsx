@@ -15,11 +15,13 @@ import infoJsonLp from '../../../../../public/lp-info.json';
 import economyIcon from "../../../../resources/icons/small/economy-icon-small.png";
 import faqIcon from "../../../../resources/icons/small/faq-icon-yellow-small.svg";
 import bannerImage from "../../../../resources/img/large/leve-paineis-solares-filtro-grao-image-large.webp";
+
 import FaqContainer from '../faq/FaqContainer';
 import BrandsContainer from '../home/HomeBrands';
 import TutorialContainer from '../home/HomeTutorial';
 import BoxesContainer from './LandingPageBoxes';
 import LandingPageMainContent from './LandingPageMainContent';
+
 import {
     ContactBannerContainer,
     LandingPageContainer as Container,

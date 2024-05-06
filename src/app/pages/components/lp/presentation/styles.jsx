@@ -2,6 +2,7 @@ import { newBackground } from "@/app/pages/styles";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";
+import percentageImage from "../../../../../resources/icons/large/icone-background-percentage-white.svg";
 
 const fadeInUp = keyframes`
   from {
@@ -102,10 +103,12 @@ export const MoreAboutLeveFooter = styled.div`
         font-family: "Graphie";
         font-size: 17px;
         line-height: 17px;
-        font-weight: 500;
+        font-weight: 400;
         color: ${newBackground.white};
     }
     .arrowIcon {
+        width: 32px;
+        height: 32px;
         color: ${newBackground.white};
     }
 `
@@ -134,6 +137,417 @@ export const MainBannerButton = styled(Button)`
   &:hover {
     background-color: ${newBackground.yellow};
     color: ${newBackground.orange};
+    cursor: pointer;
+  }
+  
+  & .MuiButton-endIcon {
+    margin-left: auto;
+  }
+`
+
+export const SecondSectionContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: ${newBackground.green};
+    border-radius: 20px;
+
+    height: 609px;
+
+    margin-top: 1rem;
+    `
+export const SecondSectionTitleContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 4px;
+
+    margin-top: 32px;
+
+    h3 {
+        font-family: "Graphie";
+        font-size: 34px;
+        line-height: 30px;
+        font-weight: 600;
+        color: ${newBackground.white};
+    }
+    .yellow {
+        color: ${newBackground.yellow};
+    }
+
+`
+export const SecondSectionContent = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: ${newBackground.orange};
+    
+    border-radius: 20px;
+
+    height: 509px;
+
+    background-image: url(${props => props.image.src});
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 800px; 
+    /* background-size: 500px;  */
+`
+export const SecondSectionContentTitleContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    
+    margin-left: 40px;
+
+    h4 {
+        font-family: "Graphie";
+        font-size: 42px;
+        line-height: 45px;
+        font-weight: 600;
+        color: ${newBackground.white};
+
+        max-width: 306px;
+
+    }
+`
+export const SecondSectionBoxesContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: auto;
+    gap: 1rem;
+    
+    max-width: 700px;    
+`
+
+export const SecondSectionBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: ${newBackground.white};
+
+    padding: 14px 12px;
+
+    max-width: 200px;
+    border-radius: 20px;
+
+    .iconContainer {
+        text-align: center;
+        margin-left: auto;
+        background-color: ${newBackground.yellow};
+        border-radius: 60px;
+        padding: 15px 18px;
+
+        width: 77px;
+    }
+
+    .boxDescription {
+        font-family: "Graphie";
+        font-size: 17px;
+        line-height: 20px;
+        font-weight: 500;
+        color: ${newBackground.orange};
+
+        margin-top: auto;
+
+        max-width: 174px;
+    }
+`
+
+export const SecondSectionButton = styled(Button)`
+  padding: .5rem 1rem;
+  background-color: ${newBackground.yellow};
+  color: ${newBackground.orange};
+  border-radius: 30px;
+
+  height: 42px;
+  max-width: 248px;
+  
+  margin: 1rem 0;
+
+  span {
+    font-family: "Graphie";
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: none;
+
+    margin-left: auto;
+
+  }
+  
+  &:hover {
+    background-color: ${newBackground.green};
+    color: ${newBackground.yellow};
+    cursor: pointer;
+  }
+  
+  & .MuiButton-endIcon {
+    margin-left: auto;
+  }
+`
+
+
+export const ThirdSectionContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    
+    height: auto;
+    text-align: center;
+    padding: 2rem;
+
+    margin-top: 80px;
+
+    h6 {
+        font-family: "Graphie";
+        font-size: 42px;
+        font-weight: 600;
+        color: ${newBackground.orange};
+    }
+
+    p {
+        margin: 30px auto 0 auto;
+
+        font-family: "Graphie";
+        font-size: 21px;
+        line-height: 24px;
+        font-weight: 500;
+        color: ${newBackground.green};
+        
+        max-width: 1050px;
+    }
+    
+    .highlighted {
+        background-color: ${newBackground.yellow};
+        padding: 2px;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+`
+export const ThirdSectionCardContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    gap: 1rem;
+
+    margin-top: 50px;
+
+    @media (max-width: 600px) {
+      flex-wrap: wrap;
+    }
+`
+
+export const ThirdSectionCard = styled.div`
+    display: flex;
+    flex-direction: column;
+    
+    border: 1px solid #ccc;
+    
+    border-radius: 25px;
+    width: 280px;
+    max-width: 300px;
+    
+    padding: 2rem;
+
+    .invisible { 
+      @media (max-width: 600px) {
+      flex-direction: row-reverse;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      flex-direction: row-reverse;
+      width: 327px;
+      height: auto;
+      padding: 1rem;
+    }
+`
+
+export const ThirdSectionIcon = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    
+    @media (max-width: 600px) {
+      flex-direction: column;
+      justify-content: start;
+    }
+
+    .titleIcon {
+      width: 65px;
+      height: auto;
+
+      object-fit: contain;
+      
+      @media (max-width: 600px) {
+        width: 50px;
+        height: auto;
+      }
+    }
+`
+
+export const ThirdSectionTitle = styled.div`
+
+  .cardTitle {
+    font-family: "Graphie";
+    font-size: 42px;
+    font-weight: 600;
+    color: ${newBackground.green};
+    
+    @media (max-width: 600px) {
+      font-size: 34px;
+    }
+  }
+`
+
+export const ThirdSectionDescription = styled.div`
+  .cardDescription {
+    font-family: "Graphie";
+    font-size: 17px;
+    font-weight: 500;
+    color: ${newBackground.green};
+
+    line-height: 17px;
+  }
+`
+
+
+export const FourthSectionImagesContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    gap: 1rem;
+    
+    @media (max-width: 600px) {
+      flex-wrap: wrap;
+    }
+`
+
+export const FourthSectionImagesContent = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    background-image: url(${props => props.image.src});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    
+    transition: filter 0.5s ease; 
+
+    
+    &:hover {
+      filter: brightness(0.8);
+    }
+    
+    height: 420px;
+    width: 620px;
+
+    border-radius: 20px;
+    
+    padding: 1rem;
+    /* margin-bottom: 5rem; */
+    
+    @media (max-width: 600px) {
+      height: 250px;
+      width: 330px;
+
+      
+      border-radius: 15px;
+    }
+    
+    h6 {
+      ${props => props.invertedBox ? "margin-top: auto" : ""};
+      font-family: "Graphie";
+      font-size: 27px;
+      font-weight: 600;
+      color: ${newBackground.white};
+      
+      @media (max-width: 600px) {
+        font-size: 21px;
+      }
+      
+    }
+
+    .arrowIcon {
+      font-size: 50px;
+      color: ${newBackground.yellow};
+      
+      &:hover {
+        color: ${newBackground.green};
+        background-color: ${newBackground.yellow};
+        border-radius: 30px;
+      }
+    }
+`
+
+export const FifthSectionContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    margin: 75px 0;
+`
+export const FifthSectionContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 32px;
+    background-color: ${newBackground.yellow};
+
+    background-image: url(${props => props.image.src});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    background-size: 1000px; 
+    
+    text-align: center;
+    
+    width: 792px;
+    height: auto;
+
+    h6 {
+        max-width: 546px;
+        margin-top: 52px;
+
+        font-family: "Graphie";
+        font-size: 27px;
+        line-height: 30px;
+        font-weight: 600;
+        color: ${newBackground.green};
+
+    }
+
+`
+
+export const FifthSectionButton = styled(Button)`
+  padding: .5rem 1rem;
+  background-color: ${newBackground.green};
+  color: ${newBackground.yellow};
+  border-radius: 30px;
+
+  height: 42px;
+  max-width: 248px;
+  
+  margin: 80px 0;
+
+  span {
+    font-family: "Graphie";
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: none;
+
+    margin-left: auto;
+
+  }
+  
+  &:hover {
+    background-color: ${newBackground.orange};
+    color: ${newBackground.yellow};
     cursor: pointer;
   }
   
