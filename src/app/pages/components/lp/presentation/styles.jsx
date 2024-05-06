@@ -298,15 +298,15 @@ export const ThirdSectionContainer = styled.div`
 
     margin-top: 80px;
 
-    h6 {
+    .ourSolutions {
         font-family: "Graphie";
         font-size: 42px;
         font-weight: 600;
         color: ${newBackground.orange};
     }
 
-    p {
-        margin: 30px auto 0 auto;
+    .solutionsDescription {
+        margin: 30px auto 50px auto;
 
         font-family: "Graphie";
         font-size: 21px;

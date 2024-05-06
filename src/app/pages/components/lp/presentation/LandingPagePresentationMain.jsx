@@ -13,6 +13,8 @@ import companyCardImage from "../../../../../resources/img/large/leve-confratern
 import homeCardImage from "../../../../../resources/img/large/leve-familia-brincando-image-large.webp";
 import bannerImage from '../../../../../resources/img/large/leve-pai-e-filho-image-large.webp';
 import { LandingPageContainer as Container, FifthSectionButton, FifthSectionContainer, FifthSectionContent, FourthSectionImagesContainer, FourthSectionImagesContent, LandingPageMainBanner as MainBanner, MainBannerButton, LandingPageMainContent as MainContent, MoreAboutLeveFooter, SecondSectionBox, SecondSectionBoxesContainer, SecondSectionButton, SecondSectionContainer, SecondSectionContent, SecondSectionContentTitleContainer, SecondSectionTitleContainer, ThirdSectionCard, ThirdSectionCardContainer, ThirdSectionContainer, ThirdSectionDescription, ThirdSectionIcon, ThirdSectionTitle } from './styles';
+import BoxesContainer from '../../home/HomeBoxes';
+import TutorialContainer from '../../home/HomeTutorial';
 
 export default function LandingPagePresentationMain() {
 
@@ -84,27 +86,9 @@ export default function LandingPagePresentationMain() {
             </SecondSectionContainer>
 
             <ThirdSectionContainer>
-                <h6>{texts.ourSolutions}</h6>
-                <p>{texts.weHelpYou} <span className='highlighted'>{texts.saveTwentyPercent}</span>{texts.everyMonthTo}</p>
-                <ThirdSectionCardContainer>
-                    {homeTutorialCards.map((card, index) => {
-                        return (
-                            <ThirdSectionCard key={index}>
-                                <ThirdSectionIcon>
-                                    <Image src={card.icon} className="titleIcon" alt={card.description} loading="lazy" />
-                                </ThirdSectionIcon>
-                                <div className='invisible'>
-                                    <ThirdSectionTitle>
-                                        <Typography variant="subtitle1" className='cardTitle'>{`${index + 1}.`}</Typography>
-                                    </ThirdSectionTitle>
-                                    <ThirdSectionDescription>
-                                        <Typography variant="subtitle1" className='cardDescription'>{card.description}</Typography>
-                                    </ThirdSectionDescription>
-                                </div>
-                            </ThirdSectionCard>
-                        )
-                    })}
-                </ThirdSectionCardContainer>
+                <h6 className='ourSolutions'>{texts.ourSolutions}</h6>
+                <p className='solutionsDescription'>{texts.weHelpYou} <span className='highlighted'>{texts.saveTwentyPercent}</span>{texts.everyMonthTo}</p>
+                <BoxesContainer />
             </ThirdSectionContainer>
 
             <FourthSectionImagesContainer>
@@ -129,6 +113,8 @@ export default function LandingPagePresentationMain() {
 
                 </FifthSectionContent>
             </FifthSectionContainer>
+
+            <TutorialContainer />
 
 
 
