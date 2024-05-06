@@ -1,6 +1,6 @@
 "use client"
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { informationNotAccepted, requestSuccessful } from '@/app/service/utils/Validations';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';

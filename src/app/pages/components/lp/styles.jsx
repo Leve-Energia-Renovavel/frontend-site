@@ -1,6 +1,6 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Typography, Slider, Button, CircularProgress, Alert } from "@mui/material";
+import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/material";
 import { newBackground, notification } from "../../styles";
 
 const fadeInUp = keyframes`
@@ -353,10 +353,6 @@ export const LandingPageForm = styled.form`
       border-radius: 10px;
       height: 42px;
       margin-bottom: 8px;
-
-      .MuiInputBase-input {
-        display: none;
-      }
 
       .MuiOutlinedInput-input {
         
