@@ -157,6 +157,14 @@ export const MyNiceDiv = styled.div`
             height: 650px; 
         }
     }
+
+    @media (max-width: 400px) {
+        max-width: 100vw;
+            display: none;
+        }
+        .sunImage {
+
+        }
 `;
 export const FooterSocialMediaContainer = styled.div`
     display: flex;

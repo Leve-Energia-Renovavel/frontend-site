@@ -2,7 +2,6 @@ import { newBackground } from "@/app/pages/styles";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";
-import percentageImage from "../../../../../resources/icons/large/icone-background-percentage-white.svg";
 
 const fadeInUp = keyframes`
   from {
@@ -26,17 +25,29 @@ export const LandingPageContainer = styled.div`
     max-width: 1366px;
     margin: 74px auto 0 auto;   //margin-top for header
     padding: 0 3rem;
+    
+    @media (max-width: 600px) {
+      padding: 0 1rem;
+    }
 `
 export const LandingPageMainBanner = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
 
     .bannerImage { 
         border-radius: 15px;
         width: 590px;
         height: auto;
+        
+        @media (max-width: 600px) {
+          width: 100%;
+        }
+    }
+
+    @media (max-width: 600px) {
+      flex-wrap: wrap;
     }
 `
 export const LandingPageMainContent = styled.div`
@@ -54,8 +65,16 @@ h1 {
     font-size: 42px;
     line-height: 45px;
     font-weight: 600;
-
+    
     max-width: 489px;
+    
+    @media (max-width: 600px) {
+      font-size: 27px;
+      line-height: 30px;
+      max-width: 315px;
+
+      margin: 0 auto;
+    }
 }
 
 h2 {
@@ -64,8 +83,19 @@ h2 {
     font-size: 21px;
     line-height: 25px;
     font-weight: 600;
-
+    
     max-width: 380px;
+    
+    @media (max-width: 600px) {
+      font-size: 14px;
+      line-height: 17px;
+      font-weight: 500;
+      text-align: center;
+      
+      margin: 0 auto;
+
+      max-width: 250px;
+    }
 }
 
 .highlighted { 
@@ -78,7 +108,6 @@ h2 {
     text-decoration: underline;
     font-weight: 700;
 }
-
 
 `
 
@@ -143,6 +172,17 @@ export const MainBannerButton = styled(Button)`
   & .MuiButton-endIcon {
     margin-left: auto;
   }
+
+  @media (max-width: 600px) {
+    max-width: 210px;
+    margin: 10px auto 41px auto;
+
+    span {
+      font-size: 17px;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+  }
 `
 
 export const SecondSectionContainer = styled.div`
@@ -175,6 +215,11 @@ export const SecondSectionTitleContainer = styled.div`
         color: ${newBackground.yellow};
     }
 
+    @media (max-width: 600px) {
+      flex-wrap: wrap;
+      gap: 0px;
+    }
+
 `
 export const SecondSectionContent = styled.div`
     display: flex;
@@ -186,12 +231,17 @@ export const SecondSectionContent = styled.div`
     border-radius: 20px;
 
     height: 509px;
-
+    
     background-image: url(${props => props.image.src});
     background-repeat: no-repeat;
     background-position: left;
     background-size: 800px; 
     /* background-size: 500px;  */
+    
+    @media (max-width: 600px) {
+      flex-wrap: wrap;
+      height: auto;
+    }
 `
 export const SecondSectionContentTitleContainer = styled.div`
     display: flex;
@@ -208,7 +258,6 @@ export const SecondSectionContentTitleContainer = styled.div`
         color: ${newBackground.white};
 
         max-width: 306px;
-
     }
 `
 export const SecondSectionBoxesContainer = styled.div`
@@ -218,7 +267,12 @@ export const SecondSectionBoxesContainer = styled.div`
     margin-left: auto;
     gap: 1rem;
     
-    max-width: 700px;    
+    max-width: 700px;   
+    
+    @media (max-width: 600px) {
+      flex-wrap: wrap;
+      max-width: 500px;   
+    }
 `
 
 export const SecondSectionBox = styled.div`

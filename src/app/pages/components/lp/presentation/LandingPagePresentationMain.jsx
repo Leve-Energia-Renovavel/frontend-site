@@ -1,24 +1,22 @@
 "use client"
 
-import { homeTutorialCards } from '@/app/utils/helper/homeBoxesHelper';
 import { landingPagePresentationBoxes, lpPresentationVisionBoxes } from '@/app/utils/helper/landingPageHelper';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Typography } from '@mui/material';
 import Image from 'next/image';
 import percentageImage from "../../../../../resources/icons/large/icone-background-percentage-white.svg";
 import sunImage from "../../../../../resources/icons/small/ellipse-small.webp";
 import companyCardImage from "../../../../../resources/img/large/leve-confraternizacao-image-large.webp";
+import sectionBanner from "../../../../../resources/img/large/leve-criancas-brincando-image-box-large.webp";
 import homeCardImage from "../../../../../resources/img/large/leve-familia-brincando-image-large.webp";
 import bannerImage from '../../../../../resources/img/large/leve-pai-e-filho-image-large.webp';
-import { LandingPageContainer as Container, FifthSectionButton, FifthSectionContainer, FifthSectionContent, FourthSectionImagesContainer, FourthSectionImagesContent, LandingPageMainBanner as MainBanner, MainBannerButton, LandingPageMainContent as MainContent, MoreAboutLeveFooter, SecondSectionBox, SecondSectionBoxesContainer, SecondSectionButton, SecondSectionContainer, SecondSectionContent, SecondSectionContentTitleContainer, SecondSectionTitleContainer, SixthSectionBanner, SixthSectionBox, SixthSectionBoxesContainer, SixthSectionContainer, SixthSectionContent, SixthSectionContentHeader, SixthSectionContentManifest, ThirdSectionCard, ThirdSectionCardContainer, ThirdSectionContainer, ThirdSectionDescription, ThirdSectionIcon, ThirdSectionTitle } from './styles';
-import sectionBanner from "../../../../../resources/img/large/leve-criancas-brincando-image-box-large.webp"
+import { LandingPageContainer as Container, FifthSectionButton, FifthSectionContainer, FifthSectionContent, FourthSectionImagesContainer, FourthSectionImagesContent, LandingPageMainBanner as MainBanner, MainBannerButton, LandingPageMainContent as MainContent, MoreAboutLeveFooter, SecondSectionBox, SecondSectionBoxesContainer, SecondSectionButton, SecondSectionContainer, SecondSectionContent, SecondSectionContentTitleContainer, SecondSectionTitleContainer, SixthSectionBanner, SixthSectionBox, SixthSectionBoxesContainer, SixthSectionContainer, SixthSectionContent, SixthSectionContentHeader, SixthSectionContentManifest, ThirdSectionContainer } from './styles';
 
 
 import BoxesContainer from '../../home/HomeBoxes';
-import TutorialContainer from '../../home/HomeTutorial';
 import BrandsContainer from '../../home/HomeBrands';
+import TutorialContainer from '../../home/HomeTutorial';
 
 export default function LandingPagePresentationMain() {
 

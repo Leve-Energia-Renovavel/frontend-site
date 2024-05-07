@@ -243,7 +243,7 @@ export default function SignupForm() {
         uuid: uuid,
         nome: userRefs.name.current.value,
         email: userRefs.email.current.value,
-        rg: userRefs.rg.current.value,
+        rg: userRefs.rg.current.value.replace(/[-_]/g, ""),
         cpf: userRefs.cpf.current.value,
         data_nascimento: userRefs.birthDate.current.value,
         telefone: userRefs.phone.current.value,
@@ -265,7 +265,10 @@ export default function SignupForm() {
         submitData["cnpj"] = companyRefs.cnpj.current.value
       }
 
+      console.log("submitData ===>>", submitData)
+      
       const response = await schemaValidation(isCompany, submitData)
+      console.log("response ===>>", response)
 
       if (requestSuccessful(response?.status) || hasToSignContract(response?.data?.message)) {
         console.log("Data successfully saved!")
