@@ -324,14 +324,13 @@ export default function SignupForm() {
     setStateValue(stateOptions[stateId] || stateOptions[(statesAcronymOptions[state])] || null)
   }, [store, storeAddress])
 
-  // useEffect(() => {
-  //   if (uuid !== search.get("uuid")) {
-  //     console.log("refreshing...");
-  //     setTimeout(() => {
-  //       window.location.reload();
-  //     }, 1000);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (uuid !== search.get("uuid")) {
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+    }
+  }, []);
 
   return (
     <>
