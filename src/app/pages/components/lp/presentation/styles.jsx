@@ -555,3 +555,80 @@ export const FifthSectionButton = styled(Button)`
     margin-left: auto;
   }
 `
+
+export const SixthSectionContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  `
+export const SixthSectionContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  `
+export const SixthSectionContentHeader = styled.div`
+background-color: ${newBackground.yellow};
+border-radius: 15px;
+padding: 28px 21px;
+
+.energizeTheWorld {
+  font-family: "Graphie";
+  font-size: 34px;
+  line-height: 38px;
+  font-weight: 600;
+  color: ${newBackground.orange};
+}
+`
+export const SixthSectionContentManifest = styled.div`
+  text-align: left;
+  border-radius: 15px;
+  background-color: ${newBackground.orange};
+  padding: 37px 29px;
+  
+  .manifest {
+    font-family: "Graphie";
+    font-size: 21px;
+    line-height: 25px;
+    font-weight: 400;
+    color: ${newBackground.white};
+
+    margin-bottom: 22px;
+  }
+`
+export const SixthSectionBanner = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`
+export const SixthSectionBoxesContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+`
+export const SixthSectionBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: ${newBackground.green};
+
+  border-radius: 15px;
+  padding: 1rem;
+
+  max-width: 180px;
+  height: 165px;
+
+  .title { 
+    font-family: "Graphie";
+    font-size: 21px;
+    font-weight: 500;
+    color: ${newBackground.yellow};
+  }
+  
+  .description {
+    font-family: "Graphie";
+    font-size: 15px;
+    line-height: 17px;
+    font-weight: 400;
+    color: ${newBackground.white};
+  }
+`

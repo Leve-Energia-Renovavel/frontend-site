@@ -1,7 +1,7 @@
 "use client"
 
 import { homeTutorialCards } from '@/app/utils/helper/homeBoxesHelper';
-import { landingPagePresentationBoxes } from '@/app/utils/helper/landingPageHelper';
+import { landingPagePresentationBoxes, lpPresentationVisionBoxes } from '@/app/utils/helper/landingPageHelper';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -12,9 +12,13 @@ import sunImage from "../../../../../resources/icons/small/ellipse-small.webp";
 import companyCardImage from "../../../../../resources/img/large/leve-confraternizacao-image-large.webp";
 import homeCardImage from "../../../../../resources/img/large/leve-familia-brincando-image-large.webp";
 import bannerImage from '../../../../../resources/img/large/leve-pai-e-filho-image-large.webp';
-import { LandingPageContainer as Container, FifthSectionButton, FifthSectionContainer, FifthSectionContent, FourthSectionImagesContainer, FourthSectionImagesContent, LandingPageMainBanner as MainBanner, MainBannerButton, LandingPageMainContent as MainContent, MoreAboutLeveFooter, SecondSectionBox, SecondSectionBoxesContainer, SecondSectionButton, SecondSectionContainer, SecondSectionContent, SecondSectionContentTitleContainer, SecondSectionTitleContainer, ThirdSectionCard, ThirdSectionCardContainer, ThirdSectionContainer, ThirdSectionDescription, ThirdSectionIcon, ThirdSectionTitle } from './styles';
+import { LandingPageContainer as Container, FifthSectionButton, FifthSectionContainer, FifthSectionContent, FourthSectionImagesContainer, FourthSectionImagesContent, LandingPageMainBanner as MainBanner, MainBannerButton, LandingPageMainContent as MainContent, MoreAboutLeveFooter, SecondSectionBox, SecondSectionBoxesContainer, SecondSectionButton, SecondSectionContainer, SecondSectionContent, SecondSectionContentTitleContainer, SecondSectionTitleContainer, SixthSectionBanner, SixthSectionBox, SixthSectionBoxesContainer, SixthSectionContainer, SixthSectionContent, SixthSectionContentHeader, SixthSectionContentManifest, ThirdSectionCard, ThirdSectionCardContainer, ThirdSectionContainer, ThirdSectionDescription, ThirdSectionIcon, ThirdSectionTitle } from './styles';
+import sectionBanner from "../../../../../resources/img/large/leve-criancas-brincando-image-box-large.webp"
+
+
 import BoxesContainer from '../../home/HomeBoxes';
 import TutorialContainer from '../../home/HomeTutorial';
+import BrandsContainer from '../../home/HomeBrands';
 
 export default function LandingPagePresentationMain() {
 
@@ -33,7 +37,15 @@ export default function LandingPagePresentationMain() {
         everyMonthTo: " todos os meses, para que você tenha dinheiro extra para viver momentos especiais ao lado de quem é importante para você.",
         forYourHouse: "Para a sua residência",
         forYourCompany: "Para o seu comércio ou empresa",
+        energizeTheWorld: "Queremos energizar o mundo para um futuro mais leve e renovável",
+        manifestFirst: "Na jornada por um mundo mais sustentável, surgimos para compartilhar energia limpa e conectar pessoas.",
+        manifestSecond: "Fazemos isso de forma calorosa, no calor que é transmitido e recebido em cada conexão que criamos.",
+        manifestThird: "Levamos economia, e com ela, novas possibilidades para você e sua família.",
+        manifestFourth: "Estamos redefinindo os padrões da indústria, oferecendo soluções que não só atendem, mas superam as expectativas.",
+        manifestFifth: "Juntos, estamos construindo um amanhã mais luminoso, onde a energia é muito mais do que um recurso: é uma ferramenta para o progresso.",
+        manifestSixth: "O seu e o nosso. Juntos e leves.",
     }
+
     return (
         <Container>
             <MainBanner>
@@ -113,11 +125,39 @@ export default function LandingPagePresentationMain() {
 
                 </FifthSectionContent>
             </FifthSectionContainer>
-
             <TutorialContainer />
 
+            <SixthSectionContainer>
+                <SixthSectionContent>
+                    <SixthSectionContentHeader>
+                        <h6 className='energizeTheWorld'>{texts.energizeTheWorld}</h6>
+                    </SixthSectionContentHeader>
+                    <SixthSectionContentManifest>
+                        <p className='manifest'>{texts.manifestFirst}</p>
+                        <p className='manifest'>{texts.manifestSecond}</p>
+                        <p className='manifest'>{texts.manifestThird}</p>
+                        <p className='manifest'>{texts.manifestFourth}</p>
+                        <p className='manifest'>{texts.manifestFifth}</p>
+                        <p className='manifest'>{texts.manifestSixth}</p>
+                    </SixthSectionContentManifest>
+                </SixthSectionContent>
+                <SixthSectionBanner>
+                    <Image class="image" src={sectionBanner} alt={"Crianças brincando na floresta e descobrindo coisas novas"} />
+                    <SixthSectionBoxesContainer>
+                        {lpPresentationVisionBoxes.map((box) => {
+                            return (
+                                <SixthSectionBox key={box.title}>
+                                    <h6 className='title'>{box.title}</h6>
+                                    <p className='description'>{box.description}</p>
+                                </SixthSectionBox>
+                            )
+                        })}
 
+                    </SixthSectionBoxesContainer>
+                </SixthSectionBanner>
+            </SixthSectionContainer>
 
+            <BrandsContainer />
         </Container>
     )
 }

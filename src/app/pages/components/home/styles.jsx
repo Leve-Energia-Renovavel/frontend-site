@@ -584,7 +584,8 @@ export const HomeSecondaryBoxContent = styled.div`
       line-height: 17px;
       font-weight: 500;
       color: ${props => props.descriptionColor};
-      
+      text-align: left;
+
       margin-bottom: 20px;
       
       @media (max-width: 600px) {

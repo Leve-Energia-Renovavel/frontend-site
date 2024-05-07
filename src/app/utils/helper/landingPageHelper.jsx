@@ -74,3 +74,18 @@ export const landingPagePresentationBoxes = [
     },
 
 ]
+
+export const lpPresentationVisionBoxes = [
+    {
+        title: "Prosperidade",
+        description: "Buscamos um futuro mais próspero e positivo para as futuras gerações."
+    },
+    {
+        title: "Pessoas",
+        description: "Colocamos as pessoas em primeiro lugar, sempre."
+    },
+    {
+        title: "Economia",
+        description: "Trabalhamos para garantir soluções eficientes, com economia de verdade."
+    },
+]
