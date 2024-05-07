@@ -110,7 +110,6 @@ export default function NewLoginModal({ isOpen, openModal, closeModal }) {
             } else {
                 setValidationErrors(["Erro ao recuperar senha. Por favor, tente novamente"])
             }
-
         }
 
         setIsLoading(false)
