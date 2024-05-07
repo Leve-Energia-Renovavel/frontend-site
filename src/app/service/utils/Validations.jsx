@@ -10,3 +10,6 @@ export const hasToSignContract = (message) => {
 export const informationNotAccepted = (status) => {
     return status === 406
 }
+export const requestNotFound = (status) => {
+    return status === 404
+}

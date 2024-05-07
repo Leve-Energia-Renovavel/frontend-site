@@ -27,7 +27,7 @@ export const LandingPageContainer = styled.div`
     padding: 0 3rem;
     
     @media (max-width: 600px) {
-      padding: 0 1rem;
+      padding: 0;
     }
 `
 export const LandingPageMainBanner = styled.div`
@@ -35,18 +35,20 @@ export const LandingPageMainBanner = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
-
-    .bannerImage { 
-        border-radius: 15px;
-        width: 590px;
-        height: auto;
-        
-        @media (max-width: 600px) {
-          width: 100%;
-        }
-    }
-
+  
+  .bannerImage { 
+    border-radius: 15px;
+    width: 590px;
+    height: auto;
+    
     @media (max-width: 600px) {
+      width: 100%;
+      height: auto;
+      border-radius: 0px;
+    }
+  }
+  
+  @media (max-width: 600px) {
       flex-wrap: wrap;
     }
 `
@@ -195,7 +197,12 @@ export const SecondSectionContainer = styled.div`
     height: 609px;
 
     margin-top: 1rem;
-    `
+    
+    @media (max-width: 600px) {
+      height: auto;
+      margin: -4rem 0 0 0;
+  }
+`
 export const SecondSectionTitleContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -216,8 +223,16 @@ export const SecondSectionTitleContainer = styled.div`
     }
 
     @media (max-width: 600px) {
+      text-align: center;
       flex-wrap: wrap;
       gap: 0px;
+      margin-top: 19px;
+      margin-bottom: 19px;
+
+      h3 {
+        font-size: 17px;
+        line-height: 21px;
+      }
     }
 
 `
@@ -237,11 +252,25 @@ export const SecondSectionContent = styled.div`
     background-position: left;
     background-size: 800px; 
     /* background-size: 500px;  */
+
+    .mobileButton { 
+      display: none;
+    }
     
     @media (max-width: 600px) {
+      border-radius: 0px;
       flex-wrap: wrap;
       height: auto;
+
+      .desktopButton { 
+        display: none;
+      }
+      .mobileButton { 
+        display: block;
+      }
     }
+
+
 `
 export const SecondSectionContentTitleContainer = styled.div`
     display: flex;
@@ -259,6 +288,17 @@ export const SecondSectionContentTitleContainer = styled.div`
 
         max-width: 306px;
     }
+
+    @media (max-width: 600px) {
+      margin: 18px auto;
+      gap: 1rem;
+
+      h4 {
+        font-size: 27px;
+        line-height: 30px;
+        text-align: center;
+      }
+    }
 `
 export const SecondSectionBoxesContainer = styled.div`
     display: flex;
@@ -270,8 +310,9 @@ export const SecondSectionBoxesContainer = styled.div`
     max-width: 700px;   
     
     @media (max-width: 600px) {
-      flex-wrap: wrap;
-      max-width: 500px;   
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 1rem;
     }
 `
 
@@ -307,6 +348,24 @@ export const SecondSectionBox = styled.div`
 
         max-width: 174px;
     }
+
+    @media (max-width: 600px) {
+      max-width: 155px;
+      gap: 12px;
+      
+      .iconContainer {
+        margin: 0 auto;
+        width: 70px;
+        padding: 12px 10px;
+
+      }
+
+      .boxDescription {
+        text-align: center;
+        font-size: 12px;
+        line-height: 14px;
+      }
+    }
 `
 
 export const SecondSectionButton = styled(Button)`
@@ -338,6 +397,17 @@ export const SecondSectionButton = styled(Button)`
   
   & .MuiButton-endIcon {
     margin-left: auto;
+  }
+
+  @media (max-width: 600px) {
+    max-width: 210px;
+    margin: 10px auto 41px auto;
+
+    span {
+      font-size: 17px;
+      font-weight: 400;
+      white-space: nowrap;
+    }
   }
 `
 

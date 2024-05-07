@@ -75,6 +75,7 @@ export default function LandingPagePresentationMain() {
                     <SecondSectionContentTitleContainer>
                         <h4>Venha ser Leve com a energia do futuro</h4>
                         <SecondSectionButton
+                            className='desktopButton'
                             endIcon={<ArrowForwardIcon />}>
                             <span>{texts.simulate}</span>
                         </SecondSectionButton>
@@ -91,6 +92,11 @@ export default function LandingPagePresentationMain() {
                                 </SecondSectionBox>
                             )
                         })}
+                        <SecondSectionButton
+                            className='mobileButton'
+                            endIcon={<ArrowForwardIcon />}>
+                            <span>{texts.simulate}</span>
+                        </SecondSectionButton>
                     </SecondSectionBoxesContainer>
                 </SecondSectionContent>
             </SecondSectionContainer>
