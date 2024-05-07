@@ -142,6 +142,15 @@ export const MoreAboutLeveFooter = styled.div`
         height: 32px;
         color: ${newBackground.white};
     }
+
+    @media (max-width: 600px) {
+      .moreAboutLeve {
+        display: none;
+      }
+      .arrowIcon {
+        display: none;
+      }
+    }
 `
 
 export const MainBannerButton = styled(Button)`
@@ -646,6 +655,20 @@ export const FifthSectionContent = styled.div`
 
     }
 
+    @media (max-width: 600px) {
+      border-radius: 0px;
+      width: 100%;
+      max-width: 100vw;
+      background-size: 800px; 
+
+      h6 { 
+        margin: 35px auto 0 auto;
+        font-size: 21px;
+        line-height: 23px;
+        width: 100%;
+      }
+    }
+
 `
 
 export const FifthSectionButton = styled(Button)`
@@ -678,18 +701,34 @@ export const FifthSectionButton = styled(Button)`
   & .MuiButton-endIcon {
     margin-left: auto;
   }
+
+  @media (max-width: 600px) {
+    max-width: 210px;
+    margin: 60px 0;
+
+    span {
+      font-size: 17px;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+  }
 `
 
 export const SixthSectionContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  `
+  
+  @media (max-width: 600px) {
+    gap: 0px;
+    flex-wrap: wrap;
+  }
+`
 export const SixthSectionContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  `
+`
 export const SixthSectionContentHeader = styled.div`
 background-color: ${newBackground.yellow};
 border-radius: 15px;
@@ -702,6 +741,17 @@ padding: 28px 21px;
   font-weight: 600;
   color: ${newBackground.orange};
 }
+
+  @media (max-width: 600px) {
+    margin: 0 1rem;
+    z-index: 1;
+
+    .energizeTheWorld {
+      text-align: center;
+      font-size: 21px;
+      line-height: 23px;
+    } 
+  }
 `
 export const SixthSectionContentManifest = styled.div`
   text-align: left;
@@ -715,29 +765,58 @@ export const SixthSectionContentManifest = styled.div`
     line-height: 25px;
     font-weight: 400;
     color: ${newBackground.white};
-
+    
     margin-bottom: 22px;
+  }
+  
+  @media (max-width: 600px) {
+    border-radius: 0px;
+    z-index: 0;
+    margin: -80px 0 0 0;
+    padding: 100px 1rem 30px 1rem;
+
+    .manifest {
+      text-align: center;
+      font-size: 14px;
+      line-height: 17px;
+      font-weight: 300;
+
+      max-width: 280px;
+      margin: 0 auto 20px auto;
+    } 
   }
 `
 export const SixthSectionBanner = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  .image {
+    max-width: 380px;
+    height: auto;
+    margin: 1rem auto;
+  }
 `
 export const SixthSectionBoxesContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  
+  @media (max-width: 600px) {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `
 export const SixthSectionBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: ${newBackground.green};
-
+  
   border-radius: 15px;
   padding: 1rem;
-
+  
   max-width: 180px;
   height: 165px;
 
@@ -754,5 +833,20 @@ export const SixthSectionBox = styled.div`
     line-height: 17px;
     font-weight: 400;
     color: ${newBackground.white};
+  }
+
+  @media (max-width: 600px) {
+    max-width: 280px;
+    background: linear-gradient(to top, #ffffff 5%, ${newBackground.yellow} 93%);
+
+
+    .title {
+      font-weight: 700;
+      color: ${newBackground.orange};
+    }
+    .description {
+      font-weight: 600;
+      color: ${newBackground.orange};
+    }
   }
 `
