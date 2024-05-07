@@ -243,7 +243,7 @@ export default function SignupForm() {
         uuid: uuid,
         nome: userRefs.name.current.value,
         email: userRefs.email.current.value,
-        rg: userRefs.rg.current.value,
+        rg: userRefs.rg.current.value.replace(/[-_]/g, ""),
         cpf: userRefs.cpf.current.value,
         data_nascimento: userRefs.birthDate.current.value,
         telefone: userRefs.phone.current.value,
