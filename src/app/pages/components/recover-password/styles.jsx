@@ -1,7 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Alert } from "@mui/material";
-import { background, notification } from "../../styles";
+import { background, newBackground, notification } from "../../styles";
 
 const fadeInUp = keyframes`
   from {
@@ -19,7 +19,7 @@ export const RecoverPasswordContainer = styled.div`
     display: flex;
     flex-direction: column;
     
-    background-color: ${background.blueLeve};
+    background-color: ${newBackground.orange};
     
     padding: 2rem;
     text-align: center;
@@ -27,7 +27,7 @@ export const RecoverPasswordContainer = styled.div`
 export const RecoverPasswordTitleContainer = styled.div`
 
 h1 {
-    font-family: "Metropolis";
+    font-family: "Graphie";
     font-style: bold;
     font-weight: 700;
     line-height: 2.625rem;
@@ -45,17 +45,17 @@ export const RecoverPasswordFormContainer = styled.div`
     padding: 2rem;
     
     border-radius: 8px;
-    background-color: ${background.light};
+    background-color: ${newBackground.white};
     
     margin: 2rem auto;
 
     h6 { 
-      font-family: "Metropolis";
+      font-family: "Graphie";
       font-style: bold;
       font-weight: 500;
       line-height: 1rem;
       font-size: 1rem;
-      color: ${background.blueLeve};
+      color: ${newBackground.orange};
     }
     
     @media (max-width: 600px) {
@@ -66,7 +66,7 @@ export const RecoverPasswordFormContainer = styled.div`
 
 
 export const SnackbarMessageAlert = styled(Alert)`
-  font-family: "Metropolis";
+  font-family: "Graphie";
   font-size: 1rem;
   background-color: ${notification.alert};
   border-radius: 10px;
@@ -82,7 +82,7 @@ export const SnackbarMessageAlert = styled(Alert)`
 
 `
 export const SnackbarMessageNotification = styled(Alert)`
-  font-family: "Metropolis";
+  font-family: "Graphie";
   font-size: 1rem;
   background-color: ${notification.success};
   border-radius: 10px;

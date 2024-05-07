@@ -14,7 +14,7 @@ import FormButton from "../utils/buttons/FormButton";
 import { ProfileChangePasswordContent, ProfileContainer, ProfileMainContent, ProfileSecondaryContent, ProfileSecondaryEmailContent, SnackbarMessageAlert, SnackbarMessageNotification } from "./styles";
 import Cookies from "js-cookie";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
-import { background } from "../../styles";
+import { background, newBackground } from "../../styles";
 
 
 export default function ProfileMain() {
@@ -113,7 +113,7 @@ export default function ProfileMain() {
                         >
                             Painel
                         </Link>
-                        <Typography style={{ fontWeight: 'bold', color: background.blueLeve }}>Meu Perfil</Typography>
+                        <Typography style={{ fontWeight: 'bold', color: newBackground.orange }}>Meu Perfil</Typography>
                     </Breadcrumbs>
                     <ProfileMainContent>
                         <FormContent acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>

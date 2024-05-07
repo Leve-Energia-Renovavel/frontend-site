@@ -20,7 +20,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, Button, CircularProgress, MenuItem, Snackbar, Typography } from '@mui/material';
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import SignupFormHeader from './SignupFormHeader';
@@ -29,13 +29,14 @@ import { FormTermsCheckbox as Checkbox, SignupFormContainer as Container, FileUp
 
 export default function SignupForm() {
 
+  const search = useSearchParams()
   const router = useRouter()
   const store = useStoreUser()
   const storeAddress = useStoreAddress()
 
   const uuid = store.user.uuid || Cookies.get('leveUUID')
-  const user = JSON.parse(localStorage.getItem('user')) || store.user
-  const address = JSON.parse(localStorage.getItem('address')) || storeAddress.address
+  const user = JSON.parse(localStorage.getItem('user'))
+  const address = JSON.parse(localStorage.getItem('address'))
   const company = useStoreCompany().company
   const isCompany = user?.user.isCompany
 
@@ -266,7 +267,7 @@ export default function SignupForm() {
       }
 
       console.log("submitData ===>>", submitData)
-      
+
       const response = await schemaValidation(isCompany, submitData)
       console.log("response ===>>", response)
 
@@ -323,6 +324,14 @@ export default function SignupForm() {
     setStateValue(stateOptions[stateId] || stateOptions[(statesAcronymOptions[state])] || null)
   }, [store, storeAddress])
 
+  // useEffect(() => {
+  //   if (uuid !== search.get("uuid")) {
+  //     console.log("refreshing...");
+  //     setTimeout(() => {
+  //       window.location.reload();
+  //     }, 1000);
+  //   }
+  // }, []);
 
   return (
     <>

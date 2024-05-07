@@ -8,15 +8,15 @@ import { allCities } from "@/app/utils/form-options/citiesOptions";
 import { statesAcronymOptions } from "@/app/utils/form-options/statesIdOptions";
 import { statusOptions } from "@/app/utils/form-options/statusOptions";
 import SearchIcon from '@mui/icons-material/Search';
-import { MenuItem, Snackbar, TextField, Typography, Breadcrumbs, Link } from "@mui/material";
+import { Breadcrumbs, Link, MenuItem, Snackbar, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
+import { newBackground } from "../../styles";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
 import NewInstallationButtonConfirm from "../utils/buttons/NewInstallationButtonConfirm";
 import { ButtonContainer, InstallationsMainContainer as Container, FormContentNewInstallation, HomeIconStyled, InstallationsMainContent, MainInstallationInfoContainer as MainInstallationInfo, MainTitleContainer, NewInstallationContent, SnackbarMessageAlert, SnackbarMessageNotification, TitleContainer, TitleIconsContainer } from "./styles";
-import { background } from "../../styles";
 
 export default function InstallationsMain() {
 
@@ -174,10 +174,10 @@ export default function InstallationsMain() {
                     >
                         Painel
                     </Link>
-                    <Typography style={{ fontWeight: 'bold', color: background.blueLeve }}>Meus Endereços</Typography>
+                    <Typography style={{ fontWeight: 'bold', color: newBackground.orange }}>Meus Endereços</Typography>
                 </Breadcrumbs>
             </MainTitleContainer>
-            {installations.length >= 1 ?
+            {installations?.length >= 1 ?
                 (<>
                     {installations.map((installation, index) => {
                         return (

@@ -13,7 +13,7 @@ export const loadBrowserInfos = () => {
 }
 
 
-export const clearBrowserData = () => {
+export const clearBrowserData = async () => {
     const cookies = Cookies.get();
     for (const cookie in cookies) {
         Cookies.remove(cookie);

@@ -1,8 +1,8 @@
+import { newBackground } from "@/app/pages/styles";
 import styled from "@emotion/styled";
-import { background } from "@/app/pages/styles";
 
 export const InvoicesBannerContainer = styled.div`
-    background-color: ${background.white};
+    background-color: ${newBackground.white};
     max-width: 100dvw;
     height: 13vh;       //margin for header
 `

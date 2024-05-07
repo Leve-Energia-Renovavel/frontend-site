@@ -36,6 +36,7 @@ import {
     TutorialBannerContainer,
     UserTypeFormButtonContainer, UserTypeFormContainer
 } from "./styles";
+import { schemaValidation } from '../home/schema';
 
 export default function LandingPageMain() {
 
@@ -69,6 +70,9 @@ export default function LandingPageMain() {
         }
 
         const response = await schemaValidation(submitData)
+
+        console.log("response ===>>", response)
+
         if (requestSuccessful(response?.status)) {
             if (response?.data?.message === "Você já possui cadastro") {
                 setNotifications(["Você já possui cadastro! Faça login ou continue o cadastro pelo link enviado ao seu e-mail. "])
@@ -99,7 +103,6 @@ export default function LandingPageMain() {
 
         else {
             setErrorMessage(["Erro de servidor. Por favor, tente novamente mais tarde"])
-            // setErrorMessage([response?.message])
         }
         setLoading(false)
     }

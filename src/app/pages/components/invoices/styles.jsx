@@ -1,8 +1,8 @@
 import { statusHelper } from "@/app/utils/helper/StyleHelpers";
+import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import { background } from "../../styles";
-import { keyframes } from "@emotion/react";
+import { background, newBackground } from "../../styles";
 
 const fadeInUp = keyframes`
   from {
@@ -18,6 +18,7 @@ const fadeInUp = keyframes`
 export const InvoiceContainer = styled.div`
     display: flex;
     flex-direction: row;
+    background-color: ${newBackground.white};
     
     padding: 2rem;
     
@@ -31,9 +32,9 @@ export const InvoiceContainer = styled.div`
     }
 
     h1 {
-        font-family: "Metropolis", sans-serif;
+        font-family: "Graphie", sans-serif;
         font-size: 1.5rem;
-        color: ${background.blueLeve};
+        color: ${newBackground.orange};
         font-weight: 700;
       }
 
@@ -45,7 +46,7 @@ export const InvoiceContainer = styled.div`
 export const InvoicesMainContent = styled.div`
     display: flex;
     flex-direction: row;
-    background-color: ${background.light};
+    background-color: ${newBackground.white};
     border-radius: 4px;
     
     margin: 1rem auto;
@@ -140,7 +141,7 @@ export const InvoicesMainCardContainer = styled.div`
     display: flex;
     flex-direction: column;
     
-    border: 1px solid ${background.blueLeve};
+    border: 1px solid ${newBackground.orange};
     animation: ${fadeInUp} 0.5s ease-out;
 
     border-radius: 4px;
@@ -191,7 +192,7 @@ export const InvoicesMainCardContainer = styled.div`
     }
 
     .noOpenInvoices { 
-      font-family: "Metropolis", sans-serif;
+      font-family: "Graphie", sans-serif;
         font-size: 1rem;
         font-weight: 700;
         color: ${background.grey};
@@ -251,7 +252,7 @@ export const NextBillTitleContainer = styled.div`
     align-items: center;
     
     h2 {
-        font-family: "Metropolis", sans-serif;
+        font-family: "Graphie", sans-serif;
         font-size: 1.5rem;
         font-weight: 700;
         color: ${background.grey};

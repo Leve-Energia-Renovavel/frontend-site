@@ -12,8 +12,9 @@ import { notFound, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { SignUpContainer as Container } from './styles';
 
-const SignupForm = dynamic(() => import('./forms/SignupForm'), { ssr: false });
-const NewResultEconomy = dynamic(() => import('../new-result-economy/NewResultEconomy'), { ssr: false });
+import SignupForm from './forms/SignupForm';
+import NewResultEconomy from '../new-result-economy/NewResultEconomy';
+// const NewResultEconomy = dynamic(() => import('../new-result-economy/NewResultEconomy'), { ssr: false });
 
 export default function SignupMain() {
 
@@ -30,16 +31,14 @@ export default function SignupMain() {
     useEffect(() => {
         const fetchData = async () => {
 
-            clearBrowserData();
+            await clearBrowserData();
 
             store.updateUser({ uuid: uuid });
             Cookies.set('leveUUID', uuid)
 
             try {
                 const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
-                console.log("userResponse ====>>>", userResponse)
-
-                if (requestSuccessful(userResponse.status)) {
+                if (requestSuccessful(userResponse?.status)) {
 
                     const instalacao = userResponse?.data?.instalacao
                     const distribuidora = userResponse?.data?.distribuidora
@@ -86,8 +85,6 @@ export default function SignupMain() {
                         params: { cep: cep },
                         withCredentials: false
                     });
-
-                    console.log("addressResponse ====>>>", addressResponse)
 
                     if (requestSuccessful(addressResponse?.status)) {
                         const address = addressResponse?.data

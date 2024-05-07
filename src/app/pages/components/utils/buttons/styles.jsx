@@ -1,27 +1,27 @@
+import { background, newBackground } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";
-import { background } from "@/app/pages/styles";
 
 const colorForVariants = {
-    "contained": background.blueLeve,
-    "outlined": background.yellowLeve,
-    "outlined-inverse": background.light,
+    "contained": newBackground.orange,
+    "outlined": newBackground.yellow,
+    "outlined-inverse": newBackground.white,
 }
 const backgroundColorForVariants = {
-    "contained": background.yellowLeve,
-    "outlined": background.blueLeve,
-    "outlined-inverse": background.blueLeve,
+    "contained": newBackground.yellow,
+    "outlined": newBackground.orange,
+    "outlined-inverse": newBackground.orange,
 }
 const backgroundHoverColor = {
-    "contained": background.light,
-    "outlined": background.yellowLeve,
-    "outlined-inverse": background.light,
+    "contained": newBackground.white,
+    "outlined": newBackground.yellow,
+    "outlined-inverse": newBackground.white,
 }
 
 const hoverColor = {
-    "contained": background.blueLeve,
-    "outlined": background.blueLeve,
-    "outlined-inverse": background.blueLeve,
+    "contained": newBackground.orange,
+    "outlined": newBackground.orange,
+    "outlined-inverse": newBackground.orange,
 
 }
 
@@ -43,7 +43,7 @@ export const DefaultButtonStyle = styled(Button)`
     }
     
     span { 
-        font-family: "Metropolis";
+        font-family: "Graphie";
         font-size: 18px;
         line-height: 18px;
         font-weight: 500;
@@ -65,9 +65,9 @@ export const DefaultButtonStyle = styled(Button)`
 
 export const FormButtonStyle = styled(Button)`
         text-transform: none;
-        color: ${background.light};
+        color: ${newBackground.white};
         border-color: ${background.lightBorder};
-        background-color: ${background.blueLeve};
+        background-color: ${newBackground.orange};
         padding: 1rem 4rem;
         height: 3rem;
         border-radius: 13px;
@@ -77,7 +77,7 @@ export const FormButtonStyle = styled(Button)`
         }
 
         span { 
-            font-family: "Metropolis";
+            font-family: "Graphie";
             font-size: 18px;
             line-height: 18px;
             font-weight: 600;
@@ -88,17 +88,17 @@ export const FormButtonStyle = styled(Button)`
         }
 
         &:hover {
-            background-color: ${background.yellowLeve};
-            color: ${background.blueLeve};
+            background-color: ${newBackground.yellow};
+            color: ${newBackground.orange};
             border-color: ${background.lightBorder};
         }
 `;
 
 export const HeaderButtonStyle = styled(Button)`
         text-transform: none;
-        color: ${background.white};
-        border: 1px solid ${background.white};
-        background-color: ${background.blueLeve};
+        color: ${newBackground.white};
+        border: 1px solid ${newBackground.white};
+        background-color: ${newBackground.orange};
         padding: 12px 24px;
         height: 3rem;
         border-radius: 8px;
@@ -106,24 +106,24 @@ export const HeaderButtonStyle = styled(Button)`
         margin-left: 2rem;
 
         span { 
-            font-family: "Metropolis";
+            font-family: "Graphie";
             font-size: 16px;
             line-height: 16px;
             font-weight: 400;
         }
 
         &:hover {
-            background-color: ${background.yellowLeve};
-            color: ${background.blueLeve};
+            background-color: ${newBackground.yellow};
+            color: ${newBackground.orange};
             border-color: ${background.lightBorder};
         }
 `;
 
 export const DashboardButtonStyle = styled(Button)`
         text-transform: none;
-        color: ${background.blueLeve};
-        border: 1px solid ${background.blueLeve};
-        background-color: ${background.white};
+        color: ${newBackground.orange};
+        border: 1px solid ${newBackground.orange};
+        background-color: ${newBackground.white};
         padding: 12px 48px;
         height: 3rem;
         border-radius: 8px;
@@ -131,23 +131,23 @@ export const DashboardButtonStyle = styled(Button)`
         margin: 0 1rem 0 0;
 
         span { 
-            font-family: "Metropolis";
+            font-family: "Graphie";
             font-size: 16px;
             line-height: 16px;
             font-weight: 600;
         }
 
         &:hover {
-            background-color: ${background.blueLeve};
-            color: ${background.white};
+            background-color: ${newBackground.orange};
+            color: ${newBackground.white};
             border-color: ${background.lightBorder};
         }
 `;
 export const NewInstallationButtonStyle = styled(Button)`
         text-transform: none;
-        color: ${background.blueLeve};
-        border: 1px solid ${background.blueLeve};
-        background-color: ${background.white};
+        color: ${newBackground.orange};
+        border: 1px solid ${newBackground.orange};
+        background-color: ${newBackground.white};
         padding: 12px 24px;
         height: 3rem;
         border-radius: 8px;
@@ -159,24 +159,24 @@ export const NewInstallationButtonStyle = styled(Button)`
         }
 
         span { 
-            font-family: "Metropolis";
+            font-family: "Graphie";
             font-size: 16px;
             line-height: 16px;
             font-weight: 600;
         }
 
         &:hover {
-            background-color: ${background.blueLeve};
-            color: ${background.white};
+            background-color: ${newBackground.orange};
+            color: ${newBackground.white};
             border-color: ${background.lightBorder};
         }
 `;
 
 export const NewInstallationButtonConfirmStyle = styled(Button)`
         text-transform: none;
-        color: ${background.white};
+        color: ${newBackground.white};
         border: 1px solid ${background.lightBorder};
-        background-color: ${background.blueLeve};
+        background-color: ${newBackground.orange};
         padding: 12px 24px;
         height: 3rem;
         border-radius: 8px;
@@ -188,15 +188,15 @@ export const NewInstallationButtonConfirmStyle = styled(Button)`
         }
 
         span { 
-            font-family: "Metropolis";
+            font-family: "Graphie";
             font-size: 16px;
             line-height: 16px;
             font-weight: 600;
         }
 
         &:hover {
-            background-color: ${background.blueLeve};
-            color: ${background.white};
+            background-color: ${newBackground.orange};
+            color: ${newBackground.white};
             border-color: ${background.lightBorder};
         }
 `;
@@ -204,9 +204,9 @@ export const NewInstallationButtonConfirmStyle = styled(Button)`
 
 export const MobileHeaderButtonContained = styled(Button)`
     text-transform: none;
-    color: ${background.blueLeve};
-    border-color: ${background.blueLeve};
-    background-color: ${background.yellowLeve};
+    color: ${newBackground.orange};
+    border-color: ${newBackground.orange};
+    background-color: ${newBackground.yellow};
     border-radius: 13px;
     cursor: pointer;
     margin: 2rem;
@@ -220,7 +220,7 @@ export const MobileHeaderButtonContained = styled(Button)`
     }
     
     span { 
-        font-family: "Metropolis";
+        font-family: "Graphie";
         font-size: 18px;
         line-height: 18px;
         font-weight: 500;
@@ -232,18 +232,18 @@ export const MobileHeaderButtonContained = styled(Button)`
     }
 
     &:hover {
-        background-color: ${background.light};
-        color: ${background.blueLeve};
-        border: 1px solid ${background.blueLeve};
+        background-color: ${newBackground.white};
+        color: ${newBackground.orange};
+        border: 1px solid ${newBackground.orange};
     }
 `;
 
 
 export const MobileHeaderButtonOutlined = styled(Button)`
     text-transform: none;
-    color: ${background.yellowLeve};
-    border: 1px solid ${background.yellowLeve};
-    background-color: ${background.blueLeve};
+    color: ${newBackground.yellow};
+    border: 1px solid ${newBackground.yellow};
+    background-color: ${newBackground.orange};
     border-radius: 13px;
     cursor: pointer;
     margin: 2rem;
@@ -257,7 +257,7 @@ export const MobileHeaderButtonOutlined = styled(Button)`
     }
     
     span { 
-        font-family: "Metropolis";
+        font-family: "Graphie";
         font-size: 18px;
         line-height: 18px;
         font-weight: 500;
@@ -269,17 +269,17 @@ export const MobileHeaderButtonOutlined = styled(Button)`
     }
 
     &:hover {
-        background-color: ${background.light};
-        color: ${background.blueLeve};
-        border: 1px solid ${background.blueLeve};
+        background-color: ${newBackground.white};
+        color: ${newBackground.orange};
+        border: 1px solid ${newBackground.orange};
     }
 `;
 
 export const TimelineButtonStyled = styled(Button)`
     text-transform: none;
-    color: ${background.blueLeve};
-    border: 1px solid ${background.blueLeve};
-    background-color: ${background.white};
+    color: ${newBackground.orange};
+    border: 1px solid ${newBackground.orange};
+    background-color: ${newBackground.white};
     border-radius: 13px;
     cursor: pointer;
     margin: 2rem;
@@ -298,7 +298,7 @@ export const TimelineButtonStyled = styled(Button)`
     }
     
     span { 
-        font-family: "Metropolis";
+        font-family: "Graphie";
         font-size: 18px;
         line-height: 18px;
         font-weight: 500;
@@ -310,9 +310,9 @@ export const TimelineButtonStyled = styled(Button)`
     }
 
     &:hover {
-        background-color: ${background.light};
-        color: ${background.blueLeve};
-        border: 1px solid ${background.blueLeve};
+        background-color: ${newBackground.white};
+        color: ${newBackground.orange};
+        border: 1px solid ${newBackground.orange};
     }
 `;
 

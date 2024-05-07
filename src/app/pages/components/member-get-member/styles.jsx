@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import { Alert, Box, Button } from "@mui/material"
-import { background, notification, statusColors } from "../../styles"
+import { background, newBackground, notification, statusColors } from "../../styles"
 import { keyframes } from "@emotion/react";
 
 const fadeInUp = keyframes`
@@ -18,7 +18,7 @@ export const MemberGetMemberContainer = styled.div`
   display: flex;
   flex-direction: column;
   
-  border: 1px solid ${background.blueLeve};
+  border: 1px solid ${newBackground.orange};
   border-radius: 4px;
   
   margin: 1rem auto;
@@ -152,12 +152,12 @@ export const ModalTitleContainer = styled.div`
     text-align: center;
 
     h1 { 
-        font-family: "Metropolis";
+        font-family: "Graphie";
         font-style: bold;
         font-weight: 700;
         font-size: 1.5rem;
         line-height: 1.5rem;
-        color: ${background.blueLeve};
+        color: ${newBackground.orange};
     }
 
     .logoLeve { 
@@ -190,7 +190,7 @@ export const ModalContentContainer = styled.div`
 
 
 export const SnackbarMessageAlert = styled(Alert)`
-  font-family: "Metropolis";
+  font-family: "Graphie";
   font-size: 1rem;
   background-color: ${notification.alert};
   border-radius: 10px;
@@ -206,7 +206,7 @@ export const SnackbarMessageAlert = styled(Alert)`
 
 `
 export const SnackbarMessageNotification = styled(Alert)`
-  font-family: "Metropolis";
+  font-family: "Graphie";
   font-size: 1rem;
   background-color: ${notification.success};
   border-radius: 10px;

@@ -1,16 +1,28 @@
 "use client"
 
+import { requestSuccessful } from '@/app/service/utils/Validations';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { IconButton, InputAdornment, Snackbar, TextField, Typography } from "@mui/material";
-import { useParams, useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import { RecoverPasswordContainer, RecoverPasswordFormContainer, RecoverPasswordTitleContainer, SnackbarMessageAlert, SnackbarMessageNotification } from "./styles";
-import DefaultButton from '../utils/buttons/DefaultButton';
 import axios from 'axios';
-import { requestSuccessful } from '@/app/service/utils/Validations';
+import Cookies from 'js-cookie';
+import { notFound, useRouter, useSearchParams } from "next/navigation";
+import { useRef, useState } from "react";
+import DefaultButton from '../utils/buttons/DefaultButton';
+import { RecoverPasswordContainer, RecoverPasswordFormContainer, RecoverPasswordTitleContainer, SnackbarMessageAlert, SnackbarMessageNotification } from "./styles";
 
 export default function RecoverPasswordMain() {
+
+    const router = useRouter()
+    const search = useSearchParams()
+
+    const token = search.get("token")
+
+    if (token) {
+        Cookies.set('accessToken', token)
+    } else {
+        notFound()
+    }
 
     const [validatedToken, setValidatedToken] = useState(false)
     const [passwordVisibible, setPasswordVisibible] = useState("password")
@@ -18,31 +30,10 @@ export default function RecoverPasswordMain() {
     const [validationErrors, setValidationErrors] = useState([])
     const [notifications, setNotifications] = useState([])
 
-    const params = useParams()
-    const search = useSearchParams()
-
     const userRefs = {
         newPassword: useRef(null),
         confirmNewPassword: useRef(null),
     };
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/`);
-    //             if (requestSuccessful(response.status)) {
-    //                 setValidatedToken(true)
-
-    //             }
-    //         } catch (error) {
-    //             console.error(error);
-    //             setValidationErrors(error)
-    //         }
-
-    //     };
-
-    //     fetchData();
-    // }, []);
 
     const handleRecoverPassword = async () => {
 
@@ -116,10 +107,6 @@ export default function RecoverPasswordMain() {
                 </RecoverPasswordFormContainer>
             }
 
-            {/* {validatedToken && <RecoverPasswordFormContainer>
-                <TextField className="formInput" label="Nova Senha" variant="outlined" placeholder="Nova Senha" type="text" required />
-                <TextField className="formInput" label="Confirmar Nova Senha" variant="outlined" placeholder="Confirmar Nova Senha" type="text" required />
-            </RecoverPasswordFormContainer>} */}
             <>
                 {validationErrors?.map((error, index) => {
                     return (

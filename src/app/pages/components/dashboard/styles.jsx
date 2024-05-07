@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Skeleton } from "@mui/material";
-import { background, statusColors } from "../../styles";
+import { background, newBackground, statusColors } from "../../styles";
 import { statusHelper } from "@/app/utils/helper/StyleHelpers";
 import { keyframes } from "@emotion/react";
 
@@ -16,9 +16,9 @@ const fadeInUp = keyframes`
   }
 `;
 export const DashboardContainer = styled.div`
-    color: ${background.blueLeve};
+    color: ${newBackground.orange};
 
-    background-color: ${background.white};
+    background-color: ${newBackground.white};
     display: flex;
     flex-direction: column;
 
@@ -30,7 +30,7 @@ export const TitleContainer = styled.div`
     padding: 1rem 0;
 
     h1 {
-        font-family: "Metropolis";
+        font-family: "Graphie";
         font-size: 24px;
         line-height: 18px;
         font-weight: 700;
@@ -38,7 +38,7 @@ export const TitleContainer = styled.div`
 
 `
 export const MainInfoContainer = styled.div`
-    background-color: ${background.white};
+    background-color: ${newBackground.white};
 
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -82,7 +82,7 @@ export const NextBill = styled.div`
 
   animation: ${fadeInUp} 0.5s ease-out;
 
-  border: 1px solid ${background.blueLeve};
+  border: 1px solid ${newBackground.orange};
   border-radius: 4px;
   padding: 1rem 3rem;
   
@@ -206,7 +206,7 @@ export const NextBillNotFound = styled.div`
 
   animation: ${fadeInUp} 0.5s ease-out;
   
-  border: 1px solid ${background.blueLeve};
+  border: 1px solid ${newBackground.orange};
   border-radius: 4px;
 
   padding: 1rem;
@@ -285,7 +285,7 @@ export const UserEconomyInfos = styled.div`
 
   animation: ${fadeInUp} 0.5s ease-out;
   
-  border: 1px solid ${background.blueLeve};
+  border: 1px solid ${newBackground.orange};
   border-radius: 4px;
   text-align: center;
   align-items: center;
@@ -334,7 +334,7 @@ export const UserEconomyNotFound = styled.div`
 
   animation: ${fadeInUp} 0.5s ease-out;
   
-  border: 1px solid ${background.blueLeve};
+  border: 1px solid ${newBackground.orange};
   border-radius: 4px;
 
   padding: 1rem;
@@ -349,7 +349,7 @@ export const UserEconomyNotFound = styled.div`
 
 
 export const HistoryContainer = styled.div`
-    background-color: ${background.white};
+    background-color: ${newBackground.white};
 
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -389,7 +389,7 @@ export const HistorySpendingContainer = styled.div`
       font-weight: 500;
       font-size: 1.5rem;
       white-space: nowrap;
-      color: ${background.blueLeve};
+      color: ${newBackground.orange};
     }
 `
 export const HistorySpendingGrid = styled.div`
@@ -397,7 +397,7 @@ export const HistorySpendingGrid = styled.div`
     grid-template-columns: repeat(8, 1fr);
     grid-template-rows: auto;
 
-    border: 1px solid ${background.blueLeve};
+    border: 1px solid ${newBackground.orange};
     border-radius: 4px;
 
     padding: 0 2rem;
@@ -440,7 +440,7 @@ export const HistoryBilling = styled.div`
     justify-content: center;
 
     .seeMoreBillings { 
-      color: ${background.blueLeve};
+      color: ${newBackground.orange};
       font-weight: 500;
       font-size: 1.2rem;
 
@@ -463,7 +463,7 @@ export const BillDetails = styled.div`
     height: 100%;
     max-height: 50vh;
 
-    border: 1px solid ${background.blueLeve};
+    border: 1px solid ${newBackground.orange};
     border-radius: 4px;
 
     span {

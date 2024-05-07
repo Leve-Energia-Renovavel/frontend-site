@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
-import { background, notification } from "../../styles";
-import HomeIcon from '@mui/icons-material/Home';
 import { keyframes } from "@emotion/react";
+import styled from "@emotion/styled";
+import HomeIcon from '@mui/icons-material/Home';
 import { Alert } from "@mui/material";
+import { background, newBackground, notification } from "../../styles";
 
 const fadeInUp = keyframes`
   from {
@@ -19,26 +19,27 @@ const fadeInUp = keyframes`
 export const InstallationsMainContainer = styled.div`
     display: flex;
     flex-direction: column;
+    background-color: ${newBackground.white};
     
     padding: 2rem;
 
     h1 {
-        font-family: "Metropolis", sans-serif;
+        font-family: "Graphie", sans-serif;
         font-size: 1.5rem;
-        color: ${background.blueLeve};
+        color: ${newBackground.orange};
         font-weight: 700;
       }
       
       .noInstallationRegistered {
-        font-family: "Metropolis", sans-serif;
+        font-family: "Graphie", sans-serif;
         font-size: 1rem;
-        color: ${background.blueLeve};
+        color: ${newBackground.orange};
         font-weight: 500;
         }
 `
 export const InstallationsMainContent = styled.div`
-    background-color: ${background.light};
-    border: 1px solid ${background.blueLeve};
+    background-color: ${newBackground.white};
+    border: 1px solid ${newBackground.orange};
     border-radius: 4px;
     
     padding: 2rem;
@@ -56,7 +57,7 @@ export const TitleContainer = styled.div`
     align-items: center;
 
     h2 {
-        font-family: "Metropolis", sans-serif;
+        font-family: "Graphie", sans-serif;
         font-size: 1.2rem;
         color: ${background.grey};
         font-weight: 700;
@@ -126,7 +127,7 @@ export const MainInstallationInfoContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr); 
   grid-gap: 20px 40px;
-  background-color: ${background.light};
+  background-color: ${newBackground.white};
   max-width: 100%;
 
   @media (max-width: 600px) {
@@ -142,14 +143,14 @@ export const MainInstallationInfoContainer = styled.div`
     h3 {
         margin: 6px 0;
         font-size: 1.5rem;
-        color: ${background.blueLeve};
+        color: ${newBackground.orange};
 
         @media (max-width: 600px) {
             font-size: 1.2rem;
         }
     }
     .mainAddress {
-        color: ${background.blueLeve};
+        color: ${newBackground.orange};
         font-size: 2rem;
         font-weight: 500;
 
@@ -177,8 +178,8 @@ export const ButtonContainer = styled.div`
 `
 
 export const NewInstallationContent = styled.div`
-    background-color: ${background.light};
-    border: 1px solid ${background.blueLeve};
+    background-color: ${newBackground.white};
+    border: 1px solid ${newBackground.orange};
     border-radius: 4px;
     
     padding: 2rem;
@@ -204,7 +205,6 @@ export const FormContentNewInstallation = styled.form`
   display: grid;
   grid-template-columns: repeat(3, 1fr); 
   grid-gap: 20px 40px;
-  /* background-color: ${background.light}; */
 
   max-width: 100%;
   
@@ -223,23 +223,23 @@ export const FormContentNewInstallation = styled.form`
   }
 
   .installationNumberField {
-    border-color: #0075FF;
+    border-color: ${newBackground.orange};
 
       & label {
-        color: #0075FF;
+        color: ${newBackground.orange};
       }
 
       & .MuiOutlinedInput-root {
         & fieldset {
-          border-color: #0075FF;
+          border-color: ${newBackground.orange};
         }
 
         &:hover fieldset {
-          border-color: #0075FF;
+          border-color: ${newBackground.orange};
         }
 
         &.Mui-focused fieldset {
-          border-color: #0075FF;
+          border-color: ${newBackground.orange};
         }
       }
 
@@ -250,7 +250,7 @@ export const FormContentNewInstallation = styled.form`
 `
 
 export const SnackbarMessageAlert = styled(Alert)`
-  font-family: "Metropolis";
+  font-family: "Graphie";
   font-size: 1rem;
   background-color: ${notification.alert};
   border-radius: 10px;
@@ -266,7 +266,7 @@ export const SnackbarMessageAlert = styled(Alert)`
 
 `
 export const SnackbarMessageNotification = styled(Alert)`
-  font-family: "Metropolis";
+  font-family: "Graphie";
   font-size: 1rem;
   background-color: ${notification.success};
   border-radius: 10px;

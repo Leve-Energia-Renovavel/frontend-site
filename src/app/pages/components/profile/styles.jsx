@@ -1,7 +1,7 @@
-import styled from "@emotion/styled";
-import { background, notification } from "../../styles";
 import { keyframes } from "@emotion/react";
+import styled from "@emotion/styled";
 import { Alert } from "@mui/material";
+import { newBackground, notification } from "../../styles";
 
 const fadeInUp = keyframes`
   from {
@@ -18,13 +18,14 @@ export const ProfileContainer = styled.div`
     display: flex;
     flex-direction: row;
     max-width: 100vw;
+    background-color: ${newBackground.white};
     
     padding: 2rem;
     
     h1 {
-      font-family: "Metropolis", sans-serif;
+      font-family: "Graphie", sans-serif;
       font-size: 1.5rem;
-      color: ${background.blueLeve};
+      color: ${newBackground.orange};
       font-weight: 700;
     }
 
@@ -41,8 +42,8 @@ export const ProfileContainer = styled.div`
 
 `
 export const ProfileMainContent = styled.div`
-    background-color: ${background.light};
-    border: 1px solid ${background.blueLeve};
+    background-color: ${newBackground.white};
+    border: 1px solid ${newBackground.orange};
     border-radius: 4px;
     
     padding: 2rem;
@@ -80,8 +81,8 @@ export const ProfileChangePasswordContent = styled.div`
     align-items: center;
     gap: 1rem;
     
-    background-color: ${background.light};
-    border: 1px solid ${background.blueLeve};
+    background-color: ${newBackground.white};
+    border: 1px solid ${newBackground.orange};
     border-radius: 4px;
     
     padding: 2rem;
@@ -119,8 +120,8 @@ export const ProfileSecondaryEmailContent = styled.div`
     display: flex;
     flex-direction: column;
 
-    background-color: ${background.light};
-    border: 1px solid ${background.blueLeve};
+    background-color: ${newBackground.white};
+    border: 1px solid ${newBackground.orange};
     border-radius: 4px;
     
     padding: 2rem;
@@ -157,7 +158,7 @@ export const ProfileSecondaryEmailContent = styled.div`
 
 
 export const SnackbarMessageAlert = styled(Alert)`
-  font-family: "Metropolis";
+  font-family: "Graphie";
   font-size: 1rem;
   background-color: ${notification.alert};
   border-radius: 10px;
@@ -173,7 +174,7 @@ export const SnackbarMessageAlert = styled(Alert)`
 
 `
 export const SnackbarMessageNotification = styled(Alert)`
-  font-family: "Metropolis";
+  font-family: "Graphie";
   font-size: 1rem;
   background-color: ${notification.success};
   border-radius: 10px;

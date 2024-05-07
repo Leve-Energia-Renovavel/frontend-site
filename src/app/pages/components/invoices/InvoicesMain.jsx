@@ -1,12 +1,12 @@
 "use client"
 
-import { useStoreBillingHistory, useStoreNextBills } from '@/app/hooks/useStore';
+import { useStoreBillingHistory } from '@/app/hooks/useStore';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
-import { Typography, Breadcrumbs, Link } from '@mui/material';
+import { Breadcrumbs, Link, Typography } from '@mui/material';
 import dynamic from 'next/dynamic';
+import { background, newBackground } from '../../styles';
 import FormButton from '../utils/buttons/FormButton';
 import { InvoiceContainer as Container, InvoicesMainCardContainer, InvoicesMainContainer, InvoicesTimelineContainer, NextBillButtonContainer, NextBillDetail, NextBillTitleContainer, PreviousInvoicesContainer } from './styles';
-import { background } from '../../styles';
 
 const Timeline = dynamic(() => import('../timeline/Timeline'), { ssr: false });
 
@@ -17,8 +17,6 @@ export default function InvoicesMain() {
     const billings = JSON.parse(localStorage.getItem('billingHistory')) || storeBilling
 
     const nextBill = billings[0]
-
-    const storeNextBill = useStoreNextBills()
     const nextBillExists = JSON.parse(localStorage.getItem('exists') || false);
 
 
@@ -52,7 +50,7 @@ export default function InvoicesMain() {
                     >
                         Painel
                     </Link>
-                    <Typography style={{ fontWeight: 'bold', color: background.blueLeve }}>Faturas</Typography>
+                    <Typography style={{ fontWeight: 'bold', color: newBackground.orange }}>Faturas</Typography>
                 </Breadcrumbs>
                 <InvoicesMainCardContainer>
                     {nextBillExists ? (

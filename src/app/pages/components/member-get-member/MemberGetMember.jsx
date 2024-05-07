@@ -16,7 +16,6 @@ import { CodeButton, MemberGetMemberContainer, MemberGetMemberMain, ModalBox, Mo
 
 export default function MemberGetMember() {
 
-    const storeUser = useStoreUser()
     const user = useStoreUser().user
 
     const [copiedToClipboard, setCopiedToClipboard] = useState(false)
@@ -80,7 +79,7 @@ export default function MemberGetMember() {
                         </div>
                     </ModalIconContainer>
                     <ModalTitleContainer>
-                        <Image className="logoLeve" loading="lazy"  src={leveLogo} alt="Ícone de formulário para completar o cadastro" />
+                        <Image className="logoLeve" loading="lazy" src={leveLogo} alt="Ícone de formulário para completar o cadastro" />
                         <Typography variant="h1">Indique um Amigo</Typography>
                     </ModalTitleContainer>
                     <ModalContentContainer>

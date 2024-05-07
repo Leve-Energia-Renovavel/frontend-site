@@ -21,31 +21,34 @@ export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
     const buttonsOptions = [
         {
             title: "Endereços",
-            route: "/installations",
+            route: "/dashboard/installations",
         },
         {
             title: "Minhas Faturas",
-            route: "/invoices",
+            route: "/dashboard/invoices",
         },
         {
             title: "Minha Conta",
-            route: "/profile",
+            route: "/dashboard/profile",
         },
         {
             title: "Ajuda",
-            route: "/installations",
+            route: "/dashboard/installations",
         },
         {
             title: "Contratos",
-            route: "/installations",
+            route: "/dashboard/installations",
         },
     ]
+
+    const handleRoute = (route) => {
+        router.push(route)
+    }
 
     const handleLoggout = () => {
         clearBrowserData()
         closeModal()
         router.push("/home")
-
     }
 
     return (
@@ -77,7 +80,7 @@ export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
                         <MenuOptionsContent>
                             {buttonsOptions.map((option) => {
                                 return (
-                                    <MenuOption key={option.title}>
+                                    <MenuOption key={option.title} onClick={() => handleRoute(option.route)}>
                                         <Typography className="menuTitle">{option.title}</Typography>
                                     </MenuOption>
                                 )
