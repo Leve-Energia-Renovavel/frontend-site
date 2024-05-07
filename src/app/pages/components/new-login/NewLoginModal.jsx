@@ -3,7 +3,7 @@
 import { useStoreUser } from '@/app/hooks/useStore';
 import { recoverPassword } from '@/app/service/login-service/LoginService';
 import { getAccessToken } from '@/app/service/user-service/UserService';
-import { requestSuccessful } from '@/app/service/utils/Validations';
+import { requestNotFound, requestSuccessful } from '@/app/service/utils/Validations';
 import CloseIcon from '@mui/icons-material/Close';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -69,7 +69,6 @@ export default function NewLoginModal({ isOpen, openModal, closeModal }) {
             })
             .catch((err) => {
                 console.log(err.errors);
-                setValidationErrors(err.errors)
                 return (err.errors)
             });
         return response
@@ -105,8 +104,13 @@ export default function NewLoginModal({ isOpen, openModal, closeModal }) {
             const data = { email: loginRef.email.current.value }
             const response = await forgotPasswordValidation(data)
             if (requestSuccessful(response?.status)) {
-                setNotifications([response?.data?.message])
+                setNotifications(["E-mail enviado com sucesso!"])
+            } else if (requestNotFound(response?.status)) {
+                setValidationErrors(["Usuário não encontrado"])
+            } else {
+                setValidationErrors(["Erro ao recuperar senha. Por favor, tente novamente"])
             }
+
         }
 
         setIsLoading(false)
@@ -156,7 +160,7 @@ export default function NewLoginModal({ isOpen, openModal, closeModal }) {
                     </LoginTitleContainer>
                     <LoginContentContainer>
                         <LoginForm>
-                            <TextField className="formInput" inputRef={loginRef.email} label="Login" variant="outlined" placeholder="Login" type="text" required />
+                            <TextField className="formInput" inputRef={loginRef.email} label="E-mail" variant="outlined" placeholder="E-mail" type="text" required />
                             {!forgotPassword ?
                                 <TextField className="formInput"
                                     inputRef={loginRef.password}
