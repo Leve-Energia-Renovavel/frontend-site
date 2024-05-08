@@ -875,6 +875,9 @@ export const HomeFourthSectionCardContainer = styled.div`
 
     gap: 1rem;
 
+    @media (max-width: 1150px) {
+      flex-wrap: wrap;
+    }
     @media (max-width: 600px) {
       flex-wrap: wrap;
     }

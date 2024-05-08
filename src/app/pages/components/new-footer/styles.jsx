@@ -152,19 +152,27 @@ export const MyNiceDiv = styled.div`
         height: 1200px; /* Adjust the height of the sun image */
         border-radius: 50%; /* Make the sun image round */
         
+        @media (max-width: 1400px) {
+            width: 850px; 
+            height: 850px; 
+        }
+        @media (max-width: 1100px) {
+            width: 750px; 
+            height: 750px; 
+        }
         @media (max-width: 700px) {
             width: 650px; 
             height: 650px; 
         }
     }
 
+    @media (max-width: 900px) {
+        display: none;
+    }
     @media (max-width: 400px) {
         max-width: 100vw;
-            display: none;
-        }
-        .sunImage {
-
-        }
+        display: none;
+    }
 `;
 export const FooterSocialMediaContainer = styled.div`
     display: flex;
