@@ -1,6 +1,6 @@
 "use client"
 
-import { requestSuccessful } from '@/app/service/utils/Validations';
+import { requestNotFound, requestSuccessful } from '@/app/service/utils/Validations';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { IconButton, InputAdornment, Snackbar, TextField, Typography } from "@mui/material";
@@ -47,14 +47,18 @@ export default function RecoverPasswordMain() {
         }
 
         try {
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/recovery-pass/`, data, { headers });
-            if (requestSuccessful(response.status)) {
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/recovery-pass/${token}`, data, { headers });
+            console.log("response ==>", response);
+            if (requestSuccessful(response?.status)) {
                 setNotifications(["Senha redefinida com sucesso!"])
             }
         } catch (error) {
-            console.error(error);
-            setValidationErrors(error)
-
+            console.log(error);
+            if (error?.message) {
+                console.log(error.message);
+                setValidationErrors([error?.message])
+            }
+            // setValidationErrors(error)
         }
     }
 
