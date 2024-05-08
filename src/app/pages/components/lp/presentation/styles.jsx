@@ -454,7 +454,20 @@ export const ThirdSectionContainer = styled.div`
         background-color: ${newBackground.yellow};
         padding: 2px;
         border-radius: 8px;
-        font-weight: 600;
+        font-weight: 700;
+    }
+
+    @media (max-width: 600px) {
+      margin-top: 30px;
+
+      .ourSolutions {
+        font-size: 27px;
+      }
+      .solutionsDescription {
+        font-size: 14px;
+        line-height: 17px;
+      }
+
     }
 `
 export const ThirdSectionCardContainer = styled.div`
@@ -734,6 +747,8 @@ background-color: ${newBackground.yellow};
 border-radius: 15px;
 padding: 28px 21px;
 
+max-width: 590px;
+
 .energizeTheWorld {
   font-family: "Graphie";
   font-size: 34px;
@@ -758,6 +773,8 @@ export const SixthSectionContentManifest = styled.div`
   border-radius: 15px;
   background-color: ${newBackground.orange};
   padding: 37px 29px;
+
+  max-width: 590px;
   
   .manifest {
     font-family: "Graphie";
@@ -792,9 +809,17 @@ export const SixthSectionBanner = styled.div`
   gap: 1rem;
 
   .image {
-    max-width: 380px;
+    max-width: 590px;
     height: auto;
-    margin: 1rem auto;
+    margin: 0 auto 20px auto;
+  }
+
+  @media (max-width: 600px) {
+
+    .image {
+      max-width: 100%;
+    }
+
   }
 `
 export const SixthSectionBoxesContainer = styled.div`
