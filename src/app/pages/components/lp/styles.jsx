@@ -354,11 +354,18 @@ export const LandingPageForm = styled.form`
       height: 42px;
       margin-bottom: 8px;
 
+      & .MuiInputLabel-shrink {
+        /* Styles for the focused label */
+        /* line-height: 2.4375em;  */
+        line-height: 3em; 
+      }
+
       .MuiOutlinedInput-input {
-        
         // styles for the user input text
         font-family: "Graphie";
         font-size: 17px;
+        height: 0.4375em;
+        padding: 20px 14px;
         font-weight: 700;
         color: ${newBackground.orange};
         }
@@ -369,10 +376,9 @@ export const LandingPageForm = styled.form`
           font-size: 14px;
           color:  ${newBackground.orange};
         }
-        
-        &:focus-within label,
-        & input:focus + label {
-            margin-top: 8px;
+
+        & .MuiFormLabel-root-MuiInputLabel-root {
+          line-height: 2.4375em;
         }
         
         & .MuiOutlinedInput-root {

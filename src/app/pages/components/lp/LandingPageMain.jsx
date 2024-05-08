@@ -122,6 +122,11 @@ export default function LandingPageMain() {
         }
     }
 
+    const handleWhatsapp = () => {
+        const url = `https://api.whatsapp.com/send/?phone=551131818210&text=Ol%C3%A1%2C+estou+na+home+do+site+Leve+Energia+e+tenho+uma+d%C3%BAvida%E2%80%A6&type=phone_number&app_absent=0`;
+        window.open(url, '_blank', 'noopener noreferrer');
+      }
+
     const texts = infoJsonHome
     const lpTexts = infoJsonLp
 
@@ -247,7 +252,7 @@ export default function LandingPageMain() {
                 <ContactBannerContainer>
                     <Typography variant='h4'>{lpTexts.anyDoubt}</Typography>
                     <Typography variant='h5'>{lpTexts.contactOutTeam}</Typography>
-                    <Typography className='contactButton' onClick={() => handlePreSignup()}><WhatsAppIcon />{lpTexts.whatsappLeve}</Typography>
+                    <Typography className='contactButton' onClick={() => handleWhatsapp()}><WhatsAppIcon />{lpTexts.whatsappLeve}</Typography>
                 </ContactBannerContainer>
 
                 <FaqBannerContainer>

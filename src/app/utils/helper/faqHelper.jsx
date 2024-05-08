@@ -36,21 +36,36 @@ export const questionsToBeAdded = [
 ]
 
 export const questions = [
-
     {
-        title: "O que muda na minha conta de luz?",
-        description: "Com a Leve, sua conta de luz fica mais sustentável e mais barata. Você continua recebendo a fatura da distribuidora de energia, que vai trazer a quantidade de créditos gerados pela parte da usina renovável que você alugou! Além da fatura de energia, você receberá também uma fatura da Leve referente à locação da parcela da usina. O mais importante é: as duas faturas juntas vão ser mais leves para o seu bolso que sua única fatura atual!"
+        title: "Como funciona?",
+        description: "Com adesão 100% digital, você garante energia solar por assinatura para sua empresa ou residência. É simples, rápido e sem burocracias. A energia, que é produzida em nossas usinas, será injetada na rede da distribuidora de energia local, para então chegar até você por meio de créditos de energia solar. Isso tudo sem obras, tampouco instalações. Por ser mais econômica, você poderá reduzir em até 20% os seus custos com a conta de luz."
     },
     {
-        title: "Como funciona o pagamento da Leve?",
-        description: "No final de cada mês, você receberá duas faturas: uma fatura da sua distribuidora de energia com valor reduzido, e a fatura digital da Leve, enviada por e-mail, referente à locação de uma parte da usina. Nosso compromisso é fazer com que a somatória das duas novas contas seja menor do que a sua conta de luz atual!"
+        title: "Existem riscos?",
+        description: "Não. Esta solução é legalmente assegurada e está prevista na Lei nº 14.300/2022, bem como na Resolução Normativa 1.000/2021 da ANEEL."
     },
     {
-        title: "De onde vem a minha energia?",
-        description: "A sua energia continuará chegando até você pela rede existente da sua concessionária distribuidora, e é por isso que também não é necessário fazer nenhuma obra! Ah, isso significa também que quem continua responsável pela entrega e estabilidade da sua energia é a distribuidora que te atende, beleza?"
+        title: "Quem pode contratar?",
+        description: "Qualquer pessoa física ou jurídica classificada e atendida em baixa tensão, com uma conta de luz de valor acima de R$150,00 por mês. Vale ressaltar que moradores de residências, apartamentos ou até imóveis alugados também podem ter estes benefícios."
     },
     {
-        title: "Por que não tem energia disponível na minha região?",
-        description: "Estamos trabalhando para atender o Brasil inteiro, mas ainda não temos fazendas solares em alguns estados. Por isso, contamos com o seu cadastro para identificar quantos colaboradores querem energia limpa e renovável em cada cantinho do Brasil. Por isso, preencha já o seu cadastro! Iremos te atualizar quando a usina estiver disponível!"
+        title: "Em quais estados a solução está disponível?",
+        description: "Estamos em expansão! Atualmente atendemos São Paulo e Minas Gerais, mas continuamos crescendo para atender mais regiões."
+    },
+    {
+        title: "Quanto custa para contratar a solução da Leve Energia?",
+        description: "CUSTO ZERO! Você não precisa fazer nenhum investimento, tampouco pagar taxas adicionais para usufruir desta solução e economizar imediatamente na conta de luz"
+    },
+    {
+        title: "Preciso instalar equipamentos?",
+        description: "Não. Toda energia gerada pelas nossas usinas vai chegar para você através dos fios e postes da distribuidora local. Não há a necessidade de obras ou qualquer adequação de equipamentos na sua empresa ou residência."
+    },
+    {
+        title: "Posso cancelar a qualquer momento?",
+        description: "Com a Leve Energia, você tem autonomia para cancelar quando desejar. Basta solicitar a rescisão com 180 dias de antecedência. É zero burocracia, de verdade!"
+    },
+    {
+        title: "Preciso pagar alguma taxa?",
+        description: "Apenas para a sua distribuidora de energia local. É por isso que ao final de cada mês você receberá duas faturas: uma fatura da sua distribuidora de energia com valor reduzido, e outra fatura da Leve. Mas, lembre-se: o nosso compromisso é fazer com que a somatória das duas novas contas seja sempre menor do que a sua conta de luz atual."
     },
 ]
