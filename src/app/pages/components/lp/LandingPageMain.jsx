@@ -71,7 +71,7 @@ export default function LandingPageMain() {
 
         const response = await schemaValidation(submitData)
 
-        console.log("response ===>>", response)
+        console.log("response ===>>", JSON.stringify(response))
 
         if (requestSuccessful(response?.status)) {
             if (response?.data?.message === "Você já possui cadastro") {
@@ -99,6 +99,9 @@ export default function LandingPageMain() {
         }
         else if (response?.message === "Fora de rateio") {
             router.push(`/fail/out-of-range`)
+        } 
+        else if (response?.errors) {
+            setErrorMessage(response?.errors)
         }
 
         else {
@@ -125,7 +128,7 @@ export default function LandingPageMain() {
     const handleWhatsapp = () => {
         const url = `https://api.whatsapp.com/send/?phone=551131818210&text=Ol%C3%A1%2C+estou+na+home+do+site+Leve+Energia+e+tenho+uma+d%C3%BAvida%E2%80%A6&type=phone_number&app_absent=0`;
         window.open(url, '_blank', 'noopener noreferrer');
-      }
+    }
 
     const texts = infoJsonHome
     const lpTexts = infoJsonLp
