@@ -4,7 +4,7 @@ import { useStoreBillingHistory } from '@/app/hooks/useStore';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import { Breadcrumbs, Link, Typography } from '@mui/material';
 import dynamic from 'next/dynamic';
-import { background, newBackground } from '../../styles';
+import { newBackground } from '../../styles';
 import FormButton from '../utils/buttons/FormButton';
 import { InvoiceContainer as Container, InvoicesMainCardContainer, InvoicesMainContainer, InvoicesTimelineContainer, NextBillButtonContainer, NextBillDetail, NextBillTitleContainer, PreviousInvoicesContainer } from './styles';
 

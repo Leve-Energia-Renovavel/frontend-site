@@ -181,8 +181,8 @@ export default function NewLoginModal({ isOpen, openModal, closeModal }) {
                                 : <></>}
                             <LoginButtonContainer>
                                 {isLoading ?
-                                    <Box sx={{ margin: "0 auto" }}>
-                                        <CircularProgress />
+                                    <Box className="box">
+                                        <CircularProgress className='loading' />
                                     </Box>
                                     :
                                     <LoginButton onClick={handleSubmit}>

@@ -169,6 +169,14 @@ export const LoginButtonContainer = styled.form`
             text-decoration: underline;
         }
     }
+
+    .box { 
+        margin: 0 auto;
+    }
+
+    .loading {
+        color: ${newBackground.orange};
+    }
 `
 export const LoginButton = styled(Button)`
     text-transform: none;

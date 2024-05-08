@@ -1,9 +1,9 @@
-import styled from "@emotion/styled";
-import { keyframes } from "@emotion/react";
-import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineOppositeContent, TimelineSeparator } from "@mui/lab";
-import { background, statusColors } from "../../styles";
-import { Typography } from "@mui/material";
 import { statusHelper } from "@/app/utils/helper/StyleHelpers";
+import { keyframes } from "@emotion/react";
+import styled from "@emotion/styled";
+import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineOppositeContent, TimelineSeparator } from "@mui/lab";
+import { Typography } from "@mui/material";
+import { background, newBackground, statusColors } from "../../styles";
 
 const fadeInUp = keyframes`
   from {
@@ -74,11 +74,11 @@ export const TimelineContentButtonContainer = styled.div`
 `
 
 export const TimelineStyled = styled(Timeline)`
-    color: ${background.blueLeve}; 
+    color: ${newBackground.orange}; 
     max-width: 20vw;
 `
 export const TimelineItemStyled = styled(TimelineItem)`
-    color: ${background.blueLeve}; 
+    color: ${newBackground.orange}; 
     max-width: 20vw;
 `
 export const TimelineOppositeContentStyled = styled(TimelineOppositeContent)`
