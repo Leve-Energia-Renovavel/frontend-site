@@ -10,16 +10,16 @@ import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
-import infoJsonHome from '../../../../../public/home-info.json';
-import infoJsonLp from '../../../../../public/lp-info.json';
-import economyIcon from "../../../../resources/icons/small/economy-icon-small.png";
-import faqIcon from "../../../../resources/icons/small/faq-icon-yellow-small.svg";
-import bannerImage from "../../../../resources/img/large/leve-paineis-solares-filtro-grao-image-large.webp";
+import infoJsonHome from '../../../../../../public/home-info.json';
+import infoJsonLp from '../../../../../../public/lp-info.json';
+import economyIcon from "../../../../../resources/icons/small/economy-icon-small.png";
+import faqIcon from "../../../../../resources/icons/small/faq-icon-yellow-small.svg";
+import bannerImage from "../../../../../resources/img/large/leve-paineis-solares-filtro-grao-image-large.webp";
 
-import FaqContainer from '../faq/FaqContainer';
-import BrandsContainer from '../home/HomeBrands';
-import TutorialContainer from '../home/HomeTutorial';
-import BoxesContainer from './LandingPageBoxes';
+import FaqContainer from '../../faq/FaqContainer';
+import BrandsContainer from '../../home/HomeBrands';
+import TutorialContainer from '../../home/HomeTutorial';
+import BoxesContainer from '../LandingPageBoxes';
 import LandingPageMainContent from './LandingPageMainContent';
 
 import {
@@ -36,7 +36,7 @@ import {
     TutorialBannerContainer,
     UserTypeFormButtonContainer, UserTypeFormContainer
 } from "./styles";
-import { schemaValidation } from '../home/schema';
+import { schemaValidation } from '../../home/schema';
 
 export default function LandingPageMain() {
 
@@ -71,8 +71,6 @@ export default function LandingPageMain() {
 
         const response = await schemaValidation(submitData)
 
-        console.log("response ===>>", JSON.stringify(response))
-
         if (requestSuccessful(response?.status)) {
             if (response?.data?.message === "Você já possui cadastro") {
                 setNotifications(["Você já possui cadastro! Faça login ou continue o cadastro pelo link enviado ao seu e-mail. "])
@@ -99,7 +97,7 @@ export default function LandingPageMain() {
         }
         else if (response?.message === "Fora de rateio") {
             router.push(`/fail/out-of-range`)
-        } 
+        }
         else if (response?.errors) {
             setErrorMessage(response?.errors)
         }

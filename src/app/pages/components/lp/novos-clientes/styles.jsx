@@ -1,7 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/material";
-import { newBackground, notification } from "../../styles";
+import { newBackground, notification } from "../../../styles";
 
 const fadeInUp = keyframes`
   from {
@@ -754,6 +754,7 @@ export const FaqBannerContainer = styled.div`
   .faqContainer {
     margin-bottom: 1rem;
     border-radius: 20px;
+    padding: 8px 10px;
 
     &:hover {
       .arrowIcon{
@@ -769,7 +770,7 @@ export const FaqBannerContainer = styled.div`
   .question {
     font-family: "Graphie";
     color: ${newBackground.orange};
-    font-size: 27px;
+    font-size: 21px;
     font-weight: 600;
   }
 
@@ -793,18 +794,24 @@ export const FaqBannerContainer = styled.div`
   @media (max-width: 600px) {
     padding: 2rem 1rem;
 
+    .faqContainer {
+      padding: 4px 2px;
+
+    }
+
     .faqTitle {
     font-size: 21px;
     margin-top: 10px;
     margin-bottom: 20px;
-    }
-    .faqIcon {
+  }
+  .faqIcon {
     width: 31px;
     height: 31px;
-    }
-
-    .question {
+  }
+  
+  .question {
     font-size: 14px;
+    text-align: left;
   }
     .answer{
       font-size: 14px;
