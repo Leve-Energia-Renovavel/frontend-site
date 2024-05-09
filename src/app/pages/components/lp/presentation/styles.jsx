@@ -898,3 +898,25 @@ export const SixthSectionBox = styled.div`
     }
   }
 `
+
+export const VideoContainer = styled.div`
+  margin: 0 auto;
+  background-color: ${newBackground.white};
+  padding: 2rem;
+
+  .embededVideo {
+    width: 1000px;
+    height: 581px;
+    border-radius: 15px;
+
+    @media (max-width: 600px) {
+      width: 325px;
+      height: 220px;
+    }
+  }
+
+  @media (max-width: 600px) {
+      padding: 0;
+    }
+
+`

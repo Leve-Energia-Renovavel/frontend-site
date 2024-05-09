@@ -4,7 +4,7 @@ import Image from 'next/image';
 import infoJson from "../../../../../../public/lp-presentation-info.json";
 import { LandingPageMainBanner as MainBanner, MainBannerButton, LandingPageMainContent as MainContent, MoreAboutLeveFooter } from './styles';
 import { useRouter } from 'next/navigation';
-import bannerImage from "../../../../../resources/img/large/leve-pai-e-filho-image-large.webp"
+import bannerImage from "../../../../../resources/img/large/leve-pai-e-filho-image-large-reduced.webp"
 
 export default function LandingPagePresentationBanner() {
 
