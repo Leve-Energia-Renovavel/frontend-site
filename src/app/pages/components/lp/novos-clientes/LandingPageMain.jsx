@@ -4,8 +4,8 @@ import { informationNotAccepted, requestSuccessful } from '@/app/service/utils/V
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { Snackbar, TextField, Typography } from "@mui/material";
+import dynamic from 'next/dynamic';
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
@@ -13,19 +13,22 @@ import InputMask from "react-input-mask";
 import infoJsonHome from '../../../../../../public/home-info.json';
 import infoJsonLp from '../../../../../../public/lp-info.json';
 import economyIcon from "../../../../../resources/icons/small/economy-icon-small.png";
-import faqIcon from "../../../../../resources/icons/small/faq-icon-yellow-small.svg";
 
-import FaqContainer from '../../faq/FaqContainer';
 import BrandsContainer from '../../home/HomeBrands';
 import TutorialContainer from '../../home/HomeTutorial';
-import LandingPageMainContent from './LandingPageMainContent';
+// import LandingPageMainContent from './LandingPageMainContent';
+// import LandingPageFaqBanner from './LandingPageFaqBanner';
+// import LandingPageContactBanner from './LandingPageContactBanner';
+
+const LandingPageMainContent = dynamic(() => import('./LandingPageMainContent'), { ssr: false });
+const LandingPageFaqBanner = dynamic(() => import('./LandingPageFaqBanner'), { ssr: false });
+const LandingPageContactBanner = dynamic(() => import('./LandingPageContactBanner'), { ssr: false });
 
 import { schemaValidation } from '../../home/schema';
 import LandingPageSecondaryBanner from './LandingPageSecondaryBanner';
 import {
-    ContactBannerContainer,
     LandingPageContainer as Container,
-    FaqBannerContainer, LandingPageForm as Form, FormButton, LandingMainFormContainer as FormContainer, FormSlider, FormTitleContainer,
+    LandingPageForm as Form, FormButton, LandingMainFormContainer as FormContainer, FormSlider, FormTitleContainer,
     LandingPageFormContainer, LandingPageFormSimulationContainer,
     Loading, LandingPageBanner as MainBanner,
     FormSelect as Select,
@@ -34,6 +37,7 @@ import {
     TutorialBannerContainer,
     UserTypeFormButtonContainer, UserTypeFormContainer
 } from "./styles";
+
 
 export default function LandingPageMain() {
 
@@ -229,17 +233,9 @@ export default function LandingPageMain() {
 
                 <BrandsContainer />
 
-                <ContactBannerContainer>
-                    <Typography variant='h4'>{lpTexts.anyDoubt}</Typography>
-                    <Typography variant='h5'>{lpTexts.contactOutTeam}</Typography>
-                    <Typography className='contactButton' onClick={() => handleWhatsapp()}><WhatsAppIcon />{lpTexts.whatsappLeve}</Typography>
-                </ContactBannerContainer>
+                <LandingPageContactBanner />
 
-                <FaqBannerContainer>
-                    <Image src={faqIcon} className='faqIcon' alt={"Ícone de interrogação sobre dúvidas frequentes"} priority={false} loading='lazy' />
-                    <Typography className='faqTitle' variant='subtitle1'>{lpTexts.faqTitle}</Typography>
-                    <FaqContainer />
-                </FaqBannerContainer>
+                <LandingPageFaqBanner />
 
             </Container>
             <>

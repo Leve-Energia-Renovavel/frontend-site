@@ -1,3 +1,5 @@
+"use client"
+
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import { Typography } from '@mui/material';
 import {
