@@ -7,13 +7,12 @@ import { clearBrowserData } from '@/app/utils/browser/BrowserUtils';
 import { formatBasicBirthDate } from '@/app/utils/date/DateUtils';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import dynamic from 'next/dynamic';
 import { notFound, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { SignUpContainer as Container } from './styles';
 
-import SignupForm from './forms/SignupForm';
 import NewResultEconomy from '../new-result-economy/NewResultEconomy';
+import SignupForm from './forms/SignupForm';
 // const NewResultEconomy = dynamic(() => import('../new-result-economy/NewResultEconomy'), { ssr: false });
 
 export default function SignupMain() {
@@ -38,6 +37,7 @@ export default function SignupMain() {
 
             try {
                 const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
+                console.log(userResponse)
                 if (requestSuccessful(userResponse?.status)) {
 
                     const instalacao = userResponse?.data?.instalacao

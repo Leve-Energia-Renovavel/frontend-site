@@ -10,7 +10,7 @@ import { ContentContainer as Content, LeveEconomy, LeveEconomyContainer, LeveEco
 export default function NewResultEconomy() {
 
     const storeUser = useStoreUser()
-    const user = JSON.parse(window.localStorage.getItem('user')) || storeUser.user
+    const user = JSON.parse(window.localStorage.getItem('user')) || storeUser?.user
 
     const cost = user?.user?.cost
     const discount = user?.user?.discount
