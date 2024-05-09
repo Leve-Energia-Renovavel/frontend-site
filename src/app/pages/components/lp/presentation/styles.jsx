@@ -298,6 +298,12 @@ export const SecondSectionContentTitleContainer = styled.div`
         max-width: 306px;
     }
 
+    .arrowDownIcon {
+      display: none;
+      font-size: 42px;
+      color: ${newBackground.yellow};
+    }
+
     @media (max-width: 600px) {
       margin: 18px auto;
       gap: 1rem;
@@ -306,6 +312,11 @@ export const SecondSectionContentTitleContainer = styled.div`
         font-size: 27px;
         line-height: 30px;
         text-align: center;
+      }
+
+      .arrowDownIcon {
+        display: block;
+        margin: 0 auto;
       }
     }
 `
