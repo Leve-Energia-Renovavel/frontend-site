@@ -43,20 +43,20 @@ export default function Header() {
     };
 
     const handleHeaders = () => {
-        if (!isLoggedUser && !openLogin) {
-            return <NewHeader openModal={openLoginModal} closeModal={closeLoginModal} isLandingPage={isLandingPage} />;
-        } else if (openLogin && !isLoggedUser) {
+        return <NewHeader openModal={openLoginModal} closeModal={closeLoginModal} isLandingPage={isLandingPage} />;
+    }
+    const handleModals = () => {
+        if (openLogin && !isLoggedUser) {
             return <NewLoginModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />;
         } else if (openLogin && isLoggedUser) {
             return <NewLoggedModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />;
-        } else {
-            return <NewHeader openModal={openLoginModal} closeModal={closeLoginModal} isLandingPage={isLandingPage} />;
         }
     }
 
     return (
         <>
             {handleHeaders()}
+            {handleModals()}
         </>
     );
 }
