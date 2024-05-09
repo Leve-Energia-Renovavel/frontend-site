@@ -1,3 +1,5 @@
+"use client"
+
 import infoJson from "../../../../../../public/lp-presentation-info.json";
 import BoxesContainer from '../../home/HomeBoxes';
 import { ThirdSectionContainer } from './styles';

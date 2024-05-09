@@ -1,3 +1,5 @@
+"use client"
+
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import { useRouter } from 'next/navigation';
 import infoJson from "../../../../../../public/lp-presentation-info.json";

@@ -1,3 +1,5 @@
+"use client"
+
 import { lpPresentationVisionBoxes } from '@/app/utils/helper/landingPageHelper';
 import Image from 'next/image';
 import infoJson from "../../../../../../public/lp-presentation-info.json";
