@@ -1,3 +1,5 @@
+"use client"
+
 import { Typography } from "@mui/material";
 import Image from "next/image";
 import infoJsonLp from '../../../../../../public/lp-info.json';

@@ -1,3 +1,5 @@
+"use client"
+
 import { Typography } from "@mui/material";
 import infoJsonLp from '../../../../../../public/lp-info.json';
 import bannerImage from "../../../../../resources/img/large/leve-paineis-solares-filtro-grao-image-large-reduced.webp";

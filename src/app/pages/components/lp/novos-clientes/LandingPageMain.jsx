@@ -10,7 +10,6 @@ import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import infoJsonHome from '../../../../../../public/home-info.json';
-import infoJsonLp from '../../../../../../public/lp-info.json';
 import economyIcon from "../../../../../resources/icons/small/economy-icon-small.png";
 import { schemaValidation } from '../../home/schema';
 
@@ -111,13 +110,7 @@ export default function LandingPageMain() {
         setSelectedUserType(userType);
     };
 
-    const handleWhatsapp = () => {
-        const url = `https://api.whatsapp.com/send/?phone=551131818210&text=Ol%C3%A1%2C+estou+na+home+do+site+Leve+Energia+e+tenho+uma+d%C3%BAvida%E2%80%A6&type=phone_number&app_absent=0`;
-        window.open(url, '_blank', 'noopener noreferrer');
-    }
-
     const texts = infoJsonHome
-    const lpTexts = infoJsonLp
 
     return (
         <>
