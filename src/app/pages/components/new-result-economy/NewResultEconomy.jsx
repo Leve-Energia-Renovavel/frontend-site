@@ -15,17 +15,17 @@ export default function NewResultEconomy() {
     const cost = user?.user?.cost
     const discount = user?.user?.discount
 
-    const todayCost = cost.toFixed(2).toString().replace(".", ",")
+    const todayCost = cost?.toFixed(2).toString().replace(".", ",")
 
-    const percentageValue = parseFloat((cost * discount) / 100).toFixed(2).replace(".", ",");
-    const leveEconomyValue = parseFloat(cost - (cost / discount)).toFixed(2).replace(".", ",");
-    const leveYearTotalDiscount = parseFloat(((cost / discount) * 12)).toFixed(2).replace(".", ",");
+    const percentageValue = parseFloat((cost * discount) / 100)?.toFixed(2)?.replace(".", ",");
+    const leveEconomyValue = parseFloat(cost - (cost / discount))?.toFixed(2)?.replace(".", ",");
+    const leveYearTotalDiscount = parseFloat(((cost / discount) * 12))?.toFixed(2)?.replace(".", ",");
 
     return (
         <SimulateContainer>
             <SimulateHeader>
                 <SimulateHeaderGoodNews>
-                    <Image src={homeIcon} className="homeIcon" alt={"Ícone local de casa"} loading="lazy"  />
+                    <Image src={homeIcon} className="homeIcon" alt={"Ícone local de casa"} loading="lazy" />
                     <Typography className='goodNews'>Boas notícias!</Typography>
                 </SimulateHeaderGoodNews>
                 <Typography variant='subtitle1'><span className='bold'>A Leve já chegou na sua região!</span> Veja abaixo o resultado da sua economia:</Typography>
@@ -58,7 +58,7 @@ export default function NewResultEconomy() {
                     <LeveEconomyContent>
                         <Typography variant='subtitle1'>Com a Leve você pagará:</Typography>
                         <LeveEconomy>
-                            <Image src={leveLogo} alt={"Desconto com a Leve"} loading="lazy"  />
+                            <Image src={leveLogo} alt={"Desconto com a Leve"} loading="lazy" />
                             <Typography className='value'>R${leveEconomyValue}</Typography>
                         </LeveEconomy>
                     </LeveEconomyContent>
