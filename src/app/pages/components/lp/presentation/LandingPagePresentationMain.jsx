@@ -59,8 +59,6 @@ export default function LandingPagePresentationMain() {
                 <Image className='bannerImage' alt="imagem de pai e filho felizes" src={bannerImage} priority />
             </MainBanner>
 
-
-
             <SecondSectionContainer>
                 <SecondSectionTitleContainer>
                     <h3 className='yellow'>Sem obras. Sem instalações.</h3>
@@ -112,7 +110,7 @@ export default function LandingPagePresentationMain() {
                 </FourthSectionImagesContent>
                 <FourthSectionImagesContent invertedBox={true} image={companyCardImage} onClick={() => handleGoHome()}>
                     <h6 variant="subtitle1">{texts.forYourCompany}</h6>
-                    <ArrowCircleRightOutlinedIcon className='arrowIcon' />
+                    <ArrowCircleRightOutlinedIcon className='arrowIconCompany' />
                 </FourthSectionImagesContent>
             </FourthSectionImagesContainer>
 

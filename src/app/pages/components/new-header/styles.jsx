@@ -5,7 +5,7 @@ import { newBackground } from "../../styles";
 export const MobileNewHeaderContainer = styled.header`
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: ${props => props.isLandingPage ? "center" : "space-between"};
     flex-direction: row;
     overflow: hidden;
     background-color: ${newBackground.white};
@@ -35,6 +35,7 @@ export const MobileNewHeaderContainer = styled.header`
     }
 
     .profile {
+        ${props => props.isLandingPage && "display:none"};
         width:45px; 
         height:45px;
         cursor: pointer;

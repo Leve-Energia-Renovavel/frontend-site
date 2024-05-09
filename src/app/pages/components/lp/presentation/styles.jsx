@@ -584,7 +584,6 @@ export const FourthSectionImagesContent = styled.div`
     
     transition: filter 0.5s ease; 
 
-    
     &:hover {
       filter: brightness(0.8);
     }
@@ -619,6 +618,17 @@ export const FourthSectionImagesContent = styled.div`
     }
 
     .arrowIcon {
+      font-size: 50px;
+      color: ${newBackground.yellow};
+      
+      &:hover {
+        color: ${newBackground.green};
+        background-color: ${newBackground.yellow};
+        border-radius: 30px;
+      }
+    }
+    .arrowIconCompany {
+      margin-top: auto;
       font-size: 50px;
       color: ${newBackground.yellow};
       
@@ -731,6 +741,8 @@ export const SixthSectionContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  
+  margin: 0 auto;
   
   @media (max-width: 600px) {
     gap: 0px;

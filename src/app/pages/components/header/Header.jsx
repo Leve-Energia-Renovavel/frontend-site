@@ -1,9 +1,8 @@
 "use client"
 
-import { useStoreUser } from '@/app/hooks/useStore';
-import { headerHelper } from '@/app/utils/helper/pathHelper';
+import { headerHelper, landingPageHelper } from '@/app/utils/helper/pathHelper';
 import dynamic from 'next/dynamic';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import NewHeader from '../new-header/NewHeader';
@@ -13,17 +12,13 @@ const NewLoggedModal = dynamic(() => import('../new-header/NewLoggedModal'), { s
 
 export default function Header() {
 
-    const router = useRouter()
     const pathname = usePathname()
-
-    const store = useStoreUser()
-    const user = JSON.parse(window.localStorage.getItem('user')) || store.user
 
     const [isMobile, setIsMobile] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
 
     const mobileWidth = 900
-
+    const isLandingPage = landingPageHelper[pathname]
     const isLoggedUser = headerHelper[pathname]
 
     useEffect(() => {
@@ -47,26 +42,21 @@ export default function Header() {
         setOpenLogin(false);
     };
 
+    const handleHeaders = () => {
+        if (!isLoggedUser && !openLogin) {
+            return <NewHeader openModal={openLoginModal} closeModal={closeLoginModal} isLandingPage={isLandingPage} />;
+        } else if (openLogin && !isLoggedUser) {
+            return <NewLoginModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />;
+        } else if (openLogin && isLoggedUser) {
+            return <NewLoggedModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />;
+        } else {
+            return <NewHeader openModal={openLoginModal} closeModal={closeLoginModal} isLandingPage={isLandingPage} />;
+        }
+    }
+
     return (
         <>
-            {!isLoggedUser && (
-                <NewHeader openModal={openLoginModal} closeModal={closeLoginModal} />
-            )}
-            {!openLogin && isLoggedUser && (
-                <NewHeader openModal={openLoginModal} closeModal={closeLoginModal} />
-            )}
-
-            {isMobile && !isLoggedUser && (
-                <NewHeader openModal={openLoginModal} closeModal={closeLoginModal} />
-            )}
-
-            {openLogin && !isLoggedUser &&
-                <NewLoginModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />
-            }
-            {openLogin && isLoggedUser &&
-                <NewLoggedModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />
-            }
-
+            {handleHeaders()}
         </>
     );
 }

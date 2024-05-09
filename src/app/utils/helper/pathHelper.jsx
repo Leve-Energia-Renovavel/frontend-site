@@ -21,6 +21,7 @@ export const headerHelper = {
     '/signup/': false,
     '/lp/': false,
     '/lp/novos-clientes/': false,
+    '/lp/presentation/': false,
     '/register/': false,
     '/dashboard/': true,
     '/dashboard/profile/': true,
@@ -31,17 +32,9 @@ export const headerHelper = {
     '/fail/low-cost/': false,
     '/connection/': true,
 }
-export const newHeaderHelper = {
-    '/': true,
-    '/home/': true,
-    '/signup/': true,
-    '/register/': false,
-    '/dashboard/': true,
-    '/dashboard/profile/': false,
-    '/dashboard/invoices/': false,
-    '/dashboard/installations/': false,
-    '/recover-password/': false,
-    '/fail/out-of-range/': false,
-    '/fail/low-cost/': false,
-    '/connection/': false,
+export const landingPageHelper = {
+    '/': false,
+    '/lp/': true,
+    '/lp/novos-clientes/': true,
+    '/lp/presentation/': true,
 }
