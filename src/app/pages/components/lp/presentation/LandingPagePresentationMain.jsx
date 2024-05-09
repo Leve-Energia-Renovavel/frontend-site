@@ -1,5 +1,6 @@
 "use client"
 
+import dynamic from 'next/dynamic';
 import { LandingPageContainer as Container } from './styles';
 
 import BrandsContainer from '../../home/HomeBrands';
