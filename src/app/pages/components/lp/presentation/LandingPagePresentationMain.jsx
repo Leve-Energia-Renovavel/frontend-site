@@ -1,45 +1,39 @@
 "use client"
 
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import infoJson from "../../../../../../public/lp-presentation-info.json";
-import percentageImage from "../../../../../resources/icons/large/icone-background-percentage-white.svg";
-import { LandingPageContainer as Container, FifthSectionButton, FifthSectionContainer, FifthSectionContent } from './styles';
+import { LandingPageContainer as Container } from './styles';
 
-import { useRouter } from 'next/navigation';
-import BrandsContainer from '../../home/HomeBrands';
-import TutorialContainer from '../../home/HomeTutorial';
-import LandingPageHomeOrCompany from './LandingPageHomeOrCompany';
-import LandingPageManifestBanner from './LandingPageManifestBanner';
-import LandingPageOurSolutions from './LandingPageOurSolutions';
+// import BrandsContainer from '../../home/HomeBrands';
+// import TutorialContainer from '../../home/HomeTutorial';
+// import LandingPageHomeOrCompany from './LandingPageHomeOrCompany';
+// import LandingPageManifestBanner from './LandingPageManifestBanner';
+// import LandingPageOurSolutions from './LandingPageOurSolutions';
+import LandingPagePercentageBanner from './LandingPagePercentageBanner';
 import LandingPagePresentationBanner from './LandingPagePresentationBanner';
-import LandingPageSolarPanelBanner from './LandingPageSolarPanelBanner';
+// import LandingPageSolarPanelBanner from './LandingPageSolarPanelBanner';
+
+const BrandsContainer = dynamic(() => import('../../home/HomeBrands'), { ssr: false });
+const TutorialContainer = dynamic(() => import('../../home/HomeTutorial'), { ssr: false });
+const LandingPageHomeOrCompany = dynamic(() => import('./LandingPageHomeOrCompany'), { ssr: false });
+const LandingPageManifestBanner = dynamic(() => import('./LandingPageManifestBanner'), { ssr: false });
+const LandingPageOurSolutions = dynamic(() => import('./LandingPageOurSolutions'), { ssr: false });
+const LandingPageSolarPanelBanner = dynamic(() => import('./LandingPageSolarPanelBanner'), { ssr: false });
+
 
 export default function LandingPagePresentationMain() {
-
-    const router = useRouter()
-
-    const texts = infoJson
 
     return (
         <Container>
 
             <LandingPagePresentationBanner />
+
             <LandingPageSolarPanelBanner />
+
             <LandingPageOurSolutions />
 
             <LandingPageHomeOrCompany />
 
-            <FifthSectionContainer >
-                <FifthSectionContent image={percentageImage}>
-                    <h6>{texts.callToActionTitle}</h6>
-                    <FifthSectionButton
-                        onClick={() => router.push("/")}
-                        endIcon={<ArrowForwardIcon />}>
-                        <span>{texts.simulate}</span>
-                    </FifthSectionButton>
+            <LandingPagePercentageBanner />
 
-                </FifthSectionContent>
-            </FifthSectionContainer>
             <TutorialContainer />
 
             <LandingPageManifestBanner />

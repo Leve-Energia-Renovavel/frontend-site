@@ -24,8 +24,8 @@ const HomeEconomyBanner = dynamic(() => import('./HomeEconomyBanner'), { ssr: fa
 const HomeSoleBanner = dynamic(() => import('./HomeSoleBanner'), { ssr: false });
 const TutorialContainer = dynamic(() => import('./HomeTutorial'), { ssr: false });
 
-import HomeMainBanner from './HomeMainBanner';
 import { awaitSeconds } from '@/app/utils/browser/BrowserUtils';
+import HomeMainBanner from './HomeMainBanner';
 
 
 export default function HomeMain() {
