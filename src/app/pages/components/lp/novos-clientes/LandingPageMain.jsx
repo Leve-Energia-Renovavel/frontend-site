@@ -1,7 +1,7 @@
 "use client"
 
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { informationNotAccepted, requestSuccessful } from '@/app/service/utils/Validations';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -14,29 +14,26 @@ import infoJsonHome from '../../../../../../public/home-info.json';
 import infoJsonLp from '../../../../../../public/lp-info.json';
 import economyIcon from "../../../../../resources/icons/small/economy-icon-small.png";
 import faqIcon from "../../../../../resources/icons/small/faq-icon-yellow-small.svg";
-import bannerImage from "../../../../../resources/img/large/leve-paineis-solares-filtro-grao-image-large.webp";
 
 import FaqContainer from '../../faq/FaqContainer';
 import BrandsContainer from '../../home/HomeBrands';
 import TutorialContainer from '../../home/HomeTutorial';
-import BoxesContainer from '../LandingPageBoxes';
 import LandingPageMainContent from './LandingPageMainContent';
 
+import { schemaValidation } from '../../home/schema';
+import LandingPageSecondaryBanner from './LandingPageSecondaryBanner';
 import {
     ContactBannerContainer,
     LandingPageContainer as Container,
     FaqBannerContainer, LandingPageForm as Form, FormButton, LandingMainFormContainer as FormContainer, FormSlider, FormTitleContainer,
     LandingPageFormContainer, LandingPageFormSimulationContainer,
     Loading, LandingPageBanner as MainBanner,
-    SecondSectionBanner,
-    SecondSectionContainer,
     FormSelect as Select,
     SnackbarMessageAlert,
     SnackbarMessageNotification,
     TutorialBannerContainer,
     UserTypeFormButtonContainer, UserTypeFormContainer
 } from "./styles";
-import { schemaValidation } from '../../home/schema';
 
 export default function LandingPageMain() {
 
@@ -53,7 +50,6 @@ export default function LandingPageMain() {
 
     const [errors, setErrorMessage] = useState([]);
     const [notifications, setNotifications] = useState([])
-
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -112,16 +108,6 @@ export default function LandingPageMain() {
     const handleSelect = (userType) => {
         setSelectedUserType(userType);
     };
-
-    const handlePreSignup = () => {
-        const element = document.getElementById('leadForm');
-        if (element) {
-            window.scrollTo({ top: element.offsetTop - 60, behavior: 'smooth' });
-        } else {
-            window.scrollTo({ top: 0, behavior: 'smooth' })
-
-        }
-    }
 
     const handleWhatsapp = () => {
         const url = `https://api.whatsapp.com/send/?phone=551131818210&text=Ol%C3%A1%2C+estou+na+home+do+site+Leve+Energia+e+tenho+uma+d%C3%BAvida%E2%80%A6&type=phone_number&app_absent=0`;
@@ -235,14 +221,7 @@ export default function LandingPageMain() {
                     </LandingPageFormContainer>
                 </MainBanner>
 
-                <SecondSectionContainer image={bannerImage}>
-                    <BoxesContainer />
-                    <SecondSectionBanner>
-                        <Typography className='bannerTitle'>{lpTexts.seeHowItsLeve}</Typography>
-                        <Typography className='bannerDescription'>{lpTexts.callToActionButtonTitle}</Typography>
-                        <Typography className='simulateButton' onClick={() => handlePreSignup()}>{lpTexts.simulateNow}</Typography>
-                    </SecondSectionBanner>
-                </SecondSectionContainer>
+                <LandingPageSecondaryBanner />
 
                 <TutorialBannerContainer>
                     <TutorialContainer />
