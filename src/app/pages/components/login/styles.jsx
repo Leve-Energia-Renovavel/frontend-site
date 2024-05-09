@@ -55,7 +55,7 @@ export const LoginTitleContainer = styled.div`
     text-align: center;
 
     h1 { 
-        font-family: "Metropolis";
+        font-family: "Graphie";
         font-style: bold;
         font-weight: 700;
         font-size: 1.5rem;
@@ -123,7 +123,7 @@ export const LoginButtonContainer = styled.form`
     justify-content: center;
 
     .forgotPassword {
-        font-family: "Metropolis";
+        font-family: "Graphie";
         font-weight: 700;
         font-size: 18px;
         line-height: 18px;
@@ -170,7 +170,7 @@ export const LoginButton = styled(Button)`
     width: 30vw;
     
     span { 
-        font-family: "Metropolis";
+        font-family: "Graphie";
         font-size: 18px;
         line-height: 18px;
         font-weight: 600;
@@ -199,7 +199,7 @@ export const FormFooterContainer = styled.div`
     padding: 1rem;
 
     h6 { 
-        font-family: "Metropolis";
+        font-family: "Graphie";
         font-size: 1rem;
         line-height: 1rem;
         font-weight: 500;
@@ -208,7 +208,7 @@ export const FormFooterContainer = styled.div`
 `
 
 export const SnackbarMessageAlert = styled(Alert)`
-  font-family: "Metropolis";
+  font-family: "Graphie";
   font-size: 1rem;
   background-color: ${notification.alert};
   border-radius: 10px;
@@ -224,7 +224,7 @@ export const SnackbarMessageAlert = styled(Alert)`
 
 `
 export const SnackbarMessageNotification = styled(Alert)`
-  font-family: "Metropolis";
+  font-family: "Graphie";
   font-size: 1rem;
   background-color: ${notification.success};
   border-radius: 10px;

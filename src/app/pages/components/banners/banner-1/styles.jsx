@@ -27,7 +27,7 @@ export const ContentContainer = styled.div`
     color: ${background.light};
     
     h1, span{
-        font-family: "Metropolis";
+        font-family: "Graphie";
         font-style: bold;
         font-weight: 700;
         font-size: 2.625rem;
@@ -60,7 +60,7 @@ export const BannerTitleContainer = styled.div`
     margin-right: 1.7rem;
     
     h1, span{
-        font-family: "Metropolis", sans-serif, system-ui, -apple-system;
+        font-family: "Graphie", sans-serif, system-ui, -apple-system;
         font-style: bold;
         font-weight: 700;
         font-size: 2.625rem;
@@ -140,7 +140,7 @@ export const BannerButton = styled.button`
 
         span {
             color:${background.blueLeve};
-            font-family: Metropolis;
+            font-family: Graphie;
             font-weight: 600;
             font-size: 1rem;
             font-style: bold;

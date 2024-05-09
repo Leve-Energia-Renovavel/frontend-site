@@ -28,7 +28,7 @@ export const ResultEconomyContainer = styled.div`
   transform: translate(-50%, -50%);
   z-index: 100;
   
-  font-family: "Metropolis", sans-serif, system-ui, -apple-system;
+  font-family: "Graphie", sans-serif, system-ui, -apple-system;
   
   width: 60vw;
   max-width: 80vw;
@@ -113,7 +113,7 @@ export const TodayPriceInfo = styled.div`
   }
 
   h1 { 
-    font-family: "Metropolis", sans-serif, system-ui, -apple-system;
+    font-family: "Graphie", sans-serif, system-ui, -apple-system;
     display:inline; 
     font-size: 1.8rem;
     font-weight: bold;
@@ -126,7 +126,7 @@ export const TodayPriceInfo = styled.div`
 
 
   h6 { 
-    font-family: "Metropolis", sans-serif, system-ui, -apple-system;
+    font-family: "Graphie", sans-serif, system-ui, -apple-system;
     font-size: 1.2rem;
     font-style: normal;
     font-weight: 400;
@@ -140,7 +140,7 @@ export const TodayPriceInfo = styled.div`
     }
   }
   .distributorName {
-    font-family: "Metropolis", sans-serif, system-ui, -apple-system;
+    font-family: "Graphie", sans-serif, system-ui, -apple-system;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -164,7 +164,7 @@ export const LeveEconomyInfo = styled.div`
   }
 
   h1 {
-    font-family: "Metropolis", sans-serif, system-ui, -apple-system;
+    font-family: "Graphie", sans-serif, system-ui, -apple-system;
     font-size: 1.8rem;
     font-weight: bold;
     line-height: normal;
@@ -180,7 +180,7 @@ export const LeveEconomyInfo = styled.div`
   }
 
   h6 { 
-    font-family: "Metropolis", sans-serif, system-ui, -apple-system;
+    font-family: "Graphie", sans-serif, system-ui, -apple-system;
     font-size: 1.2rem;
     font-style: normal;
     font-weight: 400;
@@ -220,7 +220,7 @@ export const ResultEconomyDiscount = styled.div`
   }
   
   .yearDiscountLeve {
-    font-family: "Metropolis", sans-serif, system-ui, -apple-system;
+    font-family: "Graphie", sans-serif, system-ui, -apple-system;
     color: ${background.blueLeve}; 
     background-color: ${background.yellowLeve};
     padding: 1rem;
@@ -235,7 +235,7 @@ export const ResultEconomyDiscount = styled.div`
   
   h6 {
     color: ${background.textLeve};
-    font-family: "Metropolis", sans-serif, system-ui, -apple-system;
+    font-family: "Graphie", sans-serif, system-ui, -apple-system;
     font-size: 1.2rem;
     font-style: normal;
     font-weight: 400;
@@ -274,7 +274,7 @@ export const LeveMonthlyDiscount = styled.div`
   align-items: center;
   
   h1 { 
-    font-family: "Metropolis", sans-serif, system-ui, -apple-system;
+    font-family: "Graphie", sans-serif, system-ui, -apple-system;
     color: ${background.blueLeve}; 
     font-size: 1.875rem;
     font-style: normal;
@@ -314,7 +314,7 @@ export const ResultEconomyDiscountGraph = styled.div`
     }
 
   h6 {
-    font-family: "Metropolis", sans-serif, system-ui, -apple-system;
+    font-family: "Graphie", sans-serif, system-ui, -apple-system;
     font-size: 1.375rem;
     font-style: normal;
     font-weight: 400;

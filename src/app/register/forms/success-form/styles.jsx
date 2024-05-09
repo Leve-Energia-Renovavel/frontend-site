@@ -82,7 +82,7 @@ export const FormContent = styled.div`
     
     h3 {
       color: ${background.blueLeve};
-      font-family: "Metropolis";
+      font-family: "Graphie";
       font-size: 1.875rem;
       font-style: normal;
       font-weight: 700;
@@ -98,7 +98,7 @@ export const FormContent = styled.div`
     h6 {
       width: 30dvw;
       color: ${background.darkGrey};
-      font-family: "Metropolis";
+      font-family: "Graphie";
       font-size: 1.375rem;
       font-style: normal;
       font-weight: 400;
@@ -138,7 +138,7 @@ export const SimpleFormContent = styled.div`
     
     h3 {
       color: ${background.blueLeve};
-      font-family: "Metropolis";
+      font-family: "Graphie";
       font-size: 1.875rem;
       font-style: normal;
       font-weight: 700;
@@ -160,7 +160,7 @@ export const ButtonContainer = styled.div`
     
     .skipBinding { 
       color: ${background.grey};
-      font-family: "Metropolis";
+      font-family: "Graphie";
       font-size: 1.2rem;
       font-style: normal;
       font-weight: 500;

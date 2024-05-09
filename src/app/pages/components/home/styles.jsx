@@ -404,7 +404,7 @@ export const UserTypeFormButtonContainer = styled.div`
 `
 
 export const HomeMainTitle = styled(Typography)`
-    font-family: "Metropolis", sans-serif;
+    font-family: "Graphie", sans-serif;
     color: ${newBackground.yellow};
     font-size: 5rem;
     font-weight: bold;
@@ -1138,7 +1138,7 @@ export const HomeSixthSectionCard = styled.div`
 
 
 export const SnackbarMessageAlert = styled(Alert)`
-  font-family: "Metropolis";
+  font-family: "Graphie";
   font-size: 1rem;
   background-color: ${notification.alert};
   border-radius: 10px;
@@ -1155,7 +1155,7 @@ export const SnackbarMessageAlert = styled(Alert)`
 `
 
 export const SnackbarMessageNotification = styled(Alert)`
-  font-family: "Metropolis";
+  font-family: "Graphie";
   font-size: 1rem;
   background-color: ${notification.success};
   border-radius: 10px;

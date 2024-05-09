@@ -94,7 +94,7 @@ export const LandingPageContent = styled.div`
 `
 
 export const LandingPageMainTitle = styled(Typography)`
-    font-family: "Metropolis", sans-serif;
+    font-family: "Graphie", sans-serif;
     color: ${newBackground.orange};
     font-size: 55px;
     line-height: 55px;
@@ -827,7 +827,7 @@ export const FaqBannerContainer = styled.div`
 
 
 export const SnackbarMessageAlert = styled(Alert)`
-  font-family: "Metropolis";
+  font-family: "Graphie";
   font-size: 1rem;
   background-color: ${notification.alert};
   border-radius: 10px;
@@ -844,7 +844,7 @@ export const SnackbarMessageAlert = styled(Alert)`
 `
 
 export const SnackbarMessageNotification = styled(Alert)`
-  font-family: "Metropolis";
+  font-family: "Graphie";
   font-size: 1rem;
   background-color: ${notification.success};
   border-radius: 10px;

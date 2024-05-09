@@ -285,7 +285,7 @@ export const MenuBurguer = styled(MenuIcon)`
 `
 
 export const installationFieldStyle = {
-    fontFamily: 'Metropolis',
+    fontFamily: 'Graphie',
     fontWeight: '600',
     color: '#FFF',
     '& .MuiOutlinedInput-root': {

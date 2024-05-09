@@ -49,7 +49,7 @@ export const ContentContainer = styled.div`
     animation: ${fadeInUp} 0.5s ease-out;
 
     h1 {
-        font-family: "Metropolis";
+        font-family: "Graphie";
         font-style: bold;
         font-weight: 700;
         font-size: 2.625rem;

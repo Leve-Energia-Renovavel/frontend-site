@@ -248,7 +248,7 @@ export const fileInputStyles = {
 }
 
 export const SnackbarMessageAlert = styled(Alert)`
-  font-family: "Metropolis";
+  font-family: "Graphie";
   font-size: 1rem;
   background-color: ${notification.alert};
   border-radius: 10px;
@@ -265,7 +265,7 @@ export const SnackbarMessageAlert = styled(Alert)`
 `
 
 export const SnackbarMessageNotification = styled(Alert)`
-  font-family: "Metropolis";
+  font-family: "Graphie";
   font-size: 1rem;
   background-color: ${notification.success};
   border-radius: 10px;

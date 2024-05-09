@@ -45,7 +45,7 @@ export const ContentContainer = styled.div`
     flex-direction: column;
 
     h1 {
-        font-family: "Metropolis", sans-serif, system-ui, -apple-system;
+        font-family: "Graphie", sans-serif, system-ui, -apple-system;
         color: ${background.yellowLeve};
         font-weight: 700;
         font-style: bold;

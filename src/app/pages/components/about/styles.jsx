@@ -27,7 +27,7 @@ export const AboutTitleContainer = styled.div`
     background-color: ${background.light};
 
     h1, span{
-        font-family: "Metropolis";
+        font-family: "Graphie";
         font-style: bold;
         font-weight: 700;
         line-height: 2.625rem;
@@ -39,7 +39,7 @@ export const AboutTitleContainer = styled.div`
     }
     
     h6 {
-        font-family: "Metropolis";
+        font-family: "Graphie";
         color: ${background.blueLeve};
         font-size: 1rem;
         

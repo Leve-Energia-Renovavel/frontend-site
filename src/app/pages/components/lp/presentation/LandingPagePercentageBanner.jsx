@@ -1,5 +1,3 @@
-"use client"
-
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import infoJson from "../../../../../../public/lp-presentation-info.json";
 import percentageImage from "../../../../../resources/icons/large/icone-background-percentage-white.svg";

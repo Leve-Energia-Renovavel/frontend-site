@@ -50,7 +50,7 @@ export const ContentContainer = styled.div`
 
 
     h1 {
-        font-family: "Metropolis", sans-serif, system-ui, -apple-system;
+        font-family: "Graphie", sans-serif, system-ui, -apple-system;
         font-weight: 700;
         color: ${background.yellowLeve};
         font-size: 2.625rem;

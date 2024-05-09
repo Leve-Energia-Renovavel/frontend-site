@@ -78,7 +78,7 @@ export const AddressContainer = styled.div`
     }
     
     p {
-        font-family: "Metropolis";
+        font-family: "Graphie";
         font-size: 1.2rem;
         
         @media (max-width: 600px) {

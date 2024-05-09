@@ -56,7 +56,7 @@ export const FormContent = styled.div`
     flex-direction: column;
 
     h1 {
-      font-family: "Metropolis";
+      font-family: "Graphie";
       color: ${background.textLeve};
       display: block; 
       margin: .5rem auto;
@@ -69,7 +69,7 @@ export const FormContent = styled.div`
     }
 
     .bold{ 
-      font-family: "Metropolis";
+      font-family: "Graphie";
       font-weight: bold;
     }
 
@@ -101,7 +101,7 @@ export const ResendTokenContainer = styled.div`
       cursor: pointer;
 
       h6 {
-        font-family: "Metropolis";
+        font-family: "Graphie";
         color: ${background.primary};
       }
       .arrowIcon {
@@ -123,7 +123,7 @@ export const TermsAndPolicyContainer = styled.div`
         }
 
         h6 { 
-          font-family: "Metropolis";
+          font-family: "Graphie";
         }
         `;
 
@@ -140,7 +140,7 @@ export const SafeEnvironmentFooter = styled.div`
 `;
 
 export const AlertAuth = styled(Alert)`
-  font-family: "Metropolis";
+  font-family: "Graphie";
   font-size: 1.5rem;
   background-color: lightgreen;
   border-radius: 10px;

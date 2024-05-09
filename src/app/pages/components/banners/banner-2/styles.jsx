@@ -59,7 +59,7 @@ export const LeftContent = styled.div`
     }
     
     h1 {
-        font-family: "Metropolis", sans-serif, system-ui, -apple-system;
+        font-family: "Graphie", sans-serif, system-ui, -apple-system;
         color: ${background.yellowLeve};
         font-style: bold;
         font-weight: 700;
