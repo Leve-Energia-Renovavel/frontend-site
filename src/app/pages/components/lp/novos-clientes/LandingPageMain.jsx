@@ -1,6 +1,5 @@
 "use client"
 
-import { schemaValidation } from '../../home/schema';
 import { informationNotAccepted, requestSuccessful } from '@/app/service/utils/Validations';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
@@ -13,13 +12,17 @@ import InputMask from "react-input-mask";
 import infoJsonHome from '../../../../../../public/home-info.json';
 import infoJsonLp from '../../../../../../public/lp-info.json';
 import economyIcon from "../../../../../resources/icons/small/economy-icon-small.png";
+import { schemaValidation } from '../../home/schema';
 
-import BrandsContainer from '../../home/HomeBrands';
-import TutorialContainer from '../../home/HomeTutorial';
-import LandingPageContactBanner from './LandingPageContactBanner';
-import LandingPageFaqBanner from './LandingPageFaqBanner';
 import LandingPageMainContent from './LandingPageMainContent';
-import LandingPageSecondaryBanner from './LandingPageSecondaryBanner';
+
+import dynamic from 'next/dynamic';
+const BrandsContainer = dynamic(() => import('../../home/HomeBrands'), { ssr: false });
+const TutorialContainer = dynamic(() => import('../../home/HomeTutorial'), { ssr: false });
+const LandingPageContactBanner = dynamic(() => import('./LandingPageContactBanner'), { ssr: false });
+const LandingPageFaqBanner = dynamic(() => import('./LandingPageFaqBanner'), { ssr: false });
+const LandingPageSecondaryBanner = dynamic(() => import('./LandingPageSecondaryBanner'), { ssr: false });
+
 
 import {
     LandingPageContainer as Container,
