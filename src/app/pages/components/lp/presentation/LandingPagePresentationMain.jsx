@@ -1,19 +1,20 @@
 "use client"
 
+import dynamic from 'next/dynamic';
 import { LandingPageContainer as Container } from './styles';
 
-import BrandsContainer from '../../home/HomeBrands';
-import TutorialContainer from '../../home/HomeTutorial';
-import LandingPageHomeOrCompany from './LandingPageHomeOrCompany';
-import LandingPageManifestBanner from './LandingPageManifestBanner';
-import LandingPageOurSolutions from './LandingPageOurSolutions';
-import LandingPagePercentageBanner from './LandingPagePercentageBanner';
 import LandingPagePresentationBanner from './LandingPagePresentationBanner';
-import LandingPageSolarPanelBanner from './LandingPageSolarPanelBanner';
-import LandingPageVideo from './LandingPageVideo';
+
+const BrandsContainer = dynamic(() => import('../../home/HomeBrands'), { ssr: false });
+const TutorialContainer = dynamic(() => import('../../home/HomeTutorial'), { ssr: false });
+const LandingPageSolarPanelBanner = dynamic(() => import('./LandingPageSolarPanelBanner'), { ssr: false });
+const LandingPageOurSolutions = dynamic(() => import('./LandingPageOurSolutions'), { ssr: false });
+const LandingPageHomeOrCompany = dynamic(() => import('./LandingPageHomeOrCompany'), { ssr: false });
+const LandingPageManifestBanner = dynamic(() => import('./LandingPageManifestBanner'), { ssr: false });
+const LandingPagePercentageBanner = dynamic(() => import('./LandingPagePercentageBanner'), { ssr: false });
+const LandingPageVideo = dynamic(() => import('./LandingPageVideo'), { ssr: false });
 
 export default function LandingPagePresentationMain() {
-
 
     return (
         <Container>

@@ -1,10 +1,7 @@
-import React from 'react'
 import { VideoContainer } from './styles'
 
 export default function LandingPageVideo() {
-
     const videoId = "Zs9r8xWwn3I"
-
     return (
         <VideoContainer>
             <iframe
