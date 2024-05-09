@@ -50,7 +50,7 @@ export default function NewFooter() {
           <Typography variant="h6">{texts.rights}</Typography>
 
           <MyNiceDiv>
-            <Image src={sunImage} className='sunImage' alt={"Imagem de um sol se pondo, ao fundo do logo da Leve"} loading="lazy" priority={false} />
+            <Image src={sunImage} className='sunImage' alt={"Imagem de um sol se pondo, ao fundo do logo da Leve"} loading="lazy" />
           </MyNiceDiv>
         </FooterSecondaryContainer>
       </Container>
