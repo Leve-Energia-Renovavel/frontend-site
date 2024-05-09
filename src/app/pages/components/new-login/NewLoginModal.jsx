@@ -22,7 +22,6 @@ export default function NewLoginModal({ isOpen, openModal, closeModal }) {
     const pathname = usePathname()
 
     const store = useStoreUser()
-    const user = useStoreUser().user
 
     const [forgotPassword, setForgotPassword] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
@@ -31,7 +30,6 @@ export default function NewLoginModal({ isOpen, openModal, closeModal }) {
     const [notifications, setNotifications] = useState([])
 
     const hideClose = pathname == '/login/' ? true : false
-    const homeUrl = "https://leveenergia.com.br/"
 
     const loginRef = {
         email: useRef(null),
@@ -144,7 +142,7 @@ export default function NewLoginModal({ isOpen, openModal, closeModal }) {
                     <LoginIconContainer>
                         <div style={{ marginLeft: 'auto' }}>
                             {hideClose ?
-                                <IconButton onClick={() => router.push(homeUrl)}>
+                                <IconButton onClick={() => router.push("/")}>
                                     <CloseIcon />
                                 </IconButton>
                                 :

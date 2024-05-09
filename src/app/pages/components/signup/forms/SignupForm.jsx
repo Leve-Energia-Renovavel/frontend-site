@@ -266,11 +266,7 @@ export default function SignupForm() {
         submitData["cnpj"] = companyRefs.cnpj.current.value
       }
 
-      console.log("submitData ===>>", submitData)
-
       const response = await schemaValidation(isCompany, submitData)
-      console.log("response ===>>", response)
-
       if (requestSuccessful(response?.status) || hasToSignContract(response?.data?.message)) {
         console.log("Data successfully saved!")
 

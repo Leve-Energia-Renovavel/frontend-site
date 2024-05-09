@@ -25,6 +25,7 @@ const HomeSoleBanner = dynamic(() => import('./HomeSoleBanner'), { ssr: false })
 const TutorialContainer = dynamic(() => import('./HomeTutorial'), { ssr: false });
 
 import HomeMainBanner from './HomeMainBanner';
+import { awaitSeconds } from '@/app/utils/browser/BrowserUtils';
 
 
 export default function HomeMain() {
@@ -76,7 +77,8 @@ export default function HomeMain() {
         const response = await schemaValidation(submitData)
         if (requestSuccessful(response?.status)) {
             if (response?.data?.message === "Você já possui cadastro") {
-                setNotifications(["Você já possui cadastro! Faça login ou continue o cadastro pelo link enviado ao seu e-mail. "])
+                setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])
+                await awaitSeconds(3)
                 router.push(`/login`)
             }
             else if (response?.data?.message === "Você não completou seu cadastro, por favor continue através do link enviado em seu e-mail") {
@@ -100,6 +102,9 @@ export default function HomeMain() {
         }
         else if (response?.message === "Fora de rateio") {
             router.push(`/fail/out-of-range`)
+        }
+        else if (response?.errors) {
+            setErrorMessage(response?.errors)
         }
 
         else {

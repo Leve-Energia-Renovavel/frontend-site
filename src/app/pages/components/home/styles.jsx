@@ -703,7 +703,7 @@ export const HomeSecondaryImagesContent = styled.div`
     }
 
     .arrowIcon {
-      /* ${props => props.invertedBox ? "margin-top: auto" : ""}; */
+      ${props => props.invertedBox ? "margin-top: auto" : ""};
       font-size: 50px;
       color: ${newBackground.yellow};
       

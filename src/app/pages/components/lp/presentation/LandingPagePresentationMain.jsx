@@ -61,13 +61,13 @@ export default function LandingPagePresentationMain() {
 
             <SecondSectionContainer>
                 <SecondSectionTitleContainer>
-                    <h3 className='yellow'>Sem obras. Sem instalações.</h3>
-                    <h3>E sem gastar R$1 a mais sequer.</h3>
+                    <h3 className='yellow'>{texts.noInstallations}</h3>
+                    <h3>{texts.noSpending}</h3>
                 </SecondSectionTitleContainer>
 
                 <SecondSectionContent image={sunImage}>
                     <SecondSectionContentTitleContainer>
-                        <h4>Venha ser Leve com a energia do futuro</h4>
+                        <h4>{texts.beLeveWithFutureEnergy}</h4>
                         <SecondSectionButton
                             className='desktopButton'
                             onClick={() => handleGoHome()}
