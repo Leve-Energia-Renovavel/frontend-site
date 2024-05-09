@@ -1,5 +1,3 @@
-"use client"
-
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { Typography } from "@mui/material";
 import infoJsonLp from '../../../../../../public/lp-info.json';

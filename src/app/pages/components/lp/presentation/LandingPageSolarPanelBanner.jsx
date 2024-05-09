@@ -1,5 +1,3 @@
-"use client"
-
 import { landingPagePresentationBoxes } from '@/app/utils/helper/landingPageHelper';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Image from 'next/image';

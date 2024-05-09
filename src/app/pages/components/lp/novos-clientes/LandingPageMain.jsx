@@ -1,11 +1,11 @@
 "use client"
 
+import { schemaValidation } from '../../home/schema';
 import { informationNotAccepted, requestSuccessful } from '@/app/service/utils/Validations';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
-import { Snackbar, TextField, Typography } from "@mui/material";
-import dynamic from 'next/dynamic';
+import { Snackbar, TextField } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
@@ -16,16 +16,11 @@ import economyIcon from "../../../../../resources/icons/small/economy-icon-small
 
 import BrandsContainer from '../../home/HomeBrands';
 import TutorialContainer from '../../home/HomeTutorial';
-// import LandingPageMainContent from './LandingPageMainContent';
-// import LandingPageFaqBanner from './LandingPageFaqBanner';
-// import LandingPageContactBanner from './LandingPageContactBanner';
-
-const LandingPageMainContent = dynamic(() => import('./LandingPageMainContent'), { ssr: false });
-const LandingPageFaqBanner = dynamic(() => import('./LandingPageFaqBanner'), { ssr: false });
-const LandingPageContactBanner = dynamic(() => import('./LandingPageContactBanner'), { ssr: false });
-
-import { schemaValidation } from '../../home/schema';
+import LandingPageContactBanner from './LandingPageContactBanner';
+import LandingPageFaqBanner from './LandingPageFaqBanner';
+import LandingPageMainContent from './LandingPageMainContent';
 import LandingPageSecondaryBanner from './LandingPageSecondaryBanner';
+
 import {
     LandingPageContainer as Container,
     LandingPageForm as Form, FormButton, LandingMainFormContainer as FormContainer, FormSlider, FormTitleContainer,
@@ -131,9 +126,9 @@ export default function LandingPageMain() {
                             <Form id='leadForm' acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
                                 <FormTitleContainer>
                                     <Image src={economyIcon} className='economyIcon' alt={"Logo Leve"} priority />
-                                    <Typography variant="h2">{texts.simulate}</Typography>
+                                    <h2>{texts.simulate}</h2>
                                 </FormTitleContainer>
-                                <Typography variant="body1">{texts.in}<span className="highlighted">{texts.threeClicks}</span>{texts.guarantee}<span className="highlighted">{texts.solarEnergy}</span>{texts.reduceInvoices}</Typography>
+                                <p>{texts.in}<span className="highlighted">{texts.threeClicks}</span>{texts.guarantee}<span className="highlighted">{texts.solarEnergy}</span>{texts.reduceInvoices}</p>
                                 <TextField
                                     inputRef={nameRef}
                                     className="homeFormInput"
@@ -170,7 +165,7 @@ export default function LandingPageMain() {
                                 />
 
                                 <UserTypeFormContainer>
-                                    <Typography className='chooseWhereToEconomy'>{texts.iWantToEconomy}</Typography>
+                                    <p className='chooseWhereToEconomy'>{texts.iWantToEconomy}</p>
                                     <UserTypeFormButtonContainer>
                                         <Select
                                             startIcon={<StoreIcon />}
@@ -201,7 +196,7 @@ export default function LandingPageMain() {
                                 </InputMask>
                             </Form>
                             <LandingPageFormSimulationContainer>
-                                <Typography variant="subtitle1" className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === 3000 ? "+" : ""}</span></Typography>
+                                <p className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === 3000 ? "+" : ""}</span></p>
                                 <FormSlider
                                     onChange={(event) => setSimulationCost(event.target.value)}
                                     value={simulationCost}
