@@ -107,6 +107,9 @@ export default function HomeMain() {
         else if (response?.message === "Fora de rateio") {
             router.push(`/fail/out-of-range`)
         }
+        else if (response?.message === "Cupom inválido") {
+            setErrorMessage(["Cupom inválido. Por favor, verifique e tente novamente"])
+        }
         else if (response?.errors) {
             setErrorMessage(response?.errors)
         }

@@ -8,6 +8,8 @@ export const useStoreUser = create((set) => ({
         phone: null,
         cep: "",
         cost: 0,
+        coupon: "", 
+        couponValue: 0,
 
         companyName: "",
         cnpj: "",

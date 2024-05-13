@@ -5,7 +5,7 @@ import { Typography } from '@mui/material'
 import Image from 'next/image'
 import homeIcon from '../../../../resources/icons/small/local-home-icon-green-small.svg'
 import leveLogo from '../../../../resources/img/small/leve-logo-button-green-small.png'
-import { ContentContainer as Content, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomySecondaryContent, LeveEconomySecondaryContentContainer, PercentageIcon, SimulateContainer, SimulateFooter, SimulateHeader, SimulateHeaderGoodNews, SimulationContainer, SimulationSlider, TodayEconomy, TodayEconomyContainer, TodayEconomyContent } from './styles'
+import { ContentContainer as Content, CouponAppliedContainer, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomySecondaryContent, LeveEconomySecondaryContentContainer, PercentageIcon, SimulateContainer, SimulateFooter, SimulateHeader, SimulateHeaderGoodNews, SimulationContainer, SimulationSlider, TodayEconomy, TodayEconomyContainer, TodayEconomyContent } from './styles'
 
 export default function NewResultEconomy() {
 
@@ -13,16 +13,25 @@ export default function NewResultEconomy() {
     const user = JSON.parse(window.localStorage.getItem('user')) || storeUser?.user
 
     const cost = user?.user?.cost
+    const couponValue = user?.user?.couponValue
+
+    const userHasCoupon = couponValue !== 0
+
     const discount = user?.user?.discount
 
     const todayCost = cost?.toFixed(2).toString().replace(".", ",")
 
     const percentageValue = parseFloat((cost * discount) / 100)?.toFixed(2)?.replace(".", ",");
-    const leveEconomyValue = parseFloat(cost - (cost / discount))?.toFixed(2)?.replace(".", ",");
-    const leveYearTotalDiscount = parseFloat(((cost / discount) * 12))?.toFixed(2)?.replace(".", ",");
+    var leveEconomyValue = parseFloat(cost - ((discount / 100) * cost))?.toFixed(2)?.replace(".", ",");
+    const leveYearTotalDiscount = parseFloat(((cost * (discount / 100)) * 12))?.toFixed(2)?.replace(".", ",");
+
+    if (userHasCoupon) {
+        leveEconomyValue = parseFloat(cost - ((discount / 100) * cost) - couponValue)?.toFixed(2)?.replace(".", ",");
+    }
 
     return (
         <SimulateContainer>
+
             <SimulateHeader>
                 <SimulateHeaderGoodNews>
                     <Image src={homeIcon} className="homeIcon" alt={"Ícone local de casa"} loading="lazy" />
@@ -53,6 +62,12 @@ export default function NewResultEconomy() {
                         />
                     </SimulationContainer>
                 </TodayEconomyContainer>
+
+                {userHasCoupon &&
+                    <CouponAppliedContainer>
+                        <p>Parabéns! Cupom de <span className='couponValue'>R${couponValue}</span></p>
+                        <p>aplicado na sua <span className='firstMonthOnly'>primeira fatura Leve!</span></p>
+                    </CouponAppliedContainer>}
 
                 <LeveEconomyContainer>
                     <LeveEconomyContent>

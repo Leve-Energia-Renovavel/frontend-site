@@ -1,8 +1,7 @@
-import { css, keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/material";
-import { newBackground, notification } from "../../styles";
 import PercentIcon from '@mui/icons-material/Percent';
+import { Slider } from "@mui/material";
+import { newBackground } from "../../styles";
 
 
 export const SimulateContainer = styled.div`
@@ -63,6 +62,54 @@ export const SimulateHeader = styled.div`
         flex-direction: column;
         align-items: center;
         flex-wrap: wrap;
+    }
+`
+export const CouponAppliedContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: ${newBackground.orange};
+    border-radius: 15px;
+    padding: 1rem;
+
+    position: absolute;
+    top: 155px;
+    left: 66%;
+
+    p {
+        font-family: "Graphie";
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: 500;
+        text-align: center;
+        color: ${newBackground.white};
+    }
+
+    .couponValue {
+        color: ${newBackground.green};
+        font-size: 17px;
+        line-height: 20px;
+        padding: 2px;
+        border-radius: 4px;
+        font-weight: 700;
+        background-color: ${newBackground.yellow};
+    }
+
+    .firstMonthOnly { 
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+        top: 600px;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: auto;
+        margin: 0 60px;
+        left: 0%;
+        padding: 4px;
     }
 `
 export const SimulateHeaderGoodNews = styled.div`
@@ -314,6 +361,7 @@ export const SimulateFooter = styled.div`
         text-align: center;
         padding: 2rem;
         margin-bottom: 1rem;
+        margin-top: 12px;
     }
 `
 

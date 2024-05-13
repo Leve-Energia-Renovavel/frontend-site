@@ -52,6 +52,8 @@ export default function SignupMain() {
                         email: consumidor?.email,
                         cost: instalacao?.valor_base_consumo,
                         cep: cep,
+                        coupon: consumidor?.ref_origin, 
+                        couponValue: userResponse?.data?.desconto_bruto,
 
                         cpf: consumidor?.cpf !== "" ? consumidor.cpf : "",
                         rg: consumidor?.rg !== "" ? consumidor.rg : "",
