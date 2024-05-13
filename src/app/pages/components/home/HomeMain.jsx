@@ -8,7 +8,7 @@ import StoreIcon from '@mui/icons-material/Store';
 import { Snackbar, TextField } from "@mui/material";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import infoJson from '../../../../../public/home-info.json';
@@ -16,7 +16,7 @@ import economyIcon from "../../../../resources/icons/small/economy-icon-small.pn
 import companyCardImage from "../../../../resources/img/large/leve-confraternizacao-image-large.webp";
 import homeCardImage from "../../../../resources/img/large/leve-familia-brincando-image-large.webp";
 import { schemaValidation } from './schema';
-import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeFormContainer, HomeMainFormSimulationContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
+import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormFooterContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeFormContainer, HomeMainFormSimulationContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 
 const BoxesContainer = dynamic(() => import('./HomeBoxes'), { ssr: false });
 const BrandsContainer = dynamic(() => import('./HomeBrands'), { ssr: false });
@@ -30,7 +30,10 @@ import HomeMainBanner from './HomeMainBanner';
 
 export default function HomeMain() {
 
+    const search = useSearchParams()
     const router = useRouter()
+
+    const cupom = search.get("cupom")
 
     const [isLoading, setLoading] = useState(false)
     const [simulationCost, setSimulationCost] = useState(150)
@@ -40,6 +43,7 @@ export default function HomeMain() {
     const emailRef = useRef()
     const phoneRef = useRef()
     const cepRef = useRef()
+    const couponRef = useRef()
 
     const [errors, setErrorMessage] = useState([]);
     const [notifications, setNotifications] = useState([])
@@ -47,7 +51,6 @@ export default function HomeMain() {
     const handleSelect = (userType) => {
         setSelectedUserType(userType);
     };
-
 
     const handlePreSignup = (userType) => {
         const element = document.getElementById('leadForm');
@@ -71,7 +74,8 @@ export default function HomeMain() {
             cep: cepRef.current.value,
             valor: simulationCost,
             redirect_to: "www.leveenergia.com.br",
-            type: selectedUserType === "Residencia" ? "PF" : "PJ"
+            type: selectedUserType === "Residencia" ? "PF" : "PJ",
+            cupom: couponRef.current.value,
         }
 
         const response = await schemaValidation(submitData)
@@ -183,19 +187,31 @@ export default function HomeMain() {
                                         </Select>
                                     </UserTypeFormButtonContainer>
                                 </UserTypeFormContainer>
-                                <InputMask mask="99999-999" disabled={isLoading}>
-                                    {() => <TextField
+                                <FormFooterContainer>
+                                    <InputMask mask="99999-999" disabled={isLoading}>
+                                        {() => <TextField
+                                            className="homeFormInput"
+                                            inputRef={cepRef}
+                                            label={`CEP`}
+                                            placeholder={`CEP`}
+                                            variant="outlined"
+                                            type="text"
+                                            disabled={isLoading}
+                                            inputProps={{ inputMode: 'numeric' }}
+                                            required
+                                        />}
+                                    </InputMask>
+                                    <TextField
                                         className="homeFormInput"
-                                        inputRef={cepRef}
-                                        label={`CEP`}
-                                        placeholder={`CEP`}
+                                        inputRef={couponRef}
+                                        defaultValue={cupom ? cupom : ""}
+                                        label={`Cupom de Desconto`}
+                                        placeholder={`Cupom`}
                                         variant="outlined"
                                         type="text"
                                         disabled={isLoading}
-                                        inputProps={{ inputMode: 'numeric' }}
-                                        required
-                                    />}
-                                </InputMask>
+                                    />
+                                </FormFooterContainer>
                             </Form>
                             <HomeMainFormSimulationContainer>
                                 <h6 variant="subtitle1" className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === 3000 ? "+" : ""}</span></h6>

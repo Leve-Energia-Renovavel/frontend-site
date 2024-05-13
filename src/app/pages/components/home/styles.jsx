@@ -230,7 +230,7 @@ export const HomeMainForm = styled.form`
 
     border-radius: 15px;
     
-    padding: 2rem;
+    padding: 1.5rem 1rem ;
     
     height: auto;
     overflow: hidden;
@@ -363,7 +363,7 @@ export const HomeMainFormSimulationContainer = styled.div`
     
     .averageUserCost { 
       margin: 0;
-      margin-top: 25px;
+      margin-top: 12px;
     }
 
     .simulationCost {
@@ -383,10 +383,19 @@ export const UserTypeFormContainer = styled.div`
     }
 
     .chooseWhereToEconomy {
-      margin: 17px 0 0 0;  //25px - 8px from margin-bottom of .homeFormInput
+      margin: 12px 0 0 0;  //25px - 8px from margin-bottom of .homeFormInput
       
     }
 
+`
+export const FormFooterContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    /* margin: 0 auto; */
+    
+    @media (max-width: 600px) {
+      gap: 8px;
+    }
 `
 export const UserTypeFormButtonContainer = styled.div`
     display: flex;

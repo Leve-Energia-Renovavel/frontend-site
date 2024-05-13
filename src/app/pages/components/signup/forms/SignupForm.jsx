@@ -662,7 +662,7 @@ export default function SignupForm() {
             <FormTermsContainer>
               <FormTermsControl required control={<Checkbox inputRef={termsRefs.dontGenerateEnergy} />} label="Declaro que não possuo sistema de geração própria em minha residência/comércio" />
               <FormTermsControl required control={<Checkbox inputRef={termsRefs.dontContractSameService} />} label="Declaro que não estou contratando nenhum serviço similar ao da Leve Energia Renovável" />
-              <FormTermsControl required control={<Checkbox inputRef={termsRefs.dontParticipateGovernmentProgram} />} label="Declaro que não possuo nenhum serviço similar ao da Leve Energia Renovável" />
+              <FormTermsControl required control={<Checkbox inputRef={termsRefs.dontParticipateGovernmentProgram} />} label="Declaro que não sou participante de nenhum programa governamental de subsídios na tarifa de energia" />
             </FormTermsContainer>
 
             <FormButtonContainer>
