@@ -1,7 +1,11 @@
+"use client"
+
 import { useStoreUser } from "@/app/hooks/useStore";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import { NewDashboardProfile, ProfileHeader } from "./styles";
 import { useRouter } from "next/navigation";
+import { NewDashboardProfile, ProfileHeader } from "./styles";
+
+
 export default function DashboardProfile() {
 
     const router = useRouter()

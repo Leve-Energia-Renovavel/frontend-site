@@ -1,7 +1,11 @@
+"use client"
+
 import { useStoreAddress } from "@/app/hooks/useStore";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import { InstallationDetails, InstallationFooter, InstallationHeader, NewDashboardInstallation } from "./styles";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+
+
 export default function DashboardInstallation() {
 
     const storeAddress = useStoreAddress()
