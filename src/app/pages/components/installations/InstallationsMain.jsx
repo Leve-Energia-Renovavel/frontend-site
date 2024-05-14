@@ -4,7 +4,6 @@ import { useStoreInstallations } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { findCityIdByName } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
-import { allCities } from "@/app/utils/form-options/citiesOptions";
 import { statesAcronymOptions } from "@/app/utils/form-options/statesIdOptions";
 import { statusOptions } from "@/app/utils/form-options/statusOptions";
 import SearchIcon from '@mui/icons-material/Search';
@@ -129,33 +128,6 @@ export default function InstallationsMain() {
 
     const handleChangeState = (value) => {
         setStateValue(stateOptions[value])
-    }
-
-    const getCity = async (stateId, cityId) => {
-        if (stateId && cityId) {
-            const data = {
-                estado_id: stateId,
-                cidade_id: cityId
-            }
-            const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/cidades-estados`, data)
-            console.log("getCity response ===>>", response)
-        }
-
-    }
-
-    function getCityName(stateID, cityID) {
-        for (const stateCities of allCities) {
-            const cities = stateCities[stateID];
-            if (cities) {
-                for (const city of cities) {
-                    const cityData = city[cityID];
-                    if (cityData) {
-                        return cityData.nome;
-                    }
-                }
-            }
-        }
-        return null;
     }
 
     useEffect(() => {

@@ -1,7 +1,17 @@
-import { menuOption, menuOptions } from '@/app/utils/helper/dashboardHelper';
+import { clearBrowserData } from '@/app/utils/browser/BrowserUtils';
+import { menuOptions } from '@/app/utils/helper/dashboardHelper';
+import { useRouter } from 'next/navigation';
 import { MenuOption, NewDashboardMenu } from './styles';
-import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+
+
 export default function DashboardMenu() {
+
+    const router = useRouter()
+    
+    const handleLoggout = () => {
+        clearBrowserData()
+        router.push("/")
+    }
 
     return (
         <>
@@ -14,7 +24,7 @@ export default function DashboardMenu() {
                         </MenuOption>
                     )
                 })}
-
+                <p className='loggout' onClick={() => handleLoggout()}>Sair</p>
             </NewDashboardMenu>
         </>
     )

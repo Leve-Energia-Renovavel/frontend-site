@@ -159,6 +159,22 @@ export const NewDashboardMenu = styled.div`
     border-radius: 15px;
 
     padding: 14px;
+
+    .loggout {
+        font-family: "Graphie";
+        font-size: 17px;
+        line-height: 21px;
+        font-weight: 600;
+        color: ${newBackground.orange};
+        
+        margin: 8px 0 0 auto;
+        
+        &:hover {
+            cursor: pointer;
+            font-weight: 800;
+            text-decoration: underline;
+        }
+    }
 `
 export const MenuOption = styled.div`
     display: flex;
