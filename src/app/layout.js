@@ -1,6 +1,7 @@
 import { GoogleTagManager } from '@next/third-parties/google';
 import dynamic from "next/dynamic";
 import "./globals.css";
+import WhatsAppFAB from './pages/components/fabWhatsapp/WhatsappFAB';
 
 
 const Header = dynamic(() => import("./pages/components/header/Header"), { ssr: false });
@@ -31,10 +32,11 @@ export default function RootLayout({ children }) {
     <>
       <html lang="pt-BR" suppressHydrationWarning={true}>
         <body>
-        <GoogleTagManager gtmId="GTM-TTH843C" />
-            <Header />
-            {children}
-            <NewFooter />
+          <GoogleTagManager gtmId="GTM-TTH843C" />
+          <Header />
+          {children}
+          <WhatsAppFAB />
+          <NewFooter />
         </body>
       </html>
     </>

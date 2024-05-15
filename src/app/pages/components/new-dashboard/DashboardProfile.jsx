@@ -29,7 +29,6 @@ export default function DashboardProfile() {
                 };
 
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
-                console.log("response  ====>>", response)
                 if (requestSuccessful(response?.status)) {
                     const consumidor = response?.data?.consumidor
                     const instalacao = response?.data?.instalacao

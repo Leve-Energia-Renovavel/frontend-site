@@ -7,23 +7,28 @@ export const FABContainer = styled.div`
   right: 20px;
   z-index: 1000;
   cursor: pointer;
+  background-color: #25d366;
+  border-radius: 50%;
+  padding: 4px;
+  
+  transition: background-color 0.3s ease;
+
+  &:hover {
+      background-color: #00fd5d;
+  }
 `
 
 export const WhatsappLink = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 5rem;
-  height: 5rem;
-  border-radius: 50%;
-  background-color: #25d366;
-  color: white;
-  font-size: 5rem;
+  width: 50px;
+  height: 50px;
   text-decoration: none;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-      background-color: #00fd5d;
-
+  
+  .icon { 
+    color: white;
+    font-size: 38px;
   }
+
 `
