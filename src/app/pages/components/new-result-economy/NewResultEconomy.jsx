@@ -66,7 +66,7 @@ export default function NewResultEconomy() {
                 {userHasCoupon &&
                     <CouponAppliedContainer>
                         <p>Parabéns! Cupom de <span className='couponValue'>R${couponValue}</span></p>
-                        <p>aplicado na sua <span className='firstMonthOnly'>primeira fatura Leve!</span></p>
+                        <p>foi aplicado na sua <span className='firstMonthOnly'>primeira fatura Leve!</span></p>
                     </CouponAppliedContainer>}
 
                 <LeveEconomyContainer>

@@ -38,3 +38,20 @@ export const landingPageHelper = {
     '/lp/novos-clientes/': true,
     '/lp/presentation/': true,
 }
+
+export const helperToPath = {
+    '/': "na+home",
+    '/home/': "na+home",
+    '/signup/': "no+cadastro",
+    '/login/': "no+login",
+    '/lp/novos-clientes/': "na+landing+page+de+novos+clientes",
+    '/lp/apresentacao/': "na+landing+page+de+apresentação",
+    '/dashboard/': "no+dashboard",
+    '/dashboard/profile/': "na+minha+pagina+de+perfil",
+    '/dashboard/invoices/': "na+pagina+de+faturas",
+    '/dashboard/installations/': "na+pagina+meus+enderecos",
+    '/recover-password/': "na+pagina+de+recuperar+senha",
+    '/fail/out-of-range/': "na+pagina+de+fora+de+região",
+    '/fail/low-cost/': "na+pagina+de+baixo+custo",
+    '/connection/': "na+pagina+de+conexão",
+}
