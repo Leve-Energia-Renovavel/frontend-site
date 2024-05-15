@@ -242,15 +242,15 @@ export default function SignupForm() {
 
       var submitData = {
         uuid: uuid,
-        nome: userRefs.name.current.value,
+        nome: userRefs.name.current.value?.trimLeft(),
         email: userRefs.email.current.value,
-        rg: userRefs.rg.current.value.replace(/[-_]/g, ""),
+        rg: userRefs.rg.current.value?.replace(/[-_]/g, ""),
         cpf: userRefs.cpf.current.value,
         data_nascimento: userRefs.birthDate.current.value,
         telefone: userRefs.phone.current.value,
         cep: addressRefs.addressCep.current.value,
         endereco: addressRefs.address.current.value,
-        numero: parseFloat(addressRefs.addressNumber.current.value.replace(/[^0-9.]/g, "")),
+        numero: parseFloat(addressRefs.addressNumber.current.value?.replace(/[^0-9.]/g, "")),
         bairro: addressRefs.neighborhood.current.value,
         complemento: addressRefs.complement.current.value,
         estado_id: storeAddress.address.stateId || stateValue.cod_estados,
@@ -310,6 +310,10 @@ export default function SignupForm() {
         if (response?.response?.data?.message) {
           setErrorMessage([response.response.data.message])
         }
+        else {
+          setErrorMessage(["Ops, algo deu errado, tente novamente mais tarde"])
+
+        }
       }
 
       setIsLoading(false)
@@ -347,7 +351,7 @@ export default function SignupForm() {
           <Form id='signupForm' acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
             {isCompany && (
               <FormRow>
-                <FormInput className="inputForm" defaultValue={company.razao_social || companyName || ''} inputRef={companyRefs.razao_social} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" InputLabelProps={{ shrink: true }} required />
+                <FormInput className="inputForm" defaultValue={company.razao_social || companyName || ''} inputRef={companyRefs.razao_social} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }} required />
                 <InputMask mask="99.999.999/9999-99" defaultValue={company.cnpj || cnpj || ''}>
                   {() => <FormInput className="inputForm" defaultValue={company.cnpj || cnpj || ''} inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text" required
                     InputProps={{
@@ -356,7 +360,9 @@ export default function SignupForm() {
                         <Box>
                           <CircularProgress className='formLoading' size={"25px"} />
                         </Box>,
-                    }} />}
+                    }}
+                    InputLabelProps={{ style: { color: '#FF7133' } }}
+                  />}
                 </InputMask>
               </FormRow>)}
             <FormRow>
@@ -368,7 +374,7 @@ export default function SignupForm() {
                 defaultValue={name || ''}
                 variant="outlined"
                 type="text"
-                InputLabelProps={{ shrink: true }}
+                InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
                 required
               />
               <FormInput
@@ -378,7 +384,7 @@ export default function SignupForm() {
                 placeholder={`Email ${isCompany ? 'do Responsável' : ''}`}
                 defaultValue={email || ''}
                 variant="outlined"
-                InputLabelProps={{ shrink: true }}
+                InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
                 type="text"
                 required
               />
@@ -394,7 +400,7 @@ export default function SignupForm() {
                     variant="outlined"
                     placeholder={`Telefone ${isCompany ? 'do Responsável' : ''}`}
                     type="text"
-                    InputLabelProps={{ shrink: true }}
+                    InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
                     required
                   />
                 )}
@@ -414,7 +420,8 @@ export default function SignupForm() {
                     type="text"
                     required
                     inputProps={{ inputMode: 'numeric' }}
-                    InputLabelProps={rg || store.user.rg ? { shrink: true } : {}}
+                    InputLabelProps={rg || store.user.rg ? { shrink: true } : {},
+                      { style: { color: '#FF7133' } }}
                   />}
                 </InputMask>)}
               <InputMask mask="999.999.999-99" required defaultValue={store.user.cpf || cpf || ""}>
@@ -426,7 +433,8 @@ export default function SignupForm() {
                   inputProps={{ inputMode: 'numeric' }}
                   type="text"
                   required
-                  InputLabelProps={cpf || store.user.cpf ? { shrink: true } : {}} />}
+                  InputLabelProps={cpf || store.user.cpf ? { shrink: true } : {},
+                    { style: { color: '#FF7133' } }} />}
               </InputMask>
 
               <InputMask mask="99/99/9999" required defaultValue={store.user.birthDate ? store.user.birthDate : ""}>
@@ -439,7 +447,11 @@ export default function SignupForm() {
                   type="text"
                   required
                   inputProps={{ inputMode: 'numeric' }}
-                  InputLabelProps={store.user.birthDate ? { shrink: true } : {}} />}
+                  InputLabelProps={
+                    store.user.birthDate ? { shrink: true } : {},
+                    { style: { color: '#FF7133' } }
+                  }
+                />}
               </InputMask>
               <FormInput
                 id="maritalStatus"
@@ -450,6 +462,7 @@ export default function SignupForm() {
                 inputProps={{ inputMode: 'numeric' }}
                 InputLabelProps={{
                   component: 'span',
+                  style: { color: '#FF7133' }
                 }}
                 inputRef={userRefs.maritalStatus || ''}>
                 {maritalStatusOptions?.map((maritalStatus) => {
@@ -472,6 +485,7 @@ export default function SignupForm() {
                 type="text"
                 InputLabelProps={{
                   component: 'span',
+                  style: { color: '#FF7133' }
                 }}
                 required>
                 {nationalityOptions?.map((nationality) => {
@@ -491,6 +505,7 @@ export default function SignupForm() {
                 placeholder="Profissão"
                 InputLabelProps={{
                   component: 'span',
+                  style: { color: '#FF7133' }
                 }}
                 type="text"
                 required>
@@ -511,7 +526,7 @@ export default function SignupForm() {
                 placeholder="Custo Mensal em R$"
                 type="text"
                 inputProps={{ inputMode: 'numeric' }}
-                InputLabelProps={{ shrink: true }}
+                InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
                 required />
 
               <InputMask mask="99999-999" value={cep || ""}
@@ -525,7 +540,7 @@ export default function SignupForm() {
                   placeholder="CEP"
                   type="text"
                   inputProps={{ inputMode: 'numeric' }}
-                  InputLabelProps={{ shrink: true }}
+                  InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
                   InputProps={{
                     endAdornment: !isLoading ? <SearchIcon className="searchIcon"
                       onClick={() => handleGetCNPJ(companyRefs.cnpj.current.value)} /> :
@@ -542,7 +557,7 @@ export default function SignupForm() {
                 label="Endereço" variant="outlined"
                 placeholder="Endereço"
                 type="text"
-                InputLabelProps={{ shrink: true }} required />
+                InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }} required />
 
               <InputMask mask="99999">
                 {() => <FormInput
@@ -553,6 +568,7 @@ export default function SignupForm() {
                   placeholder="Nº"
                   type="text"
                   inputProps={{ inputMode: 'numeric' }}
+                  InputLabelProps={{ style: { color: '#FF7133' } }}
                   required />}
               </InputMask>
 
@@ -560,14 +576,15 @@ export default function SignupForm() {
                 inputRef={addressRefs.complement}
                 label="Complemento" variant="outlined" placeholder="Complemento"
                 type="text"
-                InputLabelProps={addressRefs?.complement?.current?.value ? { shrink: true } : {}} />
+                InputLabelProps={addressRefs?.complement?.current?.value ? { shrink: true } : {},
+                  { style: { color: '#FF7133' } }} />
 
               <FormInput className="inputForm"
                 defaultValue={neighborhood || ''}
                 inputRef={addressRefs.neighborhood}
                 label="Bairro" variant="outlined" placeholder="Bairro"
                 type="text"
-                InputLabelProps={{ shrink: true }} required />
+                InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }} required />
 
               <FormInput
                 id="state"
@@ -580,6 +597,7 @@ export default function SignupForm() {
                 className="inputForm"
                 InputLabelProps={{
                   component: 'span',
+                  style: { color: '#FF7133' },
                   shrink: stateValue ? true : false
                 }}
                 inputRef={addressRefs.state}
@@ -593,7 +611,7 @@ export default function SignupForm() {
 
 
               <FormInput className="inputForm" defaultValue={city?.toUpperCase() || ''} inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text"
-                InputLabelProps={{ shrink: true }} required />
+                InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }} required />
             </FormContent>
 
             <FormLastRow>
