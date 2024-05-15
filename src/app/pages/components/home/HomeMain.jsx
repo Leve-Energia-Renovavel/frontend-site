@@ -110,6 +110,11 @@ export default function HomeMain() {
         else if (response?.message === "Cupom inválido") {
             setErrorMessage(["Cupom inválido. Por favor, verifique e tente novamente"])
         }
+        else if (response?.message === "Usuário existente") {
+            setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])
+            await awaitSeconds(3)
+            router.push(`/login`)
+        }
         else if (response?.errors) {
             setErrorMessage(response?.errors)
         }
