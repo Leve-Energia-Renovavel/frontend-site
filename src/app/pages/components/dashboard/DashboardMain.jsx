@@ -4,7 +4,7 @@
 import { useStoreAddress, useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser, useStoreUserEconomy } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { billHasToBePaid, billingStatusOptions } from "@/app/utils/form-options/billingStatusOptions";
-import { formatDate, formatMonthAndYear } from "@/app/utils/formatters/dateFormatter";
+import { formatBrazillianDate } from "@/app/utils/formatters/dateFormatter";
 import { Typography } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -31,8 +31,6 @@ export default function DashboardMain() {
 
     const user = storeUser.user
     const userEconomy = useStoreUserEconomy().userEconomy
-    const address = useStoreAddress().address
-    const installations = useStoreInstallations().installations
     const nextBills = useStoreNextBills().nextBills
     const billings = useStoreBillingHistory().billings
 
@@ -40,19 +38,15 @@ export default function DashboardMain() {
 
     const [isLoading, setIsLoading] = useState(true)
 
-    const distributorName = user.distributor ? user.distributor : "distribuidora"
-
     useEffect(() => {
         const fetchDashboardData = async () => {
-
             try {
                 const headers = {
                     "Authorization": `Bearer ${Cookies.get('accessToken')}`
                 };
 
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
-
-                if (requestSuccessful(response.status)) {
+                if (requestSuccessful(response?.status)) {
                     const consumidor = response?.data?.consumidor
                     const ciclosConsumo = response?.data?.ciclosConsumo
                     const instalacao = response?.data?.instalacao
@@ -134,6 +128,7 @@ export default function DashboardMain() {
                             availability: bill.disponibilidade,
 
                             value: bill.valor_fatura,
+                            billDate: bill.data_fatura,
                             dueDate: bill.vencimento_fatura,
                             status: bill.pagamento_status,
                             urlBill: bill.url_fatura,
@@ -148,7 +143,7 @@ export default function DashboardMain() {
                     })
 
                     const updatedUserEconomy = {
-                        economySince: formatDate(consumidor?.created_at),
+                        economySince: formatBrazillianDate(consumidor?.created_at),
                         value: economia,
                         carbonCredits: carbonCredits?.toFixed(2),
                         receivedCredits: receivedCredits?.toFixed(2),
@@ -195,10 +190,6 @@ export default function DashboardMain() {
 
     }, []);
 
-    const handleConnectToDistributor = () => {
-        router.push(`https://cliente.leveenergia.com.br/cadastro/distribuidora-login/${user.uuid}`)
-    }
-
     const handlePayBill = (url) => {
         window.open(url, '_blank');
     };
@@ -225,7 +216,7 @@ export default function DashboardMain() {
                             <NextBillGrid>
                                 {isLoading ? <SkeletonDiv className="grid-item" /> :
                                     (<NextBillValue className="loaded-grid-item">
-                                        <Typography className="referenceMonth">{formatMonthAndYear(nextBill?.dueDate)}</Typography>
+                                        <Typography className="referenceMonth">{nextBill?.billDate}</Typography>
                                         <Typography className="billValue">R$ {nextBill?.value.toString().replace('.', ',')}</Typography>
                                     </NextBillValue>)}
                                 {isLoading ? <SkeletonDiv className="grid-item" /> :

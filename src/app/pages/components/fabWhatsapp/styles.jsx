@@ -8,13 +8,19 @@ export const FABContainer = styled.div`
   z-index: 1000;
   cursor: pointer;
   background-color: #25d366;
+
   border-radius: 50%;
   padding: 4px;
   
   transition: background-color 0.3s ease;
-
   &:hover {
-      background-color: #00fd5d;
+    background-color: #00fd5d;
+  }
+  
+  @media (max-width: 600px) {
+    padding: 12px;
+    bottom: 40px;
+    right: 10px;
   }
 `
 
@@ -25,7 +31,12 @@ export const WhatsappLink = styled.a`
   width: 50px;
   height: 50px;
   text-decoration: none;
-  
+
+  @media (max-width: 600px) {
+    width: 32px;
+    height: 32px;
+  }
+
   .icon { 
     color: white;
     font-size: 38px;

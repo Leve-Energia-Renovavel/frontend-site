@@ -27,7 +27,6 @@ const TutorialContainer = dynamic(() => import('./HomeTutorial'), { ssr: false }
 import { awaitSeconds } from '@/app/utils/browser/BrowserUtils';
 import HomeMainBanner from './HomeMainBanner';
 
-
 export default function HomeMain() {
 
     const search = useSearchParams()
@@ -109,6 +108,11 @@ export default function HomeMain() {
         }
         else if (response?.message === "Cupom inválido") {
             setErrorMessage(["Cupom inválido. Por favor, verifique e tente novamente"])
+        }
+        else if (response?.message === "Usuário existente") {
+            setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])
+            await awaitSeconds(3)
+            router.push(`/login`)
         }
         else if (response?.errors) {
             setErrorMessage(response?.errors)

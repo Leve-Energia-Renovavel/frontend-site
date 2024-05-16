@@ -233,7 +233,7 @@ export const FormInput = styled(TextField)`
         background-color: ${newBackground.orangeTranslucent}; 
     }
 
-    & .MuiInputLabel-shrink {
+    .MuiInputLabel-shrink {
         /* Styles for the focused label */
         line-height: 2.8em; 
       }
@@ -258,7 +258,7 @@ export const FormInput = styled(TextField)`
         && fieldset {
             border: none;
         }     
-        
+
         .MuiFormLabel-root {
             font-family: "Graphie";
             font-size: 14px;
@@ -269,7 +269,7 @@ export const FormInput = styled(TextField)`
                 color: ${newBackground.orange};
             }
         }
-        
+
         /* .MuiInputLabel-outlined {
             transform: translate(14px, 16px) scale(1);
         } */
@@ -284,6 +284,8 @@ export const FormInput = styled(TextField)`
         .formLoading {
             color: ${newBackground.orange};
         }
+
+
 `
 
 export const FileUploadContainer = styled.div`
@@ -407,6 +409,10 @@ export const InstallationInput = styled(TextField)`
     
     && {
         background-color: ${newBackground.orangeTranslucent}; 
+    }
+    .MuiInputLabel-shrink {
+        /* Styles for the focused label */
+        line-height: 3em; 
     }
     
     .MuiOutlinedInput-input {

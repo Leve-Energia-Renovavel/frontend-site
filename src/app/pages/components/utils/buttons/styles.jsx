@@ -310,8 +310,8 @@ export const TimelineButtonStyled = styled(Button)`
     }
 
     &:hover {
-        background-color: ${newBackground.white};
-        color: ${newBackground.orange};
+        background-color: ${newBackground.orange};
+        color: ${newBackground.white};
         border: 1px solid ${newBackground.orange};
     }
 `;
