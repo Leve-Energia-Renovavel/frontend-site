@@ -7,8 +7,14 @@ import { HomeFifthSectionBannerContainer as BannerContainer, HomeFifthSectionCon
 const texts = infoJson
 
 export default function HomeEconomyBanner() {
+
+    const handleClick = () => {
+        const url = `https://www.youtube.com/watch?v=Zs9r8xWwn3I`
+        window.open(url, '_blank', 'noopener noreferrer');
+    }
+
     return (
-        <Container>
+        <Container className='homeEconomyBanner'>
             <BannerContainer>
                 <SectionBanner image={secondBannerImage} />
             </BannerContainer>
@@ -16,8 +22,8 @@ export default function HomeEconomyBanner() {
                 <TitleContainer>
                     <Typography variant="subtitle1" className='sectionTitle'>{texts.weBelieve}</Typography>
                 </TitleContainer>
-                <DescriptionContainer>
-                    <Typography variant="subtitle1" className='sectionDescription'>{texts.moreToKnow}<ArrowForwardIcon /></Typography>
+                <DescriptionContainer className='descriptionContainer'>
+                    <Typography variant="subtitle1" className='sectionDescription' onClick={() => handleClick()}>{texts.moreToKnow}<ArrowForwardIcon /></Typography>
                 </DescriptionContainer>
             </ContentContainer>
         </Container>

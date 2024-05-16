@@ -14,18 +14,17 @@ export default function RegisterBannerFailCost() {
     const isCompany = store.isCompany
     const location = isCompany ? 'empresa' : 'residência'
 
-    const homeUrl = "https://leveenergia.com.br/"
-
     return (
         <BannerContainer>
             <ContentContainer>
                 <Typography variant="body1" component="h1">Seu custo já é muito baixo.</Typography>
-                <Typography variant="subtitle1" className="boldSubtitle">Por ora, ainda nao e possivel atender sua {location}</Typography>
+                <Typography variant="subtitle1" className="boldSubtitle">Por ora, ainda não e possivel atender sua {location}</Typography>
+                <Typography variant="subtitle1">Mas não se preocupe! Estamos trabalhando para expandir nossa operação e teremos novidades em breve.</Typography>
             </ContentContainer>
             <ButtonContainer>
                 <Button
                     disableElevation={true}
-                    onClick={() => router.push(homeUrl)}
+                    onClick={() => router.push("/")}
                     className='backToMainPage'>Voltar para Tela Inicial</Button>
             </ButtonContainer>
         </BannerContainer>

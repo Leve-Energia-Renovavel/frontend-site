@@ -25,10 +25,12 @@ export const SignupFormContainer = styled.div`
     border-radius: 20px;
     margin: 0 auto;
 
-    width: 1196px;
+    width: 100%;
+    max-width: 1196px;
     
     padding: 2rem 0 0 0;  //change later !!!!
     
+
     @media (max-width: 600px) {
         border-radius: 0;
         width: 100vw;
@@ -87,7 +89,8 @@ export const SignupFormContentContainer = styled.div`
 
     gap: 10px;
 
-    width: 1196px;
+    width: 100%;
+    max-width: 1196px;
 
     padding: 1rem;  //change later !!!!
 

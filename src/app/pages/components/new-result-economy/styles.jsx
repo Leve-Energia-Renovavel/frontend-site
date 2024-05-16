@@ -123,6 +123,7 @@ export const SimulateHeaderGoodNews = styled.div`
 export const ContentContainer = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: center;
     background-color: ${newBackground.white};
 
     gap: 1rem;
@@ -274,6 +275,10 @@ export const LeveEconomySecondaryContentContainer = styled.div`
 
     padding: 14px 34px;
     
+    @media (max-width: 1250px) {
+        align-items: center;
+        padding: 1rem 1rem;
+    }
     @media (max-width: 600px) {
         align-items: center;
         padding: 1rem 1rem;
@@ -296,6 +301,8 @@ export const LeveEconomySecondaryContent = styled.div`
         font-size: 17px;
         font-weight: 500;
         color: ${newBackground.yellow};
+
+        white-space: nowrap;
     }
 
     .underlined { 
@@ -325,11 +332,17 @@ export const SimulateFooter = styled.div`
     border-radius: 15px;
 
     padding: 12px;
+    
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1196px;
+
 
     h6 {
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 300;
+        text-align: center;
         color: ${newBackground.white};
         
         @media (max-width: 600px) {
@@ -369,6 +382,10 @@ export const SimulateFooter = styled.div`
 export const SimulationContainer = styled.div`
     padding: 10px;
     margin: 0 auto;
+
+    .sliderTitle {
+        white-space: nowrap;
+    }
 `
 
 export const SimulationSlider = styled(Slider)`

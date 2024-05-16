@@ -30,9 +30,8 @@ export default function NewResultEconomy() {
     }
 
     return (
-        <SimulateContainer>
-
-            <SimulateHeader>
+        <SimulateContainer className='simulateContainer'>
+            <SimulateHeader className='simulateHeader'>
                 <SimulateHeaderGoodNews>
                     <Image src={homeIcon} className="homeIcon" alt={"Ícone local de casa"} loading="lazy" />
                     <Typography className='goodNews'>Boas notícias!</Typography>
@@ -40,8 +39,8 @@ export default function NewResultEconomy() {
                 <Typography variant='subtitle1'><span className='bold'>A Leve já chegou na sua região!</span> Veja abaixo o resultado da sua economia:</Typography>
             </SimulateHeader>
 
-            <Content>
-                <TodayEconomyContainer>
+            <Content className='content'>
+                <TodayEconomyContainer className='todayEconomyContainer'>
                     <TodayEconomyContent>
                         <Typography variant='subtitle1'>Você paga a concessionária:</Typography>
                         <TodayEconomy>
@@ -49,7 +48,7 @@ export default function NewResultEconomy() {
                             <Typography className='value'>R${todayCost}</Typography>
                         </TodayEconomy>
                     </TodayEconomyContent>
-                    <SimulationContainer>
+                    <SimulationContainer className='simulationContainer'>
                         <Typography className='sliderTitle'>Ajuste o valor para recalcular sua economia:</Typography>
                         <SimulationSlider
                             onChange={(event) => storeUser.updateUser({ cost: event.target.value })}
@@ -64,20 +63,20 @@ export default function NewResultEconomy() {
                 </TodayEconomyContainer>
 
                 {userHasCoupon &&
-                    <CouponAppliedContainer>
+                    <CouponAppliedContainer className='couponContainer'>
                         <p>Parabéns! Cupom de <span className='couponValue'>R${couponValue}</span></p>
                         <p>foi aplicado na sua <span className='firstMonthOnly'>primeira fatura Leve!</span></p>
                     </CouponAppliedContainer>}
 
-                <LeveEconomyContainer>
-                    <LeveEconomyContent>
+                <LeveEconomyContainer className='leveEconomyContainer'>
+                    <LeveEconomyContent className='leveEconomyContent'>
                         <Typography variant='subtitle1'>Com a Leve você pagará:</Typography>
                         <LeveEconomy>
                             <Image src={leveLogo} alt={"Desconto com a Leve"} loading="lazy" />
                             <Typography className='value'>R${leveEconomyValue}</Typography>
                         </LeveEconomy>
                     </LeveEconomyContent>
-                    <LeveEconomySecondaryContentContainer>
+                    <LeveEconomySecondaryContentContainer className='leveEconomySecondaryContent'>
                         <PercentageIcon />
                         <LeveEconomySecondaryContent>
                             <Typography variant='subtitle1'>Economize aproximadamente:</Typography>

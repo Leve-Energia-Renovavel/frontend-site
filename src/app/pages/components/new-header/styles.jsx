@@ -61,8 +61,6 @@ export const LoginBox = styled(Box)`
 
     box-shadow: 5px 10px 15px 20px rgba(0, 0, 0, 0.1);
 
-    
-
     border-width: 0px 1px 1px 1px;
     border-style: solid;
     border-color: ${newBackground.yellow};
@@ -124,7 +122,7 @@ export const MenuOption = styled.div`
     max-width: 220px;
     
     &:hover { 
-        background-color: "#ccc"; //change background-color
+        background-color: ${newBackground.orange}; 
     }
     
     .menuTitle { 
@@ -135,6 +133,7 @@ export const MenuOption = styled.div`
         text-align: center;
         
         &:hover { 
+            color: ${newBackground.white};
             cursor: pointer;
         }
     }

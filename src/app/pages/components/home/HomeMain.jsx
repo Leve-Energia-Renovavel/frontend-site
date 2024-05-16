@@ -68,7 +68,7 @@ export default function HomeMain() {
 
         const submitData = {
             nome: nameRef.current.value,
-            email: emailRef.current.value,
+            email: emailRef.current.value?.toLowerCase(),
             telefone: phoneRef.current.value,
             cep: cepRef.current.value,
             valor: simulationCost,
