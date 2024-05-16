@@ -18,9 +18,6 @@ export default function InvoicesMain() {
     const nextBill = billings[0]
     const nextBillExists = JSON.parse(localStorage.getItem('exists') || false);
 
-    console.log("nextBill ==>>", nextBill)
-
-
     const handlePayBill = (url) => {
         window.open(url, '_blank');
     }
@@ -63,7 +60,7 @@ export default function InvoicesMain() {
                             <NextBillTitleContainer>
                             </NextBillTitleContainer>
                             <NextBillDetail>
-                                <Typography className="referenceMonth">{getReferenceMonth(nextBill.dueDate)}</Typography>
+                                <Typography className="referenceMonth">{nextBill?.billDate}</Typography>
                                 <Typography className="billValue">R$ {nextBill?.value.toString().replace('.', ',')}</Typography>
                             </NextBillDetail>
                             <NextBillDetail>

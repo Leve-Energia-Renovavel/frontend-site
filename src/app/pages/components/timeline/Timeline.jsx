@@ -20,9 +20,9 @@ export default function TimelineMain() {
     return (
         <div>
             <TimelineStyled position="right">
-                {billings.slice(1).map((invoice) => {
+                {billings.slice(1).map((invoice, index) => {
                     return (
-                        <TimelineItemStyled key={invoice.id}>
+                        <TimelineItemStyled key={index}>
                             <TimelineOppositeContentStyled>
                                 <DueDateContainer>
                                     <DueDate className='dueDate'>{invoice.dueDate}</DueDate>
@@ -36,7 +36,7 @@ export default function TimelineMain() {
                             </TimelineSeparatorStyled>
                             <TimelineContentStyled>
                                 <TimelineContentContainer>
-                                    <Typography className='invoiceDueDate'>{invoice.dueDate}</Typography>
+                                    <Typography className='invoiceDueDate'>{invoice.billDate}</Typography>
                                     <Typography className='invoiceValue'>R$ {invoice.value}</Typography>
                                     <TimelineDiv status={invoice.status}>
                                         <TimelineDueDateDiv>
