@@ -20,7 +20,7 @@ export const InvoiceContainer = styled.div`
     flex-direction: row;
     background-color: ${newBackground.white};
     
-    padding: 2rem;
+    padding: 2rem 0;
     
     overflow: auto; //for timeline height
     width: 100%;
@@ -29,6 +29,8 @@ export const InvoiceContainer = styled.div`
     @media (max-width: 600px) {
       width: 100%;
       max-width: 100vw;
+
+      padding: 1rem;
     }
 
     h1 {
@@ -65,6 +67,7 @@ export const InvoicesMainContainer = styled.div`
       width: 100%;
       max-width: 100vw;
     }
+    
     .yourInvoices {
       margin-left: 15rem;
 

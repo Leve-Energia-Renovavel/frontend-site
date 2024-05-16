@@ -4,7 +4,7 @@
 import { useStoreAddress, useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser, useStoreUserEconomy } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { billHasToBePaid, billingStatusOptions } from "@/app/utils/form-options/billingStatusOptions";
-import { formatDate, formatMonthAndYear } from "@/app/utils/formatters/dateFormatter";
+import { formatBrazillianDate, formatMonthAndYear } from "@/app/utils/formatters/dateFormatter";
 import { Typography } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -16,6 +16,7 @@ import DashboardButton from "../utils/buttons/DashboardButton";
 import FormButton from "../utils/buttons/FormButton";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
 import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, MemberGetMemberContainer, NewInstallationButtonContainer, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillNotFound, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, UserEconomyNotFound, WarningsContainer, YourInfo, YourInfoContainer } from "./styles";
+import { clearBrowserData } from "@/app/utils/browser/BrowserUtils";
 
 export default function DashboardMain() {
 
@@ -31,8 +32,6 @@ export default function DashboardMain() {
 
     const user = storeUser.user
     const userEconomy = useStoreUserEconomy().userEconomy
-    const address = useStoreAddress().address
-    const installations = useStoreInstallations().installations
     const nextBills = useStoreNextBills().nextBills
     const billings = useStoreBillingHistory().billings
 
@@ -40,9 +39,9 @@ export default function DashboardMain() {
 
     const [isLoading, setIsLoading] = useState(true)
 
-    const distributorName = user.distributor ? user.distributor : "distribuidora"
-
     useEffect(() => {
+
+        // clearBrowserData()
         const fetchDashboardData = async () => {
 
             try {
@@ -52,7 +51,7 @@ export default function DashboardMain() {
 
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
 
-                if (requestSuccessful(response.status)) {
+                if (requestSuccessful(response?.status)) {
                     const consumidor = response?.data?.consumidor
                     const ciclosConsumo = response?.data?.ciclosConsumo
                     const instalacao = response?.data?.instalacao
@@ -148,7 +147,7 @@ export default function DashboardMain() {
                     })
 
                     const updatedUserEconomy = {
-                        economySince: formatDate(consumidor?.created_at),
+                        economySince: formatBrazillianDate(consumidor?.created_at),
                         value: economia,
                         carbonCredits: carbonCredits?.toFixed(2),
                         receivedCredits: receivedCredits?.toFixed(2),

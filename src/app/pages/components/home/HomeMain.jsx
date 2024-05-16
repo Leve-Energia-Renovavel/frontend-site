@@ -27,7 +27,6 @@ const TutorialContainer = dynamic(() => import('./HomeTutorial'), { ssr: false }
 import { awaitSeconds } from '@/app/utils/browser/BrowserUtils';
 import HomeMainBanner from './HomeMainBanner';
 
-
 export default function HomeMain() {
 
     const search = useSearchParams()

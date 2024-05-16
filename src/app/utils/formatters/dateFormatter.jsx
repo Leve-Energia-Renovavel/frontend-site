@@ -1,4 +1,4 @@
-export const formatDate = (dateString) => {
+export const formatBrazillianDate = (dateString) => {
     const date = new Date(dateString);
 
     const day = date.getDate().toString().padStart(2, '0'); // Ensure 2 digits with leading zero

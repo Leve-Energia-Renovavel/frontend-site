@@ -10,7 +10,6 @@ import { InvoiceContainer as Container, InvoicesMainCardContainer, InvoicesMainC
 
 const Timeline = dynamic(() => import('../timeline/Timeline'), { ssr: false });
 
-
 export default function InvoicesMain() {
 
     const storeBilling = useStoreBillingHistory().billings
@@ -18,6 +17,8 @@ export default function InvoicesMain() {
 
     const nextBill = billings[0]
     const nextBillExists = JSON.parse(localStorage.getItem('exists') || false);
+
+    console.log("nextBill ==>>", nextBill)
 
 
     const handlePayBill = (url) => {
@@ -38,9 +39,13 @@ export default function InvoicesMain() {
         return monthBefore;
     }
 
+    const isBillPayed = (status) => {
+        return status == billingStatusOptions["paid"]
+    }
+
     return (
-        <Container>
-            <InvoicesMainContainer>
+        <Container className='container'>
+            <InvoicesMainContainer className='invoicesMainContainer'>
                 <Typography variant='h1' className='yourInvoices'>Faturas</Typography>
                 <Breadcrumbs aria-label="breadcrumb" separator={">"} className='breadcrumbs'>
                     <Link
@@ -70,7 +75,8 @@ export default function InvoicesMain() {
                                 <Typography className="paymentStatus">{billingStatusOptions[nextBill?.status]?.toUpperCase()}</Typography>
                             </NextBillDetail>
                             <NextBillButtonContainer>
-                                <FormButton text="Pagar" onClick={() => handlePayBill(nextBill.urlBill)} />
+                                {isBillPayed(billingStatusOptions[nextBill?.status]) ? <></> :
+                                    <FormButton text="Pagar" onClick={() => handlePayBill(nextBill.urlBill)} />}
                             </NextBillButtonContainer>
                         </>
                     ) :
