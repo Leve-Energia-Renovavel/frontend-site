@@ -7,7 +7,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { NewDashboardProfile, ProfileHeader } from "./styles";
+import { NewDashboardProfile, ProfileHeader } from "../styles";
+import { formatCpf } from "@/app/utils/formatters/documentFormatter";
 
 
 export default function DashboardProfile() {
@@ -72,7 +73,7 @@ export default function DashboardProfile() {
                 <h6 className="username">Olá, {username}</h6>
                 <p className="goToProfile" onClick={() => router.push("/dashboard/profile")}>Ver perfil</p>
             </ProfileHeader>
-            <p className="cpf">CPF: {cpf}</p>
+            <p className="cpf">CPF: {formatCpf(cpf)}</p>
 
         </NewDashboardProfile>
     )

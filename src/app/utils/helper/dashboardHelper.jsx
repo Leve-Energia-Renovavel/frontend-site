@@ -33,7 +33,7 @@ export const menuOptions = [
     },
     {
         icon: <PersonAddAltIcon className='icon' />,
-        title: "Indique e economize mais",
+        title: <span className='memberGetMember'>Indique um amigo e ganhe, para cada um, <span className='couponValue'>R$50 na fatura</span></span>,
         highlighted: true,
     },
 ]

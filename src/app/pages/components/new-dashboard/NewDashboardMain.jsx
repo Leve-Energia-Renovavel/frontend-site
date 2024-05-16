@@ -1,7 +1,8 @@
 "use client"
 
-import DashboardSideBar from './DashboardSideBar';
+import dynamic from 'next/dynamic';
 import { NewDashboardContainer as Container } from './styles';
+const DashboardSideBar = dynamic(() => import('./DashboardSideBar'), { ssr: false });
 
 export default function NewDashboardMain() {
 

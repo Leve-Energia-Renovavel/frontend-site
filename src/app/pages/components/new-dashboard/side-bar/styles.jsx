@@ -1,32 +1,6 @@
-import styled from "@emotion/styled";
-import { newBackground } from "../../styles";
+import { newBackground } from "@/app/pages/styles"
+import styled from "@emotion/styled"
 
-export const NewDashboardContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-
-    margin-top: 74px;
-
-
-    padding: 3rem 5rem; //check for this later
-    height: 100vh;  ////remove later
-
-    background-color: ${newBackground.grey};
-
-    /* max-width: 1920px; */
-    max-width: 1366px;
-    margin: 74px auto;
-
-`
-export const NewDashboardSideBar = styled.div`
-    display: flex;
-    flex-direction: column;
-    background-color: ${newBackground.grey};
-    
-    gap: 1rem;
-
-    max-width: 287px;
-`
 
 export const NewDashboardProfile = styled.div`
     display: flex;
@@ -152,6 +126,8 @@ export const InstallationFooter = styled.div`
         text-decoration-color: ${newBackground.orange};
     }
 `
+
+
 export const NewDashboardMenu = styled.div`
     display: flex;
     flex-direction: column;
