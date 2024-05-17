@@ -9,7 +9,7 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
-import { InstallationDetails, InstallationFooter, InstallationHeader, NewDashboardInstallation } from "../styles";
+import { InstallationDetails, InstallationFooter, InstallationHeader, NewDashboardInstallation } from "./styles";
 
 export default function DashboardInstallation() {
 

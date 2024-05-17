@@ -1,4 +1,3 @@
-import { grey } from "@mui/material/colors"
 
 export const theme = {
     primary: "#1779ba",
@@ -23,6 +22,11 @@ export const statusColors = {
     warningFocus: "#cc8b00",
     pending: "#F44336",
     pendingFocus: "#ab1d13",
+}
+export const newStatusColors = {
+    due: "#FF7133",
+    paid: "#005940",
+    pending: "#E1FF0F"
 }
 
 export const button = {

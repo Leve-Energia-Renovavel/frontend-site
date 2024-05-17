@@ -30,7 +30,7 @@ export const DefaultButtonStyle = styled(Button)`
     color: ${props => colorForVariants[props.variant]};
     border-color: ${props => colorForVariants[props.variant]};
     background-color: ${props => backgroundColorForVariants[props.variant]};
-    border-radius: 13px;
+    border-radius: 21px;
     cursor: pointer;
     margin: 2rem;
     height: 3rem;

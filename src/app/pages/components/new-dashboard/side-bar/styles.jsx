@@ -1,7 +1,6 @@
 import { newBackground } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 
-
 export const NewDashboardProfile = styled.div`
     display: flex;
     flex-direction: column;

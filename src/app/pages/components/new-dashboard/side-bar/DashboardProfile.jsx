@@ -1,14 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
 import { useStoreUser } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
+import { formatCpf } from "@/app/utils/formatters/documentFormatter";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { NewDashboardProfile, ProfileHeader } from "../styles";
-import { formatCpf } from "@/app/utils/formatters/documentFormatter";
+import { NewDashboardProfile, ProfileHeader } from "./styles";
 
 
 export default function DashboardProfile() {
