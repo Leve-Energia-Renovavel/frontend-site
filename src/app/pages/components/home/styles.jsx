@@ -1,23 +1,7 @@
-import { css, keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/material";
+import { fadeInUp, fadeInUpAnimation, slideAndDisappear } from "../../animations";
 import { newBackground, notification } from "../../styles";
-
-const fadeInUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const fadeInUpAnimation = css`
-  animation: ${fadeInUp} 2s ease;
-`;
 
 export const HomeContainer = styled.div`
     display: flex;
@@ -250,6 +234,9 @@ export const HomeMainForm = styled.form`
       font-size: 14px;
       line-height: 12px;
 
+      animation: ${fadeInUp} 0.5s ease-out;
+
+
       margin-top: 17px;
       margin-bottom: 20px;
 
@@ -371,6 +358,15 @@ export const HomeMainFormSimulationContainer = styled.div`
       font-size: 21px;
       font-weight: 900;
       color:${newBackground.orange};
+    }
+
+    .sliderTip {
+      position: relative;
+      top: -24px;
+      left: -13px;
+      animation: ${slideAndDisappear} 5s forwards;
+      width: 30px;
+      height: auto;
     }
 
 `
@@ -528,6 +524,10 @@ export const FormSlider = styled(Slider)`
       opacity: 1;
     } 
 
+    .sliderLabel {
+      /* background-color: aqua; */
+    }
+
 `;
 
 
@@ -543,6 +543,7 @@ export const HomeSecondarySectionContainer = styled.div`
     
     height: auto;
     /* max-width: 1920px; */
+    width: 100%;
     max-width: 1366px;
     
     @media (max-width: 600px) {
@@ -974,6 +975,10 @@ export const HomeFifthSectionContainer = styled.div`
     height: auto;
     max-width: 100vw;
 
+    @media (max-width: 840px) {
+      margin: 0 auto;
+      flex-wrap: wrap;
+    }
     @media (max-width: 600px) {
       overflow: auto;
       max-width: 90vw;
@@ -1020,6 +1025,7 @@ export const HomeFifthSectionContentContainer = styled.div`
 `
 export const HomeFifthSectionTitleContainer = styled.div`
   text-align: start;
+  overflow: hidden; /* Hide overflowing content */
   
   .sectionTitle {
     font-family: "Graphie";
@@ -1032,6 +1038,14 @@ export const HomeFifthSectionTitleContainer = styled.div`
     max-width: 650px;
     margin-right: auto;
     
+    @media (max-width: 1250px) {
+      font-size: 27px;
+      line-height: 27px;
+    }
+    @media (max-width: 970px) {
+      font-size: 21px;
+      line-height: 21px;
+    }
     @media (max-width: 600px) {
       font-size: 21px;
       line-height: 25px;
@@ -1050,7 +1064,18 @@ export const HomeFifthSectionDescriptionContainer = styled.div`
     text-decoration: underline;
     max-width: 300px;
     margin-left: auto;
-    
+
+    @media (max-width: 970px) {
+      text-align: end;
+      font-size: 14px;
+      line-height: 14px;
+
+      .arrowIcon {
+        width: 14px;
+        height: auto;
+      }
+    }
+
     @media (max-width: 600px) {
       text-align: end;
       max-width: 220px;
@@ -1187,3 +1212,4 @@ export const Loading = styled(CircularProgress)`
   height: 10px;
 
 `
+

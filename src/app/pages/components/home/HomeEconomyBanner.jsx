@@ -23,7 +23,7 @@ export default function HomeEconomyBanner() {
                     <Typography variant="subtitle1" className='sectionTitle'>{texts.weBelieve}</Typography>
                 </TitleContainer>
                 <DescriptionContainer className='descriptionContainer'>
-                    <Typography variant="subtitle1" className='sectionDescription' onClick={() => handleClick()}>{texts.moreToKnow}<ArrowForwardIcon /></Typography>
+                    <Typography variant="subtitle1" className='sectionDescription' onClick={() => handleClick()}>{texts.moreToKnow}<ArrowForwardIcon className='arrowIcon'/></Typography>
                 </DescriptionContainer>
             </ContentContainer>
         </Container>

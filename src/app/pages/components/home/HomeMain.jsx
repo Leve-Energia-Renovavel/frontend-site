@@ -6,6 +6,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
 import { Snackbar, TextField } from "@mui/material";
+import SwipeRightOutlinedIcon from '@mui/icons-material/SwipeRightOutlined';
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -16,7 +17,10 @@ import economyIcon from "../../../../resources/icons/small/economy-icon-small.pn
 import companyCardImage from "../../../../resources/img/large/leve-confraternizacao-image-large.webp";
 import homeCardImage from "../../../../resources/img/large/leve-familia-brincando-image-large.webp";
 import { schemaValidation } from './schema';
+import { awaitSeconds } from '@/app/utils/browser/BrowserUtils';
 import { HomeContainer as Container, HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormFooterContainer, FormSlider, FormTitleContainer, HomeContentContainer as HomeBanner, HomeFormContainer, HomeMainFormSimulationContainer, HomeSecondaryImagesContainer, HomeSecondaryImagesContent, HomeSecondarySectionContainer, Loading, FormSelect as Select, SnackbarMessageAlert, SnackbarMessageNotification, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
+
+import HomeMainBanner from './HomeMainBanner';
 
 const BoxesContainer = dynamic(() => import('./HomeBoxes'), { ssr: false });
 const BrandsContainer = dynamic(() => import('./HomeBrands'), { ssr: false });
@@ -24,8 +28,6 @@ const HomeEconomyBanner = dynamic(() => import('./HomeEconomyBanner'), { ssr: fa
 const HomeSoleBanner = dynamic(() => import('./HomeSoleBanner'), { ssr: false });
 const TutorialContainer = dynamic(() => import('./HomeTutorial'), { ssr: false });
 
-import { awaitSeconds } from '@/app/utils/browser/BrowserUtils';
-import HomeMainBanner from './HomeMainBanner';
 
 export default function HomeMain() {
 
@@ -223,6 +225,7 @@ export default function HomeMain() {
                             <HomeMainFormSimulationContainer>
                                 <h6 variant="subtitle1" className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === 3000 ? "+" : ""}</span></h6>
                                 <FormSlider
+                                    className='formSlider'
                                     onChange={(event) => setSimulationCost(event.target.value)}
                                     value={simulationCost}
                                     step={10}
@@ -232,6 +235,7 @@ export default function HomeMain() {
                                     valueLabelDisplay="off"
                                     aria-labelledby="simulationSlider"
                                 />
+                                <SwipeRightOutlinedIcon className='sliderTip' />
                             </HomeMainFormSimulationContainer>
                         </FormContainer>
                         <FormButton

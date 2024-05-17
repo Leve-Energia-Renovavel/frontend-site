@@ -4,8 +4,8 @@ import { headerHelper, landingPageHelper } from '@/app/utils/helper/pathHelper';
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import NewHeader from '../new-header/NewHeader';
 
-const NewHeader = dynamic(() => import('../new-header/NewHeader'), { ssr: false });
 const NewLoginModal = dynamic(() => import('../new-login/NewLoginModal'), { ssr: false });
 const NewLoggedModal = dynamic(() => import('../new-header/NewLoggedModal'), { ssr: false });
 

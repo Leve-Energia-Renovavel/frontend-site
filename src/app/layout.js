@@ -1,11 +1,8 @@
 import { GoogleTagManager } from '@next/third-parties/google';
-import dynamic from "next/dynamic";
 import "./globals.css";
 import WhatsAppFAB from './pages/components/fabWhatsapp/WhatsappFAB';
-
-
-const Header = dynamic(() => import("./pages/components/header/Header"), { ssr: false });
-const NewFooter = dynamic(() => import("./pages/components/new-footer/NewFooter"), { ssr: false });
+import Header from './pages/components/header/Header';
+import NewFooter from './pages/components/new-footer/NewFooter';
 
 export const metadata = {
   title: 'Leve Energia Renovavel',
