@@ -31,6 +31,19 @@ export const clearBrowserData = async () => {
         });
     }
 }
+export const clearStorageData = async () => {
+    if (typeof window !== 'undefined') {
+        localStorage.clear();
+    }
+
+    if (caches) {
+        caches.keys().then(cacheNames => {
+            cacheNames.forEach(cacheName => {
+                caches.delete(cacheName);
+            });
+        });
+    }
+}
 
 
 export const awaitSeconds = async (seconds) => {
