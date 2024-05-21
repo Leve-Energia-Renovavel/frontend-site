@@ -1,7 +1,7 @@
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
-import infoJson from '../../../../../public/home-info.json';
-import bannerImage from "../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.webp";
-import { HomeContent, HomeMainContent, HomeMainTitle, HomeMainTitleContainer, HomeSubtitleContainer } from './styles';
+import infoJson from '../../../../../../public/home-info.json';
+import bannerImage from "../../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large.webp";
+import { HomeContent, HomeMainContent, HomeMainTitle, HomeMainTitleContainer, HomeSubtitleContainer } from '../styles';
 
 export default function HomeMainBanner() {
 
