@@ -10,8 +10,9 @@ import infoJson from '../../../../../../public/home-info.json';
 import economyIcon from "../../../../../resources/icons/small/economy-icon-small.png";
 import { schemaValidation } from '../schema';
 import { HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormFooterContainer, FormSlider, FormTitleContainer, HomeFormContainer, HomeMainFormSimulationContainer, Loading, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "../styles";
+import { requestValidation } from '../validation';
 
-export default function SimulationForm({ setErrorMessage, setNotifications, selectedUserType, setSelectedUserType }) {
+export default function SimulationForm({ setErrorMessage, setNotifications }) {
 
     const router = useRouter()
     const search = useSearchParams()
@@ -20,6 +21,7 @@ export default function SimulationForm({ setErrorMessage, setNotifications, sele
 
     const [isLoading, setLoading] = useState(false)
     const [simulationCost, setSimulationCost] = useState(150)
+    const [selectedUserType, setSelectedUserType] = useState('Residencia');
 
     const nameRef = useRef()
     const emailRef = useRef()
