@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import whiteArrow from '../../../../../../resources/img/partners/icon-arrow-down-white.svg';
-import tribancoMainImage from '../../../../../../resources/img/partners/tribanco/tribanco-main-banner-large.png';
+import tribancoMainImage from '../../../../../../resources/img/partners/tribanco/tribanco-main-banner-large-compressed.webp';
 import { ArrowScrollerContainer, TribancoMain } from "./styles";
 
 export default function TribancoMainBanner() {

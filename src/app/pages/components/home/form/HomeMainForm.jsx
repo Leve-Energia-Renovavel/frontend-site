@@ -9,6 +9,7 @@ import InputMask from "react-input-mask";
 import infoJson from '../../../../../../public/home-info.json';
 import economyIcon from "../../../../../resources/icons/small/economy-icon-small.png";
 import { schemaValidation } from '../schema';
+import { requestValidation } from '../validation';
 import { HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormFooterContainer, FormSlider, FormTitleContainer, HomeFormContainer, HomeMainFormSimulationContainer, Loading, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "../styles";
 
 export default function HomeMainForm({ setErrorMessage, setNotifications, selectedUserType, setSelectedUserType }) {
