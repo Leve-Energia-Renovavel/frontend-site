@@ -9,6 +9,7 @@ export const HomeFormContainer = styled.div`
 
   width: 388px;
   max-width: 388px;  
+  height: auto;
 
   .privacyPolicyDisclaimer {
     font-family: "Graphie";
@@ -49,11 +50,9 @@ export const HomeFormContainer = styled.div`
 export const HomeMainFormContainer = styled.div`
     background-color: ${newBackground.white};
     border: 1px solid ${newBackground.orange};
-
     border-radius: 15px;
     
-    /* height: 85vh; */
-    height: 590px;
+    height: auto;
     
     @media (max-width: 600px) {
       height: auto;
@@ -252,8 +251,6 @@ export const UserTypeFormButtonContainer = styled.div`
     flex-direction: row;
     justify-content: center;
 
-    gap: 1rem;
-    
     padding: 1rem 0;
     
     @media (max-width: 600px) {
@@ -275,7 +272,7 @@ export const FormSelect = styled(Button)`
   padding: 0.5rem 2rem;
 
   width: 100%;
-  max-width: 250px;
+  max-width: 180px;
   
   &:hover {
     cursor: pointer;

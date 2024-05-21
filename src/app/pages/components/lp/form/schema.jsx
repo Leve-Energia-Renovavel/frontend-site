@@ -1,10 +1,10 @@
-import * as yup from 'yup';
 import { startSignUp } from '@/app/service/lead-service/LeadService';
+import * as yup from 'yup';
 
 const nameRegex = /^[a-zA-Z\u00C0-\u017F\s]+$/;
 
-export const schemaValidation = async (data) => {
-    const response = await leadSchema.validate(data, { abortEarly: false })
+export const partnerSchemaValidation = async (data) => {
+    const response = await partnerLeadSchema.validate(data, { abortEarly: false })
         .then(async () => {
             return await startSignUp(data)
 
@@ -17,7 +17,7 @@ export const schemaValidation = async (data) => {
     return response
 }
 
-export const leadSchema = yup.object({
+export const partnerLeadSchema = yup.object({
     nome: yup.string()
         .required('O campo Nome Completo é obrigatório')
         .matches(nameRegex, 'O nome deve conter apenas letras e espaços')
@@ -29,6 +29,9 @@ export const leadSchema = yup.object({
     email: yup.string()
         .email('O formato do E-mail é inválido')
         .required('O campo E-mail é obrigatório'),
+    emailCorporativo: yup.string()
+        .email('O formato do E-mail Corporativo é inválido')
+        .required('O campo E-mail Corporativo é obrigatório'),
     telefone: yup.string()
         .matches(/^\(\d{2}\) \d{5}-\d{4}$/, 'O formato do Telefone é inválido')
         .required('O campo Celular é obrigatório'),

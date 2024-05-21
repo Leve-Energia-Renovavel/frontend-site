@@ -7,7 +7,8 @@ import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import infoJson from '../../../../../../public/home-info.json';
 import economyIcon from "../../../../../resources/icons/small/economy-icon-small.png";
-import { schemaValidation } from './schema';
+import { requestValidation } from '../../home/validation';
+import { partnerSchemaValidation } from './schema';
 import {
     HomeMainForm as Form,
     FormButton,
@@ -31,6 +32,7 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
 
     const nameRef = useRef()
     const emailRef = useRef()
+    const corporateEmailRef = useRef()
     const phoneRef = useRef()
     const cepRef = useRef()
 
@@ -43,6 +45,7 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
         const submitData = {
             nome: nameRef.current.value,
             email: emailRef.current.value?.toLowerCase(),
+            emailCorporativo: corporateEmailRef.current.value?.toLowerCase(),
             telefone: phoneRef.current.value,
             cep: cepRef.current.value,
             valor: simulationCost,
@@ -50,7 +53,7 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
             type: selectedUserType === "Residencia" ? "PF" : "PJ",
         }
 
-        const response = await schemaValidation(submitData)
+        const response = await partnerSchemaValidation(submitData)
         await requestValidation(response, setNotifications, setErrorMessage, router)
 
         setLoading(false)
@@ -95,6 +98,16 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
                         inputRef={emailRef}
                         label={`E-mail `}
                         placeholder={`E-mail`}
+                        variant="outlined"
+                        type="text"
+                        disabled={isLoading}
+                        required
+                    />
+                    <TextField
+                        className="homeFormInput"
+                        inputRef={corporateEmailRef}
+                        label={`E-mail Corporativo `}
+                        placeholder={`E-mail Corporativo`}
                         variant="outlined"
                         type="text"
                         disabled={isLoading}
