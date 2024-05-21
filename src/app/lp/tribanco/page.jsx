@@ -1,8 +1,7 @@
-import LpTribanco from '@/app/pages/components/lp/parcerias/LpTribanco'
-import React from 'react'
+import PartnershipMain from '@/app/pages/components/lp/parcerias/PartnershipMain'
 
 export default function TribancoPage() {
     return (
-        <LpTribanco />
+        <PartnershipMain />
     )
 }
