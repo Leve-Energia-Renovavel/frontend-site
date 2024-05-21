@@ -18,7 +18,7 @@ export default function HomeMainBanner() {
 
 
     return (
-        <HomeMainContent image={bannerImage}>
+        <HomeMainContent image={bannerImage} className='homeMainContent'>
             <HomeContent>
                 <HomeMainTitleContainer>
                     <HomeMainTitle variant="h1">{texts.title}<span className='underline'>{texts.leve}</span></HomeMainTitle>

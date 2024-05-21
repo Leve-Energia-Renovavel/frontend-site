@@ -44,6 +44,7 @@ export const HomeMainContent = styled.div`
     background-repeat: no-repeat;
     background-size: cover; 
     background-position: 80% 20%;
+    z-index: 999; 
     
     border-radius: 15px;
     
