@@ -1,9 +1,9 @@
 "use client"
 
-import { usePathname, useSearchParams } from "next/navigation"
-import { PartnershipMainContainer as Container } from "./styles"
-import SimulationForm from "../form/SimulationForm"
+import { usePathname, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import PartnerForm from "../form/PartnerForm";
+import { PartnershipMainContainer as Container } from "./styles";
 
 export default function PartnershipMain() {
 
@@ -13,13 +13,16 @@ export default function PartnershipMain() {
     const search = useSearchParams()
     const pathname = usePathname()
 
-    console.log("pathname ===>>>", pathname)
+    // console.log("pathname ===>>>", pathname)
+
+    const clearPartnerName = (str) => {
+        return str.replace(/\/|lp/g, '');
+    };
 
 
     return (
         <Container>
-            <div>PartnershipMain {pathname}</div>
-            <SimulationForm setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
+            <PartnerForm partner={clearPartnerName(pathname)} setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
         </Container>
     )
 }

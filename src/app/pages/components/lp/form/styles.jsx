@@ -1,7 +1,7 @@
 import { fadeInUp, slideAndDisappear } from "@/app/pages/animations";
 import { newBackground } from "@/app/pages/styles";
 import styled from "@emotion/styled";
-import { Button, Slider } from "@mui/material";
+import { Button, CircularProgress, Slider } from "@mui/material";
 
 export const HomeFormContainer = styled.div`
   display: flex;
@@ -375,3 +375,10 @@ export const FormSlider = styled(Slider)`
     }
 
 `;
+
+export const Loading = styled(CircularProgress)`
+  color: ${newBackground.green};
+  width: 10px;
+  height: 10px;
+
+`

@@ -22,7 +22,7 @@ import {
     UserTypeFormContainer
 } from "./styles";
 
-export default function SimulationForm({ setErrorMessage, setNotifications }) {
+export default function PartnerForm({ partner, setErrorMessage, setNotifications }) {
 
     const router = useRouter()
 
@@ -65,7 +65,7 @@ export default function SimulationForm({ setErrorMessage, setNotifications }) {
                         <Image src={economyIcon} className='economyIcon' alt={"Logo Leve"} priority />
                         <h2>{texts.simulate}</h2>
                     </FormTitleContainer>
-                    <p variant="body1">{texts.in}<span className="highlighted">{texts.threeClicks}</span>{texts.guarantee}<span className="highlighted">{texts.solarEnergy}</span>{texts.reduceInvoices}</p>
+                    <p variant="body1">Sou colaborador <span className="highlighted">{partner}</span> e quero economizar</p>
                     <TextField
                         inputRef={nameRef}
                         className="homeFormInput"
