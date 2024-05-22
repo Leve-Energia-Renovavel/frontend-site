@@ -1,3 +1,5 @@
+"use client"
+
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import infoJson from '../../../../../public/home-info.json';
 import companyCardImage from "../../../../resources/img/large/leve-confraternizacao-image-large-compressed.webp";

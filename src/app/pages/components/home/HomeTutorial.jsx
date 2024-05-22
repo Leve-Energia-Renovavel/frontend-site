@@ -1,3 +1,6 @@
+"use client"
+
+
 import { homeTutorialCards } from '@/app/utils/helper/homeBoxesHelper';
 import { Typography } from '@mui/material';
 import Image from 'next/image';

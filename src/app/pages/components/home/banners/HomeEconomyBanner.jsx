@@ -1,3 +1,5 @@
+"use client"
+
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Typography } from '@mui/material';
 import infoJson from '../../../../../../public/home-info.json';

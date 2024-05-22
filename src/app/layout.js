@@ -29,16 +29,14 @@ export const viewport = {
 export default function RootLayout({ children }) {
 
   return (
-    <>
-      <html lang="pt-BR" suppressHydrationWarning={true}>
-        <body>
-          <GoogleTagManager gtmId="GTM-TTH843C" />
-          <Header />
-          {children}
-          <WhatsAppFAB />
-          <NewFooter />
-        </body>
-      </html>
-    </>
+    <html lang="pt-BR" suppressHydrationWarning={true}>
+      <body>
+        <GoogleTagManager gtmId="GTM-TTH843C" />
+        <Header />
+        {children}
+        <WhatsAppFAB />
+        <NewFooter />
+      </body>
+    </html>
   )
 }

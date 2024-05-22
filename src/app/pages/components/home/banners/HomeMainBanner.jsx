@@ -1,3 +1,5 @@
+"use client"
+
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import infoJson from '../../../../../../public/home-info.json';
 import bannerImage from "../../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large-compressed.webp";
