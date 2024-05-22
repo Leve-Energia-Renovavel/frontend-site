@@ -18,6 +18,7 @@ export default function Header() {
 
     const mobileWidth = 900
     const isLandingPage = landingPageHelper[pathname]
+    const isPartner = pathname == "/lp/tribanco/"
     const isLoggedUser = headerHelper[pathname]
 
     useEffect(() => {
@@ -47,6 +48,7 @@ export default function Header() {
                 isOpen={openLogin}
                 openModal={openLoginModal}
                 isLandingPage={isLandingPage}
+                isPartner={isPartner}
             />
             {openLogin && (
                 isLoggedUser ? (

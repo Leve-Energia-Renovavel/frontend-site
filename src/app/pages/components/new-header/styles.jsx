@@ -4,11 +4,12 @@ import { newBackground } from "../../styles";
 
 export const MobileNewHeaderContainer = styled.header`
     display: flex;
-    align-items: center;
-    justify-content: ${props => props.isLandingPage ? "center" : "space-between"};
     flex-direction: row;
-    overflow: hidden;
+    align-items: center;
     background-color: ${newBackground.white};
+    ${props => props.isPartner ? "" : `justify-content: ${props.isLandingPage ? 'center' : 'space-between'};`};
+    
+    overflow: hidden;
 
     border-radius: 0 0 10px 10px;
 
@@ -25,14 +26,7 @@ export const MobileNewHeaderContainer = styled.header`
     right: 0; 
     z-index: 1000;
     
-    @media (max-width: 1100px) {
-        padding: 0 30px;
-    }
-    @media (max-width: 600px) {
-        width: 100vw;
-        max-width: 100vw;
-        margin: 0;
-    }
+
 
     .profile {
         ${props => props.isLandingPage && "display:none"};
@@ -45,6 +39,21 @@ export const MobileNewHeaderContainer = styled.header`
         width: 200px; 
         height: 33px;
         cursor: pointer;
+    }
+
+    @media (max-width: 1100px) {
+        padding: 0 30px;
+    }
+    @media (max-width: 600px) {
+        width: 100vw;
+        max-width: 100vw;
+        margin: 0;
+
+        .logoLeve {
+        width: 155px; 
+        height: 33px;
+        cursor: pointer;
+        }
     }
 `
 
@@ -157,4 +166,35 @@ export const LoggoutButton = styled(Button)`
         }
         
         
+`
+
+export const PartnerContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding-left: 1rem;
+
+    .partnershipIcon {
+        color: ${newBackground.orange};
+        font-weight: 700;
+        font-size: 15px;
+        text-align: center;
+        background: linear-gradient(to bottom, #ffffff 6%, ${newBackground.yellow} 94%);
+        border: 2px solid ${newBackground.orange};
+        border-radius: 30px;
+        padding: 3px 6px;
+    }
+
+    .partnerLogo {
+        width: 154px;
+        height: auto;
+    }
+    
+    @media (max-width: 900px) {
+        .partnerLogo {
+        width: 120px;
+        height: auto;
+        }
+    }
 `
