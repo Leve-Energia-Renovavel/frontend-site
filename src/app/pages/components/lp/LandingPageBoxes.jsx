@@ -6,10 +6,10 @@ import { HomeSecondaryBoxContent as BoxContent, HomeSecondaryBoxTitle as BoxTitl
 export default function BoxesContainer() {
 
     return (
-        <Container>
+        <Container className='boxesContainer'>
             {landingPageBoxes.map((box) => {
                 return (
-                    <BoxContent color={box.backgroundColor} descriptionColor={box.descriptionColor} key={box.description}>
+                    <BoxContent color={box.backgroundColor} descriptionColor={box.descriptionColor} key={box.description} className='boxContent'>
                         <BoxTitle titleColor={box.titleColor} >
                             <Image src={box.icon} className="titleIcon" alt={box.description} loading="lazy" />
                             <Typography variant="subtitle1">{box.title}</Typography>

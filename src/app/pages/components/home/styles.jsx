@@ -207,6 +207,7 @@ export const HomeMainFormContainer = styled.div`
       height: auto;
       width: 100vw;
       max-width: 100vw;
+      border-radius: 0px;
     }
 `
 export const HomeMainForm = styled.form`
@@ -615,7 +616,7 @@ export const HomeSecondaryBoxContent = styled.div`
       border-radius: 15px;
     }
     @media (max-width: 415px) {
-      width: 140px;
+      width: 150px;
       height: 150px;
 
       padding: .8rem;
@@ -1107,8 +1108,12 @@ export const HomeSixthSectionContainer = styled.div`
       font-size: 34px;
       font-weight: 600;
       color: ${newBackground.green};
-      
-      @media (max-width: 600px) {
+    }
+    
+    @media (max-width: 600px) {
+      padding: 1rem;
+
+      .sectionTitle {
         font-size: 21px;
         line-height: 21px;
       }

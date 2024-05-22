@@ -115,4 +115,8 @@ export const AreaContent = styled.div`
         color: ${newBackground.green};
     }
 
+    .backButtonContainer {
+        text-align: center;
+    }
+
 `

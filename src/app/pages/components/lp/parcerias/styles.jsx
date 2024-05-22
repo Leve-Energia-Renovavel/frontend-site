@@ -11,6 +11,12 @@ export const PartnershipMainContainer = styled.div`
     padding: 0 3rem;
 
     position: relative;
+    overflow: hidden;
+
+    @media (max-width: 900px) {
+      margin-top: 74px;
+      padding: 0 1rem;
+    }
 `
 
 export const MainContentContainer = styled.div`
@@ -21,13 +27,9 @@ export const MainContentContainer = styled.div`
     padding-bottom: 8px;
     gap: 1rem;
     
-    @media (max-width: 600px) {
-      margin-top: 60px;
+    @media (max-width: 900px) {
       flex-wrap: wrap;
-      
-      /* padding: 1rem 1.5rem; */
       padding: 0;
-
       height: auto;
     }
 `

@@ -7,6 +7,7 @@ export default function TribancoSectionBanner() {
         <>
             <PartnerSectionBanner>
                 <PartnerSectionContent />
+                <Image alt="banner Tribanco" src={tribancoBannerImage} className="hiddenBannerImage" />
                 <PartnerDescriptionContainer>
                     <h3 className="title">Vem na onda da sustentabilidade!</h3>
                     <p className="highlightedSubtitle">Faça parte dessa parceria</p>

@@ -58,6 +58,7 @@ export const HomeMainFormContainer = styled.div`
       height: auto;
       width: 100vw;
       max-width: 100vw;
+      border-radius: 0px;
     }
 `
 export const HomeMainForm = styled.form`

@@ -61,8 +61,8 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
 
 
     return (
-        <HomeFormContainer>
-            <FormContainer>
+        <HomeFormContainer className='homeFormContainer'>
+            <FormContainer className='formContainer'>
                 <Form id='leadForm' onSubmit={handleSubmit}>
                     <FormTitleContainer>
                         <Image src={economyIcon} className='economyIcon' alt={"Logo Leve"} priority />

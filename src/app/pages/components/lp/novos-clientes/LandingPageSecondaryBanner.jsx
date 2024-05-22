@@ -21,7 +21,7 @@ export default function LandingPageSecondaryBanner() {
     }
 
     return (
-        <SecondSectionContainer image={bannerImage}>
+        <SecondSectionContainer image={bannerImage} className="sectionContainer">
             <BoxesContainer />
             <SecondSectionBanner>
                 <Typography className='bannerTitle'>{lpTexts.seeHowItsLeve}</Typography>

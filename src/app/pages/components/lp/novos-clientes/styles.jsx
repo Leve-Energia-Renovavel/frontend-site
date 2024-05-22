@@ -587,7 +587,7 @@ export const SecondSectionContainer = styled.div`
     
     @media (max-width: 600px) {
       margin-top: 10px;
-      padding: 1rem 2rem;
+      padding: 1rem;
 
       text-align: center;
     }

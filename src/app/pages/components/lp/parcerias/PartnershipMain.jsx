@@ -32,8 +32,8 @@ export default function PartnershipMain() {
 
     return (
         <>
-            <Container>
-                <MainContentContainer>
+            <Container className="partnershipContainer">
+                <MainContentContainer className="mainContentContainer">
                     <TribancoMainBanner />
                     <PartnerForm partner={clearPartnerName(pathname)} setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
                 </MainContentContainer>

@@ -1,17 +1,20 @@
 "use client"
 
 import { serviceAreas } from '@/app/utils/helper/serviceAreaHelper';
+import { TextField } from '@mui/material';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { AreaContent, ServiceAreaContainer as Container, ServiceAreaContent, ServiceAreaHeaderContainer as HeaderContainer } from './styles';
-import { TextField } from '@mui/material';
+import DefaultButton from '../utils/buttons/DefaultButton';
+import { AreaContent, ServiceAreaContainer as Container, ServiceAreaHeaderContainer as HeaderContainer, ServiceAreaContent } from './styles';
 
 export default function ServiceArea() {
 
+    const router = useRouter()
     const [selectedState, setSelectState] = useState("Todos")
     const [county, setCounty] = useState("")
 
@@ -98,6 +101,9 @@ export default function ServiceArea() {
                     ) : (
                         <p className='areaNotFound'>A Leve ainda não chegou na sua região 😔</p>
                     )}
+                    <div className="backButtonContainer">
+                        <DefaultButton variant="contained" text={"Voltar"} onClick={() => router.back()} />
+                    </div>
                 </AreaContent>
             </ServiceAreaContent>
 
