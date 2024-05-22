@@ -56,9 +56,9 @@ export const HomeMainFormContainer = styled.div`
     
     @media (max-width: 600px) {
       height: auto;
-      width: 100vw;
+      width: 92vw;
       max-width: 100vw;
-      border-radius: 0px;
+      border-radius: 0px 0px 10px 10px;
     }
 `
 export const HomeMainForm = styled.form`
