@@ -62,7 +62,7 @@ export const questions = [
     },
     {
         title: "Posso cancelar a qualquer momento?",
-        description: "Com a Leve Energia, você tem autonomia para cancelar quando desejar. Basta solicitar a rescisão com 180 dias de antecedência. É zero burocracia, de verdade!"
+        description: "Com a Leve Energia, você tem autonomia para cancelar quando desejar. Basta solicitar a rescisão com 60 dias de antecedência. É zero burocracia, de verdade!"
     },
     {
         title: "Preciso pagar alguma taxa?",

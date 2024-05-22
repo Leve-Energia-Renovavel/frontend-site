@@ -165,7 +165,7 @@ export default function SimulationForm({ setErrorMessage, setNotifications }) {
                 endIcon={!isLoading ? <ArrowForwardIcon /> : <ArrowForwardIcon sx={{ display: "none" }} />}>
                 {isLoading ? <Loading size={20} /> : <span>{texts.discountCalculate}</span>}
             </FormButton>
-            <p className='privacyPolicyDisclaimer'>{texts.agreedToReceiveEmails}<span className='privacyPolicy'>{texts.privacyPolicy}</span>.</p>
+            <p className='privacyPolicyDisclaimer'>{texts.agreedToReceiveEmails}<span className='privacyPolicy' onClick={() => router.push(`politica-de-privacidade`)}>{texts.privacyPolicy}</span>.</p>
         </HomeFormContainer>
     )
 }
