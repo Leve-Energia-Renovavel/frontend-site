@@ -208,6 +208,14 @@ export const PartnerImageContainer = styled.div`
       }
     }
 
+    .bannerImage {
+      width: 375px;
+      height: auto;
+      position: absolute;
+      right: 786px;
+      top: 692px;
+      }
+
     @media (max-width: 1350px) {
       .bannerImage {
         display: none;
