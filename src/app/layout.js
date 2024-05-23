@@ -1,11 +1,11 @@
 import { GoogleTagManager } from '@next/third-parties/google';
 import dynamic from "next/dynamic";
 import "./globals.css";
-import WhatsAppFAB from './pages/components/fabWhatsapp/WhatsappFAB';
 
+import Header from './pages/components/header/Header';
 
-const Header = dynamic(() => import("./pages/components/header/Header"), { ssr: false });
-const NewFooter = dynamic(() => import("./pages/components/new-footer/NewFooter"), { ssr: false });
+const WhatsAppFAB = dynamic(() => import('./pages/components/fabWhatsapp/WhatsappFAB'), { ssr: false });
+const NewFooter = dynamic(() => import('./pages/components/new-footer/NewFooter'), { ssr: false });
 
 export const metadata = {
   title: 'Leve Energia Renovavel',
@@ -29,16 +29,14 @@ export const viewport = {
 export default function RootLayout({ children }) {
 
   return (
-    <>
-      <html lang="pt-BR" suppressHydrationWarning={true}>
-        <body>
-          <GoogleTagManager gtmId="GTM-TTH843C" />
-          <Header />
-          {children}
-          <WhatsAppFAB />
-          <NewFooter />
-        </body>
-      </html>
-    </>
+    <html lang="pt-BR" suppressHydrationWarning={true}>
+      <body>
+        <GoogleTagManager gtmId="GTM-TTH843C" />
+        <Header />
+        {children}
+        <WhatsAppFAB />
+        <NewFooter />
+      </body>
+    </html>
   )
 }

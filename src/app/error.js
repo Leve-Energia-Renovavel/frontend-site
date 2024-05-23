@@ -4,8 +4,6 @@ import ServerErrorBanner from "./pages/components/banners/server-error-banner/Se
 
 export default function ErrorPageMain({ error }) {
 
-    const errorMessage = error.props
-
     return (
         <ServerErrorBanner />
     );

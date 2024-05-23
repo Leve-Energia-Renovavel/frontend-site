@@ -46,7 +46,7 @@ export default function NewFooter() {
               )
             })}
           </FooterSocialMediaContainer>
-          <Image src={logoLeve} className="leveLogoImage" alt={"Logo da Leve Energia Renovável"} priority />
+          <Image src={logoLeve} className="leveLogoImage" alt={"Logo da Leve Energia Renovável"} priority={false} loading='lazy' />
           <Typography variant="h6">{texts.rights}</Typography>
 
           <MyNiceDiv>

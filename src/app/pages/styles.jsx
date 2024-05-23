@@ -35,6 +35,14 @@ export const button = {
     background: "#FFD300",
 }
 
+export const partners = {
+    tribanco: {
+        blue: "#054375",
+        lightBlue: "#0BAFB5",
+        green: "#7ACC44"
+    },
+}
+
 export const newBackground = {
     yellow: "#E1FF0F",
     orange: "#FF7133",

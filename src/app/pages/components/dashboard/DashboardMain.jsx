@@ -16,6 +16,7 @@ import DashboardButton from "../utils/buttons/DashboardButton";
 import FormButton from "../utils/buttons/FormButton";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
 import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, MemberGetMemberContainer, NewInstallationButtonContainer, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillNotFound, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, UserEconomyNotFound, WarningsContainer, YourInfo, YourInfoContainer } from "./styles";
+import { clearBrowserData, clearStorageData } from "@/app/utils/browser/BrowserUtils";
 
 export default function DashboardMain() {
 
@@ -39,6 +40,7 @@ export default function DashboardMain() {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
+        clearStorageData()
         const fetchDashboardData = async () => {
             try {
                 const headers = {

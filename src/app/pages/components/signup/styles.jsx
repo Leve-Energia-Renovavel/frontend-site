@@ -1,7 +1,5 @@
 
 import styled from "@emotion/styled";
-import { newBackground } from "../../styles";
-
 
 export const SignUpContainer = styled.div`
     display: flex;

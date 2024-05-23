@@ -112,7 +112,7 @@ export default function SignupMain() {
 
     return (
         <>
-            <Container>
+            <Container className='container'>
                 <NewResultEconomy />
                 <SignupForm />
             </Container>

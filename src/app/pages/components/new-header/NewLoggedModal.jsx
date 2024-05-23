@@ -48,7 +48,7 @@ export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
     const handleLoggout = () => {
         clearBrowserData()
         closeModal()
-        router.push("/home")
+        router.push("/")
     }
 
     return (
@@ -66,12 +66,10 @@ export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
                         },
                     },
                 }}>
-                <LoginBox className="animation">
-                    <div>
-                        <IconButton onClick={closeModal}>
-                            <CloseIcon />
-                        </IconButton>
-                    </div>
+                <LoginBox>
+                    <IconButton onClick={closeModal}>
+                        <CloseIcon />
+                    </IconButton>
                     <MenuContent>
                         <MenuHeaderContent>
                             <Image src={soleProfile} className="sole" alt="Imagem do Solem, mascote da Leve" />

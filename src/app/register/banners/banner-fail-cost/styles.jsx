@@ -3,40 +3,20 @@ import styled from "@emotion/styled"
 
 export const BannerContainer = styled.div`
     background-color: ${newBackground.orange};
-    height: 28rem;
-    max-width: 100vw;
-    padding: 10rem 15rem;
-    
-    @media (max-width: 2400px) {
-        height: 38rem;
-        max-width: 100vw;
-        padding: 10rem 10rem;
-    }
-    @media (max-width: 2150px) {
-        height: 38rem;
-        max-width: 100vw;
-        padding: 10rem 10rem;
-    }
-    @media (max-width: 1800px) {
-        height: 32rem;
-        max-width: 100vw;
-        padding: 10rem 10rem;
-    }
+    border-radius: 0px 0px 15px 15px;
 
-    @media (max-width: 1200px) {
-        height: 32rem;
-        max-width: 100vw;
-        padding: 10rem 10rem;
-    }
-    @media (max-width: 900px) {
-        height: 35rem;
-        max-width: 100vw;
-        padding: 10rem 8rem;
-    }
+    width: 100%;
+    height: 80vh;
+    max-width: 1366px;
+    
+    margin: 74px auto;
+
+    padding: 3rem 3rem 1rem 3rem ;
+
     @media (max-width: 600px) {
-        height: 100vh;
         max-width: 100vw;
-        padding: 8rem 2rem;
+
+        padding: 2rem 1rem;
     }
 `
 
@@ -45,46 +25,60 @@ export const ContentContainer = styled.div`
     flex-direction: column;
 
     h1 {
-        font-family: "Graphie", sans-serif, system-ui, -apple-system;
-        color: ${background.yellowLeve};
+        font-family: "Graphie";
+        color: ${newBackground.yellow};
         font-weight: 700;
         font-style: bold;
-        font-size: 2.625rem;
-        line-height: 2.625rem;
-
+        font-size: 48px;
+        line-height: 48px;
+        
         @media (max-width: 600px) {
-            font-size: 2rem;
+            font-size: 32px;
+            line-height: 32px;
         }
+    }
+
+    .firstParagraph {
+        margin-top: 80px;
     }
     
     h6 {
-        font-family:"Inter";
-        color: ${background.white};
-        font-size: 1.2rem;
-        font-weight: 400;
-        line-height: 1.2rem;
+        font-family:"Graphie";
+        color: ${newBackground.white};
+        font-size: 24px;
+        line-height: 27px;
+        font-weight: 500;
         letter-spacing: 0em;
         text-align: left;
-
-        margin-top: 1rem;
-
+        
+        margin-top: 2rem;
+        
         @media (max-width: 600px) {
-            font-size: 1rem;
+            font-size: 17px;
+            line-height: 21px;
         }
 
+    }
+
+    @media (max-width: 600px) {
+        .firstParagraph {
+            margin-top: 40px;
+        }
     }
 
 `
 
 export const ButtonContainer = styled.div`
-    margin: 3rem 0;
+    margin: 5rem 0 3rem 0;
     text-align: center;
 
     .backToMainPage { 
+        font-family:"Graphie";
+
         text-transform: none;
         font-size: 18px;
         color: ${newBackground.orange};
-        background-color: ${background.yellowLeve};
+        background-color: ${newBackground.yellow};
         height: 3rem;
         border-radius: 12px;
         cursor: pointer;
@@ -94,5 +88,18 @@ export const ButtonContainer = styled.div`
             background-color: ${background.white};
             color:${newBackground.orange};
         }
+    }
+
+    @media (max-width: 600px) {
+        margin-top: 30px;
+
+        .backToMainPage {
+            white-space: nowrap;
+            font-size: 17px;
+            line-height: 17px;
+            font-weight: 700;
+            white-space: 0em;
+        }
+
     }
 `

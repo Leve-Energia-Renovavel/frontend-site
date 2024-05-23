@@ -36,7 +36,8 @@ export const landingPageHelper = {
     '/': false,
     '/lp/': true,
     '/lp/novos-clientes/': true,
-    '/lp/presentation/': true,
+    '/lp/apresentacao/': true,
+    '/lp/tribanco/': true,
 }
 
 export const helperToPath = {
@@ -46,13 +47,15 @@ export const helperToPath = {
     '/login/': "no+login",
     '/lp/novos-clientes/': "na+landing+page+de+novos+clientes",
     '/lp/apresentacao/': "na+landing+page+de+apresentação",
+    '/lp/tribanco/': "na+landing+page+do+Tribanco",
+    '/municipios-atendidos/': "na+página+de+municípios+atendidos",
     '/dashboard/': "no+painel",
-    '/dashboard/profile/': "na+minha+pagina+de+perfil",
-    '/dashboard/invoices/': "na+pagina+de+faturas",
-    '/dashboard/installations/': "na+pagina+meus+enderecos",
+    '/dashboard/profile/': "na+minha+página+de+perfil",
+    '/dashboard/invoices/': "na+página+de+faturas",
+    '/dashboard/installations/': "na+página+meus+enderecos",
     '/recover-password/': "na+pagina+de+recuperar+senha",
     '/fail/out-of-range/': "na+pagina+de+fora+de+região",
     '/fail/low-cost/': "na+pagina+de+baixo+custo",
     '/politica-de-privacidade/': "na+Politica+de+Privacidade",
-    '/connection/': "na+pagina+de+conexão",
+    '/connection/': "na+página+de+conexão",
 }

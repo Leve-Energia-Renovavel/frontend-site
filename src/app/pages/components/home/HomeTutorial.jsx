@@ -1,3 +1,6 @@
+"use client"
+
+
 import { homeTutorialCards } from '@/app/utils/helper/homeBoxesHelper';
 import { Typography } from '@mui/material';
 import Image from 'next/image';
@@ -11,7 +14,9 @@ export default function TutorialContainer() {
 
     const router = useRouter()
     const pathname = usePathname()
-    const isHome = pathname === "/" ? true : false
+    const isLP = pathname === "/lp/apresentacao/" ? true : false
+
+    console.log(pathname)
 
     const handlePreSignup = () => {
         const element = document.getElementById('leadForm');
@@ -48,7 +53,7 @@ export default function TutorialContainer() {
                         )
                     })}
                 </CardContainer>
-                <ButtonSimulateYourEconomy onClick={() => isHome ? handlePreSignup() : router.push("/")}>
+                <ButtonSimulateYourEconomy onClick={() => isLP ? router.push("/") : handlePreSignup()}>
                     <span>{texts.simulateYourEconomy}</span>
                 </ButtonSimulateYourEconomy>
             </HomeFourthSectionContainer>

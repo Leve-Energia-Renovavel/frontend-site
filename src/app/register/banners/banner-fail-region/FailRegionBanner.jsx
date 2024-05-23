@@ -11,9 +11,9 @@ export default function RegisterBannerFailRegion(props) {
     return (
         <BannerContainer>
             <ContentContainer>
-                <Typography variant="body1" component="h1">A Leve ainda não chegou</Typography>
-                <Typography variant="body1" component="h1">na sua região 😞</Typography>
-                <Typography variant="subtitle1">Mas não se preocupe, estamos em expansão!</Typography>
+                <Typography component="h1">A Leve ainda não chegou</Typography>
+                <Typography component="h1">na sua região 😞</Typography>
+                <Typography variant="subtitle1" className="firstParagraph">Mas não se preocupe, estamos em expansão!</Typography>
                 <Typography variant="subtitle1" className="subtitle"> Pra nós é muito importante sabermos do seu interesse em utilizar uma energia mais limpa e sustentável e ainda economizar uns trocados, é claro!</Typography>
                 <Typography variant="subtitle1" className="subtitle">Voltamos a nos falar em breve, combinado?</Typography>
             </ContentContainer>
