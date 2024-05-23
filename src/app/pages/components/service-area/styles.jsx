@@ -119,4 +119,8 @@ export const AreaContent = styled.div`
         text-align: center;
     }
 
+    .counties {
+        text-align: justify;
+    }
+
 `
