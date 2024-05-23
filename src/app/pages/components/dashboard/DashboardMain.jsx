@@ -61,6 +61,7 @@ export default function DashboardMain() {
                         name: consumidor?.nome,
                         phone: consumidor?.telefone,
                         email: consumidor?.email,
+                        secondaryEmail: consumidor?.email_secondary,
                         cost: instalacao?.valor_base_consumo,
                         cep: consumidor?.cep,
                         discount: instalacao?.desconto,

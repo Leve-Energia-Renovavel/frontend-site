@@ -43,6 +43,7 @@ export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
 
     const handleRoute = (route) => {
         router.push(route)
+        closeModal()
     }
 
     const handleLoggout = () => {
