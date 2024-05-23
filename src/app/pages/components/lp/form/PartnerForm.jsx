@@ -22,6 +22,7 @@ import {
     UserTypeFormButtonContainer,
     UserTypeFormContainer
 } from "./styles";
+import { partnerTokens } from '@/app/utils/helper/partnerHelper';
 
 export default function PartnerForm({ partner, setErrorMessage, setNotifications }) {
 
@@ -49,8 +50,9 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
             telefone: phoneRef.current.value,
             cep: cepRef.current.value,
             valor: simulationCost,
-            redirect_to: "www.leveenergia.com.br",
             type: "PF",
+            redirect_to: "www.leveenergia.com.br",
+            token: partnerTokens[partner]
         }
 
         const response = await partnerSchemaValidation(submitData)

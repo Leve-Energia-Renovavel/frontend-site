@@ -1,4 +1,4 @@
-import { startSignUp } from '@/app/service/lead-service/LeadService';
+import { startSignUpForPartners } from '@/app/service/lead-service/LeadService';
 import * as yup from 'yup';
 
 const nameRegex = /^[a-zA-Z\u00C0-\u017F\s]+$/;
@@ -6,7 +6,7 @@ const nameRegex = /^[a-zA-Z\u00C0-\u017F\s]+$/;
 export const partnerSchemaValidation = async (data) => {
     const response = await partnerLeadSchema.validate(data, { abortEarly: false })
         .then(async () => {
-            return await startSignUp(data)
+            return await startSignUpForPartners(data)
 
         })
         .catch((error) => {
@@ -29,7 +29,7 @@ export const partnerLeadSchema = yup.object({
     email: yup.string()
         .email('O formato do E-mail é inválido')
         .required('O campo E-mail é obrigatório'),
-    emailCorporativo: yup.string()
+    email_corporativo: yup.string()
         .email('O formato do E-mail Corporativo é inválido')
         .required('O campo E-mail Corporativo é obrigatório'),
     telefone: yup.string()
@@ -43,5 +43,6 @@ export const partnerLeadSchema = yup.object({
         .required('O campo Valor é obrigatório'),
     type: yup.string()
         .oneOf(['PF', 'PJ'], 'É necessário selecionar "Empresa" ou "Residência"')
-        .required('O campo Tipo é obrigatório')
+        .required('O campo Tipo é obrigatório'),
+    token: yup.string().required()
 })

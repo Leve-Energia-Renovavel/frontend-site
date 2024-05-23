@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { TutorialBannerContainer } from "../novos-clientes/styles";
+import { clearPartnerName } from "@/app/utils/helper/partnerHelper";
 import { PartnershipMainContainer as Container, MainContentContainer } from "./styles";
 
 import PartnerForm from "../form/PartnerForm";
@@ -25,10 +26,6 @@ export default function PartnershipMain() {
     const [notifications, setNotifications] = useState([])
 
     const pathname = usePathname()
-
-    const clearPartnerName = (str) => {
-        return str.replace(/\/|lp/g, '');
-    };
 
     return (
         <>
