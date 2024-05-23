@@ -45,12 +45,12 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
         const submitData = {
             nome: nameRef.current.value,
             email: emailRef.current.value?.toLowerCase(),
-            emailCorporativo: corporateEmailRef.current.value?.toLowerCase(),
+            email_corporativo: corporateEmailRef.current.value?.toLowerCase(),
             telefone: phoneRef.current.value,
             cep: cepRef.current.value,
             valor: simulationCost,
             redirect_to: "www.leveenergia.com.br",
-            type: selectedUserType === "Residencia" ? "PF" : "PJ",
+            type: "PF",
         }
 
         const response = await partnerSchemaValidation(submitData)

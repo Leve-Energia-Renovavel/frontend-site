@@ -17,23 +17,16 @@ const fadeInUp = keyframes`
 export const BannerContainer = styled.div`
     background-color: ${newBackground.orange};
     height: 28rem;
-    max-width: 100vw;
-    padding: 10rem 15rem;
+    max-width: 1366px;
+    margin: 74px auto;
 
-    @media (max-width: 1200px) {
-        height: 32rem;
-        max-width: 100vw;
-        padding: 10rem 10rem;
-    }
-    @media (max-width: 900px) {
-        height: 35rem;
-        max-width: 100vw;
-        padding: 10rem 8rem;
-    }
+    min-height: 600px;
+    padding: 3rem;
+
     @media (max-width: 600px) {
         height: 100vh;
         max-width: 100vw;
-        padding: 8rem 2rem;
+        padding: 2rem;
     }
 `
 
@@ -45,24 +38,47 @@ export const ContentContainer = styled.div`
 
     h1 {
         font-family: "Graphie";
-        font-style: bold;
-        font-weight: 700;
-        font-size: 2.625rem;
-        line-height: 2.625rem;
         color: ${newBackground.yellow};
-
+        font-weight: 700;
+        font-style: bold;
+        font-size: 48px;
+        line-height: 48px;
     }
 
     .subtitle {
+        font-family:"Graphie";
         color: ${newBackground.white};
-        max-width: 50vw;
-        margin-top: 1.2rem;
+        font-size: 24px;
+        line-height: 27px;
+        font-weight: 500;
+        letter-spacing: 0em;
+        text-align: left;
+        
+        margin-top: 2rem;
+        
+
     }
     .boldSubtitle {
+        font-family: "Graphie";
         color: ${newBackground.white};
         font-weight: bold;
+        font-size: 24px;
+        line-height: 27px;
+        font-weight: 500;
+        letter-spacing: 0em;
+        text-align: left;
+
         margin-top: 2rem;
+
     }
+
+    @media (max-width: 600px) {
+            .subtitle,.boldSubtitle {
+                font-size: 17px;
+                line-height: 21px;
+
+            } 
+        }
 `
 
 export const ButtonContainer = styled.div`
