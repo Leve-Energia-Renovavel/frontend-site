@@ -316,3 +316,37 @@ export const TimelineButtonStyled = styled(Button)`
     }
 `;
 
+
+export const NewDefaultButtonStyle = styled(Button)`
+    cursor: pointer;
+    text-transform: none;
+    white-space: nowrap;
+    border-radius: 21px;
+
+    border: 1px solid ${props => backgroundColorForVariants[props.variant]};
+    color: ${props => colorForVariants[props.variant]};
+    border-color: ${props => colorForVariants[props.variant]};
+    background-color: ${props => backgroundColorForVariants[props.variant]};
+    
+    min-height: 42px;
+    padding: 10px 70px;
+
+    span { 
+        font-family: "Graphie";
+        font-size: 17px;
+        line-height: 21px;
+        font-weight: 500;
+    }
+
+    &:hover {
+        background-color: ${props => backgroundHoverColor[props.variant]};
+        color: ${props => hoverColor[props.variant]};
+        border: 1px solid ${props => hoverColor[props.variant]};
+    }
+        
+    @media (max-width: 1500px) {
+        margin: 1rem;
+        height: 3rem;
+        padding: 1rem 3rem;
+    }
+`;

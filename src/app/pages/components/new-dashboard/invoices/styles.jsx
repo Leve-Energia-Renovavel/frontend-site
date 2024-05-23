@@ -56,6 +56,9 @@ export const NextBill = styled.div`
         margin-top: 34px;
     }
 `
+export const PayBillButtonContainer = styled.div`
+    margin: 12px 0;
+`
 export const NextBillInfo = styled.div`
     display: flex;
     flex-direction: row;
@@ -108,4 +111,27 @@ export const NextBillInfo = styled.div`
 `
 export const NextBillDivider = styled(Divider)`
     border-color: ${newBackground.orange};
+`
+
+export const NextBillsFooter = styled.div`
+    margin-top: 37px;
+    margin-bottom: 15px;
+    text-align: center;
+    background-color: ${newBackground.white};
+
+    .checkAllInvoices {
+        font-family: "Graphie";
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: 500;
+        color: ${newBackground.orange};
+
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        
+    }
+
 `

@@ -3,11 +3,12 @@ import { requestSuccessful } from '@/app/service/utils/Validations';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
-import { DashboardInvoicesContainer as Container, DashboardInvoicesContent as Content, NextBill, NextBillDivider, NextBillInfo, NextBillsContainer } from './styles';
+import { DashboardInvoicesContainer as Container, DashboardInvoicesContent as Content, NextBill, NextBillDivider, NextBillInfo, NextBillsContainer, NextBillsFooter, PayBillButtonContainer } from './styles';
 import { useStoreBillingHistory, useStoreNextBills } from '@/app/hooks/useStore';
 import { billHasToBePaid, billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import DefaultButton from '../../utils/buttons/DefaultButton';
 import DashboardInvoicesDummy from './DashboardInvoicesDummy';
+import NewDefaultButton from '../../utils/buttons/NewDefaultButton';
 
 export default function DashboardInvoices() {
 
@@ -101,8 +102,12 @@ export default function DashboardInvoices() {
               )
             })}
         </NextBillsContainer>
-        <DefaultButton variant="outlined-inverse" text="Pagar Fatura" />
-
+        <PayBillButtonContainer>
+          <NewDefaultButton variant="outlined-inverse" text="Pagar Fatura" />
+        </PayBillButtonContainer>
+        <NextBillsFooter>
+          <p className='checkAllInvoices'>Ver todas as faturas</p>
+        </NextBillsFooter>
       </Content>
     </Container>
   )
