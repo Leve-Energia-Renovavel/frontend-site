@@ -50,6 +50,7 @@ export const newBackground = {
     orangeFocused: "#FDDCCB",
     orangeTranslucent: "#FCEEE6",
     green: "#005940",
+    greenLight: "#CEDED8",
     white: "#FCFCFA",
     grey: "#EFEFEC",
 }

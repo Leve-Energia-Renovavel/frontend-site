@@ -36,4 +36,5 @@ export const NewDashboardContent = styled.div`
 export const NewDashboardMainContent = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 `
