@@ -23,7 +23,7 @@ export const startSignUp = async (data) => {
 export const startSignUpForPartners = async (data) => {
     var response = null
     try {
-        response = await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/lp/${data.token}`, data);
+        response = await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/lp/${data.token}`, data);
 
     } catch (error) {
         if (error.response) {

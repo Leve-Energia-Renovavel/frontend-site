@@ -55,7 +55,9 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
             token: partnerTokens[partner]
         }
 
+        console.log("submitData ==>>", submitData)
         const response = await partnerSchemaValidation(submitData)
+        console.log("response ==>>", response)
         await requestValidation(response, setNotifications, setErrorMessage, router)
 
         setLoading(false)
