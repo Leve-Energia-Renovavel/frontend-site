@@ -83,7 +83,7 @@ export const ArrowScrollerContainer = styled.div`
 
   @media (max-width: 900px) {
     .scrollerDescription {
-      white-space: nowrap;
+      white-space: wrap;
       font-size: 17px;
       line-height: 21px;
     }
