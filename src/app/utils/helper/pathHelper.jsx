@@ -68,3 +68,11 @@ export const helperToPath = {
     '/politica-de-privacidade/': "na+Política+de+Privacidade",
     '/connection/': "na+página+de+conexão",
 }
+
+export const partnersPath = {
+    '/lp/tribanco/': true,
+    '/lp/tim/': true,
+    '/lp/martins/': true,
+    '/lp/yduqs/': true,
+    '/lp/localiza/': true,
+}

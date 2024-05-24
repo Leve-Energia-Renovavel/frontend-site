@@ -1,6 +1,6 @@
 "use client"
 
-import { headerHelper, landingPageHelper } from '@/app/utils/helper/pathHelper';
+import { headerHelper, landingPageHelper, partnersPath } from '@/app/utils/helper/pathHelper';
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -18,7 +18,7 @@ export default function Header() {
 
     const mobileWidth = 900
     const isLandingPage = landingPageHelper[pathname]
-    const isPartner = pathname == "/lp/tribanco/"
+    const isPartner = partnersPath[pathname]
     const isLoggedUser = headerHelper[pathname]
 
     useEffect(() => {
