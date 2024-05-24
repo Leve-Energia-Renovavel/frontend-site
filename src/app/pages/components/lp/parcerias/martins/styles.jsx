@@ -17,8 +17,8 @@ export const MartinsMain = styled.div`
     background-position: 80% 20%;
 
     .title {
-      max-width: 598px;
-      margin-top: 130px;
+      max-width: 620px;
+      margin-top: 160px;
       text-align: left;
 
       font-family: "Graphie";
@@ -30,9 +30,9 @@ export const MartinsMain = styled.div`
     .titleHighlighted {
       font-family: "Graphie";
       font-weight: 600;
-      color: ${newBackground.white};
-      border-radius: 10px;
-      background-color: ${partners.tribanco.lightBlue};
+      color: ${partners.martins.blue};
+      border-radius: 4px;
+      background-color: ${partners.martins.white};
     }
 
     @media (max-width: 900px) {
@@ -58,14 +58,14 @@ export const ArrowScrollerContainer = styled.div`
   align-items: center;
   margin: auto 0px 0px auto;
 
-  gap: 10px;
-
   .scrollerDescription {
     font-family: "Graphie";
       font-size: 21px;
-      line-height: 36px;
+      line-height: 25px;
       font-weight: 500;
       color: ${newBackground.white};
+
+      max-width: 371px;
   }
 
   .whiteArrow {
@@ -95,7 +95,7 @@ export const ArrowScrollerContainer = styled.div`
 export const PartnerSectionBanner = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: ${partners.tribanco.blue};
+  background-color: ${partners.martins.blue};
   
   width: 100%;
   max-width: 1366px;
@@ -108,13 +108,31 @@ export const PartnerSectionBanner = styled.div`
   .hiddenBannerImage {
     display: none;
   }
+  .unhidden {
+    display: none;
+  }
 
   @media (max-width: 1350px) {
+
       .hiddenBannerImage {
         width: auto;
         height: 100%;
         display: block;
       }
+      .unhidden {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .unhiddenBannerImage {
+        height: 100%;
+        width: auto;
+        max-width: 100%;
+      }
+      .hiddenBannerImage {
+        display: none;
+      }
+
   }
 
   @media (max-width: 600px) {
@@ -122,98 +140,66 @@ export const PartnerSectionBanner = styled.div`
     margin: 0;
     gap: 0;
     height: auto;
-    background: linear-gradient(to bottom, ${partners.tribanco.blue} 40%, ${partners.tribanco.green});
-
-    .hiddenBannerImage {
-        width: 100%;
-        max-width: 300px;
-        height: auto;
-        display: block;
-      }
   }
 `
 
 export const PartnerImageContainer = styled.div`
       .bannerImage {
-      width: 375px;
+      width: 478px;
       height: auto;
       position: absolute;
       right: 786px;
-      top: 706px;
+      top: 684px;
       }
 
 
     @media (max-width: 5000px) {
       .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
-      right: 786px;
-      top: 706px;
+      right: 730px;
+      top: 684px;
       }
     }
     @media (max-width: 3300px) {
       .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
-      right: 786px;
-      top: 706px;
+      right: 730px;
+      top: 684px;
       }
     }
     @media (max-width: 2400px) {
       .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
-      right: 786px;
-      top: 706px;
+      right: 730px;
+      top: 684px;
       }
     }
 
     @media (max-width: 2200px) {
       .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
-      right: 786px;
-      top: 706px;
+      right: 730px;
+      top: 684px;
       }
     }
     @media (max-width: 1800px) {
       .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
-      right: 786px;
-      top: 706px;
+      right: 730px;
+      top: 684px;
       }
     }
     @media (max-width: 1620px) {
       .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
-      right: 786px;
-      top: 706px;
+      right: 730px;
+      top: 684px;
       }
     }
     @media (max-width: 1600px) {
       .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
-      right: 786px;
-      top: 692px;
+      right: 730px;
+      top: 684px;
       }
     }
 
     .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
-      right: 786px;
-      top: 692px;
+      right: 730px;
+      top: 684px;
       }
 
     @media (max-width: 1350px) {
@@ -224,10 +210,16 @@ export const PartnerImageContainer = styled.div`
 `
 export const PartnerSectionContent = styled.div`
   width: 550px;
-  background: linear-gradient(to bottom, ${partners.tribanco.lightBlue} 50%, ${partners.tribanco.green});
+  background-image: url(${props => props.image.src});
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-position: center;
   border-radius: 15px;
-
+  
+  
   @media (max-width: 1350px) {
+    border-radius: 0px 0px 15px 15px;
+    padding: 10px 10px 0px 10px;
     display: none;
   }
 
@@ -257,13 +249,13 @@ export const PartnerDescriptionContainer = styled.div`
     font-family: "Graphie";
     font-size: 27px;
     line-height: 21px;
-    font-weight: 500;
-    color: ${newBackground.white};
+    font-weight: 600;
+    color: ${partners.martins.blue};
     width: fit-content;
-    background-color: ${partners.tribanco.lightBlue};
+    background-color: ${partners.martins.white};
 
     padding: 4px;
-    border-radius: 8px;
+    border-radius: 4px;
 
     margin-top: 18px;
 

@@ -7,6 +7,7 @@ import TribancoSectionBanner from "@/app/pages/components/lp/parcerias/tribanco/
 import YduqsMainBanner from "@/app/pages/components/lp/parcerias/yduqs/YduqsMainBanner";
 import Image from "next/image";
 
+import MartinsSectionBanner from "@/app/pages/components/lp/parcerias/martins/MartinsSectionBanner";
 import localizaLogo from '../../../resources/img/partners/localiza/localiza-logo-large.png';
 import martinsLogo from '../../../resources/img/partners/martins/martins-logo-large.png';
 import timLogo from '../../../resources/img/partners/tim/tim-logo-large.png';
@@ -17,6 +18,10 @@ export const clearPartnerName = (str) => {
     return str.replace(/\/|lp/g, '');
 };
 
+export const capitalizeFirstLetter = (string) => {
+    if (!string) return '';
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
 
 export const partnerTokens = {
     "tribanco": process.env.NEXT_PUBLIC_TRIBANCO_TOKEN,
@@ -36,7 +41,7 @@ export const partners = {
     "tim": {
         mainBanner: <TimMainBanner />,
         section: <TimSectionBanner />,
-        logo: <Image src={timLogo} className='partnerLogo' alt={"Logo Tim"} priority={false} />
+        logo: <Image src={timLogo} className='timLogo' alt={"Logo Tim"} priority={false} />
     },
     "localiza": {
         mainBanner: <LocalizaMainBanner />,
@@ -50,7 +55,7 @@ export const partners = {
     },
     "martins": {
         mainBanner: <MartinsMainBanner />,
-        section: <TribancoSectionBanner />,
-        logo: <Image src={martinsLogo} className='partnerLogo' alt={"Logo Martins"} priority={false} />
+        section: <MartinsSectionBanner />,
+        logo: <Image src={martinsLogo} className='martinsLogo' alt={"Logo Martins"} priority={false} />
     },
 }

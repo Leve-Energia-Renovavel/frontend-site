@@ -1,3 +1,4 @@
+import { capitalizeFirstLetter, partnerTokens } from '@/app/utils/helper/partnerHelper';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import { TextField } from "@mui/material";
@@ -22,7 +23,6 @@ import {
     UserTypeFormButtonContainer,
     UserTypeFormContainer
 } from "./styles";
-import { partnerTokens } from '@/app/utils/helper/partnerHelper';
 
 export default function PartnerForm({ partner, setErrorMessage, setNotifications }) {
 
@@ -72,7 +72,7 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
                         <Image src={economyIcon} className='economyIcon' alt={"Logo Leve"} priority />
                         <h2>{texts.simulate}</h2>
                     </FormTitleContainer>
-                    <p variant="body1">Sou colaborador <span className="highlighted">{partner}</span> e quero economizar</p>
+                    <p variant="body1">Sou colaborador <span className="highlighted">{capitalizeFirstLetter(partner)}</span> e quero economizar</p>
                     <TextField
                         inputRef={nameRef}
                         className="homeFormInput"

@@ -11,7 +11,7 @@ export default function TimSectionBanner() {
                 <Image alt="banner Tim" src={timBannerImage} className="hiddenBannerImage" />
 
                 <PartnerSectionContent image={timBackgroundBanner} className='unhidden'>
-                    <Image alt="banner Tim" src={timBannerImage} className='unhiddenBannerImage'/>
+                    <Image alt="banner Tim" src={timBannerImage} className='unhidden' />
                 </PartnerSectionContent>
 
                 <PartnerDescriptionContainer>

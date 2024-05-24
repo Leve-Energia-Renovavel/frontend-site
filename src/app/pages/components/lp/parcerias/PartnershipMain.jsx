@@ -30,14 +30,14 @@ export default function PartnershipMain() {
         <>
             <Container className="partnershipContainer">
                 <MainContentContainer className="mainContentContainer">
-                    {partners[clearPartnerName(pathname)].mainBanner}
+                    {partners[clearPartnerName(pathname)]?.mainBanner}
                     <PartnerForm
                         partner={clearPartnerName(pathname)}
                         setErrorMessage={setErrorMessage}
                         setNotifications={setNotifications} />
                 </MainContentContainer>
 
-                {partners[clearPartnerName(pathname)].section}
+                {partners[clearPartnerName(pathname)]?.section}
 
                 <LandingPageSecondaryBanner />
 

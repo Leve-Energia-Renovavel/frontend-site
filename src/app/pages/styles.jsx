@@ -39,6 +39,10 @@ export const partners = {
     tim: {
         red: "#E40D2C",
         blue: "#063B88",
+    },
+    martins: {
+        white: "#FCFCFA",
+        blue: "#003876",
     }
 }
 

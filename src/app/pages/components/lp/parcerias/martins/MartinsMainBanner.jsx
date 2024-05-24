@@ -10,9 +10,9 @@ export default function MartinsMainBanner() {
 
     return (
         <MartinsMain image={martinsMainImage}>
-            <h1 className="title">Colaborador Martins, agora você pode usar energia sustentável ao garantir sua <span className="titleHighlighted">energia solar por assinatura!</span></h1>
+            <h1 className="title">Agora nossa gente vai poder usar energia solar por assinatura e ainda <span className="titleHighlighted">economizar com a Leve</span>!</h1>
             <ArrowScrollerContainer onClick={() => handleScroll()}>
-                <p className="scrollerDescription">Deixe sua energia mais Leve!</p>
+                <p className="scrollerDescription">Grupo Martins trazendo economia e sustentabilidade para a nossa gente!</p>
                 <Image alt={`Deixe sua energia mais Leve!`} src={whiteArrow} className="whiteArrow" />
             </ArrowScrollerContainer>
         </MartinsMain>
