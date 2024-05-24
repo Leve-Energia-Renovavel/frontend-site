@@ -4,9 +4,9 @@ import logoLeve from "../../../../resources/icons/small/leve-logo-orange-icon-sm
 import selectedMenuIcon from "../../../../resources/icons/small/leve-profile-orange-icon-small-compressed.svg"
 import menuIcon from "../../../../resources/icons/small/leve-profile-yellow-icon-small-compressed.svg"
 import { MobileNewHeaderContainer, PartnerContainer } from './styles'
-import tribancoLogo from '../../../../resources/img/partners/tribanco/logo-tribanco-large.png'
+import { partners } from "@/app/utils/helper/partnerHelper"
 
-export default function NewHeader({ isOpen, openModal, closeModal, isLandingPage, isPartner }) {
+export default function NewHeader({ isOpen, openModal, closeModal, isLandingPage, isPartner, partner }) {
 
     const router = useRouter()
 
@@ -16,7 +16,7 @@ export default function NewHeader({ isOpen, openModal, closeModal, isLandingPage
             {isPartner && (
                 <PartnerContainer>
                     <p className="partnershipIcon">+</p>
-                    <Image src={tribancoLogo} className='partnerLogo' alt={"Logo Tribanco"} priority={false} />
+                    {partners[partner]?.logo}
                 </PartnerContainer>)}
             < Image src={isOpen ? selectedMenuIcon : menuIcon} className='profile' alt={"Perfil Leve"} onClick={openModal} />
         </MobileNewHeaderContainer>

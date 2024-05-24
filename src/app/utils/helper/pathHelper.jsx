@@ -43,6 +43,10 @@ export const landingPageHelper = {
     '/lp/novos-clientes/': true,
     '/lp/apresentacao/': true,
     '/lp/tribanco/': true,
+    '/lp/tim/': true,
+    '/lp/martins/': true,
+    '/lp/yduqs/': true,
+    '/lp/localiza/': true,
 }
 
 export const helperToPath = {

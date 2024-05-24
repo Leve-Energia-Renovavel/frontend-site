@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import NewHeader from '../new-header/NewHeader';
+import { clearPartnerName } from '@/app/utils/helper/partnerHelper';
 
 const NewLoginModal = dynamic(() => import('../new-login/NewLoginModal'), { ssr: false });
 const NewLoggedModal = dynamic(() => import('../new-header/NewLoggedModal'), { ssr: false });
@@ -49,6 +50,7 @@ export default function Header() {
                 openModal={openLoginModal}
                 isLandingPage={isLandingPage}
                 isPartner={isPartner}
+                partner={clearPartnerName(pathname)}
             />
             {openLogin && (
                 isLoggedUser ? (

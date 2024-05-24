@@ -36,6 +36,10 @@ export const partners = {
         lightBlue: "#0BAFB5",
         green: "#7ACC44"
     },
+    tim: {
+        red: "#E40D2C",
+        blue: "#063B88",
+    }
 }
 
 export const newBackground = {

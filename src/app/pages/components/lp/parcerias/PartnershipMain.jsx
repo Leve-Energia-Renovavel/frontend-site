@@ -1,6 +1,6 @@
 "use client"
 
-import { clearPartnerName } from "@/app/utils/helper/partnerHelper";
+import { clearPartnerName, partners } from "@/app/utils/helper/partnerHelper";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -8,13 +8,7 @@ import { TutorialBannerContainer } from "../novos-clientes/styles";
 import { PartnershipMainContainer as Container, MainContentContainer } from "./styles";
 
 import PartnerForm from "../form/PartnerForm";
-import LocalizaMainBanner from "./localiza/LocalizaMainBanner";
-import MartinsMainBanner from "./martins/MartinsMainBanner";
-import TimMainBanner from "./tim/TimMainBanner";
-import TribancoMainBanner from "./tribanco/TribancoMainBanner";
-import YduqsMainBanner from "./yduqs/YduqsMainBanner";
 
-const TribancoSectionBanner = dynamic(() => import("./tribanco/TribancoSectionBanner"), { ssr: false });
 const LandingPageSecondaryBanner = dynamic(() => import("../novos-clientes/LandingPageSecondaryBanner"), { ssr: false });
 const TutorialContainer = dynamic(() => import("../../home/HomeTutorial"), { ssr: false });
 const HomeAreas = dynamic(() => import("../../home/HomeAreas"), { ssr: false });
@@ -31,28 +25,6 @@ export default function PartnershipMain() {
 
     const pathname = usePathname()
 
-    const partners = {
-        "tribanco": {
-            mainBanner: <TribancoMainBanner />,
-            section: <TribancoSectionBanner />
-        },
-        "tim": {
-            mainBanner: <TimMainBanner />,
-            section: <TribancoSectionBanner />
-        },
-        "localiza": {
-            mainBanner: <LocalizaMainBanner />,
-            section: <TribancoSectionBanner />
-        },
-        "yduqs": {
-            mainBanner: <YduqsMainBanner />,
-            section: <TribancoSectionBanner />
-        },
-        "martins": {
-            mainBanner: <MartinsMainBanner />,
-            section: <TribancoSectionBanner />
-        },
-    }
 
     return (
         <>
@@ -65,7 +37,7 @@ export default function PartnershipMain() {
                         setNotifications={setNotifications} />
                 </MainContentContainer>
 
-                <TribancoSectionBanner />
+                {partners[clearPartnerName(pathname)].section}
 
                 <LandingPageSecondaryBanner />
 

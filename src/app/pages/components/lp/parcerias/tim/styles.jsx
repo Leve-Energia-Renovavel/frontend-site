@@ -31,8 +31,8 @@ export const TimMain = styled.div`
       font-family: "Graphie";
       font-weight: 600;
       color: ${newBackground.white};
-      border-radius: 10px;
-      background-color: ${partners.tribanco.lightBlue};
+      border-radius: 4px;
+      background-color: ${partners.tim.red};
     }
 
     @media (max-width: 900px) {
@@ -95,7 +95,7 @@ export const ArrowScrollerContainer = styled.div`
 export const PartnerSectionBanner = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: ${partners.tribanco.blue};
+  background-color: ${partners.tim.blue};
   
   width: 100%;
   max-width: 1366px;
@@ -108,13 +108,31 @@ export const PartnerSectionBanner = styled.div`
   .hiddenBannerImage {
     display: none;
   }
+  .unhidden {
+    display: none;
+  }
 
   @media (max-width: 1350px) {
+
       .hiddenBannerImage {
         width: auto;
         height: 100%;
         display: block;
       }
+      .unhidden {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .unhiddenBannerImage {
+        height: 100%;
+        width: auto;
+        max-width: 100%;
+      }
+      .hiddenBannerImage {
+        display: none;
+      }
+
   }
 
   @media (max-width: 600px) {
@@ -122,20 +140,12 @@ export const PartnerSectionBanner = styled.div`
     margin: 0;
     gap: 0;
     height: auto;
-    background: linear-gradient(to bottom, ${partners.tribanco.blue} 40%, ${partners.tribanco.green});
-
-    .hiddenBannerImage {
-        width: 100%;
-        max-width: 300px;
-        height: auto;
-        display: block;
-      }
   }
 `
 
 export const PartnerImageContainer = styled.div`
       .bannerImage {
-      width: 375px;
+      width: 401px;
       height: auto;
       position: absolute;
       right: 786px;
@@ -145,27 +155,18 @@ export const PartnerImageContainer = styled.div`
 
     @media (max-width: 5000px) {
       .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
       right: 786px;
       top: 706px;
       }
     }
     @media (max-width: 3300px) {
       .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
       right: 786px;
       top: 706px;
       }
     }
     @media (max-width: 2400px) {
       .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
       right: 786px;
       top: 706px;
       }
@@ -173,47 +174,32 @@ export const PartnerImageContainer = styled.div`
 
     @media (max-width: 2200px) {
       .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
       right: 786px;
       top: 706px;
       }
     }
     @media (max-width: 1800px) {
       .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
       right: 786px;
       top: 706px;
       }
     }
     @media (max-width: 1620px) {
       .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
       right: 786px;
       top: 706px;
       }
     }
     @media (max-width: 1600px) {
       .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
       right: 786px;
-      top: 692px;
+      top: 706px;
       }
     }
 
     .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
       right: 786px;
-      top: 692px;
+      top: 706px;
       }
 
     @media (max-width: 1350px) {
@@ -224,10 +210,16 @@ export const PartnerImageContainer = styled.div`
 `
 export const PartnerSectionContent = styled.div`
   width: 550px;
-  background: linear-gradient(to bottom, ${partners.tribanco.lightBlue} 50%, ${partners.tribanco.green});
+  background-image: url(${props => props.image.src});
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-position: center;
   border-radius: 15px;
-
+  
+  
   @media (max-width: 1350px) {
+    border-radius: 0px 0px 15px 15px;
+    padding: 10px 10px 0px 10px;
     display: none;
   }
 
@@ -260,10 +252,10 @@ export const PartnerDescriptionContainer = styled.div`
     font-weight: 500;
     color: ${newBackground.white};
     width: fit-content;
-    background-color: ${partners.tribanco.lightBlue};
+    background-color: ${partners.tim.red};
 
     padding: 4px;
-    border-radius: 8px;
+    border-radius: 4px;
 
     margin-top: 18px;
 
