@@ -1,5 +1,5 @@
 import { fadeInUp, slideAndDisappear } from "@/app/pages/animations";
-import { newBackground } from "@/app/pages/styles";
+import { newBackground, partners } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Button, CircularProgress, Slider } from "@mui/material";
 
@@ -17,7 +17,7 @@ export const HomeFormContainer = styled.div`
     line-height: 12px;
     font-weight: 500;
     text-align: left;
-    color: ${newBackground.orange};
+    color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
 
     max-width: 360px;
     
@@ -36,7 +36,8 @@ export const HomeFormContainer = styled.div`
     font-weight: 700;
     text-decoration: underline;
     text-align: left;
-    color: ${newBackground.orange};
+    color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
+
     border-radius: 5px;
 
     &:hover{
@@ -49,7 +50,7 @@ export const HomeFormContainer = styled.div`
 
 export const HomeMainFormContainer = styled.div`
     background-color: ${newBackground.white};
-    border: 1px solid ${newBackground.orange};
+    border: 1px solid ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
     border-radius: 15px;
     
     height: auto;
@@ -64,7 +65,7 @@ export const HomeMainFormContainer = styled.div`
 export const HomeMainForm = styled.form`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.orange};
+    background-color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
 
     border-radius: 15px;
     
@@ -127,14 +128,16 @@ export const HomeMainForm = styled.form`
         height: 0.4375em;
         padding: 20px 14px;
         font-weight: 700;
-        color: ${newBackground.orange};
+        color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
+
         }
 
         & label {
           font-family: "Graphie";
           font-weight: 500;
           font-size: 14px;
-          color:  ${newBackground.orange};
+          color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
+
         }
 
         & .MuiFormLabel-root-MuiInputLabel-root {
@@ -190,6 +193,7 @@ export const HomeMainFormSimulationContainer = styled.div`
     flex-direction: column;
     justify-content: center;
 
+
     /* margin: 0 2rem; */
     margin: 0 43px;
 
@@ -211,7 +215,8 @@ export const HomeMainFormSimulationContainer = styled.div`
       font-family: "Graphie";
       font-size: 21px;
       font-weight: 900;
-      color:${newBackground.orange};
+      color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
+      background-color: ${props => props.isLocaliza && newBackground.yellow};
     }
 
     .sliderTip {
@@ -240,8 +245,9 @@ export const UserTypeFormContainer = styled.div`
 `
 export const FormFooterContainer = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: ${props => (props.isMartins ? 'row' : 'column')};
     /* margin: 0 auto; */
+    gap: 8px;
     
     @media (max-width: 600px) {
       gap: 8px;
@@ -261,7 +267,7 @@ export const UserTypeFormButtonContainer = styled.div`
 `
 
 export const FormSelect = styled(Button)`
-  background-color: ${newBackground.orange};
+    background-color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
   border: 1px solid ${newBackground.yellow};
   border-radius: 10px;
 
@@ -309,7 +315,7 @@ export const FormButton = styled(Button)`
   }
   
   &:hover {
-    background-color: ${newBackground.orange};
+    background-color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
     color: ${newBackground.yellow};
     cursor: pointer;
   }
@@ -350,6 +356,7 @@ export const ButtonSimulateYourEconomy = styled(Button)`
 
 export const FormSlider = styled(Slider)`
     color: ${newBackground.green};
+
     height: 8px;
     
     @media (max-width: 600px) {
@@ -357,7 +364,8 @@ export const FormSlider = styled(Slider)`
     }
     
     & .MuiSlider-thumb {
-        background-color: ${newBackground.orange};
+        background-color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
+
         height: 12px;
         width: 12px;
     }

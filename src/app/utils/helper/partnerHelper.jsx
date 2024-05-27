@@ -7,6 +7,7 @@ import TribancoSectionBanner from "@/app/pages/components/lp/parcerias/tribanco/
 import YduqsMainBanner from "@/app/pages/components/lp/parcerias/yduqs/YduqsMainBanner";
 import Image from "next/image";
 
+import LocalizaSectionBanner from "@/app/pages/components/lp/parcerias/localiza/LocalizaSectionBanner";
 import MartinsSectionBanner from "@/app/pages/components/lp/parcerias/martins/MartinsSectionBanner";
 import localizaLogo from '../../../resources/img/partners/localiza/localiza-logo-large.png';
 import martinsLogo from '../../../resources/img/partners/martins/martins-logo-large.png';
@@ -21,7 +22,7 @@ export const clearPartnerName = (str) => {
 export const capitalizeFirstLetter = (string) => {
     if (!string) return '';
     return string.charAt(0).toUpperCase() + string.slice(1);
-  };
+};
 
 export const partnerTokens = {
     "tribanco": process.env.NEXT_PUBLIC_TRIBANCO_TOKEN,
@@ -45,7 +46,7 @@ export const partners = {
     },
     "localiza": {
         mainBanner: <LocalizaMainBanner />,
-        section: <TribancoSectionBanner />,
+        section: <LocalizaSectionBanner />,
         logo: <Image src={localizaLogo} className='partnerLogo' alt={"Logo Localiza"} priority={false} />
     },
     "yduqs": {

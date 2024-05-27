@@ -36,6 +36,10 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
     const corporateEmailRef = useRef()
     const phoneRef = useRef()
     const cepRef = useRef()
+    const martinsRegistrationRef = useRef()
+
+    const isMartins = partner == "martins"
+    const isLocaliza = partner == "localiza"
 
     const texts = infoJson
 
@@ -54,6 +58,9 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
             redirect_to: "www.leveenergia.com.br",
             token: partnerTokens[partner]
         }
+        if (isMartins) {
+            submitData["matricula"] = martinsRegistrationRef.current.value
+        }
 
         console.log("submitData ==>>", submitData)
         const response = await partnerSchemaValidation(submitData)
@@ -65,9 +72,9 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
 
 
     return (
-        <HomeFormContainer className='homeFormContainer'>
-            <FormContainer className='formContainer'>
-                <Form id='leadForm' onSubmit={handleSubmit}>
+        <HomeFormContainer className='homeFormContainer' isLocaliza={isLocaliza}>
+            <FormContainer className='formContainer' isLocaliza={isLocaliza}>
+                <Form id='leadForm' onSubmit={handleSubmit} isLocaliza={isLocaliza}>
                     <FormTitleContainer>
                         <Image src={economyIcon} className='economyIcon' alt={"Logo Leve"} priority />
                         <h2>{texts.simulate}</h2>
@@ -115,20 +122,20 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
                         variant="outlined"
                         type="text"
                         disabled={isLoading}
-                        required
-                    />
+                        required={!isMartins ? true : false} />
 
                     <UserTypeFormContainer>
                         <p className='chooseWhereToEconomy'>{texts.iWantToEconomy}</p>
-                        <UserTypeFormButtonContainer>
+                        <UserTypeFormButtonContainer className='formButtonContainer'>
                             <Select
+                                isLocaliza={isLocaliza}
                                 startIcon={<HomeIcon />}
                                 selected>
                                 {texts.house}
                             </Select>
                         </UserTypeFormButtonContainer>
                     </UserTypeFormContainer>
-                    <FormFooterContainer>
+                    <FormFooterContainer isMartins={isMartins}>
                         <InputMask mask="99999-999" disabled={isLoading}>
                             {() => <TextField
                                 className="homeFormInput"
@@ -142,12 +149,23 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
                                 required
                             />}
                         </InputMask>
+                        {isMartins &&
+                            <TextField
+                                inputRef={martinsRegistrationRef}
+                                className="homeFormInput"
+                                label={`Matrícula`}
+                                placeholder={`Matrícula`}
+                                variant="outlined"
+                                type="text"
+                                disabled={isLoading}
+                                required />}
 
                     </FormFooterContainer>
                 </Form>
-                <HomeMainFormSimulationContainer>
+                <HomeMainFormSimulationContainer className="mainFormSimulationContainer" isLocaliza={isLocaliza}>
                     <h6 variant="subtitle1" className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === 3000 ? "+" : ""}</span></h6>
                     <FormSlider
+                        isLocaliza={isLocaliza}
                         className='formSlider'
                         onChange={(event) => setSimulationCost(event.target.value)}
                         value={simulationCost}
@@ -162,6 +180,7 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
                 </HomeMainFormSimulationContainer>
             </FormContainer>
             <FormButton
+                isLocaliza={isLocaliza}
                 type='submit'
                 form='leadForm'
                 endIcon={!isLoading ? <ArrowForwardIcon /> : <ArrowForwardIcon sx={{ display: "none" }} />}>

@@ -1,3 +1,4 @@
+import { green } from "@mui/material/colors"
 
 export const theme = {
     primary: "#1779ba",
@@ -43,6 +44,11 @@ export const partners = {
     martins: {
         white: "#FCFCFA",
         blue: "#003876",
+    },
+    localiza: {
+        green: "#005941",
+        vividGreen: "#03602A",
+        lightGreen: "#77DE1F",
     }
 }
 

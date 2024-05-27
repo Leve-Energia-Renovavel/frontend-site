@@ -11,9 +11,9 @@ export default function LocalizaMainBanner() {
 
     return (
         <LocalizaMain image={localizaMainImage}>
-            <h1 className="title">Colaborador Localiza, agora você pode usar energia sustentável ao garantir sua <span className="titleHighlighted">energia solar por assinatura!</span></h1>
+            <h1 className="title">Colaborador Localiza, agora pode usar energia sustentável e ainda <span className="titleHighlighted">economizar com a Leve!</span></h1>
             <ArrowScrollerContainer onClick={() => handleScroll()}>
-                <p className="scrollerDescription">Deixe sua energia mais Leve!</p>
+                <p className="scrollerDescription">De forma rápida, fácil e 100% digital</p>
                 <Image alt={`Deixe sua energia mais Leve!`} src={whiteArrow} className="whiteArrow" />
             </ArrowScrollerContainer>
         </LocalizaMain>
