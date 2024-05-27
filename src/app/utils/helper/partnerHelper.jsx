@@ -9,6 +9,7 @@ import Image from "next/image";
 
 import LocalizaSectionBanner from "@/app/pages/components/lp/parcerias/localiza/LocalizaSectionBanner";
 import MartinsSectionBanner from "@/app/pages/components/lp/parcerias/martins/MartinsSectionBanner";
+import YduqsSectionBanner from "@/app/pages/components/lp/parcerias/yduqs/YduqsSectionBanner";
 import localizaLogo from '../../../resources/img/partners/localiza/localiza-logo-large.png';
 import martinsLogo from '../../../resources/img/partners/martins/martins-logo-large.png';
 import timLogo from '../../../resources/img/partners/tim/tim-logo-large.png';
@@ -51,7 +52,7 @@ export const partners = {
     },
     "yduqs": {
         mainBanner: <YduqsMainBanner />,
-        section: <TribancoSectionBanner />,
+        section: <YduqsSectionBanner />,
         logo: <Image src={yduqsLogo} className='partnerLogo' alt={"Logo Yduqs"} priority={false} />
     },
     "martins": {

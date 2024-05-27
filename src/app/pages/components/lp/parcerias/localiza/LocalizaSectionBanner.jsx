@@ -6,7 +6,7 @@ export default function LocalizaSectionBanner() {
     return (
         <>
             <PartnerSectionBanner>
-                <Image alt="banner Tribanco" src={localizaBannerImage} />
+                <Image alt="banner Tribanco" src={localizaBannerImage} className='bannerImage'/>
                 <PartnerDescriptionContainer>
                     <h3 className="title">Com você, construindo</h3>
                     <h3 className="title">o <span className='highlighted'>futuro da mobilidade</span> sustentável</h3>

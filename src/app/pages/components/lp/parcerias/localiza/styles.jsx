@@ -105,7 +105,19 @@ export const PartnerSectionBanner = styled.div`
   gap: 1rem;
   height: 392px;
 
+  .bannerImage {
+    width: 100%;
+    max-width: 396px;
+    height: auto;
+  }
 
+
+  @media (max-width: 1100px) {
+    flex-wrap: wrap-reverse;
+    margin: 0;
+    gap: 0;
+    height: auto;
+  }
   @media (max-width: 600px) {
     flex-wrap: wrap-reverse;
     margin: 0;
@@ -113,97 +125,6 @@ export const PartnerSectionBanner = styled.div`
     height: auto;
   }
 `
-
-export const PartnerImageContainer = styled.div`
-      .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
-      right: 786px;
-      top: 706px;
-      }
-
-
-    @media (max-width: 5000px) {
-      .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
-      right: 786px;
-      top: 706px;
-      }
-    }
-    @media (max-width: 3300px) {
-      .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
-      right: 786px;
-      top: 706px;
-      }
-    }
-    @media (max-width: 2400px) {
-      .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
-      right: 786px;
-      top: 706px;
-      }
-    }
-
-    @media (max-width: 2200px) {
-      .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
-      right: 786px;
-      top: 706px;
-      }
-    }
-    @media (max-width: 1800px) {
-      .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
-      right: 786px;
-      top: 706px;
-      }
-    }
-    @media (max-width: 1620px) {
-      .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
-      right: 786px;
-      top: 706px;
-      }
-    }
-    @media (max-width: 1600px) {
-      .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
-      right: 786px;
-      top: 692px;
-      }
-    }
-
-    .bannerImage {
-      width: 375px;
-      height: auto;
-      position: absolute;
-      right: 786px;
-      top: 692px;
-      }
-
-    @media (max-width: 1350px) {
-      .bannerImage {
-        display: none;
-      }
-    }
-`
-
 export const PartnerDescriptionContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -262,21 +183,23 @@ export const PartnerDescriptionContainer = styled.div`
 
 
   @media (max-width: 900px) {
-    padding: 1rem;
+    padding: 2rem 1rem;
 
-    .title {
+    .title, .highlighted {
       font-family: "Graphie";
-      font-size: 31px;
+      font-size: 27px;
       line-height: 31px;
-
-      margin-top: 0px;
     }
 
-    .highlightedSubtitle {
-      font-family: "Graphie";
-      font-size: 21px;
+    .descriptionFirst {
+      font-size: 15px;
       line-height: 21px;
-      margin-top: 10px;
+      margin-top: 40px;
+    }
+    .descriptionSecond {
+      font-size: 15px;
+      line-height: 21px;
+      margin-top: 20px;
     }
 
 

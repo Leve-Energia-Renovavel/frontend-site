@@ -1,4 +1,3 @@
-import { green } from "@mui/material/colors"
 
 export const theme = {
     primary: "#1779ba",
@@ -49,6 +48,10 @@ export const partners = {
         green: "#005941",
         vividGreen: "#03602A",
         lightGreen: "#77DE1F",
+    },
+    yduqs: {
+        blue: "#13284C",
+        lightBlue: "#4395BA",
     }
 }
 
