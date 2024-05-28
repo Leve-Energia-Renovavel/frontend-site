@@ -41,6 +41,23 @@ export const partners = {
         lightBlue: "#0BAFB5",
         green: "#7ACC44"
     },
+    tim: {
+        red: "#E40D2C",
+        blue: "#063B88",
+    },
+    martins: {
+        white: "#FCFCFA",
+        blue: "#003876",
+    },
+    localiza: {
+        green: "#005941",
+        vividGreen: "#03602A",
+        lightGreen: "#77DE1F",
+    },
+    yduqs: {
+        blue: "#13284C",
+        lightBlue: "#4395BA",
+    }
 }
 
 export const newBackground = {

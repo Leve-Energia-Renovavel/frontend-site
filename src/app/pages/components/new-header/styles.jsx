@@ -190,6 +190,15 @@ export const PartnerContainer = styled.div`
         width: 154px;
         height: auto;
     }
+
+    .martinsLogo {
+        width: 74px;
+        height: 54px;
+    }
+    .timLogo {
+        width: 121px;
+        height: 32px;
+    }
     
     @media (max-width: 900px) {
         .partnerLogo {

@@ -3,18 +3,18 @@
 import { useStoreCompany, useStoreMainInstallation, useStoreUser } from "@/app/hooks/useStore";
 import { FormContent, FormLastRow, FormRow } from "@/app/register/forms/register-form/styles";
 import { requestSuccessful } from "@/app/service/utils/Validations";
+import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { maritalStatusOptions, nationalityOptions, professionOptions } from "@/app/utils/form-options/formOptions";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { IconButton, InputAdornment, MenuItem, Snackbar, TextField, Typography, Breadcrumbs, Link } from "@mui/material";
+import { Breadcrumbs, IconButton, InputAdornment, Link, MenuItem, Snackbar, TextField, Typography } from "@mui/material";
 import axios from "axios";
+import Cookies from "js-cookie";
 import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
+import { newBackground } from "../../styles";
 import FormButton from "../utils/buttons/FormButton";
 import { ProfileChangePasswordContent, ProfileContainer, ProfileMainContent, ProfileSecondaryContent, ProfileSecondaryEmailContent, SnackbarMessageAlert, SnackbarMessageNotification } from "./styles";
-import Cookies from "js-cookie";
-import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
-import { background, newBackground } from "../../styles";
 
 
 export default function ProfileMain() {
@@ -31,9 +31,9 @@ export default function ProfileMain() {
     const company = JSON.parse(localStorage.getItem('company')) || storeCompany.company
     const mainInstallation = JSON.parse(localStorage.getItem('mainInstallation')) || storeMainInstallation.mainInstallation
 
-    const isCompany = user?.user.isCompany
+    const isCompany = user?.user?.isCompany
 
-    const { name, email, phone, rg, cpf, cep, birthDate, companyName, nationality, maritalStatus, profession, cost, distributor } = user?.user ?? (store?.user || {})
+    const { name, email, phone, rg, cpf, cep, birthDate, companyName, nationality, maritalStatus, profession, secondaryEmail } = user?.user ?? (store?.user || {})
     const { address, number, cityId, city, neighborhood, complement, stateId, street, zipCode, installationNumber } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
     const secondaryEmailRef = useRef(null)
@@ -204,6 +204,9 @@ export default function ProfileMain() {
 
                             <TextField className="formInput" label="Estado" value={stateOptions[stateId]?.nome || ''} variant="outlined" placeholder="Estado" type="text" InputLabelProps={{ shrink: true }} disabled />
                             <TextField className="formInput" label="Cidade" value={city || ''} variant="outlined" placeholder="Cidade" type="text" InputLabelProps={{ shrink: true }} disabled />
+                            {secondaryEmail && (
+                                <TextField className="formInput" label="E-mail Secundário" value={secondaryEmail || ''} variant="outlined" placeholder="E-mail Secundário" type="text" InputLabelProps={{ shrink: true }} disabled />
+                            )}
 
                             <FormLastRow>
                                 <TextField value={installationNumber || ''} label="Número de Instalação" variant="outlined" placeholder="Número de Instalação" type="text" disabled InputLabelProps={{ shrink: true }} />
@@ -258,16 +261,25 @@ export default function ProfileMain() {
                         <FormButton variant="outlined" text="Confirmar" onClick={() => handleChangePassword()} />
                     </ProfileChangePasswordContent>
 
-                    <div style={{ paddingTop: '1rem' }}>
-                        <Typography variant="h1">E-mail Secundário</Typography>
-                        <Typography>Caso queira receber suas faturas em um novo e-mail, é só inserir no campo abaixo e checar a caixinha</Typography>
-                        <ProfileSecondaryEmailContent>
-                            <TextField className="secondaryEmailInput" inputRef={secondaryEmailRef} label="E-mail secundário" variant="outlined" placeholder="E-mail secundário" type="text" />
-                            <div style={{ margin: '1rem 1rem 1rem 0' }}>
-                                <FormButton className="formInput" variant="outlined" text="Receber notificações por este e-mail" onClick={() => handleSecondaryEmail()} />
-                            </div>
-                        </ProfileSecondaryEmailContent>
-                    </div>
+                    {!secondaryEmail && (
+                        <div style={{ paddingTop: '1rem' }}>
+                            <Typography variant="h1">E-mail Secundário</Typography>
+                            <Typography>Caso queira receber suas faturas em um novo e-mail, é só inserir no campo abaixo e checar a caixinha</Typography>
+                            <ProfileSecondaryEmailContent>
+                                <TextField
+                                    className="secondaryEmailInput"
+                                    inputRef={secondaryEmailRef}
+                                    defaultValue={secondaryEmail || ""}
+                                    label="E-mail secundário"
+                                    variant="outlined"
+                                    placeholder="E-mail secundário"
+                                    type="text" />
+                                <div style={{ margin: '1rem 1rem 1rem 0' }}>
+                                    <FormButton className="formInput" variant="outlined" text="Receber notificações por este e-mail" onClick={() => handleSecondaryEmail()} />
+                                </div>
+                            </ProfileSecondaryEmailContent>
+                        </div>
+                    )}
                 </ProfileSecondaryContent>
 
             </ProfileContainer>

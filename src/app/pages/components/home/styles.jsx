@@ -623,6 +623,14 @@ export const HomeSecondaryBoxContent = styled.div`
 
       border-radius: 15px;
     }
+    @media (max-width: 362px) {
+      width: 135px;
+      height: 135px;
+
+      padding: .8rem;
+
+      border-radius: 15px;
+    }
 `
 export const HomeSecondaryBoxTitle = styled.div`
     display: flex;

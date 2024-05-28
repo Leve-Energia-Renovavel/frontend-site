@@ -49,3 +49,12 @@ export const clearStorageData = async () => {
 export const awaitSeconds = async (seconds) => {
     return await new Promise(resolve => setTimeout(resolve, seconds * 1000));
 }
+
+export const handleScroll = () => {
+    const element = document.getElementById('howLeveWorks');
+    if (element) {
+        window.scrollTo({ top: element.offsetTop + 40, behavior: 'smooth' });
+    } else {
+        window.scrollTo({ top: 500, behavior: 'smooth' })
+    }
+}

@@ -201,6 +201,95 @@ export const InvoicesMainCardContainer = styled.div`
         color: ${background.grey};
     }
 `
+export const InvoicesMainCardChangeDate = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    
+    border: 1px solid ${newBackground.orange};
+    border-radius: 4px;
+
+
+    margin: 1rem 3.2rem 0 auto;
+    padding: 1rem 2rem;
+    
+    width: 30vw;
+    max-width: 20vw;
+
+    @media (max-width: 1500px) {
+      margin: 1rem 5.6rem 0 auto;
+    }
+    @media (max-width: 1200px) {
+      max-width: 25vw;
+      margin: 1rem 3.2rem 0 auto;
+    }
+    @media (max-width: 1000px) {
+      width: 100%;
+      max-width: 80vw;
+      margin: 0 1rem;
+    }
+    @media (max-width: 1000px) {
+      width: 100%;
+      max-width: 70vw;
+      margin: 0 1rem;
+    }
+
+    .changeInvoiceDate {
+      font-family: "Graphie", sans-serif;
+        font-size: 21px;
+        line-height: 27px;
+        font-weight: 700;
+        color: ${newBackground.orange};
+    }
+
+    .invoiceDateField {
+      width: 100%;
+
+      .MuiOutlinedInput-root {
+            border-color: ${newBackground.white};
+        }
+
+        .MuiInputLabel-root {
+            color: ${newBackground.orange};
+        }
+        .MuiOutlinedInput-input {
+        // styles for the user input text
+        font-family: "Graphie";
+        font-size: 17px;
+        font-weight: 500;
+        color: ${newBackground.orange};
+        }
+
+        &:hover .MuiOutlinedInput-notchedOutline {
+            border-color: ${newBackground.orange};
+        }
+    }
+
+    .buttonChangeDate {
+      display: block;
+      background-color: ${newBackground.orange};
+      color: ${newBackground.white};
+      border: 1px solid ${newBackground.orange};
+      margin: 1rem 0;
+      border-radius: 8px;
+      
+      span { 
+        font-family: "Graphie";
+        font-size: 21px;
+        line-height: 27px;
+        font-weight: 600;
+        text-transform: none;
+      }
+      
+      &:hover {
+        background-color: ${newBackground.white};
+        color: ${newBackground.orange};
+        
+      }
+      
+    }
+`
+
 export const InvoicesTimelineContainer = styled.div`
     border-radius: 4px;
 

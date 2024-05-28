@@ -1,10 +1,11 @@
 "use client"
 
-import { headerHelper, landingPageHelper } from '@/app/utils/helper/pathHelper';
+import { headerHelper, landingPageHelper, partnersPath } from '@/app/utils/helper/pathHelper';
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import NewHeader from '../new-header/NewHeader';
+import { clearPartnerName } from '@/app/utils/helper/partnerHelper';
 
 const NewLoginModal = dynamic(() => import('../new-login/NewLoginModal'), { ssr: false });
 const NewLoggedModal = dynamic(() => import('../new-header/NewLoggedModal'), { ssr: false });
@@ -18,7 +19,7 @@ export default function Header() {
 
     const mobileWidth = 900
     const isLandingPage = landingPageHelper[pathname]
-    const isPartner = pathname == "/lp/tribanco/"
+    const isPartner = partnersPath[pathname]
     const isLoggedUser = headerHelper[pathname]
 
     useEffect(() => {
@@ -49,6 +50,7 @@ export default function Header() {
                 openModal={openLoginModal}
                 isLandingPage={isLandingPage}
                 isPartner={isPartner}
+                partner={clearPartnerName(pathname)}
             />
             {openLogin && (
                 isLoggedUser ? (
