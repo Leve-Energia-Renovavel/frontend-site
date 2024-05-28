@@ -3,6 +3,7 @@
 
 import { useStoreAddress, useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser, useStoreUserEconomy } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
+import { clearStorageData } from "@/app/utils/browser/BrowserUtils";
 import { billHasToBePaid, billingStatusOptions } from "@/app/utils/form-options/billingStatusOptions";
 import { formatBrazillianDate } from "@/app/utils/formatters/dateFormatter";
 import { Typography } from "@mui/material";
@@ -16,7 +17,6 @@ import DashboardButton from "../utils/buttons/DashboardButton";
 import FormButton from "../utils/buttons/FormButton";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
 import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, MemberGetMemberContainer, NewInstallationButtonContainer, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillNotFound, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, UserEconomyNotFound, WarningsContainer, YourInfo, YourInfoContainer } from "./styles";
-import { clearBrowserData, clearStorageData } from "@/app/utils/browser/BrowserUtils";
 
 export default function DashboardMain() {
 
@@ -48,6 +48,9 @@ export default function DashboardMain() {
                 };
 
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
+
+                console.log("rsponse ===>>", response)
+
                 if (requestSuccessful(response?.status)) {
                     const consumidor = response?.data?.consumidor
                     const ciclosConsumo = response?.data?.ciclosConsumo
@@ -75,6 +78,8 @@ export default function DashboardMain() {
                         memberGetMemberCode: consumidor?.ref_code,
 
                         hasFetchedData: true,
+
+                        invoiceDate: consumidor?.dia_fatura
                     });
 
                     const updatedMainInstallation = {

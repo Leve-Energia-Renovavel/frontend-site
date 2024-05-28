@@ -20,7 +20,7 @@ export default function TimelineMain() {
     return (
         <div>
             <TimelineStyled position="right">
-                {billings.slice(1).map((invoice, index) => {
+                {billings.slice(1).reverse().map((invoice, index) => {
                     return (
                         <TimelineItemStyled key={index}>
                             <TimelineOppositeContentStyled>

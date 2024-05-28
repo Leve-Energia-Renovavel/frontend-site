@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreBillingHistory } from '@/app/hooks/useStore';
+import { useStoreBillingHistory, useStoreUser } from '@/app/hooks/useStore';
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import { Breadcrumbs, Button, FormControl, InputLabel, Link, MenuItem, Select, Typography } from '@mui/material';
@@ -21,8 +21,12 @@ export default function InvoicesMain() {
     const [notifications, setNotifications] = useState([])
 
     const dateRef = useRef()
+    const store = useStoreUser()
     const storeBilling = useStoreBillingHistory().billings
     const billings = JSON.parse(localStorage.getItem('billingHistory')) || storeBilling
+
+    const user = JSON.parse(localStorage.getItem('user')) || store?.user
+    const { invoiceDate } = user?.user ?? (store?.user || {})
 
     const nextBill = billings[0]
     const nextBillExists = JSON.parse(localStorage.getItem('exists') || false);
@@ -105,7 +109,7 @@ export default function InvoicesMain() {
                                     labelId="change-invoice-date-select-label"
                                     id="demo-simple-select"
                                     label="Data do Vencimento"
-                                    defaultValue={5}
+                                    defaultValue={invoiceDate || 5}
                                     inputRef={dateRef}>
                                     <MenuItem value={5}>5</MenuItem>
                                     <MenuItem value={15}>15</MenuItem>

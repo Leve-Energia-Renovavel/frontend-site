@@ -6,7 +6,7 @@ import { LandingPageContainer as Container, MainContentContainer } from './style
 import { useState } from 'react';
 import HomeSoleBanner from '../../home/banners/HomeSoleBanner';
 import Messages from '../../messages/Messages';
-import LandingPageSolarPanelBanner from '../apresentacao/LandingPageSolarPanelBanner';
+import LandingPageInvertedSolarPanelBanner from '../banners/LandingPageInvertedSolarPanelBanner';
 import LandingPageVideo from '../apresentacao/LandingPageVideo';
 import CompanyPartnerForm from '../form/CompanyPartnerForm';
 import LandingPageCompanyMainBanner from './LandingPageCompanyMainBanner';
@@ -25,7 +25,9 @@ export default function LandingPageCompany() {
                     <LandingPageCompanyMainBanner />
                     <CompanyPartnerForm />
                 </MainContentContainer>
-                <LandingPageSolarPanelBanner />
+
+                <LandingPageInvertedSolarPanelBanner />
+
                 <BrandsContainer />
                 <LandingPageVideo />
                 <HomeSoleBanner />

@@ -38,6 +38,8 @@ export const useStoreUser = create((set) => ({
         hasSyncDistributorData: false,
 
         memberGetMemberCode: "",
+
+        invoiceDate: 0
     },
     updateUser: (newUser) =>
         set((state) => ({

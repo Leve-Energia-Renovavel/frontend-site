@@ -89,3 +89,19 @@ export const lpPresentationVisionBoxes = [
         description: "Trabalhamos para garantir soluções eficientes, com economia de verdade."
     },
 ]
+
+export const landingPageCompanyPresentationBoxes = [
+    {
+        icon: appTapIcon,
+        description: "Energia para o seu negócio",
+    },
+    {
+        icon: engineerIcon,
+        description: "Energia para os seus colaboradores",
+    },
+    {
+        icon: solarEnergyIcon,
+        description: "Energia para os seus clientes",
+    },
+
+]

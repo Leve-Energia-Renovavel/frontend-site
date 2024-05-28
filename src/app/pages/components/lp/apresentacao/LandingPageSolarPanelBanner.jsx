@@ -6,6 +6,7 @@ import infoJson from "../../../../../../public/lp-presentation-info.json";
 import sunImage from "../../../../../resources/icons/small/ellipse-small.webp";
 import { SecondSectionBox, SecondSectionBoxesContainer, SecondSectionButton, SecondSectionContainer, SecondSectionContent, SecondSectionContentTitleContainer, SecondSectionTitleContainer } from './styles';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
+
 export default function LandingPageSolarPanelBanner() {
 
     const router = useRouter()
