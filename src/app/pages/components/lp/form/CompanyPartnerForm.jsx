@@ -1,6 +1,5 @@
 import { partnerTokens } from '@/app/utils/helper/partnerHelper';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import HomeIcon from '@mui/icons-material/Home';
 import { TextField } from "@mui/material";
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -18,10 +17,7 @@ import {
     FormSlider, FormTitleContainer,
     HomeFormContainer,
     HomeMainFormSimulationContainer,
-    Loading,
-    FormSelect as Select,
-    UserTypeFormButtonContainer,
-    UserTypeFormContainer
+    Loading
 } from "./styles";
 
 export default function CompanyPartnerForm({ setErrorMessage, setNotifications }) {
@@ -74,27 +70,22 @@ export default function CompanyPartnerForm({ setErrorMessage, setNotifications }
                     <TextField
                         inputRef={nameRef}
                         className="homeFormInput"
-                        label={`Nome Completo`}
-                        placeholder={`Nome Completo`}
+                        label={`Nome do Responsável`}
+                        placeholder={`Nome do Responsável`}
                         variant="outlined"
                         type="text"
                         disabled={isLoading}
                         required
                     />
-                    <InputMask mask="(99) 99999-9999"
-                        disabled={isLoading}>
-                        {() => <TextField
-                            className="homeFormInput"
-                            inputRef={phoneRef}
-                            label={`Telefone (com DDD)`}
-                            placeholder={`Telefone`}
-                            variant="outlined"
-                            type="text"
-                            inputProps={{ inputMode: 'numeric' }}
-                            disabled={isLoading}
-                            required
-                        />}
-                    </InputMask>
+                    <TextField
+                        className="homeFormInput"
+                        inputRef={corporateNameRef}
+                        label={`Empresa`}
+                        placeholder={`Empresa`}
+                        variant="outlined"
+                        type="text"
+                        disabled={isLoading}
+                        required />
                     <TextField
                         className="homeFormInput"
                         inputRef={emailRef}
@@ -105,26 +96,20 @@ export default function CompanyPartnerForm({ setErrorMessage, setNotifications }
                         disabled={isLoading}
                         required
                     />
-                    <TextField
-                        className="homeFormInput"
-                        inputRef={corporateNameRef}
-                        label={`E-mail Corporativo `}
-                        placeholder={`E-mail Corporativo`}
-                        variant="outlined"
-                        type="text"
-                        disabled={isLoading}
-                        required />
-
-                    <UserTypeFormContainer>
-                        <p className='chooseWhereToEconomy'>{texts.iWantToEconomy}</p>
-                        <UserTypeFormButtonContainer className='formButtonContainer'>
-                            <Select
-                                startIcon={<HomeIcon />}
-                                selected>
-                                {texts.house}
-                            </Select>
-                        </UserTypeFormButtonContainer>
-                    </UserTypeFormContainer>
+                    <InputMask mask="(99) 99999-9999"
+                        disabled={isLoading}>
+                        {() => <TextField
+                            className="homeFormInput"
+                            inputRef={phoneRef}
+                            label={`Celular (com DDD)`}
+                            placeholder={`Celular (com DDD)`}
+                            variant="outlined"
+                            type="text"
+                            inputProps={{ inputMode: 'numeric' }}
+                            disabled={isLoading}
+                            required
+                        />}
+                    </InputMask>
                     <FormFooterContainer >
                         <InputMask mask="99999-999" disabled={isLoading}>
                             {() => <TextField
