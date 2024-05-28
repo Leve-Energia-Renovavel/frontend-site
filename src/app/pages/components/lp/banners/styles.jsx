@@ -268,7 +268,7 @@ export const SecondSectionContent = styled.div`
     
     background-image: url(${props => props.image.src});
     background-repeat: no-repeat;
-    background-position: top;
+    background-position: 40% 0%;
     background-size: 600px; 
 
     .mobileButton { 

@@ -4,10 +4,10 @@ import dynamic from 'next/dynamic';
 import { LandingPageContainer as Container, MainContentContainer } from './styles';
 
 import { useState } from 'react';
-import HomeSoleBanner from '../../home/banners/HomeSoleBanner';
+import HomeInvertedSoleBanner from '../../home/banners/sole/HomeInvertedSoleBanner';
 import Messages from '../../messages/Messages';
-import LandingPageInvertedSolarPanelBanner from '../banners/LandingPageInvertedSolarPanelBanner';
 import LandingPageVideo from '../apresentacao/LandingPageVideo';
+import LandingPageInvertedSolarPanelBanner from '../banners/LandingPageInvertedSolarPanelBanner';
 import CompanyPartnerForm from '../form/CompanyPartnerForm';
 import LandingPageCompanyMainBanner from './LandingPageCompanyMainBanner';
 
@@ -30,7 +30,7 @@ export default function LandingPageCompany() {
 
                 <BrandsContainer />
                 <LandingPageVideo />
-                <HomeSoleBanner />
+                <HomeInvertedSoleBanner />
 
                 <Messages notifications={notifications} errors={errors} setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
             </Container>

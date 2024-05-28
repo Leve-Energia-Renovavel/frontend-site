@@ -2,9 +2,9 @@
 
 
 import Image from 'next/image';
-import infoJson from '../../../../../../public/home-info.json';
-import soleImage from "../../../../../resources/icons/large/sole-icon-large.webp";
-import { HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionSubTitle, HomeThirdSectionTitleContainer } from '../styles';
+import infoJson from '../../../../../../../public/home-info.json';
+import soleImage from "../../../../../../resources/icons/large/sole-icon-large.webp";
+import { HomeThirdSectionContainer, HomeThirdSectionSoleContainer, HomeThirdSectionSubTitle, HomeThirdSectionTitleContainer } from './styles';
 
 const texts = infoJson
 

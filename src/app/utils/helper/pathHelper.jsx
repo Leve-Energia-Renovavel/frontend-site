@@ -22,6 +22,7 @@ export const headerHelper = {
     '/lp/': false,
     '/lp/novos-clientes/': false,
     '/lp/apresentacao/': false,
+    '/lp/empresas/': false,
     '/lp/tribanco/': false,
     '/lp/tim/': false,
     '/lp/martins/': false,
@@ -42,6 +43,7 @@ export const landingPageHelper = {
     '/lp/': true,
     '/lp/novos-clientes/': true,
     '/lp/apresentacao/': true,
+    '/lp/empresas/': true,
     '/lp/tribanco/': true,
     '/lp/tim/': true,
     '/lp/martins/': true,
@@ -61,6 +63,7 @@ export const helperToPath = {
     '/lp/martins/': "na+landing+page+da+Martins",
     '/lp/yduqs/': "na+landing+page+da+Yduqs",
     '/lp/localiza/': "na+landing+page+da+Localiza",
+    '/lp/empresas/': "na+landing+page+para+Empresas",
     '/municipios-atendidos/': "na+página+de+municípios+atendidos",
     '/dashboard/': "no+painel",
     '/dashboard/profile/': "na+minha+página+de+perfil",
@@ -79,4 +82,11 @@ export const partnersPath = {
     '/lp/martins/': true,
     '/lp/yduqs/': true,
     '/lp/localiza/': true,
+}
+
+
+export const handleWhatsapp = (location) => {
+    const phone = "551131818210"
+    const url = `https://api.whatsapp.com/send/?phone=${phone}&text=Oi!+Estou+${location}+da+Leve+Energia+e+tenho+uma+d%C3%BAvida%E2%80%A6&type=phone_number&app_absent=0`
+    window.open(url, '_blank', 'noopener noreferrer');
 }
