@@ -1,13 +1,13 @@
 import { lpPresentationVisionBoxes } from '@/app/utils/helper/landingPageHelper';
 import Image from 'next/image';
-import infoJson from "../../../../../../public/lp-presentation-info.json";
+import infoJson from "../../../../../../public/info.json";
 import sectionBanner from "../../../../../resources/img/large/leve-criancas-brincando-image-box-large.webp";
 import { SixthSectionBanner, SixthSectionBox, SixthSectionBoxesContainer, SixthSectionContainer, SixthSectionContent, SixthSectionContentHeader, SixthSectionContentManifest } from './styles';
 
 
 export default function LandingPageManifestBanner() {
 
-    const texts = infoJson
+    const texts = infoJson.lp.apresentacao
 
     return (
         <SixthSectionContainer>

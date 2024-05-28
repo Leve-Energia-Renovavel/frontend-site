@@ -4,11 +4,12 @@ import { handleWhatsapp, helperToPath } from '@/app/utils/helper/pathHelper';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import infoJson from '../../../../../../../public/home-info.json';
+import infoJson from '../../../../../../../public/info.json';
 import soleImage from "../../../../../../resources/icons/large/sole-icon-large.webp";
 import { InvertedSoleBannerContainer as Container, InvertedSoleButton } from './styles';
 
-const texts = infoJson
+const texts = infoJson.home
+
 
 export default function HomeInvertedSoleBanner() {
 

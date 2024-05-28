@@ -1,14 +1,14 @@
 "use client"
 
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
-import infoJson from '../../../../../public/home-info.json';
+import infoJson from '../../../../../public/info.json';
 import companyCardImage from "../../../../resources/img/large/leve-confraternizacao-image-large-compressed.webp";
 import homeCardImage from "../../../../resources/img/large/leve-familia-brincando-image-large-compressed.webp";
 import { HomeSecondaryImagesContainer, HomeSecondaryImagesContent } from "./styles";
 
 export default function HomeUsersType({ handlePreSignup }) {
 
-    const texts = infoJson
+    const texts = infoJson.home
 
     return (
         <HomeSecondaryImagesContainer >

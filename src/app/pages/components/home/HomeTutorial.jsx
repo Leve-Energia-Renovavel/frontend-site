@@ -5,10 +5,10 @@ import { homeTutorialCards } from '@/app/utils/helper/homeBoxesHelper';
 import { Typography } from '@mui/material';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import infoJson from '../../../../../public/home-info.json';
+import infoJson from '../../../../../public/info.json';
 import { ButtonSimulateYourEconomy, HomeFourthSectionCard as Card, HomeFourthSectionCardContainer as CardContainer, HomeFourthSectionDescription as CardDescription, HomeFourthSectionIcon as CardIcon, HomeFourthSectionTitle as CardTitle, HomeFourthSectionContainer, HomeFourthSectionTitleContainer as TitleContainer } from './styles';
 
-const texts = infoJson
+const texts = infoJson.home
 
 export default function TutorialContainer() {
 

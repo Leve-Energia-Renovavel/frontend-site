@@ -1,14 +1,14 @@
 "use client"
 
 import { Typography } from "@mui/material";
-import infoJsonLp from '../../../../../../public/lp-info.json';
+import infoJsonLp from '../../../../../../public/info.json';
 import bannerImage from "../../../../../resources/img/large/leve-paineis-solares-filtro-grao-image-large-reduced.webp";
 import BoxesContainer from '../LandingPageBoxes';
 import { SecondSectionBanner, SecondSectionContainer } from "./styles";
 
 export default function LandingPageSecondaryBanner() {
 
-    const lpTexts = infoJsonLp
+    const texts = infoJsonLp.lp.novosClientes
 
     const handlePreSignup = () => {
         const element = document.getElementById('leadForm');
@@ -24,9 +24,9 @@ export default function LandingPageSecondaryBanner() {
         <SecondSectionContainer image={bannerImage} className="sectionContainer">
             <BoxesContainer />
             <SecondSectionBanner>
-                <Typography className='bannerTitle'>{lpTexts.seeHowItsLeve}</Typography>
-                <Typography className='bannerDescription'>{lpTexts.callToActionButtonTitle}</Typography>
-                <Typography className='simulateButton' onClick={() => handlePreSignup()}>{lpTexts.simulateNow}</Typography>
+                <Typography className='bannerTitle'>{texts.seeHowItsLeve}</Typography>
+                <Typography className='bannerDescription'>{texts.callToActionButtonTitle}</Typography>
+                <Typography className='simulateButton' onClick={() => handlePreSignup()}>{texts.simulateNow}</Typography>
             </SecondSectionBanner>
         </SecondSectionContainer>
     )

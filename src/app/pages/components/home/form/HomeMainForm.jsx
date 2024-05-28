@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
-import infoJson from '../../../../../../public/home-info.json';
+import infoJson from '../../../../../../public/info.json';
 import economyIcon from "../../../../../resources/icons/small/economy-icon-small.png";
 import { schemaValidation } from '../schema';
 import { requestValidation } from '../validation';
@@ -30,7 +30,7 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
     const cepRef = useRef()
     const couponRef = useRef()
 
-    const texts = infoJson
+    const texts = infoJson.home
 
     const handleSelect = (userType) => {
         setSelectedUserType(userType);

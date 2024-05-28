@@ -1,14 +1,9 @@
 import { landingPageCompanyPresentationBoxes } from '@/app/utils/helper/landingPageHelper';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import infoJson from "../../../../../../public/lp-presentation-info.json";
 import sunImage from "../../../../../resources/icons/small/ellipse-small.webp";
 import { SecondSectionBox, SecondSectionBoxesContainer, SecondSectionContainer, SecondSectionContent, SecondSectionContentTitleContainer, SecondSectionFooter, SecondSectionFooterButton, SecondSectionTitleContainer } from './styles';
 
 export default function LandingPageInvertedSolarPanelBanner() {
-
-    const router = useRouter()
-    const texts = infoJson
 
     return (
         <SecondSectionContainer>

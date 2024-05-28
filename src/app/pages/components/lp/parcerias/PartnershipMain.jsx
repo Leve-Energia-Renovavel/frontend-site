@@ -25,7 +25,6 @@ export default function PartnershipMain() {
 
     const pathname = usePathname()
 
-
     return (
         <>
             <Container className="partnershipContainer">

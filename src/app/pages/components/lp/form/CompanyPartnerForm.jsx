@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
-import infoJson from '../../../../../../public/home-info.json';
+import infoJson from '../../../../../../public/info.json';
 import economyIcon from "../../../../../resources/icons/small/economy-icon-small.png";
 import { requestValidation } from '../../home/validation';
 import { partnerSchemaValidation } from './schema';
@@ -33,7 +33,7 @@ export default function CompanyPartnerForm({ setErrorMessage, setNotifications }
     const phoneRef = useRef()
     const cepRef = useRef()
 
-    const texts = infoJson
+    const texts = infoJson.home
 
     const handleSubmit = async (event) => {
         event.preventDefault()
