@@ -1,22 +1,36 @@
 "use client"
 
 import dynamic from 'next/dynamic';
-import { LandingPageContainer as Container } from './styles';
+import { LandingPageContainer as Container, MainContentContainer } from './styles';
 
+import { useState } from 'react';
 import HomeSoleBanner from '../../home/banners/HomeSoleBanner';
+import Messages from '../../messages/Messages';
 import LandingPageSolarPanelBanner from '../apresentacao/LandingPageSolarPanelBanner';
 import LandingPageVideo from '../apresentacao/LandingPageVideo';
+import CompanyPartnerForm from '../form/CompanyPartnerForm';
+import LandingPageCompanyMainBanner from './LandingPageCompanyMainBanner';
 
 const BrandsContainer = dynamic(() => import('../../home/HomeBrands'), { ssr: false });
 
 export default function LandingPageCompany() {
+
+    const [errors, setErrorMessage] = useState([]);
+    const [notifications, setNotifications] = useState([])
+
     return (
         <>
             <Container>
+                <MainContentContainer className="mainContentContainer">
+                    <LandingPageCompanyMainBanner />
+                    <CompanyPartnerForm />
+                </MainContentContainer>
                 <LandingPageSolarPanelBanner />
                 <BrandsContainer />
                 <LandingPageVideo />
                 <HomeSoleBanner />
+
+                <Messages notifications={notifications} errors={errors} setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
             </Container>
         </>
     )
