@@ -28,7 +28,13 @@ export const requestValidation = async (response, setNotifications, setErrorMess
     else if (response?.message === "Seu consumo já é leve") {
         router.push(`/fail/low-cost`)
     }
+    else if (response?.message === "Consumo Baixo") {
+        router.push(`/fail/low-cost`)
+    }
     else if (response?.message === "Fora de rateio") {
+        router.push(`/fail/out-of-range`)
+    }
+    else if (response?.message === "A leve não chegou a sua região") {
         router.push(`/fail/out-of-range`)
     }
     else if (response?.message === "Cupom inválido") {
