@@ -1,5 +1,4 @@
-import dynamic from 'next/dynamic';
-const NewSuccessMain = dynamic(() => import("../../pages/components/new-success/NewSuccessMain"), { ssr: false });
+import NewSuccessMain from "@/app/pages/components/new-success/NewSuccessMain";
 
 export default function SuccessPage() {
     return (

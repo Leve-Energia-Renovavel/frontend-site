@@ -1,5 +1,4 @@
-import dynamic from "next/dynamic";
-const NewContractSignature = dynamic(() => import("../../pages/components/new-contract-signature/NewContractSignature"), { ssr: false });
+import NewContractSignature from "@/app/pages/components/new-contract-signature/NewContractSignature";
 
 export default function ContractSignaturePage() {
     return (

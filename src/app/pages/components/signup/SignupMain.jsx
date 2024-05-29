@@ -7,13 +7,13 @@ import { clearBrowserData } from '@/app/utils/browser/BrowserUtils';
 import { formatBasicBirthDate } from '@/app/utils/date/DateUtils';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import dynamic from 'next/dynamic';
 import { notFound, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { SignUpContainer as Container } from './styles';
 
 import NewResultEconomy from '../new-result-economy/NewResultEconomy';
-import SignupForm from './forms/SignupForm';
-// const NewResultEconomy = dynamic(() => import('../new-result-economy/NewResultEconomy'), { ssr: false });
+const SignupForm = dynamic(() => import('./forms/SignupForm'), { ssr: false });
 
 export default function SignupMain() {
 
@@ -37,14 +37,12 @@ export default function SignupMain() {
 
             try {
                 const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
-                console.log(userResponse)
                 if (requestSuccessful(userResponse?.status)) {
 
-                    const instalacao = userResponse?.data?.instalacao
-                    const distribuidora = userResponse?.data?.distribuidora
+                    const { instalacao, distribuidora } = userResponse?.data
                     const consumidor = userResponse?.data?.instalacao?.consumidor
 
-                    const cep = consumidor.cep
+                    const cep = consumidor?.cep
 
                     const updatedUser = {
                         name: consumidor?.nome + " " + consumidor?.sobrenome,
@@ -52,7 +50,7 @@ export default function SignupMain() {
                         email: consumidor?.email,
                         cost: instalacao?.valor_base_consumo,
                         cep: cep,
-                        coupon: consumidor?.ref_origin, 
+                        coupon: consumidor?.ref_origin,
                         couponValue: userResponse?.data?.desconto_bruto,
 
                         cpf: consumidor?.cpf !== "" ? consumidor.cpf : "",
