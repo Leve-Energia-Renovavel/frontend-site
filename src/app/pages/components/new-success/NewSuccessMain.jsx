@@ -14,7 +14,7 @@ export default function NewSuccessMain() {
     const router = useRouter()
     const store = useStoreUser()
 
-    const user = JSON.parse(localStorage.getItem('user')) || store.user
+    const user = JSON.parse(window.localStorage.getItem('user')) || store?.user
     const { uuid } = user?.user ?? (store?.user || {})
 
     if (!uuid || uuid == "undefined") {

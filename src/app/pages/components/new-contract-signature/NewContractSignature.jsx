@@ -21,7 +21,7 @@ export default function NewContractSignature() {
     const store = useStoreUser()
     const storeClicksign = useStoreClickSign()
 
-    const user = JSON.parse(localStorage.getItem('user')) || store.user
+    const user = JSON.parse(window.localStorage.getItem('user')) || store?.user
     const { uuid, phone } = user?.user ?? (store?.user || {})
 
     if (!uuid || uuid == "undefined") {
