@@ -1,19 +1,7 @@
 import { newBackground } from "@/app/pages/styles";
-import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";
 
-const fadeInUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
 
 export const LandingPageContainer = styled.div`
     display: flex;
@@ -21,8 +9,7 @@ export const LandingPageContainer = styled.div`
     
     background-color: ${newBackground.white};
     
-    /* max-width: 1920px; */
-    max-width: 1366px;
+    max-width: 1920px;
     margin: 74px auto 0 auto;   //margin-top for header
     padding: 0 3rem;
     
@@ -201,6 +188,10 @@ export const SecondSectionContainer = styled.div`
     flex-direction: column;
     justify-content: space-between;
     background-color: ${newBackground.green};
+
+    width: 100%;
+    max-width: 1366px;
+    margin: 0 auto;
 
     border-bottom: 1px solid ${newBackground.orange};
     border-right: 1px solid ${newBackground.orange};

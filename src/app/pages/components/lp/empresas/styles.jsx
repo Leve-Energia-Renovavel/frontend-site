@@ -1,4 +1,4 @@
-import { newBackground, partners } from "@/app/pages/styles";
+import { newBackground } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
 export const LandingPageContainer = styled.div`
@@ -7,10 +7,10 @@ export const LandingPageContainer = styled.div`
     
     background-color: ${newBackground.white};
     
-    /* max-width: 1920px; */
-    max-width: 1366px;
+    max-width: 1920px;
+    /* max-width: 1366px; */
+    /* padding: 0 3rem; */
     margin: 74px auto 0 auto;   //margin-top for header
-    padding: 0 3rem;
     
     @media (max-width: 600px) {
       padding: 0;
@@ -21,6 +21,10 @@ export const MainContentContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: stretch;
+
+    width: 100%;
+    max-width: 1366px;
+    margin: 0 auto;
 
     padding-bottom: 8px;
     gap: 1rem;

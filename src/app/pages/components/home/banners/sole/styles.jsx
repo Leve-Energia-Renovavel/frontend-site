@@ -137,7 +137,7 @@ export const InvertedSoleBannerContainer = styled.div`
   margin: 0 auto;
 
   width: 100%;
-  max-width: 1197px;
+  max-width: 1366px;
   min-height: 300px;
   
   .invertedSoleBannerTitle {

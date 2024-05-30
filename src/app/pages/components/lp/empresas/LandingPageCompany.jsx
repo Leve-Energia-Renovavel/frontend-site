@@ -10,6 +10,7 @@ import LandingPageVideo from '../apresentacao/LandingPageVideo';
 import LandingPageInvertedSolarPanelBanner from '../banners/LandingPageInvertedSolarPanelBanner';
 import CompanyPartnerForm from '../form/CompanyPartnerForm';
 import LandingPageCompanyMainBanner from './LandingPageCompanyMainBanner';
+import EconomyTable from '../tables/EconomyTable';
 
 const BrandsContainer = dynamic(() => import('../../home/HomeBrands'), { ssr: false });
 
@@ -31,6 +32,8 @@ export default function LandingPageCompany() {
                 <BrandsContainer />
                 <LandingPageVideo />
                 <HomeInvertedSoleBanner />
+
+                <EconomyTable />
 
                 <Messages notifications={notifications} errors={errors} setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
             </Container>
