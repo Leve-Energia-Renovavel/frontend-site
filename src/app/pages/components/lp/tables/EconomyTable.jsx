@@ -1,23 +1,23 @@
 import Image from 'next/image'
 import economyIcon from '../../../../../resources/icons/small/leve-economia-icone-green-small.svg'
-import { CardDividerOne, CardDividerTwo, EconomyTableContainer as Container, EconomyTableContent, EconomyTableTitleContainer, TableCardContainer, TableCardOne, TableCardThree, TableCardTitle, TableCardTwo, TableContent, TableContentContainer, TableHeaderOne, TableHeaderTwo } from './styles'
+import leveLogo from '../../../../../resources/icons/small/leve-new-logo-very-small.svg'
+import { CardDividerOne, CardDividerTwo, EconomyTableContainer as Container, EconomyTableContent, EconomyTableTitleContainer, TableCardContainer, TableCardOne, TableCardThree, TableCardTitle, TableCardTwo, TableContent, TableContentContainer, TableFooterButton, TableFooterButtonContainer, TableFooterContainer, TableFooterDescription, TableFooterDiscount, TableFooterDiscountValue, TableHeaderOne, TableHeaderTwo } from './styles'
 
 export default function EconomyTable() {
     return (
-        <Container>
-            <EconomyTableContent>
-                <EconomyTableTitleContainer>
+        <Container className='economyTableContainer'>
+            <EconomyTableContent className='economyTableContent'>
+                <EconomyTableTitleContainer className='economyTableTitleContainer'>
                     <h6 className='economyTableTitle'>Como você economiza com a Leve Energia:</h6>
                 </EconomyTableTitleContainer>
 
                 <TableContentContainer>
-
-                    <TableContent>
+                    <TableContent className='tableContent'>
                         <TableHeaderOne>
                             <p>Sem a Leve: <span className='highlighted'>R$2.524,85</span></p>
                         </TableHeaderOne>
-                        <TableCardContainer>
-                            <TableCardOne>
+                        <TableCardContainer className='tableCardContainer'>
+                            <TableCardOne className='tableCard'>
                                 <div className='cardOneContent'>
                                     <p>Consumo de energia</p>
                                     <CardDividerOne />
@@ -30,7 +30,7 @@ export default function EconomyTable() {
                                     <p>Valor Total</p>
                                 </div>
                             </TableCardOne>
-                            <TableCardTwo>
+                            <TableCardTwo className='tableCard'>
                                 <TableCardTitle>
                                     <p className='cardTitle'>Boleto da Distribuidora</p>
                                 </TableCardTitle>
@@ -54,21 +54,72 @@ export default function EconomyTable() {
                             <p>Com a Leve: <span className='highlighted'>R$2.322,74</span></p>
                         </TableHeaderTwo>
                         <TableCardContainer>
-                            <TableCardThree>
+                            <TableCardThree className='tableCard'>
                                 <TableCardTitle>
                                     <p className='boletoLeve'>Boleto</p>
+                                    <Image src={leveLogo} alt='logo Leve' priority={false} loading='lazy' className='logoLeve' />
                                 </TableCardTitle>
+                                <p className='tinyValue'>2.513kWh x <span className='highlighted'>R$0,7211</span> =</p>
+                                <p>R$322,38</p>
+                                <CardDividerTwo />
+                                <p className='thinValue'>R$0,00</p>
+                                <CardDividerTwo />
+                                <p className='thinValue'>R$0,00</p>
+                                <CardDividerTwo />
+                                <p className='thinValue'>R$0,00</p>
+                                <CardDividerTwo />
+                                <p className='boldValue'>R$1.812,12</p>
                             </TableCardThree>
-                            <TableCardThree>
+                            <p className='tableAddIcon'>+</p>
+                            <TableCardThree className='tableCard'>
                                 <TableCardTitle>
-                                    <p>NOVO Boleto da Distribuidora</p>
+                                    <p className='cardTitle'>NOVO Boleto da Distribuidora</p>
                                 </TableCardTitle>
+                                <p className='tinyValue'>100kWh x R$0,8875 =</p>
+                                <p>R$26,50</p>
+                                <CardDividerTwo />
+                                <p>R$25,39</p>
+                                <CardDividerTwo />
+                                <p>R$241,45</p>
+                                <CardDividerTwo />
+                                <p>R$180,42</p>
+                                <CardDividerTwo />
+                                <p className='boldValue'>R$510,62</p>
                             </TableCardThree>
-
                         </TableCardContainer>
                     </TableContent>
-
                 </TableContentContainer>
+                <TableFooterContainer>
+                    <TableFooterDescription>
+                        <p>Com a contratação da Leve, a CPFL passa a cobrar somente o mínimo de 100 dos 2.613 kWh que você consumiu, para que sua residência continue conectada à rede da CPFL e recebendo energia da Leve.</p>
+                    </TableFooterDescription>
+
+                    <TableFooterDiscount>
+                        <TableFooterDiscountValue>
+                            <p className='value'>8%</p>
+                            <p className='description'>de desconto</p>
+                        </TableFooterDiscountValue>
+                        <TableFooterDiscountValue>
+                            <p className='value'>R$202,11</p>
+                            <p className='description'>economia por mês</p>
+                        </TableFooterDiscountValue>
+                        <TableFooterDiscountValue>
+                            <p className='value'>R$2.425,22</p>
+                            <p className='description'>economia por ano</p>
+                        </TableFooterDiscountValue>
+                    </TableFooterDiscount>
+                </TableFooterContainer>
+                <TableFooterContainer>
+                    <TableFooterDescription>
+                        <p>R$ 2.322,74 = R$ 1.812,12 (pagos a Leve) + R$510,62 (pagos a distribuidora)</p>
+                    </TableFooterDescription>
+                    <TableFooterButtonContainer>
+                        <TableFooterButton>
+                            <span>Começe a economizar</span>
+                        </TableFooterButton>
+
+                    </TableFooterButtonContainer>
+                </TableFooterContainer>
 
             </EconomyTableContent>
 
