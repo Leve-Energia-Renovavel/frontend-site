@@ -46,18 +46,20 @@ export const HomeFormContainer = styled.div`
       background-color: ${newBackground.yellow};
     }
   }
+
+
 `
 
 export const HomeMainFormContainer = styled.div`
     background-color: ${newBackground.white};
     border: 1px solid ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
     border-radius: 15px;
-    
+
     height: auto;
     
-    @media (max-width: 600px) {
+    @media (max-width: 900px) {
       height: auto;
-      width: 92vw;
+      width: 100%;
       max-width: 100vw;
       border-radius: 0px 0px 10px 10px;
     }

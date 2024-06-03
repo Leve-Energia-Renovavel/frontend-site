@@ -46,7 +46,6 @@ export const BannerMain = styled.div`
     max-width: 1200px;
 
     padding: 3rem 1.5rem 2rem 3rem;
-
     
     background-repeat: no-repeat;
     background-size: cover; 
@@ -74,13 +73,18 @@ export const BannerMain = styled.div`
     @media (max-width: 900px) {
       padding: 1rem;
       background-position: 90% 10%;
-      width: 100vw;
-      max-width: 100vw;
+      width: 100%;
+      max-width: 94vw;
 
-      height: 70vh;
+      margin: 0 auto;
 
+      height: auto;
+      max-height: 70vh;
+
+      
       .title {
-        max-width: 220px;
+        margin-top: 240px;
+        max-width: 250px;
         font-family: "Graphie";
         font-size: 27px;
         line-height: 27px;
@@ -120,10 +124,12 @@ export const ArrowScrollerContainer = styled.div`
   }
 
   @media (max-width: 900px) {
+
     .scrollerDescription {
       white-space: wrap;
       font-size: 17px;
       line-height: 21px;
+
     }
   }
 
