@@ -1,3 +1,4 @@
+import { handleScroll } from '@/app/utils/browser/BrowserUtils'
 import Image from 'next/image'
 import economyIcon from '../../../../../resources/icons/small/leve-economia-icone-green-small.svg'
 import leveLogo from '../../../../../resources/icons/small/leve-new-logo-very-small.svg'
@@ -11,9 +12,9 @@ export default function EconomyTable() {
                     <h6 className='economyTableTitle'>Como você economiza com a Leve Energia:</h6>
                 </EconomyTableTitleContainer>
 
-                <TableContentContainer>
+                <TableContentContainer className='economyTableContentContainer'>
                     <TableContent className='tableContent'>
-                        <TableHeaderOne>
+                        <TableHeaderOne className='tableHeaderOne'>
                             <p>Sem a Leve: <span className='highlighted'>R$2.524,85</span></p>
                         </TableHeaderOne>
                         <TableCardContainer className='tableCardContainer'>
@@ -30,6 +31,11 @@ export default function EconomyTable() {
                                     <p>Valor Total</p>
                                 </div>
                             </TableCardOne>
+
+                            <TableHeaderOne className='hiddenTableHeaderOne'>
+                                <p>Sem a Leve: <span className='highlighted'>R$2.524,85</span></p>
+                            </TableHeaderOne>
+
                             <TableCardTwo className='tableCard'>
                                 <TableCardTitle>
                                     <p className='cardTitle'>Boleto da Distribuidora</p>
@@ -49,11 +55,11 @@ export default function EconomyTable() {
                     </TableContent>
 
                     <TableContent>
-                        <TableHeaderTwo>
+                        <TableHeaderTwo className='tableHeaderTwo'>
                             <Image src={economyIcon} alt='economia com a Leve' priority={false} loading='lazy' className='economyIcon' />
                             <p>Com a Leve: <span className='highlighted'>R$2.322,74</span></p>
                         </TableHeaderTwo>
-                        <TableCardContainer>
+                        <TableCardContainer className='tableCardContainer'>
                             <TableCardThree className='tableCard'>
                                 <TableCardTitle>
                                     <p className='boletoLeve'>Boleto</p>
@@ -89,12 +95,13 @@ export default function EconomyTable() {
                         </TableCardContainer>
                     </TableContent>
                 </TableContentContainer>
-                <TableFooterContainer>
-                    <TableFooterDescription>
+
+                <TableFooterContainer className='tableFooterContainer'>
+                    <TableFooterDescription className='tableFooterDescription'>
                         <p>Com a contratação da Leve, a CPFL passa a cobrar somente o mínimo de 100 dos 2.613 kWh que você consumiu, para que sua residência continue conectada à rede da CPFL e recebendo energia da Leve.</p>
                     </TableFooterDescription>
 
-                    <TableFooterDiscount>
+                    <TableFooterDiscount className='tableFooterDiscount'>
                         <TableFooterDiscountValue>
                             <p className='value'>8%</p>
                             <p className='description'>de desconto</p>
@@ -114,7 +121,7 @@ export default function EconomyTable() {
                         <p>R$ 2.322,74 = R$ 1.812,12 (pagos a Leve) + R$510,62 (pagos a distribuidora)</p>
                     </TableFooterDescription>
                     <TableFooterButtonContainer>
-                        <TableFooterButton>
+                        <TableFooterButton onClick={() => handleScroll()}>
                             <span>Começe a economizar</span>
                         </TableFooterButton>
 

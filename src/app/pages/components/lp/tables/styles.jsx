@@ -2,7 +2,6 @@ import { newBackground } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Divider } from "@mui/material";
 
-
 export const EconomyTableContainer = styled.div`
     width: 100%;
     max-width: 100vw;
@@ -13,12 +12,11 @@ export const EconomyTableContainer = styled.div`
     padding: 2rem;
 
     background-color: ${newBackground.green};
-
 `
 export const EconomyTableContent = styled.div`
     display: flex;
     flex-direction: column;
-    `
+`
 export const EconomyTableTitleContainer = styled.div`
     text-align: center;
 
@@ -31,6 +29,16 @@ export const EconomyTableTitleContainer = styled.div`
         font-weight: 600;
         color: ${newBackground.white};
     }
+
+    @media (max-width: 900px) {
+       flex-wrap: wrap;
+       margin-top: 20px;
+
+       .economyTableTitle {
+        font-size: 27px;
+        line-height: 29px;
+        }
+    }
 `
 export const TableContentContainer = styled.div`
     display: flex;
@@ -41,16 +49,21 @@ export const TableContentContainer = styled.div`
     margin: 0 auto;
 
     margin-top: 41px;
+
+    @media (max-width: 900px) {
+       flex-wrap: wrap;
+       margin-top: 0px;
+    }
 `
 export const TableContent = styled.div`
     display: flex;
     flex-direction: column;
     position: relative;
 
-
     gap: 10px;
 
-    width: 590px;
+    width: 100%;
+    max-width: 590px;
 
     .tableAddIcon {
         position: absolute;
@@ -65,11 +78,24 @@ export const TableContent = styled.div`
         max-width: 40px;
         max-height: 40px;
         
-        right: 275px;
+        right: 255px;
         top: 182px;
         color: ${newBackground.green};
         font-weight: 700;
         font-size: 30px;
+    }
+
+    @media (max-width: 900px) {
+        flex-direction: column;
+        align-items: center;
+
+        .tableHeaderOne {
+            display: none;
+        }
+        .tableAddIcon {
+            right: 135px;
+            top: 330px;
+        }
     }
 `
 export const TableHeader = styled.div`
@@ -97,12 +123,17 @@ export const TableHeaderOne = styled(TableHeader)`
     width: 287px;
 
     margin-left: auto;
-
+    
     color: ${newBackground.white};
-    `
+    
+    @media (max-width: 900px) {
+        margin-left: 0;
+    }
+`
 export const TableHeaderTwo = styled(TableHeader)`
     background-color: ${newBackground.yellow};
-    width: 590px;
+    width: 100%;
+    max-width: 590px;
     color: ${newBackground.green};
 
     .economyIcon {
@@ -110,12 +141,37 @@ export const TableHeaderTwo = styled(TableHeader)`
         height: 32px;
         margin-right: 11px;
     }
+
+    @media (max-width: 900px) {
+        padding: 0 8px;
+        max-width: max-content;
+
+        .economyIcon {
+            width: 28px;
+            height: 28px;
+            margin-right: 4px;
+        }
+    }
 `
 
 export const TableCardContainer = styled.div`
     display: flex;
     flex-direction: row;
     gap: 1rem;
+
+    .hiddenTableHeaderOne {
+        display: none;
+    }
+
+    @media (max-width: 900px) {
+        flex-direction: column;
+
+        .hiddenTableHeaderOne {
+            display: flex;
+            align-items: center;
+        }
+
+  }
 `
 
 
@@ -213,6 +269,7 @@ export const TableCardTitle = styled.div`
     padding: 1rem;
 
     .cardTitle {
+        white-space: nowrap;
         font-family: "Graphie";
         font-size: 17px;
         line-height: 21px;
@@ -257,8 +314,13 @@ export const TableFooterContainer = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    width: 1200px;
+    width: 100%;
+    max-width: 1000px;
     margin: 0 auto;
+
+    @media (max-width: 900px) {
+        flex-direction: column;
+    }
 
 `
 export const TableFooterDescription = styled.div`
@@ -273,6 +335,10 @@ export const TableFooterDescription = styled.div`
 
         max-width: 269px;
     }
+
+    @media (max-width: 900px) {
+        margin-top: 1rem;
+    }
 `
 export const TableFooterDiscount = styled.div`
     display: flex;
@@ -284,6 +350,11 @@ export const TableFooterDiscount = styled.div`
     margin-top: 30px;
 
     gap: 36px;
+
+    @media (max-width: 900px) {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 
 `
 
@@ -318,8 +389,11 @@ export const TableFooterButtonContainer = styled.div`
 
     padding: 18px;
 
-
     margin-right: 8rem;
+
+    @media (max-width: 900px) {
+        margin: 0;
+    }
 `
 export const TableFooterButton = styled.div`
     background-color: ${newBackground.yellow};

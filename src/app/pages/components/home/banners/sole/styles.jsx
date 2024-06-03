@@ -170,14 +170,38 @@ export const InvertedSoleBannerContainer = styled.div`
     width:250px;
     height:250px;
     transform: scaleX(-1);
+  }
 
-    @media (max-width: 600px) {
-      margin-top: 2rem;
-      width: 220px;
-      height: 220px;
+  @media (max-width: 900px) {
+    max-width: 92vw;
+    margin-top: 2rem;
+    height: 70vh;
+    padding: 2rem;
+    justify-content: start;
+
+    .invertedSoleBannerTitle {
+    font-size: 34px;
+    line-height: 29px;
+    }
+
+    .invertedSoleBannerSubtitle {
+      max-width: 280px;
+      text-align: center;
+    }
+    .invertedSoleBannerDescription {
+      max-width: 280px;
+      text-align: center;
+    }
+    .sole {
+      position: absolute;
+    margin-right: -4rem;
+    margin-top: 15rem;
+    width:220px;
+    height:220px;
+    transform: scaleX(-1);
     }
   }
-  `
+`
 
 export const InvertedSoleButton = styled.div`
   display: flex;
@@ -216,6 +240,14 @@ export const InvertedSoleButton = styled.div`
     color: ${newBackground.green};
   }
     
+  }
+
+  @media (max-width: 600px) {
+    span {
+      font-size: 17px;
+      white-space: nowrap;
+    font-weight: 500;
+    }
   }
 
 `

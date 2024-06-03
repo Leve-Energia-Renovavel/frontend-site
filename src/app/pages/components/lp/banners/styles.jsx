@@ -203,7 +203,10 @@ export const SecondSectionContainer = styled.div`
 
     margin-top: 1rem;
     
-    @media (max-width: 600px) {
+    @media (max-width: 900px) {
+      border-radius: 0;
+      border-width: 0px;
+
       height: auto;
       margin: -4rem 0 0 0;
   }
@@ -232,16 +235,17 @@ export const SecondSectionTitleContainer = styled.div`
         color: ${newBackground.yellow};
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 900px) {
+      padding: 2rem;
       text-align: center;
       flex-wrap: wrap;
       gap: 0px;
       margin-top: 19px;
       margin-bottom: 19px;
 
-      h3 {
-        font-size: 17px;
-        line-height: 21px;
+      h3, .yellow {
+        font-size: 27px;
+        line-height: 30px;
       }
     }
 
@@ -268,7 +272,7 @@ export const SecondSectionContent = styled.div`
     
     @media (max-width: 600px) {
       border-radius: 0px;
-      flex-wrap: wrap;
+      flex-wrap: wrap-reverse;
       height: auto;
 
       .desktopButton { 
@@ -303,22 +307,16 @@ export const SecondSectionContentTitleContainer = styled.div`
         color: ${newBackground.yellow};
     }
 
-
-
-    @media (max-width: 600px) {
+    @media (max-width: 900px) {
+      padding-bottom: 38px;
       margin: 18px auto;
-      gap: 1rem;
 
-      h4 {
+      h4, .yellow  {
         font-size: 27px;
         line-height: 30px;
         text-align: center;
       }
 
-      .arrowDownIcon {
-        display: block;
-        margin: 0 auto;
-      }
     }
 `
 export const SecondSectionBoxesContainer = styled.div`
@@ -329,9 +327,10 @@ export const SecondSectionBoxesContainer = styled.div`
     max-width: 653px;   
     
     @media (max-width: 600px) {
+      flex-wrap: wrap;
+      padding: 29px 1rem 1rem 1rem;
       gap: 1rem;
       justify-content: center;
-      margin-bottom: 1rem;
     }
 `
 export const SecondSectionFooter = styled.div`
@@ -360,7 +359,21 @@ export const SecondSectionFooter = styled.div`
         line-height: 30px;
         font-weight: 600;
         color: ${newBackground.orange};
+        border-radius: 10px;
+        padding: 0px 2px;
         background-color: ${newBackground.yellow};
+    }
+
+    @media (max-width: 900px) {
+      flex-wrap: wrap;
+      height: auto;
+      text-align: center;
+      padding: 2rem;
+
+      h3, .yellow {
+        font-size: 27px;
+        line-height: 30px;
+      }
     }
     
     `
@@ -373,7 +386,7 @@ export const SecondSectionFooterButton = styled.div`
         font-family: "Graphie";
         font-size: 21px;
         line-height: 26px;
-        font-weight: 600;
+        font-weight: 500;
         color: ${newBackground.white};
     }
     
