@@ -1,4 +1,3 @@
-import { partnerTokens } from '@/app/utils/helper/partnerHelper';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { TextField } from "@mui/material";
 import Image from 'next/image';
@@ -8,7 +7,7 @@ import InputMask from "react-input-mask";
 import infoJson from '../../../../../../public/info.json';
 import economyIcon from "../../../../../resources/icons/small/economy-icon-small.png";
 import { requestValidation } from '../../home/validation';
-import { partnerSchemaValidation } from './schema';
+import { companyPartnerSchemaValidation } from './companySchema';
 import {
     HomeMainForm as Form,
     FormButton,
@@ -41,17 +40,18 @@ export default function CompanyPartnerForm({ setErrorMessage, setNotifications }
 
         const submitData = {
             nome: nameRef.current.value,
+            nome_empresa: corporateNameRef.current.value?.toLowerCase(),
             email: emailRef.current.value?.toLowerCase(),
-            email_corporativo: corporateNameRef.current.value?.toLowerCase(),
             telefone: phoneRef.current.value,
             cep: cepRef.current.value,
             valor: simulationCost,
-            type: "PF",
+            type: "PJ",
             redirect_to: "www.leveenergia.com.br",
-            token: partnerTokens[partner]
         }
 
-        const response = await partnerSchemaValidation(submitData)
+        console.log("submitData ===>>", submitData)
+        const response = await companyPartnerSchemaValidation(submitData)
+        console.log("response ===>>", response)
         await requestValidation(response, setNotifications, setErrorMessage, router)
 
         setLoading(false)
