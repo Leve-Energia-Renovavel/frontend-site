@@ -14,17 +14,24 @@ export const FooterMainContent = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    @media (max-width: 900px) {
+        flex-wrap: wrap;
+    }
 `
 export const FooterMainInfo = styled.div`
     display: flex;
     flex-direction: row;
-
+    
     .logoLeve {
         width: 100%;
         height: auto;
-
     }
-
+    
+    @media (max-width: 900px) {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
    
 `
 export const PrivacyPolicyAndHelp = styled.div`
@@ -48,17 +55,25 @@ export const PrivacyPolicyAndHelp = styled.div`
             text-decoration: underline;
         }
     }
+
+    @media (max-width: 900px) {
+        margin: 1rem 0;
+    }
 `
 export const SocialMediaContainer = styled.div`
     display: flex;
     flex-direction: row;
 
     gap: 10px;
-
+    
     .socialIcon {
         width: 30px;
         height: 30px;
         color: ${newBackground.orange};
+    }
+    
+    @media (max-width: 900px) {
+        margin: 0 auto;
     }
 `
 export const FooterRightsReserved = styled.div`
@@ -72,5 +87,18 @@ export const FooterRightsReserved = styled.div`
         line-height: 20px;
         font-weight: 600;
         color: ${newBackground.orange};
+    }
+    
+    @media (max-width: 900px) {
+
+        margin-left: 0;
+        margin-top: 10px;
+        margin-bottom: 50px;
+
+        text-align: center;
+
+        p {
+            font-size: 8px;
+        }
     }
 `
