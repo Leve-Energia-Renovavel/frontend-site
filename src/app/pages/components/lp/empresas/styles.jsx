@@ -9,7 +9,6 @@ export const LandingPageContainer = styled.div`
     
     max-width: 1920px;
     /* max-width: 1366px; */
-    /* padding: 0 3rem; */
     margin: 74px auto 0 auto;   //margin-top for header
     
     @media (max-width: 600px) {
@@ -17,6 +16,14 @@ export const LandingPageContainer = styled.div`
     }
 `
 
+export const Controll = styled.div`
+      padding: 0 3rem;  //margin for company table component
+
+      @media (max-width: 900px) {
+      padding: 0;
+    }
+
+`
 export const MainContentContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -25,6 +32,9 @@ export const MainContentContainer = styled.div`
     width: 100%;
     max-width: 1366px;
     margin: 0 auto;
+
+    padding: 0 3rem;  //margin for company table component
+
 
     padding-bottom: 8px;
     gap: 1rem;

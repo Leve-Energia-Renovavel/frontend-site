@@ -190,7 +190,7 @@ export const SecondSectionContainer = styled.div`
     background-color: ${newBackground.green};
 
     width: 100%;
-    max-width: 1366px;
+    max-width: 1280px;     //margin for economy table 
     margin: 0 auto;
 
     border-bottom: 1px solid ${newBackground.orange};

@@ -1,7 +1,7 @@
 "use client"
 
 import dynamic from 'next/dynamic';
-import { LandingPageContainer as Container, MainContentContainer } from './styles';
+import { LandingPageContainer as Container, Controll, MainContentContainer } from './styles';
 
 import { useState } from 'react';
 import HomeInvertedSoleBanner from '../../home/banners/sole/HomeInvertedSoleBanner';
@@ -27,11 +27,16 @@ export default function LandingPageCompany() {
                     <CompanyPartnerForm setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
                 </MainContentContainer>
 
-                <LandingPageInvertedSolarPanelBanner />
+                <Controll>
+                    <LandingPageInvertedSolarPanelBanner />
+                </Controll>
 
                 <BrandsContainer />
                 <LandingPageVideo />
-                <HomeInvertedSoleBanner />
+
+                <Controll>
+                    <HomeInvertedSoleBanner />
+                </Controll>
 
                 <EconomyTable />
 
