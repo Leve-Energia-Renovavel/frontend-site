@@ -29,3 +29,7 @@ export const socialMedia = [
         icon: <YouTubeIcon className="socialIcon" />
     },
 ]
+
+export const footerBasedOn = {
+    "/lp/empresas/": true
+}

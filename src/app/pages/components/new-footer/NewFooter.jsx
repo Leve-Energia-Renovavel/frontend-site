@@ -12,6 +12,7 @@ import { FooterContainer as Container, FooterButton, FooterPrimaryContainer, Foo
 
 export default function NewFooter() {
 
+
   const texts = infoJson.footer
 
   const handleRedirect = (socialMedia) => {

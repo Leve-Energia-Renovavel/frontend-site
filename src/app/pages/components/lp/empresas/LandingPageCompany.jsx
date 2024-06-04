@@ -9,8 +9,8 @@ import Messages from '../../messages/Messages';
 import LandingPageVideo from '../apresentacao/LandingPageVideo';
 import LandingPageInvertedSolarPanelBanner from '../banners/LandingPageInvertedSolarPanelBanner';
 import CompanyPartnerForm from '../form/CompanyPartnerForm';
-import LandingPageCompanyMainBanner from './LandingPageCompanyMainBanner';
 import EconomyTable from '../tables/EconomyTable';
+import LandingPageCompanyMainBanner from './LandingPageCompanyMainBanner';
 
 const BrandsContainer = dynamic(() => import('../../home/HomeBrands'), { ssr: false });
 
@@ -24,7 +24,7 @@ export default function LandingPageCompany() {
             <Container>
                 <MainContentContainer className="mainContentContainer">
                     <LandingPageCompanyMainBanner />
-                    <CompanyPartnerForm />
+                    <CompanyPartnerForm setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
                 </MainContentContainer>
 
                 <LandingPageInvertedSolarPanelBanner />

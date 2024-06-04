@@ -40,7 +40,7 @@ export default function CompanyPartnerForm({ setErrorMessage, setNotifications }
 
         const submitData = {
             nome: nameRef.current.value,
-            nome_empresa: corporateNameRef.current.value?.toLowerCase(),
+            nome_empresa: corporateNameRef.current.value,
             email: emailRef.current.value?.toLowerCase(),
             telefone: phoneRef.current.value,
             cep: cepRef.current.value,

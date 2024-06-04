@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import { SignUpContainer as Container } from './styles';
 
 import NewResultEconomy from '../new-result-economy/NewResultEconomy';
+import { checkForCompanyName } from '@/app/utils/company/CompanyUtils';
 const SignupForm = dynamic(() => import('./forms/SignupForm'), { ssr: false });
 
 export default function SignupMain() {
@@ -39,6 +40,8 @@ export default function SignupMain() {
                 const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
                 if (requestSuccessful(userResponse?.status)) {
 
+                    console.log("userResponse ==>>", userResponse)
+
                     const { instalacao, distribuidora } = userResponse?.data
                     const consumidor = userResponse?.data?.instalacao?.consumidor
 
@@ -59,7 +62,7 @@ export default function SignupMain() {
 
                         isCompany: consumidor?.type == "PJ" ? true : false,
                         cnpj: consumidor?.type == "PJ" ? instalacao?.cnpj : "",
-                        companyName: consumidor?.type == "PJ" ? instalacao?.razao_social : "",
+                        companyName: consumidor?.type == "PJ" ? checkForCompanyName(instalacao?.razao_social, instalacao?.nome) : "",
 
                         nationality: consumidor?.nacionalidade,
                         profession: consumidor?.profissao,
