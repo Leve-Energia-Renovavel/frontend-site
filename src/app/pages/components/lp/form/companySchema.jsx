@@ -1,4 +1,4 @@
-import { startSignUpForPartners } from '@/app/service/lead-service/LeadService';
+import { startSignUp } from '@/app/service/lead-service/LeadService';
 import * as yup from 'yup';
 
 const nameRegex = /^[a-zA-Z\u00C0-\u017F\s]+$/;
@@ -6,7 +6,7 @@ const nameRegex = /^[a-zA-Z\u00C0-\u017F\s]+$/;
 export const companyPartnerSchemaValidation = async (data) => {
     const response = await companyPartnerLeadSchema.validate(data, { abortEarly: false })
         .then(async () => {
-            return await startSignUpForPartners(data)
+            return await startSignUp(data)
 
         })
         .catch((error) => {

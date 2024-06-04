@@ -1,4 +1,3 @@
-import { partnerTokens } from "@/app/utils/helper/partnerHelper";
 import axios from "axios";
 
 export const startSignUp = async (data) => {
