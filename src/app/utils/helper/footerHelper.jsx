@@ -31,5 +31,9 @@ export const socialMedia = [
 ]
 
 export const footerBasedOn = {
-    "/lp/empresas/": true
+    "/lp/empresas/": true,
+    "/dashboard/": true,
+    "/dashboard/profile/": true,
+    "/dashboard/installations/": true,
+    "/dashboard/invoices/": true
 }

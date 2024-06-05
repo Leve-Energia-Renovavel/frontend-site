@@ -49,14 +49,9 @@ export default function DashboardMain() {
 
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
 
-                console.log("rsponse ===>>", response)
-
                 if (requestSuccessful(response?.status)) {
-                    const consumidor = response?.data?.consumidor
-                    const ciclosConsumo = response?.data?.ciclosConsumo
-                    const instalacao = response?.data?.instalacao
+                    const { consumidor, ciclosConsumo, instalacao, economia } = response?.data
                     const outrasInstalacoes = response?.data?.outras_instalacoes
-                    const economia = response?.data?.economia
                     const carbonCredits = response?.data?.co_dois
                     const receivedCredits = response?.data?.creditos_recebidos
 
@@ -250,7 +245,7 @@ export default function DashboardMain() {
                         <>
                             {isLoading ? <SkeletonDiv className="grid-item" /> :
                                 (<NextBillNotFound className="loaded-grid-item">
-                                    <Typography className="nextBillNotFound">Não há dados de faturamento</Typography>
+                                    <Typography className="nextBillNotFound">Não há dados da próxima fatura</Typography>
                                 </NextBillNotFound>)}
                         </>
                     }

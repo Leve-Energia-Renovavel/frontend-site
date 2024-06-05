@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreInstallations } from "@/app/hooks/useStore";
+import { useStoreInstallations, useStoreMainInstallation } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { findCityIdByName } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
@@ -20,6 +21,7 @@ import { ButtonContainer, InstallationsMainContainer as Container, FormContentNe
 
 export default function InstallationsMain() {
 
+    const storeMainInstallation = useStoreMainInstallation()
     const storeInstallations = useStoreInstallations()
     const allInstallations = JSON.parse(localStorage.getItem('installations')) || storeInstallations.installations
     const installations = allInstallations.installations
@@ -159,8 +161,71 @@ export default function InstallationsMain() {
     }
 
     useEffect(() => {
+        const fetchInstallationsData = async () => {
+            try {
+                const headers = {
+                    "Authorization": `Bearer ${Cookies.get('accessToken')}`
+                };
 
-    }, [stateValue])
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
+
+                if (requestSuccessful(response?.status)) {
+                    const { consumidor, instalacao } = response?.data
+                    const outrasInstalacoes = response?.data?.outras_instalacoes
+
+                    const updatedMainInstallation = {
+                        id: instalacao?.id,
+                        uuid: instalacao?.uuid,
+                        address: instalacao?.nome,
+                        street: instalacao?.nome,
+                        number: instalacao?.numero,
+                        cityId: instalacao?.cidade_id,
+                        stateId: instalacao?.estado_id,
+                        neighborhood: instalacao?.bairro,
+                        complement: instalacao?.complemento,
+                        zipCode: instalacao?.cep,
+                        amount: instalacao?.valor_base_consumo,
+                        dueDate: consumidor?.dia_fatura,
+                        status: instalacao?.situacao,
+                        installationNumber: instalacao?.numero_instalacao,
+
+                        percentageAllocatedEnergy: instalacao?.porcentagem_energia_alocada,
+                        kwhContracted: instalacao?.kwh_contratado,
+                        discount: instalacao?.desconto,
+
+                        clientId: instalacao?.clientes_id,
+                        isSelected: instalacao?.selecionada,
+                        status: instalacao?.status
+                    }
+
+                    storeMainInstallation.updateMainInstallation(updatedMainInstallation)
+                    storeInstallations.addInstallation(updatedMainInstallation);
+
+                    outrasInstalacoes?.forEach(installation => {
+                        const otherInstallation = {
+                            uuid: installation?.uuid,
+                            address: installation?.endereco,
+                            neighborhood: installation?.bairro,
+                            number: installation?.numero,
+                            zipCode: installation?.cep,
+                            cityId: installation?.cidade_id,
+                            stateId: installation?.estado_id,
+                            status: installation?.situacao,
+                            installationNumber: installation?.numero_instalacao,
+                        }
+
+                        storeInstallations.addInstallation(otherInstallation);
+                    });
+
+                } else {
+                    console.error("Failed to fetch installations data");
+                }
+            } catch (error) {
+                console.error("Error fetching installations data:", error);
+            }
+        };
+        fetchInstallationsData();
+    }, []);
 
     return (
         <Container>

@@ -3,6 +3,7 @@
 import { useStoreCompany, useStoreMainInstallation, useStoreUser } from "@/app/hooks/useStore";
 import { FormContent, FormLastRow, FormRow } from "@/app/register/forms/register-form/styles";
 import { requestSuccessful } from "@/app/service/utils/Validations";
+import { awaitSeconds } from "@/app/utils/browser/BrowserUtils";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { maritalStatusOptions, nationalityOptions, professionOptions } from "@/app/utils/form-options/formOptions";
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -10,6 +11,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Breadcrumbs, IconButton, InputAdornment, Link, MenuItem, Snackbar, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import { newBackground } from "../../styles";
@@ -23,6 +25,7 @@ export default function ProfileMain() {
     const [validationErrors, setValidationErrors] = useState([])
     const [notifications, setNotifications] = useState([])
 
+    const router = useRouter()
     const store = useStoreUser()
     const storeCompany = useStoreCompany()
     const storeMainInstallation = useStoreMainInstallation()
@@ -33,8 +36,8 @@ export default function ProfileMain() {
 
     const isCompany = user?.user?.isCompany
 
-    const { name, email, phone, rg, cpf, cep, birthDate, companyName, nationality, maritalStatus, profession, secondaryEmail } = user?.user ?? (store?.user || {})
-    const { address, number, cityId, city, neighborhood, complement, stateId, street, zipCode, installationNumber } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+    const { name, email, phone, rg, cpf, cep, birthDate, nationality, maritalStatus, profession, secondaryEmail } = user?.user ?? (store?.user || {})
+    const { address, number, city, neighborhood, complement, stateId, installationNumber } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
     const secondaryEmailRef = useRef(null)
     const oldPasswordRef = useRef(null)
@@ -88,6 +91,8 @@ export default function ProfileMain() {
                 const response = await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/add-secondary-email`, data, { headers })
                 if (requestSuccessful(response.status)) {
                     setNotifications([response.data.message])
+                    await awaitSeconds(3)
+                    router.push("/dashboard/")
                 }
 
             } catch (error) {
