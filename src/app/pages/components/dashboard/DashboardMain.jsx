@@ -4,6 +4,7 @@
 import { useStoreAddress, useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser, useStoreUserEconomy } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { clearStorageData } from "@/app/utils/browser/BrowserUtils";
+import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
 import { billHasToBePaid, billingStatusOptions } from "@/app/utils/form-options/billingStatusOptions";
 import { formatBrazillianDate } from "@/app/utils/formatters/dateFormatter";
 import { Typography } from "@mui/material";
@@ -63,6 +64,7 @@ export default function DashboardMain() {
                         cost: instalacao?.valor_base_consumo,
                         cep: consumidor?.cep,
                         discount: instalacao?.desconto,
+                        birthDate: consumidor?.data_nascimento ? formatBasicBirthDate(consumidor?.data_nascimento) : "",
 
                         cpf: consumidor?.cpf,
                         cost: consumidor?.valor,
