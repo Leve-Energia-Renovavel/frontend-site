@@ -195,6 +195,7 @@ export const TableCardOne = styled(TableCard)`
     width: 287px;
     
     p, span {
+        white-space: nowrap;
         font-family: "Graphie";
         font-size: 17px;
         line-height: 21px;
@@ -241,6 +242,10 @@ export const TableCardTwo = styled(TableCard)`
     }
     .boldValue {
         font-weight: 800;
+    }
+
+    .churros {
+        margin-right: auto;
     }
 `
 export const TableCardThree = styled(TableCard)`

@@ -9,6 +9,11 @@ export const FooterContainer = styled.div`
     padding: 1rem 2rem;
 
     min-height: 170px;
+
+    width: 100%;
+    max-width: 1500px;
+
+    margin: 0 auto;
 `
 export const FooterMainContent = styled.div`
     display: flex;

@@ -20,13 +20,13 @@ export default function EconomyTable() {
                         <TableCardContainer className='tableCardContainer'>
                             <TableCardOne className='tableCard'>
                                 <div className='cardOneContent'>
-                                    <p>Consumo de energia</p>
+                                    <p>Consumo de energia ¹</p>
                                     <CardDividerOne />
-                                    <p>Outros <span className='taxes'>(Juros, multa, impostos)</span></p>
+                                    <p>Outros ²<span className='taxes'>(Juros, multa, impostos)</span></p>
                                     <CardDividerOne />
-                                    <p>Impostos não compensáveis</p>
+                                    <p>Impostos não compensáveis ³</p>
                                     <CardDividerOne />
-                                    <p>Iluminação Pública</p>
+                                    <p>Iluminação Pública ⁴</p>
                                     <CardDividerOne />
                                     <p>Valor Total</p>
                                 </div>
@@ -41,15 +41,15 @@ export default function EconomyTable() {
                                     <p className='cardTitle'>Boleto da Distribuidora</p>
                                 </TableCardTitle>
                                 <p className='tinyValue'>2.613kWh x R$0,8875 =</p>
-                                <p>R$2.319,04</p>
+                                <p>R$2.319,04 ¹</p>
                                 <CardDividerTwo />
-                                <p>R$25,39</p>
+                                <p>R$25,39 ²</p>
                                 <CardDividerTwo />
-                                <p className='thinValue'>R$0,00</p>
+                                <p className='thinValue'>R$0,00 ³</p>
                                 <CardDividerTwo />
-                                <p>R$180,42</p>
+                                <p>R$180,42 ⁴</p>
                                 <CardDividerTwo />
-                                <p className='boldValue'>R$488,96</p>
+                                <p className='boldValue'>R$2.524,85 </p>
                             </TableCardTwo>
                         </TableCardContainer>
                     </TableContent>
@@ -66,13 +66,13 @@ export default function EconomyTable() {
                                     <Image src={leveLogo} alt='logo Leve' priority={false} loading='lazy' className='logoLeve' />
                                 </TableCardTitle>
                                 <p className='tinyValue'>2.513kWh x <span className='highlighted'>R$0,7211</span> =</p>
-                                <p>R$322,38</p>
+                                <p>R$322,38 ¹</p>
                                 <CardDividerTwo />
-                                <p className='thinValue'>R$0,00</p>
+                                <p className='thinValue'>R$0,00 ²</p>
                                 <CardDividerTwo />
-                                <p className='thinValue'>R$0,00</p>
+                                <p className='thinValue'>R$0,00 ³</p>
                                 <CardDividerTwo />
-                                <p className='thinValue'>R$0,00</p>
+                                <p className='thinValue'>R$0,00 ⁴</p>
                                 <CardDividerTwo />
                                 <p className='boldValue'>R$1.812,12</p>
                             </TableCardThree>
@@ -82,13 +82,13 @@ export default function EconomyTable() {
                                     <p className='cardTitle'>NOVO Boleto da Distribuidora</p>
                                 </TableCardTitle>
                                 <p className='tinyValue'>100kWh x R$0,8875 =</p>
-                                <p>R$26,50</p>
+                                <p>R$26,50 ¹</p>
                                 <CardDividerTwo />
-                                <p>R$25,39</p>
+                                <p>R$25,39 ²</p>
                                 <CardDividerTwo />
-                                <p>R$241,45</p>
+                                <p>R$241,45 ³</p>
                                 <CardDividerTwo />
-                                <p>R$180,42</p>
+                                <p>R$180,42 ⁴</p>
                                 <CardDividerTwo />
                                 <p className='boldValue'>R$510,62</p>
                             </TableCardThree>
