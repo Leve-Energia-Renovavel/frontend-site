@@ -16,8 +16,6 @@ export default function TutorialContainer() {
     const pathname = usePathname()
     const isLP = pathname === "/lp/apresentacao/" ? true : false
 
-    console.log(pathname)
-
     const handlePreSignup = () => {
         const element = document.getElementById('leadForm');
         if (element) {

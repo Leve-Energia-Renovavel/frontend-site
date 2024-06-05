@@ -50,7 +50,7 @@ export default function PartnershipMain() {
 
                 <LandingPageContactBanner />
 
-                <LandingPageFaqBanner />
+                <LandingPageFaqBanner pathname={pathname} />
 
             </Container>
 
