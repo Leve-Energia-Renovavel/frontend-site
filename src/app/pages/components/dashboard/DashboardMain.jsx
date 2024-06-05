@@ -57,7 +57,7 @@ export default function DashboardMain() {
                     const receivedCredits = response?.data?.creditos_recebidos
 
                     storeUser.updateUser({
-                        name: consumidor?.nome,
+                        name: consumidor?.nome + " " + consumidor?.sobrenome,
                         phone: consumidor?.telefone,
                         email: consumidor?.email,
                         secondaryEmail: consumidor?.email_secondary,
