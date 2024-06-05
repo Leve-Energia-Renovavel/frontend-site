@@ -183,11 +183,16 @@ export const TableCard = styled.div`
     max-width: 287px;
     height: 275px;
     border-radius: 15px;
+
+    @media (max-width: 900px) {
+        width: 287px;
+    }
 `
 
 export const TableCardOne = styled(TableCard)`
     background-color: ${newBackground.green};
     text-align: start;
+    width: 287px;
     
     p, span {
         font-family: "Graphie";
@@ -205,10 +210,19 @@ export const TableCardOne = styled(TableCard)`
         margin-top: auto;
         margin-bottom: 8px;
     }
+
+    @media (max-width: 900px) {
+        width: 100%;
+        max-width: 287px;
+    }
+
+
+
 `
 export const TableCardTwo = styled(TableCard)`
     text-align: center;
     background-color: ${newBackground.greenLight};
+
 
     p {
         font-family: "Graphie";
@@ -315,7 +329,7 @@ export const TableFooterContainer = styled.div`
     align-items: center;
 
     width: 100%;
-    max-width: 1000px;
+    max-width: 1070px;
     margin: 0 auto;
 
     @media (max-width: 900px) {
