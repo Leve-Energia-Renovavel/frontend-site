@@ -67,7 +67,8 @@ export const newBackground = {
     orangeFocused: "#FDDCCB",
     orangeTranslucent: "#FCEEE6",
     green: "#005940",
-    greenLight: "#CEDED8",
+    greenLight: "#B0CBC2",
+    greenSoft: "#81AD9F",
     white: "#FCFCFA",
     grey: "#EFEFEC",
 }

@@ -2,14 +2,15 @@ import { landingPagePresentationBoxes } from '@/app/utils/helper/landingPageHelp
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import infoJson from "../../../../../../public/lp-presentation-info.json";
+import infoJson from "../../../../../../public/info.json";
 import sunImage from "../../../../../resources/icons/small/ellipse-small.webp";
 import { SecondSectionBox, SecondSectionBoxesContainer, SecondSectionButton, SecondSectionContainer, SecondSectionContent, SecondSectionContentTitleContainer, SecondSectionTitleContainer } from './styles';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
+
 export default function LandingPageSolarPanelBanner() {
 
     const router = useRouter()
-    const texts = infoJson
+    const texts = infoJson.lp.apresentacao
 
     return (
         <SecondSectionContainer>

@@ -28,11 +28,20 @@ export const requestValidation = async (response, setNotifications, setErrorMess
     else if (response?.message === "Seu consumo já é leve") {
         router.push(`/fail/low-cost`)
     }
+    else if (response?.message === "Consumo Baixo") {
+        router.push(`/fail/low-cost`)
+    }
     else if (response?.message === "Fora de rateio") {
+        router.push(`/fail/out-of-range`)
+    }
+    else if (response?.message === "A leve não chegou a sua região") {
         router.push(`/fail/out-of-range`)
     }
     else if (response?.message === "Cupom inválido") {
         setErrorMessage(["Cupom inválido. Por favor, verifique e tente novamente"])
+    }
+    else if (response?.message === "Você não completou seu cadastro, por favor continue através do link enviado em seu e-mail") {
+        setErrorMessage(["Você não completou seu cadastro, por favor continue através do link enviado em seu e-mail"])
     }
     else if (response?.message === "Usuário existente") {
         setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])

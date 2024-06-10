@@ -11,7 +11,7 @@ const BoxesContainer = dynamic(() => import('./HomeBoxes'), { ssr: false });
 const HomeUsersType = dynamic(() => import('./HomeUsersType'), { ssr: false });
 const BrandsContainer = dynamic(() => import('./HomeBrands'), { ssr: false });
 const HomeEconomyBanner = dynamic(() => import('./banners/HomeEconomyBanner'), { ssr: false });
-const HomeSoleBanner = dynamic(() => import('./banners/HomeSoleBanner'), { ssr: false });
+const HomeSoleBanner = dynamic(() => import('./banners/sole/HomeSoleBanner'), { ssr: false });
 const TutorialContainer = dynamic(() => import('./HomeTutorial'), { ssr: false });
 const Messages = dynamic(() => import('../messages/Messages'), { ssr: false });
 

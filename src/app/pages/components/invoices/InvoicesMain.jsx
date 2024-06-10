@@ -1,13 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreBillingHistory } from '@/app/hooks/useStore';
+import { useStoreBillingHistory, useStoreNextBills, useStoreUser } from '@/app/hooks/useStore';
 import { requestSuccessful } from '@/app/service/utils/Validations';
-import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
+import { clearStorageData } from '@/app/utils/browser/BrowserUtils';
+import { billHasToBePaid, billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import { Breadcrumbs, Button, FormControl, InputLabel, Link, MenuItem, Select, Typography } from '@mui/material';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import dynamic from 'next/dynamic';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { newBackground } from '../../styles';
 import Messages from '../messages/Messages';
 import FormButton from '../utils/buttons/FormButton';
@@ -21,8 +23,18 @@ export default function InvoicesMain() {
     const [notifications, setNotifications] = useState([])
 
     const dateRef = useRef()
-    const storeBilling = useStoreBillingHistory().billings
-    const billings = JSON.parse(localStorage.getItem('billingHistory')) || storeBilling
+
+    const store = useStoreUser()
+    const storeNextBills = useStoreNextBills()
+    const storeBilling = useStoreBillingHistory()
+    
+    const billingsHistory = useStoreBillingHistory().billings
+
+    
+    const user = JSON.parse(localStorage.getItem('user')) || store?.user
+    const billings = JSON.parse(localStorage.getItem('billingHistory')) || billingsHistory
+    
+    const { invoiceDate } = user?.user ?? (store?.user || {})
 
     const nextBill = billings[0]
     const nextBillExists = JSON.parse(localStorage.getItem('exists') || false);
@@ -55,6 +67,55 @@ export default function InvoicesMain() {
 
         }
     }
+
+    useEffect(() => {
+        clearStorageData()
+        const fetchInvoicesData = async () => {
+            try {
+                const headers = {
+                    "Authorization": `Bearer ${Cookies.get('accessToken')}`
+                };
+
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
+
+                if (requestSuccessful(response?.status)) {
+                    const ciclosConsumo = response?.data?.ciclosConsumo
+
+                    ciclosConsumo?.forEach(bill => {
+                        const newBilling = {
+                            uuid: bill.uuid,
+                            installationId: bill.cliente_instalacao_id,
+
+                            energyConsumed: bill.consumo,
+                            energyInjected: bill.energia_injetada,
+                            availability: bill.disponibilidade,
+
+                            value: bill.valor_fatura,
+                            billDate: bill.data_fatura,
+                            dueDate: bill.vencimento_fatura,
+                            status: bill.pagamento_status,
+                            urlBill: bill.url_fatura,
+                            urlPayment: bill.url_pagamento,
+                        }
+                        storeBilling.addBilling(newBilling)
+
+                        if (billHasToBePaid[newBilling.status]) {
+                            storeNextBills.updateExists(true)
+                            storeNextBills.addNextBill(newBilling)
+                        }
+                    })
+
+                } else {
+                    console.error("Failed to fetch dashboard data");
+                }
+            } catch (error) {
+                console.error("Error fetching dashboard data:", error);
+            }
+        };
+
+        fetchInvoicesData();
+
+    }, []);
 
     return (
         <>
@@ -105,7 +166,7 @@ export default function InvoicesMain() {
                                     labelId="change-invoice-date-select-label"
                                     id="demo-simple-select"
                                     label="Data do Vencimento"
-                                    defaultValue={5}
+                                    defaultValue={invoiceDate || 5}
                                     inputRef={dateRef}>
                                     <MenuItem value={5}>5</MenuItem>
                                     <MenuItem value={15}>15</MenuItem>

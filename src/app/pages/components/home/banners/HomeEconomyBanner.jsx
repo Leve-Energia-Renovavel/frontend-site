@@ -2,11 +2,11 @@
 
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Typography } from '@mui/material';
-import infoJson from '../../../../../../public/home-info.json';
+import infoJson from '../../../../../../public/info.json';
 import secondBannerImage from "../../../../../resources/img/large/leve-pai-e-filho-image-large.webp";
 import { HomeFifthSectionBannerContainer as BannerContainer, HomeFifthSectionContainer as Container, HomeFifthSectionContentContainer as ContentContainer, HomeFifthSectionDescriptionContainer as DescriptionContainer, HomeFifthSectionBanner as SectionBanner, HomeFifthSectionTitleContainer as TitleContainer } from '../styles';
 
-const texts = infoJson
+const texts = infoJson.home
 
 export default function HomeEconomyBanner() {
 

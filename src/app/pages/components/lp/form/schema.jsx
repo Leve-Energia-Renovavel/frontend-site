@@ -27,11 +27,9 @@ export const partnerLeadSchema = yup.object({
             return words.length >= 2;
         }),
     email: yup.string()
-        .email('O formato do E-mail é inválido')
-        .required('O campo E-mail é obrigatório'),
+        .email('O formato do E-mail é inválido'),
     email_corporativo: yup.string()
-        .email('O formato do E-mail Corporativo é inválido')
-        .required('O campo E-mail Corporativo é obrigatório'),
+        .email('O formato do E-mail Corporativo é inválido'),
     telefone: yup.string()
         .matches(/^\(\d{2}\) \d{5}-\d{4}$/, 'O formato do Telefone é inválido')
         .required('O campo Celular é obrigatório'),

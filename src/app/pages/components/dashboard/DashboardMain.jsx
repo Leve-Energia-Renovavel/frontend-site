@@ -3,6 +3,8 @@
 
 import { useStoreAddress, useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser, useStoreUserEconomy } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
+import { clearStorageData } from "@/app/utils/browser/BrowserUtils";
+import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
 import { billHasToBePaid, billingStatusOptions } from "@/app/utils/form-options/billingStatusOptions";
 import { formatBrazillianDate } from "@/app/utils/formatters/dateFormatter";
 import { Typography } from "@mui/material";
@@ -16,7 +18,6 @@ import DashboardButton from "../utils/buttons/DashboardButton";
 import FormButton from "../utils/buttons/FormButton";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
 import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, MemberGetMemberContainer, NewInstallationButtonContainer, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillNotFound, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, UserEconomyNotFound, WarningsContainer, YourInfo, YourInfoContainer } from "./styles";
-import { clearBrowserData, clearStorageData } from "@/app/utils/browser/BrowserUtils";
 
 export default function DashboardMain() {
 
@@ -48,23 +49,22 @@ export default function DashboardMain() {
                 };
 
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
+
                 if (requestSuccessful(response?.status)) {
-                    const consumidor = response?.data?.consumidor
-                    const ciclosConsumo = response?.data?.ciclosConsumo
-                    const instalacao = response?.data?.instalacao
+                    const { consumidor, ciclosConsumo, instalacao, economia } = response?.data
                     const outrasInstalacoes = response?.data?.outras_instalacoes
-                    const economia = response?.data?.economia
                     const carbonCredits = response?.data?.co_dois
                     const receivedCredits = response?.data?.creditos_recebidos
 
                     storeUser.updateUser({
-                        name: consumidor?.nome,
+                        name: consumidor?.nome + " " + consumidor?.sobrenome,
                         phone: consumidor?.telefone,
                         email: consumidor?.email,
                         secondaryEmail: consumidor?.email_secondary,
                         cost: instalacao?.valor_base_consumo,
                         cep: consumidor?.cep,
                         discount: instalacao?.desconto,
+                        birthDate: consumidor?.data_nascimento ? formatBasicBirthDate(consumidor?.data_nascimento) : "",
 
                         cpf: consumidor?.cpf,
                         cost: consumidor?.valor,
@@ -75,6 +75,8 @@ export default function DashboardMain() {
                         memberGetMemberCode: consumidor?.ref_code,
 
                         hasFetchedData: true,
+
+                        invoiceDate: consumidor?.dia_fatura
                     });
 
                     const updatedMainInstallation = {
@@ -245,7 +247,7 @@ export default function DashboardMain() {
                         <>
                             {isLoading ? <SkeletonDiv className="grid-item" /> :
                                 (<NextBillNotFound className="loaded-grid-item">
-                                    <Typography className="nextBillNotFound">Não há dados de faturamento</Typography>
+                                    <Typography className="nextBillNotFound">Não há dados da próxima fatura</Typography>
                                 </NextBillNotFound>)}
                         </>
                     }

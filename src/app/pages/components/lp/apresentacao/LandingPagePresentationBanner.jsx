@@ -1,7 +1,7 @@
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Image from 'next/image';
-import infoJson from "../../../../../../public/lp-presentation-info.json";
+import infoJson from "../../../../../../public/info.json";
 import { LandingPageMainBanner as MainBanner, MainBannerButton, LandingPageMainContent as MainContent, MoreAboutLeveFooter } from './styles';
 import { useRouter } from 'next/navigation';
 import bannerImage from "../../../../../resources/img/large/leve-pai-e-filho-image-large-reduced.webp"
@@ -9,7 +9,7 @@ import bannerImage from "../../../../../resources/img/large/leve-pai-e-filho-ima
 export default function LandingPagePresentationBanner() {
 
     const router = useRouter()
-    const texts = infoJson
+    const texts = infoJson.lp.apresentacao
 
     const handleScroll = () => {
         const element = document.getElementById('howLeveWorks');

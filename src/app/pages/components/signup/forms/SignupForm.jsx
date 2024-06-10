@@ -18,14 +18,17 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import InfoIcon from '@mui/icons-material/Info';
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, Button, CircularProgress, MenuItem, Snackbar, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, MenuItem, Typography } from '@mui/material';
 import Cookies from 'js-cookie';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import SignupFormHeader from './SignupFormHeader';
 import { companySchema, userSchema } from './schema';
-import { FormTermsCheckbox as Checkbox, SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, FormTermsContainer, FormTermsControl, FormTitleButton, FormTitleContainer, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupLinearProgress, SnackbarMessageAlert, SnackbarMessageNotification, fileInputStyles } from './styles';
+import { FormTermsCheckbox as Checkbox, SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, FormTermsContainer, FormTermsControl, FormTitleButton, FormTitleContainer, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupLinearProgress, fileInputStyles } from './styles';
+
+import dynamic from 'next/dynamic';
+const Messages = dynamic(() => import('../../messages/Messages'), { ssr: false });
 
 export default function SignupForm() {
 
@@ -40,15 +43,15 @@ export default function SignupForm() {
   const company = useStoreCompany().company
   const isCompany = user?.user.isCompany
 
-  const { name, email, phone, cost, distributor, cpf, rg, companyName, cnpj } = user?.user ?? (store?.user || {})
-  const { street, neighborhood, city, state, stateId, cityId, cep, installationNumber } = address?.address ?? (storeAddress?.address || {})
+  const { name, email, phone, cost, distributor, companyName, cnpj } = user?.user ?? (store?.user || {})
+  const { street, neighborhood, city, state, stateId, cityId, cep } = address?.address ?? (storeAddress?.address || {})
 
   const [userCost, setUserCost] = useState(cost || null)
   const [isForeigner, setIsForeigner] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrorMessage] = useState([]);
-  const [notifications, setNotificationMessage] = useState([])
+  const [notifications, setNotifications] = useState([])
   const [stateValue, setStateValue] = useState(stateId ? stateId : stateOptions[(statesAcronymOptions[state])]);
 
   const [socialContractFile, setSocialContractFile] = useState(null);
@@ -94,7 +97,7 @@ export default function SignupForm() {
         const response = await fetchCEP(cep)
         if (requestSuccessful(response?.status)) {
           console.log(response?.data)
-          setNotificationMessage(["Endereço encontrado com sucesso!"])
+          setNotifications(["Endereço encontrado com sucesso!"])
         } else {
           setErrorMessage(["Erro ao buscar o CEP. Por favor, preencha os dados manualmente."])
         }
@@ -150,7 +153,6 @@ export default function SignupForm() {
   }
 
   const handleChangeState = (value) => {
-
     setStateValue(stateOptions[value])
     const newStateId = value
     const newStateUf = stateOptions[value].sigla
@@ -300,7 +302,7 @@ export default function SignupForm() {
 
         storeAddress.updateAddress(updatedAddress)
 
-        setNotificationMessage(["Cadastro realizado com sucesso!"])
+        setNotifications(["Cadastro realizado com sucesso!"])
         router.push(`/signup/contract-signature`)
 
       } else {
@@ -406,11 +408,11 @@ export default function SignupForm() {
                 )}
               </InputMask>
               {isForeigner ?
-                (<InputMask mask="*******-*" required defaultValue={rg || store.user.rg || ""}>
-                  {() => <FormInput inputRef={userRefs.rg} className="inputForm" label="RNE" variant="outlined" placeholder="RNE" type="text" InputLabelProps={{ shrink: true }} required />}
+                (<InputMask mask="*******-*" required defaultValue={""}>
+                  {() => <FormInput inputRef={userRefs.rg} className="inputForm" label="RNE" variant="outlined" placeholder="RNE" type="text" InputLabelProps={{ shrink: false }} required />}
                 </InputMask>)
                 :
-                (<InputMask mask="********-*" required defaultValue={rg || store.user.rg || ""}>
+                (<InputMask mask="********-*" required defaultValue={""}>
                   {() => <FormInput
                     inputRef={userRefs.rg}
                     className="inputForm"
@@ -420,11 +422,11 @@ export default function SignupForm() {
                     type="text"
                     required
                     inputProps={{ inputMode: 'numeric' }}
-                    InputLabelProps={rg || store.user.rg ? { shrink: true } : {},
-                      { style: { color: '#FF7133' } }}
+                    InputLabelProps={{ shrink: false },
+                      { style: { color: '#FF7133' } }} 
                   />}
                 </InputMask>)}
-              <InputMask mask="999.999.999-99" required defaultValue={store.user.cpf || cpf || ""}>
+              <InputMask mask="999.999.999-99" required defaultValue={""}>
                 {() => <FormInput inputRef={userRefs.cpf}
                   className="inputForm"
                   label="CPF"
@@ -433,7 +435,7 @@ export default function SignupForm() {
                   inputProps={{ inputMode: 'numeric' }}
                   type="text"
                   required
-                  InputLabelProps={cpf || store.user.cpf ? { shrink: true } : {},
+                  InputLabelProps={{ shrink: false },
                     { style: { color: '#FF7133' } }} />}
               </InputMask>
 
@@ -447,8 +449,7 @@ export default function SignupForm() {
                   type="text"
                   required
                   inputProps={{ inputMode: 'numeric' }}
-                  InputLabelProps={
-                    store.user.birthDate ? { shrink: true } : {},
+                  InputLabelProps={{ shrink: false },
                     { style: { color: '#FF7133' } }
                   }
                 />}
@@ -700,50 +701,9 @@ export default function SignupForm() {
         {isModalOpen && <InstallationNumberModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={distributor ? distributor.toLowerCase() : ""} />}
 
       </Container >
-      <>
-        {errors.map((error, index) => {
-          return (
-            <Snackbar
-              key={index}
-              open={errors.length >= 1}
-              autoHideDuration={3000}
-              message={error}
-              anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-              onClose={() => setErrorMessage([])}>
-              <SnackbarMessageAlert
-                sx={{ marginBottom: `${index * 5}rem` }}
-                severity="error"
-                variant="filled"
-                onClose={() => setErrorMessage([])}
-              >
-                {error}
-              </SnackbarMessageAlert>
-            </Snackbar>
-          )
-        })}
-      </>
-      <>
-        {notifications.map((notification, index) => {
-          return (
-            <Snackbar
-              key={index}
-              open={notifications.length >= 1}
-              autoHideDuration={6000}
-              message={notification}
-              anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-              onClose={() => setNotificationMessage([])}>
-              <SnackbarMessageNotification
-                sx={{ marginBottom: `${index * 5}rem` }}
-                severity="error"
-                variant="filled"
-                onClose={() => setNotificationMessage([])}
-              >
-                {notification}
-              </SnackbarMessageNotification>
-            </Snackbar>
-          )
-        })}
-      </>
+
+      <Messages notifications={notifications} errors={errors} setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
+
     </>
   )
 }

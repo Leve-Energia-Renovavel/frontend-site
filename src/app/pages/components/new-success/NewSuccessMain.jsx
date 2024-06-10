@@ -1,6 +1,8 @@
 "use client"
 
+import { useStoreUser } from '@/app/hooks/useStore';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
 import ConfettiExplosion from "react-confetti-explosion";
 import { NewSuccessContainer as Container, NewSuccessForm, SignupLinearProgress } from "./styles";
 
@@ -8,6 +10,16 @@ const SignupFormHeader = dynamic(() => import("../signup/forms/SignupFormHeader"
 const NewSuccessContent = dynamic(() => import('./NewSuccessFormContent'), { ssr: false });
 
 export default function NewSuccessMain() {
+
+    const router = useRouter()
+    const store = useStoreUser()
+
+    const user = JSON.parse(window.localStorage.getItem('user')) || store?.user
+    const { uuid } = user?.user ?? (store?.user || {})
+
+    if (!uuid || uuid == "undefined") {
+        router.push("/")
+    }
 
     return (
         <Container >

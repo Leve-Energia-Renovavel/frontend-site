@@ -5,14 +5,15 @@ import { linkTo, socialMedia } from '@/app/utils/helper/footerHelper';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import { IconButton, Typography } from "@mui/material";
 import Image from "next/image";
-import infoJson from '../../../../../public/footer-info.json';
+import infoJson from '../../../../../public/info.json';
 import sunImage from "../../../../resources/icons/small/ellipse-small-reduced.webp";
 import logoLeve from "../../../../resources/icons/small/leve-logo-white-icon-small.png";
 import { FooterContainer as Container, FooterButton, FooterPrimaryContainer, FooterSecondaryContainer, FooterSocialMediaContainer, MyNiceDiv } from './styles';
 
 export default function NewFooter() {
 
-  const texts = infoJson
+
+  const texts = infoJson.footer
 
   const handleRedirect = (socialMedia) => {
     window.open(linkTo[socialMedia], '_blank');

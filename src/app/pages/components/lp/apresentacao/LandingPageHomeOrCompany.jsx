@@ -1,6 +1,6 @@
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import { useRouter } from 'next/navigation';
-import infoJson from "../../../../../../public/lp-presentation-info.json";
+import infoJson from "../../../../../../public/info.json";
 import companyCardImage from "../../../../../resources/img/large/leve-confraternizacao-image-large.webp";
 import homeCardImage from "../../../../../resources/img/large/leve-familia-brincando-image-large.webp";
 import { FourthSectionImagesContainer, FourthSectionImagesContent } from './styles';
@@ -8,7 +8,7 @@ import { FourthSectionImagesContainer, FourthSectionImagesContent } from './styl
 export default function LandingPageHomeOrCompany() {
 
     const router = useRouter()
-    const texts = infoJson
+    const texts = infoJson.home
 
     return (
         <FourthSectionImagesContainer>

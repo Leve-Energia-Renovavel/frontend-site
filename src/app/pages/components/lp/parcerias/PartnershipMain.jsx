@@ -25,7 +25,6 @@ export default function PartnershipMain() {
 
     const pathname = usePathname()
 
-
     return (
         <>
             <Container className="partnershipContainer">
@@ -51,7 +50,7 @@ export default function PartnershipMain() {
 
                 <LandingPageContactBanner />
 
-                <LandingPageFaqBanner />
+                <LandingPageFaqBanner pathname={pathname} />
 
             </Container>
 
