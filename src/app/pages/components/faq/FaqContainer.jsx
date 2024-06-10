@@ -9,7 +9,7 @@ export default function FaqContainer() {
 
     return (
         <>
-            {questionsByPartner[pathname].map((question) => {
+            {questionsByPartner[pathname]?.map((question) => {
                 return (
                     <Accordion key={question.title} className='faqContainer'>
                         <AccordionSummary

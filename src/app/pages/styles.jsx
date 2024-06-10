@@ -57,7 +57,11 @@ export const partners = {
     yduqs: {
         blue: "#13284C",
         lightBlue: "#4395BA",
-    }
+    },
+    allya: {
+        pink: "#F73E6E",
+        white: "#FCFCFA"
+    },
 }
 
 export const newBackground = {
