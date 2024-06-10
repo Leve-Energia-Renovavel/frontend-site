@@ -7,7 +7,9 @@ export const HomeFormContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  width: 388px;
+  margin: 0 auto;
+
+  width: 100%;
   max-width: 388px;  
   height: auto;
 
@@ -47,7 +49,6 @@ export const HomeFormContainer = styled.div`
     }
   }
 
-
 `
 
 export const HomeMainFormContainer = styled.div`
@@ -58,6 +59,11 @@ export const HomeMainFormContainer = styled.div`
     height: auto;
     
     @media (max-width: 900px) {
+      height: auto;
+      width: 100%;
+      max-width: 100vw;
+    }
+    @media (max-width: 600px) {
       height: auto;
       width: 100%;
       max-width: 100vw;

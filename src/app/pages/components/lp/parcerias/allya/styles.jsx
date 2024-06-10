@@ -39,18 +39,21 @@ export const AllyaMain = styled.div`
     @media (max-width: 900px) {
       padding: 1rem;
       background-position: 90% 10%;
-      width: 100vw;
       max-width: 100vw;
 
       height: 70vh;
 
       .title {
-        max-width: 220px;
+        max-width: 300px;
         font-family: "Graphie";
         font-size: 27px;
         line-height: 27px;
       }
+      .titleHighlighted {
+        white-space: normal;
+      }
     }
+
 `
 
 export const ArrowScrollerContainer = styled.div`
@@ -83,6 +86,8 @@ export const ArrowScrollerContainer = styled.div`
   }
 
   @media (max-width: 900px) {
+    flex-wrap: wrap;
+    justify-content: center;
     .scrollerDescription {
       white-space: nowrap;
       font-size: 17px;

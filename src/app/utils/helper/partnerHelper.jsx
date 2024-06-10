@@ -34,6 +34,7 @@ export const partnerTokens = {
     "loreal": process.env.NEXT_PUBLIC_LOREAL_TOKEN,
     "localiza": process.env.NEXT_PUBLIC_LOCALIZA_TOKEN,
     "martins": process.env.NEXT_PUBLIC_MARTINS_TOKEN,
+    "allya": process.env.NEXT_PUBLIC_ALLYA_TOKEN,
 }
 
 export const partners = {
