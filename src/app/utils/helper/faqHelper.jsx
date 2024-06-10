@@ -106,6 +106,7 @@ export const questionsByPartner = {
     "/lp/tribanco/": defaultQuestions,
     "/lp/martins/": defaultQuestions,
     "/lp/yduqs/": defaultQuestions,
+    "/lp/allya/": defaultQuestions,
     "/lp/novos-clientes/": defaultQuestions,
     "/lp/apresentacao/": defaultQuestions,
     "/lp/localiza/": defaultQuestions,

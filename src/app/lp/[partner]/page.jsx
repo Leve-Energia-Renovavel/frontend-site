@@ -7,6 +7,7 @@ export function generateStaticParams() {
         { params: { partner: 'localiza' } },
         { params: { partner: 'yduqs' } },
         { params: { partner: 'tim' } },
+        { params: { partner: 'allya' } },
     ];
 }
 

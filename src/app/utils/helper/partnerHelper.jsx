@@ -7,6 +7,8 @@ import TribancoSectionBanner from "@/app/pages/components/lp/parcerias/tribanco/
 import YduqsMainBanner from "@/app/pages/components/lp/parcerias/yduqs/YduqsMainBanner";
 import Image from "next/image";
 
+import AllyaMainBanner from "@/app/pages/components/lp/parcerias/allya/AllyaMainBanner";
+import AllyaSectionBanner from "@/app/pages/components/lp/parcerias/allya/AllyaSectionBanner";
 import LocalizaSectionBanner from "@/app/pages/components/lp/parcerias/localiza/LocalizaSectionBanner";
 import MartinsSectionBanner from "@/app/pages/components/lp/parcerias/martins/MartinsSectionBanner";
 import YduqsSectionBanner from "@/app/pages/components/lp/parcerias/yduqs/YduqsSectionBanner";
@@ -59,5 +61,10 @@ export const partners = {
         mainBanner: <MartinsMainBanner />,
         section: <MartinsSectionBanner />,
         logo: <Image src={martinsLogo} className='martinsLogo' alt={"Logo Martins"} priority={false} />
+    },
+    "allya": {
+        mainBanner: <AllyaMainBanner />,
+        section: <AllyaSectionBanner />,
+        logo: <Image src={yduqsLogo} className='partnerLogo' alt={"Logo Yduqs"} priority={false} />
     },
 }
