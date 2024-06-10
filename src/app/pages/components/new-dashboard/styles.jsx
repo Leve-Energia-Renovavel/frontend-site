@@ -32,6 +32,8 @@ export const NewDashboardContent = styled.div`
     max-width: 900px;
 
     margin-left: 100px;
+
+    gap: 60px;
 `
 export const NewDashboardMainContent = styled.div`
     display: flex;

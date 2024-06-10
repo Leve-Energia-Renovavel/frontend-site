@@ -22,8 +22,6 @@ export default function DashboardInvoices() {
 
   const lastBill = nextBills[nextBills.length - 1]
 
-  console.log("nextBills ===>>", nextBills)
-
   useEffect(() => {
     const fetchInvoicesData = async () => {
 
@@ -35,8 +33,6 @@ export default function DashboardInvoices() {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
         if (requestSuccessful(response?.status)) {
           const ciclosConsumo = response?.data?.ciclosConsumo
-
-
           ciclosConsumo?.forEach(bill => {
             const newBilling = {
               uuid: bill.uuid,
@@ -80,7 +76,7 @@ export default function DashboardInvoices() {
         <NextBillsContainer>
           {isLoading ?
             <DashboardInvoicesDummy />
-            : billings.slice(-2).map((bill) => {
+            : billings?.slice(-2)?.map((bill) => {
               return (
                 <NextBill key={bill.uuid}>
                   <h6 className='billDate'>{bill.billDate}</h6>

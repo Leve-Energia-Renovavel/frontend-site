@@ -6,7 +6,9 @@ export default function DashboardHistory() {
     <Container>
       <h2 className='myHistory'>Histórico de Consumo</h2>
       <Content>
+        
         <NewHistoryChart />
+
         <HistoryDivider />
         <HistoryChartLegend>
           <LegendCarrier className='legend'>Concessionária</LegendCarrier>

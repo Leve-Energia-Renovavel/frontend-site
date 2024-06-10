@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { newBackground } from '../../styles';
 
 export default function NewHistoryChart() {
+
     const billings = useStoreBillingHistory().billings
 
     const [isMobile, setIsMobile] = useState(false);
@@ -32,7 +33,7 @@ export default function NewHistoryChart() {
 
 
     // Aggregate data by dueDate
-    const aggregatedData = billings.reduce((acc, curr) => {
+    const aggregatedData = billings?.reduce((acc, curr) => {
         const { dueDate, value } = curr;
         acc[dueDate] = (acc[dueDate] || 0) + parseFloat(value.replace(',', '.'));
         return acc;
@@ -50,9 +51,9 @@ export default function NewHistoryChart() {
         <>
             <BarChart
                 colors={[newBackground.green]}
-                xAxis={[{ scaleType: 'band', position: 'left', data: chartData.map(item => item.category) }]}
+                xAxis={[{ scaleType: 'band', position: 'left', data: chartData?.map(item => item.category) }]}
                 yAxis={[{ position: 'left' }]}
-                series={[{ data: chartData.map(item => item.value) }]}
+                series={[{ data: chartData?.map(item => item.value) }]}
                 width={200}
                 height={200}
             />
