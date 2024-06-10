@@ -5,12 +5,12 @@ import { newBackground } from '../../styles';
 
 export default function NewHistoryChart() {
 
-    const billings = useStoreBillingHistory().billings
+    const billings = useStoreBillingHistory().billings;
 
     const [isMobile, setIsMobile] = useState(false);
     const [windowWidth, setWindowWidth] = useState(0);
 
-    const mobileWidth = 900
+    const mobileWidth = 900;
     var chartWidth = windowWidth / 3;
 
     if (isMobile) {
@@ -21,7 +21,7 @@ export default function NewHistoryChart() {
         const handleResize = () => {
             const windowSize = window.innerWidth <= mobileWidth;
             if (windowSize !== isMobile) setIsMobile(windowSize);
-            setWindowWidth(window.innerWidth)
+            setWindowWidth(window.innerWidth);
         };
 
         window.addEventListener('resize', handleResize);
@@ -31,32 +31,37 @@ export default function NewHistoryChart() {
         };
     }, [isMobile]);
 
+    let chartData = [];
 
-    // Aggregate data by dueDate
-    const aggregatedData = billings?.reduce((acc, curr) => {
-        const { dueDate, value } = curr;
-        acc[dueDate] = (acc[dueDate] || 0) + parseFloat(value.replace(',', '.'));
-        return acc;
-    }, {});
+    if (billings && billings.length > 0) {
+        const aggregatedData = billings.reduce((acc, curr) => {
+            const { dueDate, value } = curr;
+            acc[dueDate] = (acc[dueDate] || 0) + parseFloat(value.replace(',', '.'));
+            return acc;
+        }, {});
 
-    // Convert aggregated data into arrays for chart
-    const chartData = Object.keys(aggregatedData)
-        .slice(-12)
-        .map(dueDate => ({
-            category: dueDate,
-            value: aggregatedData[dueDate]
-        }));
+        chartData = Object.keys(aggregatedData)
+            .slice(-12)
+            .map(dueDate => ({
+                category: dueDate,
+                value: aggregatedData[dueDate]
+            }));
+    }
 
     return (
         <>
-            <BarChart
-                colors={[newBackground.green]}
-                xAxis={[{ scaleType: 'band', position: 'left', data: chartData?.map(item => item.category) }]}
-                yAxis={[{ position: 'left' }]}
-                series={[{ data: chartData?.map(item => item.value) }]}
-                width={200}
-                height={200}
-            />
+            {billings && billings.length === 0 ? (
+                <p>Carregando...</p>
+            ) : (
+                <BarChart
+                    colors={[newBackground.green]}
+                    xAxis={[{ scaleType: 'band', position: 'left', data: chartData.map(item => item.category) }]}
+                    yAxis={[{ position: 'left' }]}
+                    series={[{ data: chartData.map(item => item.value) }]}
+                    width={chartWidth}
+                    height={200}
+                />
+            )}
         </>
     );
 }

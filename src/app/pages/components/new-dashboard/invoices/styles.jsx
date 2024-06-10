@@ -29,6 +29,8 @@ export const DashboardInvoicesContent = styled.div`
     background-color: ${newBackground.white};
     border-radius: 15px;
 
+    margin-top: auto;
+
     padding: 0 1rem;
 
     width: 100%;

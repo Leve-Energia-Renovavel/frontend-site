@@ -1,12 +1,15 @@
 import NewHistoryChart from '../../charts/NewHistoryChart'
 import { DashboardHistoryContainer as Container, DashboardHistoryContent as Content, HistoryChartLegend, HistoryDetail, HistoryDetailContent, HistoryDetailFooter, HistoryDetailFooterHeader, HistoryDetailHeader, HistoryDetailValue, HistoryDivider, LegendCarrier, LegendDue, LegendExpired, LegendPaid } from './styles'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+
+
 export default function DashboardHistory() {
+
   return (
     <Container>
       <h2 className='myHistory'>Histórico de Consumo</h2>
       <Content>
-        
+
         <NewHistoryChart />
 
         <HistoryDivider />

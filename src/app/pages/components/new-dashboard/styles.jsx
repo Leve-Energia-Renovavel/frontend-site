@@ -26,7 +26,6 @@ export const NewDashboardSideBar = styled.div`
 export const NewDashboardContent = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: aliceblue;
 
     width: 100%;
     max-width: 900px;
