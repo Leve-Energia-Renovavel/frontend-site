@@ -22,10 +22,10 @@ export default function FactoryContent() {
         </MainContentInfo>
 
         <CardsContainer>
-          {factoryInfos?.map((info, index) => {
+          {factoryInfos?.map((info) => {
             return (
               <MainContentCard key={info.title}>
-                <Image className='infoIcon' src={info.icon} alt={info.title + info.value} />
+                {info.icon}
                 <p className='infoTitle'>{info.title}</p>
                 <p className='infoValue'>{info.value}</p>
               </MainContentCard>

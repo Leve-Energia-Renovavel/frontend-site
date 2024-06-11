@@ -62,6 +62,8 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
             submitData["matricula"] = martinsRegistrationRef.current.value
         }
 
+        console.log("submitData ==>>", submitData)
+
         const response = await partnerSchemaValidation(submitData)
         await requestValidation(response, setNotifications, setErrorMessage, router)
 

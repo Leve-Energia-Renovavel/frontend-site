@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import { NewDashboardSideBar as SideBar } from './styles';
+import DashboardMemberGetMember from './side-bar/DashboardMemberGetMember';
 
 const DashboardInstallation = dynamic(() => import('./side-bar/DashboardInstallation'), { ssr: false });
 const DashboardProfile = dynamic(() => import('./side-bar/DashboardProfile'), { ssr: false });
@@ -31,6 +32,7 @@ export default function DashboardSideBar() {
                 <SideBar>
                     <DashboardProfile />
                     <DashboardInstallation />
+                    <DashboardMemberGetMember />
                     <DashboardMenu />
                 </SideBar>}
         </>

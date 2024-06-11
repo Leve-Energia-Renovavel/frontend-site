@@ -156,8 +156,8 @@ export default function NewDashboardMain() {
         <>
             <Container className='container'>
                 <DashboardSideBar className="sideBar" />
-                <Content>
-                    <MainContent>
+                <Content className='dashboardContent'>
+                    <MainContent className='dashboardMainContent'>
                         <DashboardInvoices />
                         <DashboardHistory />
                     </MainContent>

@@ -159,6 +159,7 @@ export const MenuOption = styled.div`
     padding: 8px;
     margin-top: 4px;
     border-radius: 10px;
+    ${props => props.highlighted ? `background-color:${newBackground.orange}` : ""};
 
     .icon {
         width: 24px;
@@ -181,7 +182,6 @@ export const MenuOption = styled.div`
         line-height: 21px;
         font-weight: 500;
         color: ${newBackground.white};
-
     }
 
     .couponValue {

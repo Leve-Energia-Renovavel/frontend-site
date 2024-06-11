@@ -110,7 +110,6 @@ export const CardsContainer = styled.div`
     flex-wrap: wrap;
 
     gap: 1rem;
-
 `
 export const MainContentCard = styled.div`
     display: flex;
@@ -124,12 +123,17 @@ export const MainContentCard = styled.div`
 
     gap: 10px;
 
-    .infoIcon {
-        width: 100%;
-        max-width: 32px;
+    .iconHeight {
         height: 100%;
-        max-height: 32px;
+        max-width: 27px;
+        width: auto;
     }
+    .iconWidth {
+        width: 100%;
+        max-width: 40px;
+        height: auto;
+    }
+
     .infoTitle {
         font-family: "Graphie";
         font-size: 17px;

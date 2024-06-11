@@ -70,15 +70,15 @@ export default function DashboardInvoices() {
   }, []);
 
   return (
-    <Container>
+    <Container className='dashboardInvoicesContainer'>
       <h2 className='myInvoices'>Minhas Faturas</h2>
-      <Content>
-        <NextBillsContainer>
+      <Content className='dashboardInvoicesContent'>
+        <NextBillsContainer className='nextBillsContainer'>
           {isLoading ?
             <DashboardInvoicesDummy />
             : billings?.slice(-2)?.map((bill) => {
               return (
-                <NextBill key={bill.uuid}>
+                <NextBill key={bill.uuid} className='nextBill'>
                   <h6 className='billDate'>{bill.billDate}</h6>
                   <NextBillInfo status={bill.status}>
                     <h6 className='value'>R$ {bill.value}</h6>
