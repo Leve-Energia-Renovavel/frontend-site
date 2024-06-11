@@ -36,7 +36,7 @@ export default function DashboardMain() {
     const nextBills = useStoreNextBills().nextBills
     const billings = useStoreBillingHistory().billings
 
-    const nextBill = nextBills[nextBills.length - 1] 
+    const nextBill = nextBills[nextBills.length - 1]
 
     const [isLoading, setIsLoading] = useState(true)
 
@@ -124,28 +124,26 @@ export default function DashboardMain() {
                     });
 
                     ciclosConsumo?.forEach(bill => {
-                        const newBilling = {
-                            uuid: bill.uuid,
-                            installationId: bill.cliente_instalacao_id,
+                        if (bill?.send === 1) {
+                            const newBilling = {
+                                uuid: bill.uuid,
+                                installationId: bill.cliente_instalacao_id,
 
-                            energyConsumed: bill.consumo,
-                            energyInjected: bill.energia_injetada,
-                            availability: bill.disponibilidade,
+                                energyConsumed: bill.consumo,
+                                energyInjected: bill.energia_injetada,
+                                availability: bill.disponibilidade,
 
-                            value: bill.valor_fatura,
-                            billDate: bill.data_fatura,
-                            dueDate: bill.vencimento_fatura,
-                            status: bill.pagamento_status,
-                            urlBill: bill.url_fatura,
-                            urlPayment: bill.url_pagamento,
-                        }
-                        storeBilling.addBilling(newBilling)
+                                value: bill.valor_fatura,
+                                billDate: bill.data_fatura,
+                                dueDate: bill.vencimento_fatura,
+                                status: bill.pagamento_status,
+                                urlBill: bill.url_fatura,
+                                urlPayment: bill.url_pagamento,
+                            }
+                            storeBilling.addBilling(newBilling)
 
-
-                        if (billHasToBePaid[newBilling.status]) {
-                            storeNextBills.updateExists(true)
-
-                            if (bill.send === 1) {
+                            if (billHasToBePaid[newBilling.status]) {
+                                storeNextBills.updateExists(true)
                                 storeNextBills.addNextBill(newBilling)
                             }
                         }

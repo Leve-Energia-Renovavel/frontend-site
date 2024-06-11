@@ -27,13 +27,13 @@ export default function InvoicesMain() {
     const store = useStoreUser()
     const storeNextBills = useStoreNextBills()
     const storeBilling = useStoreBillingHistory()
-    
+
     const billingsHistory = useStoreBillingHistory().billings
 
-    
+
     const user = JSON.parse(localStorage.getItem('user')) || store?.user
     const billings = JSON.parse(localStorage.getItem('billingHistory')) || billingsHistory
-    
+
     const { invoiceDate } = user?.user ?? (store?.user || {})
 
     const nextBill = billings[0]
@@ -82,26 +82,28 @@ export default function InvoicesMain() {
                     const ciclosConsumo = response?.data?.ciclosConsumo
 
                     ciclosConsumo?.forEach(bill => {
-                        const newBilling = {
-                            uuid: bill.uuid,
-                            installationId: bill.cliente_instalacao_id,
+                        if (bill?.send === 1) {
+                            const newBilling = {
+                                uuid: bill.uuid,
+                                installationId: bill.cliente_instalacao_id,
 
-                            energyConsumed: bill.consumo,
-                            energyInjected: bill.energia_injetada,
-                            availability: bill.disponibilidade,
+                                energyConsumed: bill.consumo,
+                                energyInjected: bill.energia_injetada,
+                                availability: bill.disponibilidade,
 
-                            value: bill.valor_fatura,
-                            billDate: bill.data_fatura,
-                            dueDate: bill.vencimento_fatura,
-                            status: bill.pagamento_status,
-                            urlBill: bill.url_fatura,
-                            urlPayment: bill.url_pagamento,
-                        }
-                        storeBilling.addBilling(newBilling)
+                                value: bill.valor_fatura,
+                                billDate: bill.data_fatura,
+                                dueDate: bill.vencimento_fatura,
+                                status: bill.pagamento_status,
+                                urlBill: bill.url_fatura,
+                                urlPayment: bill.url_pagamento,
+                            }
+                            storeBilling.addBilling(newBilling)
 
-                        if (billHasToBePaid[newBilling.status]) {
-                            storeNextBills.updateExists(true)
-                            storeNextBills.addNextBill(newBilling)
+                            if (billHasToBePaid[newBilling.status]) {
+                                storeNextBills.updateExists(true)
+                                storeNextBills.addNextBill(newBilling)
+                            }
                         }
                     })
 
