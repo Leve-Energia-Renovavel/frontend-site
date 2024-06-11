@@ -36,7 +36,7 @@ export default function DashboardMain() {
     const nextBills = useStoreNextBills().nextBills
     const billings = useStoreBillingHistory().billings
 
-    const nextBill = nextBills[0]
+    const nextBill = nextBills[nextBills.length - 1] 
 
     const [isLoading, setIsLoading] = useState(true)
 
@@ -141,9 +141,13 @@ export default function DashboardMain() {
                         }
                         storeBilling.addBilling(newBilling)
 
+
                         if (billHasToBePaid[newBilling.status]) {
                             storeNextBills.updateExists(true)
-                            storeNextBills.addNextBill(newBilling)
+
+                            if (bill.send === 1) {
+                                storeNextBills.addNextBill(newBilling)
+                            }
                         }
                     })
 
