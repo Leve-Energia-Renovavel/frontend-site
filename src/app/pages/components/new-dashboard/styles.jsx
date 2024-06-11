@@ -8,11 +8,14 @@ export const NewDashboardContainer = styled.div`
     background-color: ${newBackground.grey};
 
     padding: 46px 85px;
-
+    
     /* max-width: 1920px; */
     max-width: 1366px;
     margin: 74px auto;
-
+    
+    @media (max-width: 900px) {
+        padding: 1rem;
+    }
 `
 export const NewDashboardSideBar = styled.div`
     display: flex;
@@ -22,6 +25,10 @@ export const NewDashboardSideBar = styled.div`
     gap: 1rem;
 
     max-width: 287px;
+
+    @media (max-width: 900px) {
+        display: none;
+    }
 `
 export const NewDashboardContent = styled.div`
     display: flex;
@@ -31,11 +38,20 @@ export const NewDashboardContent = styled.div`
     max-width: 900px;
 
     margin-left: 100px;
-
+    
     gap: 60px;
+    
+    @media (max-width: 900px) {
+        margin-left: 0px;
+    }
 `
 export const NewDashboardMainContent = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    @media (max-width: 900px) {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
 `

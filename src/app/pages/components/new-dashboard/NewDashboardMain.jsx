@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
 import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser, useStoreUserEconomy } from '@/app/hooks/useStore';
@@ -10,11 +11,12 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
+import FactoryContent from './factory/FactoryContent';
 import DashboardHistory from './history/DashboardHistory';
 import DashboardInvoices from './invoices/DashboardInvoices';
 import { NewDashboardContainer as Container, NewDashboardContent as Content, NewDashboardMainContent as MainContent } from './styles';
-import FactoryContent from './factory/FactoryContent';
-const DashboardSideBar = dynamic(() => import('./DashboardSideBar'), { ssr: false });
+
+const DashboardSideBar = dynamic(() => import('./side-bar/DashboardSideBar'), { ssr: false });
 
 export default function NewDashboardMain() {
 

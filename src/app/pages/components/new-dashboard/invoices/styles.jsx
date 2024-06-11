@@ -22,6 +22,12 @@ export const DashboardInvoicesContainer = styled.div`
 
         margin: 12px 1rem;
     }
+
+    @media (max-width: 900px) {
+        margin: 0 auto;
+    }
+
+    
 `
 export const DashboardInvoicesContent = styled.div`
     display: flex;

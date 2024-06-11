@@ -4,9 +4,13 @@ import styled from "@emotion/styled"
 export const FactoryContainer = styled.div`
     display: flex;
     flex-direction: row;
-
+    
     background-color: ${newBackground.white};
     border-radius: 15px;
+    
+    @media (max-width: 900px) {
+        flex-direction: column-reverse;
+    }
 `
 
 
@@ -14,14 +18,14 @@ export const FactoryInfoContent = styled.div`
     display: flex;
     flex: 1;
     flex-direction: column;  
-
+    
     border-radius: 15px;
-
+    
     width: 100%;
     max-width: 287px;
-
+    
     height: auto;
-
+    
     background-image: url(${props => props.image.src});
     background-repeat: no-repeat;
     background-size: cover; 

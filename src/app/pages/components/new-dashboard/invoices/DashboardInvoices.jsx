@@ -1,14 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useStoreBillingHistory, useStoreNextBills } from '@/app/hooks/useStore';
 import { requestSuccessful } from '@/app/service/utils/Validations';
+import { billHasToBePaid, billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
-import { DashboardInvoicesContainer as Container, DashboardInvoicesContent as Content, NextBill, NextBillDivider, NextBillInfo, NextBillsContainer, NextBillsFooter, PayBillButtonContainer } from './styles';
-import { useStoreBillingHistory, useStoreNextBills } from '@/app/hooks/useStore';
-import { billHasToBePaid, billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
-import DefaultButton from '../../utils/buttons/DefaultButton';
-import DashboardInvoicesDummy from './DashboardInvoicesDummy';
 import NewDefaultButton from '../../utils/buttons/NewDefaultButton';
+import DashboardInvoicesDummy from './DashboardInvoicesDummy';
+import { DashboardInvoicesContainer as Container, DashboardInvoicesContent as Content, NextBill, NextBillDivider, NextBillInfo, NextBillsContainer, NextBillsFooter, PayBillButtonContainer } from './styles';
 
 export default function DashboardInvoices() {
 

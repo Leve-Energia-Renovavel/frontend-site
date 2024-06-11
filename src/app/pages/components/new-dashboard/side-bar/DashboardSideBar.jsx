@@ -1,11 +1,11 @@
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
-import { NewDashboardSideBar as SideBar } from './styles';
-import DashboardMemberGetMember from './side-bar/DashboardMemberGetMember';
+import { NewDashboardSideBar as SideBar } from '../styles';
+import DashboardMemberGetMember from './DashboardMemberGetMember';
 
-const DashboardInstallation = dynamic(() => import('./side-bar/DashboardInstallation'), { ssr: false });
-const DashboardProfile = dynamic(() => import('./side-bar/DashboardProfile'), { ssr: false });
-const DashboardMenu = dynamic(() => import('./side-bar/DashboardMenu'), { ssr: false });
+const DashboardInstallation = dynamic(() => import('./DashboardInstallation'), { ssr: false });
+const DashboardProfile = dynamic(() => import('./DashboardProfile'), { ssr: false });
+const DashboardMenu = dynamic(() => import('./DashboardMenu'), { ssr: false });
 
 export default function DashboardSideBar() {
 

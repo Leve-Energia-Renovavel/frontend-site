@@ -1,25 +1,43 @@
-import NewHistoryChart from '../../charts/NewHistoryChart'
-import { DashboardHistoryContainer as Container, DashboardHistoryContent as Content, HistoryChartLegend, HistoryDetail, HistoryDetailContent, HistoryDetailFooter, HistoryDetailFooterHeader, HistoryDetailHeader, HistoryDetailValue, HistoryDivider, LegendCarrier, LegendDue, LegendExpired, LegendPaid } from './styles'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { useState } from 'react';
+import NewHistoryChart from '../../charts/NewHistoryChart';
+import { AntSwitch, DashboardHistoryContainer as Container, DashboardHistoryContent as Content, DashboardHistoryTitleContainer as Header, HistoryChartLegend, HistoryDetail, HistoryDetailContent, HistoryDetailFooter, HistoryDetailFooterHeader, HistoryDetailHeader, HistoryDetailValue, HistoryDivider, LegendCarrier, LegendDue, LegendExpired, LegendPaid, DashboardHistorySwitchContainer as SwitchContainer } from './styles';
 
 
 export default function DashboardHistory() {
 
+  const [dataType, setDataType] = useState("money")
+
+  const handleDataType = () => {
+    dataType === "money" ? setDataType("energy") : setDataType("money")
+  }
+
   return (
-    <Container>
-      <h2 className='myHistory'>Histórico de Consumo</h2>
-      <Content>
+    <Container className='dashboardHistoryContainer'>
+      <Header>
+        <h2 className='myHistory'>Histórico de Consumo</h2>
+        <SwitchContainer>
+          <p className='label'>R$</p>
+          <AntSwitch onChange={() => handleDataType()} />
+          <p className='label'>kWh</p>
+        </SwitchContainer>
+      </Header>
+
+      <Content className='dashboardHistoryContent'>
 
         <NewHistoryChart />
 
         <HistoryDivider />
-        <HistoryChartLegend>
+
+        <HistoryChartLegend className='historyChartLegend'>
           <LegendCarrier className='legend'>Concessionária</LegendCarrier>
           <LegendExpired className='legend'>Fatura vencida</LegendExpired>
           <LegendDue className='legend'>Fatura em aberto</LegendDue>
           <LegendPaid className='legend'>Fatura paga</LegendPaid>
         </HistoryChartLegend>
+
         <HistoryDivider />
+
         <HistoryDetail>
           <HistoryDetailHeader>
             <p className='contractInitialDate'>Desde o início do contrato:</p>
