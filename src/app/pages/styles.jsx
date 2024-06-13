@@ -24,9 +24,14 @@ export const statusColors = {
     pendingFocus: "#ab1d13",
 }
 export const newStatusColors = {
+    due: "#FDDCCB",
+    paid: "#005940",
+    pending: "#FF7133"
+}
+export const newFontStatusColors = {
     due: "#FF7133",
     paid: "#005940",
-    pending: "#E1FF0F"
+    pending: "#FFF"
 }
 
 export const button = {

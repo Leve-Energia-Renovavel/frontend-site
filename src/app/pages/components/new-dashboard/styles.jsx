@@ -26,7 +26,7 @@ export const NewDashboardSideBar = styled.div`
 
     max-width: 287px;
 
-    @media (max-width: 900px) {
+    @media (max-width: 1300px) {
         display: none;
     }
 `
@@ -41,17 +41,19 @@ export const NewDashboardContent = styled.div`
     
     gap: 60px;
     
-    @media (max-width: 900px) {
-        margin-left: 0px;
+    @media (max-width: 1400px) {
+        margin-left: 2rem;
     }
 `
 export const NewDashboardMainContent = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
+    
+    gap: 1rem;
+    
     @media (max-width: 900px) {
-        flex-wrap: wrap;
-        gap: 1rem;
+        flex-direction: column;
+        align-items: center;
     }
 `

@@ -1,4 +1,4 @@
-import { newBackground, newStatusColors, statusColors } from "@/app/pages/styles"
+import { newBackground, newFontStatusColors, newStatusColors, statusColors } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 import Divider from '@mui/material/Divider'
 
@@ -95,6 +95,7 @@ export const NextBillInfo = styled.div`
 
         padding: 4px 5px;
         ${props => props.status ? `background-color:${newStatusColors[props.status]};` : ""};
+        ${props => props.status ? `color:${newFontStatusColors[props.status]};` : ""};
 
     }
 

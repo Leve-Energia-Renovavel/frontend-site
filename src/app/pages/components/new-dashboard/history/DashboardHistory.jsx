@@ -1,10 +1,14 @@
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useState } from 'react';
-import NewHistoryChart from '../../charts/NewHistoryChart';
+import NewHistoryEnergyChart from '../../charts/NewHistoryEnergyChart';
+import NewHistoryMoneyChart from '../../charts/NewHistoryMoneyChart';
 import { AntSwitch, DashboardHistoryContainer as Container, DashboardHistoryContent as Content, DashboardHistoryTitleContainer as Header, HistoryChartLegend, HistoryDetail, HistoryDetailContent, HistoryDetailFooter, HistoryDetailFooterHeader, HistoryDetailHeader, HistoryDetailValue, HistoryDivider, LegendCarrier, LegendDue, LegendExpired, LegendPaid, DashboardHistorySwitchContainer as SwitchContainer } from './styles';
+import { useStoreUserEconomy } from '@/app/hooks/useStore';
 
 
 export default function DashboardHistory() {
+
+  const userEconomy = useStoreUserEconomy().userEconomy
 
   const [dataType, setDataType] = useState("money")
 
@@ -25,7 +29,7 @@ export default function DashboardHistory() {
 
       <Content className='dashboardHistoryContent'>
 
-        <NewHistoryChart />
+        {dataType === "money" ? <NewHistoryMoneyChart /> : <NewHistoryEnergyChart />}
 
         <HistoryDivider />
 
@@ -41,15 +45,15 @@ export default function DashboardHistory() {
         <HistoryDetail>
           <HistoryDetailHeader>
             <p className='contractInitialDate'>Desde o início do contrato:</p>
-            <p className='initialDate'>11/12/2023</p>
+            <p className='initialDate'>{`${userEconomy.economySince ? userEconomy.economySince : `01/01/2020`}`}</p>
           </HistoryDetailHeader>
           <HistoryDetailContent>
             <HistoryDetailValue>
-              <p className='value'>625,5 KWh</p>
+              <p className='value'>{`${userEconomy.receivedCredits ? parseInt(userEconomy.receivedCredits) : `0`} kWh`}</p>
               <p className='legend'>em energia renovável</p>
             </HistoryDetailValue>
             <HistoryDetailValue>
-              <p className='valueHighlighted'>R$ 104,60</p>
+              <p className='valueHighlighted'>{`${userEconomy.value ? userEconomy.value.toString().replace('.', ',') : `R$ 0,00`}`}</p>
               <p className='legend'>a mais no seu bolso</p>
             </HistoryDetailValue>
           </HistoryDetailContent>

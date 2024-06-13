@@ -344,9 +344,9 @@ export const NewDefaultButtonStyle = styled(Button)`
         border: 1px solid ${props => hoverColor[props.variant]};
     }
         
-    @media (max-width: 1500px) {
+    /* @media (max-width: 1500px) {
         margin: 1rem;
         height: 3rem;
         padding: 1rem 3rem;
-    }
+    } */
 `;

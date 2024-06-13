@@ -3,7 +3,7 @@ import { BarChart } from '@mui/x-charts/BarChart';
 import { useEffect, useState } from 'react';
 import { newBackground } from '../../styles';
 
-export default function NewHistoryChart() {
+export default function NewHistoryEnergyChart() {
 
     const billings = useStoreBillingHistory().billings;
 
@@ -54,7 +54,7 @@ export default function NewHistoryChart() {
                 <p>Carregando...</p>
             ) : (
                 <BarChart
-                    colors={[newBackground.green]}
+                    colors={[newBackground.yellow]}
                     xAxis={[{ scaleType: 'band', position: 'left', data: chartData.map(item => item.category) }]}
                     yAxis={[{ position: 'left' }]}
                     series={[{ data: chartData.map(item => item.value) }]}

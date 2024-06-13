@@ -10,6 +10,7 @@ import { formatBrazillianDate } from '@/app/utils/formatters/dateFormatter';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import FactoryContent from './factory/FactoryContent';
 import DashboardHistory from './history/DashboardHistory';
@@ -20,6 +21,7 @@ const DashboardSideBar = dynamic(() => import('./side-bar/DashboardSideBar'), { 
 
 export default function NewDashboardMain() {
 
+    const router = useRouter()
     const storeUser = useStoreUser()
     const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
@@ -144,11 +146,12 @@ export default function NewDashboardMain() {
 
                     storeEconomy.updateUserEconomy(updatedUserEconomy)
 
-                } else {
-                    console.error("Failed to fetch dashboard data");
                 }
             } catch (error) {
                 console.error("Error fetching dashboard data:", error);
+                if (error?.response?.data?.message === "Unauthenticated.") {
+                    router.push("/login")
+                }
             }
         };
         fetchDashboardData();

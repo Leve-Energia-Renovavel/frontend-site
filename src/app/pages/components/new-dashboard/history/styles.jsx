@@ -59,6 +59,7 @@ export const DashboardHistoryContent = styled.div`
 
     width: 100%;
     max-width: 490px;
+    height: 100%;
 `
 export const HistoryDivider = styled(Divider)`
 `
@@ -122,8 +123,8 @@ export const HistoryDetailHeader = styled.div`
         font-family: "Graphie";
         font-size: 14px;
         line-height: 17px;
-        font-weight: 600;
-        color: ${newBackground.greenLight};
+        font-weight: 500;
+        color: ${newBackground.green};
     }
     `
 export const HistoryDetailContent = styled.div`

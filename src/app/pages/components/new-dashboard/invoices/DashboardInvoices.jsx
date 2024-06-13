@@ -16,10 +16,7 @@ export default function DashboardInvoices() {
   const storeNextBills = useStoreNextBills()
   const storeBilling = useStoreBillingHistory()
 
-  const nextBills = useStoreNextBills().nextBills
   const billings = useStoreBillingHistory().billings
-
-  const lastBill = nextBills[nextBills.length - 1]
 
   useEffect(() => {
     const fetchInvoicesData = async () => {
@@ -90,7 +87,7 @@ export default function DashboardInvoices() {
                   <NextBillDivider className='divider' />
                   <NextBillInfo>
                     <p className='label'>Consumo</p>
-                    <p className='info'>88,5KWh</p>
+                    <p className='info'>{parseInt(bill.energyConsumed) + " kWh"}</p>
                   </NextBillInfo>
                   <NextBillDivider className='divider' />
                 </NextBill>
