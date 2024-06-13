@@ -1,5 +1,41 @@
 import axios from "axios";
 
+export const createSignupPayload = (name, email, phone, cep, value, type, coupon) => {
+    return {
+        nome: name,
+        email: email.toLowerCase(),
+        telefone: phone,
+        cep: cep,
+        valor: value,
+        type: type,
+        cupom: coupon,
+    }
+}
+
+export const createCompanyPartnerPayload = (name, corporateName, email, phone, cep, value, type) => {
+    return {
+        nome: name,
+        nome_empresa: corporateName,
+        email: email.toLowerCase(),
+        telefone: phone,
+        cep: cep,
+        valor: value,
+        type: type,
+    }
+}
+export const createPartnerPayload = (name, corporateEmail, email, phone, cep, value, type, token) => {
+    return {
+        nome: name,
+        email_corporativo: corporateEmail,
+        email: email.toLowerCase(),
+        telefone: phone,
+        cep: cep,
+        valor: value,
+        type: type,
+        token: token
+    }
+}
+
 export const startSignUp = async (data) => {
     var response = null
     try {

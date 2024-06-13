@@ -31,6 +31,12 @@ export const requestValidation = async (response, setNotifications, setErrorMess
     else if (response?.message === "Consumo Baixo") {
         router.push(`/fail/low-cost`)
     }
+    else if (response?.message === "Tem contrato para assinar") {
+        router.push(`/signup/contract-signature`)
+    }
+    else if (response?.message === "cliente precisa assinar os contratos desta instalação") {
+        router.push(`/signup/contract-signature`)
+    }
     else if (response?.message === "Fora de rateio") {
         router.push(`/fail/out-of-range`)
     }
