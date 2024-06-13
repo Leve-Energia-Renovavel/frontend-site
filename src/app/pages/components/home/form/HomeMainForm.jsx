@@ -13,6 +13,7 @@ import economyIcon from "../../../../../resources/icons/small/economy-icon-small
 import { schemaValidation } from '../schema';
 import { requestValidation } from '../validation';
 import { HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormFooterContainer, FormSlider, FormTitleContainer, HomeFormContainer, HomeMainFormSimulationContainer, Loading, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "../styles";
+import { createSignupPayload } from '@/app/service/lead-service/LeadService';
 
 export default function HomeMainForm({ setErrorMessage, setNotifications, selectedUserType, setSelectedUserType }) {
 
@@ -39,16 +40,15 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
         event.preventDefault()
         setLoading(true)
 
-        const submitData = {
-            nome: nameRef.current.value,
-            email: emailRef.current.value?.toLowerCase(),
-            telefone: phoneRef.current.value,
-            cep: cepRef.current.value,
-            valor: simulationCost,
-            redirect_to: "www.leveenergia.com.br",
-            type: selectedUserType === "Residencia" ? "PF" : "PJ",
-            cupom: couponRef.current.value,
-        }
+        const submitData = createSignupPayload(
+            nameRef.current.value,
+            emailRef.current.value?.toLowerCase(),
+            phoneRef.current.value,
+            cepRef.current.value,
+            simulationCost,
+            selectedUserType === "Residencia" ? "PF" : "PJ",
+            couponRef.current.value,
+        )
 
         const response = await schemaValidation(submitData)
         await requestValidation(response, setNotifications, setErrorMessage, router)

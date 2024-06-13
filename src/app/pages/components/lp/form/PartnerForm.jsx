@@ -1,3 +1,4 @@
+import { createPartnerPayload } from '@/app/service/lead-service/LeadService';
 import { capitalizeFirstLetter, partnerTokens } from '@/app/utils/helper/partnerHelper';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
@@ -47,17 +48,17 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
         event.preventDefault()
         setLoading(true)
 
-        const submitData = {
-            nome: nameRef.current.value,
-            email: emailRef.current.value?.toLowerCase(),
-            email_corporativo: corporateEmailRef.current.value?.toLowerCase(),
-            telefone: phoneRef.current.value,
-            cep: cepRef.current.value,
-            valor: simulationCost,
-            type: "PF",
-            redirect_to: "www.leveenergia.com.br",
-            token: partnerTokens[partner]
-        }
+        const submitData = createPartnerPayload(
+            nameRef.current.value,
+            corporateEmailRef.current.value?.toLowerCase(),
+            emailRef.current.value?.toLowerCase(),
+            phoneRef.current.value,
+            cepRef.current.value,
+            simulationCost,
+            "PF",
+            partnerTokens[partner]
+        )
+
         if (isMartins) {
             submitData["matricula"] = martinsRegistrationRef.current.value
         }

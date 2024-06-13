@@ -1,3 +1,4 @@
+import { createSignupPayload } from '@/app/service/lead-service/LeadService';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
@@ -38,16 +39,15 @@ export default function SimulationForm({ setErrorMessage, setNotifications }) {
         event.preventDefault()
         setLoading(true)
 
-        const submitData = {
-            nome: nameRef.current.value,
-            email: emailRef.current.value?.toLowerCase(),
-            telefone: phoneRef.current.value,
-            cep: cepRef.current.value,
-            valor: simulationCost,
-            redirect_to: "www.leveenergia.com.br",
-            type: selectedUserType === "Residencia" ? "PF" : "PJ",
-            cupom: couponRef.current.value,
-        }
+        const submitData = createSignupPayload(
+            nameRef.current.value,
+            emailRef.current.value?.toLowerCase(),
+            phoneRef.current.value,
+            cepRef.current.value,
+            simulationCost,
+            selectedUserType === "Residencia" ? "PF" : "PJ",
+            couponRef.current.value,
+        )
 
         const response = await schemaValidation(submitData)
         await requestValidation(response, setNotifications, setErrorMessage, router)

@@ -423,7 +423,7 @@ export default function SignupForm() {
                     required
                     inputProps={{ inputMode: 'numeric' }}
                     InputLabelProps={{ shrink: false },
-                      { style: { color: '#FF7133' } }} 
+                      { style: { color: '#FF7133' } }}
                   />}
                 </InputMask>)}
               <InputMask mask="999.999.999-99" required defaultValue={""}>

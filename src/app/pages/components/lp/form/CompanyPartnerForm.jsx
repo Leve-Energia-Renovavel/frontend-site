@@ -1,3 +1,4 @@
+import { createCompanyPartnerPayload } from '@/app/service/lead-service/LeadService';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { TextField } from "@mui/material";
 import Image from 'next/image';
@@ -38,18 +39,16 @@ export default function CompanyPartnerForm({ setErrorMessage, setNotifications }
         event.preventDefault()
         setLoading(true)
 
-        const submitData = {
-            nome: nameRef.current.value,
-            nome_empresa: corporateNameRef.current.value,
-            email: emailRef.current.value?.toLowerCase(),
-            telefone: phoneRef.current.value,
-            cep: cepRef.current.value,
-            valor: simulationCost,
-            type: "PJ",
-            redirect_to: "www.leveenergia.com.br",
-        }
+        const submitData = createCompanyPartnerPayload(
+            nameRef.current.value,
+            corporateNameRef.current.value,
+            emailRef.current.value?.toLowerCase(),
+            phoneRef.current.value,
+            cepRef.current.value,
+            simulationCost,
+            "PJ"
+        )
 
-        console.log("submitData ===>>", submitData)
         const response = await companyPartnerSchemaValidation(submitData)
         console.log("response ===>>", response)
         await requestValidation(response, setNotifications, setErrorMessage, router)
