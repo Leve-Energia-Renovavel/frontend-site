@@ -9,7 +9,7 @@ export const ChartContainer = styled.div`
   width: 100%;
   height: 100%;
   max-width: 800px;  // Set a max-width if needed
-  max-height: 200px;  // Set a max-height if needed
+  max-height: 500px;  // Set a max-height if needed
   overflow: hidden;
 `;
 

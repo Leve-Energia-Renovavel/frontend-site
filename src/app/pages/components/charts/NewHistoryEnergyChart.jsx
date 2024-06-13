@@ -1,67 +1,68 @@
 import { useStoreBillingHistory } from '@/app/hooks/useStore';
-import { BarChart } from '@mui/x-charts/BarChart';
-import { useEffect, useState } from 'react';
-import { newBackground } from '../../styles';
+import { formatMonthAndYearInFull } from '@/app/utils/formatters/dateFormatter';
+import { Chart } from "react-google-charts";
+import { background, newBackground } from '../../styles';
 
 export default function NewHistoryEnergyChart() {
-
     const billings = useStoreBillingHistory().billings;
 
-    const [isMobile, setIsMobile] = useState(false);
-    const [windowWidth, setWindowWidth] = useState(0);
-
-    const mobileWidth = 900;
-    var chartWidth = windowWidth / 3;
-
-    if (isMobile) {
-        chartWidth = windowWidth / 1.3;
-    }
-
-    useEffect(() => {
-        const handleResize = () => {
-            const windowSize = window.innerWidth <= mobileWidth;
-            if (windowSize !== isMobile) setIsMobile(windowSize);
-            setWindowWidth(window.innerWidth);
-        };
-
-        window.addEventListener('resize', handleResize);
-        handleResize();
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, [isMobile]);
-
-    let chartData = [];
+    let data = [
+        ["", "", "", { role: "style" }]
+    ];
 
     if (billings && billings.length > 0) {
         const aggregatedData = billings.reduce((acc, curr) => {
-            const { dueDate, value } = curr;
-            acc[dueDate] = (acc[dueDate] || 0) + parseFloat(value.replace(',', '.'));
+            const { dueDate, availability, value, status } = curr;
+            const formattedDueDate = formatMonthAndYearInFull(dueDate);
+
+            if (!acc[formattedDueDate]) {
+                acc[formattedDueDate] = { availability: 0, value: 0, status: '' };
+            }
+
+            acc[formattedDueDate].availability += parseFloat(availability.replace(',', '.'));
+            acc[formattedDueDate].value += parseFloat(value.replace(',', '.'));
+            acc[formattedDueDate].status = status;
+
             return acc;
         }, {});
 
-        chartData = Object.keys(aggregatedData)
-            .slice(-12)
-            .map(dueDate => ({
-                category: dueDate,
-                value: aggregatedData[dueDate]
-            }));
+        const xAxisData = Object.keys(aggregatedData).slice(-12);
+
+        data = [
+            ["", "", "", { role: "style" }],
+            ...xAxisData.map(date => {
+                const availability = aggregatedData[date]?.availability ?? 0;
+                const value = aggregatedData[date]?.value ?? 0;
+                const status = aggregatedData[date]?.status ?? '';
+
+                let color = background.grey;;
+                if (status === 'paid') color = newBackground.green;
+                else if (status === 'due') color = newBackground.orangeLight;
+                else if (status === 'pending') color = newBackground.orange;
+
+                return [date, availability * 5, value, color];
+            })
+        ];
     }
 
+    const options = {
+        isStacked: true,
+        hAxis: {
+            minValue: 0,
+            title: '',
+        },
+        vAxis: {
+            title: '',
+        },
+        legend: { position: 'top', maxLines: 3 },
+        bar: { groupWidth: '80%' },
+    };
+
     return (
-        <>
-            {billings && billings.length === 0 ? (
-                <p>Carregando...</p>
-            ) : (
-                <BarChart
-                    colors={[newBackground.yellow]}
-                    xAxis={[{ scaleType: 'band', position: 'left', data: chartData.map(item => item.category) }]}
-                    yAxis={[{ position: 'left' }]}
-                    series={[{ data: chartData.map(item => item.value) }]}
-                    width={chartWidth}
-                    height={200}
-                />
-            )}
-        </>
+        <Chart
+            chartType="ColumnChart"
+            data={data}
+            options={options}
+        />
     );
 }
