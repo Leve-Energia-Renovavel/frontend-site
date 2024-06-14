@@ -1,68 +1,132 @@
 import { useStoreBillingHistory } from '@/app/hooks/useStore';
 import { formatMonthAndYearInFull } from '@/app/utils/formatters/dateFormatter';
-import { Chart } from "react-google-charts";
+import ReactApexChart from 'react-apexcharts';
 import { background, newBackground } from '../../styles';
 
 export default function NewHistoryEnergyChart() {
-    const billings = useStoreBillingHistory().billings;
 
-    let data = [
-        ["", "", "", { role: "style" }]
-    ];
+    const billings = useStoreBillingHistory().billings
 
-    if (billings && billings.length > 0) {
-        const aggregatedData = billings.reduce((acc, curr) => {
-            const { dueDate, availability, value, status } = curr;
-            const formattedDueDate = formatMonthAndYearInFull(dueDate);
+    console.log("billings ==>>", billings)
 
-            if (!acc[formattedDueDate]) {
-                acc[formattedDueDate] = { availability: 0, value: 0, status: '' };
-            }
+    const chartSize = -6
 
-            acc[formattedDueDate].availability += parseFloat(availability.replace(',', '.'));
-            acc[formattedDueDate].value += parseFloat(value.replace(',', '.'));
-            acc[formattedDueDate].status = status;
+    const availabilityData = billings.slice(chartSize).map((_) => 45)
+    const dueDateData = billings.slice(chartSize).map(item => formatMonthAndYearInFull(item.dueDate))
+    const valueData = billings.slice(chartSize).map(item => parseInt(item.value) / 10)
 
-            return acc;
-        }, {});
+    const colors = billings.slice(chartSize).map((_, index, arr) => {
+        return index === arr.length - 1 ? newBackground.orange : newBackground.green;
+    });
 
-        const xAxisData = Object.keys(aggregatedData).slice(-12);
 
-        data = [
-            ["", "", "", { role: "style" }],
-            ...xAxisData.map(date => {
-                const availability = aggregatedData[date]?.availability ?? 0;
-                const value = aggregatedData[date]?.value ?? 0;
-                const status = aggregatedData[date]?.status ?? '';
-
-                let color = background.grey;;
-                if (status === 'paid') color = newBackground.green;
-                else if (status === 'due') color = newBackground.orangeLight;
-                else if (status === 'pending') color = newBackground.orange;
-
-                return [date, availability * 5, value, color];
-            })
-        ];
-    }
+    const series = [{
+        name: 'availability',
+        data: availabilityData
+    }, {
+        name: 'value',
+        data: valueData
+    }]
 
     const options = {
-        isStacked: true,
-        hAxis: {
-            minValue: 0,
-            title: '',
+
+        chart: {
+            fontFamily: 'Graphie',
+            height: '100px',
+            type: 'bar',
+            stacked: true,
+            toolbar: {
+                show: true, //hidden toolbar
+                tools: {
+                    download: true,
+                    selection: true,
+                    zoom: true,
+                    zoomin: true,
+                    zoomout: true,
+                    pan: true,
+                    reset: true,
+                },
+            }
         },
-        vAxis: {
-            title: '',
+        tooltip: {
+            enabled: true,
         },
-        legend: { position: 'top', maxLines: 3 },
-        bar: { groupWidth: '80%' },
-    };
+        grid: {
+            show: false //show grid lines
+        },
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                legend: {
+                    position: 'bottom',
+                    offsetX: -10,
+                    offsetY: 0
+                }
+            }
+        }],
+        stroke: {
+            show: false,
+        },
+        plotOptions: {
+            bar: {
+                horizontal: false,
+                columnWidth: '85%',
+                borderRadius: 8,
+                borderRadiusApplication: 'end', // 'around', 'end'
+                borderRadiusWhenStacked: 'last', // 'all', 'last'
+                dataLabels: {
+                    total: {
+                        enabled: true,
+                        style: {
+                            // fontFamily: "Graphie",
+                            fontSize: '18px',
+                            fontWeight: 900,
+                            color: newBackground.green
+                        }
+                    },
+                },
+            },
+        },
+        colors: [background.grey, newBackground.green],
+        yaxis: {
+            show: false,
+        },
+        xaxis: {
+            type: 'category',
+            categories: dueDateData,
+            labels: {
+                show: true,
+                rotate: -45,
+                rotateAlways: false,
+                hideOverlappingLabels: true,
+                showDuplicates: false,
+                trim: false,
+                style: {
+                    colors: colors,
+                    fontFamily: 'Graphie',
+                    fontSize: '14px',
+                    fontWeight: 900,
+                },
+            },
+        },
+        legend: {
+            show: false,
+        },
+        fill: {
+            opacity: 1
+        }
+    }
 
     return (
-        <Chart
-            chartType="ColumnChart"
-            data={data}
-            options={options}
-        />
+        <>
+            <div id="chart">
+                <ReactApexChart
+                    options={options}
+                    series={series}
+                    type="bar"
+                    height={200}
+                />
+            </div>
+        </>
     );
-}
+};
