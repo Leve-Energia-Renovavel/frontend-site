@@ -16,6 +16,27 @@ export const ChartContainer = styled.div`
 export const BarChartWrapper = styled.div`
   width: 100%;
   height: 100%;
+
+  //chart total 
+  .apexcharts-text {
+    font-weight: 900;
+  }  
+
+  .apexcharts-xaxis-texts-g tspan {
+    font-family: "Graphie";
+    font-size: 14px;
+    font-weight: 500;
+  }  
+
+  .apexcharts-xaxis-texts-g text {
+        font-weight: 900; /* Example: setting font-weight to 900 */
+    }
+  
+  //last bar always highlighted 
+  .apexcharts-xaxis-texts-g text:nth-child(6) tspan {
+    font-weight: 900;
+  }
+
 `;
 export const ValueContainer = styled.div`
   display: flex;

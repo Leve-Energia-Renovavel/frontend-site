@@ -1,80 +1,139 @@
 import { useStoreBillingHistory } from '@/app/hooks/useStore';
 import { formatMonthAndYearInFull } from '@/app/utils/formatters/dateFormatter';
-import { BarChart } from '@mui/x-charts/BarChart';
+import ReactApexChart from 'react-apexcharts';
 import { background, newBackground } from '../../styles';
-import { BarChartWrapper, ChartContainer, ValueContainer } from './styles';
+import { BarChartWrapper } from './styles';
 
 export default function NewHistoryMoneyChart() {
 
-    const billings = useStoreBillingHistory().billings;
+    const billings = useStoreBillingHistory().billings
 
-    let availabilityData = [];
-    let valueData = [];
-    let xAxisData = [];
-    let statusData = [];
+    const chartSize = -6
 
-    if (billings && billings.length > 0) {
-        const aggregatedData = billings.reduce((acc, curr) => {
-            const { dueDate, availability, value, status } = curr;
-            const formattedDueDate = formatMonthAndYearInFull(dueDate);
+    const availabilityData = billings.slice(chartSize).map((_) => 45)
+    const dueDateData = billings.slice(chartSize).map(item => formatMonthAndYearInFull(item.dueDate))
+    const valueData = billings.slice(chartSize).map(item => parseInt(item.value))
 
-            if (!acc[formattedDueDate]) {
-                acc[formattedDueDate] = { availability: 0, value: 0, status: '' };
-            }
+    const labelColors = billings.slice(chartSize).map((_, index, arr) => {
+        return index === arr.length - 1 ? newBackground.orange : newBackground.green;
+    });
 
-            acc[formattedDueDate].availability += parseFloat(availability.replace(',', '.'));
-            acc[formattedDueDate].value += parseFloat(value.replace(',', '.'));
-            acc[formattedDueDate].status = status;
+    const series = [{
+        name: 'Energia injetada pela Distribuidora',
+        data: availabilityData,
+    }, {
+        name: 'Valor da Fatura (R$)',
+        data: valueData,
+    }]
 
-            return acc;
-        }, {});
-
-        xAxisData = Object.keys(aggregatedData).slice(-12);
-
-        availabilityData = xAxisData.map(date => aggregatedData[date].availability * 5);
-        valueData = xAxisData.map(date => aggregatedData[date].value);
-        statusData = xAxisData.map(date => aggregatedData[date].status);
-    }
-
-    const barChartsParams = {
-        series: [
-            {
-                id: 'series-2',
-                data: availabilityData,
-                stack: 'total',
-                color: background.grey
+    const options = {
+        chart: {
+            fontFamily: 'Graphie',
+            type: 'bar',
+            stacked: true,
+            toolbar: {
+                show: true, //hidden toolbar
+                tools: {
+                    download: true,
+                    selection: true,
+                    zoom: true,
+                    zoomin: true,
+                    zoomout: true,
+                    pan: true,
+                    reset: true,
+                },
             },
-            {
-                id: 'series-1',
-                data: valueData,
-                stack: 'total',
+        },
+        tooltip: {
+            enabled: true,
+        },
+        grid: {
+            show: false //show grid lines
+        },
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                legend: {
+                    position: 'bottom',
+                    offsetX: -10,
+                    offsetY: 0
+                }
+            }
+        }],
+        stroke: {
+            show: false,
+        },
+        plotOptions: {
+            bar: {
+                // distributed: true,
+                horizontal: false,
+                columnWidth: '85%',
+                borderRadius: 8,
+                borderRadiusApplication: 'end', // 'around', 'end'
+                borderRadiusWhenStacked: 'last', // 'all', 'last'
+                dataLabels: {
+                    total: {
+                        enabled: true,
+                        style: {
+                            fontFamily: "Graphie", //total style
+                            fontSize: '18px',
+                            fontWeight: 900,
+                            color: newBackground.green
+                        }
+                    },
+                },
+            },
+        },
+        dataLabels: {
+            style: {
+                fontSize: '14px',
+                fontWeight: 900,
                 color: newBackground.green
             },
-        ],
-        xAxis: [{ data: xAxisData, scaleType: 'band', id: 'axis1' }],
-    };
+        },
+        colors: [background.grey, (item) => {
+            const bill = billings.slice(chartSize)[item.dataPointIndex];
+            if (bill.status === "paid") return newBackground.green;
+            if (bill.status === "due") return newBackground.orange;
+            if (bill.status === "pending") return newBackground.orangeFocused;
+            return newBackground.green;
+        }],
+        yaxis: {
+            show: false,
+        },
+        xaxis: {
+            type: 'category',
+            categories: dueDateData,
+            labels: {
+                show: true,
+                rotate: -45,
+                rotateAlways: false,
+                hideOverlappingLabels: true,
+                showDuplicates: false,
+                trim: false,
+                style: {
+                    colors: labelColors,
+                },
+            },
+        },
+        legend: {
+            show: false,
+        },
+        fill: {
+            opacity: 1
+        }
+    }
 
     return (
-        <ChartContainer>
-            {billings && billings.length === 0 ? (
-                <p>Carregando...</p>
-            ) : (
-                <>
-                    <ValueContainer>
-                        {valueData.map((value) => {
-                            return (
-                                <p key={value}>{parseInt(value)}</p>
-                            )
-                        })}
-                    </ValueContainer>
-                    <BarChartWrapper>
-                        <BarChart
-                            barLabel="value"
-                            {...barChartsParams}
-                        />
-                    </BarChartWrapper>
-                </>
-            )}
-        </ChartContainer>
+        <>
+            <BarChartWrapper id="chart">
+                <ReactApexChart
+                    options={options}
+                    series={series}
+                    type="bar"
+                    height={250}
+                />
+            </BarChartWrapper>
+        </>
     );
-}
+};

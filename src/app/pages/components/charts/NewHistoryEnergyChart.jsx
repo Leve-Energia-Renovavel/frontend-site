@@ -2,6 +2,7 @@ import { useStoreBillingHistory } from '@/app/hooks/useStore';
 import { formatMonthAndYearInFull } from '@/app/utils/formatters/dateFormatter';
 import ReactApexChart from 'react-apexcharts';
 import { background, newBackground } from '../../styles';
+import { BarChartWrapper } from './styles';
 
 export default function NewHistoryEnergyChart() {
 
@@ -13,26 +14,23 @@ export default function NewHistoryEnergyChart() {
 
     const availabilityData = billings.slice(chartSize).map((_) => 45)
     const dueDateData = billings.slice(chartSize).map(item => formatMonthAndYearInFull(item.dueDate))
-    const valueData = billings.slice(chartSize).map(item => parseInt(item.value) / 10)
+    const valueData = billings.slice(chartSize).map(item => parseInt(item.energyConsumed))
 
-    const colors = billings.slice(chartSize).map((_, index, arr) => {
+    const labelColors = billings.slice(chartSize).map((_, index, arr) => {
         return index === arr.length - 1 ? newBackground.orange : newBackground.green;
     });
 
-
     const series = [{
-        name: 'availability',
-        data: availabilityData
+        name: 'Energia injetada pela Distribuidora (kWh)',
+        data: availabilityData,
     }, {
-        name: 'value',
-        data: valueData
+        name: 'Energia Consumida (kWh)',
+        data: valueData,
     }]
 
     const options = {
-
         chart: {
             fontFamily: 'Graphie',
-            height: '100px',
             type: 'bar',
             stacked: true,
             toolbar: {
@@ -46,7 +44,7 @@ export default function NewHistoryEnergyChart() {
                     pan: true,
                     reset: true,
                 },
-            }
+            },
         },
         tooltip: {
             enabled: true,
@@ -69,6 +67,7 @@ export default function NewHistoryEnergyChart() {
         },
         plotOptions: {
             bar: {
+                // distributed: true,
                 horizontal: false,
                 columnWidth: '85%',
                 borderRadius: 8,
@@ -78,7 +77,7 @@ export default function NewHistoryEnergyChart() {
                     total: {
                         enabled: true,
                         style: {
-                            // fontFamily: "Graphie",
+                            fontFamily: "Graphie", //total style
                             fontSize: '18px',
                             fontWeight: 900,
                             color: newBackground.green
@@ -87,7 +86,20 @@ export default function NewHistoryEnergyChart() {
                 },
             },
         },
-        colors: [background.grey, newBackground.green],
+        dataLabels: {
+            style: {
+                fontSize: '14px',
+                fontWeight: 900,
+                color: newBackground.green
+            },
+        },
+        colors: [background.grey, (item) => {
+            const bill = billings.slice(chartSize)[item.dataPointIndex];
+            if (bill.status === "paid") return newBackground.green;
+            if (bill.status === "due") return newBackground.orange;
+            if (bill.status === "pending") return newBackground.orangeFocused;
+            return newBackground.green;
+        }],
         yaxis: {
             show: false,
         },
@@ -102,10 +114,7 @@ export default function NewHistoryEnergyChart() {
                 showDuplicates: false,
                 trim: false,
                 style: {
-                    colors: colors,
-                    fontFamily: 'Graphie',
-                    fontSize: '14px',
-                    fontWeight: 900,
+                    colors: labelColors,
                 },
             },
         },
@@ -119,14 +128,14 @@ export default function NewHistoryEnergyChart() {
 
     return (
         <>
-            <div id="chart">
+            <BarChartWrapper id="chart">
                 <ReactApexChart
                     options={options}
                     series={series}
                     type="bar"
-                    height={200}
+                    height={250}
                 />
-            </div>
+            </BarChartWrapper>
         </>
     );
 };

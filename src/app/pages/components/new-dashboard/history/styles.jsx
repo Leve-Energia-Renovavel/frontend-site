@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles"
+import { background, newBackground } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 import { Divider, Switch } from "@mui/material"
 
@@ -62,12 +62,17 @@ export const DashboardHistoryContent = styled.div`
     height: 100%;
 `
 export const HistoryDivider = styled(Divider)`
+    margin-top: auto;
+
 `
 export const HistoryChartLegend = styled.div`
     display: flex;
     flex-direction: row-reverse;
     gap: 5px;
-    padding: 1rem;
+    padding: 10px 1rem;
+
+    margin-top: auto;
+
 `
 
 const LegendBase = styled.p`
@@ -97,8 +102,8 @@ export const LegendExpired = styled(LegendBase)`
     color: ${newBackground.orange};
 `;
 export const LegendCarrier = styled(LegendBase)`
-    background-color: ${newBackground.greenLight};
-    color: ${newBackground.green};
+    background-color: ${background.grey};
+    color: ${newBackground.white};
 `;
 
 export const HistoryDetail = styled.div`
@@ -106,7 +111,11 @@ export const HistoryDetail = styled.div`
     flex-direction: column;
     gap: 1rem;
     padding: 4px 0;
-`
+
+    max-height: 140px;
+
+    margin-top: auto;
+    `
 export const HistoryDetailHeader = styled.div`
     display: flex;
     flex-direction: row;
