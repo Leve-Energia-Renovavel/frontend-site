@@ -103,10 +103,6 @@ export default function EconomyTable() {
 
                     <TableFooterDiscount className='tableFooterDiscount'>
                         <TableFooterDiscountValue>
-                            <p className='value'>8%</p>
-                            <p className='description'>de desconto</p>
-                        </TableFooterDiscountValue>
-                        <TableFooterDiscountValue>
                             <p className='value'>R$202,11</p>
                             <p className='description'>economia por mês</p>
                         </TableFooterDiscountValue>
