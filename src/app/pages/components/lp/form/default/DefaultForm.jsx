@@ -1,4 +1,4 @@
-import { createPartnerPayload } from '@/app/service/lead-service/LeadService';
+import { createPromoPayload } from '@/app/service/lead-service/LeadService';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import { TextField } from "@mui/material";
@@ -10,7 +10,7 @@ import infoJson from "../../../../../../../public/info.json";
 import economyIcon from "../../../../../../resources/icons/small/economy-icon-small.png";
 
 import { requestValidation } from '../../../home/validation';
-import { partnerSchemaValidation } from '../schema';
+import { promoSchemaValidation } from '../schema';
 import {
     HomeMainForm as Form,
     FormButton,
@@ -45,7 +45,7 @@ export default function DefaultForm({ setErrorMessage, setNotifications }) {
 
         const arraiaToken = process.env.NEXT_PUBLIC_LP_SAO_JOAO
 
-        const submitData = createPartnerPayload(
+        const submitData = createPromoPayload(
             nameRef.current.value,
             emailRef.current.value?.toLowerCase(),
             phoneRef.current.value,
@@ -55,7 +55,7 @@ export default function DefaultForm({ setErrorMessage, setNotifications }) {
             arraiaToken
         )
 
-        const response = await partnerSchemaValidation(submitData)
+        const response = await promoSchemaValidation(submitData)
         await requestValidation(response, setNotifications, setErrorMessage, router)
 
         setLoading(false)

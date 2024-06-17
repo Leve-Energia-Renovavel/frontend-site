@@ -11,6 +11,8 @@ export const ArraiaMain = styled.div`
 
     width: 100%;
     max-width: 1200px;
+
+    height: 600px;
     
     img {
         z-index: 10;
@@ -47,11 +49,45 @@ export const ArraiaMain = styled.div`
         z-index: 1;
     }
 
+    @media (max-width: 1300px) {
+    height: 580px;
+
+        .flags {
+        max-width: 291px;
+        height: auto;
+    }
+    .sole {
+        max-width: 170px;
+        height: auto;
+
+        left: 150px;
+        top: 80px;
+        
+    }
+    
+    .logo {
+        max-width: 232px;
+        height: auto;
+        left: 355px;
+        top: 50px;
+    }
+    
+    .sun {
+        max-width: 299px;
+        height: auto;
+
+        left: 90px;
+        top: 60px;
+
+        z-index: 1;
+    }
+    }
+
     @media (max-width: 900px) {
+      height: 550px;
+
       width: 100vw;
       max-width: 100vw;
-
-      height: 70vh;
 
       .flags {
         max-width: 200px;
@@ -67,23 +103,56 @@ export const ArraiaMain = styled.div`
         }
 
         .sun {
-        max-width: 150px;
+        max-width: 170px;
         height: auto;
 
-        left: 20px;
+        left: 10px;
         top: 160px;
 
         z-index: 1;
         }
 
         .logo {
-        max-width: 220px;
+        max-width: 230px;
         height: auto;
-        left: 110px;
-        top: 50px;
+        left: 90px;
+        top: 40px;
         }
     }
-    
+
+    @media (max-width: 440px) and (min-height: 900px) and (max-height: 940px) {
+
+      .flags {
+        max-width: 200px;
+        height: auto;
+        }
+
+      .sole {
+        max-width: 130px;
+        height: auto;
+
+        left: 40px;
+        top: 170px;
+        }
+
+        .sun {
+        max-width: 170px;
+        height: auto;
+
+        left: 10px;
+        top: 150px;
+
+        z-index: 1;
+        }
+
+        .logo {
+        max-width: 280px;
+        height: auto;
+        left: 110px;
+        top: 40px;
+        }
+    }
+
     `
 
 export const ArraiaSection = styled.div`
@@ -122,6 +191,14 @@ export const ArraiaSection = styled.div`
       line-height: 55px;
       font-weight: 600;
       color: ${newBackground.white};
+    }
+
+    @media (max-width: 1300px) {
+      .title, .subtitle {
+        font-family: "Graphie";
+        font-size: 45px;
+        line-height: 45px;
+      }
     }
 
     @media (max-width: 900px) {
