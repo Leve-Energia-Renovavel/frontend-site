@@ -111,4 +111,5 @@ export const questionsByPartner = {
     "/lp/apresentacao/": defaultQuestions,
     "/lp/localiza/": defaultQuestions,
     "/lp/empresas/": defaultQuestions,
+    "/lp/arraia/": defaultQuestions,
 }

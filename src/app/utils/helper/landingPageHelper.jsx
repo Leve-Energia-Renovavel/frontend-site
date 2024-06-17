@@ -4,12 +4,12 @@ import sustainableIcon from "../../../resources/icons/small/leve-folha-icone-ora
 import safeIcon from "../../../resources/icons/small/leve-protecao-orange-icone-small.svg"
 import fastIcon from "../../../resources/icons/small/leve-raio-orange-icone-small.svg"
 
-import solarPanelIcon from "../../../resources/icons/large/leve-solar-panel-orange-icon.svg"
-import rechargingIcon from "../../../resources/icons/large/leve-recharging-orange-icon.svg"
-import percentageEconomyIcon from "../../../resources/icons/large/leve-percentage-economy-orange.svg"
 import appTapIcon from "../../../resources/icons/large/leve-app-tap-orange-icon.svg"
-import engineerIcon from "../../../resources/icons/large/leve-happy-engineer-orange-icon.svg"
 import solarEnergyIcon from "../../../resources/icons/large/leve-energy-from-the-sun-orange-icon.svg"
+import engineerIcon from "../../../resources/icons/large/leve-happy-engineer-orange-icon.svg"
+import percentageEconomyIcon from "../../../resources/icons/large/leve-percentage-economy-orange.svg"
+import rechargingIcon from "../../../resources/icons/large/leve-recharging-orange-icon.svg"
+import solarPanelIcon from "../../../resources/icons/large/leve-solar-panel-orange-icon.svg"
 
 export const landingPageBoxes = [
     {
@@ -102,6 +102,21 @@ export const landingPageCompanyPresentationBoxes = [
     {
         icon: solarEnergyIcon,
         description: "Energia para os seus clientes",
+    },
+
+]
+export const landingPageArraiaBoxes = [
+    {
+        icon: appTapIcon,
+        description: "Assine seu plano de energia com a Leve.",
+    },
+    {
+        icon: engineerIcon,
+        description: "Aproveite sua economia de energia",
+    },
+    {
+        icon: solarEnergyIcon,
+        description: "Você não paga a primeira fatura! Fica por nossa conta!",
     },
 
 ]
