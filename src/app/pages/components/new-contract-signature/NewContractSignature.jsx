@@ -8,7 +8,7 @@ import { Typography } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ContractSignatureContainer as Container, ContractSignatureForm, SignupLinearProgress } from "./styles";
 
@@ -16,6 +16,11 @@ const SignupFormHeader = dynamic(() => import("../signup/forms/SignupFormHeader"
 const ClicksignWidgetComponent = dynamic(() => import("@/app/utils/clicksign/ClicksignWidgetComponent"), { ssr: false });
 
 export default function NewContractSignature() {
+
+
+    const search = useSearchParams()
+
+    const pathUuid = search.get("uuid")
 
     const router = useRouter()
     const store = useStoreUser()
