@@ -426,7 +426,7 @@ export default function SignupForm() {
                   type="text"
                   required
                   inputProps={{ inputMode: 'numeric' }}
-                  InputLabelProps={{ shrink: birthDate },
+                  InputLabelProps={{ shrink: birthDate !== "" },
                     { style: { color: '#FF7133' } }
                   }
                 />}
