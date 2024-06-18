@@ -55,9 +55,7 @@ export default function DefaultForm({ setErrorMessage, setNotifications }) {
             arraiaToken
         )
 
-        console.log("submitData ==>>", submitData)
         const response = await promoSchemaValidation(submitData)
-        console.log("response ==>>", response)
         await requestValidation(response, setNotifications, setErrorMessage, router)
 
         setLoading(false)
