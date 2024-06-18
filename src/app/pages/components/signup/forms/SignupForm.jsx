@@ -303,7 +303,7 @@ export default function SignupForm() {
         storeAddress.updateAddress(updatedAddress)
 
         setNotifications(["Cadastro realizado com sucesso!"])
-        router.push(`/signup/contract-signature`)
+        router.push(`/signup/contract-signature/?uuid=${uuid}`)
 
       } else {
         if (response?.data?.message) {

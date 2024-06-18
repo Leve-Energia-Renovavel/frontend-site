@@ -20,14 +20,14 @@ export default function NewContractSignature() {
 
     const search = useSearchParams()
 
-    const pathUuid = search.get("uuid")
+    const uuid = search.get("uuid") || store.user.uuid || Cookies.get('leveUUID')
 
     const router = useRouter()
     const store = useStoreUser()
     const storeClicksign = useStoreClickSign()
 
     const user = JSON.parse(window.localStorage.getItem('user')) || store?.user
-    const { uuid, phone } = user?.user ?? (store?.user || {})
+    const { phone } = user?.user ?? (store?.user || {})
 
     if (!uuid || uuid == "undefined") {
         router.push("/")
