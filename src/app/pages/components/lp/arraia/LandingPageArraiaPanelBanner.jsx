@@ -5,6 +5,16 @@ import { SecondSectionBox, SecondSectionBoxesContainer, SecondSectionContainer, 
 
 export default function LandingPageArraiaPanelBanner() {
 
+    const handlePreSignup = () => {
+        const element = document.getElementById('leadForm');
+        if (element) {
+            window.scrollTo({ top: element.offsetTop - 60, behavior: 'smooth' });
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+
+        }
+    }
+
     return (
         <SecondSectionContainer>
 
@@ -30,7 +40,7 @@ export default function LandingPageArraiaPanelBanner() {
             </SecondSectionContent>
             <SecondSectionFooter>
                 <h3><span className='yellow'>Economize</span> agora mesmo com a Leve</h3>
-                <SecondSectionFooterButton>
+                <SecondSectionFooterButton onClick={() => handlePreSignup()}>
                     <span>Assine seu plano</span>
                 </SecondSectionFooterButton>
             </SecondSectionFooter>

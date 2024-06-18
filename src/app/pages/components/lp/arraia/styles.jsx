@@ -49,6 +49,34 @@ export const ArraiaMain = styled.div`
         z-index: 1;
     }
 
+    .single-left, .single-right {
+      position: absolute;
+      font-family: "Graphie";
+      font-size: 18px;
+      line-height: 22px;
+      font-weight: 500;
+      color: ${newBackground.yellow};
+      border: 1px solid ${newBackground.yellow};
+      border-radius: 20px;
+      padding: 0px 8px;
+      width: fit-content;
+      z-index: 9;
+
+    }
+
+    .single-left {
+      left: 558px;
+      top: 35px;
+      transform: rotate(342deg);
+
+    }
+    .single-right {
+      left: 758px;
+      top: 136px;
+      transform: rotate(14deg);
+
+    }
+
     @media (max-width: 1300px) {
     height: 580px;
 
