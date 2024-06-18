@@ -5,7 +5,7 @@ import { useStoreAddress, useStoreBillingHistory, useStoreInstallations, useStor
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { clearStorageData } from "@/app/utils/browser/BrowserUtils";
 import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
-import { billHasToBePaid, billingStatusOptions } from "@/app/utils/form-options/billingStatusOptions";
+import { billHasToBePaid, billWasSend, billingStatusOptions } from "@/app/utils/form-options/billingStatusOptions";
 import { formatBrazillianDate } from "@/app/utils/formatters/dateFormatter";
 import { Typography } from "@mui/material";
 import axios from "axios";
@@ -124,7 +124,7 @@ export default function DashboardMain() {
                     });
 
                     ciclosConsumo?.forEach(bill => {
-                        if (bill?.send === 1) {
+                        if (billWasSend(bill.send)) {
                             const newBilling = {
                                 uuid: bill.uuid,
                                 installationId: bill.cliente_instalacao_id,

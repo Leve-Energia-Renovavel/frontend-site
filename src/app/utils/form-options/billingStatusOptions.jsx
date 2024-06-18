@@ -9,3 +9,7 @@ export const billHasToBePaid = {
     paid: false,
     pending: true
 }
+
+export const billWasSend = (sendStatus) => {
+    return sendStatus === 1
+}
