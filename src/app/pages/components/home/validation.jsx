@@ -6,7 +6,7 @@ export const requestValidation = async (response, setNotifications, setErrorMess
     if (requestSuccessful(response?.status)) {
         if (response?.data?.message === "Você já possui cadastro") {
             setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])
-            await awaitSeconds(3)
+            await awaitSeconds(4)
             router.push(`/login`)
         }
         else if (response?.data?.message === "Você não completou seu cadastro, por favor continue através do link enviado em seu e-mail") {
@@ -14,8 +14,16 @@ export const requestValidation = async (response, setNotifications, setErrorMess
         }
         else {
             const uuid = response?.data?.uuid
-            setNotifications(["Simulação realizada com sucesso! Aguarde 2 segundos..."])
-            router.push(`/signup/?uuid=${uuid}`)
+            if (!uuid || uuid == "undefined") {
+                setErrorMessage(["Erro ao criar conta. Mas nao se preocupe! Em 5 segundos vamos te redirecionar ao nosso Suporte."])
+                await awaitSeconds(4)
+                const phone = "551131818210"
+                const url = `https://api.whatsapp.com/send/?phone=${phone}&text=Oi!+Tive+um+problema+ao+criar+conta+na+Leve+Energia+e+preciso++de+ajuda&type=phone_number&app_absent=0`
+                window.open(url, '_blank', 'noopener noreferrer');
+            } else {
+                setNotifications(["Simulação realizada com sucesso! Aguarde 2 segundos..."])
+                router.push(`/signup/?uuid=${uuid}`)
+            }
         }
 
     } else if (informationNotAccepted(response?.status)) {
