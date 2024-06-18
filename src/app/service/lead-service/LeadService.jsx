@@ -73,14 +73,14 @@ export const startSignUpForPartners = async (data) => {
 
     } catch (error) {
         if (error.response) {
-            console.log("Error message from server:", error.response.data);
-            response = error.response.data;
+            console.log("Error message from server:", error.response);
+            return error.response;
         } else if (error.request) {
             console.log("No response received from server.");
-            response = error.request;
+            response = error;
         } else {
             console.log("Error while setting up the request:", error.message);
-            response = error.message;
+            response = error;
         }
     }
     return response

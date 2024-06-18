@@ -50,6 +50,7 @@ export const ArraiaMain = styled.div`
     }
 
     .single-left, .single-right {
+      white-space: nowrap;
       position: absolute;
       font-family: "Graphie";
       font-size: 18px;
@@ -145,6 +146,19 @@ export const ArraiaMain = styled.div`
         height: auto;
         left: 90px;
         top: 40px;
+        }
+
+        .single-left {
+          left: 258px;
+          top: 35px;
+          transform: rotate(342deg);
+        }
+
+        .single-right {
+          left: 290px;
+          top: 136px;
+          transform: rotate(14deg);
+
         }
     }
 

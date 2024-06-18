@@ -18,8 +18,8 @@ export default function ServerErrorBanner() {
             <ButtonContainer>
                 <Button
                     disableElevation={true}
-                    onClick={() => router.push("https://leveenergia.com.br/")}
-                    className='backToMainPage'>Voltar para Tela Inicial</Button>
+                    onClick={() => router.back()}
+                    className='backToMainPage'>Voltar para Tela Anterior</Button>
             </ButtonContainer>
         </BannerContainer>
     );
