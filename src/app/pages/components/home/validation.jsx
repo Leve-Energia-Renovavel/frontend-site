@@ -11,59 +11,52 @@ export const requestValidation = async (response, setNotifications, setErrorMess
         }
         else if (response?.data?.message === "Você não completou seu cadastro, por favor continue através do link enviado em seu e-mail") {
             setNotifications(["Continue seu cadastro pelo link enviado ao seu e-mail. "])
-        } else {
+        }
+        else {
             const uuid = response?.data?.uuid
-            setNotifications(["Simulação realizada com sucesso!"])
+            setNotifications(["Simulação realizada com sucesso! Aguarde 2 segundos..."])
             router.push(`/signup/?uuid=${uuid}`)
         }
 
     } else if (informationNotAccepted(response?.status)) {
-        if (response?.data?.message === "Fora de rateio") {
-            router.push(`/fail/out-of-range`)
-        }
-        if (response?.data?.message === "A leve ainda não chegou a sua região") {
-            router.push(`/fail/out-of-range`)
-        }
-        if (response?.data?.message === "A leve não chegou a sua região") {
+        if (response?.data?.message === "A leve ainda não chegou a sua região" ||
+            response.data.message == "A leve ainda n\u00e3o chegou a sua\u00a0regi\u00e3o" ||
+            response?.data?.message === "A leve não chegou a sua região" ||
+            response?.data?.message === "Fora de rateio") {
             router.push(`/fail/out-of-range`)
         }
         else if (response?.data?.message === "Seu consumo já é leve") {
             router.push(`/fail/low-cost`)
         }
     } else if (permanentRedirect(response?.status)) {
-        if (response.data.message == "A leve ainda n\u00e3o chegou a sua\u00a0regi\u00e3o") {
-            router.push(`/fail/out-of-range`)
-        }
-        if (response.data.message == "A leve ainda não chegou a sua região") {
-            router.push(`/fail/out-of-range`)
-        }
-        if (response.data.message == "A leve não chegou a sua região") {
+        if (response.data.message == "A leve ainda n\u00e3o chegou a sua\u00a0regi\u00e3o" ||
+            response.data.message == "A leve ainda não chegou a sua região" ||
+            response.data.message == "A leve não chegou a sua região") {
             router.push(`/fail/out-of-range`)
         }
     }
-    else if (response?.message === "Seu consumo já é leve") {
+    else if (response?.message === "Seu consumo já é leve" ||
+        response?.message === "Consumo Baixo" ||
+        response?.message === "Seu consumo j\u00e1 \u00e9 leve") {
         router.push(`/fail/low-cost`)
     }
-    else if (response?.message === "Consumo Baixo") {
-        router.push(`/fail/low-cost`)
-    }
-    else if (response?.message === "Tem contrato para assinar") {
+    else if (response?.message === "Tem contrato para assinar" ||
+        response?.message === "cliente precisa assinar os contratos desta instalação") {
         router.push(`/signup/contract-signature`)
+        // router.push(`/signup/?uuid=${uuid}`)
     }
-    else if (response?.message === "cliente precisa assinar os contratos desta instalação") {
-        router.push(`/signup/contract-signature`)
-    }
-    else if (response?.message === "Fora de rateio") {
-        router.push(`/fail/out-of-range`)
-    }
-    else if (response?.message === "A leve ainda não chegou a sua região") {
-        router.push(`/fail/out-of-range`)
-    }
-    else if (response?.message === "A leve não chegou a sua região") {
+    else if (response?.message === "Fora de rateio" ||
+        response?.message === "A leve ainda não chegou a sua região" ||
+        response?.message === "A leve não chegou a sua região" ||
+        response?.message === "A leve ainda n\u00e3o chegou a sua\u00a0regi\u00e3o" ||
+        response?.message === "A leve n\u00e3o chegou a sua\u00a0regi\u00e3o") {
         router.push(`/fail/out-of-range`)
     }
     else if (response?.message === "Cupom inválido") {
         setErrorMessage(["Cupom inválido. Por favor, verifique e tente novamente"])
+    }
+    else if (response?.message === "Não foi possível achar esse usuário") {
+        setErrorMessage(["E-mail não encontrado. Verifique se foi digitado corretamente ou se tiver, busque pelo e-mail secundário."])
     }
     else if (response?.message === "Você não completou seu cadastro, por favor continue através do link enviado em seu e-mail") {
         setErrorMessage(["Você não completou seu cadastro, por favor continue através do link enviado em seu e-mail"])
@@ -78,16 +71,8 @@ export const requestValidation = async (response, setNotifications, setErrorMess
     }
 
     //encoding error texts
-    else if (response?.message === "A leve ainda n\u00e3o chegou a sua\u00a0regi\u00e3o") {
-        router.push(`/fail/out-of-range`)
-    }
-    else if (response?.message === "A leve n\u00e3o chegou a sua\u00a0regi\u00e3o") {
-        router.push(`/fail/out-of-range`)
-    }
-    else if (response?.message === "Seu consumo j\u00e1 \u00e9 leve") {
-        router.push(`/fail/low-cost`)
-    }
-    else if (response?.message === "N\u00e3o h\u00e1 geradora") {
+    else if (response?.message === "N\u00e3o h\u00e1 geradora" ||
+        response?.message === "Não há geradora") {
         const errorCode = "BDM001"
         setErrorMessage([`Erro de servidor. Por favor, tente novamente mais tarde (cod. ${errorCode})`])
     }

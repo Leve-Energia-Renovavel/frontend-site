@@ -2,6 +2,12 @@ import { isOver110, isOver18, isValidDate } from '@/app/utils/date/DateUtils';
 import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
 import * as yup from 'yup';
 
+
+const hasMoreThanFourNumbers = (value) => {
+    const numberCount = (value.match(/\d/g) || []).length;
+    return numberCount > 4;
+  };
+
 export const userSchema = yup.object({
     uuid: yup.string().required(),
     nome: yup.string()
@@ -24,7 +30,8 @@ export const userSchema = yup.object({
     cidade_id: yup.number().required(),
     valor: yup.number().required(),
     rg: yup.string()
-        .required('O campo RG/RNE é obrigatório'),
+        .required('O campo RG/RNE é obrigatório')
+        .test('more-than-four-numbers', 'O campo RG/RNE deve conter mais de 4 números', hasMoreThanFourNumbers),
     data_nascimento: yup.string()
         .required('O campo Data de Nascimento é obrigatório')
         .test('is-valid-date', 'A data de nascimento é inválida', (value) => isValidDate(value))
