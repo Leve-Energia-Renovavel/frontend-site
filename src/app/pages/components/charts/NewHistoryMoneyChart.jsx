@@ -10,9 +10,10 @@ export default function NewHistoryMoneyChart() {
 
     const chartSize = -6
 
-    const availabilityData = billings.slice(chartSize).map((_) => 45)
+    const valueData = billings.slice(chartSize).map((item) => item.value)
+    const availabilityData = billings.slice(chartSize).map((item) => item.energyDistributorInjected)
+
     const dueDateData = billings.slice(chartSize).map(item => formatMonthAndYearInFull(item.dueDate))
-    const valueData = billings.slice(chartSize).map(item => parseInt(item.value))
 
     const labelColors = billings.slice(chartSize).map((_, index, arr) => {
         return index === arr.length - 1 ? newBackground.orange : newBackground.green;

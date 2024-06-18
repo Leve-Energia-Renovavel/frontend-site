@@ -5,7 +5,7 @@ import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import { clearStorageData } from '@/app/utils/browser/BrowserUtils';
 import { formatBasicBirthDate } from '@/app/utils/date/DateUtils';
-import { billHasToBePaid } from '@/app/utils/form-options/billingStatusOptions';
+import { billHasToBePaid, billWasSend } from '@/app/utils/form-options/billingStatusOptions';
 import { formatBrazillianDate } from '@/app/utils/formatters/dateFormatter';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -114,24 +114,37 @@ export default function NewDashboardMain() {
                     });
 
                     ciclosConsumo?.forEach(bill => {
+
+                        const injectedEnergy = bill.energia_injetada ? parseFloat(bill.energia_injetada) : 0
+                        const consumedEnergy = bill.consumo ? parseFloat(bill.consumo) : 0
+
+                        const energyDistributorInjected = consumedEnergy - injectedEnergy
+                        const energyLeveInjected = parseFloat(bill.valor_fatura) - energyDistributorInjected
+
                         const newBilling = {
                             uuid: bill.uuid,
                             installationId: bill.cliente_instalacao_id,
 
-                            energyConsumed: bill.consumo,
-                            energyInjected: bill.energia_injetada,
-                            availability: bill.disponibilidade,
-
-                            value: bill.valor_fatura,
+                            value: energyLeveInjected,
                             billDate: bill.data_fatura,
                             dueDate: bill.vencimento_fatura,
                             status: bill.pagamento_status,
                             urlBill: bill.url_fatura,
                             urlPayment: bill.url_pagamento,
+
+                            energyConsumed: bill.consumo,
+                            energyInjected: bill.energia_injetada,
+                            energyDistributorInjected: energyDistributorInjected,
+                            availability: bill.disponibilidade,
+
+                            accumulatedCredits: bill.uso_creditos_acumulados,
+
+                            totalInvoiceWithGD: bill.total_fatura_concessionaria_com_gd,
+                            totalInvoiceWithoutGD: bill.total_fatura_concessionaria_sem_gd,
                         }
                         storeBilling.addBilling(newBilling)
 
-                        if (billHasToBePaid[newBilling.status]) {
+                        if (billHasToBePaid[newBilling.status] && billWasSend(newBilling.send)) {
                             storeNextBills.updateExists(true)
                             storeNextBills.addNextBill(newBilling)
                         }

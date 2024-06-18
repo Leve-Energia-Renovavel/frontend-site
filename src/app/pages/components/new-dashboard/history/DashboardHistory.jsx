@@ -1,9 +1,9 @@
+import { useStoreUserEconomy } from '@/app/hooks/useStore';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useState } from 'react';
 import NewHistoryEnergyChart from '../../charts/NewHistoryEnergyChart';
 import NewHistoryMoneyChart from '../../charts/NewHistoryMoneyChart';
 import { AntSwitch, DashboardHistoryContainer as Container, DashboardHistoryContent as Content, DashboardHistoryTitleContainer as Header, HistoryChartLegend, HistoryDetail, HistoryDetailContent, HistoryDetailFooter, HistoryDetailFooterHeader, HistoryDetailHeader, HistoryDetailValue, HistoryDivider, LegendCarrier, LegendDue, LegendExpired, LegendPaid, DashboardHistorySwitchContainer as SwitchContainer } from './styles';
-import { useStoreUserEconomy } from '@/app/hooks/useStore';
 
 
 export default function DashboardHistory() {
