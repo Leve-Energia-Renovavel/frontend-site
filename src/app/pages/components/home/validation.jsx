@@ -21,6 +21,12 @@ export const requestValidation = async (response, setNotifications, setErrorMess
         if (response?.data?.message === "Fora de rateio") {
             router.push(`/fail/out-of-range`)
         }
+        if (response?.data?.message === "A leve ainda não chegou a sua região") {
+            router.push(`/fail/out-of-range`)
+        }
+        if (response?.data?.message === "A leve não chegou a sua região") {
+            router.push(`/fail/out-of-range`)
+        }
         else if (response?.data?.message === "Seu consumo já é leve") {
             router.push(`/fail/low-cost`)
         }
@@ -38,6 +44,9 @@ export const requestValidation = async (response, setNotifications, setErrorMess
         router.push(`/signup/contract-signature`)
     }
     else if (response?.message === "Fora de rateio") {
+        router.push(`/fail/out-of-range`)
+    }
+    else if (response?.message === "A leve ainda não chegou a sua região") {
         router.push(`/fail/out-of-range`)
     }
     else if (response?.message === "A leve não chegou a sua região") {

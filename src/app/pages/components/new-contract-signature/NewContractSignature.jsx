@@ -8,7 +8,7 @@ import { Typography } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ContractSignatureContainer as Container, ContractSignatureForm, SignupLinearProgress } from "./styles";
 
@@ -17,12 +17,17 @@ const ClicksignWidgetComponent = dynamic(() => import("@/app/utils/clicksign/Cli
 
 export default function NewContractSignature() {
 
+
+    const search = useSearchParams()
+
+    const uuid = search.get("uuid") || store.user.uuid || Cookies.get('leveUUID')
+
     const router = useRouter()
     const store = useStoreUser()
     const storeClicksign = useStoreClickSign()
 
     const user = JSON.parse(window.localStorage.getItem('user')) || store?.user
-    const { uuid, phone } = user?.user ?? (store?.user || {})
+    const { phone } = user?.user ?? (store?.user || {})
 
     if (!uuid || uuid == "undefined") {
         router.push("/")

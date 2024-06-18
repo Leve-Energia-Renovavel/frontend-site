@@ -35,6 +35,17 @@ export const createPartnerPayload = (name, corporateEmail, email, phone, cep, va
         token: token
     }
 }
+export const createPromoPayload = (name, email, phone, cep, value, type, token) => {
+    return {
+        nome: name,
+        email: email.toLowerCase(),
+        telefone: phone,
+        cep: cep,
+        valor: value,
+        type: type,
+        token: token,
+    }
+}
 
 export const startSignUp = async (data) => {
     var response = null
