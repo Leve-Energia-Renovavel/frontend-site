@@ -1,4 +1,4 @@
-import { informationNotAccepted, requestSuccessful } from "@/app/service/utils/Validations"
+import { informationNotAccepted, permanentRedirect, requestSuccessful } from "@/app/service/utils/Validations"
 import { awaitSeconds } from "@/app/utils/browser/BrowserUtils"
 
 export const requestValidation = async (response, setNotifications, setErrorMessage, router) => {
@@ -29,6 +29,16 @@ export const requestValidation = async (response, setNotifications, setErrorMess
         }
         else if (response?.data?.message === "Seu consumo já é leve") {
             router.push(`/fail/low-cost`)
+        }
+    } else if (permanentRedirect(response?.status)) {
+        if (response.data.message == "A leve ainda n\u00e3o chegou a sua\u00a0regi\u00e3o") {
+            router.push(`/fail/out-of-range`)
+        }
+        if (response.data.message == "A leve ainda não chegou a sua região") {
+            router.push(`/fail/out-of-range`)
+        }
+        if (response.data.message == "A leve não chegou a sua região") {
+            router.push(`/fail/out-of-range`)
         }
     }
     else if (response?.message === "Seu consumo já é leve") {
@@ -65,6 +75,21 @@ export const requestValidation = async (response, setNotifications, setErrorMess
     }
     else if (response?.errors) {
         setErrorMessage(response?.errors)
+    }
+
+    //encoding error texts
+    else if (response?.message === "A leve ainda n\u00e3o chegou a sua\u00a0regi\u00e3o") {
+        router.push(`/fail/out-of-range`)
+    }
+    else if (response?.message === "A leve n\u00e3o chegou a sua\u00a0regi\u00e3o") {
+        router.push(`/fail/out-of-range`)
+    }
+    else if (response?.message === "Seu consumo j\u00e1 \u00e9 leve") {
+        router.push(`/fail/low-cost`)
+    }
+    else if (response?.message === "N\u00e3o h\u00e1 geradora") {
+        const errorCode = "BDM001"
+        setErrorMessage([`Erro de servidor. Por favor, tente novamente mais tarde (cod. ${errorCode})`])
     }
 
     else {

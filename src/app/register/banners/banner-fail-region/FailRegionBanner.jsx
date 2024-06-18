@@ -20,8 +20,8 @@ export default function RegisterBannerFailRegion(props) {
             <ButtonContainer>
                 <Button
                     disableElevation={true}
-                    onClick={() => router.push("/")}
-                    className='backToMainPage'>Voltar para Tela Inicial</Button>
+                    onClick={() => router.back()}
+                    className='backToMainPage'>Voltar para Tela Anterior</Button>
             </ButtonContainer>
         </BannerContainer>
     )

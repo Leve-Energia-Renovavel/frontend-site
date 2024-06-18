@@ -55,9 +55,7 @@ export default function DefaultForm({ setErrorMessage, setNotifications }) {
             arraiaToken
         )
 
-        console.log("submitData ==>>", submitData)
         const response = await promoSchemaValidation(submitData)
-        console.log("response ==>>", response)
         await requestValidation(response, setNotifications, setErrorMessage, router)
 
         setLoading(false)
@@ -72,7 +70,7 @@ export default function DefaultForm({ setErrorMessage, setNotifications }) {
                         <Image src={economyIcon} className='economyIcon' alt={"Logo Leve"} priority />
                         <h2>{texts.simulate}</h2>
                     </FormTitleContainer>
-                    <p variant="body1">Adoro festa junina <span className="highlighted"></span> e quero economizar</p>
+                    <p variant="body1">Se for colaborador de <span className="underlined">empresa parceira</span>, insira seu <span className="highlighted">email coorporativo</span>.</p>
                     <TextField
                         inputRef={nameRef}
                         className="homeFormInput"

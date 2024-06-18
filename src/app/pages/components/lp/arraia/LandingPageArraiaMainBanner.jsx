@@ -11,8 +11,6 @@ import { ArraiaMain, ArraiaSection, ArrowScrollerContainer } from "./styles";
 
 export default function LandingPageArraiaMainBanner() {
 
-
-
     return (
         <ArraiaMain>
             <p className="single-left">ia ia</p>

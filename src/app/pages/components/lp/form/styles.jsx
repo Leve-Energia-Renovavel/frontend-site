@@ -117,6 +117,10 @@ export const HomeMainForm = styled.form`
       line-height: 14px;
     }
 
+    .underlined{ 
+      text-decoration: underline;
+    }
+
     .homeFormInput {
       background-color: ${newBackground.white};
       border-radius: 10px;
