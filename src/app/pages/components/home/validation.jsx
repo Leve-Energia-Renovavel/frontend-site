@@ -15,7 +15,7 @@ export const requestValidation = async (response, setNotifications, setErrorMess
         else {
             const uuid = response?.data?.uuid
             if (!uuid || uuid == "undefined") {
-                setErrorMessage(["Erro ao criar conta. Mas nao se preocupe! Em 5 segundos vamos te redirecionar ao nosso Suporte."])
+                setErrorMessage(["Erro ao criar conta. Mas nao se preocupe! Em alguns segundos vamos te redirecionar ao nosso Suporte."])
                 await awaitSeconds(4)
                 const phone = "551131818210"
                 const url = `https://api.whatsapp.com/send/?phone=${phone}&text=Oi!+Tive+um+problema+ao+criar+conta+na+Leve+Energia+e+preciso++de+ajuda&type=phone_number&app_absent=0`

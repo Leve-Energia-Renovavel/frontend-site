@@ -1,3 +1,5 @@
+"use client"
+
 import { createPartnerPayload } from '@/app/service/lead-service/LeadService';
 import { capitalizeFirstLetter, partnerTokens } from '@/app/utils/helper/partnerHelper';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -39,8 +41,8 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
     const cepRef = useRef()
     const martinsRegistrationRef = useRef()
 
-    const isMartins = partner == "martins"
-    const isLocaliza = partner == "localiza"
+    const isMartins = partner === "martins"
+    const islocaliza = partner === "localiza" ? "true" : "false"    //this had to be done to fix unknown hydratation problems in tribanco lp 
 
     const texts = infoJson.home
 
@@ -71,9 +73,9 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
 
 
     return (
-        <HomeFormContainer className='homeFormContainer' isLocaliza={isLocaliza}>
-            <FormContainer className='formContainer' isLocaliza={isLocaliza}>
-                <Form id='leadForm' onSubmit={handleSubmit} isLocaliza={isLocaliza}>
+        <HomeFormContainer className='homeFormContainer' islocaliza={islocaliza}>
+            <FormContainer className='formContainer' islocaliza={islocaliza}>
+                <Form id='leadForm' onSubmit={handleSubmit} islocaliza={islocaliza}>
                     <FormTitleContainer>
                         <Image src={economyIcon} className='economyIcon' alt={"Logo Leve"} priority />
                         <h2>{texts.simulate}</h2>
@@ -127,7 +129,7 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
                         <p className='chooseWhereToEconomy'>{texts.iWantToEconomy}</p>
                         <UserTypeFormButtonContainer className='formButtonContainer'>
                             <Select
-                                isLocaliza={isLocaliza}
+                                islocaliza={islocaliza}
                                 startIcon={<HomeIcon />}
                                 selected>
                                 {texts.house}
@@ -161,10 +163,10 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
 
                     </FormFooterContainer>
                 </Form>
-                <HomeMainFormSimulationContainer className="mainFormSimulationContainer" isLocaliza={isLocaliza}>
+                <HomeMainFormSimulationContainer className="mainFormSimulationContainer" islocaliza={islocaliza}>
                     <h6 variant="subtitle1" className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === 3000 ? "+" : ""}</span></h6>
                     <FormSlider
-                        isLocaliza={isLocaliza}
+                        islocaliza={islocaliza}
                         className='formSlider'
                         onChange={(event) => setSimulationCost(event.target.value)}
                         value={simulationCost}
@@ -179,7 +181,7 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
                 </HomeMainFormSimulationContainer>
             </FormContainer>
             <FormButton
-                isLocaliza={isLocaliza}
+                islocaliza={islocaliza}
                 type='submit'
                 form='leadForm'
                 endIcon={!isLoading ? <ArrowForwardIcon /> : <ArrowForwardIcon sx={{ display: "none" }} />}>
