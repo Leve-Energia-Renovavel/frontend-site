@@ -1,6 +1,6 @@
 const { createTestData } = require("../../../../tests/builder/lp/scenarioBuilder");
 
-const partner = "tribanco"
+const partner = "localiza"
 const partnerName = partner.toUpperCase()
 
 describe(`Complete LP Form ${partnerName}`, () => {
