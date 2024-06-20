@@ -22,7 +22,6 @@ describe('complete', () => {
 
     cy.get('button[type="submit"]').contains('Calcular desconto').click();
 
-    const baseUrl = Cypress.config('baseUrl');
-    cy.url().should('include', `${baseUrl}/signup/?uuid=`).wait(3000);
+    cy.url().should('include', `http://localhost:3000/signup/?uuid=`).wait(3000);
   });
 });

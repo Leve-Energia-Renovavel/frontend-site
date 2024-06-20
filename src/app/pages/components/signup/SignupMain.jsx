@@ -31,8 +31,6 @@ export default function SignupMain() {
     useEffect(() => {
         const fetchData = async () => {
 
-            await clearBrowserData();
-
             store.updateUser({ uuid: uuid });
             Cookies.set('leveUUID', uuid)
 
