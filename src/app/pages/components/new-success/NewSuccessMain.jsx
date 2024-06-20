@@ -11,16 +11,6 @@ const NewSuccessContent = dynamic(() => import('./NewSuccessFormContent'), { ssr
 
 export default function NewSuccessMain() {
 
-    const router = useRouter()
-    const store = useStoreUser()
-
-    const user = JSON.parse(window.localStorage.getItem('user')) || store?.user
-    const { uuid } = user?.user ?? (store?.user || {})
-
-    if (!uuid || uuid == "undefined") {
-        router.push("/")
-    }
-
     return (
         <Container >
             <NewSuccessForm>
