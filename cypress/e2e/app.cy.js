@@ -30,9 +30,10 @@ describe('Complete Home Main Form', () => {
       cy.wrap($slider).click(centerX, centerY);
     });
 
+    cy.intercept('POST', `${requestUrl}`).as('postRequest');
+
     cy.get('button[type="submit"]').contains('Calcular desconto').click();
 
-    cy.intercept('POST', `${requestUrl}`).as('postRequest');
     cy.wait('@postRequest').then((interception) => {
       cy.task('log', `- PAYLOAD: ${JSON.stringify(interception?.request?.body)}`);
       cy.task('log', `- RESPONSE: ${JSON.stringify(interception?.response?.body)}`);
@@ -42,9 +43,6 @@ describe('Complete Home Main Form', () => {
     cy.url().should('contains', destinationPattern)
     cy.task('log', `--- END tests for ${location.toUpperCase()} ---`)
   });
-
-
-
 
 
   it('should complete the signup form and go to contract (SUCCESS scenario)', () => {
@@ -81,11 +79,11 @@ describe('Complete Home Main Form', () => {
       }
     });
 
-    // Click the submit button
+    cy.intercept('POST', `${requestUrl}`).as('storeClient');
+
     cy.get('button[type="submit"]').contains('Continuar').click();
 
-    cy.intercept('POST', `${requestUrl}`).as('postRequest');
-    cy.wait('@postRequest', { timeout: 20000 }).then((interception) => {
+    cy.wait('@storeClient', { timeout: 13000 }).then((interception) => {
       cy.task('log', `- PAYLOAD: ${JSON.stringify(interception?.request?.body)}`);
       cy.task('log', `- RESPONSE: ${JSON.stringify(interception?.response?.body)}`);
     });

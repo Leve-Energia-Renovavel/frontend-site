@@ -13,6 +13,7 @@
     "cypress:run": "cypress run --browser chrome --headed",
     "test": "start-server-and-test start http://localhost:3000 cypress:execute",
     "test:headed": "start-server-and-test start http://localhost:3000 cypress:run",
+    "test:spec": "start-server-and-test start http://localhost:3000 'cypress run --browser chrome --headed --spec cypress/e2e/login/Login.cy.js'",
     "open-browser": "start http://localhost:3000"
   },
   "dependencies": {
