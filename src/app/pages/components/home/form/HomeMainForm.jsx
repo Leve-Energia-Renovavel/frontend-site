@@ -1,5 +1,6 @@
 "use client"
 
+import { createSignupPayload } from '@/app/service/lead-service/LeadService';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
@@ -11,9 +12,8 @@ import InputMask from "react-input-mask";
 import infoJson from '../../../../../../public/info.json';
 import economyIcon from "../../../../../resources/icons/small/economy-icon-small.png";
 import { schemaValidation } from '../schema';
-import { requestValidation } from '../validation';
 import { HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormFooterContainer, FormSlider, FormTitleContainer, HomeFormContainer, HomeMainFormSimulationContainer, Loading, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "../styles";
-import { createSignupPayload } from '@/app/service/lead-service/LeadService';
+import { requestValidation } from '../validation';
 
 export default function HomeMainForm({ setErrorMessage, setNotifications, selectedUserType, setSelectedUserType }) {
 
@@ -23,7 +23,9 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
     const cupom = search.get("cupom")
 
     const [isLoading, setLoading] = useState(false)
-    const [simulationCost, setSimulationCost] = useState(150)
+    const [simulationCost, setSimulationCost] = useState(200)
+
+    const minSimulationCost = 200
 
     const nameRef = useRef()
     const emailRef = useRef()
@@ -151,8 +153,8 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                         onChange={(event) => setSimulationCost(event.target.value)}
                         value={simulationCost}
                         step={10}
-                        defaultValue={150}
-                        min={150}
+                        defaultValue={minSimulationCost}
+                        min={minSimulationCost}
                         max={3000}
                         valueLabelDisplay="off"
                         aria-labelledby="simulationSlider"

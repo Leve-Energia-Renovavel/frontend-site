@@ -19,7 +19,7 @@ export const HomeFormContainer = styled.div`
     line-height: 12px;
     font-weight: 500;
     text-align: left;
-    color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
+    color: ${props => props.islocaliza === "true" ? partners.localiza.green : newBackground.orange};
 
     max-width: 360px;
     
@@ -38,7 +38,7 @@ export const HomeFormContainer = styled.div`
     font-weight: 700;
     text-decoration: underline;
     text-align: left;
-    color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
+    color: ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
 
     border-radius: 5px;
 
@@ -53,7 +53,7 @@ export const HomeFormContainer = styled.div`
 
 export const HomeMainFormContainer = styled.div`
     background-color: ${newBackground.white};
-    border: 1px solid ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
+    border: 1px solid ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
     border-radius: 15px;
 
     height: auto;
@@ -73,7 +73,7 @@ export const HomeMainFormContainer = styled.div`
 export const HomeMainForm = styled.form`
     display: flex;
     flex-direction: column;
-    background-color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
+    background-color: ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
 
     border-radius: 15px;
     
@@ -140,7 +140,7 @@ export const HomeMainForm = styled.form`
         height: 0.4375em;
         padding: 20px 14px;
         font-weight: 700;
-        color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
+        color: ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
 
         }
 
@@ -148,7 +148,7 @@ export const HomeMainForm = styled.form`
           font-family: "Graphie";
           font-weight: 500;
           font-size: 14px;
-          color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
+          color: ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
 
         }
 
@@ -227,8 +227,8 @@ export const HomeMainFormSimulationContainer = styled.div`
       font-family: "Graphie";
       font-size: 21px;
       font-weight: 900;
-      color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
-      background-color: ${props => props.isLocaliza && newBackground.yellow};
+      color: ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
+      background-color: ${props => props.islocaliza && newBackground.yellow};
     }
 
     .sliderTip {
@@ -279,7 +279,7 @@ export const UserTypeFormButtonContainer = styled.div`
 `
 
 export const FormSelect = styled(Button)`
-    background-color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
+    background-color: ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
   border: 1px solid ${newBackground.yellow};
   border-radius: 10px;
 
@@ -327,7 +327,7 @@ export const FormButton = styled(Button)`
   }
   
   &:hover {
-    background-color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
+    background-color: ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
     color: ${newBackground.yellow};
     cursor: pointer;
   }
@@ -376,7 +376,7 @@ export const FormSlider = styled(Slider)`
     }
     
     & .MuiSlider-thumb {
-        background-color: ${props => props.isLocaliza ? partners.localiza.green : newBackground.orange};
+        background-color: ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
 
         height: 12px;
         width: 12px;

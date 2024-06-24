@@ -5,6 +5,8 @@
 
 # Node artifact files
 /node_modules
+/cypress/videos
+/cypress/downloads
 /.pnp
 .pnp.js
 .yarn/install-state.gz

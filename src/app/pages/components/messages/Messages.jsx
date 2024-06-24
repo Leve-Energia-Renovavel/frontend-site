@@ -9,7 +9,6 @@ export default function Messages({ notifications, errors, setErrorMessage, setNo
                     <Snackbar
                         key={index}
                         open={errors.length >= 1}
-                        autoHideDuration={3000}
                         message={error}
                         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
                         onClose={() => setErrorMessage([])}>
@@ -29,7 +28,6 @@ export default function Messages({ notifications, errors, setErrorMessage, setNo
                     <Snackbar
                         key={index}
                         open={notifications.length >= 1}
-                        autoHideDuration={6000}
                         message={notification}
                         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
                         onClose={() => setNotifications([])}>

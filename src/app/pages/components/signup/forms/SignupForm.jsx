@@ -5,7 +5,6 @@ import { useStoreAddress, useStoreCompany, useStoreUser } from '@/app/hooks/useS
 import useGetCEP from '@/app/hooks/utils/useGetCEP';
 import useGetCNPJ from '@/app/hooks/utils/useGetCNPJ';
 import InstallationNumberModal from '@/app/register/modals/installation-number-modal/InstallationNumberModal';
-import { signUp } from '@/app/service/user-service/UserService';
 import { hasToSignContract, requestSuccessful } from '@/app/service/utils/Validations';
 import { findCityIdByName } from '@/app/service/utils/addressUtilsService';
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
@@ -27,7 +26,9 @@ import SignupFormHeader from './SignupFormHeader';
 import { companySchema, userSchema } from './schema';
 import { FormTermsCheckbox as Checkbox, SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, FormTermsContainer, FormTermsControl, FormTitleButton, FormTitleContainer, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupLinearProgress, fileInputStyles } from './styles';
 
+import { signUp } from '@/app/service/user-service/UserService';
 import dynamic from 'next/dynamic';
+import { handleRequestsErrors } from './validation';
 const Messages = dynamic(() => import('../../messages/Messages'), { ssr: false });
 
 export default function SignupForm() {
@@ -43,13 +44,17 @@ export default function SignupForm() {
   const company = useStoreCompany().company
   const isCompany = user?.user.isCompany
 
-  const { name, email, phone, cost, distributor, companyName, cnpj } = user?.user ?? (store?.user || {})
+  const { name, email, phone, cost, distributor, companyName, cnpj, birthDate } = user?.user ?? (store?.user || {})
   const { street, neighborhood, city, state, stateId, cityId, cep } = address?.address ?? (storeAddress?.address || {})
 
   const [userCost, setUserCost] = useState(cost || null)
   const [isForeigner, setIsForeigner] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingCEP, setIsLoadingCEP] = useState(false);
+  const [isLoadingCNPJ, setIsLoadingCNPJ] = useState(false);
+
   const [errors, setErrorMessage] = useState([]);
   const [notifications, setNotifications] = useState([])
   const [stateValue, setStateValue] = useState(stateId ? stateId : stateOptions[(statesAcronymOptions[state])]);
@@ -74,7 +79,7 @@ export default function SignupForm() {
 
   const handleGetCNPJ = async (cnpj) => {
     if (cnpj !== "") {
-      setIsLoading(true)
+      setIsLoadingCNPJ(true)
       console.log("Getting CEP data....")
       try {
         const response = await fetchCNPJ(cnpj)
@@ -84,7 +89,7 @@ export default function SignupForm() {
       } catch (error) {
         // console.log("Error fetching CNPJ data: ", error)
       } finally {
-        setIsLoading(false)
+        setIsLoadingCNPJ(false)
       }
     } else {
       setErrorMessage(["Preencha o campo de CNPJ antes da busca"])
@@ -92,7 +97,7 @@ export default function SignupForm() {
   }
   const handleGetCEP = async (cep) => {
     if (cep !== "") {
-      setIsLoading(true)
+      setIsLoadingCEP(true)
       try {
         const response = await fetchCEP(cep)
         if (requestSuccessful(response?.status)) {
@@ -104,7 +109,7 @@ export default function SignupForm() {
       } catch (error) {
         // console.log("Error fetching CNPJ data: ", error)
       } finally {
-        setIsLoading(false)
+        setIsLoadingCEP(false)
       }
     } else {
       setErrorMessage(["Preencha o campo de CEP antes da busca"])
@@ -205,33 +210,16 @@ export default function SignupForm() {
 
 
   const schemaValidation = async (isCompany, data) => {
-    var response = null
-    if (isCompany) {
-      response = await companySchema.validate(data, { abortEarly: false })
-        .then(async () => {
-          return await signUp(data)
+    try {
+      const validatedData = isCompany
+        ? await companySchema.validate(data, { abortEarly: false })
+        : await userSchema.validate(data, { abortEarly: false });
 
-        })
-        .catch((err) => {
-          setErrorMessage(err.errors)
-          console.log(err.errors);
-          return err.errors
-        });
-
-    } else {
-      response = await userSchema.validate(data, { abortEarly: false })
-        .then(async () => {
-          return await signUp(data)
-
-        })
-        .catch((err) => {
-          setErrorMessage(err.errors)
-          console.log(err.errors);
-          return err.errors
-        });
+      return await signUp(validatedData);
+    } catch (error) {
+      return error.errors;
     }
-    return response
-  }
+  };
 
 
   const handleSubmit = async (event) => {
@@ -305,18 +293,7 @@ export default function SignupForm() {
         setNotifications(["Cadastro realizado com sucesso!"])
         router.push(`/signup/contract-signature/?uuid=${uuid}`)
 
-      } else {
-        if (response?.data?.message) {
-          setErrorMessage([response.data.message])
-        }
-        if (response?.response?.data?.message) {
-          setErrorMessage([response.response.data.message])
-        }
-        else {
-          setErrorMessage(["Ops, algo deu errado, tente novamente mais tarde"])
-
-        }
-      }
+      } else await handleRequestsErrors(response, setNotifications, setErrorMessage, router)
 
       setIsLoading(false)
     }
@@ -357,7 +334,7 @@ export default function SignupForm() {
                 <InputMask mask="99.999.999/9999-99" defaultValue={company.cnpj || cnpj || ''}>
                   {() => <FormInput className="inputForm" defaultValue={company.cnpj || cnpj || ''} inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text" required
                     InputProps={{
-                      endAdornment: !isLoading ? <SearchIcon className="searchIcon"
+                      endAdornment: !isLoadingCNPJ ? <SearchIcon className="searchIcon"
                         onClick={() => handleGetCNPJ(companyRefs.cnpj.current.value)} /> :
                         <Box>
                           <CircularProgress className='formLoading' size={"25px"} />
@@ -439,7 +416,7 @@ export default function SignupForm() {
                     { style: { color: '#FF7133' } }} />}
               </InputMask>
 
-              <InputMask mask="99/99/9999" required defaultValue={store.user.birthDate ? store.user.birthDate : ""}>
+              <InputMask mask="99/99/9999" required value={birthDate || ""} onChange={(e) => store.updateUser({ birthDate: e.target.value })}>
                 {() => <FormInput
                   inputRef={userRefs.birthDate}
                   className="inputForm"
@@ -449,7 +426,7 @@ export default function SignupForm() {
                   type="text"
                   required
                   inputProps={{ inputMode: 'numeric' }}
-                  InputLabelProps={{ shrink: false },
+                  InputLabelProps={{ shrink: birthDate !== "" },
                     { style: { color: '#FF7133' } }
                   }
                 />}
@@ -543,8 +520,8 @@ export default function SignupForm() {
                   inputProps={{ inputMode: 'numeric' }}
                   InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
                   InputProps={{
-                    endAdornment: !isLoading ? <SearchIcon className="searchIcon"
-                      onClick={() => handleGetCNPJ(companyRefs.cnpj.current.value)} /> :
+                    endAdornment: !isLoadingCEP ? <SearchIcon className="searchIcon"
+                      onClick={() => handleGetCEP(addressRefs.addressCep.current.value)} /> :
                       <Box>
                         <CircularProgress className='formLoading' size={"25px"} />
                       </Box>,
@@ -611,7 +588,14 @@ export default function SignupForm() {
               </FormInput>
 
 
-              <FormInput className="inputForm" defaultValue={city?.toUpperCase() || ''} inputRef={addressRefs.city} label="Cidade" variant="outlined" placeholder="Cidade" type="text"
+              <FormInput
+                className="inputForm"
+                defaultValue={city?.toUpperCase() || ''}
+                inputRef={addressRefs.city}
+                label="Cidade"
+                variant="outlined"
+                placeholder="Cidade"
+                type="text"
                 InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }} required />
             </FormContent>
 

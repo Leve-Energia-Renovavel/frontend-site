@@ -30,7 +30,9 @@ export default function DefaultForm({ setErrorMessage, setNotifications }) {
     const router = useRouter()
 
     const [isLoading, setLoading] = useState(false)
-    const [simulationCost, setSimulationCost] = useState(150)
+    const [simulationCost, setSimulationCost] = useState(200)
+
+    const minSimulationCost = 200
 
     const nameRef = useRef()
     const emailRef = useRef()
@@ -142,8 +144,8 @@ export default function DefaultForm({ setErrorMessage, setNotifications }) {
                         onChange={(event) => setSimulationCost(event.target.value)}
                         value={simulationCost}
                         step={10}
-                        defaultValue={150}
-                        min={150}
+                        defaultValue={minSimulationCost}
+                        min={minSimulationCost}
                         max={3000}
                         valueLabelDisplay="off"
                         aria-labelledby="simulationSlider"
