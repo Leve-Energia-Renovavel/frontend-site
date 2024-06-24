@@ -44,7 +44,7 @@ export const destinationPattern = {
 
 export const dummyPath = {
     home: "/",
-    signup: "/singup/?uuid=",
+    signup: "/signup/?uuid=",
     lp: {
         tribanco: `https://new-homolog-cliente.leveenergia.com.br/lp/tribanco/`,
         martins: `https://new-homolog-cliente.leveenergia.com.br/lp/martins/`,

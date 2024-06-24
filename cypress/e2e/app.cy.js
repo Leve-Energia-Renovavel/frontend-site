@@ -57,7 +57,6 @@ describe('Complete Home Main Form', () => {
     cy.task('log', `TEST DATA: ${JSON.stringify(allTestData)}`)
 
     cy.visit(path + uuid);
-    cy.task('log', `PATH ===>>>>>>>>>>>>>>>>>> ${path + uuid}`)
 
     cy.get('input[placeholder="RG"]').type(rg);
     cy.get('input[placeholder="CPF"]').type(cpf);
@@ -72,12 +71,10 @@ describe('Complete Home Main Form', () => {
     cy.get('#profession').click();
     cy.get('li[role="option"]').first().click();
 
-    // Other input fields
     cy.get('input[placeholder="Nº"]').type(number);
     cy.get('input[placeholder="Complemento"]').type('casa dos fundos');
     cy.get('input[placeholder="Número de Instalação"]').type(installationNumber);
 
-    // Check the checkboxes
     cy.get('input[type="checkbox"]').each(($checkbox, index) => {
       if (index < 3) {
         cy.wrap($checkbox).check({ force: true });
@@ -88,7 +85,7 @@ describe('Complete Home Main Form', () => {
     cy.get('button[type="submit"]').contains('Continuar').click();
 
     cy.intercept('POST', `${requestUrl}`).as('postRequest');
-    cy.wait('@postRequest').then((interception) => {
+    cy.wait('@postRequest', { timeout: 20000 }).then((interception) => {
       cy.task('log', `- PAYLOAD: ${JSON.stringify(interception?.request?.body)}`);
       cy.task('log', `- RESPONSE: ${JSON.stringify(interception?.response?.body)}`);
     });

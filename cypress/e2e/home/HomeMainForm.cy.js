@@ -1,4 +1,4 @@
-const { createTestData } = require("../../../tests/builder/home/scenarioBuilder");
+const { createHomeTestData } = require("../../../tests/builder/home/scenarioBuilder");
 
 const location = "home"
 
@@ -7,7 +7,7 @@ describe('Complete Home Main Form', () => {
   it('should complete the form and navigate to out-of-range (FAILURE scenario)', () => {
 
     const scenario = "fail-region"
-    const allTestData = createTestData(scenario)
+    const allTestData = createHomeTestData(scenario)
     const { path, name, email, phone, cep, requestUrl, destinationPattern } = allTestData
 
     cy.task('log', `--- START testing for ${location} ---`);
@@ -44,7 +44,7 @@ describe('Complete Home Main Form', () => {
   it('should complete the form and navigate to signup (SUCCESS scenario)', () => {
 
     const scenario = "success"
-    const allTestData = createTestData(scenario)
+    const allTestData = createHomeTestData(scenario)
     const { path, name, email, phone, cep, requestUrl, destinationPattern } = allTestData
 
     cy.task('log', `--- START testing for ${location} ---`);
