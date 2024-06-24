@@ -44,6 +44,10 @@ export const NewDashboardContent = styled.div`
     @media (max-width: 1400px) {
         margin-left: 2rem;
     }
+    @media (max-width: 900px) {
+        margin: 0 auto;
+        gap: 30px;
+    }
 `
 export const NewDashboardMainContent = styled.div`
     display: flex;

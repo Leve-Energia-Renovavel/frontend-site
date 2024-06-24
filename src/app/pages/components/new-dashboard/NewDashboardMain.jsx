@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreInstallations, useStoreMainInstallation, useStoreUser, useStoreUserEconomy } from '@/app/hooks/useStore';
+import { useStoreInstallations, useStoreMainInstallation, useStoreUserEconomy } from '@/app/hooks/useStore';
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import { clearStorageData } from '@/app/utils/browser/BrowserUtils';
 import { formatBrazillianDate } from '@/app/utils/formatters/dateFormatter';
@@ -16,14 +16,11 @@ import DashboardHistory from './history/DashboardHistory';
 import DashboardInvoices from './invoices/DashboardInvoices';
 import DashboardSideBar from './side-bar/DashboardSideBar';
 
-// const DashboardSideBar = dynamic(() => import('./side-bar/DashboardSideBar'), { ssr: false });
 const FactoryContent = dynamic(() => import('./factory/FactoryContent'), { ssr: false });
 
 export default function NewDashboardMain() {
 
     const router = useRouter()
-    const storeInstallations = useStoreInstallations()
-    const storeMainInstallation = useStoreMainInstallation()
     const storeEconomy = useStoreUserEconomy()
 
     useEffect(() => {
@@ -38,7 +35,7 @@ export default function NewDashboardMain() {
                 console.log("response ==>>", response)
 
                 if (requestSuccessful(response?.status)) {
-                    
+
                     const updatedUserEconomy = {
                         economySince: formatBrazillianDate(consumidor?.created_at),
                         value: economia,
@@ -61,7 +58,7 @@ export default function NewDashboardMain() {
 
     return (
         <>
-            <Container className='container'>
+            <Container className='dashboardContainer'>
                 <DashboardSideBar className="sideBar" />
                 <Content className='dashboardContent'>
                     <MainContent className='dashboardMainContent'>

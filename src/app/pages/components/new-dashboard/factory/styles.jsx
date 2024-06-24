@@ -31,6 +31,10 @@ export const FactoryInfoContent = styled.div`
     background-size: cover; 
     background-position: center;
 
+    @media (max-width: 900px) {
+        max-width: 100%;
+    }
+
 `
 export const FactoryDescription = styled.div`
     display: flex;
@@ -71,19 +75,32 @@ export const FactoryDescription = styled.div`
         font-weight: 300;
         color: ${newBackground.white};
     }
+
+    @media (max-width: 900px) {
+        max-width: 100%;
+        max-height: 100%;
+
+        margin-top: 8rem;
+
+    }
 `
 
 export const FactoryMainContent = styled.div`
     flex: 2;
     display: flex;
     flex-direction: column; 
-
+    
     width: 100%;
     max-width: 522px;
-
+    
     padding: 0 1rem 1rem 3rem;
-
+    
     gap: 1rem;
+    
+    @media (max-width: 900px) {
+        padding: 10px;
+       gap: 10px;
+    }
 `
 export const MainContentInfo = styled.div`
     display: flex;
@@ -114,6 +131,11 @@ export const CardsContainer = styled.div`
     flex-wrap: wrap;
 
     gap: 1rem;
+
+    @media (max-width: 900px) {
+        gap: 10px;
+    }
+    
 `
 export const MainContentCard = styled.div`
     display: flex;
@@ -157,4 +179,58 @@ export const MainContentCard = styled.div`
 
         width: fit-content;
     }
+
+
+    @media (max-width: 900px) {
+        justify-content: center;
+        max-width: 145px;
+
+        .iconHeight, .iconWidth {
+            margin: 0 auto;
+        }
+
+        .infoTitle, .infoValue {
+            text-align: center;
+        }
+
+        .infoValue { 
+            border-radius: 8px;
+        }
+    }
+
+    @media (min-width: 425px) and (max-width: 700px) {
+        justify-content: center;
+        max-width: 180px;
+
+        .iconHeight, .iconWidth {
+            margin: 0 auto;
+        }
+
+        .infoTitle, .infoValue {
+            text-align: center;
+        }
+
+        .infoValue { 
+            border-radius: 8px;
+        }
+    }
+
+    @media (min-width:  350px) and (max-width: 410px) {
+        justify-content: center;
+        max-width: 145px;
+
+        .iconHeight, .iconWidth {
+            margin: 0 auto;
+        }
+
+        .infoTitle, .infoValue {
+            text-align: center;
+        }
+
+        .infoValue { 
+            border-radius: 8px;
+        }
+    }
+
+
 `

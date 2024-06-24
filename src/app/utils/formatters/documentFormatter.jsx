@@ -1,4 +1,7 @@
 export const formatCpf = (cpf) => {
+    if (!cpf || cpf === "") {
+        return `***.***.000-00`;
+    }
     const part1 = cpf.substring(0, 3);
     const part2 = cpf.substring(3, 6);
     const part3 = cpf.substring(6, 9);
@@ -7,5 +10,8 @@ export const formatCpf = (cpf) => {
 }
 
 export const formatCep = (cep) => {
+    if (!cep || cep === "") {
+        return `00000-000`
+    }
     return `${cep.slice(0, 5)}-${cep.slice(5)}`;
 }

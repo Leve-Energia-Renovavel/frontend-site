@@ -9,25 +9,25 @@ import { CardsContainer, FactoryContainer as Container, FactoryDescription, Fact
 export default function FactoryContent() {
 
   return (
-    <Container>
-      <FactoryInfoContent image={factoryBannerImage}>
-        <FactoryDescription>
+    <Container className="factoryContainer">
+      <FactoryInfoContent className="factoryInfoContent" image={factoryBannerImage}>
+        <FactoryDescription className="factoryDescription">
           <p>Sua energia é gerada por:</p>
           <p className='factoryName'>Usina Uberlândia II</p>
           <p className='factoryLocation'>Uberlândia, Minas Gerais</p>
         </FactoryDescription>
       </FactoryInfoContent>
 
-      <FactoryMainContent>
-        <MainContentInfo>
+      <FactoryMainContent className="factoryMainContent">
+        <MainContentInfo className="factoryMainContentInfo">
           <p className='infoDescription'>Veja o impacto que você ajuda a criar para um futuro mais leve e renovável:</p>
           <Image src={leveTopBanner} alt='você mais Leve' className='leveTopBanner' />
         </MainContentInfo>
 
-        <CardsContainer>
-          {factoryInfos?.map((info) => {
+        <CardsContainer className="factoryCardsContainer">
+          {factoryInfos?.map((info, index) => {
             return (
-              <MainContentCard key={info.title}>
+              <MainContentCard key={info.title} className={`factoryCard-${index}`}>
                 {info.icon}
                 <p className='infoTitle'>{info.title}</p>
                 <p className='infoValue'>{info.value}</p>
