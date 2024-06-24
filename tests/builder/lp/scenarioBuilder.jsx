@@ -32,6 +32,19 @@ export const successDataHelper = {
         path: dummyPath.lp.yduqs,
         email: dummyFormLP.yduqs.email,
     }),
+    empresas: () => ({
+        ...successDefaultTemplate(),
+        path: dummyPath.lp.empresas,
+        email: dummyFormLP.empresas.email,
+        companyName: dummyForm.company.name,
+        requestUrl: dummyUrl.stepOne    // Overwriting the default requestUrl
+    }),
+    novosClientes: () => ({
+        ...successDefaultTemplate(),
+        path: dummyPath.lp.novosClientes,
+        email: dummyFormLP.novosClientes.email,
+        requestUrl: dummyUrl.stepOne    // Overwriting the default requestUrl
+    })
 };
 
 export const createTestData = (scenario, partner) => {

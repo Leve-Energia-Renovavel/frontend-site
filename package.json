@@ -9,8 +9,11 @@
     "start": "npx serve out -p 3000",
     "lint": "next lint",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run --browser chrome",
-    "test": "start-server-and-test start http://localhost:3000 cypress:run",
+    "cypress:execute": "cypress run --browser chrome",
+    "cypress:run": "cypress run --browser chrome --headed",
+    "test": "start-server-and-test start http://localhost:3000 cypress:execute",
+    "test:headed": "start-server-and-test start http://localhost:3000 cypress:run",
+    "test:spec": "start-server-and-test start http://localhost:3000 'cypress run --browser chrome --headed --spec cypress/e2e/**/Empresas.cy.js'",
     "open-browser": "start http://localhost:3000"
   },
   "dependencies": {

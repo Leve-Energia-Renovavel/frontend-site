@@ -15,6 +15,13 @@ export const dummyForm = {
         cpf: '36735996828',
         birthDate: '22021995',
     },
+    login: {
+        email: "dalbenmilton@gmail.com",
+        password: "123456"
+    },
+    company: {
+        name: "Empresa de Churros do Marcos"
+    },
     address: {
         number: '1234',
         complement: 'test',
@@ -32,7 +39,8 @@ export const dummyForm = {
 
 export const dummyUrl = {
     stepOne: `https://backofficehomolog.leveenergia.com.br/api/sign-up/step-one`,
-    storeClient: `https://backofficehomolog.leveenergia.com.br/api/sign-up/`,
+    storeClient: `https://backofficehomolog.leveenergia.com.br/api/sign-up`,
+    login: `https://backofficehomolog.leveenergia.com.br/api/login`,
     lpStepOne: `https://backofficehomolog.leveenergia.com.br/api/sign-up/lp/*`,
     homologSignup: `https://new-homolog-cliente.leveenergia.com.br/signup/?uuid=`,
 }
@@ -40,17 +48,21 @@ export const destinationPattern = {
     signup: `/signup/?uuid=`,
     contractSignature: `/signup/contract-signature/?uuid=`,
     outOfRange: `/fail/out-of-range`,
+    dashboard: `/dashboard`,
 }
 
 export const dummyPath = {
     home: "/",
-    signup: "/singup/?uuid=",
+    signup: "/signup/?uuid=",
+    login: "/login",
     lp: {
         tribanco: `https://new-homolog-cliente.leveenergia.com.br/lp/tribanco/`,
         martins: `https://new-homolog-cliente.leveenergia.com.br/lp/martins/`,
         tim: `https://new-homolog-cliente.leveenergia.com.br/lp/tim/`,
         localiza: `https://new-homolog-cliente.leveenergia.com.br/lp/localiza/`,
         yduqs: `https://new-homolog-cliente.leveenergia.com.br/lp/yduqs/`,
+        novosClientes: `https://new-homolog-cliente.leveenergia.com.br/lp/novos-clientes/`,
+        empresas: `https://new-homolog-cliente.leveenergia.com.br/lp/empresas/`,
     }
 }
 
