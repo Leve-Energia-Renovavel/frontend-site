@@ -19,6 +19,9 @@ export const dummyForm = {
         email: "dalbenmilton@gmail.com",
         password: "123456"
     },
+    company: {
+        name: "Empresa de Churros do Marcos"
+    },
     address: {
         number: '1234',
         complement: 'test',
@@ -58,6 +61,8 @@ export const dummyPath = {
         tim: `https://new-homolog-cliente.leveenergia.com.br/lp/tim/`,
         localiza: `https://new-homolog-cliente.leveenergia.com.br/lp/localiza/`,
         yduqs: `https://new-homolog-cliente.leveenergia.com.br/lp/yduqs/`,
+        novosClientes: `https://new-homolog-cliente.leveenergia.com.br/lp/novos-clientes/`,
+        empresas: `https://new-homolog-cliente.leveenergia.com.br/lp/empresas/`,
     }
 }
 
