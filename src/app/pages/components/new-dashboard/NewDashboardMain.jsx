@@ -182,7 +182,6 @@ export default function NewDashboardMain() {
 
                     <FactoryContent />
 
-
                 </Content>
             </Container>
         </>

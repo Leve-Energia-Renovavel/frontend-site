@@ -10,10 +10,10 @@ export default function NewHistoryMoneyChart() {
 
     const chartSize = -6
 
-    const valueData = billings.slice(chartSize).map((item) => item.value)
-    const availabilityData = billings.slice(chartSize).map((item) => item.energyDistributorInjected)
+    const valueData = billings.slice(chartSize).map((item) => item?.value)
+    const availabilityData = billings.slice(chartSize).map((item) => item?.energyDistributorInjected)
 
-    const dueDateData = billings.slice(chartSize).map(item => formatMonthAndYearInFull(item.dueDate))
+    const dueDateData = billings.slice(chartSize).map(item => formatMonthAndYearInFull(item?.dueDate))
 
     const labelColors = billings.slice(chartSize).map((_, index, arr) => {
         return index === arr.length - 1 ? newBackground.orange : newBackground.green;
@@ -93,7 +93,7 @@ export default function NewHistoryMoneyChart() {
             },
         },
         colors: [background.grey, (item) => {
-            const bill = billings.slice(chartSize)[item.dataPointIndex];
+            const bill = billings.slice(chartSize)[item?.dataPointIndex];
             if (bill.status === "paid") return newBackground.green;
             if (bill.status === "due") return newBackground.orange;
             if (bill.status === "pending") return newBackground.orangeFocused;

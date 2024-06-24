@@ -8,8 +8,6 @@ export default function NewHistoryEnergyChart() {
 
     const billings = useStoreBillingHistory().billings
 
-    console.log("billings ==>>", billings)
-
     const chartSize = -6
 
     const availabilityData = billings.slice(chartSize).map((_) => 45)

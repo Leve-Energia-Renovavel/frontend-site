@@ -33,9 +33,9 @@ export const BarChartWrapper = styled.div`
     }
   
   //last bar always highlighted 
-  .apexcharts-xaxis-texts-g text:nth-child(6) tspan {
-    font-weight: 900;
-  }
+  .apexcharts-xaxis-texts-g text:nth-of-type(6) tspan {
+  font-weight: 900;
+}
 
 `;
 export const ValueContainer = styled.div`
