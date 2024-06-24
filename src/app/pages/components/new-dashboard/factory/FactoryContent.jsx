@@ -1,3 +1,5 @@
+"use client"
+
 import { factoryInfos } from '@/app/utils/helper/newDashboardHelper'
 import Image from 'next/image'
 import leveTopBanner from '../../../../../resources/img/large/leve-top-banner-image-large.png'
@@ -5,7 +7,7 @@ import factoryBannerImage from '../../../../../resources/img/small/factory-banne
 import { CardsContainer, FactoryContainer as Container, FactoryDescription, FactoryInfoContent, FactoryMainContent, MainContentCard, MainContentInfo } from './styles'
 
 export default function FactoryContent() {
-  
+
   return (
     <Container>
       <FactoryInfoContent image={factoryBannerImage}>

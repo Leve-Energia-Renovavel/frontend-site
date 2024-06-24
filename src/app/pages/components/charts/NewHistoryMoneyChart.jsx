@@ -1,5 +1,7 @@
+"use client"
+
 import { useStoreBillingHistory } from '@/app/hooks/useStore';
-import { formatMonthAndYearInFull } from '@/app/utils/formatters/dateFormatter';
+import { formatDayMonthAndYearInFull, formatMonthAndYearInFull } from '@/app/utils/formatters/dateFormatter';
 import ReactApexChart from 'react-apexcharts';
 import { background, newBackground } from '../../styles';
 import { BarChartWrapper } from './styles';
@@ -10,13 +12,15 @@ export default function NewHistoryMoneyChart() {
 
     const chartSize = -6
 
-    const valueData = billings.slice(chartSize).map((item) => item?.value)
-    const availabilityData = billings.slice(chartSize).map((item) => item?.energyDistributorInjected)
+    const valueData = billings?.slice(chartSize).map((bill) => bill?.value)
+    // const availabilityData = billings?.slice(chartSize).map((bill) => bill?.energyDistributorInjected)
+    const availabilityData = billings.slice(chartSize).map((_) => 50)
 
-    const dueDateData = billings.slice(chartSize).map(item => formatMonthAndYearInFull(item?.dueDate))
+    // const dueDateData = billings?.slice(chartSize).map((bill) => formatDayMonthAndYearInFull(bill?.dueDate))
+    const billDateData = billings?.slice(chartSize).map((bill) => formatMonthAndYearInFull(bill?.billDate))
 
-    const labelColors = billings.slice(chartSize).map((_, index, arr) => {
-        return index === arr.length - 1 ? newBackground.orange : newBackground.green;
+    const labelColors = billings?.slice(chartSize).map((_, index, arr) => {
+        return index === arr?.length - 1 ? newBackground.orange : newBackground.green;
     });
 
     const series = [{
@@ -66,7 +70,7 @@ export default function NewHistoryMoneyChart() {
         },
         plotOptions: {
             bar: {
-                // distributed: true,
+                // distributed: true,   //for distributed colors 
                 horizontal: false,
                 columnWidth: '85%',
                 borderRadius: 8,
@@ -94,9 +98,9 @@ export default function NewHistoryMoneyChart() {
         },
         colors: [background.grey, (item) => {
             const bill = billings.slice(chartSize)[item?.dataPointIndex];
-            if (bill.status === "paid") return newBackground.green;
-            if (bill.status === "due") return newBackground.orange;
-            if (bill.status === "pending") return newBackground.orangeFocused;
+            if (bill?.status === "paid") return newBackground.green;
+            if (bill?.status === "due") return newBackground.orange;
+            if (bill?.status === "pending") return newBackground.orangeFocused;
             return newBackground.green;
         }],
         yaxis: {
@@ -104,7 +108,7 @@ export default function NewHistoryMoneyChart() {
         },
         xaxis: {
             type: 'category',
-            categories: dueDateData,
+            categories: billDateData,
             labels: {
                 show: true,
                 rotate: -45,

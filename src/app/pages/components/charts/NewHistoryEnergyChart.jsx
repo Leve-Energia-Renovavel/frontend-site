@@ -1,3 +1,5 @@
+"use client"
+
 import { useStoreBillingHistory } from '@/app/hooks/useStore';
 import { formatMonthAndYearInFull } from '@/app/utils/formatters/dateFormatter';
 import ReactApexChart from 'react-apexcharts';
@@ -10,9 +12,10 @@ export default function NewHistoryEnergyChart() {
 
     const chartSize = -6
 
-    const availabilityData = billings.slice(chartSize).map((_) => 45)
-    const dueDateData = billings.slice(chartSize).map(item => formatMonthAndYearInFull(item.dueDate))
     const valueData = billings.slice(chartSize).map(item => parseInt(item.energyConsumed))
+    const availabilityData = billings.slice(chartSize).map((_) => 45)
+    // const dueDateData = billings.slice(chartSize).map(item => formatDayMonthAndYearInFull(item.dueDate))
+    const billDateData = billings?.slice(chartSize).map((bill) => formatMonthAndYearInFull(bill?.billDate))
 
     const labelColors = billings.slice(chartSize).map((_, index, arr) => {
         return index === arr.length - 1 ? newBackground.orange : newBackground.green;
@@ -103,7 +106,7 @@ export default function NewHistoryEnergyChart() {
         },
         xaxis: {
             type: 'category',
-            categories: dueDateData,
+            categories: billDateData,
             labels: {
                 show: true,
                 rotate: -45,

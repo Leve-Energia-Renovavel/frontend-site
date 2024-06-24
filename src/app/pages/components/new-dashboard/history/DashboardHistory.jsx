@@ -1,10 +1,13 @@
+"use client"
+
+import dynamic from 'next/dynamic';
 import { useStoreUserEconomy } from '@/app/hooks/useStore';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useState } from 'react';
-import NewHistoryEnergyChart from '../../charts/NewHistoryEnergyChart';
-import NewHistoryMoneyChart from '../../charts/NewHistoryMoneyChart';
 import { AntSwitch, DashboardHistoryContainer as Container, DashboardHistoryContent as Content, DashboardHistoryTitleContainer as Header, HistoryChartLegend, HistoryDetail, HistoryDetailContent, HistoryDetailFooter, HistoryDetailFooterHeader, HistoryDetailHeader, HistoryDetailValue, HistoryDivider, LegendCarrier, LegendDue, LegendExpired, LegendPaid, DashboardHistorySwitchContainer as SwitchContainer } from './styles';
 
+const NewHistoryEnergyChart = dynamic(() => import('../../charts/NewHistoryEnergyChart'), { ssr: false });
+const NewHistoryMoneyChart = dynamic(() => import('../../charts/NewHistoryMoneyChart'), { ssr: false });
 
 export default function DashboardHistory() {
 
@@ -30,6 +33,7 @@ export default function DashboardHistory() {
       <Content className='dashboardHistoryContent'>
 
         {dataType === "money" ? <NewHistoryMoneyChart /> : <NewHistoryEnergyChart />}
+        {/* {dataType === "money" ? <h1>churros 1</h1> : <h1>churros 2</h1>} */}
 
         <HistoryDivider />
 

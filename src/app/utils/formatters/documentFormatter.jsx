@@ -3,5 +3,9 @@ export const formatCpf = (cpf) => {
     const part2 = cpf.substring(3, 6);
     const part3 = cpf.substring(6, 9);
     const part4 = cpf.substring(9);
-    return `${part1}.${part2}.${part3}-${part4}`;
+    return `***.***.${part3}-${part4}`;
+}
+
+export const formatCep = (cep) => {
+    return `${cep.slice(0, 5)}-${cep.slice(5)}`;
 }

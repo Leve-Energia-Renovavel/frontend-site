@@ -3,7 +3,6 @@ import { menuOptions } from '@/app/utils/helper/dashboardHelper';
 import { useRouter } from 'next/navigation';
 import { MenuOption, NewDashboardMenu } from './styles';
 
-
 export default function DashboardMenu() {
 
     const router = useRouter()

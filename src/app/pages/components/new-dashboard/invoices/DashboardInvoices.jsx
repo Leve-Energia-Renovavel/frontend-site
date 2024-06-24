@@ -17,6 +17,7 @@ export default function DashboardInvoices() {
   const storeBilling = useStoreBillingHistory()
 
   const billings = useStoreBillingHistory().billings
+  const nextBills = useStoreNextBills().nextBills
 
   useEffect(() => {
     const fetchInvoicesData = async () => {
@@ -72,7 +73,7 @@ export default function DashboardInvoices() {
         <NextBillsContainer className='nextBillsContainer'>
           {isLoading ?
             <DashboardInvoicesDummy />
-            : billings?.slice(-2)?.map((bill) => {
+            : nextBills?.slice(-2).reverse()?.map((bill) => {
               return (
                 <NextBill key={bill.uuid} className='nextBill'>
                   <h6 className='billDate'>{bill.billDate}</h6>

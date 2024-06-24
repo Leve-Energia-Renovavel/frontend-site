@@ -3,6 +3,7 @@
 
 import { useStoreUser } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
+import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
 import { formatCpf } from "@/app/utils/formatters/documentFormatter";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import axios from "axios";
@@ -36,14 +37,14 @@ export default function DashboardProfile() {
                     const instalacao = response?.data?.instalacao
 
                     store.updateUser({
-                        name: consumidor?.nome,
+                        name: consumidor?.nome + " " + consumidor?.sobrenome,
                         phone: consumidor?.telefone,
                         email: consumidor?.email,
+                        secondaryEmail: consumidor?.email_secondary,
                         cost: instalacao?.valor_base_consumo,
                         cep: consumidor?.cep,
                         discount: instalacao?.desconto,
-                        coupon: consumidor?.ref_origin,
-                        couponValue: response?.data?.desconto_bruto,
+                        birthDate: consumidor?.data_nascimento ? formatBasicBirthDate(consumidor?.data_nascimento) : "",
 
                         cpf: consumidor?.cpf,
                         cost: consumidor?.valor,
@@ -54,6 +55,8 @@ export default function DashboardProfile() {
                         memberGetMemberCode: consumidor?.ref_code,
 
                         hasFetchedData: true,
+
+                        invoiceDate: consumidor?.dia_fatura
                     });
 
                 } else {
@@ -71,7 +74,7 @@ export default function DashboardProfile() {
         <NewDashboardProfile>
             <ProfileHeader>
                 <PersonOutlineIcon className="profileIcon" />
-                <h6 className="username">Olá, {username}</h6>
+                <h6 className="username">Olá, {username ? username : "usuário"}</h6>
                 <p className="goToProfile" onClick={() => router.push("/dashboard/profile")}>Ver perfil</p>
             </ProfileHeader>
             <p className="cpf">CPF: {formatCpf(cpf)}</p>
