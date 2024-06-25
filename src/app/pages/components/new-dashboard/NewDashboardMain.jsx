@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreInstallations, useStoreMainInstallation, useStoreUserEconomy } from '@/app/hooks/useStore';
+import { useStoreUserEconomy } from '@/app/hooks/useStore';
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import { clearStorageData } from '@/app/utils/browser/BrowserUtils';
 import { formatBrazillianDate } from '@/app/utils/formatters/dateFormatter';
