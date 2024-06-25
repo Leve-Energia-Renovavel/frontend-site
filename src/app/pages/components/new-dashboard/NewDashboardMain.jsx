@@ -35,6 +35,9 @@ export default function NewDashboardMain() {
                 console.log("response ==>>", response)
 
                 if (requestSuccessful(response?.status)) {
+                    const { consumidor, economia } = response?.data
+                    const receivedCredits = response?.data?.creditos_recebidos
+                    const carbonCredits = response?.data?.co_dois
 
                     const updatedUserEconomy = {
                         economySince: formatBrazillianDate(consumidor?.created_at),
