@@ -6,7 +6,6 @@ import Footer from './pages/components/footer/Footer';
 import Header from './pages/components/header/Header';
 
 const WhatsAppFAB = dynamic(() => import('./pages/components/fabWhatsapp/WhatsappFAB'), { ssr: false });
-const NewFooter = dynamic(() => import('./pages/components/new-footer/NewFooter'), { ssr: false });
 
 export const metadata = {
   title: 'Leve Energia Renovavel',

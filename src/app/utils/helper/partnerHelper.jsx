@@ -69,3 +69,4 @@ export const partners = {
         logo: <Image src={yduqsLogo} className='partnerLogo' alt={"Logo Yduqs"} priority={false} />
     },
 }
+

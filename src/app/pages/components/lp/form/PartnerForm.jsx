@@ -44,6 +44,7 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
     const martinsRegistrationRef = useRef()
 
     const isMartins = partner === "martins"
+    const isAllya = partner === "allya"
     const islocaliza = partner === "localiza" ? "true" : "false"    //this had to be done to fix unknown hydratation problems in tribanco lp 
 
     const texts = infoJson.home
@@ -82,7 +83,7 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
                         <Image src={economyIcon} className='economyIcon' alt={"Logo Leve"} priority />
                         <h2>{texts.simulate}</h2>
                     </FormTitleContainer>
-                    <p variant="body1">Sou colaborador <span className="highlighted">{capitalizeFirstLetter(partner)}</span> e quero economizar</p>
+                    <p variant="body1">Sou {isAllya ? 'usuário' : 'colaborador'} <span className="highlighted">{capitalizeFirstLetter(partner)}</span> e quero economizar</p>
                     <TextField
                         inputRef={nameRef}
                         className="homeFormInput"
