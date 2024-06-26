@@ -15,6 +15,8 @@ import { NewDashboardContainer as Container, NewDashboardContent as Content, New
 import DashboardHistory from './history/DashboardHistory';
 import DashboardInvoices from './invoices/DashboardInvoices';
 import DashboardSideBar from './side-bar/DashboardSideBar';
+import DashboardStepper from './status-stepper/StatusStepper';
+import StatusStepper from './status-stepper/StatusStepper';
 
 const FactoryContent = dynamic(() => import('./factory/FactoryContent'), { ssr: false });
 
@@ -64,6 +66,7 @@ export default function NewDashboardMain() {
             <Container className='dashboardContainer'>
                 <DashboardSideBar className="sideBar" />
                 <Content className='dashboardContent'>
+                    <StatusStepper />
                     <MainContent className='dashboardMainContent'>
                         <DashboardInvoices />
                         <DashboardHistory />
