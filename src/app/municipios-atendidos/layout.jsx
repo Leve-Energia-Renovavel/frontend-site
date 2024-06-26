@@ -1,6 +1,6 @@
 export const metadata = {
-    title: 'Apresentação - Leve Energia Renovavel',
-    description: 'Veja como podemos ajudar você a economizar na conta de luz e contribuir para um futuro sustentável com energia solar. 100% digital e em apenas 3 cliques!',
+    title: 'Área de Atendimento - Leve Energia Renovavel',
+    description: 'Confira os municípios atendidos pela Leve Energia. Descubra se sua cidade está na nossa área de cobertura e aproveite os benefícios da energia solar.',
     icons: {
         icon: "/favicon.ico",
     },

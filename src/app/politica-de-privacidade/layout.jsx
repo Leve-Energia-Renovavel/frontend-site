@@ -1,6 +1,6 @@
 export const metadata = {
-    title: 'Apresentação - Leve Energia Renovavel',
-    description: 'Veja como podemos ajudar você a economizar na conta de luz e contribuir para um futuro sustentável com energia solar. 100% digital e em apenas 3 cliques!',
+    title: 'Política de Privacidade - Leve Energia Renovavel',
+    description: 'Conheça a Política de Privacidade da Leve Energia e saiba como protegemos seus dados pessoais. Transparência e segurança são nossas prioridades.',
     icons: {
         icon: "/favicon.ico",
     },

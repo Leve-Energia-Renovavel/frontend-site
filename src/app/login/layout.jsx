@@ -1,6 +1,6 @@
 export const metadata = {
-    title: 'Apresentação - Leve Energia Renovavel',
-    description: 'Veja como podemos ajudar você a economizar na conta de luz e contribuir para um futuro sustentável com energia solar. 100% digital e em apenas 3 cliques!',
+    title: 'Login - Leve Energia Renovavel',
+    description: 'Faça login para ver sua economia na conta de luz e sua contribuição para um futuro sustentável com energia solar.',
     icons: {
         icon: "/favicon.ico",
     },

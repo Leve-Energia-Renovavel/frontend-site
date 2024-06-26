@@ -1,6 +1,6 @@
 export const metadata = {
     title: 'Leve Energia Renovavel',
-    description: 'Leve energia renovavel - pague menos na conta de luz',
+    description: 'Junte-se à Leve Energia e aproveite os benefícios da energia solar. Cadastre-se e comece a economizar na sua conta de luz de forma sustentável e eficiente.',
     icons: {
         icon: "/favicon.ico",
     },
