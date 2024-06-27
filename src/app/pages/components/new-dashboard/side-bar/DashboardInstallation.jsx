@@ -8,10 +8,12 @@ import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { formatCep } from "@/app/utils/formatters/documentFormatter";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import InventoryIcon from '@mui/icons-material/Inventory';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { Box, Select } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
-import { InstallationDetails, InstallationFooter, InstallationHeader, NewDashboardInstallation } from "./styles";
+import { InstallationDetails, InstallationFooter, InstallationHeader, NewDashboardInstallation, installationFieldStyle } from "./styles";
 
 export default function DashboardInstallation() {
 
@@ -19,8 +21,13 @@ export default function DashboardInstallation() {
     const storeMainInstallation = useStoreMainInstallation()
 
     const mainInstallation = JSON.parse(localStorage.getItem('mainInstallation'))
+    const installations = JSON.parse(localStorage.getItem('installations'))
 
-    const { street, number, neighborhood, city, state, stateId, cityId, zipCode, installationNumber } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+    const { street, number, neighborhood, city, state, stateId, cityId, zipCode, installationNumber, id } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+
+    const myInstallations = installations?.installations ?? (storeInstallations?.installations || {})
+
+    const filteredInstallations = myInstallations?.filter(installation => installation?.id !== id);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -56,7 +63,6 @@ export default function DashboardInstallation() {
 
                         clientId: instalacao?.clientes_id,
                         isSelected: instalacao?.selecionada,
-                        status: instalacao?.status
                     }
 
                     storeMainInstallation.updateMainInstallation(updatedMainInstallation)
@@ -64,15 +70,26 @@ export default function DashboardInstallation() {
 
                     outrasInstalacoes?.forEach(installation => {
                         const otherInstallation = {
+                            id: installation?.id,
                             uuid: installation?.uuid,
-                            address: installation?.endereco,
-                            neighborhood: installation?.bairro,
+                            address: installation?.nome,
+                            street: installation?.nome,
                             number: installation?.numero,
-                            zipCode: installation?.cep,
                             cityId: installation?.cidade_id,
                             stateId: installation?.estado_id,
+                            neighborhood: installation?.bairro,
+                            complement: installation?.complemento,
+                            zipCode: installation?.cep,
+                            amount: installation?.valor_base_consumo,
                             status: installation?.situacao,
                             installationNumber: installation?.numero_instalacao,
+
+                            percentageAllocatedEnergy: installation?.porcentagem_energia_alocada,
+                            kwhContracted: installation?.kwh_contratado,
+                            discount: installation?.desconto,
+
+                            clientId: installation?.clientes_id,
+                            isSelected: installation?.selecionada,
                         }
 
                         storeInstallations.addInstallation(otherInstallation);
@@ -89,12 +106,34 @@ export default function DashboardInstallation() {
         fetchUserData();
     }, []);
 
+    const handleChangeSelectedInstallation = (selectedInstallation) => {
+        console.log(selectedInstallation)
+    }
+
 
     return (
         <NewDashboardInstallation>
             <InstallationHeader>
                 <InventoryIcon className="installationIcon" />
-                <h6 className="installationTitle">Casa</h6>
+                {/* <h6 className="installationTitle">Casa</h6> */}
+                <Box sx={{ minWidth: 120 }}>
+                    <Select
+                        fullWidth
+                        value={0}
+                        IconComponent={KeyboardArrowDownIcon}
+                        sx={installationFieldStyle}>
+                        <li value={0} style={{ display: 'none' }}>
+                            <span>Casa</span>
+                        </li>
+                        {filteredInstallations?.map((otherInstallation, index) => {
+                            return (
+                                <li key={otherInstallation?.id} value={index + 1}>
+                                    <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>{otherInstallation.street}</span>
+                                </li>
+                            )
+                        })}
+                    </Select>
+                </Box>
             </InstallationHeader>
             <InstallationDetails>
                 <p className="installationDetails">{street}, {number} - {neighborhood}, {city !== "" ? city : getCityNameByStateIdAndCityId(stateId, cityId)} - {state !== "" ? state : stateOptions[stateId]?.nome}, CEP: {formatCep(zipCode)}</p>

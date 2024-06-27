@@ -1,3 +1,6 @@
+"use client"
+
+import { useStoreMainInstallation } from '@/app/hooks/useStore';
 import Step from '@mui/material/Step';
 import { StepperContainer as Container, CustomConnector, CustomStepIcon, CustomStepper, StyledStepLabel } from './styles';
 
@@ -9,18 +12,39 @@ const steps = [
 ];
 
 export default function StatusStepper() {
+
+    const storeMainInstallation = useStoreMainInstallation()
+
+    const mainInstallation = JSON.parse(localStorage.getItem('mainInstallation'))
+
+    const { status } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+
+    const handleInstallationStatus = (status) => {
+        if (status === "ativo") return 4
+        else if (status === "enviado") return 3
+        else if (status === "validado") return 2
+        else return 1
+    }
+    const handleInstallationSubtitle = (status) => {
+        if (status === "ativo") return "Top!"
+        else if (status === "enviado") return ""
+        else if (status === "validado") return ""
+        else return "Parabéns, você assinou seu contrato com a Leve e receberá seus créditos de energia renovável em breve."
+    }
+
+
     return (
         <Container>
-            <CustomStepper activeStep={1} alternativeLabel connector={<CustomConnector />}>
+            <CustomStepper activeStep={handleInstallationStatus(status)} alternativeLabel connector={<CustomConnector />}>
                 {steps.map((step, index) => (
                     <Step key={index + 1}>
-                        <StyledStepLabel StepIconComponent={CustomStepIcon} icon={" "}>
+                        <StyledStepLabel StepIconComponent={CustomStepIcon} icon={" "} className={`styledStepLabel-${index}`}>
                             {Object.keys(step)[0]}. {Object.values(step)[0]}
                         </StyledStepLabel>
                     </Step>
                 ))}
             </CustomStepper>
-            <p className='subtitle'>Parabéns, você assinou seu contrato com a Leve e receberá seus créditos de energia renovável em breve.</p>
+            <p className='subtitle'>{handleInstallationSubtitle(status)}</p>
         </Container>
 
     );

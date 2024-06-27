@@ -208,3 +208,28 @@ export const MenuOption = styled.div`
     ${props => props.highlighted ? `background-color:${newBackground.orange}; padding: 10px 12px; align-items: start; &:hover { background-color: ${newBackground.yellow}; cursor: pointer; .option { text-decoration: underline; } .memberGetMember { color: ${newBackground.green} } .icon, .couponValue { color: ${newBackground.green}; font-weight: 900; }}` : ""};
 
 `
+
+export const installationFieldStyle = {
+    fontFamily: 'Graphie',
+    fontWeight: '800',
+    fontSize: 20,
+    padding: 0,
+    color: newBackground.orange,
+    '& .MuiOutlinedInput-root': {
+        '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: newBackground.white, // Border color on hover
+        },
+        '& .MuiSelect-select:focus': {
+            backgroundColor:  newBackground.white, // Avoid the blue background on focus
+        },
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+        borderColor: newBackground.orange, // Border color
+    },
+    '&:hover .MuiOutlinedInput-notchedOutline': {
+        borderColor: newBackground.white, // Border color on hover
+    },
+    '.MuiSvgIcon-root ': {
+        fill: `${newBackground.orange} !important`,
+    },
+}
