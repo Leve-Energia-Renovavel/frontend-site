@@ -114,7 +114,6 @@ export default function DashboardInstallation() {
         <NewDashboardInstallation>
             <InstallationHeader>
                 <InventoryIcon className="installationIcon" />
-                {/* <h6 className="installationTitle">Casa</h6> */}
                 <BoxInstallation >
                     <SelectInstallation
                         fullWidth

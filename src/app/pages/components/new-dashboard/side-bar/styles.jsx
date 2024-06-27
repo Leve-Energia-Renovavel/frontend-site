@@ -78,14 +78,6 @@ display: flex;
         height: auto;
         color: ${newBackground.orange};
     }
-    
-    .installationTitle {
-        font-family: "Graphie";
-        font-size: 21px;
-        line-height: 26px;
-        font-weight: 600;
-        color: ${newBackground.green};
-    }
 `
 export const InstallationDetails = styled.div`
     .installationDetails {
