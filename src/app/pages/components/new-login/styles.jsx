@@ -20,16 +20,31 @@ export const LoginBox = styled(Box)`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: ${background.light};
+    background-color: ${newBackground.white};
+    border-radius: 15px;
 
     width: 60vw;
     height: 80vh;
     
-    border: 2px solid ${background.lightBorder};
     box-shadow: 24px;
-    border-radius: 13px;
 
     padding: 1rem 2rem;
+
+    .MuiOutlinedInput-root {
+        &:hover .MuiOutlinedInput-notchedOutline {
+            border-color: ${newBackground.orangeFocused}; // Border color on hover
+        }
+        &.Mui-focused .MuiOutlinedInput-notchedOutline {
+            border-color: ${newBackground.orange} !important; // Border color when focused
+        }
+        &:not(.Mui-focused) .MuiOutlinedInput-notchedOutline {
+            border-color: ${newBackground.orangeFocused} !important; // Border color when not focused
+        }
+    }
+
+    .MuiOutlinedInput-notchedOutline {
+        border-color: ${newBackground.orangeFocused}; // Border color: ;
+    }
 
     @media (max-width: 900px) {
         width: 100%;
