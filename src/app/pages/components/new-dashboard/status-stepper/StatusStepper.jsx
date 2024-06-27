@@ -26,9 +26,9 @@ export default function StatusStepper() {
         else return 1
     }
     const handleInstallationSubtitle = (status) => {
-        if (status === "ativo") return "Top!"
-        else if (status === "enviado") return ""
-        else if (status === "validado") return ""
+        if (status === "ativo") return "Sua unidade está ativa! Em breve, você começará a economizar com a Leve Energia."
+        else if (status === "enviado") return "Ótima notícia! Seu cadastro na distribuidora foi realizado com sucesso."
+        else if (status === "validado") return "Suas informações foram validadas com sucesso. Em breve, a distribuidora aprovará seu cadastro!"
         else return "Parabéns, você assinou seu contrato com a Leve e receberá seus créditos de energia renovável em breve."
     }
 

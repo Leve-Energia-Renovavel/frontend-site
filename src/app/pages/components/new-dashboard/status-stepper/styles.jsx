@@ -66,8 +66,6 @@ export const CustomStepIcon = styled(StepIcon)`
         width: 20px;
         height: auto;
         color: ${newBackground.green}; /* Completed dot color */
-
-
     }
 `;
 
@@ -93,6 +91,7 @@ export const StyledStepLabel = styled(StepLabel)`
 
 
     @media (max-width: 900px) {
+
         & .MuiStepLabel-label {
             font-size: 10px;
             left: 0;
@@ -107,6 +106,7 @@ export const StyledStepLabel = styled(StepLabel)`
         }
         
         &.MuiStepLabel-root.MuiStepLabel-alternativeLabel.styledStepLabel-0 {
+
             margin-left: -20px;
         }
         &.MuiStepLabel-root.MuiStepLabel-alternativeLabel.styledStepLabel-1 {
@@ -120,6 +120,7 @@ export const StyledStepLabel = styled(StepLabel)`
         }
     }
 `
+
 
 
 export const CustomConnector = styled(StepConnector)`
@@ -136,17 +137,23 @@ export const CustomConnector = styled(StepConnector)`
 
     &.${stepConnectorClasses.completed} .${stepConnectorClasses.line} {
         border-color: ${newBackground.green};
+
     }
     
     & .${stepConnectorClasses.line} {
         border-color: ${newBackground.orangeFocused};
         border-width: 4px;
+
     }
 
     @media (max-width: 900px) {
+        
         &.${stepConnectorClasses.alternativeLabel} {
-            left: calc(-60% + 17px); /* Example adjustment for smaller screens */
-            right: calc(20% + 10px);
+            /* left: calc(-60% + 18px); 
+            right: calc(20% + 10px); */
+
+            left: calc(-56% + 16px);
+            right: calc(38% + 16px);
         }
 
     }

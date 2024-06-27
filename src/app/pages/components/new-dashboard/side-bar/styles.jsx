@@ -1,5 +1,6 @@
 import { newBackground } from "@/app/pages/styles"
 import styled from "@emotion/styled"
+import { Box, Select } from "@mui/material"
 
 export const NewDashboardProfile = styled.div`
     display: flex;
@@ -209,18 +210,64 @@ export const MenuOption = styled.div`
 
 `
 
+export const BoxInstallation = styled(Box)`
+    min-width: 90px;
+    width: auto;
+    max-width: 120px;
+
+`
+export const SelectInstallation = styled(Select)`
+    font-family: "Graphie";
+    font-weight: 800;
+    font-size: 20px;
+    color: ${newBackground.orange};
+
+    &.MuiOutlinedInput-root {
+        .MuiSelect-select {
+            padding: 0 2px !important; // Remove padding
+        }
+        &:hover .MuiOutlinedInput-notchedOutline {
+            border-color: transparent; // Border color on hover
+        }
+        .MuiSelect-select:focus {
+            background-color: transparent; // Avoid the blue background on focus
+        }
+        &.Mui-focused .MuiOutlinedInput-notchedOutline {
+            border-color: transparent !important; // Border color when focused
+        }
+    }
+
+    .Mui-focused {
+        border-color: purple; // Border color: ;
+    }
+
+    .MuiOutlinedInput-notchedOutline {
+        border-color: transparent; // Border color: ;
+    }
+    &:hover .MuiOutlinedInput-notchedOutline {
+        border-color: transparent; // Border color on hover
+    }
+    .MuiSvgIcon-root {
+        fill: ${newBackground.orange} !important;
+    }
+`
+
+
 export const installationFieldStyle = {
     fontFamily: 'Graphie',
     fontWeight: '800',
     fontSize: 20,
-    padding: 0,
+    padding: '0px', // Adjust the padding as needed
     color: newBackground.orange,
     '& .MuiOutlinedInput-root': {
+        '&.MuiSelect-select MuiSelect-outlined .MuiInputBase-input .MuiOutlinedInput-input .MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': {
+            padding: '0 !important', // Remove padding
+        },
         '&:hover .MuiOutlinedInput-notchedOutline': {
             borderColor: newBackground.white, // Border color on hover
         },
         '& .MuiSelect-select:focus': {
-            backgroundColor:  newBackground.white, // Avoid the blue background on focus
+            backgroundColor: newBackground.white, // Avoid the blue background on focus
         },
     },
     '& .MuiOutlinedInput-notchedOutline': {

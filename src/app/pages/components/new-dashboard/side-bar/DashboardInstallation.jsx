@@ -9,11 +9,10 @@ import { formatCep } from "@/app/utils/formatters/documentFormatter";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Box, Select } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
-import { InstallationDetails, InstallationFooter, InstallationHeader, NewDashboardInstallation, installationFieldStyle } from "./styles";
+import { BoxInstallation, InstallationDetails, InstallationFooter, InstallationHeader, NewDashboardInstallation, SelectInstallation } from "./styles";
 
 export default function DashboardInstallation() {
 
@@ -116,12 +115,12 @@ export default function DashboardInstallation() {
             <InstallationHeader>
                 <InventoryIcon className="installationIcon" />
                 {/* <h6 className="installationTitle">Casa</h6> */}
-                <Box sx={{ minWidth: 120 }}>
-                    <Select
+                <BoxInstallation >
+                    <SelectInstallation
                         fullWidth
                         value={0}
-                        IconComponent={KeyboardArrowDownIcon}
-                        sx={installationFieldStyle}>
+                        displayEmpty
+                        IconComponent={KeyboardArrowDownIcon}>
                         <li value={0} style={{ display: 'none' }}>
                             <span>Casa</span>
                         </li>
@@ -132,8 +131,8 @@ export default function DashboardInstallation() {
                                 </li>
                             )
                         })}
-                    </Select>
-                </Box>
+                    </SelectInstallation>
+                </BoxInstallation>
             </InstallationHeader>
             <InstallationDetails>
                 <p className="installationDetails">{street}, {number} - {neighborhood}, {city !== "" ? city : getCityNameByStateIdAndCityId(stateId, cityId)} - {state !== "" ? state : stateOptions[stateId]?.nome}, CEP: {formatCep(zipCode)}</p>
