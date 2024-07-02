@@ -18,12 +18,12 @@ import DashboardSideBar from './side-bar/DashboardSideBar';
 
 const StatusStepper = dynamic(() => import('./status-stepper/StatusStepper'), { ssr: false });
 
-export default function NewDashboardMain() {
+export default function NewDashboardMain(props) {
 
     const router = useRouter()
     const storeEconomy = useStoreUserEconomy()
 
-    const [menuSelected, setMenuSelection] = useState(menuOptions[0])
+    const [menuSelected, setMenuSelection] = useState(menuOptions[props.page])
 
 
     useEffect(() => {
@@ -66,7 +66,7 @@ export default function NewDashboardMain() {
         <>
             <Container className='dashboardContainer'>
                 <DashboardSideBar className="sideBar">
-                    <DashboardMenu setMenuSelection={setMenuSelection}/>
+                    <DashboardMenu menuSelected={menuSelected} setMenuSelection={setMenuSelection} />
                 </DashboardSideBar>
                 <Content className='dashboardContent'>
                     <StatusStepper />

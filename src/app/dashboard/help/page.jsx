@@ -2,11 +2,11 @@ import NewDashboardMain from "@/app/pages/components/new-dashboard/NewDashboardM
 
 export default function Installations() {
 
-    const installationsInitialPageIndex = 3
+    const helpInitialPageIndex = 4
 
     return (
         <>
-            <NewDashboardMain page={installationsInitialPageIndex} />
+            <NewDashboardMain page={helpInitialPageIndex} />
         </>
     );
 }

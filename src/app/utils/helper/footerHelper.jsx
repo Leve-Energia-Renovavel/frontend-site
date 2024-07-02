@@ -35,5 +35,7 @@ export const footerBasedOn = {
     "/dashboard/": true,
     "/dashboard/profile/": true,
     "/dashboard/installations/": true,
-    "/dashboard/invoices/": true
+    "/dashboard/invoices/": true,
+    "/dashboard/help/": true,
+    "/dashboard/payment/": true
 }

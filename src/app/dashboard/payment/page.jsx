@@ -4,11 +4,11 @@ import NewDashboardMain from '@/app/pages/components/new-dashboard/NewDashboardM
 
 export default function Invoices() {
 
-    const invoicesInitialPageIndex = 1
+    const paymentInitialPageIndex = 2
 
     return (
         <>
-            <NewDashboardMain page={invoicesInitialPageIndex} />
+            <NewDashboardMain page={paymentInitialPageIndex} />
         </>
     );
 }
