@@ -9,20 +9,22 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import { NewDashboardContainer as Container, NewDashboardContent as Content, NewDashboardMainContent as MainContent } from './styles';
+import { useEffect, useState } from 'react';
+import { NewDashboardContainer as Container, NewDashboardContent as Content } from './styles';
 
-import DashboardHistory from './history/DashboardHistory';
-import DashboardInvoices from './invoices/DashboardInvoices';
+import { menuOptions } from '@/app/utils/helper/dashboardHelper';
+import DashboardMenu from './side-bar/DashboardMenu';
 import DashboardSideBar from './side-bar/DashboardSideBar';
 
-const FactoryContent = dynamic(() => import('./factory/FactoryContent'), { ssr: false });
 const StatusStepper = dynamic(() => import('./status-stepper/StatusStepper'), { ssr: false });
 
 export default function NewDashboardMain() {
 
     const router = useRouter()
     const storeEconomy = useStoreUserEconomy()
+
+    const [menuSelected, setMenuSelection] = useState(menuOptions[0])
+
 
     useEffect(() => {
         clearStorageData()
@@ -63,16 +65,12 @@ export default function NewDashboardMain() {
     return (
         <>
             <Container className='dashboardContainer'>
-                <DashboardSideBar className="sideBar" />
+                <DashboardSideBar className="sideBar">
+                    <DashboardMenu setMenuSelection={setMenuSelection}/>
+                </DashboardSideBar>
                 <Content className='dashboardContent'>
                     <StatusStepper />
-                    <MainContent className='dashboardMainContent'>
-                        <DashboardInvoices />
-                        <DashboardHistory />
-                    </MainContent>
-
-                    <FactoryContent />
-
+                    {menuSelected?.content}
                 </Content>
             </Container>
         </>

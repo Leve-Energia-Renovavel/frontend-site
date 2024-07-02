@@ -13,7 +13,7 @@ module.exports = defineConfig({
     },
     supportFile: 'cypress/support/component.js', // Change to false to disable support file if not needed
     specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
-    video: false,
+    video: true,
     screenshotOnRunFailure: false,
   },
   component: {

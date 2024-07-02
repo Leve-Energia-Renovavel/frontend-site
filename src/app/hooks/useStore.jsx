@@ -217,7 +217,9 @@ export const useStoreMainInstallation = create((set) => ({
 
         clientId: "",
         isSelected: "",
-        status: ""
+        status: "",
+
+        hasStartedBilling: false,
 
 
     },
@@ -251,7 +253,9 @@ export const useStoreMainInstallation = create((set) => ({
 
                 clientId: "",
                 isSelected: "",
-                status: ""
+                status: "",
+
+                hasStartedBilling: false,
             }
         }))
 }));

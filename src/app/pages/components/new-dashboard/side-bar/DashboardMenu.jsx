@@ -3,7 +3,7 @@ import { menuOptions } from '@/app/utils/helper/dashboardHelper';
 import { useRouter } from 'next/navigation';
 import { MenuOption, NewDashboardMenu } from './styles';
 
-export default function DashboardMenu() {
+export default function DashboardMenu({ setMenuSelection }) {
 
     const router = useRouter()
 
@@ -12,12 +12,16 @@ export default function DashboardMenu() {
         router.push("/")
     }
 
+    const handleMenuSelection = (index) => {
+        setMenuSelection(menuOptions[index])
+    }
+
     return (
         <>
             <NewDashboardMenu>
-                {menuOptions.map((option) => {
+                {menuOptions.map((option, index) => {
                     return (
-                        <MenuOption key={option.title} highlighted={option.highlighted}>
+                        <MenuOption key={option.id} highlighted={option.highlighted} onClick={() => handleMenuSelection(index)}>
                             {option.icon}
                             <p className='option'>{option.title}</p>
                         </MenuOption>

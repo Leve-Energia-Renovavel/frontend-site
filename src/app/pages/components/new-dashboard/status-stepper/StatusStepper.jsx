@@ -17,7 +17,7 @@ export default function StatusStepper() {
 
     const mainInstallation = JSON.parse(localStorage.getItem('mainInstallation'))
 
-    const { status } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+    const { status, hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
     const handleInstallationStatus = (status) => {
         if (status === "ativo") return 4
@@ -32,20 +32,20 @@ export default function StatusStepper() {
         else return "Parabéns, você assinou seu contrato com a Leve e receberá seus créditos de energia renovável em breve."
     }
 
-
     return (
-        <Container>
-            <CustomStepper activeStep={handleInstallationStatus(status)} alternativeLabel connector={<CustomConnector />}>
-                {steps.map((step, index) => (
-                    <Step key={index + 1}>
-                        <StyledStepLabel StepIconComponent={CustomStepIcon} icon={" "} className={`styledStepLabel-${index}`}>
-                            {Object.keys(step)[0]}. {Object.values(step)[0]}
-                        </StyledStepLabel>
-                    </Step>
-                ))}
-            </CustomStepper>
-            <p className='subtitle'>{handleInstallationSubtitle(status)}</p>
-        </Container>
-
+        !hasStartedBilling && (
+            <Container>
+                <CustomStepper activeStep={handleInstallationStatus(status)} alternativeLabel connector={<CustomConnector />}>
+                    {steps.map((step, index) => (
+                        <Step key={index + 1}>
+                            <StyledStepLabel StepIconComponent={CustomStepIcon} icon={" "} className={`styledStepLabel-${index}`}>
+                                {Object.keys(step)[0]}. {Object.values(step)[0]}
+                            </StyledStepLabel>
+                        </Step>
+                    ))}
+                </CustomStepper>
+                <p className='subtitle'>{handleInstallationSubtitle(status)}</p>
+            </Container>
+        )
     );
 }

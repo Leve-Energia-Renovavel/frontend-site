@@ -24,9 +24,9 @@ export default function DashboardInstallation() {
 
     const { street, number, neighborhood, city, state, stateId, cityId, zipCode, installationNumber, id } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
-    const myInstallations = installations?.installations ?? (storeInstallations?.installations || {})
+    const allInstallations = installations?.installations ?? (storeInstallations?.installations || {})
 
-    const filteredInstallations = myInstallations?.filter(installation => installation?.id !== id);
+    const filteredInstallations = allInstallations?.filter(installation => installation?.id !== id);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -40,6 +40,7 @@ export default function DashboardInstallation() {
                 if (requestSuccessful(response?.status)) {
                     const { instalacao } = response?.data
                     const outrasInstalacoes = response?.data?.outras_instalacoes
+                    const hasStartedBilling = response?.data?.ciclosConsumo ? true : false
 
                     const updatedMainInstallation = {
                         id: instalacao?.id,
@@ -62,6 +63,8 @@ export default function DashboardInstallation() {
 
                         clientId: instalacao?.clientes_id,
                         isSelected: instalacao?.selecionada,
+
+                        hasStartedBilling: hasStartedBilling
                     }
 
                     storeMainInstallation.updateMainInstallation(updatedMainInstallation)
