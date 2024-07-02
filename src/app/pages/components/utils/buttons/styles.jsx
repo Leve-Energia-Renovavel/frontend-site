@@ -350,3 +350,34 @@ export const NewDefaultButtonStyle = styled(Button)`
         padding: 1rem 3rem;
     } */
 `;
+
+
+export const OutlinedButtonStyle = styled(Button)`
+        text-transform: none;
+        border: 1px solid ${newBackground.orange};
+        background-color: ${newBackground.white};
+        padding: 11px 18px;
+
+        border-radius: 10px;
+        height: 3rem;
+
+        width: 100%;
+        max-width: 280px;
+        
+        span { 
+            font-family: "Graphie";
+            font-size: 16px;
+            line-height: 21px;
+            font-weight: 600;
+            color: ${newBackground.orange};
+        }
+
+        &:hover {
+            background-color: ${newBackground.orange};
+            border-color: ${background.lightBorder};
+            
+            span {
+                color: ${newBackground.white};
+            } 
+        }
+`;

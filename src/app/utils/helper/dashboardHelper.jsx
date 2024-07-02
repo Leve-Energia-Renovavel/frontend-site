@@ -1,8 +1,9 @@
 import NewHelpMain from '@/app/pages/components/help/NewHelpMain';
-import NewInstallationsMain from '@/app/pages/components/installations/NewInstallationsMain';
-import NewInvoicesMain from '@/app/pages/components/invoices/NewInvoicesMain';
+import NewInstallationsMain from '@/app/pages/components/new-installations/NewInstallationsMain';
+import NewInvoicesMain from '@/app/pages/components/new-invoices/NewInvoicesMain';
 import NewDashboardMainContent from '@/app/pages/components/new-dashboard/main-content/NewDashboardMainContent';
 import NewPaymentMain from '@/app/pages/components/payment/NewPaymentMain';
+import NewProfileMain from '@/app/pages/components/new-profile/NewProfileMain';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import HomeIcon from '@mui/icons-material/Home';
@@ -49,5 +50,13 @@ export const menuOptions = [
         menuLabel: "help",
         highlighted: false,
         content: <NewHelpMain />
+    },
+    {
+        id: 6,
+        icon: <HelpOutlineIcon className='icon' />,
+        title: "Meu Perfil",
+        menuLabel: "profile",
+        highlighted: false,
+        content: <NewProfileMain />
     },
 ]

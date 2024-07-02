@@ -80,6 +80,7 @@ export const newBackground = {
     greenSoft: "#81AD9F",
     white: "#FCFCFA",
     grey: "#EFEFEC",
+    greyTranslucent: "#F3F3F1",
 }
 
 export const background = {

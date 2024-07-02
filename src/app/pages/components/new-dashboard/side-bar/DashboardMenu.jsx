@@ -19,13 +19,13 @@ export default function DashboardMenu({ menuSelected, setMenuSelection }) {
     return (
         <>
             <NewDashboardMenu>
-                {menuOptions.map((option, index) => {
+                {menuOptions.slice(0, -1).map((option, index) => {
                     return (
-                        <MenuOption 
-                        selected={menuSelected.id === option.id}
-                        key={option.id} 
-                        highlighted={option.highlighted} 
-                        onClick={() => handleMenuSelection(index)}>
+                        <MenuOption
+                            selected={menuSelected?.id === option.id}
+                            key={option.id}
+                            highlighted={option.highlighted}
+                            onClick={() => handleMenuSelection(index)}>
                             {option.icon}
                             <p className='option'>{option.title}</p>
                         </MenuOption>
