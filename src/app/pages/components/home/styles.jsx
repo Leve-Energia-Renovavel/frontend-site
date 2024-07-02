@@ -288,6 +288,8 @@ export const HomeMainForm = styled.form`
 
         & .MuiFormLabel-root-MuiInputLabel-root {
           line-height: 2.4375em;
+
+
         }
         
         & .MuiOutlinedInput-root {
@@ -296,6 +298,17 @@ export const HomeMainForm = styled.form`
             border-radius: 10px;
             border-color: ${newBackground.white};
           }
+        } 
+
+        input {
+          all: inset;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+          transition: all 1000s ease-in-out 0s;
         }
 
     }
