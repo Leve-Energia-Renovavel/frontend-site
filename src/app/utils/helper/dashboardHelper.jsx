@@ -1,9 +1,9 @@
 import NewHelpMain from '@/app/pages/components/help/NewHelpMain';
+import NewDashboardMainContent from '@/app/pages/components/new-dashboard/main-content/NewDashboardMainContent';
 import NewInstallationsMain from '@/app/pages/components/new-installations/NewInstallationsMain';
 import NewInvoicesMain from '@/app/pages/components/new-invoices/NewInvoicesMain';
-import NewDashboardMainContent from '@/app/pages/components/new-dashboard/main-content/NewDashboardMainContent';
-import NewPaymentMain from '@/app/pages/components/payment/NewPaymentMain';
 import NewProfileMain from '@/app/pages/components/new-profile/NewProfileMain';
+import NewPaymentMain from '@/app/pages/components/payment/NewPaymentMain';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import HomeIcon from '@mui/icons-material/Home';
@@ -15,6 +15,7 @@ export const menuOptions = [
         id: 1,
         icon: <HomeIcon className='icon' />,
         title: "Início",
+        link: "/dashboard",
         menuLabel: "home",
         highlighted: false,
         content: <NewDashboardMainContent />
@@ -23,6 +24,7 @@ export const menuOptions = [
         id: 2,
         icon: <ReceiptIcon className='icon' />,
         menuLabel: "invoices",
+        link: "/dashboard/invoices",
         title: "Faturas",
         highlighted: false,
         content: <NewInvoicesMain />
@@ -32,6 +34,7 @@ export const menuOptions = [
         icon: <AttachMoneyIcon className='icon' />,
         title: "Pagamento recorrente",
         menuLabel: "payment",
+        link: "/dashboard/payment",
         highlighted: false,
         content: <NewPaymentMain />
     },
@@ -39,6 +42,7 @@ export const menuOptions = [
         id: 4,
         icon: <LocationOnIcon className='icon' />,
         title: "Unidades cadastradas",
+        link: "/dashboard/installations",
         menuLabel: "installations",
         highlighted: false,
         content: <NewInstallationsMain />
@@ -47,6 +51,7 @@ export const menuOptions = [
         id: 5,
         icon: <HelpOutlineIcon className='icon' />,
         title: "Dúvidas e Ajuda",
+        link: "/dashboard/help",
         menuLabel: "help",
         highlighted: false,
         content: <NewHelpMain />

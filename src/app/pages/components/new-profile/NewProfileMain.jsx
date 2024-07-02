@@ -4,6 +4,7 @@ import NewChangePassword from '../new-change-password/NewChangePassword';
 import NewSecondaryEmail from '../new-secondary-email/NewSecondaryEmail';
 import { NewProfileContainer as Container, NewProfileContentContainer as Content, RegisteredInstallationsContainer, NewProfileTitleContainer as TitleContainer } from "./styles";
 import RegisteredInstallations from './registered-installations/RegisteredInstallations';
+import NewMemberGetMember from '../new-member-get-member/NewMemberGetMember';
 
 const NewProfileMainForm = dynamic(() => import('./form/NewProfileMainForm'), { ssr: false });
 
@@ -25,6 +26,9 @@ export default function NewProfileMain() {
             <NewSecondaryEmail className='profileSecondaryEmail' />
 
             <RegisteredInstallations />
+
+
+            <NewMemberGetMember />
 
         </Container>
     )

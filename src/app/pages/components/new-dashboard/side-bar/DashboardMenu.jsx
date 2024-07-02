@@ -12,8 +12,9 @@ export default function DashboardMenu({ menuSelected, setMenuSelection }) {
         router.push("/")
     }
 
-    const handleMenuSelection = (index) => {
+    const handleMenuSelection = (link, index) => {
         setMenuSelection(menuOptions[index])
+        router.push(link)
     }
 
     return (
@@ -25,7 +26,7 @@ export default function DashboardMenu({ menuSelected, setMenuSelection }) {
                             selected={menuSelected?.id === option.id}
                             key={option.id}
                             highlighted={option.highlighted}
-                            onClick={() => handleMenuSelection(index)}>
+                            onClick={() => handleMenuSelection(option?.link, index)}>
                             {option.icon}
                             <p className='option'>{option.title}</p>
                         </MenuOption>
