@@ -1,6 +1,10 @@
+import { NewInstallationsContainer } from "./styles";
 
 export default function NewInstallationsMain() {
     return (
-        <h1>New Installations Main</h1>
+        <NewInstallationsContainer>
+            <h1 className="pageTitle">Unidades cadastradas</h1>
+
+        </NewInstallationsContainer>
     )
 }

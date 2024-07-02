@@ -1,6 +1,10 @@
+import { NewInvoicesContainer } from "./styles";
 
 export default function NewInvoicesMain() {
     return (
-        <h1>New Invoices Main</h1>
+        <NewInvoicesContainer>
+            <h1 className="pageTitle">Minhas faturas</h1>
+
+        </NewInvoicesContainer>
     )
 }

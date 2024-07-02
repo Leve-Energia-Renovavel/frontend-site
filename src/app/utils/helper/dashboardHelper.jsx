@@ -3,7 +3,7 @@ import NewDashboardMainContent from '@/app/pages/components/new-dashboard/main-c
 import NewInstallationsMain from '@/app/pages/components/new-installations/NewInstallationsMain';
 import NewInvoicesMain from '@/app/pages/components/new-invoices/NewInvoicesMain';
 import NewProfileMain from '@/app/pages/components/new-profile/NewProfileMain';
-import NewPaymentMain from '@/app/pages/components/payment/NewPaymentMain';
+import NewPaymentMain from '@/app/pages/components/new-payment/NewPaymentMain';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import HomeIcon from '@mui/icons-material/Home';
