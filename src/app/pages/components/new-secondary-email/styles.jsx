@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import { Button, TextField } from "@mui/material";
 import { newBackground } from "../../styles";
 
-export const ChangePasswordContainer = styled.div`
+
+export const SecondaryEmailContainer = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${newBackground.white};
@@ -28,14 +29,23 @@ export const TitleContainer = styled.div`
         color: ${newBackground.green};
     }
 `
-export const LockIcon = styled(LockOutlinedIcon)`
+export const SubtitleContainer = styled.div`
+    .subtitle {
+        font-family: "Graphie";
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: 600;
+        color: ${newBackground.orange};
+    }
+`
+export const LetterIcon = styled(EmailOutlinedIcon)`
     color: ${newBackground.orange};
 
     width: 20px;
     height: auto;
 `
 
-export const ChangePasswordForm = styled.form`
+export const SecondaryEmailForm = styled.form`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -118,7 +128,7 @@ export const FormInput = styled(TextField)`
 
 `
 
-export const ChangePasswordButton = styled(Button)`
+export const SecondaryEmailButton = styled(Button)`
         text-transform: none;
         border: 1px solid ${newBackground.orange};
         background-color: ${newBackground.white};
