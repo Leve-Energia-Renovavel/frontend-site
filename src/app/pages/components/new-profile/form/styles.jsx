@@ -1,8 +1,8 @@
 import { newBackground } from "@/app/pages/styles";
 import styled from "@emotion/styled";
+import AutorenewOutlinedIcon from '@mui/icons-material/AutorenewOutlined';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
-import { TextField } from "@mui/material";
-
+import { Button, TextField } from "@mui/material";
 export const FormRow = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr); 
@@ -35,9 +35,15 @@ export const FormContent = styled.div`
     }
 `
 export const FormLastRow = styled.div`
-    display: grid;
-    grid-template-columns: 1.35fr 1fr 1fr;
-    grid-column: span 3; 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    & > .inputForm {
+        flex: 3; // Equivalent to 80%
+        max-width: calc(50% - 10px); // Adjusting for the gap if needed
+    }
 
     gap: 10px;
 
@@ -48,6 +54,47 @@ export const FormLastRow = styled.div`
         grid-template-columns: repeat(1,1fr);
     }
 `
+
+export const ChangeOwnershipButton = styled(Button)`
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        gap: 4px;
+
+        text-transform: none;
+        border: 1px solid ${newBackground.orange};
+        background-color: ${newBackground.white};
+        padding: 11px 18px;
+
+        border-radius: 10px;
+        height: 3rem;
+
+        width: 100%;
+        max-width: 280px;
+
+        span { 
+            white-space: nowrap;
+            font-family: "Graphie";
+            font-size: 16px;
+            line-height: 21px;
+            font-weight: 600;
+            color: ${newBackground.orange};
+        }
+
+        &:hover {
+            background-color: ${newBackground.orange};
+            border-color: ${newBackground.orange};
+            
+            span {
+                color: ${newBackground.white};
+            } 
+            
+            .changeOwnershipIcon {
+                color: ${newBackground.white};
+            }
+        }
+`;
 
 export const FormInput = styled(TextField)`
     border-radius: 10px;
@@ -117,10 +164,15 @@ export const EditIcon = styled(BorderColorOutlinedIcon)`
     color: ${newBackground.orange};
     width: 18px;
     height: auto;
-
+    
     &:hover {
         cursor: pointer;
     }
+    `
+export const ChangeOwnershipIcon = styled(AutorenewOutlinedIcon)`
+    color: ${newBackground.orange};
+    width: 20px;
+    height: auto;
 `
 export const InstallationInput = styled(TextField)`
     border-radius: 10px;

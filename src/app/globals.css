@@ -8,6 +8,17 @@
     src: url('../resources//fonts/graphie/Graphie-SemiBold.otf') format('opentype');
 } */
 
+:root {
+    --super-small: 360px;
+    --very-small: 420px;
+    --small: 640px;
+    --medium: 900px;
+    --large: 1100px;
+    --very-large: 1300px;
+    --super-large: 1600px;
+    --huge: 1920px;
+}
+
 *,
 html {
     border: 0;

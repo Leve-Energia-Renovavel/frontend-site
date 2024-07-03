@@ -1,14 +1,15 @@
 "use client"
 
 import { useStoreCompany, useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
+import { getCityNameByStateIdAndCityId } from '@/app/service/utils/addressUtilsService';
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
 import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import { MenuItem } from '@mui/material';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
-import { EditIcon, FormContent, FormInput, FormLastRow, FormRow, InstallationInput } from './styles';
-import { getCityNameByStateIdAndCityId } from '@/app/service/utils/addressUtilsService';
+import NewModal from '../../utils/modals/default-modal/NewModal';
+import { ChangeOwnershipButton, ChangeOwnershipIcon, EditIcon, FormContent, FormInput, FormLastRow, FormRow, InstallationInput } from './styles';
 
 export default function NewProfileMainForm() {
 
@@ -21,10 +22,11 @@ export default function NewProfileMainForm() {
     const company = useStoreCompany().company
     const isCompany = user?.user.isCompany
 
-    const { name, email, phone, cost, distributor, companyName, rg, cpf, cnpj, birthDate } = user?.user ?? (store?.user || {})
+    const { name, email, phone, cost, distributor, companyName, rg, cpf, cnpj, birthDate, secondaryEmail, maritalStatus, profession, nationality } = user?.user ?? (store?.user || {})
     const { street, neighborhood, number, city, state, stateId, cityId, zipCode, installationNumber } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
     const [isForeigner, setIsForeigner] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
 
     const userRefs = {
         name: useRef(null),
@@ -58,6 +60,18 @@ export default function NewProfileMainForm() {
     }
 
     const leveGreen = "#005940"
+
+    const handleOwnershipModal = () => {
+        setOpenModal(true)
+    }
+
+    const confirmModal = () => {
+        console.log("confirmModal")
+        setOpenModal(false)
+    };
+    const closeModal = () => {
+        setOpenModal(false)
+    };
 
     return (
         <>
@@ -124,7 +138,7 @@ export default function NewProfileMainForm() {
                         {() => <FormInput inputRef={userRefs.rg} className="inputForm" label="RNE" variant="outlined" placeholder="RNE" type="text" InputLabelProps={{ shrink: false }} required />}
                     </InputMask>)
                     :
-                    (<InputMask mask="********-*" disabled defaultValue={rg || ""}>
+                    (<InputMask mask="********-*" disabled value={rg || ""}>
                         {() => <FormInput
                             inputRef={userRefs.rg}
                             className="inputForm"
@@ -138,7 +152,7 @@ export default function NewProfileMainForm() {
                                 { style: { color: leveGreen } }}
                         />}
                     </InputMask>)}
-                <InputMask mask="999.999.999-99" disabled defaultValue={cpf || ""}>
+                <InputMask mask="999.999.999-99" disabled value={cpf || ""}>
                     {() => <FormInput inputRef={userRefs.cpf}
                         className="inputForm"
                         label="CPF"
@@ -170,12 +184,12 @@ export default function NewProfileMainForm() {
                 <FormInput
                     id="maritalStatus"
                     select
-                    defaultValue={store.user.maritalStatus ? store.user.maritalStatus : ""}
+                    defaultValue={maritalStatus || ""}
                     label="Estado Civil"
                     className="inputForm"
                     inputProps={{ inputMode: 'numeric' }}
                     InputLabelProps={{ style: { color: leveGreen } }}
-                    inputRef={userRefs.maritalStatus || ''}>
+                    inputRef={userRefs.maritalStatus}>
                     {maritalStatusOptions?.map((maritalStatus) => {
                         return (
                             <MenuItem key={maritalStatus.label} value={maritalStatus.value}>{maritalStatus.label}</MenuItem>
@@ -186,7 +200,7 @@ export default function NewProfileMainForm() {
                 <FormInput
                     id="nationality"
                     select
-                    defaultValue={store.user.nationality ? store.user.nationality : ""}
+                    defaultValue={nationality || ""}
                     inputRef={userRefs.nationality}
                     className="inputForm"
                     label="Nacionalidade"
@@ -208,7 +222,7 @@ export default function NewProfileMainForm() {
                 <FormInput
                     id="profession"
                     select
-                    defaultValue={store.user.profession ? store.user.profession : ""}
+                    defaultValue={profession || ""}
                     inputRef={userRefs.profession}
                     className="inputForm"
                     label="Profissão"
@@ -228,17 +242,35 @@ export default function NewProfileMainForm() {
                     })}
                 </FormInput>
 
-                <FormInput
-                    className="inputForm"
-                    inputRef={userRefs.cost}
-                    value={cost || ""}
-                    label="Custo Mensal em R$"
-                    variant="outlined"
-                    placeholder="Custo Mensal em R$"
-                    type="text"
-                    inputProps={{ inputMode: 'numeric' }}
-                    InputLabelProps={{ shrink: true, style: { color: leveGreen } }}
-                    disabled />
+                {secondaryEmail !== "" ?
+                    <FormInput
+                        className='inputForm'
+                        inputRef={userRefs.email}
+                        label={`Email secundário`}
+                        placeholder={`Email secundário`}
+                        defaultValue={secondaryEmail || ''}
+                        variant="outlined"
+                        InputLabelProps={{ shrink: true, style: { color: leveGreen } }}
+                        InputProps={{
+                            endAdornment: <EditIcon />,
+                        }}
+                        type="text"
+                        required
+                    />
+                    :
+                    <FormInput
+                        className="inputForm"
+                        inputRef={userRefs.cost}
+                        value={cost || ""}
+                        label="Custo Mensal em R$"
+                        variant="outlined"
+                        placeholder="Custo Mensal em R$"
+                        type="text"
+                        inputProps={{ inputMode: 'numeric' }}
+                        InputLabelProps={{ shrink: true, style: { color: leveGreen } }}
+                        disabled />}
+
+
 
                 <InputMask disabled mask="99999-999" value={zipCode || ""}
                     onChange={(e) => storeAddress.updateAddress({ cep: e.target.value })}>
@@ -325,6 +357,7 @@ export default function NewProfileMainForm() {
                     type="text"
                     disabled
                     InputLabelProps={{ shrink: true, style: { color: leveGreen } }} required />
+
             </FormContent>
 
             <FormLastRow>
@@ -338,6 +371,22 @@ export default function NewProfileMainForm() {
                     placeholder={`Número de Instalação`}
                     type="text"
                     InputLabelProps={{ shrink: true, style: { color: leveGreen } }} />
+
+                <ChangeOwnershipButton className='changeOwnershipButton' onClick={() => handleOwnershipModal()}>
+                    <span>Solicitar troca de titularidade</span>
+                    <ChangeOwnershipIcon className='changeOwnershipIcon' />
+                </ChangeOwnershipButton>
+
+                <NewModal
+                    isOpen={openModal}
+                    closeModal={closeModal}
+                    title={`Solicitar troca de titularidade`}
+                    description={`O serviço de energia solar por assinatura da Leve só funciona quando o titular da conta Leve é também titular da conta de luz. Ao fazer a troca de titularidade na sua distribuidora local, é necessário atualizar os mesmos dados no site da Leve. Um de nossos atendentes entreará em contato para auxiliar você`}
+                    buttonTitle={`Confirmar solicitação`}
+                    cancel={`Cancelar`}
+                    confirmModal={confirmModal}
+                />
+
             </FormLastRow>
         </>
     )

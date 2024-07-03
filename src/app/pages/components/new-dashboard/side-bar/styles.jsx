@@ -45,11 +45,11 @@ export const ProfileHeader = styled.div`
         line-height: 17px;
         font-weight: 500;
         color: ${newBackground.orange};
-        text-decoration: underline;
-
+        
         &:hover {
             cursor: pointer;
             font-weight: 600;
+            text-decoration: underline;
         }
     }
 `

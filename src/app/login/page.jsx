@@ -1,12 +1,9 @@
 "use client"
-import dynamic from 'next/dynamic';
+
 import { useState } from 'react';
-import Banners from '../pages/components/banners/Banners';
 import LoginBanner from '../pages/components/banners/login-banner/LoginBanner';
-import LoginModal from '../pages/components/login/LoginModal';
 import HomeMain from '../pages/components/home/HomeMain';
 import NewLoginModal from '../pages/components/new-login/NewLoginModal';
-const LoginMain = dynamic(() => import('../pages/components/login/LoginMain'), { ssr: false });
 
 export default function Profile() {
 
