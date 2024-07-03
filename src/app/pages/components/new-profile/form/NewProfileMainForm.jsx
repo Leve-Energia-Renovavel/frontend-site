@@ -219,28 +219,6 @@ export default function NewProfileMainForm() {
                         )
                     })}
                 </FormInput>
-                <FormInput
-                    id="profession"
-                    select
-                    defaultValue={profession || ""}
-                    inputRef={userRefs.profession}
-                    className="inputForm"
-                    label="Profissão"
-                    variant="outlined"
-                    placeholder="Profissão"
-                    InputLabelProps={{
-                        component: 'span',
-                        style: { color: leveGreen }
-                    }}
-                    InputProps={{ endAdornment: <EditIcon /> }}
-                    type="text"
-                    required>
-                    {professionOptions?.map((profession) => {
-                        return (
-                            <MenuItem key={profession.label} value={profession.value}>{profession.label}</MenuItem>
-                        )
-                    })}
-                </FormInput>
 
                 {secondaryEmail !== "" ?
                     <FormInput
@@ -269,6 +247,31 @@ export default function NewProfileMainForm() {
                         inputProps={{ inputMode: 'numeric' }}
                         InputLabelProps={{ shrink: true, style: { color: leveGreen } }}
                         disabled />}
+
+                <FormInput
+                    id="profession"
+                    select
+                    defaultValue={profession || ""}
+                    inputRef={userRefs.profession}
+                    className="inputForm"
+                    label="Profissão"
+                    variant="outlined"
+                    placeholder="Profissão"
+                    InputLabelProps={{
+                        component: 'span',
+                        style: { color: leveGreen }
+                    }}
+                    InputProps={{ endAdornment: <EditIcon /> }}
+                    type="text"
+                    required>
+                    {professionOptions?.map((profession) => {
+                        return (
+                            <MenuItem key={profession.label} value={profession.value}>{profession.label}</MenuItem>
+                        )
+                    })}
+                </FormInput>
+
+
 
 
 
