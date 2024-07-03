@@ -18,14 +18,17 @@ export const handleSecondaryEmail = async (secondaryEmail, setNotifications, set
             const response = await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/add-secondary-email`, data, { headers })
             if (requestSuccessful(response.status)) {
                 setNotifications([response.data.message])
+                return true
             }
 
         } catch (error) {
             console.log(error)
             setErrorMessage([error?.response?.data?.message])
+            return false
 
         }
     } else {
         setErrorMessage(["É necessário preencher o campo de E-mail Secundário"])
+        return false
     }
 }

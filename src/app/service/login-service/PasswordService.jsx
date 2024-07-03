@@ -18,13 +18,16 @@ export const handleChangePassword = async (oldPassword, newPassword, setNotifica
             console.log(response)
             if (requestSuccessful(response.status)) {
                 setNotifications([response.data.message])
+                return true
             }
-
+            
         } catch (error) {
             console.log(error)
             setErrorMessage([error.response.data.message])
+            return false
         }
     } else {
         setErrorMessage(["É necessário preencher os campos de Senha Atual e Nova Senha"])
+        return false
     }
 }

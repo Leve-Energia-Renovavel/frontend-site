@@ -1,7 +1,7 @@
-import { Backdrop, Modal } from '@mui/material'
-import { ModalBox, ModalCancelButton, ModalMainButton } from './styles'
+import { Backdrop, Modal } from "@mui/material";
+import { Check, ModalBox, ModalMainButton } from "./styles";
 
-export default function NewModal({ title, description, buttonTitle, cancel, isOpen, openModal, closeModal, confirmModal }) {
+export default function NewSuccessModal({ title, description, buttonTitle, isOpen, closeModal }) {
     return (
         <Modal
             open={isOpen}
@@ -17,14 +17,12 @@ export default function NewModal({ title, description, buttonTitle, cancel, isOp
                 },
             }}>
             <ModalBox>
+                <Check />
                 <h1 className='modalTitle'>{title}</h1>
-                <p className='modalDescription'>{description}</p>
-                <ModalMainButton onClick={confirmModal}>
+                {description}
+                <ModalMainButton onClick={closeModal}>
                     <span>{buttonTitle}</span>
                 </ModalMainButton>
-                <ModalCancelButton onClick={closeModal}>
-                    <span>{cancel}</span>
-                </ModalCancelButton>
             </ModalBox>
         </Modal>
     )

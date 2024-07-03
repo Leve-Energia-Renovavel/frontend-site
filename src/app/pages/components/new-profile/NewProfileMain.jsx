@@ -35,7 +35,7 @@ export default function NewProfileMain() {
 
             <NewSecondaryEmail className='profileSecondaryEmail'
                 setErrorMessage={setErrorMessage}
-                etNotifications={setNotifications} />
+                setNotifications={setNotifications} />
 
             <RegisteredInstallations className='registeredInstallations' />
 

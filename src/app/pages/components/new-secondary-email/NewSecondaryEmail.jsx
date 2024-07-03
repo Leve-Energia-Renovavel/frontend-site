@@ -1,13 +1,24 @@
+"use client"
+
 import { handleSecondaryEmail } from '@/app/service/email-service/SecondaryEmailService'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
+import NewSuccessModal from '../utils/modals/success-modal/NewSuccessModal'
 import { FormInput, LetterIcon, SecondaryEmailButton, SecondaryEmailContainer, SecondaryEmailForm, SubtitleContainer, TitleContainer } from './styles'
 
 export default function NewSecondaryEmail({ setErrorMessage, setNotifications }) {
 
     const secondaryEmailRef = useRef(null)
-
+    const [openModal, setOpenModal] = useState(false)
+    
     const registerSecondaryEmail = async () => {
-        await handleSecondaryEmail(secondaryEmailRef.current.value, setNotifications, setErrorMessage)
+        const result = await handleSecondaryEmail(secondaryEmailRef.current.value, setNotifications, setErrorMessage)
+        if (result) {
+            setOpenModal(true)
+        }
+    }
+    
+    const closeModal = () => {
+        setOpenModal(false)
     }
 
     return (
@@ -25,6 +36,14 @@ export default function NewSecondaryEmail({ setErrorMessage, setNotifications })
                     <span>Cadastrar email</span>
                 </SecondaryEmailButton>
             </SecondaryEmailForm>
+
+            <NewSuccessModal
+                isOpen={openModal}
+                closeModal={closeModal}
+                title={`Email secundário cadastrado com sucesso`}
+                description={<span className='description'>A partir de agora você receberá notificações, notícias e oportunidades no endereço de email cadastrado: <span className="highlighted">{secondaryEmailRef?.current?.value}</span></span>}
+                buttonTitle={`Concluir`}
+            />
         </SecondaryEmailContainer>
     )
 }

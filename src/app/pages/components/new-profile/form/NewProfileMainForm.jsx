@@ -8,7 +8,8 @@ import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import { MenuItem } from '@mui/material';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
-import NewModal from '../../utils/modals/default-modal/NewModal';
+import NewDefaultModal from '../../utils/modals/default-modal/NewDefaultModal';
+import NewSuccessModal from '../../utils/modals/success-modal/NewSuccessModal';
 import { ChangeOwnershipButton, ChangeOwnershipIcon, EditIcon, FormContent, FormInput, FormLastRow, FormRow, InstallationInput } from './styles';
 
 export default function NewProfileMainForm() {
@@ -27,6 +28,8 @@ export default function NewProfileMainForm() {
 
     const [isForeigner, setIsForeigner] = useState(false);
     const [openModal, setOpenModal] = useState(false);
+
+    const [openSuccessModal, setOpenSuccessModal] = useState(true)
 
     const userRefs = {
         name: useRef(null),
@@ -68,10 +71,15 @@ export default function NewProfileMainForm() {
     const confirmModal = () => {
         console.log("confirmModal")
         setOpenModal(false)
+        setOpenSuccessModal(true)
     };
     const closeModal = () => {
         setOpenModal(false)
     };
+
+    const closeSuccessModal = () => {
+        setOpenSuccessModal(false)
+    }
 
     return (
         <>
@@ -380,7 +388,7 @@ export default function NewProfileMainForm() {
                     <ChangeOwnershipIcon className='changeOwnershipIcon' />
                 </ChangeOwnershipButton>
 
-                <NewModal
+                <NewDefaultModal
                     isOpen={openModal}
                     closeModal={closeModal}
                     title={`Solicitar troca de titularidade`}
@@ -389,6 +397,16 @@ export default function NewProfileMainForm() {
                     cancel={`Cancelar`}
                     confirmModal={confirmModal}
                 />
+
+                <NewSuccessModal
+                    isOpen={openSuccessModal}
+                    closeModal={closeSuccessModal}
+                    title={`Troca de titularidade solicitada`}
+                    description={<span className='description'>Em breve, entraremos em contato através do email <span className="highlighted">comercial@leveenergia.com.br</span> ou no WhatsApp pelo número <span className="highlighted">(11) 9 9988-8899</span></span>}
+                    buttonTitle={`Concluir`}
+                />
+
+
 
             </FormLastRow>
         </>
