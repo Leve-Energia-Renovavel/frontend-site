@@ -1,7 +1,10 @@
 import styled from "@emotion/styled";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Button, TextField } from "@mui/material";
 import { newBackground } from "../../styles";
+
 
 export const ChangePasswordContainer = styled.div`
     display: flex;
@@ -118,6 +121,7 @@ export const FormInput = styled(TextField)`
 
 `
 
+
 export const ChangePasswordButton = styled(Button)`
         text-transform: none;
         border: 1px solid ${newBackground.orange};
@@ -148,3 +152,8 @@ export const ChangePasswordButton = styled(Button)`
             } 
         }
 `;
+
+export const VisibleIcon = styled(VisibilityIcon)`
+`
+export const InvisibleIcon = styled(VisibilityOffIcon)`
+`
