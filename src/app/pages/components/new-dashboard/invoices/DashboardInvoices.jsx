@@ -4,12 +4,15 @@ import { requestSuccessful } from '@/app/service/utils/Validations';
 import { billHasToBePaid, billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import NewDefaultButton from '../../utils/buttons/NewDefaultButton';
 import DashboardInvoicesDummy from './DashboardInvoicesDummy';
 import { DashboardInvoicesContainer as Container, DashboardInvoicesContent as Content, NextBill, NextBillDivider, NextBillInfo, NextBillsContainer, NextBillsFooter, PayBillButtonContainer } from './styles';
 
 export default function DashboardInvoices() {
+
+  const router = useRouter()
 
   const [isLoading, setLoading] = useState(true)
 
@@ -99,7 +102,7 @@ export default function DashboardInvoices() {
           <NewDefaultButton variant="outlined-inverse" text="Pagar Fatura" />
         </PayBillButtonContainer>
         <NextBillsFooter>
-          <p className='checkAllInvoices'>Ver todas as faturas</p>
+          <p className='checkAllInvoices' onClick={() => router.push("/dashboard/invoices")}>Ver todas as faturas</p>
         </NextBillsFooter>
       </Content>
     </Container>

@@ -29,7 +29,7 @@ export default function NewProfileMainForm() {
     const [isForeigner, setIsForeigner] = useState(false);
     const [openModal, setOpenModal] = useState(false);
 
-    const [openSuccessModal, setOpenSuccessModal] = useState(true)
+    const [openSuccessModal, setOpenSuccessModal] = useState(false)
 
     const userRefs = {
         name: useRef(null),
