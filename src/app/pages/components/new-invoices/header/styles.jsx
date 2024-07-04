@@ -29,8 +29,9 @@ export const NewInvoicesSelectInstallation = styled.div`
 
     .installationIcon {
         color: ${newBackground.white};
-        max-width: 18px;
+        max-width: 16px;
         margin-right: 4px;
+        margin-bottom: 5px;
     }
 
     .selectInstallation {
@@ -39,6 +40,10 @@ export const NewInvoicesSelectInstallation = styled.div`
         line-height: 17px;
         font-weight: 600;
         color: ${newBackground.green};
+    }
+
+    .defaultInstallation {
+        font-weight: 600;
     }
 `
 export const NewInvoicesSelectButton = styled.div`

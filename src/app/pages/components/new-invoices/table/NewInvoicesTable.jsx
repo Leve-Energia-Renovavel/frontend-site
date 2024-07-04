@@ -5,7 +5,8 @@ import { useStoreBillingHistory, useStoreUser } from '@/app/hooks/useStore';
 import { useGetInvoicesData } from '@/app/service/invoices-service/InvoicesService';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import { formatDateClearYear, formatFullMonthAndYear } from '@/app/utils/formatters/dateFormatter';
-import { DownloadIcon, DueButton, GraphIcon, IconButton, InvoicesTableActionButtonContainer, InvoicesTableDistributorBill, InvoicesTableLeveBill, LinkIcon, NewInvoicesTableContent, NewInvoicesTableHeader, PaidButton, PendingButton } from './styles';
+import NewInvoicesActionButtonContainer from '../action-button-container/NewInvoicesActionButton';
+import { InvoicesTableDistributorBill, InvoicesTableLeveBill, NewInvoicesTableContent, NewInvoicesTableHeader } from './styles';
 
 
 export default function NewInvoicesTable() {
@@ -38,33 +39,9 @@ export default function NewInvoicesTable() {
                             <p className='leveBillValue'>{`R$ ${parseFloat(billing?.value).toFixed(2)}`}</p>
                             <p className='leveBillValue'>{formatDateClearYear(billing?.dueDate)}</p>
                             <p className='leveBillStatus'>{billingStatusOptions[billing?.status]}</p>
-                            <InvoicesTableActionButtonContainer>
-                                {billing?.status === "due" && (
-                                    <DueButton>
-                                        <GraphIcon />
-                                        <span>Ver consumo</span>
-                                    </DueButton>
-                                )}
-                                {billing?.status === "paid" && (
-                                    <PaidButton>
-                                        <DownloadIcon />
-                                        <span>Baixar PDF</span>
-                                    </PaidButton>
-                                )}
-                                {billing?.status === "pending" && (
-                                    <>
-                                        <PendingButton>
-                                            <span>Pagar</span>
-                                        </PendingButton>
-                                        <IconButton>
-                                            <LinkIcon className='icon' />
-                                        </IconButton>
-                                        <IconButton>
-                                            <DownloadIcon className='icon'/>
-                                        </IconButton>
-                                    </>
-                                )}
-                            </InvoicesTableActionButtonContainer>
+
+                            <NewInvoicesActionButtonContainer status={billing?.status} />
+
                         </InvoicesTableLeveBill>
                         <InvoicesTableDistributorBill className='distributorBill'>
                             <p className='distributorBillValue'>{formatFullMonthAndYear(billing?.billDate)}</p>

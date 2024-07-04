@@ -32,7 +32,7 @@ export default function NewInvoicesHeader() {
                             displayEmpty
                             IconComponent={KeyArrowDownIcon}>
                             <li value={0} style={{ display: 'none' }}>
-                                <span>Casa 1</span>
+                                <span className="defaultInstallation">Casa 1</span>
                             </li>
                             {filteredInstallations?.map((otherInstallation, index) => {
                                 return (
