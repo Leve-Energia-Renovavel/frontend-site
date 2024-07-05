@@ -8,7 +8,7 @@ import NewChangePassword from '../new-change-password/NewChangePassword';
 import NewMemberGetMember from '../new-member-get-member/NewMemberGetMember';
 import NewSecondaryEmail from '../new-secondary-email/NewSecondaryEmail';
 import RegisteredInstallations from './registered-installations/RegisteredInstallations';
-import { NewProfileContainer as Container, NewProfileContentContainer as Content, NewProfileTitleContainer as TitleContainer } from "./styles";
+import { CancelEditIcon, NewProfileContainer as Container, NewProfileContentContainer as Content, NewProfileEditHeader as Edit, EditIcon, NewProfileTitleHeader as Title, NewProfileTitleContainer as TitleContainer } from "./styles";
 
 const NewProfileMainForm = dynamic(() => import('./form/NewProfileMainForm'), { ssr: false });
 
@@ -17,16 +17,33 @@ export default function NewProfileMain() {
     const [errors, setErrorMessage] = useState([]);
     const [notifications, setNotifications] = useState([])
 
+    const [isEdition, setEdition] = useState(false)
+
+    const handleEdition = () => {
+        setEdition(current => !current)
+    }
+
     return (
         <Container className="newProfileMainContainer">
             <h1 className='pageTitle'>Meu perfil</h1>
 
             <Content>
                 <TitleContainer>
-                    <PersonOutlineIcon className='profileIcon' />
-                    <h2 className='formTitle'>Dados Cadastrais</h2>
+                    <Title>
+                        <PersonOutlineIcon className='profileIcon' />
+                        <h2 className='formTitle'>Dados Cadastrais</h2>
+                    </Title>
+                    <Edit onClick={() => handleEdition()}>
+                        {!isEdition ? (<>
+                            <h2 className='editTitle'>Editar</h2>
+                            <EditIcon />
+                        </>) : (<>
+                            <h2 className='cancelEditTitle'>Cancelar</h2>
+                            <CancelEditIcon />
+                        </>)}
+                    </Edit>
                 </TitleContainer>
-                <NewProfileMainForm className='profileMainForm' />
+                <NewProfileMainForm className='profileMainForm' isEdition={isEdition} handleEdition={handleEdition}/>
             </Content>
 
             <NewChangePassword className='profileChangePassword'

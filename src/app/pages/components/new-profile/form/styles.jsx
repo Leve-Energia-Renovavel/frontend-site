@@ -96,6 +96,86 @@ export const ChangeOwnershipButton = styled(Button)`
         }
 `;
 
+export const EditionContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 10px;
+`
+
+export const SaveEditionButton = styled(Button)`
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        gap: 4px;
+
+        text-transform: none;
+        background-color: ${newBackground.orange};
+        padding: 20px 30px;
+
+        border-radius: 10px;
+        height: 3rem;
+
+        width: 100%;
+        max-width: 200px;
+
+        span { 
+            white-space: nowrap;
+            font-family: "Graphie";
+            font-size: 16px;
+            line-height: 21px;
+            font-weight: 600;
+            color: ${newBackground.white};
+        }
+
+        &:hover {
+            background-color: ${newBackground.green};
+            
+            span {
+                color: ${newBackground.white};
+            } 
+        }
+`;
+
+export const CancelEditionButton = styled(Button)`
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        gap: 4px;
+
+        text-transform: none;
+        border: 1px solid ${newBackground.orange};
+        background-color: ${newBackground.white};
+        padding: 11px 18px;
+
+        border-radius: 10px;
+        height: 3rem;
+
+        width: 100%;
+        max-width: 280px;
+
+        span { 
+            white-space: nowrap;
+            font-family: "Graphie";
+            font-size: 16px;
+            line-height: 21px;
+            font-weight: 600;
+            color: ${newBackground.orange};
+        }
+
+        &:hover {
+            background-color: ${newBackground.orange};
+            border-color: ${newBackground.orange};
+            
+            span {
+                color: ${newBackground.white};
+            } 
+        }
+`;
+
 export const FormInput = styled(TextField)`
     border-radius: 10px;
     

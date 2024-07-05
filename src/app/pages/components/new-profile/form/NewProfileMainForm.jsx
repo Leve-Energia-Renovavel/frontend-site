@@ -10,9 +10,9 @@ import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import NewDefaultModal from '../../utils/modals/default-modal/NewDefaultModal';
 import NewSuccessModal from '../../utils/modals/success-modal/NewSuccessModal';
-import { ChangeOwnershipButton, ChangeOwnershipIcon, EditIcon, FormContent, FormInput, FormLastRow, FormRow, InstallationInput } from './styles';
+import { CancelEditionButton, ChangeOwnershipButton, ChangeOwnershipIcon, EditionContainer, FormContent, FormInput, FormLastRow, FormRow, InstallationInput, SaveEditionButton } from './styles';
 
-export default function NewProfileMainForm() {
+export default function NewProfileMainForm({ isEdition, handleEdition }) {
 
     const store = useStoreUser()
     const storeMainInstallation = useStoreMainInstallation()
@@ -102,10 +102,7 @@ export default function NewProfileMainForm() {
                     variant="outlined"
                     type="text"
                     InputLabelProps={{ shrink: true, style: { color: leveGreen } }}
-                    InputProps={{
-                        endAdornment: <EditIcon />,
-                    }}
-                    required
+                    disabled
                 />
                 <FormInput
                     className='inputForm'
@@ -115,19 +112,17 @@ export default function NewProfileMainForm() {
                     defaultValue={email || ''}
                     variant="outlined"
                     InputLabelProps={{ shrink: true, style: { color: leveGreen } }}
-                    InputProps={{
-                        endAdornment: <EditIcon />,
-                    }}
                     type="text"
-                    required
+                    disabled
                 />
             </FormRow>
             <FormContent>
-                <InputMask mask="(99) 99999-9999" value={formatPhoneNumber(phone) || ""} onChange={(e) => store.updateUser({ phone: e.target.value })}>
+                <InputMask mask="(99) 99999-9999" disabled={!isEdition} value={formatPhoneNumber(phone) || ""} onChange={(e) => store.updateUser({ phone: e.target.value })}>
                     {() => (
                         <FormInput
                             inputRef={userRefs.phone}
                             className="inputForm"
+                            disabled={!isEdition}
                             inputProps={{ inputMode: 'numeric' }}
                             label={`Telefone ${isCompany ? 'do Responsável' : ''}`}
                             variant="outlined"
@@ -135,9 +130,6 @@ export default function NewProfileMainForm() {
                             type="text"
                             InputLabelProps={{ shrink: true, style: { color: leveGreen } }}
                             required
-                            InputProps={{
-                                endAdornment: <EditIcon />,
-                            }}
                         />
                     )}
                 </InputMask>
@@ -173,7 +165,7 @@ export default function NewProfileMainForm() {
                             { style: { color: leveGreen } }} />}
                 </InputMask>
 
-                <InputMask mask="99/99/9999" required value={birthDate || ""} onChange={(e) => store.updateUser({ birthDate: e.target.value })}>
+                <InputMask mask="99/99/9999" disabled value={birthDate || ""} onChange={(e) => store.updateUser({ birthDate: e.target.value })}>
                     {() => <FormInput
                         inputRef={userRefs.birthDate}
                         className="inputForm"
@@ -181,12 +173,9 @@ export default function NewProfileMainForm() {
                         variant="outlined"
                         placeholder="Data de Nascimento"
                         type="text"
-                        required
+                        disabled
                         inputProps={{ inputMode: 'numeric' }}
                         InputLabelProps={{ style: { color: leveGreen } }}
-                        InputProps={{
-                            endAdornment: <EditIcon />,
-                        }}
                     />}
                 </InputMask>
                 <FormInput
@@ -195,6 +184,7 @@ export default function NewProfileMainForm() {
                     defaultValue={maritalStatus || ""}
                     label="Estado Civil"
                     className="inputForm"
+                    disabled={!isEdition}
                     inputProps={{ inputMode: 'numeric' }}
                     InputLabelProps={{ style: { color: leveGreen } }}
                     inputRef={userRefs.maritalStatus}>
@@ -215,11 +205,11 @@ export default function NewProfileMainForm() {
                     variant="outlined"
                     placeholder="Nacionalidade"
                     type="text"
+                    disabled
                     InputLabelProps={{
                         component: 'span',
                         style: { color: leveGreen }
                     }}
-                    InputProps={{ endAdornment: <EditIcon /> }}
                     required>
                     {nationalityOptions?.map((nationality) => {
                         return (
@@ -237,11 +227,8 @@ export default function NewProfileMainForm() {
                         defaultValue={secondaryEmail || ''}
                         variant="outlined"
                         InputLabelProps={{ shrink: true, style: { color: leveGreen } }}
-                        InputProps={{
-                            endAdornment: <EditIcon />,
-                        }}
                         type="text"
-                        required
+                        disabled
                     />
                     :
                     <FormInput
@@ -264,12 +251,12 @@ export default function NewProfileMainForm() {
                     className="inputForm"
                     label="Profissão"
                     variant="outlined"
+                    disabled={!isEdition}
                     placeholder="Profissão"
                     InputLabelProps={{
                         component: 'span',
                         style: { color: leveGreen }
                     }}
-                    InputProps={{ endAdornment: <EditIcon /> }}
                     type="text"
                     required>
                     {professionOptions?.map((profession) => {
@@ -383,10 +370,20 @@ export default function NewProfileMainForm() {
                     type="text"
                     InputLabelProps={{ shrink: true, style: { color: leveGreen } }} />
 
-                <ChangeOwnershipButton className='changeOwnershipButton' onClick={() => handleOwnershipModal()}>
-                    <span>Solicitar troca de titularidade</span>
-                    <ChangeOwnershipIcon className='changeOwnershipIcon' />
-                </ChangeOwnershipButton>
+                {isEdition ?
+                    <EditionContainer>
+                        <SaveEditionButton>
+                            <span>Salvar alterações</span>
+                        </SaveEditionButton>
+                        <CancelEditionButton onClick={() => handleEdition()}>
+                            <span>Cancelar </span>
+                        </CancelEditionButton>
+                    </EditionContainer>
+                    :
+                    <ChangeOwnershipButton className='changeOwnershipButton' onClick={() => handleOwnershipModal()}>
+                        <span>Solicitar troca de titularidade</span>
+                        <ChangeOwnershipIcon className='changeOwnershipIcon' />
+                    </ChangeOwnershipButton>}
 
                 <NewDefaultModal
                     isOpen={openModal}
