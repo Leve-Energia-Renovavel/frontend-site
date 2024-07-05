@@ -1,18 +1,32 @@
 
+import { downloadBillByUrl } from '@/app/utils/downloader/invoicesDownloader';
+import { useRouter } from 'next/navigation';
 import { DownloadIcon, DueButton, GraphIcon, IconButton, InvoicesTableActionButtonContainer, LinkIcon, PaidButton, PendingButton } from './styles';
 
+export default function NewInvoicesActionButtonContainer({ status, urlBill, uuid, referenceDate }) {
 
-export default function NewInvoicesActionButtonContainer({ status }) {
+    const router = useRouter()
+
+    const handleOpenLink = () => {
+        window.open(urlBill, '_blank', 'noopener noreferrer');
+    }
+
+    const handleDownloadBill = () => {
+        const filename = `Fatura_Leve_${referenceDate}`
+        downloadBillByUrl(urlBill, filename)
+
+    }
+
     return (
         <InvoicesTableActionButtonContainer>
             {status === "due" && (
-                <DueButton>
+                <DueButton onClick={() => router.push("/dashboard/installations")}>
                     <GraphIcon />
                     <span>Ver consumo</span>
                 </DueButton>
             )}
             {status === "paid" && (
-                <PaidButton>
+                <PaidButton onClick={() => handleDownloadBill()}>
                     <DownloadIcon />
                     <span>Baixar PDF</span>
                 </PaidButton>
@@ -22,10 +36,10 @@ export default function NewInvoicesActionButtonContainer({ status }) {
                     <PendingButton>
                         <span>Pagar</span>
                     </PendingButton>
-                    <IconButton>
+                    <IconButton onClick={() => handleOpenLink()}>
                         <LinkIcon className='icon' />
                     </IconButton>
-                    <IconButton>
+                    <IconButton onClick={() => handleDownloadBill()}>
                         <DownloadIcon className='icon' />
                     </IconButton>
                 </>

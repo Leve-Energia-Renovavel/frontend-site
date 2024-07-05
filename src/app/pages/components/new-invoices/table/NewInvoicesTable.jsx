@@ -19,6 +19,8 @@ export default function NewInvoicesTable() {
 
     useGetInvoicesData()
 
+    console.log("billings ===>>", billings)
+
     return (
         <>
             <NewInvoicesTableHeader>
@@ -40,7 +42,7 @@ export default function NewInvoicesTable() {
                             <p className='leveBillValue'>{formatDateClearYear(billing?.dueDate)}</p>
                             <p className='leveBillStatus'>{billingStatusOptions[billing?.status]}</p>
 
-                            <NewInvoicesActionButtonContainer status={billing?.status} />
+                            <NewInvoicesActionButtonContainer status={billing?.status} urlBill={billing?.urlBill} uuid={billing?.uuid} referenceDate={formatFullMonthAndYear(billing?.billDate)} />
 
                         </InvoicesTableLeveBill>
                         <InvoicesTableDistributorBill className='distributorBill'>
