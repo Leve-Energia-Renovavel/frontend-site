@@ -2,7 +2,7 @@
 "use client"
 
 import { useStoreBillingHistory, useStoreUser } from '@/app/hooks/useStore';
-import { useGetInvoicesData } from '@/app/service/invoices-service/InvoicesService';
+import { useGetInvoicesParcialData } from '@/app/service/invoices-service/InvoicesService';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import { formatDateClearYear, formatFullMonthAndYear } from '@/app/utils/formatters/dateFormatter';
 import NewInvoicesActionButtonContainer from '../action-button-container/NewInvoicesActionButton';
@@ -17,9 +17,7 @@ export default function NewInvoicesTable() {
     const user = JSON.parse(localStorage.getItem('user'))?.user || storeUser
     const billings = JSON.parse(localStorage.getItem('billingHistory')) || billingsHistory
 
-    useGetInvoicesData()
-
-    console.log("billings ===>>", billings)
+    useGetInvoicesParcialData()
 
     return (
         <>
