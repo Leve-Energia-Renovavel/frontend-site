@@ -44,7 +44,12 @@ export default function NewProfileMain() {
                         </>)}
                     </Edit>
                 </TitleContainer>
-                <NewProfileMainForm className='profileMainForm' isEdition={isEdition} handleEdition={handleEdition} />
+                
+                <NewProfileMainForm className='profileMainForm'
+                    isEdition={isEdition}
+                    handleEdition={handleEdition}
+                    setNotifications={setNotifications}
+                    setErrorMessage={setErrorMessage} />
             </Content>
 
             <NewChangePassword className='profileChangePassword'

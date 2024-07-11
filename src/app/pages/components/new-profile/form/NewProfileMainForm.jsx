@@ -1,7 +1,9 @@
 "use client"
 
 import { useStoreCompany, useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
+import { updateUserProfile } from '@/app/service/user-service/UserService';
 import { getCityNameByStateIdAndCityId } from '@/app/service/utils/addressUtilsService';
+import { requestSuccessful } from '@/app/service/utils/Validations';
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
 import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
@@ -12,7 +14,7 @@ import NewDefaultModal from '../../utils/modals/default-modal/NewDefaultModal';
 import NewSuccessModal from '../../utils/modals/success-modal/NewSuccessModal';
 import { CancelEditionButton, ChangeOwnershipButton, ChangeOwnershipIcon, EditionContainer, FormContent, FormInput, FormLastRow, FormRow, InstallationInput, SaveEditionButton } from './styles';
 
-export default function NewProfileMainForm({ isEdition, handleEdition }) {
+export default function NewProfileMainForm({ isEdition, handleEdition, setNotifications, setErrorMessage }) {
 
     const store = useStoreUser()
     const storeMainInstallation = useStoreMainInstallation()
@@ -81,6 +83,26 @@ export default function NewProfileMainForm({ isEdition, handleEdition }) {
         setOpenSuccessModal(false)
     }
 
+    const handleUpdateUserProfile = async () => {
+
+        var submitData = {
+            telefone: userRefs.phone.current.value,
+            profissao: userRefs.profession.current.value,
+            estado_civil: userRefs.maritalStatus.current.value,
+        }
+
+        console.log("submitData ==>>", submitData)
+
+        const response = await updateUserProfile(submitData)
+        console.log("response ==>>", response)
+
+        if (requestSuccessful(response?.status)) {
+            setNotifications("Dados alterados com sucesso!")
+            handleEdition()
+        }
+
+    }
+
     return (
         <>
             {isCompany && (
@@ -117,7 +139,7 @@ export default function NewProfileMainForm({ isEdition, handleEdition }) {
                 />
             </FormRow>
             <FormContent>
-                <InputMask mask="(99) 99999-9999" disabled={!isEdition} value={formatPhoneNumber(phone) || ""} onChange={(e) => store.updateUser({ phone: e.target.value })}>
+                <InputMask mask="(99) 99999-9999" disabled={!isEdition} value={formatPhoneNumber(phone) || ""}>
                     {() => (
                         <FormInput
                             inputRef={userRefs.phone}
@@ -165,7 +187,7 @@ export default function NewProfileMainForm({ isEdition, handleEdition }) {
                             { style: { color: leveGreen } }} />}
                 </InputMask>
 
-                <InputMask mask="99/99/9999" disabled value={birthDate || ""} onChange={(e) => store.updateUser({ birthDate: e.target.value })}>
+                <InputMask mask="99/99/9999" disabled value={birthDate || ""} >
                     {() => <FormInput
                         inputRef={userRefs.birthDate}
                         className="inputForm"
@@ -327,7 +349,6 @@ export default function NewProfileMainForm({ isEdition, handleEdition }) {
                     select
                     disabled
                     value={stateId}
-                    onChange={(event) => handleChangeState(event.target.value)}
                     label="Estado"
                     placeholder="Estado"
                     variant="outlined"
@@ -372,7 +393,7 @@ export default function NewProfileMainForm({ isEdition, handleEdition }) {
 
                 {isEdition ?
                     <EditionContainer>
-                        <SaveEditionButton>
+                        <SaveEditionButton onClick={() => handleUpdateUserProfile()}>
                             <span>Salvar alterações</span>
                         </SaveEditionButton>
                         <CancelEditionButton onClick={() => handleEdition()}>
