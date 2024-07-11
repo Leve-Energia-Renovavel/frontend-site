@@ -1,4 +1,4 @@
-import { informationNotAccepted, permanentRedirect, requestSuccessful } from "@/app/service/utils/Validations"
+import { informationNotAccepted, permanentRedirect, requestNotFound, requestSuccessful } from "@/app/service/utils/Validations"
 import { awaitSeconds } from "@/app/utils/browser/BrowserUtils"
 
 export const requestValidation = async (response, setNotifications, setErrorMessage, router) => {
@@ -42,12 +42,27 @@ export const requestValidation = async (response, setNotifications, setErrorMess
         else if (response?.data?.message === "Seu consumo já é leve") {
             router.push(`/fail/low-cost`)
         }
+    }
+    else if (requestNotFound(response?.status)) {
+        if (response?.data.message == "CEP inválido" ||
+            response?.data.message == "CEP inv\u00e1lido") {
+            router.push(`/fail/out-of-range`)
+        }
+        if (response?.message == "CEP inválido" ||
+            response?.message == "CEP inv\u00e1lido") {
+            router.push(`/fail/out-of-range`)
+        }
+
     } else if (permanentRedirect(response?.status)) {
         if (response.data.message == "A leve ainda n\u00e3o chegou a sua\u00a0regi\u00e3o" ||
             response.data.message == "A leve ainda não chegou a sua região" ||
             response.data.message == "A leve não chegou a sua região") {
             router.push(`/fail/out-of-range`)
         }
+    }
+    else if (response?.message == "CEP inválido" ||
+        response?.message == "CEP inv\u00e1lido") {
+        router.push(`/fail/out-of-range`)
     }
     else if (response?.message === "Seu consumo já é leve" ||
         response?.message === "Consumo Baixo" ||
