@@ -33,19 +33,17 @@ export default function StatusStepper() {
     }
 
     return (
-        mainInstallation && !hasStartedBilling && (
-            <Container>
-                <CustomStepper activeStep={handleInstallationStatus(status)} alternativeLabel connector={<CustomConnector />}>
-                    {steps.map((step, index) => (
-                        <Step key={index + 1}>
-                            <StyledStepLabel StepIconComponent={CustomStepIcon} icon={" "} className={`styledStepLabel-${index}`}>
-                                {Object.keys(step)[0]}. {Object.values(step)[0]}
-                            </StyledStepLabel>
-                        </Step>
-                    ))}
-                </CustomStepper>
-                <p className='subtitle'>{handleInstallationSubtitle(status)}</p>
-            </Container>
-        )
+        <Container>
+            <CustomStepper activeStep={handleInstallationStatus(status)} alternativeLabel connector={<CustomConnector />}>
+                {steps.map((step, index) => (
+                    <Step key={index + 1}>
+                        <StyledStepLabel StepIconComponent={CustomStepIcon} icon={" "} className={`styledStepLabel-${index}`}>
+                            {Object.keys(step)[0]}. {Object.values(step)[0]}
+                        </StyledStepLabel>
+                    </Step>
+                ))}
+            </CustomStepper>
+            <p className='subtitle'>{handleInstallationSubtitle(status)}</p>
+        </Container>
     );
 }

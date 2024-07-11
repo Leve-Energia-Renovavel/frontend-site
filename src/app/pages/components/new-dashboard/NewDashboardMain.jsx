@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreUserEconomy } from '@/app/hooks/useStore';
+import { useStoreMainInstallation, useStoreUserEconomy } from '@/app/hooks/useStore';
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import { clearStorageData } from '@/app/utils/browser/BrowserUtils';
 import { formatBrazillianDate } from '@/app/utils/formatters/dateFormatter';
@@ -22,6 +22,11 @@ export default function NewDashboardMain(props) {
 
     const router = useRouter()
     const storeEconomy = useStoreUserEconomy()
+
+    const storeMainInstallation = useStoreMainInstallation()
+    const { hasStartedBilling } = storeMainInstallation?.mainInstallation || {}
+
+    const mainInstallationExists = storeMainInstallation?.mainInstallation?.uuid !== ""
 
     const [menuSelected, setMenuSelection] = useState(menuOptions[props.page])
 
@@ -69,7 +74,7 @@ export default function NewDashboardMain(props) {
                     <DashboardMenu menuSelected={menuSelected} setMenuSelection={setMenuSelection} />
                 </DashboardSideBar>
                 <Content className='dashboardContent'>
-                    <StatusStepper />
+                    {mainInstallationExists && !hasStartedBilling && <StatusStepper />}
                     {menuSelected?.content}
                 </Content>
             </Container>
