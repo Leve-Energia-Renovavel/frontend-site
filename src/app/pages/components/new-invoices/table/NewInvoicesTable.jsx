@@ -5,6 +5,8 @@ import { useStoreBillingHistory, useStoreUser } from '@/app/hooks/useStore';
 import { useGetInvoicesParcialData } from '@/app/service/invoices-service/InvoicesService';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import { formatDateClearYear, formatFullMonthAndYear } from '@/app/utils/formatters/dateFormatter';
+import { useState } from 'react';
+import NewInstallationButton from '../../utils/buttons/NewInstallationButton';
 import NewInvoicesActionButtonContainer from '../action-button-container/NewInvoicesActionButton';
 import { InvoicesTableDistributorBill, InvoicesTableLeveBill, NewInvoicesTableContent, NewInvoicesTableHeader } from './styles';
 
@@ -17,7 +19,16 @@ export default function NewInvoicesTable() {
     const user = JSON.parse(localStorage.getItem('user'))?.user || storeUser
     const billings = JSON.parse(localStorage.getItem('billingHistory')) || billingsHistory
 
+    const [quantityBillsShown, setQuantityBillsShown] = useState(-3)
+
     useGetInvoicesParcialData()
+
+    const loadMoreBills = () => {
+        setQuantityBillsShown(quantityBillsShown => quantityBillsShown - 3)
+    }
+
+    const loadedAllBills = quantityBillsShown <= -billings.length
+    const dontHaveAnyBillsYet = billings?.length < 1
 
     return (
         <>
@@ -28,7 +39,15 @@ export default function NewInvoicesTable() {
                 <p className='tableHeaderStatus'>Status</p>
             </NewInvoicesTableHeader>
 
-            {billings.reverse().map((billing, index) => {
+            {dontHaveAnyBillsYet && (
+                <NewInvoicesTableContent>
+                    <InvoicesTableLeveBill>
+                        <p className='dontHaveAnyBillsYet'>Você ainda não possui faturas</p>
+                    </InvoicesTableLeveBill>
+                </NewInvoicesTableContent>
+            )}
+
+            {billings.slice(quantityBillsShown).reverse().map((billing, index) => {
                 return (
                     <NewInvoicesTableContent key={billing?.uuid} >
                         <InvoicesTableLeveBill
@@ -52,6 +71,11 @@ export default function NewInvoicesTable() {
                     </NewInvoicesTableContent>
                 )
             })}
+            {!loadedAllBills &&
+                <NewInstallationButton
+                    text={"Carregar mais..."}
+                    variant="contained"
+                    onClick={() => loadMoreBills()} />}
 
         </>
     )

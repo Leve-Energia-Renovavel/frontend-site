@@ -75,6 +75,16 @@ export const InvoicesTableLeveBill = styled(AccordionSummary)`
     /* &.Mui-disabled {
         background-color: transparent;
     } */
+
+     .dontHaveAnyBillsYet {
+        font-family: "Graphie";
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: 600;
+        color: ${newBackground.orange};
+
+        margin: 0 auto;
+     }
 `
 
 export const InvoicesTableDistributorBill = styled(AccordionDetails)`

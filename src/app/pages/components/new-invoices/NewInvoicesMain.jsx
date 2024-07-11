@@ -12,7 +12,6 @@ export default function NewInvoicesMain() {
         <NewInvoicesContainer className="invoicesContainer">
             <NewInvoicesHeader />
             <NewInvoicesTable />
-
         </NewInvoicesContainer>
     )
 }
