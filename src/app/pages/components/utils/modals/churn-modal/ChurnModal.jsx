@@ -1,0 +1,60 @@
+import { factoryInfos } from '@/app/utils/helper/newDashboardHelper'
+import { Backdrop, Modal } from '@mui/material'
+import HistoryDetails from '../../../new-dashboard/history/details/HistoryDetails'
+import { FactoryDetailsContainer, FactoryDetailsContent, FactoryInfoCard, HistoryDetailsContainer, ModalBox, OptionsButton, OptionsContainer } from './styles'
+
+export default function ChurnModal({ isOpen, closeModal, confirmChurn }) {
+
+    const handleConfirmChurn = () => {
+        closeModal()
+        confirmChurn()
+    }
+    return (
+        <Modal
+            open={isOpen}
+            onClose={closeModal}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            slots={{ backdrop: Backdrop }}
+            slotProps={{
+                backdrop: {
+                    sx: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                    },
+                },
+            }}>
+            <ModalBox>
+                <h1 className='modalTitle'>Cancelar meu cadastro com a Leve</h1>
+                <p className='modalDescription'>Você tem certeza que quer deixar de economizar todos os meses enquanto ajuda nosso planeta? Veja abaixo quanto foi economizado e o impacto realizado desde sua chegada na Leve:</p>
+
+                <HistoryDetailsContainer>
+                    <HistoryDetails />
+                </HistoryDetailsContainer>
+
+                <FactoryDetailsContainer>
+                    <p className='factoryName'>Usina Uberlândia II</p>
+                    <FactoryDetailsContent>
+                        {factoryInfos?.map((info, index) => {
+                            return (
+                                <FactoryInfoCard key={info.title} className={`factoryCard-${index}`}>
+                                    {info.icon}
+                                    <p className='infoTitle'>{info.title}</p>
+                                    <p className='infoValue'>{info.value}</p>
+                                </FactoryInfoCard>
+                            )
+                        })}
+                    </FactoryDetailsContent>
+                </FactoryDetailsContainer>
+
+                <OptionsContainer>
+                    <OptionsButton onClick={() => handleConfirmChurn()}>
+                        <span>Confirmar cancelamento</span>
+                    </OptionsButton>
+                    <OptionsButton isChurn={true} onClick={closeModal}>
+                        <span>Continuar economizando</span>
+                    </OptionsButton>
+                </OptionsContainer>
+            </ModalBox>
+        </Modal>
+    )
+}

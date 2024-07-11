@@ -1,17 +1,14 @@
 "use client"
 
 import dynamic from 'next/dynamic';
-import { useStoreUserEconomy } from '@/app/hooks/useStore';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useState } from 'react';
-import { AntSwitch, DashboardHistoryContainer as Container, DashboardHistoryContent as Content, DashboardHistoryTitleContainer as Header, HistoryChartLegend, HistoryDetail, HistoryDetailContent, HistoryDetailFooter, HistoryDetailFooterHeader, HistoryDetailHeader, HistoryDetailValue, HistoryDivider, LegendCarrier, LegendDue, LegendExpired, LegendPaid, DashboardHistorySwitchContainer as SwitchContainer } from './styles';
+import HistoryDetails from './details/HistoryDetails';
+import { AntSwitch, DashboardHistoryContainer as Container, DashboardHistoryContent as Content, DashboardHistoryTitleContainer as Header, HistoryChartLegend, HistoryDivider, LegendCarrier, LegendDue, LegendExpired, LegendPaid, DashboardHistorySwitchContainer as SwitchContainer } from './styles';
 
 const NewHistoryEnergyChart = dynamic(() => import('../../charts/NewHistoryEnergyChart'), { ssr: false });
 const NewHistoryMoneyChart = dynamic(() => import('../../charts/NewHistoryMoneyChart'), { ssr: false });
 
 export default function DashboardHistory() {
-
-  const userEconomy = useStoreUserEconomy().userEconomy
 
   const [dataType, setDataType] = useState("money")
 
@@ -33,7 +30,6 @@ export default function DashboardHistory() {
       <Content className='dashboardHistoryContent'>
 
         {dataType === "money" ? <NewHistoryMoneyChart /> : <NewHistoryEnergyChart />}
-        {/* {dataType === "money" ? <h1>churros 1</h1> : <h1>churros 2</h1>} */}
 
         <HistoryDivider />
 
@@ -46,29 +42,8 @@ export default function DashboardHistory() {
 
         <HistoryDivider />
 
-        <HistoryDetail>
-          <HistoryDetailHeader>
-            <p className='contractInitialDate'>Desde o início do contrato:</p>
-            <p className='initialDate'>{`${userEconomy.economySince ? userEconomy.economySince : `01/01/2020`}`}</p>
-          </HistoryDetailHeader>
-          <HistoryDetailContent>
-            <HistoryDetailValue>
-              <p className='value'>{`${userEconomy.receivedCredits ? parseInt(userEconomy.receivedCredits) : `0`} kWh`}</p>
-              <p className='legend'>em energia renovável</p>
-            </HistoryDetailValue>
-            <HistoryDetailValue>
-              <p className='valueHighlighted'>{`${userEconomy.value ? userEconomy.value.toString().replace('.', ',') : `R$ 0,00`}`}</p>
-              <p className='legend'>a mais no seu bolso</p>
-            </HistoryDetailValue>
-          </HistoryDetailContent>
-          <HistoryDetailFooter>
-            <HistoryDetailFooterHeader>
-              <InfoOutlinedIcon className='infoIcon' />
-              <p className='undestandYourEconomy'>Entenda sua economia</p>
-            </HistoryDetailFooterHeader>
-            <p className='checkAllHistory'>Ver histórico completo</p>
-          </HistoryDetailFooter>
-        </HistoryDetail>
+        <HistoryDetails />
+
       </Content>
     </Container>
   )

@@ -33,7 +33,7 @@ export default function StatusStepper() {
     }
 
     return (
-        !hasStartedBilling && (
+        mainInstallation && !hasStartedBilling && (
             <Container>
                 <CustomStepper activeStep={handleInstallationStatus(status)} alternativeLabel connector={<CustomConnector />}>
                     {steps.map((step, index) => (

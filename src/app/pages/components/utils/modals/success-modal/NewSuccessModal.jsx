@@ -19,7 +19,7 @@ export default function NewSuccessModal({ title, description, buttonTitle, isOpe
             <ModalBox>
                 <Check />
                 <h1 className='modalTitle'>{title}</h1>
-                {description}
+                <p className="description">{description}</p>
                 <ModalMainButton onClick={closeModal}>
                     <span>{buttonTitle}</span>
                 </ModalMainButton>
