@@ -1,22 +1,28 @@
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import Button from '@mui/material/Button';
+"use client"
+
 import MobileStepper from '@mui/material/MobileStepper';
 import Typography from '@mui/material/Typography';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useState } from 'react';
-import { CarrouselContainer } from './styles';
+import { ArrowBack, ArrowForward, CarrouselContentContainer, CarrouselContainer as Container } from './styles';
+
+const ConsumptionHistoryChart = dynamic(() => import('../chart/ConsumptionHistoryChart'), { ssr: false });
 
 export default function NewInstallationsCarrousel() {
 
     const [activeStep, setActiveStep] = useState(0);
 
     const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        if (!activeStep === maxSteps - 1) {
+            setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        }
     };
 
     const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+        if (activeStep !== 0) {
+            setActiveStep((prevActiveStep) => prevActiveStep - 1);
+        }
     };
 
     const images = [
@@ -45,33 +51,33 @@ export default function NewInstallationsCarrousel() {
     const maxSteps = images.length;
 
     return (
-        <CarrouselContainer>
+        <Container>
             <Typography>{images[activeStep].label}</Typography>
 
             <Image src={images[activeStep].imgPath} alt={`image-${activeStep}`} width={300} height={200} />
 
 
-            <MobileStepper
-                steps={maxSteps}
-                position="static"
-                activeStep={activeStep}
-                nextButton={
-                    <Button
-                        size="small"
-                        onClick={handleNext}
-                        disabled={activeStep === maxSteps - 1}>
-                        Next
-                        <KeyboardArrowRight />
-                    </Button>
-                }
-                backButton={
-                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                        <KeyboardArrowLeft />
-                        Back
-                    </Button>
-                }
-            />
-        </CarrouselContainer>
+            <CarrouselContentContainer>
+                <ArrowBack onClick={handleBack} disabled={activeStep === 0} />
+
+                <ConsumptionHistoryChart />
+
+                <ArrowForward onClick={handleNext} disabled={activeStep === maxSteps - 1} />
+            </CarrouselContentContainer>
+
+            <div>
+                <MobileStepper
+                    sx={{
+                        '& .MuiMobileStepper-dot .MuiMobileStepper-dotActive': {
+                            color: '#f69',
+                        },
+                    }}
+                    steps={maxSteps}
+                    position="static"
+                    activeStep={activeStep}
+                />
+            </div>
+        </Container>
 
     )
 }

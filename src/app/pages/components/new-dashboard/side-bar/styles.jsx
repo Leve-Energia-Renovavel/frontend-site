@@ -148,7 +148,7 @@ export const MenuOption = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 8px;
+    gap: 4px;
     padding: 8px;
     margin-top: 4px;
     border-radius: 10px;
@@ -185,6 +185,8 @@ export const MenuOption = styled.div`
         font-weight: 600;
         color: ${newBackground.yellow};
         text-decoration: underline;
+
+        white-space: nowrap;
     }
 
     &:hover { 

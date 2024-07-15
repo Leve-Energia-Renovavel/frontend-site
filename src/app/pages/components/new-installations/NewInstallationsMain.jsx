@@ -1,11 +1,22 @@
+"use client"
+
 import EqualizerOutlinedIcon from '@mui/icons-material/EqualizerOutlined';
+import dynamic from 'next/dynamic';
+import { useState } from 'react';
 import StatusStepper from "../new-dashboard/status-stepper/StatusStepper";
 import DefaultTitle from "../utils/titles/DefaultTitle";
-import NewInstallationsCarrousel from "./carrousel/NewInstallationsCarrousel";
 import NewInstallationsMainHeader from "./header/NewInstallationsMainHeader";
-import { ConsumptionHistoryContainer as ConsumptionHistory, ConsumptionHistoryTitleContainer, NewInstallationsContainer as Container } from "./styles";
+import { AntSwitch, ConsumptionHistoryContainer as ConsumptionHistory, NewInstallationsContainer as Container, ConsuptiomHistorySwitchContainer as SwitchContainer, ConsumptionHistoryTitleContainer as TitleContainer } from "./styles";
+
+const NewInstallationsCarrousel = dynamic(() => import("./carrousel/NewInstallationsCarrousel"), { ssr: false });
 
 export default function NewInstallationsMain() {
+
+    const [dataType, setDataType] = useState("money")
+
+    const handleDataType = () => {
+        dataType === "money" ? setDataType("energy") : setDataType("money")
+    }
 
     return (
         <Container>
@@ -15,12 +26,17 @@ export default function NewInstallationsMain() {
             <StatusStepper />
 
             <ConsumptionHistory>
-                <ConsumptionHistoryTitleContainer>
+                <TitleContainer>
                     <DefaultTitle icon={<EqualizerOutlinedIcon className='icon' />} title={`Histórico de Consumo`} />
-
-                </ConsumptionHistoryTitleContainer>
+                    <SwitchContainer>
+                        <p className='label'>R$</p>
+                        <AntSwitch onChange={() => handleDataType()} />
+                        <p className='label'>kWh</p>
+                    </SwitchContainer>
+                </TitleContainer>
 
                 <NewInstallationsCarrousel />
+
             </ConsumptionHistory>
 
 
