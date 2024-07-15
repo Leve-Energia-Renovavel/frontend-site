@@ -78,7 +78,7 @@ export default function NewHistoryMoneyChart() {
                 borderRadiusWhenStacked: 'last', // 'all', 'last'
                 dataLabels: {
                     total: {
-                        enabled: true,
+                        enabled: false,   //disable total
                         style: {
                             fontFamily: "Graphie", //total style
                             fontSize: '18px',
