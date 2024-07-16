@@ -19,7 +19,7 @@ export default function NewInvoicesTable() {
     const user = JSON.parse(localStorage.getItem('user'))?.user || storeUser
     const billings = JSON.parse(localStorage.getItem('billingHistory')) || billingsHistory
 
-    const [quantityBillsShown, setQuantityBillsShown] = useState(-3)
+    const [quantityBillsShown, setQuantityBillsShown] = useState(-6)
 
     useGetInvoicesParcialData()
 
