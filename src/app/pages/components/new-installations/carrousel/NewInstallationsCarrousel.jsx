@@ -2,10 +2,9 @@
 
 import { useStoreBillingHistory } from '@/app/hooks/useStore';
 import { formatBillingArray } from '@/app/utils/helper/installationsCarrouselHelper';
-import MobileStepper from '@mui/material/MobileStepper';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import { ArrowBack, ArrowForward, CarrouselContentContainer, CarrouselContainer as Container } from './styles';
+import { ArrowBack, ArrowForward, CarrouselContentContainer, CarrouselContainer as Container, Dot, StepperContainer } from './styles';
 
 const ConsumptionHistoryChart = dynamic(() => import('../chart/ConsumptionHistoryChart'), { ssr: false });
 
@@ -32,7 +31,9 @@ export default function NewInstallationsCarrousel() {
     };
 
     const handleStepChange = (step) => {
-        console.log("STEP ====>>>", step)
+        if (activeStep !== step) {
+            setActiveStep(step)
+        }
     };
 
 
@@ -46,23 +47,14 @@ export default function NewInstallationsCarrousel() {
                 <ArrowForward onClick={handleNext} disabled={activeStep === maxSteps - 1} />
             </CarrouselContentContainer>
 
-            <div>
-                <MobileStepper
-                    steps={maxSteps}
-                    position="static"
-                    activeStep={activeStep}
-                    // Custom dots click handler
-                    sx={{
-                        '& .MuiMobileStepper-dot': {
-                            cursor: 'pointer',
-                            '&:hover': {
-                                backgroundColor: '#f69',
-                            },
-                        },
-                    }}
-                    onDotClick={(step) => handleStepChange(step)}
-                />
-            </div>
+            <StepperContainer>
+                {formattedBillings?.map((item, index) => {
+                    return (
+                        <Dot key={index} selected={index === activeStep} onClick={() => handleStepChange(index)} />
+                    )
+                })}
+
+            </StepperContainer>
         </Container>
 
     )
