@@ -112,6 +112,9 @@ export const CodeButton = styled.div`
     background-color: ${newBackground.white};
     
     border-radius: 8px;
+
+    height: 40px;
+    width: 90px;
     
     padding: 8px 11px;
 

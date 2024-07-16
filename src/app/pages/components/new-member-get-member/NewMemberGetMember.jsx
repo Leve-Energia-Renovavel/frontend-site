@@ -1,11 +1,22 @@
+"use client"
+
 import { useStoreUser } from "@/app/hooks/useStore";
+import { useState } from "react";
 import { CodeButton, CodeContainer, MemberGetMemberContainer as Container, MemberGetMemberContent as Content, CopyIcon, MemberGetMemberCodeBox, MessageIcon, ShareButton, ShareContainer, MemberGetMemberTextContainer as TextContainer, WhatsIcon } from "./styles";
 
 export default function NewMemberGetMember() {
 
-    const storeUser = useStoreUser()
+    const [copiedToClipboard, setCopiedToClipboard] = useState(false)
 
+    const storeUser = useStoreUser()
     const user = storeUser?.user
+
+    console.log("user --->>", user)
+
+    const handleCopyToClipboard = () => {
+        setCopiedToClipboard(current => !current)
+        navigator.clipboard.writeText(user.memberGetMemberCode)
+    }
 
     return (
         <Container>
@@ -20,9 +31,13 @@ export default function NewMemberGetMember() {
 
                     <CodeContainer>
                         <p className="memberGetMemberCode">{user?.memberGetMemberCode}</p>
-                        <CodeButton>
-                            <span>Copiar</span>
-                            <CopyIcon className="copyIcon"/>
+                        <CodeButton onClick={() => handleCopyToClipboard()}>
+                            {copiedToClipboard ? <span>Copiado!</span> :
+                                (<>
+                                    <span>Copiar</span>
+                                    <CopyIcon className="copyIcon" />
+                                </>)}
+
                         </CodeButton>
                     </CodeContainer>
 
