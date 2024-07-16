@@ -14,7 +14,7 @@ export default function NewInstallationsCarrousel() {
     const [activeStep, setActiveStep] = useState(0);
 
     const handleNext = () => {
-        if (!activeStep === maxSteps - 1) {
+        if (!(activeStep === maxSteps - 1)) {
             setActiveStep((prevActiveStep) => prevActiveStep + 1);
         }
     };
