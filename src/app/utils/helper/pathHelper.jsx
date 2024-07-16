@@ -33,6 +33,7 @@ export const headerHelper = {
     '/dashboard/profile/': true,
     '/dashboard/invoices/': true,
     '/dashboard/installations/': true,
+    '/dashboard/payment/': true,
     '/recover-password/': false,
     '/fail/out-of-range/': false,
     '/fail/low-cost/': false,

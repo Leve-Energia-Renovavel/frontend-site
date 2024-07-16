@@ -14,7 +14,7 @@ export default function NewHistoryMoneyChart() {
 
     const valueData = billings?.slice(chartSize).map((bill) => bill?.value)
     // const availabilityData = billings?.slice(chartSize).map((bill) => bill?.energyDistributorInjected)
-    const availabilityData = billings.slice(chartSize).map((_) => 50)
+    const availabilityData = billings.slice(chartSize).map((_) => 250)
 
     // const dueDateData = billings?.slice(chartSize).map((bill) => formatDayMonthAndYearInFull(bill?.dueDate))
     const billDateData = billings?.slice(chartSize).map((bill) => formatMonthAndYearInFull(bill?.billDate))
@@ -50,7 +50,7 @@ export default function NewHistoryMoneyChart() {
             },
         },
         tooltip: {
-            enabled: true,
+            enabled: false, //show data on chart hover
         },
         grid: {
             show: false //show grid lines
@@ -94,6 +94,13 @@ export default function NewHistoryMoneyChart() {
                 fontSize: '14px',
                 fontWeight: 900,
                 color: newBackground.green
+            },
+            formatter: function (val, option) {
+                if (option?.seriesIndex === 0) {
+                    return 50
+                } else {
+                    return val
+                }
             },
         },
         colors: [background.grey, (item) => {

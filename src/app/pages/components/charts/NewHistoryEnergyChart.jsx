@@ -13,7 +13,7 @@ export default function NewHistoryEnergyChart() {
     const chartSize = -6
 
     const valueData = billings.slice(chartSize).map(item => parseInt(item.energyConsumed))
-    const availabilityData = billings.slice(chartSize).map((_) => 45)
+    const availabilityData = billings.slice(chartSize).map((_) => 300)
     // const dueDateData = billings.slice(chartSize).map(item => formatDayMonthAndYearInFull(item.dueDate))
     const billDateData = billings?.slice(chartSize).map((bill) => formatMonthAndYearInFull(bill?.billDate))
 
@@ -48,7 +48,7 @@ export default function NewHistoryEnergyChart() {
             },
         },
         tooltip: {
-            enabled: true,
+            enabled: false, //show data on chart hover
         },
         grid: {
             show: false //show grid lines
@@ -92,6 +92,13 @@ export default function NewHistoryEnergyChart() {
                 fontSize: '14px',
                 fontWeight: 900,
                 color: newBackground.green
+            },
+            formatter: function (val, option) {
+                if (option?.seriesIndex === 0) {
+                    return 50
+                } else {
+                    return val
+                }
             },
         },
         colors: [background.grey, (item) => {
