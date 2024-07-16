@@ -1,9 +1,9 @@
 "use client"
 
+import { useStoreBillingHistory } from '@/app/hooks/useStore';
+import { formatBillingArray } from '@/app/utils/helper/installationsCarrouselHelper';
 import MobileStepper from '@mui/material/MobileStepper';
-import Typography from '@mui/material/Typography';
 import dynamic from 'next/dynamic';
-import Image from 'next/image';
 import { useState } from 'react';
 import { ArrowBack, ArrowForward, CarrouselContentContainer, CarrouselContainer as Container } from './styles';
 
@@ -11,7 +11,13 @@ const ConsumptionHistoryChart = dynamic(() => import('../chart/ConsumptionHistor
 
 export default function NewInstallationsCarrousel() {
 
+    const billings = useStoreBillingHistory().billings
     const [activeStep, setActiveStep] = useState(0);
+
+    const formattedBillings = formatBillingArray(billings, 4)
+    const selectedBillings = formattedBillings[activeStep]
+
+    const maxSteps = formattedBillings?.length;
 
     const handleNext = () => {
         if (!(activeStep === maxSteps - 1)) {
@@ -25,56 +31,36 @@ export default function NewInstallationsCarrousel() {
         }
     };
 
-    const images = [
-        {
-            label: 'San Francisco – Oakland Bay Bridge, United States',
-            imgPath:
-                'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
-        },
-        {
-            label: 'Bird',
-            imgPath:
-                'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
-        },
-        {
-            label: 'Bali, Indonesia',
-            imgPath:
-                'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250',
-        },
-        {
-            label: 'Goč, Serbia',
-            imgPath:
-                'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-        },
-    ];
+    const handleStepChange = (step) => {
+        console.log("STEP ====>>>", step)
+    };
 
-    const maxSteps = images.length;
 
     return (
         <Container>
-            <Typography>{images[activeStep].label}</Typography>
-
-            <Image src={images[activeStep].imgPath} alt={`image-${activeStep}`} width={300} height={200} />
-
-
             <CarrouselContentContainer>
                 <ArrowBack onClick={handleBack} disabled={activeStep === 0} />
 
-                <ConsumptionHistoryChart />
+                <ConsumptionHistoryChart selectedBillings={selectedBillings} />
 
                 <ArrowForward onClick={handleNext} disabled={activeStep === maxSteps - 1} />
             </CarrouselContentContainer>
 
             <div>
                 <MobileStepper
-                    sx={{
-                        '& .MuiMobileStepper-dot .MuiMobileStepper-dotActive': {
-                            color: '#f69',
-                        },
-                    }}
                     steps={maxSteps}
                     position="static"
                     activeStep={activeStep}
+                    // Custom dots click handler
+                    sx={{
+                        '& .MuiMobileStepper-dot': {
+                            cursor: 'pointer',
+                            '&:hover': {
+                                backgroundColor: '#f69',
+                            },
+                        },
+                    }}
+                    onDotClick={(step) => handleStepChange(step)}
                 />
             </div>
         </Container>

@@ -1,75 +1,135 @@
 "use client"
 
+import { newBackground } from '@/app/pages/styles'
+import { formatMonthAndYearInFull } from '@/app/utils/formatters/dateFormatter'
 import ReactApexChart from 'react-apexcharts'
 import { BarChartWrapper } from './styles'
 
-export default function ConsumptionHistoryChart() {
+export default function ConsumptionHistoryChart({ selectedBillings }) {
+
+    console.log("selectedBillings ===>>", selectedBillings)
+
+    const valueData = selectedBillings?.map((bill) => bill?.value)
+    const availabilityData = selectedBillings?.map((bill) => bill?.value ? 50 : 0)
+    const distributorValue = selectedBillings?.map((bill) => parseFloat(bill?.value) + 50)
+
+    const billDateData = selectedBillings?.map((bill) => bill?.billDate ? formatMonthAndYearInFull(bill?.billDate) : "")
 
     const series = [
         {
-            name: 'Q1 Budget',
+            name: 'SEM A LEVE',
             group: 'budget',
-            data: [44000, 55000, 41000, 67000, 22000]
+            data: distributorValue
         },
         {
-            name: 'Q1 Actual',
+            name: 'DISTRIBUIDORA',
             group: 'actual',
-            data: [48000, 50000, 40000, 65000, 25000]
+            data: availabilityData
         },
         {
-            name: 'Q2 Budget',
-            group: 'budget',
-            data: [13000, 36000, 20000, 8000, 13000]
-        },
-        {
-            name: 'Q2 Actual',
+            name: 'VALOR LEVE',
             group: 'actual',
-            data: [20000, 40000, 25000, 10000, 12000]
+            data: valueData
         }
     ]
 
 
     const options = {
         chart: {
+            fontFamily: 'Graphie',
             type: 'bar',
             height: 350,
             stacked: true,
+            toolbar: {
+                show: true, //hidden toolbar
+                tools: {
+                    download: true,
+                    selection: true,
+                    zoom: true,
+                    zoomin: true,
+                    zoomout: true,
+                    pan: true,
+                    reset: true,
+                },
+            },
         },
+        tooltip: {
+            enabled: true,
+        },
+        grid: {
+            show: false //show grid lines
+        },
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                legend: {
+                    position: 'bottom',
+                    offsetX: -10,
+                    offsetY: 0
+                }
+            }
+        }],
         stroke: {
-            width: 1,
-            colors: ['#fff']
+            show: false,
         },
         dataLabels: {
-            formatter: (val) => {
-                return val / 1000 + 'K'
+            style: {
+                fontSize: '14px',
+                fontWeight: 900,
+                color: newBackground.green
+            },
+            formatter: (value) => {
+                if (value) {
+                    return value
+                }
             }
         },
         plotOptions: {
             bar: {
-                horizontal: false
-            }
+                // distributed: true,   //for distributed colors 
+                horizontal: false,
+                columnWidth: '85%',
+                borderRadius: 8,
+                borderRadiusApplication: 'end', // 'around', 'end'
+                borderRadiusWhenStacked: 'all', // 'all', 'last'
+                dataLabels: {
+                    total: {
+                        enabled: false,   //disable total
+                        style: {
+                            fontFamily: "Graphie", //total style
+                            fontSize: '18px',
+                            fontWeight: 900,
+                            color: newBackground.green
+                        }
+                    },
+                },
+            },
         },
         xaxis: {
-            categories: [
-                'Online advertising',
-                'Sales Training',
-                'Print advertising',
-                'Catalogs',
-                'Meetings'
-            ],
+            categories: billDateData,
             labels: {
-                formatter: (val) => {
-                    return val / 1000 + 'K'
-                }
-            }
+                show: true,
+                rotateAlways: false,
+                hideOverlappingLabels: true,
+                showDuplicates: false,
+                trim: false,
+            },
+        },
+        yaxis: {
+            show: false,
         },
         fill: {
             opacity: 1,
         },
-        colors: ['#80c7fd', '#008FFB', '#80f1cb', '#00E396'],
+        colors: [newBackground.greenSoft, newBackground.greyDark, (item) => {
+            const bill = selectedBillings[item?.dataPointIndex];
+            if (bill?.status === "paid") return newBackground.green;
+            if (bill?.status === "due") return newBackground.orange;
+            if (bill?.status === "pending") return newBackground.orangeFocused;
+            return newBackground.green;
+        }],
         legend: {
-            position: 'top',
-            horizontalAlign: 'left'
+            show: false,
         }
     }
 
