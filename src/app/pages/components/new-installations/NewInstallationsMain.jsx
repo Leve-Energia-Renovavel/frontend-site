@@ -35,7 +35,7 @@ export default function NewInstallationsMain() {
                     </SwitchContainer>
                 </TitleContainer>
 
-                <NewInstallationsCarrousel />
+                <NewInstallationsCarrousel dataType={dataType} />
 
             </ConsumptionHistory>
 

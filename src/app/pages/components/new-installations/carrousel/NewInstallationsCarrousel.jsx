@@ -8,7 +8,7 @@ import { ArrowBack, ArrowForward, CarrouselContentContainer, CarrouselContainer 
 
 const ConsumptionHistoryChart = dynamic(() => import('../chart/ConsumptionHistoryChart'), { ssr: false });
 
-export default function NewInstallationsCarrousel() {
+export default function NewInstallationsCarrousel({ dataType }) {
 
     const billings = useStoreBillingHistory().billings
     const [activeStep, setActiveStep] = useState(0);
@@ -42,7 +42,7 @@ export default function NewInstallationsCarrousel() {
             <CarrouselContentContainer>
                 <ArrowBack onClick={handleBack} disabled={activeStep === 0} />
 
-                <ConsumptionHistoryChart selectedBillings={selectedBillings} />
+                <ConsumptionHistoryChart selectedBillings={selectedBillings} dataType={dataType} />
 
                 <ArrowForward onClick={handleNext} disabled={activeStep === maxSteps - 1} />
             </CarrouselContentContainer>

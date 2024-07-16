@@ -5,13 +5,13 @@ import { formatFullMonthAndYear } from '@/app/utils/formatters/dateFormatter'
 import ReactApexChart from 'react-apexcharts'
 import { BarChartWrapper } from './styles'
 
-export default function ConsumptionHistoryChart({ selectedBillings }) {
+export default function ConsumptionHistoryChart({ dataType, selectedBillings }) {
 
-    console.log("selectedBillings ===>>", selectedBillings)
+    const isMoney = dataType === "money"
 
-    const valueData = selectedBillings?.map((bill) => bill?.value)
+    const valueData = selectedBillings?.map((bill) => isMoney ? bill?.value : parseInt(bill?.energyConsumed))
     const availabilityData = selectedBillings?.map((bill) => bill?.value ? 50 : 0)
-    const distributorValue = selectedBillings?.map((bill) => parseFloat(bill?.value) + 50)
+    const distributorValue = selectedBillings?.map((bill) => isMoney ? (parseFloat(bill?.value) + 50) : parseInt(bill?.energyConsumed))
 
     const billDateData = selectedBillings?.map((bill) => bill?.billDate ? formatFullMonthAndYear(bill?.billDate) : "")
 
@@ -148,6 +148,7 @@ export default function ConsumptionHistoryChart({ selectedBillings }) {
                     )
                 })}
             </div>
+            <p>{dataType}</p>
 
         </BarChartWrapper>
 
