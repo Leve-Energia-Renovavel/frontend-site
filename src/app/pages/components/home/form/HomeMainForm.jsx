@@ -1,6 +1,7 @@
 "use client"
 
 import { createSignupPayload } from '@/app/service/lead-service/LeadService';
+import { clearCookiesAndStorageData } from '@/app/utils/browser/BrowserUtils';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
@@ -14,7 +15,6 @@ import economyIcon from "../../../../../resources/icons/small/economy-icon-small
 import { schemaValidation } from '../schema';
 import { HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormFooterContainer, FormSlider, FormTitleContainer, HomeFormContainer, HomeMainFormSimulationContainer, Loading, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "../styles";
 import { requestValidation } from '../validation';
-import { clearBrowserData } from '@/app/utils/browser/BrowserUtils';
 
 export default function HomeMainForm({ setErrorMessage, setNotifications, selectedUserType, setSelectedUserType }) {
 
@@ -40,7 +40,7 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
         setSelectedUserType(userType);
     };
 
-    clearBrowserData()
+    clearCookiesAndStorageData()
 
     const handleSubmit = async (event) => {
         event.preventDefault()

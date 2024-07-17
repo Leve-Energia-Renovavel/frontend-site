@@ -2,8 +2,8 @@ import { informationNotAccepted, permanentRedirect, requestNotFound, requestSucc
 import { awaitSeconds } from "@/app/utils/browser/BrowserUtils"
 
 export const requestValidation = async (response, setNotifications, setErrorMessage, router) => {
-
-    if (requestSuccessful(response?.status)) {
+    const status = response?.status
+    if (requestSuccessful(status)) {
         if (response?.data?.message === "Você já possui cadastro") {
             setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])
             await awaitSeconds(4)
@@ -26,11 +26,17 @@ export const requestValidation = async (response, setNotifications, setErrorMess
             }
         }
 
-    } else if (informationNotAccepted(response?.status)) {
-        if (response?.data?.message === "A leve ainda não chegou a sua região" ||
-            response.data.message == "A leve ainda n\u00e3o chegou a sua\u00a0regi\u00e3o" ||
-            response?.data?.message === "A leve não chegou a sua região" ||
+    } else if (informationNotAccepted(status)) {
+        if (response?.data?.message === "A leve ainda não chegou a sua região." ||
+            response?.data?.message === "A leve ainda não chegou a sua região." ||
+            response?.data?.message == "A leve ainda n\u00e3o chegou a sua\u00a0regi\u00e3o" ||
+            response?.data?.message === "A leve não chegou a sua região." ||
             response?.data?.message === "Fora de rateio") {
+            router.push(`/fail/out-of-range`)
+        } else if (response?.message === "A leve ainda não chegou a sua região." ||
+            response?.message == "A leve ainda n\u00e3o chegou a sua\u00a0regi\u00e3o" ||
+            response?.message === "A leve não chegou a sua região." ||
+            response?.message === "Fora de rateio") {
             router.push(`/fail/out-of-range`)
         }
         else if (response?.data?.message === "Usuário existente" ||
@@ -43,7 +49,7 @@ export const requestValidation = async (response, setNotifications, setErrorMess
             router.push(`/fail/low-cost`)
         }
     }
-    else if (requestNotFound(response?.status)) {
+    else if (requestNotFound(status)) {
         if (response?.data.message == "CEP inválido" ||
             response?.data.message == "CEP inv\u00e1lido") {
             router.push(`/fail/out-of-range`)
@@ -53,7 +59,7 @@ export const requestValidation = async (response, setNotifications, setErrorMess
             router.push(`/fail/out-of-range`)
         }
 
-    } else if (permanentRedirect(response?.status)) {
+    } else if (permanentRedirect(status)) {
         if (response.data.message == "A leve ainda n\u00e3o chegou a sua\u00a0regi\u00e3o" ||
             response.data.message == "A leve ainda não chegou a sua região" ||
             response.data.message == "A leve não chegou a sua região") {
