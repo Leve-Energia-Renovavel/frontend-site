@@ -3,8 +3,7 @@
 import { newBackground } from '@/app/pages/styles'
 import { formatFullMonthAndYear } from '@/app/utils/formatters/dateFormatter'
 import ReactApexChart from 'react-apexcharts'
-import { BarChartWrapper, ChartLegendContainer, Legend, LegendDetail, LegendDetailLegend } from './styles'
-import { chartLegends } from '@/app/utils/helper/installationsCarrouselHelper'
+import { BarChartWrapper, ChartLegendContainer, LegendDetail } from './styles'
 
 export default function ConsumptionHistoryChart({ dataType, selectedBillings }) {
 
@@ -83,7 +82,7 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
                     return 50
                 }
                 else {
-                    return val
+                    return val.toString().replace(".", ",")
                 }
             },
         },
@@ -157,18 +156,7 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
                     )
                 })}
             </ChartLegendContainer>
-            <LegendDetailLegend>
-                {chartLegends.map((legend) => {
-                    return (
-                        <Legend key={legend?.title}
-                            backgroundColor={legend?.backgroundColor}
-                            fontColor={legend?.fontColor}>
-                            <span>{legend?.title}</span>
-                        </Legend>
-                    )
-                })}
 
-            </LegendDetailLegend>
         </BarChartWrapper>
 
     )

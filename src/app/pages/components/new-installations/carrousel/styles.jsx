@@ -1,10 +1,9 @@
 import { newBackground } from "@/app/pages/styles";
 import styled from "@emotion/styled";
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 export const CarrouselContainer = styled.div`
     display: flex;
@@ -34,6 +33,7 @@ export const ArrowBack = styled(ArrowBackIosIcon)`
     }
 `
 
+
 export const ArrowForward = styled(ArrowForwardIosIcon)`
     color: ${props => props.disabled ? newBackground.greyDark : newBackground.green};
     width: 30px;
@@ -54,21 +54,33 @@ export const ArrowForward = styled(ArrowForwardIosIcon)`
     }
 `
 
-export const StepperContainer = styled.div`
+export const InfoIcon = styled(InfoOutlinedIcon)`
+    width: 20px;
+    height: auto;
+    color: ${newBackground.green};
+`
+
+export const FooterContainer = styled.div`
     display: flex;
     flex-direction: row;
-    margin: 0 auto;
+    align-items: center;
 
-`
+    gap: 2px;
 
-export const Dot = styled(FiberManualRecordIcon)`
-    color: ${props => props.selected ? newBackground.green : newBackground.greyDark};
-    width: 10px;
-    height: auto;
-
+    span {
+        font-family: "Graphie";
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: 600;
+        color: ${newBackground.green};
+    }
     
     &:hover {
-        color: ${newBackground.orange};
         cursor: pointer;
+        
+        span {
+            text-decoration: underline;
+        }
     }
 `
+

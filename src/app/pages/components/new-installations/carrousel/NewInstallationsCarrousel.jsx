@@ -4,7 +4,9 @@ import { useStoreBillingHistory } from '@/app/hooks/useStore';
 import { formatBillingArray } from '@/app/utils/helper/installationsCarrouselHelper';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import { ArrowBack, ArrowForward, CarrouselContentContainer, CarrouselContainer as Container, Dot, StepperContainer } from './styles';
+import ChartStepper from '../chart-stepper/ChartStepper';
+import ChartLegend from '../legend/ChartLegend';
+import { ArrowBack, ArrowForward, CarrouselContentContainer, CarrouselContainer as Container, FooterContainer, InfoIcon } from './styles';
 
 const ConsumptionHistoryChart = dynamic(() => import('../chart/ConsumptionHistoryChart'), { ssr: false });
 
@@ -41,20 +43,20 @@ export default function NewInstallationsCarrousel({ dataType }) {
         <Container>
             <CarrouselContentContainer>
                 <ArrowBack onClick={handleBack} disabled={activeStep === 0} />
-
                 <ConsumptionHistoryChart selectedBillings={selectedBillings} dataType={dataType} />
-
                 <ArrowForward onClick={handleNext} disabled={activeStep === maxSteps - 1} />
             </CarrouselContentContainer>
 
-            <StepperContainer>
-                {formattedBillings?.map((item, index) => {
-                    return (
-                        <Dot key={index} selected={index === activeStep} onClick={() => handleStepChange(index)} />
-                    )
-                })}
+            <ChartStepper
+                formattedBillings={formattedBillings}
+                activeStep={activeStep}
+                handleStepChange={handleStepChange} />
+            <ChartLegend />
 
-            </StepperContainer>
+            <FooterContainer>
+                <InfoIcon />
+                <span>Entenda sua economia</span>
+            </FooterContainer>
         </Container>
 
     )
