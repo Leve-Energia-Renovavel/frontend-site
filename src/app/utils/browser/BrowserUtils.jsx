@@ -31,6 +31,7 @@ export const clearBrowserData = async () => {
         });
     }
 }
+
 export const clearStorageData = async () => {
     if (typeof window !== 'undefined') {
         localStorage.clear();
@@ -42,6 +43,17 @@ export const clearStorageData = async () => {
                 caches.delete(cacheName);
             });
         });
+    }
+}
+
+export const clearCookiesAndStorageData = async () => {
+    const cookies = Cookies.get();
+    for (const cookie in cookies) {
+        Cookies.remove(cookie);
+    }
+
+    if (typeof window !== 'undefined') {
+        localStorage.clear();
     }
 }
 
