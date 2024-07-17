@@ -14,6 +14,7 @@ import economyIcon from "../../../../../resources/icons/small/economy-icon-small
 import { schemaValidation } from '../schema';
 import { HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormFooterContainer, FormSlider, FormTitleContainer, HomeFormContainer, HomeMainFormSimulationContainer, Loading, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "../styles";
 import { requestValidation } from '../validation';
+import { clearBrowserData } from '@/app/utils/browser/BrowserUtils';
 
 export default function HomeMainForm({ setErrorMessage, setNotifications, selectedUserType, setSelectedUserType }) {
 
@@ -38,6 +39,9 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
     const handleSelect = (userType) => {
         setSelectedUserType(userType);
     };
+
+    clearBrowserData()
+
     const handleSubmit = async (event) => {
         event.preventDefault()
         setLoading(true)
