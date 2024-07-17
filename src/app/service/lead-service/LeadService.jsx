@@ -51,11 +51,10 @@ export const startSignUp = async (data) => {
     var response = null
     try {
         response = await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/step-one`, data);
-
     } catch (error) {
         if (error.response) {
             console.log("Error message from server:", error.response.data);
-            response = error.response.data;
+            response = error.response;
         } else if (error.request) {
             console.log("No response received from server.");
             response = error.request;
