@@ -3,7 +3,6 @@
 
 import { useStoreAddress, useStoreUser } from '@/app/hooks/useStore';
 import { requestSuccessful } from '@/app/service/utils/Validations';
-import { clearBrowserData } from '@/app/utils/browser/BrowserUtils';
 import { formatBasicBirthDate } from '@/app/utils/date/DateUtils';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -12,8 +11,8 @@ import { notFound, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { SignUpContainer as Container } from './styles';
 
-import NewResultEconomy from '../new-result-economy/NewResultEconomy';
 import { checkForCompanyName } from '@/app/utils/company/CompanyUtils';
+import NewResultEconomy from '../new-result-economy/NewResultEconomy';
 const SignupForm = dynamic(() => import('./forms/SignupForm'), { ssr: false });
 
 export default function SignupMain() {
@@ -50,7 +49,7 @@ export default function SignupMain() {
                         phone: consumidor?.telefone,
                         email: consumidor?.email,
                         cost: instalacao?.valor_base_consumo,
-                        cep: cep,
+                        cep: instalacao?.cep,
                         coupon: consumidor?.ref_origin,
                         couponValue: userResponse?.data?.desconto_bruto,
 
