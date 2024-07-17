@@ -111,6 +111,7 @@ export const LegendDetail = styled.div`
     position: relative;
     top: -40px;
 
+
     width: 152px;
 
     padding: 0 8px;

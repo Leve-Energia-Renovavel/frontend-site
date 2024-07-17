@@ -144,17 +144,15 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
             />
             <ChartLegendContainer>
                 {billDateData?.map((billDate, index) => {
-                    if (!billDate || billDate === "")
-                        return <></>;
                     return (
                         <>
                             <LegendDetail key={billDate}>
-                                <span className='withoutLeve'>Sem Leve</span>
-                                <span className='withLeve'>Com Leve</span>
+                                <span className='withoutLeve'>{billDate ? "Sem Leve" : ""}</span>
+                                <span className='withLeve'>{billDate ? "Com Leve" : ""}</span>
                             </LegendDetail>
-                            <span className={`chartLegend-${index}`}>{billDate}</span>
+                            {billDate && <span className={`chartLegend-${index}`}>{billDate}</span>}
                         </>
-                    );
+                    )
                 })}
             </ChartLegendContainer>
         </BarChartWrapper>
