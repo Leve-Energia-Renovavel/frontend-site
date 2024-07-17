@@ -1,17 +1,17 @@
 "use client"
 
-import { background, newBackground } from '@/app/pages/styles'
+import { newBackground } from '@/app/pages/styles'
 import { formatFullMonthAndYear } from '@/app/utils/formatters/dateFormatter'
 import ReactApexChart from 'react-apexcharts'
-import { BarChartWrapper } from './styles'
+import { BarChartWrapper, ChartLegendContainer, LegendDetail } from './styles'
 
 export default function ConsumptionHistoryChart({ dataType, selectedBillings }) {
 
     const isMoney = dataType === "money"
 
     const valueData = selectedBillings?.map((bill) => isMoney ? bill?.value : parseInt(bill?.energyConsumed))
-    const availabilityData = selectedBillings?.map((bill) => bill?.value ? 50 : 0)
-    const distributorValue = selectedBillings?.map((bill) => isMoney ? (parseFloat(bill?.value) + 50) : parseInt(bill?.energyConsumed))
+    const availabilityData = selectedBillings?.map((bill) => bill?.value ? 250 : 0)
+    const distributorValue = selectedBillings?.map((bill) => isMoney ? (parseFloat(bill?.value) + 200) : parseInt(bill?.energyConsumed))
 
     const billDateData = selectedBillings?.map((bill) => bill?.billDate ? formatFullMonthAndYear(bill?.billDate) : "")
 
@@ -33,7 +33,6 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
         }
     ]
 
-
     const options = {
         chart: {
             fontFamily: 'Graphie',
@@ -54,7 +53,7 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
             },
         },
         tooltip: {
-            enabled: true,
+            enabled: false, //show data on chart hover
         },
         grid: {
             show: false //show grid lines
@@ -78,11 +77,13 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
                 fontWeight: 900,
                 color: newBackground.green
             },
-            formatter: (value) => {
-                if (value) {
-                    return value
+            formatter: function (val, option) {
+                if (option?.seriesIndex === 1) {
+                    return 50
+                } else {
+                    return val
                 }
-            }
+            },
         },
         plotOptions: {
             bar: {
@@ -121,7 +122,7 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
         fill: {
             opacity: 1,
         },
-        colors: ["#444", newBackground.greyDark, (item) => {
+        colors: ["#555", newBackground.greyDark, (item) => {
             const bill = selectedBillings[item?.dataPointIndex];
             if (bill?.status === "paid") return newBackground.green;
             if (bill?.status === "due") return newBackground.orange;
@@ -141,15 +142,21 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
                 type="bar"
                 height={250}
             />
-            <div className='legendContainer'>
+            <ChartLegendContainer>
                 {billDateData?.map((billDate, index) => {
+                    if (!billDate || billDate === "")
+                        return <></>;
                     return (
-                        <span className={`chartLegend-${index}`} key={billDate}>{billDate}</span>
-                    )
+                        <>
+                            <LegendDetail key={billDate}>
+                                <span className='withoutLeve'>Sem Leve</span>
+                                <span className='withLeve'>Com Leve</span>
+                            </LegendDetail>
+                            <span className={`chartLegend-${index}`}>{billDate}</span>
+                        </>
+                    );
                 })}
-            </div>
-            <p>{dataType}</p>
-
+            </ChartLegendContainer>
         </BarChartWrapper>
 
     )

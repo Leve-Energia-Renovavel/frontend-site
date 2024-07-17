@@ -25,7 +25,9 @@ export const BarChartWrapper = styled.div`
     font-weight: 900;
   }
 
-  .legendContainer {
+`;
+
+export const ChartLegendContainer = styled.div`
     position: relative;
 
     display: flex;
@@ -33,11 +35,10 @@ export const BarChartWrapper = styled.div`
     align-items: center;
     justify-content: space-evenly;
 
-    margin-top: -15px;
+    margin-top: 20px;
     margin-bottom: 15px;
-  }
 
-  .chartLegend-0 {
+    .chartLegend-0 {
     position: absolute;
     left: 20px;
 
@@ -47,7 +48,6 @@ export const BarChartWrapper = styled.div`
     white-space: nowrap;
 
     border-radius: 5px;
-
 
     font-family: "Graphie";
     font-weight: 600;
@@ -106,4 +106,33 @@ export const BarChartWrapper = styled.div`
     color: ${newBackground.green};
     background-color: ${newBackground.grey};
   }
-`;
+`
+export const LegendDetail = styled.div`
+    position: relative;
+    top: -40px;
+
+    width: 152px;
+
+    padding: 0 8px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .withoutLeve, .withLeve {
+      font-family: "Graphie";
+      font-size: 12px;
+      line-height: 14px;
+      font-weight: 600;
+      
+      white-space: nowrap;
+    }
+
+    .withoutLeve {
+      color: ${newBackground.greyDark};
+    }
+    .withLeve {
+      color: ${newBackground.green};
+    }
+`

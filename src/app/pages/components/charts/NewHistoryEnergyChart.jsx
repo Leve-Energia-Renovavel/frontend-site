@@ -12,12 +12,12 @@ export default function NewHistoryEnergyChart() {
 
     const chartSize = -6
 
-    const valueData = billings.slice(chartSize).map(item => parseInt(item.energyConsumed))
-    const availabilityData = billings.slice(chartSize).map((_) => 300)
+    const valueData = billings?.slice(chartSize).map(item => parseInt(item.energyConsumed))
+    const availabilityData = billings?.slice(chartSize).map((_) => 300)
     // const dueDateData = billings.slice(chartSize).map(item => formatDayMonthAndYearInFull(item.dueDate))
     const billDateData = billings?.slice(chartSize).map((bill) => formatMonthAndYearInFull(bill?.billDate))
 
-    const labelColors = billings.slice(chartSize).map((_, index, arr) => {
+    const labelColors = billings?.slice(chartSize).map((_, index, arr) => {
         return index === arr.length - 1 ? newBackground.orange : newBackground.green;
     });
 
