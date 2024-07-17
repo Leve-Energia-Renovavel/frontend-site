@@ -1,3 +1,5 @@
+"use client"
+
 import { useStoreBillingHistory } from '@/app/hooks/useStore'
 import { formatFullMonthAndYear } from '@/app/utils/formatters/dateFormatter'
 import { useState } from 'react'

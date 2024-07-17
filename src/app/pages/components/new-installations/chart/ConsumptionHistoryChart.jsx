@@ -11,7 +11,7 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
 
     const valueData = selectedBillings?.map((bill) => isMoney ? bill?.value : parseInt(bill?.energyConsumed))
     const availabilityData = selectedBillings?.map((bill) => bill?.value ? 250 : 0)
-    const distributorValue = selectedBillings?.map((bill) => isMoney ? (parseFloat(bill?.value) + 250) : parseInt(bill?.energyConsumed))
+    const distributorValue = selectedBillings?.map((bill) => isMoney ? (parseFloat(bill?.value) + 250) : parseInt(bill?.energyConsumed) + 250)
 
     const billDateData = selectedBillings?.map((bill) => bill?.billDate ? formatFullMonthAndYear(bill?.billDate) : "")
 
@@ -78,6 +78,13 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
                 color: newBackground.green
             },
             formatter: function (val, option) {
+                if (option?.seriesIndex === 0) {
+                    if (isMoney) {
+                        return 50
+                    } else {
+                        return parseInt(val) - 200
+                    }
+                }
                 if (option?.seriesIndex === 1) {
                     return 50
                 }
