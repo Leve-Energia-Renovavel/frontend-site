@@ -3,7 +3,8 @@
 import { newBackground } from '@/app/pages/styles'
 import { formatFullMonthAndYear } from '@/app/utils/formatters/dateFormatter'
 import ReactApexChart from 'react-apexcharts'
-import { BarChartWrapper, ChartLegendContainer, LegendDetail } from './styles'
+import { BarChartWrapper, ChartLegendContainer, Legend, LegendDetail, LegendDetailLegend } from './styles'
+import { chartLegends } from '@/app/utils/helper/installationsCarrouselHelper'
 
 export default function ConsumptionHistoryChart({ dataType, selectedBillings }) {
 
@@ -11,7 +12,7 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
 
     const valueData = selectedBillings?.map((bill) => isMoney ? bill?.value : parseInt(bill?.energyConsumed))
     const availabilityData = selectedBillings?.map((bill) => bill?.value ? 250 : 0)
-    const distributorValue = selectedBillings?.map((bill) => isMoney ? (parseFloat(bill?.value) + 200) : parseInt(bill?.energyConsumed))
+    const distributorValue = selectedBillings?.map((bill) => isMoney ? (parseFloat(bill?.value) + 250) : parseInt(bill?.energyConsumed))
 
     const billDateData = selectedBillings?.map((bill) => bill?.billDate ? formatFullMonthAndYear(bill?.billDate) : "")
 
@@ -80,7 +81,8 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
             formatter: function (val, option) {
                 if (option?.seriesIndex === 1) {
                     return 50
-                } else {
+                }
+                else {
                     return val
                 }
             },
@@ -92,7 +94,7 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
                 columnWidth: '85%',
                 borderRadius: 8,
                 borderRadiusApplication: 'end', // 'around', 'end'
-                borderRadiusWhenStacked: 'all', // 'all', 'last'
+                borderRadiusWhenStacked: 'last', // 'all', 'last'
                 dataLabels: {
                     total: {
                         enabled: false,   //disable total
@@ -122,7 +124,7 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
         fill: {
             opacity: 1,
         },
-        colors: ["#555", newBackground.greyDark, (item) => {
+        colors: [newBackground.greyMedium, newBackground.greyDark, (item) => {
             const bill = selectedBillings[item?.dataPointIndex];
             if (bill?.status === "paid") return newBackground.green;
             if (bill?.status === "due") return newBackground.orange;
@@ -155,6 +157,18 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
                     )
                 })}
             </ChartLegendContainer>
+            <LegendDetailLegend>
+                {chartLegends.map((legend) => {
+                    return (
+                        <Legend key={legend?.title}
+                            backgroundColor={legend?.backgroundColor}
+                            fontColor={legend?.fontColor}>
+                            <span>{legend?.title}</span>
+                        </Legend>
+                    )
+                })}
+
+            </LegendDetailLegend>
         </BarChartWrapper>
 
     )
