@@ -102,7 +102,7 @@ export default function NewHistoryEnergyChart() {
             },
         },
         colors: [background.grey, (item) => {
-            const bill = billings.slice(chartSize)[item.dataPointIndex];
+            const bill = billings?.slice(chartSize)[item.dataPointIndex];
             if (bill.status === "paid") return newBackground.green;
             if (bill.status === "due") return newBackground.orange;
             if (bill.status === "pending") return newBackground.orangeFocused;
