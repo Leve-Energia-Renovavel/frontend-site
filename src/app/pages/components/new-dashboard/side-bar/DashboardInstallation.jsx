@@ -124,7 +124,7 @@ export default function DashboardInstallation() {
                         displayEmpty
                         IconComponent={KeyboardArrowDownIcon}>
                         <li value={0} style={{ display: 'none' }}>
-                            <span>Casa</span>
+                            <span className="home">Casa</span>
                         </li>
                         {filteredInstallations?.map((otherInstallation, index) => {
                             return (
@@ -141,7 +141,7 @@ export default function DashboardInstallation() {
             </InstallationDetails>
             <InstallationFooter>
                 <AddCircleIcon className="addInstallationIcon" />
-                <p className="addInstallation">Adicionar unidade</p>
+                <p className="addInstallation">Nova unidade</p>
             </InstallationFooter>
         </NewDashboardInstallation>
     )

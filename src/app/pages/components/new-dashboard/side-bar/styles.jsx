@@ -16,7 +16,9 @@ export const NewDashboardProfile = styled.div`
         line-height: 17px;
         font-weight: 500;
         margin-left: 40px;
-        color: ${newBackground.orange};
+        color: ${newBackground.greyDark};
+
+        margin-top: 8px;
     }
 `
 export const ProfileHeader = styled.div`
@@ -44,7 +46,7 @@ export const ProfileHeader = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 500;
-        color: ${newBackground.orange};
+        color: ${newBackground.green};
         
         &:hover {
             cursor: pointer;
@@ -85,7 +87,7 @@ export const InstallationDetails = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 400;
-        color: ${newBackground.orange};  
+        color: ${newBackground.greyDark};  
         
         margin-left: 34px;
     }
@@ -102,20 +104,20 @@ export const InstallationFooter = styled.div`
     .addInstallationIcon {
         width: 15px;
         height: auto;
-        color: ${newBackground.orange};
+        color: ${newBackground.green};
     }
     .addInstallation {
         font-family: "Graphie";
-        font-size: 12px;
-        line-height: 14px;
+        font-size: 14px;
+        line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${newBackground.green};
     }
 
     &:hover {
         cursor: pointer;
         text-decoration: underline;
-        text-decoration-color: ${newBackground.orange};
+        text-decoration-color: ${newBackground.green};
     }
 `
 
@@ -212,10 +214,13 @@ export const BoxInstallation = styled(Box)`
 
 `
 export const SelectInstallation = styled(Select)`
-    font-family: "Graphie";
-    font-weight: 800;
-    font-size: 20px;
-    color: ${newBackground.orange};
+
+    .home {
+        font-family: "Graphie";
+        font-weight: 600;
+        font-size: 20px;
+        color: ${newBackground.green};
+    }
 
     &.MuiOutlinedInput-root {
         .MuiSelect-select {

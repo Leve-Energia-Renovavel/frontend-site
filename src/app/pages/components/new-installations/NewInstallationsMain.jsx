@@ -7,6 +7,7 @@ import StatusStepper from "../new-dashboard/status-stepper/StatusStepper";
 import DefaultTitle from "../utils/titles/DefaultTitle";
 import NewInstallationsMainHeader from "./header/NewInstallationsMainHeader";
 import { AntSwitch, ConsumptionHistoryContainer as ConsumptionHistory, NewInstallationsContainer as Container, ConsuptiomHistorySwitchContainer as SwitchContainer, ConsumptionHistoryTitleContainer as TitleContainer } from "./styles";
+import ExtractOfConsumptions from './extract/ExtractOfConsumptions';
 
 const NewInstallationsCarrousel = dynamic(() => import("./carrousel/NewInstallationsCarrousel"), { ssr: false });
 
@@ -39,6 +40,7 @@ export default function NewInstallationsMain() {
 
             </ConsumptionHistory>
 
+            <ExtractOfConsumptions />
 
         </Container>
     )
