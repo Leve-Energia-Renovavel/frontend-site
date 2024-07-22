@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreCompany, useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
+import { useStoreCompany, useStoreInstallations, useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
 import { updateUserProfile } from '@/app/service/user-service/UserService';
 import { getCityNameByStateIdAndCityId } from '@/app/service/utils/addressUtilsService';
 import { requestSuccessful } from '@/app/service/utils/Validations';
@@ -10,26 +10,38 @@ import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import { MenuItem } from '@mui/material';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
-import NewDefaultModal from '../../utils/modals/default-modal/NewDefaultModal';
+import MultipleInstallationsModal from '../../utils/modals/multiple-installations-modal/MultipleInstallationsModal';
+import OwnershipModal from '../../utils/modals/ownership-modal/OwnershipModal';
+import SingleInstallationModal from '../../utils/modals/single-installation-modal/SingleInstallationModal';
 import NewSuccessModal from '../../utils/modals/success-modal/NewSuccessModal';
 import { CancelEditionButton, ChangeOwnershipButton, ChangeOwnershipIcon, EditionContainer, FormContent, FormInput, FormLastRow, FormRow, InstallationInput, SaveEditionButton } from './styles';
+
 
 export default function NewProfileMainForm({ isEdition, handleEdition, setNotifications, setErrorMessage }) {
 
     const store = useStoreUser()
+    const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
 
     const user = JSON.parse(localStorage.getItem('user'))
     const mainInstallation = JSON.parse(localStorage.getItem('mainInstallation'))
+    const installations = JSON.parse(localStorage.getItem('installations'))
 
     const company = useStoreCompany().company
     const isCompany = user?.user.isCompany
 
     const { name, email, phone, cost, distributor, companyName, rg, cpf, cnpj, birthDate, secondaryEmail, maritalStatus, profession, nationality } = user?.user ?? (store?.user || {})
     const { street, neighborhood, number, city, state, stateId, cityId, zipCode, installationNumber } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+    const allInstallations = installations?.installations ?? (storeInstallations?.installations || {})
 
     const [isForeigner, setIsForeigner] = useState(false);
+
     const [openModal, setOpenModal] = useState(false);
+
+    const [multipleInstallationsModal, setOpenMultipleModal] = useState(false);
+    const [singleInstallationModal, setOpenSingleModal] = useState(false);
+
+    const hasOnlyOneInstallation = allInstallations?.length < 2
 
     const [openSuccessModal, setOpenSuccessModal] = useState(false)
 
@@ -70,13 +82,23 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
         setOpenModal(true)
     }
 
-    const confirmModal = () => {
-        console.log("confirmModal")
-        setOpenModal(false)
-        setOpenSuccessModal(true)
-    };
     const closeModal = () => {
         setOpenModal(false)
+    };
+    const closeMultipleModal = () => {
+        setOpenMultipleModal(false)
+    };
+    const closeSingleModal = () => {
+        setOpenSingleModal(false)
+    };
+
+    const handleChangeOwnership = () => {
+        setOpenModal(false)
+        if (hasOnlyOneInstallation) {
+            setOpenSingleModal(true)
+        } else {
+            setOpenMultipleModal(true)
+        }
     };
 
     const closeSuccessModal = () => {
@@ -406,14 +428,20 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
                         <ChangeOwnershipIcon className='changeOwnershipIcon' />
                     </ChangeOwnershipButton>}
 
-                <NewDefaultModal
+                <OwnershipModal
                     isOpen={openModal}
                     closeModal={closeModal}
-                    title={`Solicitar troca de titularidade`}
-                    description={`O serviço de energia solar por assinatura da Leve só funciona quando o titular da conta Leve é também titular da conta de luz. Ao fazer a troca de titularidade na sua distribuidora local, é necessário atualizar os mesmos dados no site da Leve. Um de nossos atendentes entreará em contato para auxiliar você`}
-                    buttonTitle={`Confirmar solicitação`}
-                    cancel={`Cancelar`}
-                    confirmModal={confirmModal}
+                    handleChangeOwnership={handleChangeOwnership}
+                />
+
+                <MultipleInstallationsModal
+                    isOpen={multipleInstallationsModal}
+                    closeModal={closeMultipleModal}
+                />
+
+                <SingleInstallationModal
+                    isOpen={singleInstallationModal}
+                    closeModal={closeSingleModal}
                 />
 
                 <NewSuccessModal
@@ -423,8 +451,6 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
                     description={<span className='description'>Em breve, entraremos em contato através do email <span className="highlighted">comercial@leveenergia.com.br</span> ou no WhatsApp pelo número <span className="highlighted">(11) 9 9988-8899</span></span>}
                     buttonTitle={`Concluir`}
                 />
-
-
 
             </FormLastRow>
         </>
