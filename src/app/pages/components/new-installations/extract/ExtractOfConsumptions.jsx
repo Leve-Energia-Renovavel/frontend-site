@@ -35,7 +35,10 @@ export default function ExtractOfConsumptions() {
         )}
         {billings.slice(quantityBillsShown).reverse().map((bill) => {
 
+          const kwhPriceByLeve = (parseFloat(bill?.value) / parseFloat(bill?.energyConsumed)).toFixed(4).toString().replace(".", ",")
+
           const formattedBillValue = parseFloat(bill?.value).toFixed(2).toString().replace(".", ",")
+
           return (
             <Extract key={bill?.uuid}>
               <p className='dueDate'>{formatFullMonthAndYear(bill?.billDate)}</p>
@@ -55,7 +58,7 @@ export default function ExtractOfConsumptions() {
                   <span className='energyConsumed'>{`${parseInt(bill?.energyConsumed)} kWh`}</span>
                   <span className='billValue'>{`R$ ${formattedBillValue}`}</span>
                 </ExtractDetailValue>
-                <span className='measureUnit'>1kWh = R$ 1,08855</span>
+                <span className='measureUnit'>1kWh = R$ {kwhPriceByLeve}</span>
               </ExtractDetail>
 
             </Extract>
