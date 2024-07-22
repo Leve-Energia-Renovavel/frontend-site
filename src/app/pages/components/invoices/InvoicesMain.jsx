@@ -167,7 +167,7 @@ export default function InvoicesMain() {
                             <Typography variant='subtitle1' className='noOpenInvoices'>Não há faturas em aberto</Typography>}
                     </InvoicesMainCardContainer>
 
-                    {/* {openWarning && <WarningBox severity="warning"><span className='highlighted'>Atenção:</span> Caso seu método de pagamento seja <span className='highlighted'>cartão de crédito</span>, a data de vencimento não muda a data de pagamento, <span className='underlined'>que é sempre dia 15.</span> </WarningBox>} */}
+                    {openWarning && <WarningBox severity="warning"><span className='highlighted'>Atenção:</span> Caso seu método de pagamento seja <span className='highlighted'>cartão de crédito</span>, a data de vencimento não muda a data de pagamento, <span className='underlined'>que é sempre dia 15.</span> </WarningBox>}
 
                     <InvoicesMainCardChangeDate>
                         <Typography variant='subtitle1' className='changeInvoiceDate'>Alterar data do vencimento</Typography>
