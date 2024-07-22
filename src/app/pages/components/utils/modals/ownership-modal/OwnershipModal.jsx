@@ -34,7 +34,7 @@ export default function OwnershipModal({ isOpen, closeModal, handleChangeOwnersh
                             <AutorenewOutlinedIcon className='renewIcon' />
                         </ModalTitleIcon>
                         <p className='optionTitle'>Estou mudando de endereço</p>
-                        <p className='optionDescription'>Estou me <span className='underlined'>mudando para um novo endereço</span> e desejo <span className='bold'>cancelar o endereço antigo</span> da minha conta Leve.</p>
+                        <p className='optionDescription'>Estou me <span className='underlined'>mudando para um novo endereço</span> e desejo <span className='bold'>cancelar o endereço cadastrado</span> na minha conta Leve.</p>
                     </ModalOption>
 
                     <ModalOption onClick={() => handleChangeOwnership()}>
@@ -43,6 +43,7 @@ export default function OwnershipModal({ isOpen, closeModal, handleChangeOwnersh
                             <AutorenewOutlinedIcon className='renewIcon' />
                         </ModalTitleIcon>
                         <p className='optionTitle'>Outra pessoa será titular desse endereço</p>
+                        {/* <p className='optionDescription'><span className='highlighted'>Outra pessoa</span> será responsável por esse endereço e desejo realizar a troca da titularidade. Lembrando que: o serviço de energia solar por assinatura da Leve só funciona quando o titular da conta Leve é também o titular da conta de luz.</p> */}
                         <p className='optionDescription'><span className='highlighted'>Outra pessoa</span> será responsável por esse endereço e desejo realizar a troca da titularidade.</p>
                     </ModalOption>
 
