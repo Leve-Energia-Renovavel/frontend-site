@@ -2,6 +2,7 @@ import { statusHelper } from "@/app/utils/helper/StyleHelpers";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import { Alert } from "@mui/material";
 import { background, newBackground } from "../../styles";
 
 const fadeInUp = keyframes`
@@ -243,10 +244,26 @@ export const InvoicesMainCardChangeDate = styled.div`
     }
 
     .invoiceDateField {
+      
       width: 100%;
+
+      .MuiOutlinedInput-notchedOutline {
+          border-color: ${newBackground.orangeFocused}; // Border color: ;
+      }
 
       .MuiOutlinedInput-root {
             border-color: ${newBackground.white};
+        
+          &:hover .MuiOutlinedInput-notchedOutline {
+            border-color: ${newBackground.orangeFocused}; // Border color on hover
+          }
+          
+          &.Mui-focused .MuiOutlinedInput-notchedOutline {
+              border-color: ${newBackground.orange} !important; // Border color when focused
+          }
+          &:not(.Mui-focused) .MuiOutlinedInput-notchedOutline {
+              border-color: ${newBackground.orangeFocused} !important; // Border color when not focused
+          }
         }
 
         .MuiInputLabel-root {
@@ -402,4 +419,39 @@ export const MoneyIcon = styled(AttachMoneyIcon)`
     color: ${background.grey};
     font-size: 1.5rem;
     font-weight: bold;
+`
+
+
+export const WarningBox = styled(Alert)`
+    width: 30vw;
+    max-width: 20vw;
+    font-size: 14px;
+    margin: 1rem 3.2rem 1rem auto;
+
+    .underlined {
+      text-decoration: underline;
+      
+    }
+    
+    .highlighted {
+      font-weight: bold;
+    }
+
+    @media (max-width: 1500px) {
+      margin: 1rem 5.6rem 1rem auto;
+    }
+    @media (max-width: 1200px) {
+      max-width: 25vw;
+      margin: 1rem 3.2rem 1rem auto;
+    }
+    @media (max-width: 1000px) {
+      width: 100%;
+      max-width: 80vw;
+      margin: 1rem;
+    }
+    @media (max-width: 1000px) {
+      width: 100%;
+      max-width: 70vw;
+      margin: 1rem;
+    }
 `
