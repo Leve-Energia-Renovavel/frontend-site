@@ -16,7 +16,7 @@ export const ExtractHeaderContainer = styled.div`
     }
 `
 export const ExtractHeaderDate = styled.div`
-    width: 200px;
+    width: 160px;
     text-align: center;
     border-bottom: 2px solid ${newBackground.green};
 
@@ -25,7 +25,7 @@ export const ExtractHeaderDate = styled.div`
     }
 `
 export const ExtractHeaderDistributor = styled.div`
-    width: 310px;
+    width: 280px;
     
     text-align: center;
     border-bottom: 2px solid ${newBackground.greyDark};

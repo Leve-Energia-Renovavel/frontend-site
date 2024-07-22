@@ -170,6 +170,8 @@ export const MenuOption = styled.div`
         line-height: 21px;
         font-weight: 600;
         color: ${newBackground.green};
+
+        white-space: nowrap;
     }
 
     .memberGetMember {

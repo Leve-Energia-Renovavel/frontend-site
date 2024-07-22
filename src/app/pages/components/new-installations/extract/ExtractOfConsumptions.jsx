@@ -35,9 +35,13 @@ export default function ExtractOfConsumptions() {
         )}
         {billings.slice(quantityBillsShown).reverse().map((bill) => {
 
-          const kwhPriceByLeve = (parseFloat(bill?.value) / parseFloat(bill?.energyConsumed)).toFixed(4).toString().replace(".", ",")
+          const kwhByDistributor = parseFloat(bill?.energyConsumed) - parseFloat(bill?.energyInjected)
+          const kwhPriceByDistributor = 1.08855
+          const formattedDistributorValue = (kwhByDistributor * kwhPriceByDistributor).toFixed(2).toString().replace(".", ",")
 
+          const kwhPriceByLeve = (parseFloat(bill?.value) / parseFloat(bill?.energyConsumed)).toFixed(4).toString().replace(".", ",")
           const formattedBillValue = parseFloat(bill?.value).toFixed(2).toString().replace(".", ",")
+
 
           return (
             <Extract key={bill?.uuid}>
@@ -46,10 +50,10 @@ export default function ExtractOfConsumptions() {
               {/* values details from distributor */}
               <ExtractDetail distributor>
                 <ExtractDetailValue distributor>
-                  <span className='energyConsumed'>{`${parseInt(bill?.energyConsumed)} kWh`}</span>
-                  <span className='billValue'>{`R$ ${bill?.value}`}</span>
+                  <span className='energyConsumed'>{`${kwhByDistributor} kWh`}</span>
+                  <span className='billValue'>{`R$ ${formattedDistributorValue}`}</span>
                 </ExtractDetailValue>
-                <span className='measureUnit'>1kWh = R$ 1,08855</span>
+                <span className='measureUnit'>1kWh = R$ {kwhPriceByDistributor}</span>
               </ExtractDetail>
 
               {/* values details from Leve */}
