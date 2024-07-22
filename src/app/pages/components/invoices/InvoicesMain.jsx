@@ -5,7 +5,7 @@ import { useStoreBillingHistory, useStoreNextBills, useStoreUser } from '@/app/h
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import { clearStorageData } from '@/app/utils/browser/BrowserUtils';
 import { billHasToBePaid, billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
-import { Breadcrumbs, Button, FormControl, InputLabel, Link, MenuItem, Select, Typography } from '@mui/material';
+import { Alert, Breadcrumbs, Button, FormControl, InputLabel, Link, MenuItem, Select, Typography } from '@mui/material';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import dynamic from 'next/dynamic';
@@ -13,7 +13,7 @@ import { useEffect, useRef, useState } from 'react';
 import { newBackground } from '../../styles';
 import Messages from '../messages/Messages';
 import FormButton from '../utils/buttons/FormButton';
-import { InvoiceContainer as Container, InvoicesMainCardChangeDate, InvoicesMainCardContainer, InvoicesMainContainer, InvoicesTimelineContainer, NextBillButtonContainer, NextBillDetail, NextBillTitleContainer, PreviousInvoicesContainer } from './styles';
+import { InvoiceContainer as Container, InvoicesMainCardChangeDate, InvoicesMainCardContainer, InvoicesMainContainer, InvoicesTimelineContainer, NextBillButtonContainer, NextBillDetail, NextBillTitleContainer, PreviousInvoicesContainer, WarningBox } from './styles';
 
 const Timeline = dynamic(() => import('../timeline/Timeline'), { ssr: false });
 
@@ -21,6 +21,8 @@ export default function InvoicesMain() {
 
     const [errors, setErrorMessage] = useState([]);
     const [notifications, setNotifications] = useState([])
+
+    const [openWarning, setOpenWarning] = useState(false)
 
     const dateRef = useRef()
 
@@ -119,6 +121,11 @@ export default function InvoicesMain() {
 
     }, []);
 
+    const handleOpenWarning = () => {
+        setOpenWarning(current => !current)
+
+    }
+
     return (
         <>
             <Container className='container'>
@@ -159,12 +166,17 @@ export default function InvoicesMain() {
                         ) :
                             <Typography variant='subtitle1' className='noOpenInvoices'>Não há faturas em aberto</Typography>}
                     </InvoicesMainCardContainer>
+
+                    {/* {openWarning && <WarningBox severity="warning"><span className='highlighted'>Atenção:</span> Caso seu método de pagamento seja <span className='highlighted'>cartão de crédito</span>, a data de vencimento não muda a data de pagamento, <span className='underlined'>que é sempre dia 15.</span> </WarningBox>} */}
+
                     <InvoicesMainCardChangeDate>
                         <Typography variant='subtitle1' className='changeInvoiceDate'>Alterar data do vencimento</Typography>
                         <div style={{ display: "flex", flexDirection: "column" }}>
                             <FormControl className='invoiceDateField'>
-                                <InputLabel id="change-invoice-date-input-label">Data do Vencimento</InputLabel>
+                                <InputLabel id="change-invoice-date-input-label"
+                                >Data do Vencimento</InputLabel>
                                 <Select
+                                    onClick={() => handleOpenWarning()}
                                     labelId="change-invoice-date-select-label"
                                     id="demo-simple-select"
                                     label="Data do Vencimento"
