@@ -37,7 +37,7 @@ export const MartinsMain = styled.div`
 
     @media (max-width: 900px) {
       padding: 1rem;
-      background-position: 90% 10%;
+      background-position: 40%;
       width: 100vw;
       max-width: 100vw;
 

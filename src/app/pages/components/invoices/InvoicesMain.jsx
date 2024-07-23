@@ -161,7 +161,7 @@ export default function InvoicesMain() {
                     </InvoicesMainCardContainer>
 
                     {/* <WarningBox severity="warning"><span >Atenção:</span> Caso seu método de pagamento seja , a data de vencimento não muda a data de pagamento, <span >que é sempre dia 15.</span> </WarningBox> */}
-                    <WarningBox severity="warning"><span className='highlighted'>Atenção:</span> Caso seu método de pagamento seja <span className='highlighted'>cartão de crédito</span>, a data de faturamento será <span className='underlined'>sempre dia 15</span>. </WarningBox>
+                    <WarningBox severity="warning"><span className='highlighted'>Atenção:</span> Caso você opte pelo método de pagamento via <span className='highlighted'>cartão de crédito</span>, a sua fatura Leve será cobrada próxima ao <span className='underlined'>dia 15 do mês referente</span>.</WarningBox>
 
                     <InvoicesMainCardChangeDate>
                         <Typography variant='subtitle1' className='changeInvoiceDate'>Alterar data do vencimento</Typography>

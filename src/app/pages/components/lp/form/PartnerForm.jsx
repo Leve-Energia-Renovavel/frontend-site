@@ -156,16 +156,7 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
                                 required
                             />}
                         </InputMask>
-                        <TextField
-                            className="homeFormInput"
-                            inputRef={couponRef}
-                            defaultValue={""}
-                            label={`Cupom de Desconto`}
-                            placeholder={`Cupom`}
-                            variant="outlined"
-                            type="text"
-                            disabled={isLoading}
-                        />
+
                         {isMartins &&
                             <TextField
                                 inputRef={martinsRegistrationRef}
@@ -176,8 +167,17 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
                                 type="text"
                                 disabled={isLoading}
                                 required />}
-
                     </FormFooterContainer>
+                    <TextField
+                        className="homeFormInput"
+                        inputRef={couponRef}
+                        defaultValue={""}
+                        label={`Cupom de Desconto`}
+                        placeholder={`Cupom`}
+                        variant="outlined"
+                        type="text"
+                        disabled={isLoading}
+                    />
                 </Form>
                 <HomeMainFormSimulationContainer className="mainFormSimulationContainer" islocaliza={islocaliza}>
                     <h6 variant="subtitle1" className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === 3000 ? "+" : ""}</span></h6>
