@@ -23,7 +23,7 @@ export const createCompanyPartnerPayload = (name, corporateName, email, phone, c
         type: type,
     }
 }
-export const createPartnerPayload = (name, corporateEmail, email, phone, cep, value, type, token) => {
+export const createPartnerPayload = (name, corporateEmail, email, phone, cep, value, type, token, coupon) => {
     return {
         nome: name,
         email_corporativo: corporateEmail,
@@ -32,7 +32,8 @@ export const createPartnerPayload = (name, corporateEmail, email, phone, cep, va
         cep: cep,
         valor: value,
         type: type,
-        token: token
+        token: token,
+        cupom: coupon
     }
 }
 export const createPromoPayload = (name, email, phone, cep, value, type, token) => {
