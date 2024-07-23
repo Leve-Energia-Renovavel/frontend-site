@@ -34,12 +34,14 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
     const { street, neighborhood, number, city, state, stateId, cityId, zipCode, installationNumber } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
     const allInstallations = installations?.installations ?? (storeInstallations?.installations || {})
 
+
     const [isForeigner, setIsForeigner] = useState(false);
 
     const [openModal, setOpenModal] = useState(false);
 
     const [multipleInstallationsModal, setOpenMultipleModal] = useState(false);
     const [singleInstallationModal, setOpenSingleModal] = useState(false);
+    const [installationToBeCancelled, setInstallationToBeCancelled] = useState(null);
 
     const hasOnlyOneInstallation = allInstallations?.length < 2
 
@@ -96,10 +98,17 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
         setOpenModal(false)
         if (hasOnlyOneInstallation) {
             setOpenSingleModal(true)
+            setInstallationToBeCancelled(allInstallations[0])
         } else {
             setOpenMultipleModal(true)
         }
     };
+
+    const handleSelectInstallationToBeCancelled = (installation) => {
+        setOpenMultipleModal(false)
+        setInstallationToBeCancelled(installation)
+        setOpenSingleModal(true)
+    }
 
     const closeSuccessModal = () => {
         setOpenSuccessModal(false)
@@ -437,11 +446,13 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
                 <MultipleInstallationsModal
                     isOpen={multipleInstallationsModal}
                     closeModal={closeMultipleModal}
+                    handleSelectInstallationToBeCancelled={handleSelectInstallationToBeCancelled}
                 />
 
                 <SingleInstallationModal
                     isOpen={singleInstallationModal}
                     closeModal={closeSingleModal}
+                    installationToBeCancelled={installationToBeCancelled}
                 />
 
                 <NewSuccessModal

@@ -14,6 +14,13 @@ export const CardParentContainer = styled.div`
     height: auto;
     max-height: 150px;
 
+    border: 2px solid ${newBackground.green};
+    
+    &:hover {
+        cursor: pointer;
+        border: 2px solid ${newBackground.orange};
+    }
+
     .cardStatus {
         font-family: "Graphie";
         font-size: 17px;

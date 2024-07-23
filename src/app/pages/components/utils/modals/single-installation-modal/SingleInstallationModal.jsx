@@ -1,7 +1,7 @@
 import { Backdrop, Modal } from '@mui/material'
 import { ModalBox } from './styles'
 
-export default function SingleInstallationModal({ isOpen, closeModal }) {
+export default function SingleInstallationModal({ isOpen, closeModal, installationToBeCancelled }) {
     return (
         <Modal
             open={isOpen}
@@ -18,6 +18,7 @@ export default function SingleInstallationModal({ isOpen, closeModal }) {
             }}>
             <ModalBox>
                 <p>SingleInstallationModal</p>
+                <p>{JSON.stringify(installationToBeCancelled)}</p>
             </ModalBox>
         </Modal>
     )

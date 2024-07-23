@@ -25,6 +25,16 @@ export const ModalBox = styled(Box)`
 
     padding: 60px 55px;
 
+    .title {
+        font-family: "Graphie";
+        font-size: 27px;
+        line-height: 32px;
+        font-weight: 600;
+        color: ${newBackground.orange};
+
+        margin-bottom: 42px;
+    }
+
 
     @media (max-width: var(--medium)) {
         width: 100%;
@@ -38,4 +48,12 @@ export const ModalBox = styled(Box)`
 
         padding: 1rem 1rem;
     }
+`
+
+export const RegisteredInstallationsContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    
+    gap: 1rem;
+
 `

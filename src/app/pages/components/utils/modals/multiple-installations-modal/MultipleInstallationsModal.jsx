@@ -1,7 +1,14 @@
+import { useStoreInstallations } from '@/app/hooks/useStore'
 import { Backdrop, Modal } from '@mui/material'
-import { ModalBox } from './styles'
+import InstallationCard from '../../cards/InstallationCard'
+import { ModalBox, RegisteredInstallationsContainer } from './styles'
+import InstallationCardOption from '../../cards/card-option/InstallationCardOption'
 
-export default function MultipleInstallationsModal({ isOpen, closeModal }) {
+export default function MultipleInstallationsModal({ isOpen, closeModal, handleSelectInstallationToBeCancelled }) {
+
+    const storeInstallations = useStoreInstallations()
+    const installations = storeInstallations.installations
+
     return (
         <Modal
             open={isOpen}
@@ -17,7 +24,14 @@ export default function MultipleInstallationsModal({ isOpen, closeModal }) {
                 },
             }}>
             <ModalBox>
-                <p>MultipleInstallationsModal</p>
+                <h1 className='title'>De qual unidade consumidora você está saindo?</h1>
+                <RegisteredInstallationsContainer>
+                    {installations?.map((installation, index) => {
+                        return (
+                            <InstallationCardOption key={installation?.uuid} installation={installation} index={index + 1} handleSelectInstallationToBeCancelled={handleSelectInstallationToBeCancelled}/>
+                        )
+                    })}
+                </RegisteredInstallationsContainer>
             </ModalBox>
         </Modal>
     )
