@@ -1,16 +1,46 @@
-import { informationNotAccepted, permanentRedirect, requestNotFound, requestSuccessful } from "@/app/service/utils/Validations"
+import { requestSuccessful } from "@/app/service/utils/Validations"
 import { awaitSeconds } from "@/app/utils/browser/BrowserUtils"
+
+
+const signupValidationCodes = {
+    ALANCASR: "A leve ainda não chegou a sua região",
+    CB: "Consumo Baixo",
+    CI: "CEP inválido",
+    CIEE: "CNPJ Informado está errado",
+    CNV: "CNPJ não validado",
+    CNE: "Consumidor não encontrado",
+    CPI: "Cupom inválido",
+    IJC: "Instalação já cadastrada",
+    INE: "Instalação não encontrada",
+    IOS: "Informe o sobrenome",
+    NFPEAC: "Não foi possível encontrar a cidade",
+    NFPEOE: "Não foi possível encontrar o estado",
+    NFPAAI: "Não foi possível achar a instalação",
+    NFPAOC: "Não foi possível achar o consumidor",
+    ODCEO: "O dado CNPJ é obrigatório",
+    SCJEL: "Seu consumo já é leve",
+    TCPA: "Tem contrato para assinar",
+    TNENU: "Token não encontrado na url",
+    UE: "Usuário existente",
+    UT: "unexpected token",
+    VDCMB: "Valor de custo mensal baixo.",
+    VJPC: "Você já possui cadastro"
+};
+
 
 export const requestValidation = async (response, setNotifications, setErrorMessage, router) => {
     const status = response?.status
+    const responseCode = response?.data?.code
+
+    console.log("STATUS ===>>>", status)
+    console.log("RESPONSE ===>>>", response)
+    console.log(signupValidationCodes[responseCode])
+
     if (requestSuccessful(status)) {
-        if (response?.data?.message === "Você já possui cadastro") {
+        if (responseCode === "VJPC") {
             setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])
             await awaitSeconds(4)
             router.push(`/login`)
-        }
-        else if (response?.data?.message === "Você não completou seu cadastro, por favor continue através do link enviado em seu e-mail") {
-            setNotifications(["Continue seu cadastro pelo link enviado ao seu e-mail. "])
         }
         else {
             const uuid = response?.data?.uuid
@@ -26,87 +56,35 @@ export const requestValidation = async (response, setNotifications, setErrorMess
             }
         }
 
-    } else if (informationNotAccepted(status)) {
-        if (response?.data?.message === "A leve ainda não chegou a sua região." ||
-            response?.data?.message === "A leve ainda não chegou a sua região." ||
-            response?.data?.message == "A leve ainda n\u00e3o chegou a sua\u00a0regi\u00e3o" ||
-            response?.data?.message === "A leve não chegou a sua região." ||
-            response?.data?.message === "Fora de rateio") {
-            router.push(`/fail/out-of-range`)
-        } else if (response?.message === "A leve ainda não chegou a sua região." ||
-            response?.message == "A leve ainda n\u00e3o chegou a sua\u00a0regi\u00e3o" ||
-            response?.message === "A leve não chegou a sua região." ||
-            response?.message === "Fora de rateio") {
-            router.push(`/fail/out-of-range`)
-        }
-        else if (response?.data?.message === "Usuário existente" ||
-            response?.data?.message === "Usu\u00e1rio existente") {
-            setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])
-            await awaitSeconds(3)
-            router.push(`/login`)
-        }
-        else if (response?.data?.message === "Seu consumo já é leve") {
-            router.push(`/fail/low-cost`)
-        }
     }
-    else if (requestNotFound(status)) {
-        if (response?.data.message == "CEP inválido" ||
-            response?.data.message == "CEP inv\u00e1lido") {
-            router.push(`/fail/out-of-range`)
-        }
-        if (response?.message == "CEP inválido" ||
-            response?.message == "CEP inv\u00e1lido") {
-            router.push(`/fail/out-of-range`)
-        }
-
-    } else if (permanentRedirect(status)) {
-        if (response.data.message == "A leve ainda n\u00e3o chegou a sua\u00a0regi\u00e3o" ||
-            response.data.message == "A leve ainda não chegou a sua região" ||
-            response.data.message == "A leve não chegou a sua região") {
-            router.push(`/fail/out-of-range`)
-        }
-    }
-    else if (response?.message == "CEP inválido" ||
-        response?.message == "CEP inv\u00e1lido") {
+    if (responseCode === "ALANCASR") {
         router.push(`/fail/out-of-range`)
     }
-    else if (response?.message === "Seu consumo já é leve" ||
-        response?.message === "Consumo Baixo" ||
-        response?.message === "Seu consumo j\u00e1 \u00e9 leve") {
+    else if (responseCode === "UE") {
+        setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])
+        await awaitSeconds(3)
+        router.push(`/login`)
+    }
+    else if (responseCode === "SCJEL") {
         router.push(`/fail/low-cost`)
     }
-    else if (response?.message === "Tem contrato para assinar" ||
-        response?.message === "cliente precisa assinar os contratos desta instalação") {
+    else if (responseCode === "ALANCASR") {
+        router.push(`/fail/out-of-range`)
+    }
+    else if (responseCode === "CI") {
+        router.push(`/fail/out-of-range`)
+    }
+    else if (responseCode === "TCPA") {
         router.push(`/signup/contract-signature`)
         // router.push(`/signup/?uuid=${uuid}`)
     }
-    else if (response?.message === "Fora de rateio" ||
-        response?.message === "A leve ainda não chegou a sua região" ||
-        response?.message === "A leve não chegou a sua região" ||
-        response?.message === "A leve ainda n\u00e3o chegou a sua\u00a0regi\u00e3o" ||
-        response?.message === "A leve n\u00e3o chegou a sua\u00a0regi\u00e3o") {
-        router.push(`/fail/out-of-range`)
-    }
-    else if (response?.message === "Cupom inválido") {
+    else if (responseCode === "CPI") {
         setErrorMessage(["Cupom inválido. Por favor, verifique e tente novamente"])
     }
     else if (response?.message === "Não foi possível achar esse usuário") {
         setErrorMessage(["E-mail não encontrado. Verifique se foi digitado corretamente ou se tiver, busque pelo e-mail secundário."])
     }
-    else if (response?.message === "Você não completou seu cadastro, por favor continue através do link enviado em seu e-mail") {
-        setErrorMessage(["Você não completou seu cadastro, por favor continue através do link enviado em seu e-mail"])
-    }
-    else if (response?.message === "Usuário existente" ||
-        response?.message === "Usu\u00e1rio existente") {
-        setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])
-        await awaitSeconds(3)
-        router.push(`/login`)
-    }
-    else if (response?.errors) {
-        setErrorMessage(response?.errors)
-    }
 
-    //encoding error texts
     else if (response?.message === "N\u00e3o h\u00e1 geradora" ||
         response?.message === "Não há geradora") {
         const errorCode = "BDM001"
