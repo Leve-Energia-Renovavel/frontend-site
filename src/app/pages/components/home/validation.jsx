@@ -1,5 +1,5 @@
-import { requestSuccessful } from "@/app/service/utils/Validations"
-import { awaitSeconds } from "@/app/utils/browser/BrowserUtils"
+import { requestSuccessful } from "@/app/service/utils/Validations";
+import { awaitSeconds } from "@/app/utils/browser/BrowserUtils";
 
 
 const signupValidationCodes = {
@@ -31,11 +31,6 @@ const signupValidationCodes = {
 export const requestValidation = async (response, setNotifications, setErrorMessage, router) => {
     const status = response?.status
     const responseCode = response?.data?.code
-
-    console.log("STATUS ===>>>", status)
-    console.log("RESPONSE ===>>>", response)
-    console.log(signupValidationCodes[responseCode])
-
     if (requestSuccessful(status)) {
         if (responseCode === "VJPC") {
             setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])
