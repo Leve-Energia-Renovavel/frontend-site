@@ -139,7 +139,7 @@ export const PartnerImageContainer = styled.div`
       height: auto;
       position: absolute;
       right: 786px;
-      top: 682px;
+      top: 732px;
       }
 
     @media (max-width: 1350px) {

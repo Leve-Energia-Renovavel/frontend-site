@@ -149,57 +149,7 @@ export const PartnerImageContainer = styled.div`
       height: auto;
       position: absolute;
       right: 786px;
-      top: 706px;
-      }
-
-
-    @media (max-width: 5000px) {
-      .bannerImage {
-      right: 786px;
-      top: 706px;
-      }
-    }
-    @media (max-width: 3300px) {
-      .bannerImage {
-      right: 786px;
-      top: 706px;
-      }
-    }
-    @media (max-width: 2400px) {
-      .bannerImage {
-      right: 786px;
-      top: 706px;
-      }
-    }
-
-    @media (max-width: 2200px) {
-      .bannerImage {
-      right: 786px;
-      top: 706px;
-      }
-    }
-    @media (max-width: 1800px) {
-      .bannerImage {
-      right: 786px;
-      top: 706px;
-      }
-    }
-    @media (max-width: 1620px) {
-      .bannerImage {
-      right: 786px;
-      top: 706px;
-      }
-    }
-    @media (max-width: 1600px) {
-      .bannerImage {
-      right: 786px;
-      top: 706px;
-      }
-    }
-
-    .bannerImage {
-      right: 786px;
-      top: 706px;
+      top: 769px;
       }
 
     @media (max-width: 1350px) {

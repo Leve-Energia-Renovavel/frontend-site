@@ -42,6 +42,8 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
     const phoneRef = useRef()
     const cepRef = useRef()
     const martinsRegistrationRef = useRef()
+    const couponRef = useRef()
+
 
     const isMartins = partner === "martins"
     const isAllya = partner === "allya"
@@ -61,7 +63,8 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
             cepRef.current.value,
             simulationCost,
             "PF",
-            partnerTokens[partner]
+            partnerTokens[partner],
+            couponRef.current.value?.toUpperCase(),
         )
 
         if (isMartins) {
@@ -155,6 +158,7 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
                                 required
                             />}
                         </InputMask>
+
                         {isMartins &&
                             <TextField
                                 inputRef={martinsRegistrationRef}
@@ -165,8 +169,17 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
                                 type="text"
                                 disabled={isLoading}
                                 required />}
-
                     </FormFooterContainer>
+                    <TextField
+                        className="homeFormInput"
+                        inputRef={couponRef}
+                        defaultValue={""}
+                        label={`Cupom de Desconto`}
+                        placeholder={`Cupom`}
+                        variant="outlined"
+                        type="text"
+                        disabled={isLoading}
+                    />
                 </Form>
                 <HomeMainFormSimulationContainer className="mainFormSimulationContainer" islocaliza={islocaliza}>
                     <h6 variant="subtitle1" className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === 3000 ? "+" : ""}</span></h6>

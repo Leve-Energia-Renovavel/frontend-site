@@ -258,11 +258,10 @@ export const UserTypeFormContainer = styled.div`
 export const FormFooterContainer = styled.div`
     display: flex;
     flex-direction: ${props => (props.isMartins ? 'row' : 'column')};
-    /* margin: 0 auto; */
-    gap: 8px;
+    gap: ${props => (props.isMartins ? '4px' : '0px')};
     
     @media (max-width: 600px) {
-      gap: 8px;
+      /* gap: 8px; */
     }
 `
 export const UserTypeFormButtonContainer = styled.div`
