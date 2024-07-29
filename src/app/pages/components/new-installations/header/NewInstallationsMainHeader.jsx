@@ -13,8 +13,8 @@ export default function NewInstallationsMainHeader() {
     const filteredInstallations = allInstallations?.filter(installation => installation?.id !== id);
     return (
         <Header>
-            <h6 className="mainInstallation">{`Casa 1`}</h6>
-            <SelectOrCreateNewInstallation>
+            <h6 className="mainInstallation">{`Casa`}</h6>
+            {/* <SelectOrCreateNewInstallation>
                 <NewInvoicesSelectButton className="invoicesSelectButton">
                     <BoxInstallation>
                         <SelectInstallation
@@ -40,7 +40,7 @@ export default function NewInstallationsMainHeader() {
                     <span>+</span>
                     <span>Nova Unidade</span>
                 </NewInstallationAddButton>
-            </SelectOrCreateNewInstallation>
+            </SelectOrCreateNewInstallation> */}
         </Header>
     )
 }

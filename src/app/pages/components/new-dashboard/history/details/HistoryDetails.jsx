@@ -1,9 +1,11 @@
 import { useStoreUserEconomy } from '@/app/hooks/useStore';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { HistoryDetail, HistoryDetailContent, HistoryDetailFooter, HistoryDetailFooterHeader, HistoryDetailHeader, HistoryDetailValue } from './styles';
+import { useRouter } from 'next/navigation';
 
 export default function HistoryDetails() {
 
+    const router = useRouter()
     const userEconomy = useStoreUserEconomy().userEconomy
 
     return (
@@ -25,9 +27,9 @@ export default function HistoryDetails() {
             <HistoryDetailFooter>
                 <HistoryDetailFooterHeader>
                     <InfoOutlinedIcon className='infoIcon' />
-                    <p className='undestandYourEconomy'>Entenda sua economia</p>
+                    <p className='undestandYourEconomy' onClick={() => router.push(`/dashboard/invoices/`)}>Entenda sua economia</p>
                 </HistoryDetailFooterHeader>
-                <p className='checkAllHistory'>Ver histórico completo</p>
+                <p className='checkAllHistory' onClick={() => router.push(`/dashboard/installations/`)}>Ver histórico completo</p>
             </HistoryDetailFooter>
         </HistoryDetail>
     )

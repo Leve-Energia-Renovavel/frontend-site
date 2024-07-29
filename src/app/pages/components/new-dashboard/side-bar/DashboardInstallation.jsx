@@ -122,7 +122,9 @@ export default function DashboardInstallation() {
                         fullWidth
                         value={0}
                         displayEmpty
-                        IconComponent={KeyboardArrowDownIcon}>
+                        // IconComponent={KeyboardArrowDownIcon}
+                        IconComponent={""}
+                    >
                         <li value={0} style={{ display: 'none' }}>
                             <span className="home">Casa</span>
                         </li>
@@ -139,10 +141,10 @@ export default function DashboardInstallation() {
             <InstallationDetails>
                 <p className="installationDetails">{street}, {number} - {neighborhood}, {city !== "" ? city : getCityNameByStateIdAndCityId(stateId, cityId)} - {state !== "" ? state : stateOptions[stateId]?.nome}, CEP: {formatCep(zipCode)}</p>
             </InstallationDetails>
-            <InstallationFooter>
+            {/* <InstallationFooter>
                 <AddCircleIcon className="addInstallationIcon" />
                 <p className="addInstallation">Nova unidade</p>
-            </InstallationFooter>
+            </InstallationFooter> */}
         </NewDashboardInstallation>
     )
 }

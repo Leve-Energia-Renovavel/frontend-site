@@ -12,8 +12,9 @@ export default function DashboardMenu({ menuSelected, setMenuSelection }) {
         router.push("/")
     }
 
-    const handleMenuSelection = (link, index) => {
-        setMenuSelection(menuOptions[index])
+    const handleMenuSelection = (link, id) => {
+        const selectedOption = menuOptions.find(option => option.id === id);
+        setMenuSelection(selectedOption);
         router.push(link)
     }
 
@@ -21,16 +22,18 @@ export default function DashboardMenu({ menuSelected, setMenuSelection }) {
         <>
             <NewDashboardMenu>
                 {menuOptions.map((option, index) => {
-                    return (
-                        <MenuOption
-                            selected={menuSelected?.id === option.id}
-                            key={option.id}
-                            highlighted={option.highlighted}
-                            onClick={() => handleMenuSelection(option?.link, index)}>
-                            {option.icon}
-                            <p className='option'>{option.title}</p>
-                        </MenuOption>
-                    )
+                    if (option.id !== 3 && option.id !== 5) {
+                        return (
+                            <MenuOption
+                                selected={menuSelected?.id === option.id}
+                                key={option.id}
+                                highlighted={option.highlighted}
+                                onClick={() => handleMenuSelection(option?.link, option?.id)}>
+                                {option.icon}
+                                <p className='option'>{option.title}</p>
+                            </MenuOption>
+                        )
+                    }
                 })}
                 <p className='loggout' onClick={() => handleLoggout()}>Sair</p>
             </NewDashboardMenu>
