@@ -7,7 +7,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import dynamic from 'next/dynamic';
-
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 // const NewInstallationsMain = dynamic(() => import('@/app/pages/components/new-installations/NewInstallationsMain'), { ssr: false });
 
 export const menuOptions = [
@@ -58,7 +58,7 @@ export const menuOptions = [
     // },
     {
         id: 6,
-        icon: <HelpOutlineIcon className='icon' />,
+        icon: <AccountCircleOutlinedIcon className='icon' />,
         link: "/dashboard/profile",
         title: "Meu Perfil",
         menuLabel: "profile",

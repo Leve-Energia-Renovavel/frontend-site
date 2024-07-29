@@ -16,7 +16,7 @@ export default function InstallationCard({ installation, index }) {
                         <HomeIcon className="cardTitleIcon" />
                         <p className="cardTitle">{`Casa ${index}`}</p>
                     </CardTitleContainer>
-                    <EditIcon />
+                    {/* <EditIcon /> */}
                 </CardHeader>
                 <CardContent>
                     <p>{`${street}, ${number} - ${neighborhood}, ${getCityNameByStateIdAndCityId(stateId, cityId)} - ${stateOptions[stateId]?.sigla}, ${formatCep(zipCode)}`}</p>

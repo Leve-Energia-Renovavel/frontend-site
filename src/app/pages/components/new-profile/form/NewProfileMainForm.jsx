@@ -115,20 +115,16 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
     }
 
     const handleUpdateUserProfile = async () => {
-
         var submitData = {
             telefone: userRefs.phone.current.value,
             profissao: userRefs.profession.current.value,
             estado_civil: userRefs.maritalStatus.current.value,
         }
 
-        console.log("submitData ==>>", submitData)
-
         const response = await updateUserProfile(submitData)
-        console.log("response ==>>", response)
 
         if (requestSuccessful(response?.status)) {
-            setNotifications("Dados alterados com sucesso!")
+            setNotifications(["Dados alterados com sucesso!"])
             handleEdition()
         }
 
@@ -170,7 +166,7 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
                 />
             </FormRow>
             <FormContent>
-                <InputMask mask="(99) 99999-9999" disabled={!isEdition} value={formatPhoneNumber(phone) || ""}>
+                <InputMask mask="(99) 99999-9999" disabled={!isEdition} defaultValue={formatPhoneNumber(phone) || ""}>
                     {() => (
                         <FormInput
                             inputRef={userRefs.phone}

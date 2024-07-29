@@ -13,10 +13,10 @@ import ConsumptionHistoryChart from '../chart/ConsumptionHistoryChart';
 
 export default function NewInstallationsCarrousel({ dataType }) {
 
-    const billings = useStoreBillingHistory().billings
+    const billings = useStoreBillingHistory()?.billings
     const [activeStep, setActiveStep] = useState(0);
 
-    const formattedBillings = formatBillingArray(billings, 4)
+    const formattedBillings = billings ? formatBillingArray(billings, 4) : []
     const selectedBillings = formattedBillings[activeStep]
 
     const maxSteps = formattedBillings?.length;

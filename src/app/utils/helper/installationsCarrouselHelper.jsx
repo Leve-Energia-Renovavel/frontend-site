@@ -6,7 +6,7 @@ export function formatBillingArray(array, maxSize) {
     }
     const result = [];
     for (let i = 0; i < array.length; i += maxSize) {
-        const chunk = array.slice(i, i + maxSize);
+        const chunk = array?.slice(i, i + maxSize);
         while (chunk.length < maxSize) {
             chunk.push({
                 uuid: "",

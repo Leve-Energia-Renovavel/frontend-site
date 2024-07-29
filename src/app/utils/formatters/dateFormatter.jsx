@@ -30,8 +30,8 @@ export const formatDayMonthAndYearInFull = (brazillianDateString) => {
     const [day, month, year] = brazillianDateString.split('/').map(Number);
     const date = new Date(year, month - 1, day);
 
-    const monthName = monthNames[date.getMonth()];
-    const shortYear = date.getFullYear().toString().slice(-2); // Get the last two digits of the year
+    const monthName = monthNames[date?.getMonth()];
+    const shortYear = date?.getFullYear()?.toString()?.slice(-2); // Get the last two digits of the year
 
     const formattedDate = `${monthName} ${shortYear}`;
 
@@ -44,8 +44,8 @@ export const formatMonthAndYearInFull = (brazilianDateString) => {
     const date = new Date(year, month - 1);
 
     // Get the month name and last two digits of the year
-    const monthName = monthNames[date.getMonth()];
-    const shortYear = date.getFullYear().toString().slice(-2); // Get the last two digits of the year
+    const monthName = monthNames[date?.getMonth()];
+    const shortYear = date?.getFullYear()?.toString()?.slice(-2); // Get the last two digits of the year
 
     const formattedDate = `${monthName} ${shortYear}`;
 

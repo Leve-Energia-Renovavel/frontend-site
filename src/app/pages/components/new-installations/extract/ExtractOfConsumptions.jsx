@@ -9,9 +9,7 @@ import { Extract, ExtractContainer, ExtractDetail, ExtractDetailValue } from './
 
 export default function ExtractOfConsumptions() {
 
-  const billings = useStoreBillingHistory().billings
-
-  console.log("billings ===>>", billings)
+  const billings = useStoreBillingHistory()?.billings
 
   const [quantityBillsShown, setQuantityBillsShown] = useState(-6)
 
@@ -33,7 +31,7 @@ export default function ExtractOfConsumptions() {
             <p className='dontHaveAnyBillsYet'>Você ainda não possui histórico de faturas</p>
           </Extract>
         )}
-        {billings?.slice(quantityBillsShown)?.reverse().map((bill) => {
+        {billings?.slice(quantityBillsShown)?.reverse()?.map((bill) => {
 
           const kwhByDistributor = parseFloat(bill?.energyConsumed) - parseFloat(bill?.energyInjected)
           const kwhPriceByDistributor = 1.08855

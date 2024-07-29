@@ -30,7 +30,7 @@ export default function FinalOptions() {
     return (
         <FinalOptionsContainer>
 
-            <FinalOptionsButton onClick={() => router.push()}>
+            <FinalOptionsButton onClick={() => router.push(`/dashboard/installations/`)}>
                 <span>Quero entender melhor minha economia</span>
             </FinalOptionsButton>
             <FinalOptionsButton onClick={() => handleOpenChurnModal()}>
