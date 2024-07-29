@@ -14,7 +14,7 @@ import MultipleInstallationsModal from '../../utils/modals/multiple-installation
 import OwnershipModal from '../../utils/modals/ownership-modal/OwnershipModal';
 import SingleInstallationModal from '../../utils/modals/single-installation-modal/SingleInstallationModal';
 import NewSuccessModal from '../../utils/modals/success-modal/NewSuccessModal';
-import { CancelEditionButton, ChangeOwnershipButton, ChangeOwnershipIcon, EditionContainer, FormContent, FormInput, FormLastRow, FormRow, InstallationInput, SaveEditionButton } from './styles';
+import { CancelEditionButton, EditionContainer, FormContent, FormInput, FormLastRow, FormRow, InstallationInput, SaveEditionButton } from './styles';
 
 
 export default function NewProfileMainForm({ isEdition, handleEdition, setNotifications, setErrorMessage }) {
@@ -422,7 +422,7 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
                     type="text"
                     InputLabelProps={{ shrink: true, style: { color: leveGreen } }} />
 
-                {isEdition ?
+                {/* {isEdition ?
                     <EditionContainer>
                         <SaveEditionButton onClick={() => handleUpdateUserProfile()}>
                             <span>Salvar alterações</span>
@@ -435,7 +435,19 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
                     <ChangeOwnershipButton className='changeOwnershipButton' onClick={() => handleOwnershipModal()}>
                         <span>Solicitar troca de titularidade</span>
                         <ChangeOwnershipIcon className='changeOwnershipIcon' />
-                    </ChangeOwnershipButton>}
+                    </ChangeOwnershipButton>} */}
+
+                {isEdition && (
+
+                    <EditionContainer>
+                        <SaveEditionButton onClick={() => handleUpdateUserProfile()}>
+                            <span>Salvar alterações</span>
+                        </SaveEditionButton>
+                        <CancelEditionButton onClick={() => handleEdition()}>
+                            <span>Cancelar </span>
+                        </CancelEditionButton>
+                    </EditionContainer>
+                )}
 
                 <OwnershipModal
                     isOpen={openModal}

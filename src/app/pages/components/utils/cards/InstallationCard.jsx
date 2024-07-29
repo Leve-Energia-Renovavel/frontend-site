@@ -9,7 +9,7 @@ export default function InstallationCard({ installation, index }) {
     const { status, street, zipCode, neighborhood, number, stateId, cityId, } = installation
 
     return (
-        <CardParentContainer status={status}>
+        <CardParentContainer status={status} hoverColor={false}>
             <CardContainer>
                 <CardHeader>
                     <CardTitleContainer>

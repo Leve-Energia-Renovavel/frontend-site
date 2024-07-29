@@ -20,7 +20,7 @@ export default function DashboardMenu({ menuSelected, setMenuSelection }) {
     return (
         <>
             <NewDashboardMenu>
-                {menuOptions.slice(0, -1).map((option, index) => {
+                {menuOptions.map((option, index) => {
                     return (
                         <MenuOption
                             selected={menuSelected?.id === option.id}

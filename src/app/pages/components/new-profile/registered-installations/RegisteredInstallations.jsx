@@ -12,7 +12,7 @@ export default function RegisteredInstallations() {
             <h2 className="title">Minhas unidades cadastradas</h2>
 
             <RegisteredInstallationsContainer>
-                {installations.slice(-2).map((installation, index) => {
+                {installations?.slice(-2).map((installation, index) => {
                     return (
                         <InstallationCard key={installation?.uuid} installation={installation} index={index + 1} />
                     )

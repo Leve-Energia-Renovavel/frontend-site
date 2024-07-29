@@ -13,5 +13,5 @@ export const formatCep = (cep) => {
     if (!cep || cep === "") {
         return `00000-000`
     }
-    return `${cep.slice(0, 5)}-${cep.slice(5)}`;
+    return `${cep?.slice(0, 5)}-${cep.slice(5)}`;
 }

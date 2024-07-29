@@ -16,10 +16,10 @@ export const ModalBox = styled(Box)`
     border-radius: 10px;
 
     width: 100%;
-    height: 100%;
+    height: auto;
 
     max-width: 900px;
-    max-height: 350px;
+    max-height: 550px;
     
     box-shadow: 24px;
 

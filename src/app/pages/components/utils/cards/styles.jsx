@@ -18,7 +18,7 @@ export const CardParentContainer = styled.div`
     
     &:hover {
         cursor: pointer;
-        border: 2px solid ${newBackground.orange};
+        ${props => props.hoverColor ?  "border: 2px solid ${newBackground.orange}" : ""};
     }
 
     .cardStatus {

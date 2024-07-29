@@ -132,9 +132,9 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
         },
         colors: [newBackground.greyMedium, newBackground.greyDark, (item) => {
             const bill = selectedBillings[item?.dataPointIndex];
-            if (bill?.status === "paid") return newBackground.green;
-            if (bill?.status === "due") return newBackground.orange;
-            if (bill?.status === "pending") return newBackground.orangeFocused;
+            // if (bill?.status === "paid") return newBackground.green;
+            // if (bill?.status === "due") return newBackground.orange;
+            // if (bill?.status === "pending") return newBackground.orangeFocused;
             return newBackground.green;
         }],
         legend: {

@@ -146,6 +146,7 @@ export const ShareContainer = styled.div`
     justify-content: center;
     gap: 10px;
 `
+
 export const ShareButton = styled.div`
     display: flex;
     flex-direction: row;
@@ -183,4 +184,156 @@ export const WhatsIcon = styled(WhatsAppIcon)`
 `
 export const CopyIcon = styled(ContentCopyIcon)`
     color: ${newBackground.orange};  
+`
+
+
+
+export const IndicationContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+
+    max-width: 500px;
+
+    padding: 1rem 0;
+
+    .indicationTitle {
+        font-family: "Graphie";
+        font-size: 21px;
+        line-height: 27px;
+        font-weight: 600;
+        color: ${newBackground.orange};
+    }
+    
+    .indicatorEmailInput {
+        background-color: ${newBackground.white};
+        border-radius: 10px;
+        height: 42px;
+        margin-bottom: 8px;
+
+      border: 1px solid ${newBackground.orange};
+
+      & .MuiInputLabel-shrink {
+        /* Styles for the focused label */
+        /* line-height: 2.4375em;  */
+        line-height: 3em; 
+      }
+
+      .MuiOutlinedInput-input {
+        // styles for the user input text
+        font-family: "Graphie";
+        font-size: 17px;
+        height: 0.4375em;
+        padding: 20px 14px;
+        font-weight: 700;
+        color: ${newBackground.orange};
+        }
+
+        & label {
+          font-family: "Graphie";
+          font-weight: 500;
+          font-size: 14px;
+          color:  ${newBackground.orange};
+        }
+
+        & .MuiFormLabel-root-MuiInputLabel-root {
+          line-height: 2.4375em;
+
+
+        }
+        
+        & .MuiOutlinedInput-root {
+          & fieldset {
+            height: 42px;
+            border-radius: 10px;
+            border-color: ${newBackground.white};
+          }
+        } 
+
+        input {
+          all: inset;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+          transition: all 1000s ease-in-out 0s;
+        }
+
+    }
+`
+
+export const IndicationButtonContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+
+    gap: 10px;
+`
+
+export const IndicateButton = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    background-color: ${newBackground.orange};
+    border-radius: 8px;
+    
+    padding: 8px 11px;
+    
+    gap: 4px;
+
+    span {
+        font-family: "Graphie";
+        font-size: 17px;
+        line-height: 21px;
+        font-weight: 500;
+        color: ${newBackground.white};
+
+        white-space: nowrap;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: ${newBackground.orangeFocused};
+
+        span {
+            color: ${newBackground.orange};
+        }
+    }
+
+`
+export const CancelButton = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+    background-color: ${newBackground.greyDark};
+    border-radius: 8px;
+    
+    padding: 8px 11px;
+    
+    gap: 4px;
+
+    span {
+        font-family: "Graphie";
+        font-size: 17px;
+        line-height: 21px;
+        font-weight: 500;
+        color: ${newBackground.white};
+
+        white-space: nowrap;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: ${newBackground.grey};
+
+        span {
+            color: ${newBackground.orange};
+        }
+    }
+
 `

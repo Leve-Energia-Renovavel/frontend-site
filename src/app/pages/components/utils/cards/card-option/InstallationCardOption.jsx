@@ -9,7 +9,7 @@ export default function InstallationCardOption({ installation, index, handleSele
     const { status, street, zipCode, neighborhood, number, stateId, cityId, } = installation
 
     return (
-        <CardParentContainer status={status} onClick={() => handleSelectInstallationToBeCancelled(installation)}>
+        <CardParentContainer status={status} hoverColor={true} onClick={() => handleSelectInstallationToBeCancelled(installation)} >
             <CardContainer>
                 <CardHeader>
                     <CardTitleContainer>

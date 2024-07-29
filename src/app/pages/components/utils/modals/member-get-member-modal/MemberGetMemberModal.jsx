@@ -18,7 +18,7 @@ export default function MemberGetMemberModal({ isOpen, closeModal }) {
                 },
             }}>
             <ModalBox>
-                <NewMemberGetMember />
+                <NewMemberGetMember closeModal={closeModal} />
             </ModalBox>
         </Modal>
     )

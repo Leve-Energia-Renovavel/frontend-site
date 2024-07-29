@@ -47,7 +47,7 @@ export default function NewInvoicesTable() {
                 </NewInvoicesTableContent>
             )}
 
-            {billings.slice(quantityBillsShown).reverse().map((billing, index) => {
+            {billings?.slice(quantityBillsShown).reverse().map((billing, index) => {
                 return (
                     <NewInvoicesTableContent key={billing?.uuid} >
                         <InvoicesTableLeveBill

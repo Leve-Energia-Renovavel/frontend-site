@@ -7,8 +7,9 @@ import { useState } from 'react';
 import ChartStepper from '../chart-stepper/ChartStepper';
 import ChartLegend from '../legend/ChartLegend';
 import { ArrowBack, ArrowForward, CarrouselContentContainer, CarrouselContainer as Container, FooterContainer, InfoIcon } from './styles';
+import ConsumptionHistoryChart from '../chart/ConsumptionHistoryChart';
 
-const ConsumptionHistoryChart = dynamic(() => import('../chart/ConsumptionHistoryChart'), { ssr: false });
+// const ConsumptionHistoryChart = dynamic(() => import('../chart/ConsumptionHistoryChart'), { ssr: false });
 
 export default function NewInstallationsCarrousel({ dataType }) {
 

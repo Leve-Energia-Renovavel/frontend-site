@@ -7,9 +7,9 @@ import Messages from '../messages/Messages';
 import NewChangePassword from '../new-change-password/NewChangePassword';
 import NewMemberGetMember from '../new-member-get-member/NewMemberGetMember';
 import NewSecondaryEmail from '../new-secondary-email/NewSecondaryEmail';
+import FinalOptions from './final-options/FinalOptions';
 import RegisteredInstallations from './registered-installations/RegisteredInstallations';
 import { CancelEditIcon, NewProfileContainer as Container, NewProfileContentContainer as Content, NewProfileEditHeader as Edit, EditIcon, NewProfileTitleHeader as Title, NewProfileTitleContainer as TitleContainer } from "./styles";
-import FinalOptions from './final-options/FinalOptions';
 
 const NewProfileMainForm = dynamic(() => import('./form/NewProfileMainForm'), { ssr: false });
 
@@ -44,7 +44,7 @@ export default function NewProfileMain() {
                         </>)}
                     </Edit>
                 </TitleContainer>
-                
+
                 <NewProfileMainForm className='profileMainForm'
                     isEdition={isEdition}
                     handleEdition={handleEdition}
@@ -60,7 +60,8 @@ export default function NewProfileMain() {
                 setErrorMessage={setErrorMessage}
                 setNotifications={setNotifications} />
 
-            <RegisteredInstallations className='registeredInstallations' />
+            <RegisteredInstallations className='registeredInstallations'
+            />
 
             <NewMemberGetMember className='memberGetMember' />
 

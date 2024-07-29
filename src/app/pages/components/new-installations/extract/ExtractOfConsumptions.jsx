@@ -33,7 +33,7 @@ export default function ExtractOfConsumptions() {
             <p className='dontHaveAnyBillsYet'>Você ainda não possui histórico de faturas</p>
           </Extract>
         )}
-        {billings.slice(quantityBillsShown).reverse().map((bill) => {
+        {billings?.slice(quantityBillsShown)?.reverse().map((bill) => {
 
           const kwhByDistributor = parseFloat(bill?.energyConsumed) - parseFloat(bill?.energyInjected)
           const kwhPriceByDistributor = 1.08855
