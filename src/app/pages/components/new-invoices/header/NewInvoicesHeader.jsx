@@ -1,14 +1,22 @@
 "use client"
 
-import { useStoreInstallations, useStoreMainInstallation } from "@/app/hooks/useStore";
-import { BoxInstallation, NewInvoicesHeader as Header, InstallationIcon, KeyArrowDownIcon, NewInvoicesSelectButton as SelectButton, NewInvoicesSelectInstallation as SelectContainer, SelectInstallation } from "./styles";
+import { useStoreInstallations, useStoreMainInstallation, useStoreUser } from "@/app/hooks/useStore";
+import { changeInvoiceDate } from "@/app/service/invoices-service/InvoicesService";
+import { availableDueDates } from "@/app/utils/helper/invoices/invoicesHelper";
+import { BoxInstallation, BoxInstallationDueDate, NewInvoicesHeader as Header, InstallationIcon, KeyArrowDownIcon, NewInvoicesSelectButton as SelectButton, NewInvoicesSelectInstallation as SelectContainer, NewInvoicesSelectDueDateButton as SelectDueDate, SelectDueDateChoose, SelectInstallation, StyledMenuItem } from "./styles";
 
-export default function NewInvoicesHeader() {
+export default function NewInvoicesHeader({ setErrorMessage, setNotifications }) {
 
     const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
 
     const { id } = storeMainInstallation?.mainInstallation || {}
+
+
+    const store = useStoreUser()
+    const user = JSON.parse(localStorage.getItem('user'))
+
+    const { invoiceDate } = user?.user ?? (store?.user || {})
 
     const allInstallations = storeInstallations?.installations || {}
 
@@ -17,10 +25,16 @@ export default function NewInvoicesHeader() {
     const handleChangeSelectedInstallation = () => {
 
     }
+    const handleChangeDueDate = async (newDate) => {
+        if (newDate !== invoiceDate) {
+            await changeInvoiceDate(newDate, setErrorMessage, setNotifications, store)
+        }
+    }
 
     return (
         <Header className="invoicesHeader">
             <h1 className="pageTitle">Minhas faturas</h1>
+
             <SelectContainer className="invoicesSelectContainer">
                 <h6 className="selectInstallation">Selecione a unidade:</h6>
                 <SelectButton className="invoicesSelectButton">
@@ -46,6 +60,26 @@ export default function NewInvoicesHeader() {
                         </SelectInstallation>
                     </BoxInstallation>
                 </SelectButton>
+
+
+                <h6 className="selectInstallation">Dia de vencimento da fatura:</h6>
+                <SelectDueDate >
+                    <BoxInstallationDueDate>
+                        <SelectDueDateChoose
+                            fullWidth
+                            value={invoiceDate || 5}
+                            displayEmpty
+                            IconComponent={KeyArrowDownIcon}>
+                            {availableDueDates?.map((dueDate) => {
+                                return (
+                                    <StyledMenuItem key={dueDate} value={dueDate} className="dueDateAvailableOption" onClick={() => handleChangeDueDate(dueDate)}>
+                                        <span className="dueDateOption">Dia {dueDate}</span>
+                                    </StyledMenuItem>
+                                )
+                            })}
+                        </SelectDueDateChoose>
+                    </BoxInstallationDueDate>
+                </SelectDueDate>
             </SelectContainer>
         </Header>
     )

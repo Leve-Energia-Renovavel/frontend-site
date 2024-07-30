@@ -1,7 +1,7 @@
 "use client"
 
 import { useStoreBillingHistory } from '@/app/hooks/useStore';
-import { formatDayMonthAndYearInFull, formatMonthAndYearInFull } from '@/app/utils/formatters/dateFormatter';
+import { formatMonthAndYearInFull } from '@/app/utils/formatters/dateFormatter';
 import ReactApexChart from 'react-apexcharts';
 import { background, newBackground } from '../../styles';
 import { BarChartWrapper } from './styles';
@@ -22,6 +22,10 @@ export default function NewHistoryMoneyChart() {
     const labelColors = billings?.slice(chartSize).map((_, index, arr) => {
         return index === arr?.length - 1 ? newBackground.orange : newBackground.green;
     });
+
+    const energyNetwork = billings?.slice(chartSize).map((item) => {
+        return parseFloat(item?.energyConsumed) - parseFloat(item?.energyInjected)
+    })
 
     const series = [{
         name: 'Energia injetada pela Distribuidora',
@@ -97,7 +101,7 @@ export default function NewHistoryMoneyChart() {
             },
             formatter: function (val, option) {
                 if (option?.seriesIndex === 0) {
-                    return 50
+                    return energyNetwork[0]
                 } else {
                     return val
                 }

@@ -21,6 +21,10 @@ export default function NewHistoryEnergyChart() {
         return index === arr.length - 1 ? newBackground.orange : newBackground.green;
     });
 
+    const energyNetwork = billings?.slice(chartSize).map((item) => {
+        return parseFloat(item?.energyConsumed) - parseFloat(item?.energyInjected)
+    })
+
     const series = [{
         name: 'Energia injetada pela Distribuidora (kWh)',
         data: availabilityData,
@@ -95,7 +99,8 @@ export default function NewHistoryEnergyChart() {
             },
             formatter: function (val, option) {
                 if (option?.seriesIndex === 0) {
-                    return 50
+                    return energyNetwork[0]
+
                 } else {
                     return val
                 }
