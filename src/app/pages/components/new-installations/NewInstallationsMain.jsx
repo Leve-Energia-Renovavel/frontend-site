@@ -3,14 +3,13 @@
 import EqualizerOutlinedIcon from '@mui/icons-material/EqualizerOutlined';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import StatusStepper from "../new-dashboard/status-stepper/StatusStepper";
 import DefaultTitle from "../utils/titles/DefaultTitle";
 import NewInstallationsMainHeader from "./header/NewInstallationsMainHeader";
 import { AntSwitch, ConsumptionHistoryContainer as ConsumptionHistory, NewInstallationsContainer as Container, ConsuptiomHistorySwitchContainer as SwitchContainer, ConsumptionHistoryTitleContainer as TitleContainer } from "./styles";
 import ExtractOfConsumptions from './extract/ExtractOfConsumptions';
-// import NewInstallationsCarrousel from './carrousel/NewInstallationsCarrousel';
 
 const NewInstallationsCarrousel = dynamic(() => import("./carrousel/NewInstallationsCarrousel"), { ssr: false });
+const StatusStepper = dynamic(() => import("../new-dashboard/status-stepper/StatusStepper"), { ssr: false });
 
 export default function NewInstallationsMain() {
 
