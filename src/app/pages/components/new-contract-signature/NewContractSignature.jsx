@@ -38,8 +38,9 @@ export default function NewContractSignature() {
 
     useEffect(() => {
         const fetchData = async () => {
+            const data = { assinatura: true}
             try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`, data);
                 if (requestSuccessful(response.status)) {
 
                     const clicksignReg = response.data.instalacao.document_key
