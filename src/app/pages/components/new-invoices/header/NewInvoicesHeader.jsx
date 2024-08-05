@@ -70,7 +70,9 @@ export default function NewInvoicesHeader({ setErrorMessage, setNotifications })
                             <SelectDueDateChoose
                                 value={invoiceDate || 5}
                                 displayEmpty
-                                IconComponent={KeyArrowDownIcon}>
+                                IconComponent={KeyArrowDownIcon}
+
+                                >
                                 {availableDueDates?.map((dueDate) => {
                                     return (
                                         <StyledMenuItem key={dueDate} value={dueDate} className="dueDateAvailableOption" onClick={() => handleChangeDueDate(dueDate)}>

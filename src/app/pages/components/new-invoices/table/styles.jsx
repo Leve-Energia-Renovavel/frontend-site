@@ -1,9 +1,6 @@
-import { background, newBackground, newStatusColors } from "@/app/pages/styles";
+import { newBackground, newStatusColors } from "@/app/pages/styles";
 import styled from "@emotion/styled";
-import BarChartIcon from '@mui/icons-material/BarChart';
-import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
-import InsertLinkIcon from '@mui/icons-material/InsertLink';
 
 export const NewInvoicesTableHeader = styled.div`
     display: flex;
@@ -31,19 +28,23 @@ export const NewInvoicesTableHeader = styled.div`
     }
     @media (max-width: 700px) {
         .tableHeader, .tableHeaderStatus {
-            margin-left: 20px;
+            margin-left: 28px;
         }
     }
     
     `
 export const NewInvoicesTableContent = styled(Accordion)`
     border-radius: 10px;
-
+    width: 100%;
+    
     .mobileActionButtonContainer {
         display: none;
-     }
+    }
+    
+    @media (max-width: 900px) {
+        width: fit-content;
+         max-width: 94vw;
 
-     @media (max-width: 900px) {
         .mobileActionButtonContainer {
            display: block;
         }
@@ -51,7 +52,6 @@ export const NewInvoicesTableContent = styled(Accordion)`
     }
 `
 export const MobileActionButtonContainer = styled.div`
-    
     width: fit-content;
     margin-left: auto;
     
@@ -83,8 +83,7 @@ export const InvoicesTableLeveBill = styled(AccordionSummary)`
     }
     
     .leveBillStatus {
-        width: 100%;
-        max-width: 100px;
+        width: 80px;
 
         height: fit-content;
 
@@ -93,6 +92,7 @@ export const InvoicesTableLeveBill = styled(AccordionSummary)`
         padding: 4px 8px;
         border-radius: 10px;
     }
+
     
     &.Mui-expanded {
         border-radius: 10px;
@@ -123,6 +123,21 @@ export const InvoicesTableLeveBill = styled(AccordionSummary)`
      }
 
     @media (max-width: 900px) {
+        /* padding: 0px; */
+
+        .leveBillValue, .leveBillStatus {
+            font-size: 12px;
+            line-height: 14px;
+        }
+        .leveBillStatus {
+            margin-left: 10px;
+        }
+        .leveBillValue {
+            width: 70px;
+
+            margin-left: 10px;
+
+        }
         .desktopActionButtonContainer {
            display: none;
         }

@@ -16,6 +16,9 @@ export const NewDashboardContainer = styled.div`
     @media (max-width: 900px) {
         padding: 1rem;
     }
+    @media (max-width: 700px) {
+        padding: 10px;
+    }
 `
 export const NewDashboardSideBar = styled.div`
     display: flex;

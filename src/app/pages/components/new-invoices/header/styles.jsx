@@ -48,6 +48,7 @@ export const NewInvoicesSelectInstallation = styled.div`
     .defaultInstallation {
         font-weight: 600;
     }
+
 `
 export const NewInvoicesSelectButton = styled.div`
     display: flex;
@@ -60,7 +61,7 @@ export const NewInvoicesSelectButton = styled.div`
     border-radius: 8px;
 
     @media (max-width: 900px) {
-        width: 182px;
+        width: 132px;
     }
 `
 export const NewInvoicesSelectDueDateButton = styled.div`
@@ -78,6 +79,7 @@ export const NewInvoicesSelectDueDateButton = styled.div`
     .dueDateOption {
         color: ${newBackground.orange};
     }
+
 `
 
 
@@ -95,6 +97,7 @@ export const BoxInstallationDueDate = styled(Box)`
     min-width: 120px;
     width: 100%;
     max-width: 126px;
+
 `
 export const SelectInstallation = styled(Select)`
     font-family: "Graphie";
@@ -163,6 +166,7 @@ export const SelectDueDateChoose = styled(Select)`
     }
 
     .MuiOutlinedInput-notchedOutline {
+        
         border-color: transparent; // Border color: ;
     }
     &:hover .MuiOutlinedInput-notchedOutline {
@@ -177,7 +181,7 @@ export const SelectDueDateChoose = styled(Select)`
 
 export const StyledMenuItem = styled(MenuItem)`
   padding: 10px;
-
+  
   span {
     font-family: "Graphie";
     font-size: 17px;
