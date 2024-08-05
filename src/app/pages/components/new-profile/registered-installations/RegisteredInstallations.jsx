@@ -8,10 +8,10 @@ export default function RegisteredInstallations() {
     const installations = storeInstallations.installations
 
     return (
-        <MainContainer>
+        <MainContainer className='registeredInstallations'>
             <h2 className="title">Minhas unidades cadastradas</h2>
 
-            <RegisteredInstallationsContainer>
+            <RegisteredInstallationsContainer className="registeredInstallationsContainer">
                 {installations?.slice(-2).map((installation, index) => {
                     return (
                         <InstallationCard key={installation?.uuid} installation={installation} index={index + 1} />

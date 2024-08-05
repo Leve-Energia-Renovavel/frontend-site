@@ -51,9 +51,9 @@ export default function NewMemberGetMember({ closeModal }) {
 
     return (
         <>
-            <Container>
+            <Container className='memberGetMemberContainer'>
                 <h2 className="title">Indique e economize mais</h2>
-                <Content>
+                <Content className='memberGetMemberContent'>
                     <TextContainer>
                         <span><span className="highlighted">O bolso está mais Leve?</span> Convide outros para ter o mesmo benefício e deixe sua fatura ainda mais Leve! <span className="highlighted">Ganhe R$ 50</span> para cada amigo que contratar o plano da Leve com o seu código.</span>
                         <span className="share">Compartilhe o código ao lado com seus amigos e colegas:</span>
@@ -61,7 +61,7 @@ export default function NewMemberGetMember({ closeModal }) {
                     <MemberGetMemberCodeBox>
                         <p>Seu código de indicação LEVE:</p>
 
-                        <CodeContainer>
+                        <CodeContainer className='memberGetMemberCodeContainer'>
                             <p className="memberGetMemberCode">{user?.memberGetMemberCode}</p>
                             <CodeButton onClick={() => handleCopyToClipboard()}>
                                 {copiedToClipboard ? <span>Copiado!</span> :
@@ -74,7 +74,7 @@ export default function NewMemberGetMember({ closeModal }) {
                         </CodeContainer>
 
 
-                        <ShareContainer>
+                        <ShareContainer className='memberGetMemberShareContainer'>
                             <ShareButton share onClick={() => handleIndications()}>
                                 <MessageIcon />
                                 <span>Enviar Convite</span>
@@ -88,7 +88,7 @@ export default function NewMemberGetMember({ closeModal }) {
                     </MemberGetMemberCodeBox>
                 </Content>
                 {openIndications && (
-                    <IndicationContainer>
+                    <IndicationContainer className='memberGetMemberIndicationContainer'>
                         <h6 className="indicationTitle">Enviar Convite</h6>
                         {alert?.message && (
                             <Alert severity={alert.status}>{alert.message}</Alert>

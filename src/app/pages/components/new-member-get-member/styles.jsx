@@ -27,14 +27,19 @@ export const MemberGetMemberContent = styled.div`
     justify-content: space-between;
     background-color: ${newBackground.green};
     border-radius: 20px;
-
+    
     padding: 1rem;
-
+    
     height: 180px;
     
     gap: 100px;
-
-    `
+    
+    @media (max-width: 900px) {
+        flex-direction: column;
+        height: fit-content;
+        gap: 1rem;
+    }
+`
 
 export const MemberGetMemberTextContainer = styled.div`
     display: flex;

@@ -9,20 +9,20 @@ export default function NewSecondaryEmail({ setErrorMessage, setNotifications })
 
     const secondaryEmailRef = useRef(null)
     const [openModal, setOpenModal] = useState(false)
-    
+
     const registerSecondaryEmail = async () => {
         const result = await handleSecondaryEmail(secondaryEmailRef.current.value, setNotifications, setErrorMessage)
         if (result) {
             setOpenModal(true)
         }
     }
-    
+
     const closeModal = () => {
         setOpenModal(false)
     }
 
     return (
-        <SecondaryEmailContainer>
+        <SecondaryEmailContainer className='profileSecondaryEmail'>
             <TitleContainer>
                 <LetterIcon />
                 <h3 className='title'>Cadastrar Email Secundário</h3>

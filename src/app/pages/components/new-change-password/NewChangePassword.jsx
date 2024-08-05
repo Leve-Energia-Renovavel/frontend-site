@@ -28,7 +28,7 @@ export default function NewChangePassword({ setErrorMessage, setNotifications })
     }
 
     return (
-        <ChangePasswordContainer>
+        <ChangePasswordContainer className='profileChangePassword'>
             <TitleContainer>
                 <LockIcon />
                 <h3 className='title'>Alterar Senha de Acesso</h3>

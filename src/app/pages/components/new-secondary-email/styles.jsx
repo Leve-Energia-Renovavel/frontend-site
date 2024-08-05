@@ -62,6 +62,22 @@ export const SecondaryEmailForm = styled.form`
         flex: 1; // Equivalent to 20%
         max-width: 20%;
     }
+    
+    @media (max-width: 900px) {
+        flex-direction: column;
+
+        & > .inputForm {
+            flex: 4; // Equivalent to 80%
+            width: 100%; // Adjusting for the gap if needed
+            max-width: 245px;
+        }
+
+        & > .button {
+            flex: 1; // Equivalent to 20%
+            width: 100%;
+            max-width: 245px;
+        }
+    }
 `
 
 export const FormInput = styled(TextField)`

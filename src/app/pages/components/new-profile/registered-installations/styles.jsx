@@ -23,6 +23,12 @@ export const RegisteredInstallationsContainer = styled.div`
     flex-direction: row;
     
     gap: 1rem;
+    
+    @media (max-width: 900px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }   
 
 `
 

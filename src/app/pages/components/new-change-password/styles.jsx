@@ -16,13 +16,14 @@ export const ChangePasswordContainer = styled.div`
     padding: 1rem;
 
     border-radius: 20px;
+  
 `
 export const TitleContainer = styled.div`
     display: flex;
     flex-direction: row;
-
+    
     gap: 6px;
-
+    
     .title {
         font-family: "Graphie";
         font-size: 17px;
@@ -30,6 +31,8 @@ export const TitleContainer = styled.div`
         font-weight: 600;
         color: ${newBackground.green};
     }
+    
+
 `
 export const LockIcon = styled(LockOutlinedIcon)`
     color: ${newBackground.orange};
@@ -55,11 +58,21 @@ export const ChangePasswordForm = styled.form`
         flex: 1; // Equivalent to 20%
         max-width: 20%;
     }
+    
+    @media (max-width: 900px) {
+        flex-direction: column;
+
+        & > .button {
+            flex: 1; // Equivalent to 20%
+            width: 100%;
+            max-width: 245px;
+        }
+    } 
 `
 
 export const FormInput = styled(TextField)`
     border-radius: 10px;
-    
+
     && {
         background-color: ${newBackground.greyTranslucent}; 
     }
@@ -68,8 +81,6 @@ export const FormInput = styled(TextField)`
         /* Styles for the focused label */
         line-height: 2.8em; 
       }
-
-
 
     .MuiOutlinedInput-input {
         border: 2px solid transparent;
@@ -151,6 +162,14 @@ export const ChangePasswordButton = styled(Button)`
                 color: ${newBackground.white};
             } 
         }
+
+        @media (max-width: 900px) {
+
+            span {
+                white-space: normal;
+                width: fit-content;
+            } 
+        } 
 `;
 
 export const VisibleIcon = styled(VisibilityIcon)`

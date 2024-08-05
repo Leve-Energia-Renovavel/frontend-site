@@ -29,7 +29,7 @@ export default function NewProfileMain() {
             <h1 className='pageTitle'>Meu perfil</h1>
 
             <Content>
-                <TitleContainer>
+                <TitleContainer className='profileTitleContainer'>
                     <Title>
                         <PersonOutlineIcon className='profileIcon' />
                         <h2 className='formTitle'>Dados Cadastrais</h2>
@@ -45,25 +45,24 @@ export default function NewProfileMain() {
                     </Edit>
                 </TitleContainer>
 
-                <NewProfileMainForm className='profileMainForm'
+                <NewProfileMainForm
                     isEdition={isEdition}
                     handleEdition={handleEdition}
                     setNotifications={setNotifications}
                     setErrorMessage={setErrorMessage} />
             </Content>
 
-            <NewChangePassword className='profileChangePassword'
+            <NewChangePassword
                 setErrorMessage={setErrorMessage}
                 setNotifications={setNotifications} />
 
-            <NewSecondaryEmail className='profileSecondaryEmail'
+            <NewSecondaryEmail
                 setErrorMessage={setErrorMessage}
                 setNotifications={setNotifications} />
 
-            <RegisteredInstallations className='registeredInstallations'
-            />
+            <RegisteredInstallations />
 
-            <NewMemberGetMember className='memberGetMember' />
+            <NewMemberGetMember  />
 
             <FinalOptions />
 
