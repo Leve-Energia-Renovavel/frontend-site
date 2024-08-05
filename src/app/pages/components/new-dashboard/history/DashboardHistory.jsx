@@ -18,7 +18,7 @@ export default function DashboardHistory() {
 
   return (
     <Container className='dashboardHistoryContainer'>
-      <Header>
+      <Header className='dashboardHistoryHeader'>
         <h2 className='myHistory'>Histórico de Consumo</h2>
         <SwitchContainer>
           <p className='label'>R$</p>

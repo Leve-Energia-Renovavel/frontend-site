@@ -8,7 +8,7 @@ import { formatDateClearYear, formatFullMonthAndYear } from '@/app/utils/formatt
 import { useState } from 'react';
 import NewInstallationButton from '../../utils/buttons/NewInstallationButton';
 import NewInvoicesActionButtonContainer from '../action-button-container/NewInvoicesActionButton';
-import { InvoicesTableDistributorBill, InvoicesTableLeveBill, NewInvoicesTableContent, NewInvoicesTableHeader } from './styles';
+import { InvoicesTableDistributorBill, InvoicesTableLeveBill, MobileActionButtonContainer, NewInvoicesTableContent, NewInvoicesTableHeader } from './styles';
 
 
 export default function NewInvoicesTable() {
@@ -32,7 +32,7 @@ export default function NewInvoicesTable() {
 
     return (
         <>
-            <NewInvoicesTableHeader>
+            <NewInvoicesTableHeader className='newInvoicesTableHeader'>
                 <p className='tableHeader'>Mes e Ano</p>
                 <p className='tableHeader'>Valor</p>
                 <p className='tableHeader'>Vencimento</p>
@@ -49,8 +49,9 @@ export default function NewInvoicesTable() {
 
             {billings?.slice(quantityBillsShown).reverse().map((billing, index) => {
                 return (
-                    <NewInvoicesTableContent key={billing?.uuid} >
+                    <NewInvoicesTableContent key={billing?.uuid} className={`newInvoicesTableContent-${billing?.uuid}`}>
                         <InvoicesTableLeveBill
+                            className='invoicesTableLeveBill'
                             status={billing?.status}
                             aria-controls="panel1-content"
                             id="panel1-header">
@@ -59,15 +60,28 @@ export default function NewInvoicesTable() {
                             <p className='leveBillValue'>{formatDateClearYear(billing?.dueDate)}</p>
                             <p className='leveBillStatus'>{billingStatusOptions[billing?.status]}</p>
 
-                            <NewInvoicesActionButtonContainer status={billing?.status} urlBill={billing?.urlBill} uuid={billing?.uuid} referenceDate={formatFullMonthAndYear(billing?.billDate)} />
-
+                            <div className="desktopActionButtonContainer">
+                                <NewInvoicesActionButtonContainer
+                                    status={billing?.status}
+                                    urlBill={billing?.urlBill}
+                                    uuid={billing?.uuid}
+                                    referenceDate={formatFullMonthAndYear(billing?.billDate)} />
+                            </div>
                         </InvoicesTableLeveBill>
-                        <InvoicesTableDistributorBill className='distributorBill'>
+
+                        <MobileActionButtonContainer className="mobileActionButtonContainer">
+                            <NewInvoicesActionButtonContainer
+                                status={billing?.status}
+                                urlBill={billing?.urlBill}
+                                uuid={billing?.uuid}
+                                referenceDate={formatFullMonthAndYear(billing?.billDate)} />
+                        </MobileActionButtonContainer>
+                        {/* <InvoicesTableDistributorBill className='distributorBill'>
                             <p className='distributorBillValue'>{formatFullMonthAndYear(billing?.billDate)}</p>
                             <p className='distributorBillValue'>{`R$ ${parseFloat(billing?.value).toFixed(2)}`}</p>
                             <p className='distributorBillValue'>{formatDateClearYear(billing?.dueDate)}</p>
                             <p className='distributorBillStatus'>{`Boleto ${user.distributor ? user.distributor : "Distribuidora"}`}</p>
-                        </InvoicesTableDistributorBill>
+                        </InvoicesTableDistributorBill> */}
                     </NewInvoicesTableContent>
                 )
             })}

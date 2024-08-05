@@ -70,12 +70,18 @@ export const HistoryChartLegend = styled.div`
     flex-direction: row-reverse;
     gap: 5px;
     padding: 10px 1rem;
-
+    
     margin-top: auto;
+    
+    @media (max-width: 900px) {
+      padding: 6px 4px;
+    }
 
 `
 
 const LegendBase = styled.p`
+display: flex;
+align-items: center;
     font-family: "Graphie";
     font-size: 11px;
     line-height: 14px;
@@ -83,7 +89,10 @@ const LegendBase = styled.p`
     padding: 4px 8px;
     border-radius: 15px;
     color: ${newBackground.white};
-
+    
+    width: fit-content;
+    height: auto;
+    
     @media (max-width: 900px) {
         text-align: center;
         width: fit-content;

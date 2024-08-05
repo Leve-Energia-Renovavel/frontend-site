@@ -47,8 +47,10 @@ export const HistoryDetailValue = styled.div`
         line-height: 32px;
         font-weight: 700;
         color: ${newBackground.green};
-    }
 
+        white-space: nowrap;
+    }
+    
     .valueHighlighted {
         font-family: "Graphie";
         font-size: 27px;
@@ -56,6 +58,8 @@ export const HistoryDetailValue = styled.div`
         font-weight: 700;
         color: ${newBackground.green};
         background-color: ${newBackground.yellow};
+        
+        white-space: nowrap;
     }
     .legend {
         font-family: "Graphie";

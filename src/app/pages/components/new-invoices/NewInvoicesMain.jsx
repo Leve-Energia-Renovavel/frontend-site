@@ -1,7 +1,6 @@
 "use client"
 
 import dynamic from "next/dynamic";
-// import NewInvoicesHeader from "./header/NewInvoicesHeader";
 import { NewInvoicesContainer } from "./styles";
 import Messages from "../messages/Messages";
 import { useState } from "react";

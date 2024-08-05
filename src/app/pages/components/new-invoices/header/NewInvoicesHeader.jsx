@@ -36,50 +36,52 @@ export default function NewInvoicesHeader({ setErrorMessage, setNotifications })
             <h1 className="pageTitle">Minhas faturas</h1>
 
             <SelectContainer className="invoicesSelectContainer">
-                <h6 className="selectInstallation">Selecione a unidade:</h6>
-                <SelectButton className="invoicesSelectButton">
-                    <InstallationIcon className="installationIcon" />
-                    <BoxInstallation>
-                        <SelectInstallation
-                            fullWidth
-                            value={0}
-                            displayEmpty
-                            // IconComponent={KeyArrowDownIcon}
-                            IconComponent={""}
-                        >
-                            <li value={0} style={{ display: 'none' }}>
-                                <span className="defaultInstallation">Casa</span>
-                            </li>
-                            {filteredInstallations?.map((otherInstallation, index) => {
-                                return (
-                                    <li key={otherInstallation?.id} value={index + 1}>
-                                        <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>{otherInstallation.street}</span>
-                                    </li>
-                                )
-                            })}
-                        </SelectInstallation>
-                    </BoxInstallation>
-                </SelectButton>
+                <div>
+                    <h6 className="selectInstallation">Selecione a unidade:</h6>
+                    <SelectButton className="invoicesSelectButton">
+                        <InstallationIcon className="installationIcon" />
+                        <BoxInstallation>
+                            <SelectInstallation
+                                fullWidth
+                                value={0}
+                                displayEmpty
+                                // IconComponent={KeyArrowDownIcon}
+                                IconComponent={""}
+                            >
+                                <li value={0} style={{ display: 'none' }}>
+                                    <span className="defaultInstallation">Casa</span>
+                                </li>
+                                {filteredInstallations?.map((otherInstallation, index) => {
+                                    return (
+                                        <li key={otherInstallation?.id} value={index + 1}>
+                                            <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>{otherInstallation.street}</span>
+                                        </li>
+                                    )
+                                })}
+                            </SelectInstallation>
+                        </BoxInstallation>
+                    </SelectButton>
+                </div>
 
-
-                <h6 className="selectInstallation">Dia de vencimento da fatura:</h6>
-                <SelectDueDate >
-                    <BoxInstallationDueDate>
-                        <SelectDueDateChoose
-                            fullWidth
-                            value={invoiceDate || 5}
-                            displayEmpty
-                            IconComponent={KeyArrowDownIcon}>
-                            {availableDueDates?.map((dueDate) => {
-                                return (
-                                    <StyledMenuItem key={dueDate} value={dueDate} className="dueDateAvailableOption" onClick={() => handleChangeDueDate(dueDate)}>
-                                        <span className="dueDateOption">Dia {dueDate}</span>
-                                    </StyledMenuItem>
-                                )
-                            })}
-                        </SelectDueDateChoose>
-                    </BoxInstallationDueDate>
-                </SelectDueDate>
+                <div>
+                    <h6 className="selectInstallation">Dia de vencimento da fatura:</h6>
+                    <SelectDueDate className="invoicesSelectDueDate">
+                        <BoxInstallationDueDate>
+                            <SelectDueDateChoose
+                                value={invoiceDate || 5}
+                                displayEmpty
+                                IconComponent={KeyArrowDownIcon}>
+                                {availableDueDates?.map((dueDate) => {
+                                    return (
+                                        <StyledMenuItem key={dueDate} value={dueDate} className="dueDateAvailableOption" onClick={() => handleChangeDueDate(dueDate)}>
+                                            <span className="dueDateOption">Dia {dueDate}</span>
+                                        </StyledMenuItem>
+                                    )
+                                })}
+                            </SelectDueDateChoose>
+                        </BoxInstallationDueDate>
+                    </SelectDueDate>
+                </div>
             </SelectContainer>
         </Header>
     )

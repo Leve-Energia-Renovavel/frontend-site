@@ -22,18 +22,43 @@ export const NewInvoicesTableHeader = styled.div`
     .tableHeaderStatus {
         margin-left: 90px;
     }
+    
     `
 export const NewInvoicesTableContent = styled(Accordion)`
     border-radius: 10px;
-    `
+
+    .mobileActionButtonContainer {
+        display: none;
+     }
+
+     @media (max-width: 900px) {
+        .mobileActionButtonContainer {
+           display: block;
+        }
+
+    }
+`
+export const MobileActionButtonContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: palegoldenrod;
+
+`
 
 export const InvoicesTableLeveBill = styled(AccordionSummary)`
     display: flex;
     flex-direction: row;
     align-items: center;
 
+    flex-wrap: wrap;
+
     
     .leveBillValue, .leveBillStatus {
+        display: block;
+
         font-family: "Graphie";
         font-size: 14px;
         line-height: 17px;
@@ -85,6 +110,18 @@ export const InvoicesTableLeveBill = styled(AccordionSummary)`
 
         margin: 0 auto;
      }
+
+     .desktopActionButtonContainer {
+        margin-left: auto;
+     }
+
+    @media (max-width: 900px) {
+        .desktopActionButtonContainer {
+           display: none;
+        }
+
+    }
+
 `
 
 export const InvoicesTableDistributorBill = styled(AccordionDetails)`

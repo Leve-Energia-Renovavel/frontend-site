@@ -8,7 +8,7 @@ import { Box, MenuItem, Select } from "@mui/material";
 export const NewInvoicesHeader = styled.div`
     display: flex;
     flex-direction: column;
-    
+
     .pageTitle {
         font-family: "Graphie";
         font-size: 27px;
@@ -23,6 +23,7 @@ export const NewInvoicesHeader = styled.div`
 export const NewInvoicesSelectInstallation = styled.div`
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
 
     margin: 1rem 0;
@@ -52,15 +53,20 @@ export const NewInvoicesSelectButton = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-
+    
     background-color: ${newBackground.green};
     padding: 12px 8px;
-
+    
     border-radius: 8px;
+
+    @media (max-width: 900px) {
+        width: 182px;
+    }
 `
 export const NewInvoicesSelectDueDateButton = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
 
     background-color: transparent;
@@ -134,6 +140,8 @@ export const SelectDueDateChoose = styled(Select)`
     line-height: 21px;
     font-weight: bold;
     color: ${newBackground.white};
+
+    width: 170px;
 
     &.MuiOutlinedInput-root {
         .MuiSelect-select {

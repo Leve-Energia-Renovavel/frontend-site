@@ -8,9 +8,9 @@ export const InvoicesTableActionButtonContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-
+    
     gap: 8px;
-
+    
     margin-left: auto;
     margin-right: 1rem;
 `
