@@ -8,6 +8,7 @@ import InsertLinkIcon from '@mui/icons-material/InsertLink';
 export const NewInvoicesTableHeader = styled.div`
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     
     .tableHeader, .tableHeaderStatus {
         font-family: "Graphie";
@@ -21,6 +22,17 @@ export const NewInvoicesTableHeader = styled.div`
     
     .tableHeaderStatus {
         margin-left: 90px;
+    }
+    
+    @media (max-width: 900px) {
+        .tableHeader, .tableHeaderStatus {
+            margin-left: 70px;
+        }
+    }
+    @media (max-width: 700px) {
+        .tableHeader, .tableHeaderStatus {
+            margin-left: 20px;
+        }
     }
     
     `
@@ -39,13 +51,11 @@ export const NewInvoicesTableContent = styled(Accordion)`
     }
 `
 export const MobileActionButtonContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     
-    background-color: palegoldenrod;
-
+    width: fit-content;
+    margin-left: auto;
+    
+    padding: 1rem;
 `
 
 export const InvoicesTableLeveBill = styled(AccordionSummary)`
@@ -53,9 +63,6 @@ export const InvoicesTableLeveBill = styled(AccordionSummary)`
     flex-direction: row;
     align-items: center;
 
-    flex-wrap: wrap;
-
-    
     .leveBillValue, .leveBillStatus {
         display: block;
 
