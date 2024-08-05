@@ -17,7 +17,7 @@ export const menuOptions = [
         id: 1,
         icon: <HomeIcon className='icon' />,
         title: "Início",
-        link: "/dashboard",
+        link: "/dashboard/",
         menuLabel: "home",
         highlighted: false,
         content: <NewDashboardMainContent />
@@ -26,7 +26,7 @@ export const menuOptions = [
         id: 2,
         icon: <ReceiptIcon className='icon' />,
         menuLabel: "invoices",
-        link: "/dashboard/invoices",
+        link: "/dashboard/invoices/",
         title: "Faturas",
         highlighted: false,
         content: <NewInvoicesMain />
@@ -36,7 +36,7 @@ export const menuOptions = [
         icon: <AttachMoneyIcon className='icon' />,
         title: "Pagamento recorrente",
         menuLabel: "payment",
-        link: "/dashboard/payment",
+        link: "/dashboard/payment/",
         highlighted: false,
         content: <NewPaymentMain />
     },
@@ -44,7 +44,7 @@ export const menuOptions = [
         id: 4,
         icon: <LocationOnIcon className='icon' />,
         title: "Unidades cadastradas",
-        link: "/dashboard/installations",
+        link: "/dashboard/installations/",
         menuLabel: "installations",
         highlighted: false,
         content: <NewInstallationsMain />
@@ -53,7 +53,7 @@ export const menuOptions = [
         id: 5,
         icon: <HelpOutlineIcon className='icon' />,
         title: "Dúvidas e Ajuda",
-        link: "/dashboard/help",
+        link: "/dashboard/help/",
         menuLabel: "help",
         highlighted: false,
         content: <NewHelpMain />
@@ -61,7 +61,7 @@ export const menuOptions = [
     {
         id: 6,
         icon: <AccountCircleOutlinedIcon className='icon' />,
-        link: "/dashboard/profile",
+        link: "/dashboard/profile/",
         title: "Meu Perfil",
         menuLabel: "profile",
         highlighted: false,

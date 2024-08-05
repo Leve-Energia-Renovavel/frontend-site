@@ -156,6 +156,9 @@ export const MenuOption = styled.div`
     border-radius: 10px;
     ${props => props.highlighted ? `background-color:${newBackground.orange}` : ""};
     ${props => props.selected ? `background-color:${newBackground.grey}` : ""};
+
+    width: 100%;
+    max-width: 300px;
     
     .icon {
         width: 24px;
