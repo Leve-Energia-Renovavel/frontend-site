@@ -38,79 +38,66 @@ export const ChartLegendContainer = styled.div`
     margin-top: 20px;
     margin-bottom: 15px;
 
+    .chartLegend-0, .chartLegend-1, .chartLegend-2, .chartLegend-3 {
+      font-family: "Graphie";
+      font-weight: 600;
+      color: ${newBackground.green};
+      background-color: ${newBackground.grey};
+
+      padding: 2px 4px;
+      min-width: 156px;
+      text-align: center;
+      white-space: nowrap;
+
+      border-radius: 5px;
+    }
+
     .chartLegend-0 {
-    position: absolute;
-    left: 20px;
+      position: absolute;
+      left: 20px;
+    }
+    .chartLegend-1 {
+      position: absolute;
+      left: 200px;
+    }
+    .chartLegend-2 {
+      position: absolute;
+      left: 370px;
+    }
+    .chartLegend-3 {
+      position: absolute;
+      left: 545px;
+    }
 
-    padding: 2px 4px;
-    min-width: 156px;
-    text-align: center;
-    white-space: nowrap;
+    @media (max-width: 900px) {
+      .chartLegend-0, .chartLegend-1, .chartLegend-2, .chartLegend-3 {
+        font-size: 12px;
+        padding: 2px;
+        min-width: 46px;
+        width: fit-content;
+      }
+      .chartLegend-0 {
+        position: absolute;
+        left: 15px;
+      }
+      .chartLegend-1 {
+        position: absolute;
+        left: 78px;
+      }
+      .chartLegend-2 {
+        position: absolute;
+        left: 143px;
+      }
+      .chartLegend-3 {
+        position: absolute;
+        left: 220px;
+      }
 
-    border-radius: 5px;
-
-    font-family: "Graphie";
-    font-weight: 600;
-    color: ${newBackground.green};
-    background-color: ${newBackground.grey};
-  }
-  .chartLegend-1 {
-    position: absolute;
-    left: 200px;
-
-    padding: 2px 4px;
-    min-width: 156px;
-    text-align: center;
-    white-space: nowrap;
-
-    border-radius: 5px;
-
-
-    font-family: "Graphie";
-    font-weight: 600;
-    color: ${newBackground.green};
-    background-color: ${newBackground.grey};
-  }
-  .chartLegend-2 {
-    position: absolute;
-    left: 370px;
-
-    padding: 2px 4px;
-    min-width: 156px;
-    text-align: center;
-    white-space: nowrap;
-
-
-    border-radius: 5px;
-
-
-    font-family: "Graphie";
-    font-weight: 600;
-    color: ${newBackground.green};
-    background-color: ${newBackground.grey};
-  }
-  .chartLegend-3 {
-    position: absolute;
-    left: 545px;
-
-    padding: 2px 4px;
-    min-width: 156px;
-    text-align: center;
-    white-space: nowrap;
-
-    border-radius: 5px;
-
-
-    font-family: "Graphie";
-    font-weight: 600;
-    color: ${newBackground.green};
-    background-color: ${newBackground.grey};
-  }
+    }
 `
 export const LegendDetail = styled.div`
     position: relative;
     top: -40px;
-
 
     width: 152px;
 
@@ -136,6 +123,10 @@ export const LegendDetail = styled.div`
     .withLeve {
       color: ${newBackground.green};
     }
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+    } 
 `
 
 

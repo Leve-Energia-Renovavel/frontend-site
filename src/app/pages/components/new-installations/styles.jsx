@@ -19,7 +19,9 @@ export const NewInstallationsContainer = styled.div`
 export const ConsumptionHistoryContainer = styled.div`
     display: flex;
     flex-direction: column;
-    
+
+    width: auto;
+
     gap: 1rem;
     
     border-radius: 10px;

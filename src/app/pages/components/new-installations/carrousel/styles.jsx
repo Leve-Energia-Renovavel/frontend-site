@@ -12,6 +12,10 @@ export const CarrouselContainer = styled.div`
 export const CarrouselContentContainer = styled.div`
     display: flex;
     flex-direction: row;
+
+    @media (max-width: 900px) {
+        max-width: 290px;
+    }
 `
 export const ArrowBack = styled(ArrowBackIosIcon)`
     color: ${props => props.disabled ? newBackground.greyDark : newBackground.green};
@@ -21,15 +25,21 @@ export const ArrowBack = styled(ArrowBackIosIcon)`
     margin: auto;
     border-radius: 20px;
     padding: 4px 4px 4px 6px;
-
+    
     border: 2px solid ${props => props.disabled ? newBackground.greyDark : newBackground.green};
-
+    
     background-color: ${newBackground.white};
     
     &:hover {
         background-color:  ${props => props.disabled ? "" : newBackground.green};
         color:  ${props => props.disabled ? "" : newBackground.white};
         cursor: pointer;
+    }
+    
+    @media (max-width: 900px) {
+        width: 20px;
+        height: 20px;
+        padding: 2px 2px 2px 3px;
     }
 `
 
@@ -51,6 +61,12 @@ export const ArrowForward = styled(ArrowForwardIosIcon)`
         background-color:  ${props => props.disabled ? "" : newBackground.green};
         color:  ${props => props.disabled ? "" : newBackground.white};
         cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+        width: 20px;
+        height: 20px;
+        padding: 3px;
     }
 `
 

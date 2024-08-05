@@ -33,7 +33,7 @@ export default function StatusStepper() {
     }
 
     return (
-        <Container>
+        <Container className='statusStepperContainer'>
             <CustomStepper activeStep={handleInstallationStatus(status)} alternativeLabel connector={<CustomConnector />}>
                 {steps.map((step, index) => (
                     <Step key={index + 1}>

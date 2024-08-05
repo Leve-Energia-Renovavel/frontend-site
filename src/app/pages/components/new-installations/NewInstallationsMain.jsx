@@ -20,16 +20,16 @@ export default function NewInstallationsMain() {
     }
 
     return (
-        <Container>
+        <Container className='installationsMainContainer'>
             <h1 className="pageTitle">Unidades cadastradas</h1>
 
             <NewInstallationsMainHeader />
             <StatusStepper />
 
-            <ConsumptionHistory>
-                <TitleContainer>
+            <ConsumptionHistory className='installationsConsumptionHistory'>
+                <TitleContainer className='installationsTitleContainer'>
                     <DefaultTitle icon={<EqualizerOutlinedIcon className='icon' />} title={`Histórico de Consumo`} />
-                    <SwitchContainer>
+                    <SwitchContainer className='installationsSwitchContainer'>
                         <p className='label'>R$</p>
                         <AntSwitch defaultChecked={true} disabled />
                         <p className='label'>kWh</p>

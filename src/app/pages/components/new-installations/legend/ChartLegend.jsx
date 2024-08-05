@@ -3,10 +3,10 @@ import { Legend, LegendDetailLegend } from './styles'
 
 export default function ChartLegend() {
     return (
-        <LegendDetailLegend>
+        <LegendDetailLegend className='legendDetailLegendContainer'>
             {chartLegends.map((legend) => {
                 return (
-                    <Legend key={legend?.title}
+                    <Legend key={legend?.title} className={`chartLegend-${legend?.title}`}
                         backgroundColor={legend?.backgroundColor}
                         fontColor={legend?.fontColor}>
                         <span>{legend?.title}</span>

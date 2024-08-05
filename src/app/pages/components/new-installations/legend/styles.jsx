@@ -1,9 +1,5 @@
-import { newBackground } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 
 export const LegendDetailLegend = styled.div`
@@ -15,12 +11,20 @@ export const LegendDetailLegend = styled.div`
 
   gap: 6px;
   margin-left: auto;
+  
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+  }
 
   `
 export const Legend = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  
   padding: 2px 6px;
   border-radius: 9px;
   background-color: ${props => props.backgroundColor};

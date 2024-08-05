@@ -41,8 +41,8 @@ export default function NewInstallationsCarrousel({ dataType }) {
 
 
     return (
-        <Container>
-            <CarrouselContentContainer>
+        <Container className='installationsCarrouselContainer'>
+            <CarrouselContentContainer className='carrouselContentContainer'>
                 <ArrowBack onClick={handleBack} disabled={activeStep === 0} />
                 <ConsumptionHistoryChart selectedBillings={selectedBillings} dataType={dataType} />
                 <ArrowForward onClick={handleNext} disabled={activeStep === maxSteps - 1} />
@@ -52,6 +52,7 @@ export default function NewInstallationsCarrousel({ dataType }) {
                 formattedBillings={formattedBillings}
                 activeStep={activeStep}
                 handleStepChange={handleStepChange} />
+                
             <ChartLegend />
 
             <FooterContainer>
