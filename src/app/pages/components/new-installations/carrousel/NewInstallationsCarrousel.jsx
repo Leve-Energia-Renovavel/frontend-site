@@ -18,7 +18,6 @@ export default function NewInstallationsCarrousel({ dataType }) {
 
     const [chartQuantity, setChartQuantity] = useState(4);
 
-
     const formattedBillings = billings ? formatBillingArray(billings, chartQuantity) : []
     const selectedBillings = formattedBillings[activeStep]
 
