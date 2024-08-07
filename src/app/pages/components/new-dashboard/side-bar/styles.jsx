@@ -132,18 +132,29 @@ export const NewDashboardMenu = styled.div`
 
     .loggout {
         font-family: "Graphie";
-        font-size: 14px;
-        line-height: 17px;
+        font-size: 21px;
+        line-height: 27px;
         font-weight: 500;
         color: ${newBackground.orange};
         
-        margin: 10px 0 0 auto;
+        margin: 3rem 10rem;
+
+        text-align: start;
         
         &:hover {
             cursor: pointer;
             font-weight: 800;
             text-decoration: underline;
         }
+    }
+    
+    @media (max-width: 900px) {
+        .loggout {
+            font-size: 21px;
+            line-height: 27px;
+            margin: 1rem auto;
+        }
+
     }
 `
 export const MenuOption = styled.div`
@@ -210,6 +221,10 @@ export const MenuOption = styled.div`
 
     ${props => props.highlighted ? `background-color:${newBackground.orange}; padding: 10px 12px; align-items: start; &:hover { background-color: ${newBackground.yellow}; cursor: pointer; .option { text-decoration: underline; } .memberGetMember { color: ${newBackground.green} } .icon, .couponValue { color: ${newBackground.green}; font-weight: 900; }}` : ""};
 
+
+    @media (max-width: 900px) {
+        max-width: 100%;
+    }
 `
 
 export const BoxInstallation = styled(Box)`

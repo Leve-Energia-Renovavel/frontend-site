@@ -3,7 +3,7 @@
 import { useStoreBillingHistory } from '@/app/hooks/useStore';
 import { formatBillingArray } from '@/app/utils/helper/installationsCarrouselHelper';
 import dynamic from 'next/dynamic';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ChartStepper from '../chart-stepper/ChartStepper';
 import ChartLegend from '../legend/ChartLegend';
 import { ArrowBack, ArrowForward, CarrouselContentContainer, CarrouselContainer as Container, FooterContainer, InfoIcon } from './styles';
@@ -16,7 +16,10 @@ export default function NewInstallationsCarrousel({ dataType }) {
     const billings = useStoreBillingHistory()?.billings
     const [activeStep, setActiveStep] = useState(0);
 
-    const formattedBillings = billings ? formatBillingArray(billings, 4) : []
+    const [chartQuantity, setChartQuantity] = useState(4);
+
+
+    const formattedBillings = billings ? formatBillingArray(billings, chartQuantity) : []
     const selectedBillings = formattedBillings[activeStep]
 
     const maxSteps = formattedBillings?.length;
@@ -39,6 +42,23 @@ export default function NewInstallationsCarrousel({ dataType }) {
         }
     };
 
+    useEffect(() => {
+        const updateChartQuantity = () => {
+            if (window?.innerWidth < 500) {
+                setChartQuantity(2);
+            } else {
+                setChartQuantity(4);
+            }
+        };
+
+        updateChartQuantity();
+        window?.addEventListener('resize', updateChartQuantity);
+
+        return () => {
+            window.removeEventListener('resize', updateChartQuantity);
+        };
+    }, []);
+
 
     return (
         <Container className='installationsCarrouselContainer'>
@@ -52,10 +72,10 @@ export default function NewInstallationsCarrousel({ dataType }) {
                 formattedBillings={formattedBillings}
                 activeStep={activeStep}
                 handleStepChange={handleStepChange} />
-                
+
             <ChartLegend />
 
-            <FooterContainer>
+            <FooterContainer className='understandYourEconomy'>
                 <InfoIcon />
                 <span>Entenda sua economia</span>
             </FooterContainer>

@@ -407,7 +407,7 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
 
                 </FormContent>
 
-                <FormLastRow>
+                <FormLastRow className='profileFormInstallation' >
                     <InstallationInput
                         disabled
                         value={installationNumber || ""}
@@ -435,8 +435,7 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
                     </ChangeOwnershipButton>} */}
 
                     {isEdition && (
-
-                        <EditionContainer>
+                        <EditionContainer className='profileFormEdition'>
                             <SaveEditionButton onClick={() => handleUpdateUserProfile()}>
                                 <span>Salvar alterações</span>
                             </SaveEditionButton>

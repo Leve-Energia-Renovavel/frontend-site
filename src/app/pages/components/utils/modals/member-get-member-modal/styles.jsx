@@ -22,6 +22,11 @@ export const ModalBox = styled(Box)`
     max-height: 550px;
     
     box-shadow: 24px;
-
+    
     padding: 2rem;
+    
+    @media (max-width: 900px) {
+        padding: 1.5rem;
+        transform: translate(-50%, -60%);
+    }
 `

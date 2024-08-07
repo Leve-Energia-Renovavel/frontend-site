@@ -17,6 +17,13 @@ export const RegisteredInstallationsMainContainer = styled.div`
         font-weight: 600;
         color: ${newBackground.orange};
     }
+    
+    @media (max-width: 900px) {
+        .title {
+            font-size: 23px;
+            line-height: 27px;
+        }
+    }
 `
 export const RegisteredInstallationsContainer = styled.div`
     display: flex;
@@ -59,5 +66,9 @@ export const NewInstallationsContainer = styled.div`
         color: ${newBackground.green};
 
         text-align: center;
+    }
+
+    @media (max-width: 900px) {
+        display: none;
     }
 `

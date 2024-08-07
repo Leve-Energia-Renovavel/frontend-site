@@ -28,7 +28,7 @@ export default function FinalOptions() {
     }
 
     return (
-        <FinalOptionsContainer>
+        <FinalOptionsContainer className='profileFormFinalOptionsContainer'>
 
             <FinalOptionsButton onClick={() => router.push(`/dashboard/installations/`)}>
                 <span>Quero entender melhor minha economia</span>

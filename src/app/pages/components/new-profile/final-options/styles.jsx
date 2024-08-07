@@ -39,4 +39,10 @@ export const FinalOptionsButton = styled.div`
 
     }
 
+    @media (max-width: 900px) {
+        span {
+            text-align: center;
+        }
+    }
+
 `

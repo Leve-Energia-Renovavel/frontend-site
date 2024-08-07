@@ -20,7 +20,7 @@ export default function FactoryContent() {
 
       <FactoryMainContent className="factoryMainContent">
         <MainContentInfo className="factoryMainContentInfo">
-          <p className='infoDescription'>Veja o impacto que você ajuda a criar para um futuro mais leve e renovável:</p>
+          <p className='infoDescription'>Você faz parte de uma comunidade que ajuda a criar um futuro mais leve e renovável:</p>
           <Image src={leveTopBanner} alt='você mais Leve' className='leveTopBanner' />
         </MainContentInfo>
 

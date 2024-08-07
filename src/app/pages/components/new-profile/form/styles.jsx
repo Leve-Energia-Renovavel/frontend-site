@@ -53,6 +53,15 @@ export const FormLastRow = styled.div`
         grid-template-rows: repeat(1, 1fr);
         grid-template-columns: repeat(1,1fr);
     }
+
+    @media (max-width: 900px) {
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        & > .inputForm {
+            max-width: 100%;
+        }
+    }
 `
 
 export const ChangeOwnershipButton = styled(Button)`
@@ -102,6 +111,9 @@ export const EditionContainer = styled.div`
     align-items: center;
 
     gap: 10px;
+
+    @media (max-width: 900px) {
+    }
 `
 
 export const SaveEditionButton = styled(Button)`
@@ -256,7 +268,7 @@ export const ChangeOwnershipIcon = styled(AutorenewOutlinedIcon)`
 `
 export const InstallationInput = styled(TextField)`
     border-radius: 10px;
-    
+
     && {
         background-color: ${newBackground.greyTranslucent}; 
     }
@@ -264,7 +276,6 @@ export const InstallationInput = styled(TextField)`
         /* Styles for the focused label */
         line-height: 3em; 
     }
-    
     
     .MuiOutlinedInput-input {
         border: 2px solid ${newBackground.green};

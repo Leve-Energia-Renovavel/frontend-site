@@ -10,6 +10,7 @@ import { useState } from "react";
 import soleProfile from "../../../../resources/icons/large/sole-icon-profile-large.png";
 import DashboardMenu from "../new-dashboard/side-bar/DashboardMenu";
 import { LoggoutButton, LoginBox, MenuContent, MenuHeaderContent } from "./styles";
+import DashboardMemberGetMember from "../new-dashboard/side-bar/DashboardMemberGetMember";
 
 export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
 
@@ -59,9 +60,8 @@ export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
 
                         <DashboardMenu menuSelected={menuSelected} setMenuSelection={setMenuSelection} closeModal={closeModal} />
 
-                        <LoggoutButton variant="text" onClick={() => handleLoggout()}>
-                            Sair
-                        </LoggoutButton>
+                        <DashboardMemberGetMember />
+
                     </MenuContent>
                 </LoginBox>
             </Modal >

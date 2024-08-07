@@ -14,7 +14,7 @@ export const CarrouselContentContainer = styled.div`
     flex-direction: row;
 
     @media (max-width: 900px) {
-        max-width: 290px;
+        max-width: 265px;
     }
 `
 export const ArrowBack = styled(ArrowBackIosIcon)`
@@ -37,9 +37,9 @@ export const ArrowBack = styled(ArrowBackIosIcon)`
     }
     
     @media (max-width: 900px) {
-        width: 20px;
-        height: 20px;
-        padding: 2px 2px 2px 3px;
+        width: 25px;
+        height: 25px;
+        padding: 2px 2px 2px 4px;
     }
 `
 
@@ -64,8 +64,8 @@ export const ArrowForward = styled(ArrowForwardIosIcon)`
     }
 
     @media (max-width: 900px) {
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
         padding: 3px;
     }
 `
@@ -97,6 +97,10 @@ export const FooterContainer = styled.div`
         span {
             text-decoration: underline;
         }
+    }
+
+    @media (max-width: 900px) {
+        display: none;
     }
 `
 

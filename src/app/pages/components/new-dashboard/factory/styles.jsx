@@ -115,7 +115,7 @@ export const MainContentInfo = styled.div`
         font-weight: 500;
         color: ${newBackground.green};
 
-        max-width: 253px;
+        max-width: 230px;
     }
 
     .leveTopBanner {
