@@ -1,5 +1,6 @@
 "use client"
 
+import { useStoreMainInstallation } from '@/app/hooks/useStore';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import HistoryDetails from './details/HistoryDetails';
@@ -10,6 +11,11 @@ const NewHistoryMoneyChart = dynamic(() => import('../../charts/NewHistoryMoneyC
 
 export default function DashboardHistory() {
 
+  const storeMainInstallation = useStoreMainInstallation()
+  const mainInstallation = JSON.parse(localStorage?.getItem('mainInstallation'))
+
+  const { hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+
   const [dataType, setDataType] = useState("money")
 
   const handleDataType = () => {
@@ -17,34 +23,39 @@ export default function DashboardHistory() {
   }
 
   return (
-    <Container className='dashboardHistoryContainer'>
-      <Header className='dashboardHistoryHeader'>
-        <h2 className='myHistory'>Histórico de Consumo</h2>
-        <SwitchContainer>
-          <p className='label'>R$</p>
-          <AntSwitch onChange={() => handleDataType()} />
-          <p className='label'>kWh</p>
-        </SwitchContainer>
-      </Header>
+    <>
+      {hasStartedBilling ? (
+        <Container className='dashboardHistoryContainer'>
+          <Header className='dashboardHistoryHeader'>
+            <h2 className='myHistory'>Histórico de Consumo</h2>
+            <SwitchContainer>
+              <p className='label'>R$</p>
+              <AntSwitch onChange={() => handleDataType()} />
+              <p className='label'>kWh</p>
+            </SwitchContainer>
+          </Header>
 
-      <Content className='dashboardHistoryContent'>
+          <Content className='dashboardHistoryContent'>
 
-        {dataType === "money" ? <NewHistoryMoneyChart /> : <NewHistoryEnergyChart />}
+            {dataType === "money" ? <NewHistoryMoneyChart /> : <NewHistoryEnergyChart />}
 
-        <HistoryDivider />
+            <HistoryDivider />
 
-        <HistoryChartLegend className='historyChartLegend'>
-          <LegendCarrier className='legend'>Concessionária</LegendCarrier>
-          <LegendExpired className='legend'>Fatura vencida</LegendExpired>
-          <LegendDue className='legend'>Fatura em aberto</LegendDue>
-          <LegendPaid className='legend'>Fatura paga</LegendPaid>
-        </HistoryChartLegend>
+            <HistoryChartLegend className='historyChartLegend'>
+              <LegendCarrier className='legend'>Concessionária</LegendCarrier>
+              <LegendExpired className='legend'>Fatura vencida</LegendExpired>
+              <LegendDue className='legend'>Fatura em aberto</LegendDue>
+              <LegendPaid className='legend'>Fatura paga</LegendPaid>
+            </HistoryChartLegend>
 
-        <HistoryDivider />
+            <HistoryDivider />
 
-        <HistoryDetails />
+            <HistoryDetails />
 
-      </Content>
-    </Container>
+          </Content>
+        </Container>
+      ) : <></>}
+    </>
+
   )
 }

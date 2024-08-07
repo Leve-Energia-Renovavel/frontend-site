@@ -40,8 +40,8 @@ export default function NewInvoicesTable() {
             </NewInvoicesTableHeader>
 
             {dontHaveAnyBillsYet && (
-                <NewInvoicesTableContent>
-                    <InvoicesTableLeveBill>
+                <NewInvoicesTableContent className='newInvoicesTableLeveBill' noBills={dontHaveAnyBillsYet}>
+                    <InvoicesTableLeveBill className='newInvoicesTableLeveBill'>
                         <p className='dontHaveAnyBillsYet'>Você ainda não possui faturas</p>
                     </InvoicesTableLeveBill>
                 </NewInvoicesTableContent>

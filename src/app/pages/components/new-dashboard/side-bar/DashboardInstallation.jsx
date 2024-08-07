@@ -19,8 +19,8 @@ export default function DashboardInstallation() {
     const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
 
-    const mainInstallation = JSON.parse(localStorage.getItem('mainInstallation'))
-    const installations = JSON.parse(localStorage.getItem('installations'))
+    const mainInstallation = JSON.parse(localStorage?.getItem('mainInstallation'))
+    const installations = JSON.parse(localStorage?.getItem('installations'))
 
     const { street, number, neighborhood, city, state, stateId, cityId, zipCode, installationNumber, id } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
@@ -40,7 +40,7 @@ export default function DashboardInstallation() {
                 if (requestSuccessful(response?.status)) {
                     const { instalacao } = response?.data
                     const outrasInstalacoes = response?.data?.outras_instalacoes
-                    const hasStartedBilling = response?.data?.ciclosConsumo ? true : false
+                    const hasStartedBilling = response?.data?.ciclosConsumo?.length > 0 ? true : false
 
                     const updatedMainInstallation = {
                         id: instalacao?.id,

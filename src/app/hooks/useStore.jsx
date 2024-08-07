@@ -220,8 +220,6 @@ export const useStoreMainInstallation = create((set) => ({
         status: "",
 
         hasStartedBilling: false,
-
-
     },
     updateMainInstallation: (newMainInstallation) =>
         set((state) => ({

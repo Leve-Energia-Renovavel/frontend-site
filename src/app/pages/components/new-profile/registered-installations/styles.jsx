@@ -50,6 +50,8 @@ export const NewInstallationsContainer = styled.div`
 
     padding: 2rem;
 
+    display: none; //just for v0
+
     border: 1px dashed ${newBackground.green};
 
     &:hover {
@@ -68,7 +70,4 @@ export const NewInstallationsContainer = styled.div`
         text-align: center;
     }
 
-    @media (max-width: 900px) {
-        display: none;
-    }
 `

@@ -43,6 +43,7 @@ export const NewInvoicesTableContent = styled(Accordion)`
     
     @media (max-width: 900px) {
         width: fit-content;
+        ${props => props.noBills && "width: 100%;"};
          max-width: 94vw;
 
         .mobileActionButtonContainer {

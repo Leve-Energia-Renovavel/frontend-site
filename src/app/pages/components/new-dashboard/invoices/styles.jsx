@@ -122,6 +122,7 @@ export const NextBillDivider = styled(Divider)`
     border-color: ${newBackground.orange};
 `
 
+
 export const NextBillsFooter = styled.div`
     margin-top: 37px;
     margin-bottom: 15px;
@@ -141,6 +142,20 @@ export const NextBillsFooter = styled.div`
         }
 
         
+    }
+
+`
+
+export const NoBillsContainer = styled.div`
+    text-align: center;
+    margin-top: 10px;
+
+    .noBillsYet {
+        font-family: "Graphie";
+        font-size: 17px;
+        line-height: 21px;
+        font-weight: 600;
+        color: ${newBackground.orange};
     }
 
 `
