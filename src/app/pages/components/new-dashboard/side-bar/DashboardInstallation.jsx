@@ -126,7 +126,8 @@ export default function DashboardInstallation() {
                         IconComponent={""}
                     >
                         <li value={0} style={{ display: 'none' }}>
-                            <span className="home">Casa</span>
+                            {/* <span className="home">{`Endereço ${installationNumber}`}</span> */}
+                            <span className="home">{`Casa`}</span>
                         </li>
                         {filteredInstallations?.map((otherInstallation, index) => {
                             return (

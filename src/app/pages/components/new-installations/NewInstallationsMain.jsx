@@ -29,7 +29,7 @@ export default function NewInstallationsMain() {
         <>
             {hasStartedBilling ? (
                 <Container className='installationsMainContainer'>
-                    <h1 className="pageTitle">Unidades cadastradas</h1>
+                    <h1 className="pageTitle">Endereços cadastrados</h1>
 
                     <NewInstallationsMainHeader />
                     <StatusStepper />

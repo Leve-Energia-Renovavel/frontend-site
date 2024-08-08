@@ -44,7 +44,7 @@ export const menuOptions = [
     {
         id: 4,
         icon: <LocationOnIcon className='icon' />,
-        title: "Unidades cadastradas",
+        title: "Endereços cadastrados",
         link: "/dashboard/installations/",
         menuLabel: "installations",
         highlighted: false,
