@@ -99,7 +99,7 @@ export default function DashboardInvoices() {
                           </NextBillInfo>
                           <NextBillDivider className='divider' />
                           <NextBillInfo>
-                            <p className='label'>Consumo</p>
+                            <p className='label'>Créditos de energia</p>
                             <p className='info'>{parseInt(bill.energyConsumed) + " kWh"}</p>
                           </NextBillInfo>
                           <NextBillDivider className='divider' />

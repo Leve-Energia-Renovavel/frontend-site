@@ -13,7 +13,7 @@ export default function DashboardSideBar({ children }) {
             <SideBar>
                 <DashboardProfile />
                 <DashboardInstallation />
-                <DashboardMemberGetMember />
+                <DashboardMemberGetMember isSideBar={true} />
                 {children}
             </SideBar>
         </>

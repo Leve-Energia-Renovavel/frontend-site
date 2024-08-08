@@ -136,9 +136,10 @@ export const NewDashboardMenu = styled.div`
         line-height: 27px;
         font-weight: 500;
         color: ${newBackground.orange};
-        
-        margin: 3rem 10rem;
 
+        ${props => !props.isSideBar && "margin: 3rem 10rem 0rem 10rem;"}
+        ${props => props.isSideBar && "display: none;"}
+        
         text-align: start;
         
         &:hover {

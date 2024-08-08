@@ -42,7 +42,7 @@ export default function DashboardHistory() {
             <HistoryDivider />
 
             <HistoryChartLegend className='historyChartLegend'>
-              <LegendCarrier className='legend'>Concessionária</LegendCarrier>
+              <LegendCarrier className='legend'>Distribuidora</LegendCarrier>
               <LegendExpired className='legend'>Fatura vencida</LegendExpired>
               <LegendDue className='legend'>Fatura em aberto</LegendDue>
               <LegendPaid className='legend'>Fatura paga</LegendPaid>

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { MenuOption } from './styles';
 import MemberGetMemberModal from '../../utils/modals/member-get-member-modal/MemberGetMemberModal';
 
-export default function DashboardMemberGetMember() {
+export default function DashboardMemberGetMember({ isSideBar }) {
 
     const [openModal, setOpenModal] = useState(false)
 
@@ -19,7 +19,7 @@ export default function DashboardMemberGetMember() {
 
     return (
         <>
-            <MenuOption highlighted={true} onClick={() => handleOpenModal()}>
+            <MenuOption highlighted={true} isSideBar={isSideBar} onClick={() => handleOpenModal()}>
                 <PersonAddAltIcon className='icon' />
                 <span className='memberGetMember'>Indique um amigo e ganhe, para cada um, <span className='couponValue'>R$50 na fatura</span></span>
             </MenuOption>

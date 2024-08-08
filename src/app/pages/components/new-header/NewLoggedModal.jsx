@@ -58,9 +58,13 @@ export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
                             <Typography variant="subtitle1" className="helloUser">Olá, {username ? username : "Visitante"}</Typography>
                         </MenuHeaderContent>
 
-                        <DashboardMenu menuSelected={menuSelected} setMenuSelection={setMenuSelection} closeModal={closeModal} />
+                        <DashboardMemberGetMember isSideBar={false} />
+                        <DashboardMenu
+                            isSideBar={false}
+                            menuSelected={menuSelected}
+                            setMenuSelection={setMenuSelection}
+                            closeModal={closeModal} />
 
-                        <DashboardMemberGetMember />
 
                     </MenuContent>
                 </LoginBox>

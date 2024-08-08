@@ -74,10 +74,10 @@ export default function NewInstallationsCarrousel({ dataType }) {
 
             <ChartLegend />
 
-            <FooterContainer className='understandYourEconomy'>
+            {/* <FooterContainer className='understandYourEconomy'>
                 <InfoIcon />
                 <span>Entenda sua economia</span>
-            </FooterContainer>
+            </FooterContainer> */}
         </Container>
 
     )

@@ -34,7 +34,7 @@ export const chartLegends = [
         backgroundColor: newBackground.green,
     },
     {
-        title: "Taxa mín. concessionária",
+        title: "Taxa mín. distribuidora",
         fontColor: newBackground.white,
         backgroundColor: newBackground.greyDark,
     },

@@ -3,7 +3,7 @@ import { menuOptions } from '@/app/utils/helper/dashboardHelper';
 import { useRouter } from 'next/navigation';
 import { MenuOption, NewDashboardMenu } from './styles';
 
-export default function DashboardMenu({ menuSelected, setMenuSelection, closeModal }) {
+export default function DashboardMenu({ isSideBar, menuSelected, setMenuSelection, closeModal }) {
 
     const router = useRouter()
 
@@ -16,15 +16,15 @@ export default function DashboardMenu({ menuSelected, setMenuSelection, closeMod
         const selectedOption = menuOptions.find(option => option.id === id);
         setMenuSelection(selectedOption);
         router.push(link)
-        
-        if(closeModal) {
+
+        if (closeModal) {
             closeModal()
         }
     }
 
     return (
         <>
-            <NewDashboardMenu>
+            <NewDashboardMenu isSideBar={isSideBar}>
                 {menuOptions.map((option, index) => {
                     if (option.id !== 3 && option.id !== 5) {
                         return (

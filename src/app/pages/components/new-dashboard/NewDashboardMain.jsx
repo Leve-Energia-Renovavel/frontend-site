@@ -70,7 +70,10 @@ export default function NewDashboardMain(props) {
         <>
             <Container className='dashboardContainer'>
                 <DashboardSideBar className="sideBar">
-                    <DashboardMenu menuSelected={menuSelected} setMenuSelection={setMenuSelection} />
+                    <DashboardMenu
+                        isSideBar={true}
+                        menuSelected={menuSelected}
+                        setMenuSelection={setMenuSelection} />
                 </DashboardSideBar>
                 <Content className='dashboardContent'>
                     {mainInstallationExists && !hasStartedBilling && <StatusStepper />}

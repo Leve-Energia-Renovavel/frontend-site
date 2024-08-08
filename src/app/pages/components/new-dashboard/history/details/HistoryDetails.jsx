@@ -17,7 +17,7 @@ export default function HistoryDetails() {
             <HistoryDetailContent>
                 <HistoryDetailValue className='historyDetailValue'>
                     <p className='value'>{`${userEconomy.receivedCredits ? parseInt(userEconomy.receivedCredits) : `0`} kWh`}</p>
-                    <p className='legend'>em energia renovável</p>
+                    <p className='legend'>em créditos de energia limpa</p>
                 </HistoryDetailValue>
                 <HistoryDetailValue className='historyDetailValue'>
                     <p className='valueHighlighted'>{`${userEconomy.value ? userEconomy.value.toString().replace('.', ',') : `R$ 0,00`}`}</p>
