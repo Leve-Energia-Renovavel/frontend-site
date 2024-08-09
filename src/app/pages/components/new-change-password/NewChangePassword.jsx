@@ -10,16 +10,23 @@ export default function NewChangePassword({ setErrorMessage, setNotifications })
 
     const oldPasswordRef = useRef(null)
     const newPasswordRef = useRef(null)
+    const confirmNewPasswordRef = useRef(null)
 
-    const [passwordVisible, setPasswordVisible] = useState(false)
+    const [currentPasswordVisible, setCurrentPasswordVisible] = useState(false)
+    const [newPasswordVisible, setNewPasswordVisible] = useState(false)
     const [openModal, setOpenModal] = useState(false)
 
     const changePassword = async () => {
         const oldPassword = oldPasswordRef.current.value
         const newPassword = newPasswordRef.current.value
-        const result = await handleChangePassword(oldPassword, newPassword, setNotifications, setErrorMessage)
-        if (result) {
-            setOpenModal(true)
+        const confirmedNewPassword = confirmNewPasswordRef.current.value
+        if (newPassword !== confirmedNewPassword) {
+            setErrorMessage(["É necessário confirmar a nova senha"])
+        } else {
+            const result = await handleChangePassword(oldPassword, newPassword, setNotifications, setErrorMessage)
+            if (result) {
+                setOpenModal(true)
+            }
         }
     }
 
@@ -39,28 +46,44 @@ export default function NewChangePassword({ setErrorMessage, setNotifications })
                     className="inputForm"
                     inputRef={oldPasswordRef}
                     placeholder='Senha atual'
-                    type={passwordVisible ? "text" : "password"}
+                    type={currentPasswordVisible ? "text" : "password"}
                     InputProps={{
                         endAdornment:
                             <InputAdornment position="end">
                                 <IconButton
-                                    onClick={() => setPasswordVisible(!passwordVisible)}>
-                                    {passwordVisible ? <VisibleIcon /> : <InvisibleIcon />}
+                                    onClick={() => setCurrentPasswordVisible(!currentPasswordVisible)}>
+                                    {currentPasswordVisible ? <VisibleIcon /> : <InvisibleIcon />}
                                 </IconButton>
                             </InputAdornment>
                     }} />
                 <FormInput
                     required
                     className="inputForm"
-                    type={passwordVisible ? "text" : "password"}
+                    type={newPasswordVisible ? "text" : "password"}
                     inputRef={newPasswordRef}
                     placeholder='Nova senha'
                     InputProps={{
                         endAdornment:
                             <InputAdornment position="end">
                                 <IconButton
-                                    onClick={() => setPasswordVisible(!passwordVisible)}>
-                                    {passwordVisible ? <VisibleIcon /> : <InvisibleIcon />}
+                                    onClick={() => setNewPasswordVisible(!newPasswordVisible)}>
+                                    {newPasswordVisible ? <VisibleIcon /> : <InvisibleIcon />}
+                                </IconButton>
+                            </InputAdornment>
+                    }}
+                />
+                <FormInput
+                    required
+                    className="inputForm"
+                    type={newPasswordVisible ? "text" : "password"}
+                    inputRef={confirmNewPasswordRef}
+                    placeholder='Confirmar nova senha'
+                    InputProps={{
+                        endAdornment:
+                            <InputAdornment position="end">
+                                <IconButton
+                                    onClick={() => setNewPasswordVisible(!newPasswordVisible)}>
+                                    {newPasswordVisible ? <VisibleIcon /> : <InvisibleIcon />}
                                 </IconButton>
                             </InputAdornment>
                     }}

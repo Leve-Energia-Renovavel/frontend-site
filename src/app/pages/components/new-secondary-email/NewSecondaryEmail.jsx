@@ -28,7 +28,7 @@ export default function NewSecondaryEmail({ setErrorMessage, setNotifications })
                 <h3 className='title'>Cadastrar Email Secundário</h3>
             </TitleContainer>
             <SubtitleContainer>
-                <p className='subtitle'>Caso queira receber suas faturas em um novo e-mail, é só inserir no campo abaixo e checar a caixinha.</p>
+                <p className='subtitle'>Para receber suas faturas em um novo e-mail, insira o novo e-mail no campo abaixo e clique no botão.</p>
             </SubtitleContainer>
             <SecondaryEmailForm>
                 <FormInput className="inputForm" inputRef={secondaryEmailRef} placeholder='Email secundário' required />

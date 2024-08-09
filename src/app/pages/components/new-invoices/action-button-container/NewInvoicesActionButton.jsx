@@ -1,7 +1,7 @@
 
 import { downloadBillByUrl } from '@/app/utils/downloader/invoicesDownloader';
 import { useRouter } from 'next/navigation';
-import { DownloadIcon, DueButton, GraphIcon, IconButton, InvoicesTableActionButtonContainer, LinkIcon, PaidButton, PendingButton } from './styles';
+import { DownloadIcon, DueButton, GraphIcon, IconButton, InvoicesTableActionButtonContainer, LinkIcon, PendingButton } from './styles';
 
 export default function NewInvoicesActionButtonContainer({ status, urlBill, uuid, referenceDate }) {
 
@@ -19,31 +19,24 @@ export default function NewInvoicesActionButtonContainer({ status, urlBill, uuid
 
     return (
         <InvoicesTableActionButtonContainer>
-            {status === "due" && (
-                <DueButton onClick={() => router.push("/dashboard/installations")}>
-                    <GraphIcon />
-                    <span>Ver consumo</span>
-                </DueButton>
-            )}
-            {status === "paid" && (
-                <PaidButton onClick={() => handleDownloadBill()}>
-                    <DownloadIcon />
-                    <span>Baixar PDF</span>
-                </PaidButton>
-            )}
-            {status === "pending" && (
-                <>
-                    <PendingButton>
+            <>
+                {status === "due" || status === "pending" ? (
+                    <PendingButton status={status}>
                         <span>Pagar</span>
-                    </PendingButton>
-                    <IconButton onClick={() => handleOpenLink()}>
-                        <LinkIcon className='icon' />
-                    </IconButton>
-                    <IconButton onClick={() => handleDownloadBill()}>
-                        <DownloadIcon className='icon' />
-                    </IconButton>
-                </>
-            )}
+                    </PendingButton>)
+                    :
+                    (<DueButton status={status} onClick={() => router.push("/dashboard/installations")}>
+                        <GraphIcon className='icon' />
+                        <span>Ver consumo</span>
+                    </DueButton>)}
+                <IconButton status={status} onClick={() => handleOpenLink()}>
+                    <LinkIcon className='icon' />
+                </IconButton>
+                <IconButton status={status} onClick={() => handleDownloadBill()}>
+                    <DownloadIcon className='icon' />
+                </IconButton>
+            </>
+
         </InvoicesTableActionButtonContainer>
     )
 }

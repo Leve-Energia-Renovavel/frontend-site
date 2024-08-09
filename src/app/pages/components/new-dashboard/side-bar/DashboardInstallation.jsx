@@ -140,7 +140,7 @@ export default function DashboardInstallation() {
                 </BoxInstallation>
             </InstallationHeader>
             <InstallationDetails>
-                <p className="installationDetails">{street}, {number} - {neighborhood}, {city !== "" ? city : getCityNameByStateIdAndCityId(stateId, cityId)} - {state !== "" ? state : stateOptions[stateId]?.nome}, CEP: {formatCep(zipCode)}</p>
+                <p className="installationDetails">{street ? street : "Rua"}, {number ? number : "123"}  - {neighborhood ? neighborhood : "Bairro"}, {city ? "Cidade" : getCityNameByStateIdAndCityId(stateId, cityId)} - {state ? "Estado" : stateOptions[stateId]?.sigla}, CEP: {formatCep(zipCode)}</p>
             </InstallationDetails>
             {/* <InstallationFooter>
                 <AddCircleIcon className="addInstallationIcon" />

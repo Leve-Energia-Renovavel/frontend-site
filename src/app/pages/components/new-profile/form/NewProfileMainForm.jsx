@@ -31,7 +31,7 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
     const isCompany = user?.user.isCompany
 
     const { name, email, phone, cost, distributor, companyName, rg, cpf, cnpj, birthDate, secondaryEmail, maritalStatus, profession, nationality } = user?.user ?? (store?.user || {})
-    const { street, neighborhood, number, city, state, stateId, cityId, zipCode, installationNumber } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+    const { street, neighborhood, number, city, state, complement, stateId, cityId, zipCode, installationNumber } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
     const allInstallations = installations?.installations ?? (storeInstallations?.installations || {})
 
 
@@ -359,10 +359,12 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
                     </InputMask>
 
                     <FormInput className="inputForm"
+                        disabled={!isEdition}
                         inputRef={addressRefs.complement}
+                        defaultValue={complement || ''}
                         label="Complemento" variant="outlined" placeholder="Complemento"
                         type="text"
-                        InputLabelProps={{ style: { color: leveGreen } }} />
+                        InputLabelProps={{ shrink: true, style: { color: leveGreen } }} required />
 
                     <FormInput className="inputForm"
                         disabled

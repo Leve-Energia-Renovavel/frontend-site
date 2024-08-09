@@ -50,13 +50,14 @@ export const ChangePasswordForm = styled.form`
     gap: 10px;
 
     & > .inputForm {
-        flex: 4; // Equivalent to 80%
+        // flex: 4;  Equivalent to 80%
+        flex: 1; 
         max-width: calc(80% - 10px); // Adjusting for the gap if needed
     }
 
     & > .button {
         flex: 1; // Equivalent to 20%
-        max-width: 20%;
+        max-width: 18%;
     }
     
     @media (max-width: 900px) {

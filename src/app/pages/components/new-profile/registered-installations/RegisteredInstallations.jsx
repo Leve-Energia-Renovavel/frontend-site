@@ -9,7 +9,7 @@ export default function RegisteredInstallations() {
 
     return (
         <MainContainer className='registeredInstallations'>
-            <h2 className="title">Minhas unidades cadastradas</h2>
+            <h2 className="title">Meus endereços cadastrados</h2>
 
             <RegisteredInstallationsContainer className="registeredInstallationsContainer">
                 {installations?.slice(-2).map((installation, index) => {

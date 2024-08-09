@@ -3,19 +3,22 @@
 import { useStoreInstallations, useStoreMainInstallation, useStoreUser } from "@/app/hooks/useStore";
 import { changeInvoiceDate } from "@/app/service/invoices-service/InvoicesService";
 import { availableDueDates } from "@/app/utils/helper/invoices/invoicesHelper";
-import { BoxInstallation, BoxInstallationDueDate, NewInvoicesHeader as Header, InstallationIcon, KeyArrowDownIcon, NewInvoicesSelectButton as SelectButton, NewInvoicesSelectInstallation as SelectContainer, NewInvoicesSelectDueDateButton as SelectDueDate, SelectDueDateChoose, SelectInstallation, StyledMenuItem } from "./styles";
+import { useState } from "react";
+import NewDefaultModal from "../../utils/modals/default-modal/NewDefaultModal";
+import { BoxInstallation, BoxInstallationDueDate, NewInvoicesHeader as Header, InstallationIcon, KeyArrowDownIcon, NewInvoicesSelectButton as SelectButton, NewInvoicesSelectInstallation as SelectContainer, NewInvoicesSelectDueDateButton as SelectDueDate, SelectDueDateChoose, SelectInstallation, StyledMenuItem, WarningBox } from "./styles";
 
 export default function NewInvoicesHeader({ setErrorMessage, setNotifications }) {
 
+    const [openConfirmationModal, setOpenConfirmationModal] = useState(false)
+    const [changedDueDate, setChangedDueDate] = useState(null)
+
+    const store = useStoreUser()
     const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
 
-    const { id } = storeMainInstallation?.mainInstallation || {}
-
-
-    const store = useStoreUser()
     const user = JSON.parse(localStorage.getItem('user'))
 
+    const { id } = storeMainInstallation?.mainInstallation || {}
     const { invoiceDate } = user?.user ?? (store?.user || {})
 
     const allInstallations = storeInstallations?.installations || {}
@@ -25,66 +28,93 @@ export default function NewInvoicesHeader({ setErrorMessage, setNotifications })
     const handleChangeSelectedInstallation = () => {
 
     }
-    const handleChangeDueDate = async (newDate) => {
+
+    const handleChangeDueDate = async () => {
+        await changeInvoiceDate(changedDueDate, setErrorMessage, setNotifications, store)
+        setOpenConfirmationModal(false)
+    }
+
+    const handleConfirmChangeDueDate = async (newDate) => {
         if (newDate !== invoiceDate) {
-            await changeInvoiceDate(newDate, setErrorMessage, setNotifications, store)
+            setChangedDueDate(newDate)
+            setOpenConfirmationModal(current => !current)
         }
     }
 
+    const closeConfirmModal = () => {
+        setOpenConfirmationModal(false)
+    }
+
     return (
-        <Header className="invoicesHeader">
-            <h1 className="pageTitle">Minhas faturas</h1>
+        <>
+            <Header className="invoicesHeader">
+                <h1 className="pageTitle">Minhas faturas</h1>
 
-            <SelectContainer className="invoicesSelectContainer">
-                <div>
-                    <h6 className="selectInstallation">Selecione a unidade:</h6>
-                    <SelectButton className="invoicesSelectButton">
-                        <InstallationIcon className="installationIcon" />
-                        <BoxInstallation>
-                            <SelectInstallation
-                                fullWidth
-                                value={0}
-                                displayEmpty
-                                // IconComponent={KeyArrowDownIcon}
-                                IconComponent={""}
-                            >
-                                <li value={0} style={{ display: 'none' }}>
-                                    <span className="defaultInstallation">Casa</span>
-                                </li>
-                                {filteredInstallations?.map((otherInstallation, index) => {
-                                    return (
-                                        <li key={otherInstallation?.id} value={index + 1}>
-                                            <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>{otherInstallation.street}</span>
-                                        </li>
-                                    )
-                                })}
-                            </SelectInstallation>
-                        </BoxInstallation>
-                    </SelectButton>
-                </div>
+                <SelectContainer className="invoicesSelectContainer">
+                    <div>
+                        <h6 className="selectInstallation">Selecione a unidade:</h6>
+                        <SelectButton className="invoicesSelectButton">
+                            <InstallationIcon className="installationIcon" />
+                            <BoxInstallation>
+                                <SelectInstallation
+                                    fullWidth
+                                    value={0}
+                                    displayEmpty
+                                    // IconComponent={KeyArrowDownIcon}
+                                    IconComponent={""}>
+                                    <li value={0} style={{ display: 'none' }}>
+                                        <span className="defaultInstallation">Casa</span>
+                                    </li>
+                                    {filteredInstallations?.map((otherInstallation, index) => {
+                                        return (
+                                            <li key={otherInstallation?.id} value={index + 1}>
+                                                <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>{otherInstallation.street}</span>
+                                            </li>
+                                        )
+                                    })}
+                                </SelectInstallation>
+                            </BoxInstallation>
+                        </SelectButton>
+                    </div>
 
-                <div>
-                    <h6 className="selectInstallation">Dia de vencimento da fatura:</h6>
-                    <SelectDueDate className="invoicesSelectDueDate">
-                        <BoxInstallationDueDate>
-                            <SelectDueDateChoose
-                                value={invoiceDate || 5}
-                                displayEmpty
-                                IconComponent={KeyArrowDownIcon}
+                    <div>
+                        <h6 className="selectInstallation">Alterar dia de vencimento da fatura:</h6>
+                        <SelectDueDate className="invoicesSelectDueDate">
+                            <BoxInstallationDueDate>
+                                <SelectDueDateChoose
+                                    value={invoiceDate || 5}
+                                    displayEmpty
+                                    IconComponent={KeyArrowDownIcon}>
+                                    {availableDueDates?.map((dueDate) => {
+                                        return (
+                                            <StyledMenuItem key={dueDate} value={dueDate} className="dueDateAvailableOption" onClick={() => handleConfirmChangeDueDate(dueDate)}>
+                                                <span className="dueDateOption">Dia {dueDate}</span>
+                                            </StyledMenuItem>
+                                        )
+                                    })}
+                                </SelectDueDateChoose>
+                            </BoxInstallationDueDate>
+                        </SelectDueDate>
+                    </div>
 
-                                >
-                                {availableDueDates?.map((dueDate) => {
-                                    return (
-                                        <StyledMenuItem key={dueDate} value={dueDate} className="dueDateAvailableOption" onClick={() => handleChangeDueDate(dueDate)}>
-                                            <span className="dueDateOption">Dia {dueDate}</span>
-                                        </StyledMenuItem>
-                                    )
-                                })}
-                            </SelectDueDateChoose>
-                        </BoxInstallationDueDate>
-                    </SelectDueDate>
-                </div>
-            </SelectContainer>
-        </Header>
+                </SelectContainer>
+
+                <WarningBox severity="warning"><span className='highlighted'>Atenção:</span> Caso você opte pelo método de pagamento via <span className='highlighted'>cartão de crédito</span>, a sua fatura Leve será cobrada próxima ao <span className='underlined'>dia 15 do mês referente</span>.</WarningBox>
+
+            </Header>
+
+
+            {openConfirmationModal &&
+                <NewDefaultModal
+                    title={"Tem certeza que deseja alterar o dia da fatura?"}
+                    description={"Atenção: A data do vencimento não altera a data da cobrança do pagamento, que é sempre próximo ao dia 15 de cada mês."}
+                    buttonTitle={"Confirmar"}
+                    cancel={"Cancelar"}
+                    confirmModal={handleChangeDueDate}
+                    closeModal={closeConfirmModal}
+                    isOpen={openConfirmationModal}
+                />}
+        </>
+
     )
 }

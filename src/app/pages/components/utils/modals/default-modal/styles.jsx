@@ -27,11 +27,11 @@ export const ModalBox = styled(Box)`
 
     .modalTitle {
         white-space: nowrap;
-            font-family: "Graphie";
-            font-size: 27px;
-            line-height: 32px;
-            font-weight: 600;
-            color: ${newBackground.orange};
+        font-family: "Graphie";
+        font-size: 27px;
+        line-height: 32px;
+        font-weight: 600;
+        color: ${newBackground.orange};
     }
 
     .modalDescription {
@@ -47,7 +47,7 @@ export const ModalBox = styled(Box)`
     }
 
 
-    @media (max-width: var(--medium)) {
+    @media (max-width: 900px) {
         width: 100%;
         height: 100%;
         border-radius: 0;
@@ -57,7 +57,13 @@ export const ModalBox = styled(Box)`
 
         overflow: auto;
 
-        padding: 1rem 1rem;
+        padding: 2rem;
+
+        top: 20%;
+
+        .modalTitle {
+            white-space: wrap;
+        }
     }
 `
 

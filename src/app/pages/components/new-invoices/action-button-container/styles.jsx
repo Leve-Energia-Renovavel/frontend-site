@@ -17,16 +17,13 @@ export const InvoicesTableActionButtonContainer = styled.div`
 
 export const GraphIcon = styled(BarChartIcon)`
     max-width: 19px;
-    color: ${newBackground.orange};
     `
 export const DownloadIcon = styled(FileDownloadOutlinedIcon)`
     max-width: 20px;
-    color: ${newBackground.green};
 `
 export const LinkIcon = styled(InsertLinkIcon)`
     transform: rotate(135deg);
     max-width: 20px;
-    color: ${newBackground.green};
 `
 
 export const DueButton = styled.button`
@@ -40,21 +37,25 @@ export const DueButton = styled.button`
     background-color: ${background.white};
     border-radius: 10px;
 
-    border: 2px solid ${newBackground.orange};
+    border: 2px solid ${props => props.status === "paid" ? newBackground.green : newBackground.orange};
 
     span {
         font-family: "Graphie";
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${props => props.status === "paid" ? newBackground.green : newBackground.orange};
 
         white-space: nowrap;
     }
 
+    .icon {
+        color: ${props => props.status === "paid" ? newBackground.green : newBackground.orange};
+    }
+
     &:hover {
         cursor: pointer;
-        background-color: ${newBackground.orangeFocused};
+        background-color: ${props => props.status === "paid" ? newBackground.greenLight : newBackground.orangeFocused}
     }
 `
 
@@ -117,15 +118,15 @@ export const IconButton = styled.button`
 
     padding: 8px;
     background-color: ${background.white};
-    border: 2px solid ${newBackground.orange};
+    border: 2px solid ${props => props.status === "paid" ? newBackground.green : newBackground.orange};
     border-radius: 10px;
 
     .icon{
-        color: ${newBackground.orange};
+        color: ${props => props.status === "paid" ? newBackground.green : newBackground.orange};
     }
     
     &:hover {
         cursor: pointer;
-        background-color: ${newBackground.orangeFocused};
+        background-color: ${props => props.status === "paid" ? newBackground.greenLight : newBackground.orangeFocused};
     }
 `

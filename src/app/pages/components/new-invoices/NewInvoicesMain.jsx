@@ -1,9 +1,9 @@
 "use client"
 
 import dynamic from "next/dynamic";
-import { NewInvoicesContainer } from "./styles";
-import Messages from "../messages/Messages";
 import { useState } from "react";
+import Messages from "../messages/Messages";
+import { NewInvoicesContainer } from "./styles";
 
 const NewInvoicesTable = dynamic(() => import("./table/NewInvoicesTable"), { ssr: false });
 const NewInvoicesHeader = dynamic(() => import("./header/NewInvoicesHeader"), { ssr: false });

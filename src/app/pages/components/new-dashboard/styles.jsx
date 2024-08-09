@@ -14,10 +14,10 @@ export const NewDashboardContainer = styled.div`
     margin: 74px auto;
     
     @media (max-width: 900px) {
-        padding: 1rem;
+        padding: 1rem 1rem 3rem 1rem;
     }
     @media (max-width: 700px) {
-        padding: 10px;
+        padding: 1rem 10px 3rem 10px;
     }
 `
 export const NewDashboardSideBar = styled.div`

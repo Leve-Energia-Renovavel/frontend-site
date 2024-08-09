@@ -2,7 +2,7 @@ import { newBackground } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import InventoryIcon from '@mui/icons-material/Inventory';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Box, MenuItem, Select } from "@mui/material";
+import { Alert, Box, MenuItem, Select } from "@mui/material";
 
 
 export const NewInvoicesHeader = styled.div`
@@ -23,12 +23,12 @@ export const NewInvoicesHeader = styled.div`
 export const NewInvoicesSelectInstallation = styled.div`
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     align-items: center;
+    flex-wrap: wrap;
 
-    margin: 1rem 0;
+    margin: 1rem 0 0 0;
 
-    gap: 1rem;
+    gap: 10px;
 
     .installationIcon {
         color: ${newBackground.white};
@@ -49,6 +49,10 @@ export const NewInvoicesSelectInstallation = styled.div`
         font-weight: 600;
     }
 
+    @media (max-width: 900px) {
+        justify-content: center;
+    }
+
 `
 export const NewInvoicesSelectButton = styled.div`
     display: flex;
@@ -61,7 +65,7 @@ export const NewInvoicesSelectButton = styled.div`
     border-radius: 8px;
 
     @media (max-width: 900px) {
-        width: 132px;
+        width: 230px;
     }
 `
 export const NewInvoicesSelectDueDateButton = styled.div`
@@ -106,6 +110,7 @@ export const SelectInstallation = styled(Select)`
     font-weight: bold;
     color: ${newBackground.white};
 
+
     &.MuiOutlinedInput-root {
         .MuiSelect-select {
             padding: 0 2px !important; // Remove padding
@@ -144,7 +149,7 @@ export const SelectDueDateChoose = styled(Select)`
     font-weight: bold;
     color: ${newBackground.white};
 
-    width: 170px;
+    width: 210px;
 
     &.MuiOutlinedInput-root {
         .MuiSelect-select {
@@ -198,3 +203,28 @@ export const StyledMenuItem = styled(MenuItem)`
     }
   }
 `;
+
+
+export const WarningBox = styled(Alert)`
+    display: flex;
+    align-items: center;
+
+    margin: 1rem 0;
+
+    width: 100%;
+    font-family: "Graphie";
+    font-size: 14px;
+    line-height: 17px;
+
+    border-radius: 15px;
+
+
+    .underlined {
+      text-decoration: underline;
+    }
+    
+    .highlighted {
+      font-weight: bold;
+    }
+
+`

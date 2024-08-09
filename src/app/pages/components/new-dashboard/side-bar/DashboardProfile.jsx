@@ -74,7 +74,7 @@ export default function DashboardProfile() {
         <NewDashboardProfile>
             <ProfileHeader>
                 <PersonOutlineIcon className="profileIcon" />
-                <h6 className="username">Olá, {username ? username : "usuário"}</h6>
+                <h6 className="username">Olá, {username ? username : "Usuário"}</h6>
                 <p className="goToProfile" onClick={() => router.push("/dashboard/profile")}>Ver perfil</p>
             </ProfileHeader>
             <p className="cpf">CPF: {formatCpf(cpf)}</p>

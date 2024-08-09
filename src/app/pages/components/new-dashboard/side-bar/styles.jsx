@@ -39,6 +39,8 @@ export const ProfileHeader = styled.div`
         font-weight: 600;
         color: ${newBackground.green};
         margin-right: auto;
+
+        white-space: nowrap;
     }
     
     .goToProfile {
@@ -47,6 +49,8 @@ export const ProfileHeader = styled.div`
         line-height: 17px;
         font-weight: 500;
         color: ${newBackground.green};
+
+        white-space: nowrap;
         
         &:hover {
             cursor: pointer;
