@@ -14,7 +14,9 @@ export default function NewHistoryMoneyChart() {
 
     const valueData = billings?.slice(chartSize).map((bill) => bill?.value)
     // const availabilityData = billings?.slice(chartSize).map((bill) => bill?.energyDistributorInjected)
-    const availabilityData = billings?.slice(chartSize).map((_) => 250)
+    
+    // const availabilityData = billings?.slice(chartSize).map((_) => 250)
+    const availabilityData = billings?.slice(chartSize).map((_) => 0)
 
     // const dueDateData = billings?.slice(chartSize).map((bill) => formatDayMonthAndYearInFull(bill?.dueDate))
     const billDateData = billings?.slice(chartSize).map((bill) => formatMonthAndYearInFull(bill?.billDate))

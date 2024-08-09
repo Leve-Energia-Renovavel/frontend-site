@@ -93,6 +93,10 @@ export const NextBillInfo = styled.div`
         border-radius: 20px;
         white-space: nowrap;
 
+        width: 100%;
+        max-width: 85px;
+        text-align: center;
+
         padding: 4px 5px;
         ${props => props.status ? `background-color:${newStatusColors[props.status]};` : ""};
         ${props => props.status ? `color:${newFontStatusColors[props.status]};` : ""};

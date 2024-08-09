@@ -55,6 +55,8 @@ export default function NewDashboardMain(props) {
 
                     storeEconomy.updateUserEconomy(updatedUserEconomy)
 
+                } else {
+                    router.push(`/login`)
                 }
             } catch (error) {
                 console.error("Error fetching dashboard data:", error);
@@ -63,6 +65,7 @@ export default function NewDashboardMain(props) {
                 }
             }
         };
+
         fetchDashboardData();
     }, []);
 
