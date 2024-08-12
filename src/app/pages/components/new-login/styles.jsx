@@ -57,6 +57,9 @@ export const LoginBox = styled(Box)`
         overflow: auto;
 
         padding: 1rem 1rem;
+
+        overflow: hidden;
+
     }
 `
 export const LoginIconContainer = styled.div`
