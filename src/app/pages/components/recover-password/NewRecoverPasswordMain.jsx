@@ -21,7 +21,11 @@ export default function NewRecoverPasswordMain() {
         <>
             <LoginBanner />
             <HomeMain />
-            <NewLoginModal isOpen={openLogin} hasForgottenPassword={true} openModal={openLoginModal} closeModal={closeLoginModal} />
+            <NewLoginModal
+                isOpen={openLogin}
+                hasForgottenPassword={true}
+                openModal={openLoginModal}
+                closeModal={closeLoginModal} />
         </>
     );
 }
