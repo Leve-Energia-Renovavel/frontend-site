@@ -26,7 +26,18 @@ export const MobileNewHeaderContainer = styled.header`
     right: 0; 
     z-index: 1000;
     
+    .menuIcon {
+        width: 45px;
+        height: 45px;
 
+        padding: 8px;
+
+        border-radius: 30px;
+        color: ${props => props.isOpen ? newBackground.yellow : newBackground.orange};
+        background-color: ${props => props.isOpen ? newBackground.orange : newBackground.yellow};
+        
+        cursor: pointer;
+    }
 
     .profile {
         ${props => props.isLandingPage && "display:none"};

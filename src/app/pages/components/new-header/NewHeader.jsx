@@ -6,6 +6,8 @@ import selectedMenuIcon from "../../../../resources/icons/small/leve-profile-ora
 import menuIcon from "../../../../resources/icons/small/leve-profile-yellow-icon-small-compressed.svg"
 import { MobileNewHeaderContainer, PartnerContainer } from './styles'
 
+import MenuIcon from '@mui/icons-material/Menu';
+
 export default function NewHeader({ isLoggedUser, isOpen, openModal, closeModal, isLandingPage, isPartner, partner }) {
 
     const router = useRouter()
@@ -19,14 +21,15 @@ export default function NewHeader({ isLoggedUser, isOpen, openModal, closeModal,
     }
 
     return (
-        <MobileNewHeaderContainer isLandingPage={isLandingPage} isPartner={isPartner}>
+        <MobileNewHeaderContainer isLandingPage={isLandingPage} isPartner={isPartner} isOpen={isOpen}>
             <Image src={logoLeve} onClick={() => handleRoute()} className='logoLeve' alt={"Logo da Leve na cor laranja"} priority={true} />
             {isPartner && (
                 <PartnerContainer>
                     <p className="partnershipIcon">+</p>
                     {partners[partner]?.logo}
                 </PartnerContainer>)}
-            < Image src={isOpen ? selectedMenuIcon : menuIcon} className='profile' alt={"Perfil Leve"} onClick={openModal} />
+            <MenuIcon className='menuIcon' onClick={openModal} />
+            {/* <Image src={isOpen ? selectedMenuIcon : menuIcon} className='profile' alt={"Perfil Leve"} onClick={openModal} /> */}
         </MobileNewHeaderContainer>
     )
 }

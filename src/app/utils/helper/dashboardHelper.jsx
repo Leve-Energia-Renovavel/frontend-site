@@ -10,7 +10,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import HomeIcon from '@mui/icons-material/Home';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ReceiptIcon from '@mui/icons-material/Receipt';
-
+import PersonIcon from '@mui/icons-material/Person';
 const NewInstallationsMain = dynamic(() => import('@/app/pages/components/new-installations/NewInstallationsMain'), { ssr: false });
 
 export const menuOptions = [
@@ -44,7 +44,7 @@ export const menuOptions = [
     {
         id: 4,
         icon: <LocationOnIcon className='icon' />,
-        title: "Endereços cadastrados",
+        title: "Endereços",
         link: "/dashboard/installations/",
         menuLabel: "installations",
         highlighted: false,
@@ -61,9 +61,9 @@ export const menuOptions = [
     },
     {
         id: 6,
-        icon: <AccountCircleOutlinedIcon className='icon' />,
+        icon: <PersonIcon className='icon' />,
         link: "/dashboard/profile/",
-        title: "Meu Perfil",
+        title: "Perfil",
         menuLabel: "profile",
         highlighted: false,
         content: <NewProfileMain />

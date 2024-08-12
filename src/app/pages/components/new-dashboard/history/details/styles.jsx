@@ -7,9 +7,15 @@ export const HistoryDetail = styled.div`
     gap: 1rem;
     padding: 4px 0;
 
+    height: 100%;
     max-height: 140px;
-
+    
     margin-top: auto;
+    
+    @media (max-width: 600px) {
+        max-height: 160px;
+
+    }
     `
 export const HistoryDetailHeader = styled.div`
     display: flex;
@@ -83,16 +89,25 @@ export const HistoryDetailFooter = styled.div`
     font-weight: 600;
     color: ${newBackground.orange};
     margin-top: auto;
-
+    
     &:hover {
         text-decoration: underline;
         cursor: pointer;
+    }
+}
+
+@media (max-width: 340px) {
+    p {
+        white-space: nowrap;
+        font-size: 12px;
+        line-height: 14px;
     }
  }
  `
 export const HistoryDetailFooterHeader = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 2px;
 
     .infoIcon {
