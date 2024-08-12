@@ -26,7 +26,7 @@ export const MobileNewHeaderContainer = styled.header`
     right: 0; 
     z-index: 1000;
     
-    .menuIcon {
+    .profile {
         width: 45px;
         height: 45px;
 
@@ -37,13 +37,7 @@ export const MobileNewHeaderContainer = styled.header`
         background-color: ${props => props.isOpen ? newBackground.orange : newBackground.yellow};
         
         cursor: pointer;
-    }
-
-    .profile {
         ${props => props.isLandingPage && "display:none"};
-        width:45px; 
-        height:45px;
-        cursor: pointer;
     }
 
     .logoLeve {

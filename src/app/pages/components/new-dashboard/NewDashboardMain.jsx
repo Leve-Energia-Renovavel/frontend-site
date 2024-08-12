@@ -63,6 +63,9 @@ export default function NewDashboardMain(props) {
                 if (error?.response?.data?.message === "Unauthenticated.") {
                     router.push("/login")
                 }
+                if (error?.response?.data?.error === "Consumidor não encontrado") {
+                    router.push("/login")
+                }
             }
         };
 

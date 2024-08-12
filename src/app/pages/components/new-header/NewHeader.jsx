@@ -3,7 +3,6 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import logoLeve from "../../../../resources/icons/small/leve-logo-orange-icon-small.svg"
 import { MobileNewHeaderContainer, PartnerContainer } from './styles'
-
 import MenuIcon from '@mui/icons-material/Menu'
 
 export default function NewHeader({ isLoggedUser, isOpen, openModal, closeModal, isLandingPage, isPartner, partner }) {
@@ -26,7 +25,7 @@ export default function NewHeader({ isLoggedUser, isOpen, openModal, closeModal,
                     <p className="partnershipIcon">+</p>
                     {partners[partner]?.logo}
                 </PartnerContainer>)}
-            <MenuIcon className='menuIcon' onClick={openModal} />
+            <MenuIcon className='profile' onClick={openModal} />
         </MobileNewHeaderContainer>
     )
 }

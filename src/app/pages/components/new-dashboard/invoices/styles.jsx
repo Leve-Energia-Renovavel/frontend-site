@@ -42,6 +42,27 @@ export const DashboardInvoicesContent = styled.div`
     width: 100%;
     max-width: 287px;
 `
+export const AllBillsPaidContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: ${newBackground.orange};
+
+    margin-top: 4px;
+    margin-bottom: -10px;
+
+    padding: 4px 8px;
+    border-radius: 10px;
+
+    p {
+        font-family: "Graphie";
+        font-size: 17px;
+        line-height: 21px;
+        font-weight: 600;
+        color: ${newBackground.white};
+
+        text-align: center;
+    }
+`
 export const NextBillsContainer = styled.div`
     display: flex;
     flex-direction: column;

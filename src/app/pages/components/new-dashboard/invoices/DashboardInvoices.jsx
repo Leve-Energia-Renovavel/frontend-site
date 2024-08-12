@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import NewDefaultButton from '../../utils/buttons/NewDefaultButton';
 import DashboardInvoicesDummy from './DashboardInvoicesDummy';
-import { DashboardInvoicesContainer as Container, DashboardInvoicesContent as Content, NextBill, NextBillDivider, NextBillInfo, NextBillsContainer, NextBillsFooter, NoBillsContainer, PayBillButtonContainer } from './styles';
+import { AllBillsPaidContainer, DashboardInvoicesContainer as Container, DashboardInvoicesContent as Content, NextBill, NextBillDivider, NextBillInfo, NextBillsContainer, NextBillsFooter, NoBillsContainer, PayBillButtonContainer } from './styles';
 
 export default function DashboardInvoices() {
 
@@ -74,6 +74,9 @@ export default function DashboardInvoices() {
     setLoading(false)
   }, []);
 
+  const dontHaveBills = billings?.length === 0
+  const dontHaveNextBills = nextBills?.length === 0
+
   return (
     <>
       {hasStartedBilling ? (
@@ -85,7 +88,7 @@ export default function DashboardInvoices() {
                 <NextBillsContainer className='nextBillsContainer'>
                   {isLoading ?
                     <DashboardInvoicesDummy />
-                    : nextBills?.slice(-2).reverse()?.map((bill) => {
+                    : nextBills?.length > 0 ? nextBills?.slice(-2).reverse()?.map((bill) => {
                       return (
                         <NextBill key={bill.uuid} className='nextBill'>
                           <h6 className='billDate'>{bill.billDate}</h6>
@@ -105,12 +108,37 @@ export default function DashboardInvoices() {
                           <NextBillDivider className='divider' />
                         </NextBill>
                       )
-                    })}
+                    }) :
+                      billings?.slice(-2).reverse()?.map((bill) => {
+                        return (
+                          <NextBill key={bill.uuid} className='nextBill'>
+                            <h6 className='billDate'>{bill.billDate}</h6>
+                            <NextBillInfo status={bill.status}>
+                              <h6 className='value'>R$ {bill.value}</h6>
+                              <p className='status'>{billingStatusOptions[bill.status]}</p>
+                            </NextBillInfo>
+                            <NextBillInfo>
+                              <p className='label'>Vencimento</p>
+                              <p className='info'>{bill.dueDate}</p>
+                            </NextBillInfo>
+                            <NextBillDivider className='divider' />
+                            <NextBillInfo>
+                              <p className='label'>Créditos de energia</p>
+                              <p className='info'>{parseInt(bill.energyConsumed) + " kWh"}</p>
+                            </NextBillInfo>
+                            <NextBillDivider className='divider' />
+                          </NextBill>
+                        )
+                      })}
                 </NextBillsContainer>
-                <PayBillButtonContainer>
-                  <NewDefaultButton variant="outlined-inverse" text="Pagar Fatura" />
-                </PayBillButtonContainer>
-
+                {dontHaveBills || dontHaveNextBills ?
+                  <AllBillsPaidContainer>
+                    <p>Tudo em dia! Você não tem faturas pendentes.</p>
+                  </AllBillsPaidContainer>
+                  :
+                  <PayBillButtonContainer>
+                    <NewDefaultButton variant="outlined-inverse" text="Pagar Fatura" onClick={() => router.push(`/dashboard/invoices/`)} />
+                  </PayBillButtonContainer>}
               </>)
               :
               (<NoBillsContainer>
@@ -118,7 +146,8 @@ export default function DashboardInvoices() {
               </NoBillsContainer>)
             }
             <NextBillsFooter>
-              <p className='checkAllInvoices' onClick={() => router.push("/dashboard/invoices")}>{billings.length > 0 ? "Ver todas as faturas" : "Ver página de faturas"}</p>
+              <p className='checkAllInvoices'
+                onClick={() => router.push("/dashboard/invoices")}>{dontHaveBills || dontHaveNextBills ? "Ver página de faturas" : "Ver todas as faturas"}</p>
             </NextBillsFooter>
 
           </Content>

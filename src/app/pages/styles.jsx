@@ -30,7 +30,7 @@ export const newStatusColors = {
 }
 export const newFontStatusColors = {
     due: "#FF7133",
-    paid: "#005940",
+    paid: "#FFF",
     pending: "#FFF"
 }
 
