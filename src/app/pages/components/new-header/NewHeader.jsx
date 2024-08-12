@@ -2,11 +2,9 @@ import { partners } from "@/app/utils/helper/partnerHelper"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import logoLeve from "../../../../resources/icons/small/leve-logo-orange-icon-small.svg"
-import selectedMenuIcon from "../../../../resources/icons/small/leve-profile-orange-icon-small-compressed.svg"
-import menuIcon from "../../../../resources/icons/small/leve-profile-yellow-icon-small-compressed.svg"
 import { MobileNewHeaderContainer, PartnerContainer } from './styles'
 
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from '@mui/icons-material/Menu'
 
 export default function NewHeader({ isLoggedUser, isOpen, openModal, closeModal, isLandingPage, isPartner, partner }) {
 
@@ -29,7 +27,6 @@ export default function NewHeader({ isLoggedUser, isOpen, openModal, closeModal,
                     {partners[partner]?.logo}
                 </PartnerContainer>)}
             <MenuIcon className='menuIcon' onClick={openModal} />
-            {/* <Image src={isOpen ? selectedMenuIcon : menuIcon} className='profile' alt={"Perfil Leve"} onClick={openModal} /> */}
         </MobileNewHeaderContainer>
     )
 }

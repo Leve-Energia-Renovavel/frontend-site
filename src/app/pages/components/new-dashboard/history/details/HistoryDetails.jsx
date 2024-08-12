@@ -1,7 +1,7 @@
 import { useStoreUserEconomy } from '@/app/hooks/useStore';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { HistoryDetail, HistoryDetailContent, HistoryDetailFooter, HistoryDetailFooterHeader, HistoryDetailHeader, HistoryDetailValue } from './styles';
 import { useRouter } from 'next/navigation';
+import { HistoryDetail, HistoryDetailContent, HistoryDetailFooter, HistoryDetailFooterHeader, HistoryDetailHeader, HistoryDetailValue } from './styles';
 
 export default function HistoryDetails() {
 

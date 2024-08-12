@@ -5,7 +5,7 @@ import { changeInvoiceDate } from "@/app/service/invoices-service/InvoicesServic
 import { availableDueDates } from "@/app/utils/helper/invoices/invoicesHelper";
 import { useState } from "react";
 import NewDefaultModal from "../../utils/modals/default-modal/NewDefaultModal";
-import { BoxInstallation, BoxInstallationDueDate, NewInvoicesHeader as Header, InstallationIcon, KeyArrowDownIcon, NewInvoicesSelectButton as SelectButton, NewInvoicesSelectInstallation as SelectContainer, NewInvoicesSelectDueDateButton as SelectDueDate, SelectDueDateChoose, SelectInstallation, StyledMenuItem, WarningBox } from "./styles";
+import { BoxInstallation, BoxInstallationDueDate, NewInvoicesHeader as Header, InstallationIcon, InstallationItem, KeyArrowDownIcon, NewInvoicesSelectButton as SelectButton, NewInvoicesSelectInstallation as SelectContainer, NewInvoicesSelectDueDateButton as SelectDueDate, SelectDueDateChoose, SelectInstallation, StyledMenuItem, WarningBox } from "./styles";
 
 export default function NewInvoicesHeader({ setErrorMessage, setNotifications }) {
 
@@ -67,9 +67,9 @@ export default function NewInvoicesHeader({ setErrorMessage, setNotifications })
                                     </li>
                                     {filteredInstallations?.map((otherInstallation, index) => {
                                         return (
-                                            <li key={otherInstallation?.id} value={index + 1}>
+                                            <InstallationItem key={otherInstallation?.id} value={index + 1}>
                                                 <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>{otherInstallation.street}</span>
-                                            </li>
+                                            </InstallationItem>
                                         )
                                     })}
                                 </SelectInstallation>

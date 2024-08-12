@@ -1,6 +1,6 @@
 import { newBackground } from "@/app/pages/styles"
 import styled from "@emotion/styled"
-import { Box, Select } from "@mui/material"
+import { Box, MenuItem, Select } from "@mui/material"
 
 export const NewDashboardProfile = styled.div`
     display: flex;
@@ -238,6 +238,7 @@ export const BoxInstallation = styled(Box)`
     max-width: 120px;
 
 `
+
 export const SelectInstallation = styled(Select)`
 
     .home {
@@ -276,6 +277,16 @@ export const SelectInstallation = styled(Select)`
     .MuiSvgIcon-root {
         fill: ${newBackground.orange} !important;
     }
+`
+
+export const InstallationItem = styled(MenuItem)`
+    padding: 4px;
+
+    font-family: "Graphie";
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 21px;
+    color: ${newBackground.orange};
 `
 
 

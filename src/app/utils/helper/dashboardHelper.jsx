@@ -1,16 +1,15 @@
-import dynamic from 'next/dynamic';
 import NewHelpMain from '@/app/pages/components/help/NewHelpMain';
 import NewDashboardMainContent from '@/app/pages/components/new-dashboard/main-content/NewDashboardMainContent';
 import NewInvoicesMain from '@/app/pages/components/new-invoices/NewInvoicesMain';
 import NewPaymentMain from '@/app/pages/components/new-payment/NewPaymentMain';
 import NewProfileMain from '@/app/pages/components/new-profile/NewProfileMain';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import HomeIcon from '@mui/icons-material/Home';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import ReceiptIcon from '@mui/icons-material/Receipt';
 import PersonIcon from '@mui/icons-material/Person';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import dynamic from 'next/dynamic';
 const NewInstallationsMain = dynamic(() => import('@/app/pages/components/new-installations/NewInstallationsMain'), { ssr: false });
 
 export const menuOptions = [

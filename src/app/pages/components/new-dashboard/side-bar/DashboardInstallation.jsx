@@ -2,17 +2,17 @@
 "use client"
 
 import { useStoreInstallations, useStoreMainInstallation } from "@/app/hooks/useStore";
+import { getInstallationByUUID } from "@/app/service/installation-service/InstallationService";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { getCityNameByStateIdAndCityId } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { formatCep } from "@/app/utils/formatters/documentFormatter";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
-import { BoxInstallation, InstallationDetails, InstallationFooter, InstallationHeader, NewDashboardInstallation, SelectInstallation } from "./styles";
+import { BoxInstallation, InstallationDetails, InstallationHeader, InstallationItem, NewDashboardInstallation, SelectInstallation } from "./styles";
 
 export default function DashboardInstallation() {
 
@@ -108,8 +108,10 @@ export default function DashboardInstallation() {
         fetchUserData();
     }, []);
 
-    const handleChangeSelectedInstallation = (selectedInstallation) => {
-        console.log(selectedInstallation)
+    const handleChangeSelectedInstallation = async (selectedInstallation) => {
+        // const uuid = selectedInstallation?.uuid
+        // const response = await getInstallationByUUID(uuid)
+        // console.log("SELECTED INSTALLATION response ==>>", response)
     }
 
 
@@ -131,9 +133,9 @@ export default function DashboardInstallation() {
                         </li>
                         {filteredInstallations?.map((otherInstallation, index) => {
                             return (
-                                <li key={otherInstallation?.id} value={index + 1}>
+                                <InstallationItem key={otherInstallation?.id} value={index + 1}>
                                     <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>{otherInstallation.street}</span>
-                                </li>
+                                </InstallationItem>
                             )
                         })}
                     </SelectInstallation>

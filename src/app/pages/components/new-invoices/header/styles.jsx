@@ -139,9 +139,21 @@ export const SelectInstallation = styled(Select)`
     .MuiSvgIcon-root {
         fill: ${newBackground.white} !important;
     }
-
-
 `
+
+export const InstallationItem = styled(MenuItem)`
+    padding: 4px;
+
+    margin-right: 20px;
+    margin-top: 10px;
+
+    font-family: "Graphie";
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 21px;
+    color: ${newBackground.orange};
+`
+
 export const SelectDueDateChoose = styled(Select)`
     font-family: "Graphie";
     font-size: 17px;
