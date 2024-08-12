@@ -1,13 +1,14 @@
 "use client"
-import dynamic from 'next/dynamic';
-import ProfileBanner from '../../pages/components/banners/profile-banner/ProfileBanner';
-const ProfileMain = dynamic(() => import('../../pages/components/profile/ProfileMain'), { ssr: false });
+
+import NewDashboardMain from '@/app/pages/components/new-dashboard/NewDashboardMain';
 
 export default function Profile() {
+
+    const invoicesInitialPageIndex = 5
+
     return (
         <>
-            <ProfileBanner />
-            <ProfileMain />
+            <NewDashboardMain page={invoicesInitialPageIndex} />
         </>
     );
 }

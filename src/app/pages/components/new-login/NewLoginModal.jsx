@@ -16,14 +16,14 @@ import leveLogo from '../../../../resources/icons/large/leve-logo-orange-icon-la
 import { forgotPasswordSchema, loginSchema } from './schema';
 import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginContentContainer, LoginForm, LoginIconContainer, LoginTitleContainer, SnackbarMessageAlert, SnackbarMessageNotification } from './styles';
 
-export default function NewLoginModal({ isOpen, openModal, closeModal }) {
+export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgottenPassword }) {
 
     const router = useRouter()
     const pathname = usePathname()
 
     const store = useStoreUser()
 
-    const [forgotPassword, setForgotPassword] = useState(false)
+    const [forgotPassword, setForgotPassword] = useState(hasForgottenPassword)
     const [isLoading, setIsLoading] = useState(false)
     const [passwordVisibible, setPasswordVisibible] = useState("password")
     const [validationErrors, setValidationErrors] = useState([])
@@ -39,6 +39,10 @@ export default function NewLoginModal({ isOpen, openModal, closeModal }) {
     const handleCreateNewAccount = () => {
         router.push(`/`)
         setForgotPassword(false)
+    }
+    const getBackToHome = () => {
+        router.push(`/`)
+        closeModal()
     }
 
     const loginValidation = async (data) => {
@@ -135,9 +139,7 @@ export default function NewLoginModal({ isOpen, openModal, closeModal }) {
                             backgroundColor: 'rgba(0, 0, 0, 0.4)',
                         },
                     },
-                }}
-
-            >
+                }}>
                 <LoginBox>
                     <LoginIconContainer>
                         <div style={{ marginLeft: 'auto' }}>
@@ -146,13 +148,18 @@ export default function NewLoginModal({ isOpen, openModal, closeModal }) {
                                     <CloseIcon />
                                 </IconButton>
                                 :
-                                <IconButton onClick={closeModal}>
+                                <IconButton onClick={() => getBackToHome()}>
                                     <CloseIcon />
                                 </IconButton>}
                         </div>
                     </LoginIconContainer>
                     <LoginTitleContainer>
-                        <Image className="logoLeve" loading="lazy" src={leveLogo} alt="Ícone de formulário para completar o cadastro" />
+                        <Image
+                            className="logoLeve"
+                            loading="lazy"
+                            src={leveLogo}
+                            alt="Ícone de formulário para completar o cadastro"
+                            onClick={() => getBackToHome()} />
                         {!forgotPassword ? <h1>Entrar</h1> : <h1>Recuperar minha senha</h1>}
                     </LoginTitleContainer>
                     <LoginContentContainer>

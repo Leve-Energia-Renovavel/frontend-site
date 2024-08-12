@@ -1,3 +1,12 @@
+const monthNames = [
+    'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
+    'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'
+];
+const fullmonthNames = [
+    'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+    'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+];
+
 export const formatBrazillianDate = (dateString) => {
     const date = new Date(dateString);
 
@@ -14,4 +23,49 @@ export const formatMonthAndYear = (dateString) => {
     const formattedMonth = (date.getMonth() + 2).toString().padStart(2, '0');
     const formattedYear = date.getFullYear().toString();
     return `${formattedMonth}/${formattedYear}`;
+}
+
+export const formatDayMonthAndYearInFull = (brazillianDateString) => {
+    // Parse the input date string "DD/MM/YYYY"
+    const [day, month, year] = brazillianDateString.split('/').map(Number);
+    const date = new Date(year, month - 1, day);
+
+    const monthName = monthNames[date?.getMonth()];
+    const shortYear = date?.getFullYear()?.toString()?.slice(-2); // Get the last two digits of the year
+
+    const formattedDate = `${monthName} ${shortYear}`;
+
+    return formattedDate;
+}
+
+export const formatMonthAndYearInFull = (brazilianDateString) => {
+    // Parse the input date string "MM/YYYY"
+    const [month, year] = brazilianDateString.split('/').map(Number);
+    const date = new Date(year, month - 1);
+
+    // Get the month name and last two digits of the year
+    const monthName = monthNames[date?.getMonth()];
+    const shortYear = date?.getFullYear()?.toString()?.slice(-2); // Get the last two digits of the year
+
+    const formattedDate = `${monthName} ${shortYear}`;
+
+    return formattedDate;
+}
+export const formatFullMonthAndYear = (brazilianDateString) => {
+    // Parse the input date string "MM/YYYY"
+    const [month, year] = brazilianDateString.split('/').map(Number);
+    const date = new Date(year, month - 1);
+
+    // Get the month name and last two digits of the year
+    const monthName = fullmonthNames[date.getMonth()];
+    const shortYear = date.getFullYear().toString().slice(-2); // Get the last two digits of the year
+
+    const formattedDate = `${monthName} ${shortYear}`;
+
+    return formattedDate;
+}
+
+export const formatDateClearYear = (dateString) => {
+    const [day, month, year] = dateString.split('/');
+    return `${day}/${month}`;
 }

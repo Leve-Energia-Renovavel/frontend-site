@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export const signUp = async (data) => {
     try {
@@ -36,6 +37,19 @@ export const logIn = async (data) => {
         const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL_TOKEN_OAUTH}`, payload);
         console.log("logIn response ===>>>", response)
         return response
+
+    } catch (error) {
+        console.error(error);
+        return error
+    }
+}
+export const updateUserProfile = async (data) => {
+    const headers = {
+        "Authorization": `Bearer ${Cookies.get('accessToken')}`
+    };
+    try {
+        console.log("updating user profile data...")
+        return await axios.put(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/painel/`, data, { headers });
 
     } catch (error) {
         console.error(error);

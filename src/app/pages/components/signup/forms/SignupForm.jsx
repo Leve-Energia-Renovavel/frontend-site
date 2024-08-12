@@ -348,8 +348,8 @@ export default function SignupForm() {
               <FormInput
                 className='inputForm'
                 inputRef={userRefs.name}
-                label={`Nome Completo ${isCompany ? 'do Responsável' : ''}`}
-                placeholder={`Nome Completo ${isCompany ? 'do Responsável' : ''}`}
+                label={`Nome Completo ${isCompany ? 'do Responsável' : ''} (Titular da Conta de Luz)`}
+                placeholder={`Nome Completo ${isCompany ? 'do Responsável' : ''} (Titular da Conta de Luz)`}
                 defaultValue={name || ''}
                 variant="outlined"
                 type="text"

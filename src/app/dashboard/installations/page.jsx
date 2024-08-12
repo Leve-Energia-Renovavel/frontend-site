@@ -1,12 +1,12 @@
-import dynamic from "next/dynamic";
-import InstallationsBanner from "../../pages/components/banners/installations-banner/InstallationsBanner";
-const InstallationsMain = dynamic(() => import("../../pages/components/installations/InstallationsMain"), { ssr: false });
+import NewDashboardMain from "@/app/pages/components/new-dashboard/NewDashboardMain";
 
 export default function Installations() {
+
+    const installationsInitialPageIndex = 3
+
     return (
         <>
-            <InstallationsBanner />
-            <InstallationsMain />
+            <NewDashboardMain page={installationsInitialPageIndex} />
         </>
     );
 }

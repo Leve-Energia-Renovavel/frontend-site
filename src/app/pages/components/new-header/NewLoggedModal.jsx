@@ -1,16 +1,22 @@
 "use client"
 
 import { clearBrowserData } from "@/app/utils/browser/BrowserUtils";
+import { menuOptions } from "@/app/utils/helper/dashboardHelper";
 import CloseIcon from '@mui/icons-material/Close';
 import { Backdrop, IconButton, Modal, Typography } from "@mui/material";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 import soleProfile from "../../../../resources/icons/large/sole-icon-profile-large.png";
-import { LoggoutButton, LoginBox, MenuContent, MenuHeaderContent, MenuOption, MenuOptionsContent } from "./styles";
+import DashboardMenu from "../new-dashboard/side-bar/DashboardMenu";
+import { LoggoutButton, LoginBox, MenuContent, MenuHeaderContent } from "./styles";
+import DashboardMemberGetMember from "../new-dashboard/side-bar/DashboardMemberGetMember";
 
 export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
 
     const router = useRouter()
+    const path = usePathname()
+
     const user = JSON.parse(localStorage.getItem('user'))
     var username = null
 
@@ -18,33 +24,8 @@ export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
         username = user?.user?.name
     }
 
-    const buttonsOptions = [
-        {
-            title: "Endereços",
-            route: "/dashboard/installations",
-        },
-        {
-            title: "Minhas Faturas",
-            route: "/dashboard/invoices",
-        },
-        {
-            title: "Minha Conta",
-            route: "/dashboard/profile",
-        },
-        {
-            title: "Ajuda",
-            route: "/dashboard/installations",
-        },
-        {
-            title: "Contratos",
-            route: "/dashboard/installations",
-        },
-    ]
-
-    const handleRoute = (route) => {
-        router.push(route)
-        closeModal()
-    }
+    const filteredOption = menuOptions?.find(option => option?.link === path?.toString());
+    const [menuSelected, setMenuSelection] = useState(filteredOption)
 
     const handleLoggout = () => {
         clearBrowserData()
@@ -76,18 +57,15 @@ export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
                             <Image src={soleProfile} className="sole" alt="Imagem do Solem, mascote da Leve" />
                             <Typography variant="subtitle1" className="helloUser">Olá, {username ? username : "Visitante"}</Typography>
                         </MenuHeaderContent>
-                        <MenuOptionsContent>
-                            {buttonsOptions.map((option) => {
-                                return (
-                                    <MenuOption key={option.title} onClick={() => handleRoute(option.route)}>
-                                        <Typography className="menuTitle">{option.title}</Typography>
-                                    </MenuOption>
-                                )
-                            })}
-                        </MenuOptionsContent>
-                        <LoggoutButton variant="text" onClick={() => handleLoggout()}>
-                            Sair
-                        </LoggoutButton>
+
+                        <DashboardMemberGetMember isSideBar={false} />
+                        <DashboardMenu
+                            isSideBar={false}
+                            menuSelected={menuSelected}
+                            setMenuSelection={setMenuSelection}
+                            closeModal={closeModal} />
+
+
                     </MenuContent>
                 </LoginBox>
             </Modal >

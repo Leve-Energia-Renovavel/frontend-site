@@ -30,7 +30,7 @@ export const DefaultButtonStyle = styled(Button)`
     color: ${props => colorForVariants[props.variant]};
     border-color: ${props => colorForVariants[props.variant]};
     background-color: ${props => backgroundColorForVariants[props.variant]};
-    border-radius: 13px;
+    border-radius: 21px;
     cursor: pointer;
     margin: 2rem;
     height: 3rem;
@@ -316,3 +316,68 @@ export const TimelineButtonStyled = styled(Button)`
     }
 `;
 
+
+export const NewDefaultButtonStyle = styled(Button)`
+    cursor: pointer;
+    text-transform: none;
+    white-space: nowrap;
+    border-radius: 21px;
+
+    border: 1px solid ${props => backgroundColorForVariants[props.variant]};
+    color: ${props => colorForVariants[props.variant]};
+    border-color: ${props => colorForVariants[props.variant]};
+    background-color: ${props => backgroundColorForVariants[props.variant]};
+    
+    min-height: 42px;
+    padding: 10px 70px;
+
+    span { 
+        font-family: "Graphie";
+        font-size: 17px;
+        line-height: 21px;
+        font-weight: 500;
+    }
+
+    &:hover {
+        background-color: ${props => backgroundHoverColor[props.variant]};
+        color: ${props => hoverColor[props.variant]};
+        border: 1px solid ${props => hoverColor[props.variant]};
+    }
+        
+    /* @media (max-width: 1500px) {
+        margin: 1rem;
+        height: 3rem;
+        padding: 1rem 3rem;
+    } */
+`;
+
+
+export const OutlinedButtonStyle = styled(Button)`
+        text-transform: none;
+        border: 1px solid ${newBackground.orange};
+        background-color: ${newBackground.white};
+        padding: 11px 18px;
+
+        border-radius: 10px;
+        height: 3rem;
+
+        width: 100%;
+        max-width: 280px;
+        
+        span { 
+            font-family: "Graphie";
+            font-size: 16px;
+            line-height: 21px;
+            font-weight: 600;
+            color: ${newBackground.orange};
+        }
+
+        &:hover {
+            background-color: ${newBackground.orange};
+            border-color: ${background.lightBorder};
+            
+            span {
+                color: ${newBackground.white};
+            } 
+        }
+`;

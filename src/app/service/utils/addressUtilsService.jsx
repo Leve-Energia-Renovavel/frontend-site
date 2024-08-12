@@ -1,5 +1,6 @@
 import axios from "axios";
 import { requestSuccessful } from "./Validations";
+import { allCities } from "@/app/utils/form-options/citiesOptions";
 
 export const findCityIdByName = async (cityName, stateId) => {
     try {
@@ -19,3 +20,18 @@ export const findCityIdByName = async (cityName, stateId) => {
         console.error(error)
     }
 };
+
+export function getCityNameByStateIdAndCityId(stateID, cityID) {
+    for (const stateCities of allCities) {
+        const cities = stateCities[stateID];
+        if (cities) {
+            for (const city of cities) {
+                const cityData = city[cityID];
+                if (cityData) {
+                    return cityData.nome;
+                }
+            }
+        }
+    }
+    return null;
+}

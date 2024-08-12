@@ -23,6 +23,16 @@ export const statusColors = {
     pending: "#F44336",
     pendingFocus: "#ab1d13",
 }
+export const newStatusColors = {
+    due: "#FDDCCB",
+    paid: "#005940",
+    pending: "#FF7133"
+}
+export const newFontStatusColors = {
+    due: "#FF7133",
+    paid: "#005940",
+    pending: "#FFF"
+}
 
 export const button = {
     primary: "#0075FF",
@@ -70,6 +80,9 @@ export const newBackground = {
     greenSoft: "#81AD9F",
     white: "#FCFCFA",
     grey: "#EFEFEC",
+    greyMedium: "#BBB",
+    greyDark: "#838383",
+    greyTranslucent: "#F3F3F1",
 }
 
 export const background = {

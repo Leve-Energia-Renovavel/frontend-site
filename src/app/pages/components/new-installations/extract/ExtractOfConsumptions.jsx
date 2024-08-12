@@ -9,9 +9,7 @@ import { Extract, ExtractContainer, ExtractDetail, ExtractDetailValue } from './
 
 export default function ExtractOfConsumptions() {
 
-  const billings = useStoreBillingHistory().billings
-
-  console.log("billings ===>>", billings)
+  const billings = useStoreBillingHistory()?.billings
 
   const [quantityBillsShown, setQuantityBillsShown] = useState(-6)
 
@@ -19,7 +17,7 @@ export default function ExtractOfConsumptions() {
     setQuantityBillsShown(quantityBillsShown => quantityBillsShown - 3)
   }
 
-  const loadedAllBills = quantityBillsShown <= -billings.length 
+  const loadedAllBills = quantityBillsShown <= -billings.length
   const dontHaveAnyBillsYet = billings?.length < 1
 
 
@@ -33,9 +31,16 @@ export default function ExtractOfConsumptions() {
             <p className='dontHaveAnyBillsYet'>Você ainda não possui histórico de faturas</p>
           </Extract>
         )}
-        {billings.slice(quantityBillsShown).reverse().map((bill) => {
+        {billings?.slice(quantityBillsShown)?.reverse()?.map((bill) => {
 
+          const kwhByDistributor = parseFloat(bill?.energyConsumed) - parseFloat(bill?.energyInjected)
+          const kwhPriceByDistributor = 1.08855
+          const formattedDistributorValue = (kwhByDistributor * kwhPriceByDistributor).toFixed(2).toString().replace(".", ",")
+
+          const kwhPriceByLeve = (parseFloat(bill?.value) / parseFloat(bill?.energyConsumed)).toFixed(4).toString().replace(".", ",")
           const formattedBillValue = parseFloat(bill?.value).toFixed(2).toString().replace(".", ",")
+
+
           return (
             <Extract key={bill?.uuid}>
               <p className='dueDate'>{formatFullMonthAndYear(bill?.billDate)}</p>
@@ -43,10 +48,10 @@ export default function ExtractOfConsumptions() {
               {/* values details from distributor */}
               <ExtractDetail distributor>
                 <ExtractDetailValue distributor>
-                  <span className='energyConsumed'>{`${parseInt(bill?.energyConsumed)} kWh`}</span>
-                  <span className='billValue'>{`R$ ${bill?.value}`}</span>
+                  <span className='energyConsumed'>{`${kwhByDistributor} kWh`}</span>
+                  <span className='billValue'>{`R$ ${formattedDistributorValue}`}</span>
                 </ExtractDetailValue>
-                <span className='measureUnit'>1kWh = R$ 1,08855</span>
+                <span className='measureUnit'>1kWh = R$ {kwhPriceByDistributor}</span>
               </ExtractDetail>
 
               {/* values details from Leve */}
@@ -55,7 +60,7 @@ export default function ExtractOfConsumptions() {
                   <span className='energyConsumed'>{`${parseInt(bill?.energyConsumed)} kWh`}</span>
                   <span className='billValue'>{`R$ ${formattedBillValue}`}</span>
                 </ExtractDetailValue>
-                <span className='measureUnit'>1kWh = R$ 1,08855</span>
+                <span className='measureUnit'>1kWh = R$ {kwhPriceByLeve}</span>
               </ExtractDetail>
 
             </Extract>

@@ -1,14 +1,14 @@
 "use client"
 
-import dynamic from 'next/dynamic';
-import InvoicesBanner from '../../pages/components/banners/invoices-banner/InvoicesBanner';
-const InvoicesMain = dynamic(() => import('../../pages/components/invoices/InvoicesMain'), { ssr: false });
+import NewDashboardMain from '@/app/pages/components/new-dashboard/NewDashboardMain';
 
 export default function Invoices() {
+
+    const invoicesInitialPageIndex = 1
+
     return (
         <>
-            <InvoicesBanner />
-            <InvoicesMain />
+            <NewDashboardMain page={invoicesInitialPageIndex} />
         </>
     );
 }

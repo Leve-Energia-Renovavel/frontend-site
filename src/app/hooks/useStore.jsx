@@ -217,9 +217,9 @@ export const useStoreMainInstallation = create((set) => ({
 
         clientId: "",
         isSelected: "",
-        status: ""
+        status: "",
 
-
+        hasStartedBilling: false,
     },
     updateMainInstallation: (newMainInstallation) =>
         set((state) => ({
@@ -251,7 +251,9 @@ export const useStoreMainInstallation = create((set) => ({
 
                 clientId: "",
                 isSelected: "",
-                status: ""
+                status: "",
+
+                hasStartedBilling: false,
             }
         }))
 }));

@@ -1,14 +1,12 @@
-
-import dynamic from "next/dynamic";
-import DashboardBanner from "../pages/components/banners/dashboard-banner/DashboardBanner";
-const DashboardMain = dynamic(() => import("../pages/components/dashboard/DashboardMain"), { ssr: false });
+import NewDashboardMain from "../pages/components/new-dashboard/NewDashboardMain";
 
 export default function Dashboard() {
 
+    const dashboardInitialPageIndex = 0
+
     return (
         <>
-            <DashboardBanner />
-            <DashboardMain />
+            <NewDashboardMain page={dashboardInitialPageIndex} />
         </>
     );
 }

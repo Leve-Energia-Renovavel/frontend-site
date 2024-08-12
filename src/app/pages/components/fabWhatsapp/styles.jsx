@@ -41,4 +41,5 @@ export const WhatsappLink = styled.a`
     color: white;
     font-size: 38px;
   }
+
 `

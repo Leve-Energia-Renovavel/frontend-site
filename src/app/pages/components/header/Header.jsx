@@ -46,6 +46,7 @@ export default function Header() {
     return (
         <>
             <NewHeader
+                isLoggedUser={isLoggedUser}
                 isOpen={openLogin}
                 openModal={openLoginModal}
                 isLandingPage={isLandingPage}
