@@ -88,6 +88,10 @@ export const LoginTitleContainer = styled.div`
             width: 70%;
             height: 70%;
         }
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 `
 

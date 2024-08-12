@@ -5,7 +5,7 @@ import LoginBanner from '../pages/components/banners/login-banner/LoginBanner';
 import HomeMain from '../pages/components/home/HomeMain';
 import NewLoginModal from '../pages/components/new-login/NewLoginModal';
 
-export default function Profile() {
+export default function LoginPage() {
 
     const [openLogin, setOpenLogin] = useState(true);
 
@@ -20,7 +20,7 @@ export default function Profile() {
         <>
             <LoginBanner />
             <HomeMain />
-            <NewLoginModal isOpen={true} openModal={openLoginModal} closeModal={closeLoginModal} />
+            <NewLoginModal isOpen={openLogin} hasForgottenPassword={false} openModal={openLoginModal} closeModal={closeLoginModal} />
         </>
     );
 }

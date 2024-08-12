@@ -1,12 +1,10 @@
-import RecoverPasswordBanner from "../pages/components/banners/recover-password-banner/RecoverPasswordBanner";
-import RecoverPasswordMain from "../pages/components/recover-password/RecoverPasswordMain";
+import NewRecoverPasswordMain from "../pages/components/recover-password/NewRecoverPasswordMain";
 
-export default function Dashboard() {
+export default function RecoverPasswordPage() {
 
     return (
         <>
-            <RecoverPasswordBanner />
-            <RecoverPasswordMain />
+            <NewRecoverPasswordMain />
         </>
     );
 }
