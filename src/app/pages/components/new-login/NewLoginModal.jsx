@@ -7,16 +7,16 @@ import { requestNotFound, requestSuccessful } from '@/app/service/utils/Validati
 import CloseIcon from '@mui/icons-material/Close';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { Backdrop, Box, CircularProgress, Divider, IconButton, InputAdornment, Modal, Snackbar, TextField, Typography } from '@mui/material';
+import { Backdrop, Box, CircularProgress, Divider, IconButton, InputAdornment, Modal, TextField, Typography } from '@mui/material';
 import Cookies from 'js-cookie';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import leveLogo from '../../../../resources/icons/large/leve-logo-orange-icon-large.svg';
 import { forgotPasswordSchema, loginSchema } from './schema';
-import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginContentContainer, LoginForm, LoginIconContainer, LoginTitleContainer, SnackbarMessageAlert, SnackbarMessageNotification } from './styles';
+import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginContentContainer, LoginForm, LoginIconContainer, LoginTitleContainer } from './styles';
 
-export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgottenPassword }) {
+export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgottenPassword, setNotifications, setValidationErrors }) {
 
     const router = useRouter()
     const pathname = usePathname()
@@ -26,8 +26,6 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
     const [forgotPassword, setForgotPassword] = useState(hasForgottenPassword)
     const [isLoading, setIsLoading] = useState(false)
     const [passwordVisibible, setPasswordVisibible] = useState("password")
-    const [validationErrors, setValidationErrors] = useState([])
-    const [notifications, setNotifications] = useState([])
 
     const hideClose = pathname == '/login/' ? true : false
 
@@ -64,6 +62,7 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
                 setValidationErrors(err.errors)
             });
     }
+
     const forgotPasswordValidation = async (data) => {
         const response = await forgotPasswordSchema.validate(data, { abortEarly: false })
             .then(async () => {
@@ -210,50 +209,6 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
                     </LoginContentContainer>
                 </LoginBox>
             </Modal >
-            <>
-                {validationErrors.map((error, index) => {
-                    return (
-                        <Snackbar
-                            key={index}
-                            open={validationErrors.length >= 1}
-                            autoHideDuration={3000}
-                            message={error}
-                            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-                            onClose={() => setValidationErrors([])}>
-                            <SnackbarMessageAlert
-                                sx={{ marginBottom: `${index * 5}rem` }}
-                                severity="error"
-                                variant="filled"
-                                onClose={() => setValidationErrors([])}
-                            >
-                                {error}
-                            </SnackbarMessageAlert>
-                        </Snackbar>
-                    )
-                })}
-            </>
-            <>
-                {notifications.map((notification, index) => {
-                    return (
-                        <Snackbar
-                            key={index}
-                            open={notifications.length >= 1}
-                            autoHideDuration={6000}
-                            message={notification}
-                            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-                            onClose={() => setNotifications([])}>
-                            <SnackbarMessageNotification
-                                sx={{ marginBottom: `${index * 5}rem` }}
-                                severity="error"
-                                variant="filled"
-                                onClose={() => setNotifications([])}
-                            >
-                                {notification}
-                            </SnackbarMessageNotification>
-                        </Snackbar>
-                    )
-                })}
-            </>
         </>
     );
 }

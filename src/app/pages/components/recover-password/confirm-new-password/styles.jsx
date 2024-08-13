@@ -1,21 +1,8 @@
-import { background, newBackground, notification } from "../../styles";
+import { background, newBackground } from "@/app/pages/styles";
 import styled from "@emotion/styled";
-import { Alert, Box, Button } from "@mui/material";
-import { keyframes } from "@emotion/react";
+import { Box, Button } from "@mui/material";
 
-const fadeInUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`
-
-export const LoginBox = styled(Box)`
+export const ConfirmNewPasswordBox = styled(Box)`
     position: absolute;
     top: 50%;
     left: 50%;
@@ -62,14 +49,14 @@ export const LoginBox = styled(Box)`
 
     }
 `
-export const LoginIconContainer = styled.div`
+export const IconContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 
     margin: 0;
 `
-export const LoginTitleContainer = styled.div`
+export const TitleContainer = styled.div`
     text-align: center;
 
     h1 { 
@@ -98,7 +85,7 @@ export const LoginTitleContainer = styled.div`
     }
 `
 
-export const LoginContentContainer = styled.div`
+export const ConfirmNewPasswordContentContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -113,7 +100,7 @@ export const LoginContentContainer = styled.div`
 
 `
 
-export const LoginForm = styled.form`
+export const ConfirmNewPasswordForm = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -153,7 +140,7 @@ export const LoginForm = styled.form`
     
 `
 
-export const LoginButtonContainer = styled.form`
+export const ConfirmNewPasswordButtonContainer = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -170,10 +157,6 @@ export const LoginButtonContainer = styled.form`
         &:hover {
             cursor: pointer;
             text-decoration: underline;
-        }
-
-        .divider {
-            margin-top: 1rem;
         }
 
         @media (max-width: 600px) {
@@ -200,7 +183,7 @@ export const LoginButtonContainer = styled.form`
         color: ${newBackground.orange};
     }
 `
-export const LoginButton = styled(Button)`
+export const ConfirmNewPasswordButton = styled(Button)`
     text-transform: none;
     color: ${newBackground.yellow};
     border-color: ${newBackground.white};
@@ -250,4 +233,3 @@ export const FormFooterContainer = styled.div`
         color: ${background.grey}
     }
 `
-
