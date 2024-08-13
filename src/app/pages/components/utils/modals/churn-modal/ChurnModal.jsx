@@ -9,6 +9,12 @@ export default function ChurnModal({ isOpen, closeModal, confirmChurn }) {
         closeModal()
         confirmChurn()
     }
+    const handleRequestChurn = () => {
+        const phone = "551131818210";
+        const url = `https://api.whatsapp.com/send/?phone=${phone}&text=Oi!+Estou+no+meu+Painel+Leve+e+desejo+o+cancelamento+da+minha+conta&type=phone_number&app_absent=0`;
+        window.open(url, '_blank', 'noopener noreferrer');
+    }
+
     return (
         <Modal
             open={isOpen}
@@ -47,11 +53,14 @@ export default function ChurnModal({ isOpen, closeModal, confirmChurn }) {
                 </FactoryDetailsContainer>
 
                 <OptionsContainer>
-                    <OptionsButton onClick={() => handleConfirmChurn()}>
+                    {/* <OptionsButton onClick={() => handleConfirmChurn()}>
                         <span>Confirmar cancelamento</span>
                     </OptionsButton>
                     <OptionsButton isChurn={true} onClick={closeModal}>
                         <span>Continuar economizando</span>
+                    </OptionsButton> */}
+                    <OptionsButton onClick={() => handleRequestChurn()}>
+                        <span>Solicitar cancelamento com o suporte</span>
                     </OptionsButton>
                 </OptionsContainer>
             </ModalBox>
