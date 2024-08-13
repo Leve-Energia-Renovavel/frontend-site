@@ -24,7 +24,7 @@ export default function ChurnModal({ isOpen, closeModal, confirmChurn }) {
     }
     const handleRequestChurn = () => {
         const phone = "551131818210";
-        const message = `Oi! Estou no painel do cliente Leve Energia e desejo o cancelamento da minha conta.\n\nMeus dados são:\nNome: ${name}\nCPF: ${formatCpfUnrestricted(cpf)}\nTenho ${numberOfInstallations} endereços cadastrados`;
+        const message = `Oi! Estou no painel do cliente Leve Energia e desejo o cancelamento da minha conta.\n\nMeus dados são:\nNome: ${name}\nCPF: ${formatCpfUnrestricted(cpf)}\nTenho ${numberOfInstallations > 1 ? "endereços cadastrados" : "endereço cadastrado"}.`;
         const url = `https://api.whatsapp.com/send/?phone=${phone}&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
         window.open(url, '_blank', 'noopener noreferrer');
     }
