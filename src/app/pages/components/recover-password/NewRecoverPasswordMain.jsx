@@ -55,11 +55,7 @@ export default function NewRecoverPasswordMain() {
                     isOpen={openLogin}
                     hasForgottenPassword={true}
                     openModal={openLoginModal}
-                    closeModal={closeLoginModal}
-
-                    setNotifications={setNotifications}
-                    setValidationErrors={setValidationErrors}
-                />)}
+                    closeModal={closeLoginModal} />)}
 
             {validationErrors.map((error, index) => {
                 return (

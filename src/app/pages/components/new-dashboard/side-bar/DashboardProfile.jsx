@@ -4,7 +4,7 @@
 import { useStoreUser } from "@/app/hooks/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
-import { formatCpf } from "@/app/utils/formatters/documentFormatter";
+import { formatCpfUnrestricted } from "@/app/utils/formatters/documentFormatter";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -77,7 +77,7 @@ export default function DashboardProfile() {
                 <h6 className="username">Olá, {username ? username : "Usuário"}</h6>
                 <p className="goToProfile" onClick={() => router.push("/dashboard/profile")}>Ver perfil</p>
             </ProfileHeader>
-            <p className="cpf">CPF: {formatCpf(cpf)}</p>
+            <p className="cpf">CPF: {formatCpfUnrestricted(cpf)}</p>
 
         </NewDashboardProfile>
     )

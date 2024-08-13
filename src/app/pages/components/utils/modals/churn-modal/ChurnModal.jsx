@@ -1,3 +1,5 @@
+import { useStoreInstallations, useStoreUser } from '@/app/hooks/useStore'
+import { formatCpfUnrestricted } from '@/app/utils/formatters/documentFormatter'
 import { factoryInfos } from '@/app/utils/helper/newDashboardHelper'
 import { Backdrop, Modal } from '@mui/material'
 import HistoryDetails from '../../../new-dashboard/history/details/HistoryDetails'
@@ -5,13 +7,25 @@ import { FactoryDetailsContainer, FactoryDetailsContent, FactoryInfoCard, Histor
 
 export default function ChurnModal({ isOpen, closeModal, confirmChurn }) {
 
+    const user = useStoreUser()
+    const storeInstallations = useStoreInstallations()
+
+    const installations = JSON.parse(localStorage.getItem('installations'))
+
+    const { name, cpf } = user?.user ?? (user?.user || {})
+
+    const allInstallations = installations?.installations ?? (storeInstallations?.installations || {})
+
+    const numberOfInstallations = allInstallations?.length
+
     const handleConfirmChurn = () => {
         closeModal()
         confirmChurn()
     }
     const handleRequestChurn = () => {
         const phone = "551131818210";
-        const url = `https://api.whatsapp.com/send/?phone=${phone}&text=Oi!+Estou+no+meu+Painel+Leve+e+desejo+o+cancelamento+da+minha+conta&type=phone_number&app_absent=0`;
+        const message = `Oi! Estou no painel do cliente Leve Energia e desejo o cancelamento da minha conta.\n\nMeus dados são:\nNome: ${name}\nCPF: ${formatCpfUnrestricted(cpf)}\nTenho ${numberOfInstallations} endereços cadastrados`;
+        const url = `https://api.whatsapp.com/send/?phone=${phone}&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
         window.open(url, '_blank', 'noopener noreferrer');
     }
 
