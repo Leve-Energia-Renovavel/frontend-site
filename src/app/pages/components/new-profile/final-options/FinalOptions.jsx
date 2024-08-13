@@ -1,11 +1,10 @@
 "use client"
 
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-// import ChurnModal from '../../utils/modals/churn-modal/ChurnModal'
 import NewSuccessModal from '../../utils/modals/success-modal/NewSuccessModal'
 import { FinalOptionsButton, FinalOptionsContainer } from './styles'
-import dynamic from 'next/dynamic'
 
 const ChurnModal = dynamic(() => import('../../utils/modals/churn-modal/ChurnModal'), { ssr: false });
 
