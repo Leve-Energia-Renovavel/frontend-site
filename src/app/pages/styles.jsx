@@ -1,3 +1,17 @@
+import styled from "@emotion/styled";
+import { Alert, keyframes } from "@mui/material";
+
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const theme = {
     primary: "#1779ba",
@@ -106,3 +120,36 @@ export const background = {
     textLeve: "#343434",
 
 }
+
+export const SnackbarMessageAlert = styled(Alert)`
+  font-family: "Graphie";
+  font-size: 1rem;
+  background-color: ${notification.alert};
+  border-radius: 10px;
+  padding: 1rem;
+  align-items: center;
+
+  animation: ${fadeInUp} 0.5s ease-out;
+
+  @media screen and (max-width: 600px) {
+    padding: .3rem;
+    font-size: 1rem; 
+  }
+
+`
+export const SnackbarMessageNotification = styled(Alert)`
+  font-family: "Graphie";
+  font-size: 1rem;
+  background-color: ${notification.success};
+  border-radius: 10px;
+  padding: 1rem;
+  align-items: center;
+
+  animation: ${fadeInUp} 0.5s ease-out;
+
+  @media screen and (max-width: 600px) {
+    padding: .3rem;
+    font-size: 1rem; 
+  }
+
+`

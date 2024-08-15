@@ -1,16 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreInstallations, useStoreMainInstallation } from "@/app/hooks/useStore";
-import { getInstallationByUUID } from "@/app/service/installation-service/InstallationService";
-import { requestSuccessful } from "@/app/service/utils/Validations";
+import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills } from "@/app/hooks/useStore";
+import { getInstallationByUUID, getMainInstallationData } from "@/app/service/installation-service/InstallationService";
 import { getCityNameByStateIdAndCityId } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { formatCep } from "@/app/utils/formatters/documentFormatter";
 import InventoryIcon from '@mui/icons-material/Inventory';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import axios from "axios";
-import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { BoxInstallation, InstallationDetails, InstallationHeader, InstallationItem, NewDashboardInstallation, SelectInstallation } from "./styles";
 
@@ -18,11 +15,13 @@ export default function DashboardInstallation() {
 
     const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
+    const storeNextBills = useStoreNextBills()
+    const storeBilling = useStoreBillingHistory()
 
     const mainInstallation = JSON.parse(localStorage?.getItem('mainInstallation'))
     const installations = JSON.parse(localStorage?.getItem('installations'))
 
-    const { street, number, neighborhood, city, state, stateId, cityId, zipCode, installationNumber, id } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+    const { uuid, street, number, neighborhood, city, state, stateId, cityId, zipCode, installationNumber, id } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
     const allInstallations = installations?.installations ?? (storeInstallations?.installations || {})
 
@@ -30,90 +29,17 @@ export default function DashboardInstallation() {
 
     useEffect(() => {
         const fetchUserData = async () => {
-
-            try {
-                const headers = {
-                    "Authorization": `Bearer ${Cookies.get('accessToken')}`
-                };
-
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
-                if (requestSuccessful(response?.status)) {
-                    const { instalacao } = response?.data
-                    const outrasInstalacoes = response?.data?.outras_instalacoes
-                    const hasStartedBilling = response?.data?.ciclosConsumo?.length > 0 ? true : false
-
-                    const updatedMainInstallation = {
-                        id: instalacao?.id,
-                        uuid: instalacao?.uuid,
-                        address: instalacao?.nome,
-                        street: instalacao?.nome,
-                        number: instalacao?.numero,
-                        cityId: instalacao?.cidade_id,
-                        stateId: instalacao?.estado_id,
-                        neighborhood: instalacao?.bairro,
-                        complement: instalacao?.complemento,
-                        zipCode: instalacao?.cep,
-                        amount: instalacao?.valor_base_consumo,
-                        status: instalacao?.situacao,
-                        installationNumber: instalacao?.numero_instalacao,
-
-                        percentageAllocatedEnergy: instalacao?.porcentagem_energia_alocada,
-                        kwhContracted: instalacao?.kwh_contratado,
-                        discount: instalacao?.desconto,
-
-                        clientId: instalacao?.clientes_id,
-                        isSelected: instalacao?.selecionada,
-
-                        hasStartedBilling: hasStartedBilling
-                    }
-
-                    storeMainInstallation.updateMainInstallation(updatedMainInstallation)
-                    storeInstallations.addInstallation(updatedMainInstallation);
-
-                    outrasInstalacoes?.forEach(installation => {
-                        const otherInstallation = {
-                            id: installation?.id,
-                            uuid: installation?.uuid,
-                            address: installation?.nome,
-                            street: installation?.nome,
-                            number: installation?.numero,
-                            cityId: installation?.cidade_id,
-                            stateId: installation?.estado_id,
-                            neighborhood: installation?.bairro,
-                            complement: installation?.complemento,
-                            zipCode: installation?.cep,
-                            amount: installation?.valor_base_consumo,
-                            status: installation?.situacao,
-                            installationNumber: installation?.numero_instalacao,
-
-                            percentageAllocatedEnergy: installation?.porcentagem_energia_alocada,
-                            kwhContracted: installation?.kwh_contratado,
-                            discount: installation?.desconto,
-
-                            clientId: installation?.clientes_id,
-                            isSelected: installation?.selecionada,
-                        }
-
-                        storeInstallations.addInstallation(otherInstallation);
-                    });
-
-                } else {
-                    console.error("Failed to fetch user data");
-                }
-            } catch (error) {
-                console.error("Error fetching user data:", error);
-            }
+            await getMainInstallationData(storeMainInstallation, storeInstallations)
         };
-
-        fetchUserData();
+        if (!uuid) {
+            fetchUserData();
+        }
     }, []);
 
     const handleChangeSelectedInstallation = async (selectedInstallation) => {
-        // const uuid = selectedInstallation?.uuid
-        // const response = await getInstallationByUUID(uuid)
-        // console.log("SELECTED INSTALLATION response ==>>", response)
+        const uuid = selectedInstallation?.uuid
+        await getInstallationByUUID(uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling)
     }
-
 
     return (
         <NewDashboardInstallation>
@@ -124,9 +50,7 @@ export default function DashboardInstallation() {
                         fullWidth
                         value={0}
                         displayEmpty
-                        // IconComponent={KeyboardArrowDownIcon}
-                        IconComponent={""}
-                    >
+                        IconComponent={filteredInstallations.length > 0 ? KeyboardArrowDownIcon : ""}>
                         <li value={0} style={{ display: 'none' }}>
                             {/* <span className="home">{`Endereço ${installationNumber}`}</span> */}
                             <span className="home">{`Casa`}</span>

@@ -1,6 +1,7 @@
 "use client"
 
-import { useStoreInstallations, useStoreMainInstallation, useStoreUser } from "@/app/hooks/useStore";
+import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser } from "@/app/hooks/useStore";
+import { getInstallationByUUID } from "@/app/service/installation-service/InstallationService";
 import { changeInvoiceDate } from "@/app/service/invoices-service/InvoicesService";
 import { availableDueDates } from "@/app/utils/helper/invoices/invoicesHelper";
 import { useState } from "react";
@@ -15,6 +16,8 @@ export default function NewInvoicesHeader({ setErrorMessage, setNotifications })
     const store = useStoreUser()
     const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
+    const storeNextBills = useStoreNextBills()
+    const storeBilling = useStoreBillingHistory()
 
     const user = JSON.parse(localStorage.getItem('user'))
 
@@ -25,8 +28,9 @@ export default function NewInvoicesHeader({ setErrorMessage, setNotifications })
 
     const filteredInstallations = allInstallations?.filter(installation => installation?.id !== id);
 
-    const handleChangeSelectedInstallation = () => {
-
+    const handleChangeSelectedInstallation = async (selectedInstallation) => {
+        const uuid = selectedInstallation?.uuid
+        await getInstallationByUUID(uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling)
     }
 
     const handleChangeDueDate = async () => {
@@ -49,7 +53,6 @@ export default function NewInvoicesHeader({ setErrorMessage, setNotifications })
         <>
             <Header className="invoicesHeader">
                 <h1 className="pageTitle">Minhas faturas</h1>
-
                 <SelectContainer className="invoicesSelectContainer">
                     <div>
                         <h6 className="selectInstallation">Selecione a unidade:</h6>
@@ -60,8 +63,7 @@ export default function NewInvoicesHeader({ setErrorMessage, setNotifications })
                                     fullWidth
                                     value={0}
                                     displayEmpty
-                                    // IconComponent={KeyArrowDownIcon}
-                                    IconComponent={""}>
+                                    IconComponent={filteredInstallations.length > 0 ? KeyArrowDownIcon : ""}>
                                     <li value={0} style={{ display: 'none' }}>
                                         <span className="defaultInstallation">Casa</span>
                                     </li>

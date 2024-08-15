@@ -2,6 +2,17 @@ import { newBackground, newStatusColors } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 
+export const NewInvoicesSelectedInstallation = styled.div`
+    .mainInstallation {
+        font-family: "Graphie";
+        font-size: 21px;
+        line-height: 27px;
+        font-weight: 600;
+        color: ${newBackground.orange};
+
+        margin-right: auto;
+    }
+`
 export const NewInvoicesTableHeader = styled.div`
     display: flex;
     flex-direction: row;

@@ -1,7 +1,7 @@
 import { newBackground } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Box, Select } from "@mui/material";
+import { Box, MenuItem, Select } from "@mui/material";
 
 export const NewInstallationsHeader = styled.div`
     display: flex;
@@ -109,6 +109,16 @@ export const SelectInstallation = styled(Select)`
     .MuiSvgIcon-root {
         fill: ${newBackground.green} !important;
     }
+`
+
+export const InstallationItem = styled(MenuItem)`
+    padding: 4px;
+
+    font-family: "Graphie";
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 21px;
+    color: ${newBackground.orange};
 `
 
 

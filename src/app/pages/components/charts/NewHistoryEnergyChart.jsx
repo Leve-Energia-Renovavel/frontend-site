@@ -12,8 +12,14 @@ export default function NewHistoryEnergyChart() {
 
     const chartSize = -6
 
-    const valueData = billings?.slice(chartSize).map(item => parseInt(item.energyConsumed))
-    const availabilityData = billings?.slice(chartSize).map((_) => 300)
+    const valueData = billings?.slice(chartSize).map(item => parseInt(item?.energyConsumed))
+
+    const average = billings?.slice(chartSize)
+        .map((item) => parseInt(item?.energyConsumed))
+        .reduce((acc, value, _, array) => acc + value / array.length, 0);
+
+    const availabilityData = billings?.slice(chartSize).map((item) => parseInt(average / 3))
+
     // const dueDateData = billings.slice(chartSize).map(item => formatDayMonthAndYearInFull(item.dueDate))
     const billDateData = billings?.slice(chartSize).map((bill) => formatMonthAndYearInFull(bill?.billDate))
 

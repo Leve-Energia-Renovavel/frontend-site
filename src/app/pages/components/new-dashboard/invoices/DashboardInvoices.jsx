@@ -1,9 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useStoreBillingHistory, useStoreMainInstallation, useStoreNextBills } from '@/app/hooks/useStore';
-import { requestSuccessful } from '@/app/service/utils/Validations';
-import { billHasToBePaid, billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
-import axios from 'axios';
-import Cookies from 'js-cookie';
+import { getInvoicesData } from '@/app/service/invoices-service/InvoicesService';
+import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import NewDefaultButton from '../../utils/buttons/NewDefaultButton';
@@ -20,57 +18,22 @@ export default function DashboardInvoices() {
   const storeNextBills = useStoreNextBills()
   const storeBilling = useStoreBillingHistory()
 
-  const billings = useStoreBillingHistory().billings
-  const nextBills = useStoreNextBills().nextBills
+  const billings = storeBilling?.getFilteredBillings()
+  const nextBills = storeNextBills?.getFilteredNextBills()
 
   const mainInstallation = JSON.parse(localStorage?.getItem('mainInstallation'))
 
-  const { hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+  const { uuid, hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
   useEffect(() => {
     const fetchInvoicesData = async () => {
+      await getInvoicesData(storeNextBills, storeBilling)
+    }
 
-      try {
-        const headers = {
-          "Authorization": `Bearer ${Cookies.get('accessToken')}`
-        };
+    if(!uuid) {
+      fetchInvoicesData();
+    }
 
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
-        if (requestSuccessful(response?.status)) {
-          const ciclosConsumo = response?.data?.ciclosConsumo
-          ciclosConsumo?.forEach(bill => {
-            const newBilling = {
-              uuid: bill.uuid,
-              installationId: bill.cliente_instalacao_id,
-
-              energyConsumed: bill.consumo,
-              energyInjected: bill.energia_injetada,
-              availability: bill.disponibilidade,
-
-              value: bill.valor_fatura,
-              billDate: bill.data_fatura,
-              dueDate: bill.vencimento_fatura,
-              status: bill.pagamento_status,
-              urlBill: bill.url_fatura,
-              urlPayment: bill.url_pagamento,
-            }
-            storeBilling.addBilling(newBilling)
-
-            if (billHasToBePaid[newBilling.status]) {
-              storeNextBills.updateExists(true)
-              storeNextBills.addNextBill(newBilling)
-            }
-          })
-
-        } else {
-          console.error("Failed to fetch invoices data");
-        }
-      } catch (error) {
-        console.error("Error fetching invoices data:", error);
-      }
-    };
-
-    fetchInvoicesData();
     setLoading(false)
   }, []);
 
@@ -137,7 +100,7 @@ export default function DashboardInvoices() {
                   </AllBillsPaidContainer>
                   :
                   <PayBillButtonContainer>
-                    <NewDefaultButton variant="outlined-inverse" text="Pagar Fatura" onClick={() => router.push(`/dashboard/invoices/`)} />
+                    <NewDefaultButton variant="outlined-inverse" text={nextBills?.length > 1 ? "Pagar Faturas" : "Pagar Fatura"} onClick={() => router.push(`/dashboard/invoices/`)} />
                   </PayBillButtonContainer>}
               </>)
               :

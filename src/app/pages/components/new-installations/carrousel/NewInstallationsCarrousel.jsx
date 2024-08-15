@@ -13,7 +13,7 @@ import ConsumptionHistoryChart from '../chart/ConsumptionHistoryChart';
 
 export default function NewInstallationsCarrousel({ dataType }) {
 
-    const billings = useStoreBillingHistory()?.billings
+    const billings = useStoreBillingHistory()?.getFilteredBillings()
     const [activeStep, setActiveStep] = useState(0);
 
     const [chartQuantity, setChartQuantity] = useState(4);

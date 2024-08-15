@@ -304,7 +304,11 @@ export const useStoreNextBills = create((set) => ({
     clearNextBills: () =>
         set(() => ({
             nextBills: []
-        }))
+        })),
+    getFilteredNextBills: () => {
+        const { mainInstallation } = useStoreMainInstallation.getState();
+        return useStoreNextBills.getState().nextBills.filter(billing => billing.installationId === mainInstallation.id);
+    }
 }));
 
 
@@ -338,7 +342,7 @@ export const useStoreUserEconomy = create((set) => ({
         }))
 }));
 
-export const useStoreBillingHistory = create((set) => ({
+export const useStoreBillingHistory = create((set, get) => ({
     billings: [],
     addBilling: (newBilling) => set((state) => {
         if (newBilling.value) {
@@ -354,7 +358,11 @@ export const useStoreBillingHistory = create((set) => ({
     clearBillings: () =>
         set(() => ({
             billings: []
-        }))
+        })),
+    getFilteredBillings: () => {
+        const { mainInstallation } = useStoreMainInstallation.getState();
+        return get().billings.filter(billing => billing.installationId === mainInstallation.id);
+    }
 }));
 
 export const useStoreCookies = create((set) => ({

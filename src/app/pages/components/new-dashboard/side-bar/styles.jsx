@@ -275,7 +275,7 @@ export const SelectInstallation = styled(Select)`
         border-color: transparent; // Border color on hover
     }
     .MuiSvgIcon-root {
-        fill: ${newBackground.orange} !important;
+        fill: ${newBackground.green} !important;
     }
 `
 
