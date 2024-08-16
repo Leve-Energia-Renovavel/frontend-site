@@ -97,7 +97,6 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
 
             const response = await loginValidation(data)
             if (response?.status === 200 && response?.data?.access_token) {
-                awaitSeconds(3)
                 router.push(`/dashboard`)
                 closeModal()
             } else if (response?.data?.error) {
