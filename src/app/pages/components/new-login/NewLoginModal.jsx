@@ -16,6 +16,7 @@ import leveLogo from '../../../../resources/icons/large/leve-logo-orange-icon-la
 import { forgotPasswordSchema, loginSchema } from './schema';
 import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginContentContainer, LoginForm, LoginIconContainer, LoginTitleContainer } from './styles';
 import { SnackbarMessageAlert, SnackbarMessageNotification } from '../login/styles';
+import { awaitSeconds } from '@/app/utils/browser/BrowserUtils';
 
 export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgottenPassword }) {
 
@@ -95,7 +96,8 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
             }
 
             const response = await loginValidation(data)
-            if (response?.status === 200 && response?.data.access_token) {
+            if (response?.status === 200 && response?.data?.access_token) {
+                awaitSeconds(3)
                 router.push(`/dashboard`)
                 closeModal()
             } else if (response?.data?.error) {
