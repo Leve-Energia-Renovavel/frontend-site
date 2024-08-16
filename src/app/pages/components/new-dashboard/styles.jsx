@@ -43,13 +43,13 @@ export const NewDashboardContent = styled.div`
     margin-left: 100px;
     
     gap: 60px;
-    
+
     @media (max-width: 1400px) {
         margin-left: 2rem;
     }
     @media (max-width: 900px) {
         margin: 0 auto;
-        gap: 30px;
+        gap: 25px;
     }
 `
 export const NewDashboardMainContent = styled.div`

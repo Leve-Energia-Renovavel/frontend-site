@@ -36,7 +36,6 @@ export default function NewDashboardMain(props) {
         if (!uuid) {
             fetchDashboardData();
         }
-
     }, []);
 
     return (

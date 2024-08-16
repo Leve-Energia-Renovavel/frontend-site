@@ -11,8 +11,8 @@ export default function DashboardSideBar({ children }) {
     return (
         <>
             <SideBar>
-                <DashboardProfile />
-                <DashboardInstallation />
+                <DashboardProfile isMobileContent={false} />
+                <DashboardInstallation isMobileContent={false} />
                 <DashboardMemberGetMember isSideBar={true} />
                 {children}
             </SideBar>

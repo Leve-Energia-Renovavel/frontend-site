@@ -10,6 +10,8 @@ export const NewDashboardProfile = styled.div`
 
     padding: 14px;
 
+    ${props => props.isMobileContent && "display:none;"}
+
     .cpf {
         font-family: "Graphie";
         font-size: 14px;
@@ -19,6 +21,10 @@ export const NewDashboardProfile = styled.div`
         color: ${newBackground.greyDark};
 
         margin-top: 8px;
+    }
+
+    @media (max-width: 900px) {
+        ${props => props.isMobileContent && "display:block;"}
     }
 `
 export const ProfileHeader = styled.div`
@@ -70,6 +76,13 @@ export const NewDashboardInstallation = styled.div`
     padding: 14px;
 
     border-radius: 15px;
+
+    ${props => props.isMobileContent && "display:none;"}
+
+    @media (max-width: 900px) {
+        ${props => props.isMobileContent && "display:block;"}
+    }
+
 `
 
 export const InstallationHeader = styled.div`

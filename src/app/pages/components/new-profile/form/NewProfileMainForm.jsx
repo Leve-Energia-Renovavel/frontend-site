@@ -1,11 +1,12 @@
 "use client"
 
-import { useStoreCompany, useStoreInstallations, useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
+import { useStoreCompany, useStoreInstallations, useStoreMainInstallation, useStoreUser, useStoreUserEconomy } from '@/app/hooks/useStore';
 import { updateUserProfile } from '@/app/service/user-service/UserService';
 import { getCityNameByStateIdAndCityId } from '@/app/service/utils/addressUtilsService';
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
 import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
+import { formatBrazillianDate } from '@/app/utils/formatters/dateFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import { MenuItem } from '@mui/material';
 import { useRef, useState } from 'react';
@@ -22,6 +23,9 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
     const store = useStoreUser()
     const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
+
+    const userEconomy = useStoreUserEconomy().userEconomy
+    const economySince = userEconomy?.economySince
 
     const user = JSON.parse(localStorage.getItem('user'))
     const mainInstallation = JSON.parse(localStorage.getItem('mainInstallation'))
@@ -122,9 +126,11 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
         }
 
         const response = await updateUserProfile(submitData)
-
         if (requestSuccessful(response?.status)) {
-            setNotifications(["Dados alterados com sucesso!"])
+            setNotifications(["Dados atualizados com sucesso!"])
+            handleEdition()
+        } else {
+            setNotifications(["Erro ao atualizar os dados. Por favor, tente novamente."])
             handleEdition()
         }
 
@@ -228,6 +234,7 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
                             InputLabelProps={{ style: { color: leveGreen } }}
                         />}
                     </InputMask>
+
                     <FormInput
                         id="maritalStatus"
                         select
@@ -316,10 +323,6 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
                         })}
                     </FormInput>
 
-
-
-
-
                     <InputMask disabled mask="99999-999" value={zipCode || ""}
                         onChange={(e) => storeAddress.updateAddress({ cep: e.target.value })}>
                         {() => <FormInput
@@ -358,13 +361,14 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
                         />}
                     </InputMask>
 
-                    <FormInput className="inputForm"
-                        disabled={!isEdition}
-                        inputRef={addressRefs.complement}
-                        defaultValue={complement || ''}
-                        label="Complemento" variant="outlined" placeholder="Complemento"
-                        type="text"
-                        InputLabelProps={{ shrink: true, style: { color: leveGreen } }} required />
+                    {complement ?
+                        <FormInput className="inputForm"
+                            disabled={!isEdition}
+                            inputRef={addressRefs.complement}
+                            defaultValue={complement || ''}
+                            label="Complemento" variant="outlined" placeholder="Complemento"
+                            type="text"
+                            InputLabelProps={{ shrink: true, style: { color: leveGreen } }} required /> : <></>}
 
                     <FormInput className="inputForm"
                         disabled
@@ -372,6 +376,17 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
                         inputRef={addressRefs.neighborhood}
                         label="Bairro" variant="outlined" placeholder="Bairro"
                         type="text"
+                        InputLabelProps={{ shrink: true, style: { color: leveGreen } }} required />
+
+                    <FormInput
+                        className="inputForm"
+                        defaultValue={getCityNameByStateIdAndCityId(stateId, cityId) || ""}
+                        inputRef={addressRefs.city}
+                        label="Cidade"
+                        variant="outlined"
+                        placeholder="Cidade"
+                        type="text"
+                        disabled
                         InputLabelProps={{ shrink: true, style: { color: leveGreen } }} required />
 
                     <FormInput
@@ -395,17 +410,18 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
                         })}
                     </FormInput>
 
-
-                    <FormInput
-                        className="inputForm"
-                        defaultValue={getCityNameByStateIdAndCityId(stateId, cityId) || ""}
-                        inputRef={addressRefs.city}
-                        label="Cidade"
-                        variant="outlined"
-                        placeholder="Cidade"
-                        type="text"
-                        disabled
-                        InputLabelProps={{ shrink: true, style: { color: leveGreen } }} required />
+                    <InputMask mask="99/99/9999" disabled value={formatBrazillianDate(economySince) || ""} >
+                        {() => <FormInput
+                            className="inputForm"
+                            label="Cadastro Desde"
+                            variant="outlined"
+                            placeholder="Cadastro Desde"
+                            type="text"
+                            disabled
+                            inputProps={{ inputMode: 'numeric' }}
+                            InputLabelProps={{ style: { color: leveGreen } }}
+                        />}
+                    </InputMask>
 
                 </FormContent>
 

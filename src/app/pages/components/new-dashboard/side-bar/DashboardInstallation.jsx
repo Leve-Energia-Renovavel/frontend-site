@@ -11,7 +11,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useEffect } from "react";
 import { BoxInstallation, InstallationDetails, InstallationHeader, InstallationItem, NewDashboardInstallation, SelectInstallation } from "./styles";
 
-export default function DashboardInstallation() {
+export default function DashboardInstallation({ isMobileContent }) {
 
     const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
@@ -42,7 +42,7 @@ export default function DashboardInstallation() {
     }
 
     return (
-        <NewDashboardInstallation>
+        <NewDashboardInstallation isMobileContent={isMobileContent}>
             <InstallationHeader>
                 <InventoryIcon className="installationIcon" />
                 <BoxInstallation >
