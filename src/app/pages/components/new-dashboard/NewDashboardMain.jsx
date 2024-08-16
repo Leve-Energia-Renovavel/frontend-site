@@ -31,7 +31,7 @@ export default function NewDashboardMain(props) {
     const [menuSelected, setMenuSelection] = useState(menuOptions[props.page])
 
     useEffect(() => {
-        clearStorageData()
+        // clearStorageData()
         const fetchDashboardData = async () => {
             try {
                 const headers = {
