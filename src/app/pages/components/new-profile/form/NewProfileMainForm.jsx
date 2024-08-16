@@ -275,7 +275,7 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
                         })}
                     </FormInput>
 
-                    {secondaryEmail !== "" ?
+                    {secondaryEmail ?
                         <FormInput
                             className='inputForm'
                             inputRef={userRefs.email}
