@@ -2,7 +2,6 @@
 
 import { useStoreUser } from '@/app/hooks/useStore';
 import { forgotPasswordValidation, loginValidation } from '@/app/service/login-service/LoginService';
-import { requestNotFound, requestSuccessful } from '@/app/service/utils/Validations';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Backdrop, Box, CircularProgress, Divider, IconButton, InputAdornment, Modal, TextField, Typography } from '@mui/material';
@@ -72,18 +71,9 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
 
         } else {
             const data = { email: loginRef.email.current.value }
-            const response = await forgotPasswordValidation(data)
-            if (requestSuccessful(response?.status)) {
-                setNotifications(["E-mail enviado com sucesso!"])
-            } else if (requestNotFound(response?.status)) {
-                setErrorMessage(["Usuário não encontrado"])
-            } else {
-                setErrorMessage(["Erro ao recuperar senha. Por favor, tente novamente"])
-            }
+            await forgotPasswordValidation(data, setNotifications, setErrorMessage)
         }
-
         setIsLoading(false)
-
     }
 
     const handleKeyPress = (event) => {

@@ -2,8 +2,8 @@ import { forgotPasswordSchema, loginSchema } from "@/app/pages/components/new-lo
 import { awaitSeconds } from "@/app/utils/browser/BrowserUtils";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { requestSuccessful } from "../utils/Validations";
 import { getAccessToken } from "../user-service/UserService";
+import { requestSuccessful } from "../utils/Validations";
 
 export const loginValidation = async (data, store, setErrorMessage) => {
     return await loginSchema.validate(data, { abortEarly: false })
@@ -25,7 +25,7 @@ export const loginValidation = async (data, store, setErrorMessage) => {
         });
 }
 
-export const forgotPasswordValidation = async (data) => {
+export const forgotPasswordValidation = async (data, setNotifications, setErrorMessage) => {
     const response = await forgotPasswordSchema.validate(data, { abortEarly: false })
         .then(async () => {
             return await recoverPassword(data)
@@ -34,7 +34,12 @@ export const forgotPasswordValidation = async (data) => {
             console.log(err.errors);
             return (err.errors)
         });
-    return response
+
+    if (requestSuccessful(response?.status)) {
+        setNotifications(["E-mail enviado com sucesso!"])
+    } else {
+        setErrorMessage(["Erro ao recuperar senha. Por favor, tente novamente"])
+    }
 }
 
 export const recoverPassword = async (data) => {
