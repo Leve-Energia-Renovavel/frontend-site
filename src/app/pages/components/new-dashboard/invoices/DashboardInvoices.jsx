@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import NewDefaultButton from '../../utils/buttons/NewDefaultButton';
 import DashboardInvoicesDummy from './DashboardInvoicesDummy';
 import { AllBillsPaidContainer, DashboardInvoicesContainer as Container, DashboardInvoicesContent as Content, NextBill, NextBillDivider, NextBillInfo, NextBillsContainer, NextBillsFooter, NoBillsContainer, PayBillButtonContainer } from './styles';
+import { billHasExpired } from '@/app/utils/date/DateUtils';
 
 export default function DashboardInvoices() {
 
@@ -30,7 +31,7 @@ export default function DashboardInvoices() {
       await getInvoicesData(storeNextBills, storeBilling)
     }
 
-    if(!uuid) {
+    if (!uuid) {
       fetchInvoicesData();
     }
 
@@ -55,9 +56,9 @@ export default function DashboardInvoices() {
                       return (
                         <NextBill key={bill.uuid} className='nextBill'>
                           <h6 className='billDate'>{bill.billDate}</h6>
-                          <NextBillInfo status={bill.status}>
+                          <NextBillInfo status={billHasExpired(bill.status, bill.dueDate)}>
                             <h6 className='value'>R$ {bill.value}</h6>
-                            <p className='status'>{billingStatusOptions[bill.status]}</p>
+                            <p className='status'>{billingStatusOptions[billHasExpired(bill.status, bill.dueDate)]}</p>
                           </NextBillInfo>
                           <NextBillInfo>
                             <p className='label'>Vencimento</p>

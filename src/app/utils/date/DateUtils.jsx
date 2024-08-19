@@ -44,12 +44,12 @@ export const isOver110 = (dateString) => {
     if (isValidDate(dateString)) {
         const [day, month, year] = dateString.split('/');
         const userBirthday = new Date(`${year}-${month}-${day}`);
-        
+
         const today = new Date();
         const ageDifference = today.getFullYear() - userBirthday.getFullYear();
-        
+
         return ageDifference < 110;
-    } else { 
+    } else {
         return false
     }
 };
@@ -69,3 +69,23 @@ export const isValidDate = (dateString) => {
 
     return isValid;
 };
+
+export const billHasExpired = (status, dueDate) => {
+    if (status === "paid") {
+        return status
+    }
+
+    const expired = "pending"
+    const open = "due"
+
+    const [day, month, year] = dueDate.split('/').map(Number);
+
+    const dueDateObject = new Date(year, month - 1, day);
+
+    const today = new Date();
+    if (today > dueDateObject) {
+        return expired
+    } else {
+        return open
+    }
+}

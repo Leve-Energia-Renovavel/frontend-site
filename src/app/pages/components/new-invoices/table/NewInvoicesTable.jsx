@@ -2,6 +2,7 @@
 "use client"
 
 import { useStoreBillingHistory, useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
+import { billHasExpired } from '@/app/utils/date/DateUtils';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import { formatDateClearYear, formatFullMonthAndYear } from '@/app/utils/formatters/dateFormatter';
 import { useState } from 'react';
@@ -57,13 +58,13 @@ export default function NewInvoicesTable() {
                         <NewInvoicesTableContent key={billing?.uuid} className={`newInvoicesTableContent-${billing?.uuid}`}>
                             <InvoicesTableLeveBill
                                 className='invoicesTableLeveBill'
-                                status={billing?.status}
+                                status={billHasExpired(billing?.status, billing?.dueDate)}
                                 aria-controls="panel1-content"
                                 id="panel1-header">
                                 <p className='leveBillValue'>{formatFullMonthAndYear(billing?.billDate)}</p>
                                 <p className='leveBillValue'>{`R$ ${parseFloat(billing?.value).toFixed(2).replace(".", ",")}`}</p>
                                 <p className='leveBillValue'>{formatDateClearYear(billing?.dueDate)}</p>
-                                <p className='leveBillStatus'>{billingStatusOptions[billing?.status]}</p>
+                                <p className='leveBillStatus'>{billingStatusOptions[billHasExpired(billing?.status, billing?.dueDate)]}</p>
 
                                 <div className="desktopActionButtonContainer">
                                     <NewInvoicesActionButtonContainer
