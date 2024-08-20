@@ -399,8 +399,7 @@ export default function SignupForm() {
                     type="text"
                     required
                     inputProps={{ inputMode: 'numeric' }}
-                    InputLabelProps={{ shrink: false },
-                      { style: { color: '#FF7133' } }}
+                    InputLabelProps={{ shrink: false, style: { color: '#FF7133' } }}
                   />}
                 </InputMask>)}
               <InputMask mask="999.999.999-99" required defaultValue={""}>
@@ -412,8 +411,7 @@ export default function SignupForm() {
                   inputProps={{ inputMode: 'numeric' }}
                   type="text"
                   required
-                  InputLabelProps={{ shrink: false },
-                    { style: { color: '#FF7133' } }} />}
+                  InputLabelProps={{ shrink: false, style: { color: '#FF7133' } }} />}
               </InputMask>
 
               <InputMask mask="99/99/9999" required value={birthDate || ""} onChange={(e) => store.updateUser({ birthDate: e.target.value })}>
@@ -426,8 +424,7 @@ export default function SignupForm() {
                   type="text"
                   required
                   inputProps={{ inputMode: 'numeric' }}
-                  InputLabelProps={{ shrink: birthDate !== "" },
-                    { style: { color: '#FF7133' } }
+                  InputLabelProps={{ shrink: birthDate !== "", style: { color: '#FF7133' } }
                   }
                 />}
               </InputMask>
