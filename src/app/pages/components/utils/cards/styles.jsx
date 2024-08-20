@@ -4,7 +4,11 @@ import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import InventoryIcon from '@mui/icons-material/Inventory';
 
 export const CardParentContainer = styled.div`
-    background-color: ${props => props.status === "ativo" ? newBackground.green : newBackground.orange};
+    background-color: ${newBackground.orange};
+
+    ${props => props.status === "inativo" && `background-color: ${newBackground.grey}`};
+    ${props => props.status === "ativo" && `background-color: ${newBackground.green}`};
+
     border-radius: 15px;
     text-align: center;
 
@@ -17,8 +21,8 @@ export const CardParentContainer = styled.div`
     border: 2px solid ${newBackground.green};
     
     &:hover {
-        ${props => props.hoverColor ?  "border: 2px solid ${newBackground.orange}" : ""};
-        ${props => props.hoverColor ?  "cursor: pointer;" : ""};
+        ${props => props.hoverColor ? "border: 2px solid ${newBackground.orange}" : ""};
+        ${props => props.hoverColor ? "cursor: pointer;" : ""};
     }
 
     .cardStatus {
