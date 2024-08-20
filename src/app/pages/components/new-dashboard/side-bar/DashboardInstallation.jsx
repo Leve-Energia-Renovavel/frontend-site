@@ -6,12 +6,17 @@ import { getInstallationByUUID, getMainInstallationData } from "@/app/service/in
 import { getCityNameByStateIdAndCityId } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { formatCep } from "@/app/utils/formatters/documentFormatter";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { useEffect } from "react";
-import { BoxInstallation, InstallationDetails, InstallationHeader, InstallationItem, NewDashboardInstallation, SelectInstallation } from "./styles";
+import { useEffect, useState } from "react";
+import AddInstallationModal from "../../utils/modals/installations-modal/add-new-installation-modal/AddInstallationModal";
+import { BoxInstallation, InstallationDetails, InstallationFooter, InstallationHeader, InstallationItem, NewDashboardInstallation, SelectInstallation } from "./styles";
+
 
 export default function DashboardInstallation({ isMobileContent }) {
+
+    const [openNewInstallationModal, setOpenNewInstallationModal] = useState(false)
 
     const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
@@ -40,38 +45,44 @@ export default function DashboardInstallation({ isMobileContent }) {
         const uuid = selectedInstallation?.uuid
         await getInstallationByUUID(uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling)
     }
+    const handleCloseModal = () => {
+        setOpenNewInstallationModal(false)
+    }
 
     return (
-        <NewDashboardInstallation isMobileContent={isMobileContent}>
-            <InstallationHeader>
-                <InventoryIcon className="installationIcon" />
-                <BoxInstallation >
-                    <SelectInstallation
-                        fullWidth
-                        value={0}
-                        displayEmpty
-                        IconComponent={filteredInstallations.length > 0 ? KeyboardArrowDownIcon : ""}>
-                        <li value={0} style={{ display: 'none' }}>
-                            {/* <span className="home">{`Endereço ${installationNumber}`}</span> */}
-                            <span className="home">{`Casa`}</span>
-                        </li>
-                        {filteredInstallations?.map((otherInstallation, index) => {
-                            return (
-                                <InstallationItem key={otherInstallation?.id} value={index + 1}>
-                                    <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>{otherInstallation.street}</span>
-                                </InstallationItem>
-                            )
-                        })}
-                    </SelectInstallation>
-                </BoxInstallation>
-            </InstallationHeader>
-            <InstallationDetails>
-                <p className="installationDetails">{street ? street : "Rua"}, {number ? number : "123"}  - {neighborhood ? neighborhood : "Bairro"}, {city ? "Cidade" : getCityNameByStateIdAndCityId(stateId, cityId)} - {state ? "Estado" : stateOptions[stateId]?.sigla}, CEP: {formatCep(zipCode)}</p>
-            </InstallationDetails>
-            {/* <InstallationFooter>
-                <AddCircleIcon className="addInstallationIcon" />
-                <p className="addInstallation">Nova unidade</p>
-            </InstallationFooter> */}
-        </NewDashboardInstallation>
+        <>
+            <NewDashboardInstallation isMobileContent={isMobileContent}>
+                <InstallationHeader>
+                    <InventoryIcon className="installationIcon" />
+                    <BoxInstallation >
+                        <SelectInstallation
+                            fullWidth
+                            value={0}
+                            displayEmpty
+                            IconComponent={filteredInstallations.length > 0 ? KeyboardArrowDownIcon : ""}>
+                            <li value={0} style={{ display: 'none' }}>
+                                {/* <span className="home">{`Endereço ${installationNumber}`}</span> */}
+                                <span className="home">{`Casa`}</span>
+                            </li>
+                            {filteredInstallations?.map((otherInstallation, index) => {
+                                return (
+                                    <InstallationItem key={otherInstallation?.id} value={index + 1}>
+                                        <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>{otherInstallation.street}</span>
+                                    </InstallationItem>
+                                )
+                            })}
+                        </SelectInstallation>
+                    </BoxInstallation>
+                </InstallationHeader>
+                <InstallationDetails>
+                    <p className="installationDetails">{street ? street : "Rua"}, {number ? number : "123"}  - {neighborhood ? neighborhood : "Bairro"}, {city ? "Cidade" : getCityNameByStateIdAndCityId(stateId, cityId)} - {state ? "Estado" : stateOptions[stateId]?.sigla}, CEP: {formatCep(zipCode)}</p>
+                </InstallationDetails>
+                <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>
+                    <AddCircleIcon className="addInstallationIcon" />
+                    <p className="addInstallation">Nova unidade</p>
+                </InstallationFooter>
+            </NewDashboardInstallation>
+            {openNewInstallationModal && <AddInstallationModal isOpen={openNewInstallationModal} closeModal={handleCloseModal} />}
+        </>
     )
 }
