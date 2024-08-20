@@ -6,7 +6,7 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 export const CardParentContainer = styled.div`
     background-color: ${newBackground.orange};
 
-    ${props => props.status === "inativo" && `background-color: ${newBackground.grey}`};
+    ${props => props.status === "inativo" && `background-color: ${newBackground.greyDark}`};
     ${props => props.status === "ativo" && `background-color: ${newBackground.green}`};
 
     border-radius: 15px;
