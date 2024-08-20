@@ -35,20 +35,8 @@ export default function InstallationForm({ closeModal }) {
     const [isLoadingCEP, setIsLoadingCEP] = useState(false);
 
     const userRefs = {
-        nationality: useRef(null),
-        maritalStatus: useRef(null),
-        profession: useRef(null),
-        email: useRef(null),
-        phone: useRef(null),
         cost: useRef(null),
     };
-
-    const companyRefs = {
-        razao_social: useRef(null),
-        cnpj: useRef(null),
-        socialContract: useRef(null),
-        energyExtract: useRef(null),
-    }
 
     const addressRefs = {
         address: useRef(null),
@@ -77,8 +65,9 @@ export default function InstallationForm({ closeModal }) {
         setUserCost(newCost)
     }
 
-    const handleGetCEP = async (cep) => {
-        if (cep !== "" || cep.length < 8) {
+    const handleGetCEP = async () => {
+        const cep = addressRefs.addressCep.current.value
+        if (cep && cep !== "" && cep.length > 8) {
             setIsLoadingCEP(true)
             const response = await getAddressByCEP(cep, setNotifications, setErrorMessage, setIsLoadingCEP)
             updateAddressFormData(response?.data)
@@ -88,11 +77,7 @@ export default function InstallationForm({ closeModal }) {
         addressRefs.address.current.value = data?.logradouro
         addressRefs.city.current.value = data?.cidade
         addressRefs.neighborhood.current.value = data?.bairro
-        // addressRefs.state.current.value = data?.uf
-        console.log(stateOptions[statesAcronymOptions[data?.uf]])
         setStateValue(stateOptions[statesAcronymOptions[data?.uf]])
-
-        // handleChangeState(statesAcronymOptions[data?.uf])
     }
 
     const handleSubmit = async (event) => {
@@ -151,6 +136,7 @@ export default function InstallationForm({ closeModal }) {
                             disabled
                         />
                     </FormRow>
+
                     <FormContent>
                         <InputMask mask="(99) 99999-9999" value={formatPhoneNumber(phone) || ""} disabled >
                             {() => (
@@ -166,6 +152,7 @@ export default function InstallationForm({ closeModal }) {
                                 />
                             )}
                         </InputMask>
+
                         <InputMask mask="********-*" disabled defaultValue={rg || ""}>
                             {() => <FormInput
                                 defaultValue={rg || ""}
@@ -176,10 +163,10 @@ export default function InstallationForm({ closeModal }) {
                                 type="text"
                                 disabled
                                 inputProps={{ inputMode: 'numeric' }}
-                                InputLabelProps={{ shrink: false },
-                                    { style: { color: labelColor } }}
+                                InputLabelProps={{ shrink: true, style: { color: labelColor } }}
                             />}
                         </InputMask>
+
                         <InputMask mask="999.999.999-99" disabled defaultValue={formatCpfUnrestricted(cpf) || ""}>
                             {() =>
                                 <FormInput
@@ -191,8 +178,8 @@ export default function InstallationForm({ closeModal }) {
                                     inputProps={{ inputMode: 'numeric' }}
                                     type="text"
                                     disabled
-                                    InputLabelProps={{ shrink: false },
-                                        { style: { color: labelColor } }} />}
+                                    InputLabelProps={{ shrink: true, style: { color: labelColor } }}
+                                />}
                         </InputMask>
 
                         <InputMask mask="99/99/9999" disabled value={birthDate || ""} onChange={(e) => store.updateUser({ birthDate: e.target.value })}>
@@ -204,11 +191,10 @@ export default function InstallationForm({ closeModal }) {
                                 type="text"
                                 disabled
                                 inputProps={{ inputMode: 'numeric' }}
-                                InputLabelProps={{ shrink: birthDate !== "" },
-                                    { style: { color: labelColor } }
-                                }
+                                InputLabelProps={{ shrink: true, style: { color: labelColor } }}
                             />}
                         </InputMask>
+
                         <FormInput
                             id="maritalStatus"
                             disabled
@@ -218,8 +204,7 @@ export default function InstallationForm({ closeModal }) {
                             className="inputForm"
                             inputProps={{ inputMode: 'numeric' }}
                             InputLabelProps={{
-                                component: 'span',
-                                style: { color: labelColor }
+                                component: 'span', style: { color: labelColor }
                             }}
                             inputRef={userRefs.maritalStatus || ''}>
                             {maritalStatusOptions?.map((maritalStatus) => {
@@ -232,6 +217,7 @@ export default function InstallationForm({ closeModal }) {
                         <FormInput
                             id="nationality"
                             select
+                            disabled
                             defaultValue={nationality ? nationality : ""}
                             className="inputForm"
                             label="Nacionalidade"
@@ -239,10 +225,8 @@ export default function InstallationForm({ closeModal }) {
                             placeholder="Nacionalidade"
                             type="text"
                             InputLabelProps={{
-                                component: 'span',
-                                style: { color: labelColor }
-                            }}
-                            disabled>
+                                component: 'span', style: { color: labelColor }
+                            }}>
                             {nationalityOptions?.map((nationality) => {
                                 return (
                                     <MenuItem key={nationality.label} value={nationality.value}>{nationality.label}</MenuItem>
@@ -259,45 +243,32 @@ export default function InstallationForm({ closeModal }) {
                             variant="outlined"
                             placeholder="Custo Mensal em R$"
                             type="text"
+                            required
                             inputProps={{ inputMode: 'numeric' }}
-                            InputLabelProps={{ shrink: true, style: { color: labelColor } }}
-                            required />
+                            InputLabelProps={{ style: { color: labelColor } }} />
 
                     </FormContent>
-                    {/* <div style={{ display: "flex", justifyContent: "center", margin: "1.5rem auto" }}>
-                        <FormInput
-                            className="inputForm"
-                            inputRef={userRefs.cost}
-                            value={userCost || ""}
-                            onChange={(event) => handleChangeUserCost(event)}
-                            label="Custo Mensal em R$"
-                            variant="outlined"
-                            placeholder="Custo Mensal em R$"
-                            type="text"
-                            inputProps={{ inputMode: 'numeric' }}
-                            InputLabelProps={{ shrink: true, style: { color: labelColor } }}
-                            required />
-                    </div> */}
+
                     <FormContent>
                         <InputMask mask="99999-999"
-                            onBlur={(e) => handleGetCEP(addressRefs.addressCep.current.value)}>
+                            onBlur={(e) => handleGetCEP()}>
                             {() => <FormInput
                                 className="inputForm"
                                 inputRef={addressRefs.addressCep}
                                 label="CEP"
+                                required
                                 variant="outlined"
                                 placeholder="CEP"
                                 type="text"
                                 inputProps={{ inputMode: 'numeric' }}
-                                InputLabelProps={{ shrink: true, style: { color: labelColor } }}
+                                InputLabelProps={{ style: { color: labelColor } }}
                                 InputProps={{
                                     endAdornment: !isLoadingCEP ? <SearchIcon className="searchIcon"
-                                        onClick={() => handleGetCEP(addressRefs.addressCep.current.value)} /> :
+                                        onClick={() => handleGetCEP()} /> :
                                         <Box>
                                             <CircularProgress className='formLoading' size={"25px"} />
                                         </Box>,
-                                }}
-                                required />}
+                                }} />}
                         </InputMask>
 
                         <FormInput className="inputForm"
@@ -325,8 +296,7 @@ export default function InstallationForm({ closeModal }) {
                             inputRef={addressRefs.complement}
                             label="Complemento" variant="outlined" placeholder="Complemento"
                             type="text"
-                            InputLabelProps={addressRefs?.complement?.current?.value ? { shrink: true } : {},
-                                { style: { color: labelColor } }} />
+                            InputLabelProps={{ style: { color: labelColor } }} />
 
                         <FormInput className="inputForm"
                             inputRef={addressRefs.neighborhood}
