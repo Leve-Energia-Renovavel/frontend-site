@@ -77,10 +77,10 @@ export default function DashboardInstallation({ isMobileContent }) {
                 <InstallationDetails>
                     <p className="installationDetails">{street ? street : "Rua"}, {number ? number : "123"}  - {neighborhood ? neighborhood : "Bairro"}, {city ? "Cidade" : getCityNameByStateIdAndCityId(stateId, cityId)} - {state ? "Estado" : stateOptions[stateId]?.sigla}, CEP: {formatCep(zipCode)}</p>
                 </InstallationDetails>
-                <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>
+                {/* <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>
                     <AddCircleIcon className="addInstallationIcon" />
                     <p className="addInstallation">Nova unidade</p>
-                </InstallationFooter>
+                </InstallationFooter> */}
             </NewDashboardInstallation>
             {openNewInstallationModal && <AddInstallationModal isOpen={openNewInstallationModal} closeModal={handleCloseModal} />}
         </>
