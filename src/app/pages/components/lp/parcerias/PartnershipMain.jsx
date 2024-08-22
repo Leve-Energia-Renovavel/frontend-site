@@ -7,10 +7,7 @@ import { useState } from "react";
 import { TutorialBannerContainer } from "../novos-clientes/styles";
 import { PartnershipMainContainer as Container, MainContentContainer } from "./styles";
 
-
-// import PartnerForm from "../form/PartnerForm";
 const PartnerForm = dynamic(() => import("../form/PartnerForm"), { ssr: false });
-
 const LandingPageSecondaryBanner = dynamic(() => import("../novos-clientes/LandingPageSecondaryBanner"), { ssr: false });
 const TutorialContainer = dynamic(() => import("../../home/HomeTutorial"), { ssr: false });
 const HomeAreas = dynamic(() => import("../../home/HomeAreas"), { ssr: false });
