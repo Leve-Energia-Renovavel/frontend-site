@@ -1,6 +1,7 @@
 "use client"
 
 import { useStoreBillingHistory } from '@/app/hooks/useStore';
+import { billHasExpired } from '@/app/utils/date/DateUtils';
 import { formatMonthAndYearInFull } from '@/app/utils/formatters/dateFormatter';
 import ReactApexChart from 'react-apexcharts';
 import { background, newBackground } from '../../styles';
@@ -14,7 +15,7 @@ export default function NewHistoryMoneyChart() {
 
     const valueData = billings?.slice(chartSize).map((bill) => bill?.value)
     // const availabilityData = billings?.slice(chartSize).map((bill) => bill?.energyDistributorInjected)
-    
+
     // const availabilityData = billings?.slice(chartSize).map((_) => 250)
     const availabilityData = billings?.slice(chartSize).map((_) => 0)
 
@@ -110,10 +111,13 @@ export default function NewHistoryMoneyChart() {
             },
         },
         colors: [background.grey, (item) => {
-            const bill = billings?.slice(chartSize)[item?.dataPointIndex];
-            if (bill?.status === "paid") return newBackground.green;
-            if (bill?.status === "due") return newBackground.orange;
-            if (bill?.status === "pending") return newBackground.orangeFocused;
+            const bill = billings?.slice(chartSize)[item.dataPointIndex];
+
+            const status = billHasExpired(bill.status, bill.dueDate)
+
+            if (status === "paid") return newBackground.green;
+            if (status === "due") return newBackground.orangeFocused;
+            if (status === "pending") return newBackground.orange;
             return newBackground.green;
         }],
         yaxis: {

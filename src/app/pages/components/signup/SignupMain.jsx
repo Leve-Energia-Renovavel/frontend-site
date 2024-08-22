@@ -2,18 +2,14 @@
 "use client"
 
 import { useStoreAddress, useStoreUser } from '@/app/hooks/useStore';
-import { requestSuccessful } from '@/app/service/utils/Validations';
-import { formatBasicBirthDate } from '@/app/utils/date/DateUtils';
-import axios from 'axios';
-import Cookies from 'js-cookie';
+import { getLeadData } from '@/app/service/lead-service/LeadService';
 import dynamic from 'next/dynamic';
 import { notFound, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { SignUpContainer as Container } from './styles';
 
-import { checkForCompanyName } from '@/app/utils/company/CompanyUtils';
-import NewResultEconomy from '../new-result-economy/NewResultEconomy';
 const SignupForm = dynamic(() => import('./forms/SignupForm'), { ssr: false });
+const NewResultEconomy = dynamic(() => import('../new-result-economy/NewResultEconomy'), { ssr: false });
 
 export default function SignupMain() {
 
@@ -29,79 +25,7 @@ export default function SignupMain() {
 
     useEffect(() => {
         const fetchData = async () => {
-
-            store.updateUser({ uuid: uuid });
-            Cookies.set('leveUUID', uuid)
-
-            try {
-                const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
-                if (requestSuccessful(userResponse?.status)) {
-
-                    console.log("userResponse ==>>", userResponse)
-
-                    const { instalacao, distribuidora } = userResponse?.data
-                    const consumidor = userResponse?.data?.instalacao?.consumidor
-
-                    const cep = consumidor?.cep
-
-                    const updatedUser = {
-                        name: consumidor?.nome + " " + consumidor?.sobrenome,
-                        phone: consumidor?.telefone,
-                        email: consumidor?.email,
-                        cost: instalacao?.valor_base_consumo,
-                        cep: instalacao?.cep,
-                        coupon: consumidor?.ref_origin,
-                        couponValue: userResponse?.data?.desconto_bruto,
-
-                        cpf: consumidor?.cpf !== "" ? consumidor.cpf : "",
-                        rg: consumidor?.rg !== "" ? consumidor.rg : "",
-                        birthDate: consumidor?.data_nascimento ? formatBasicBirthDate(consumidor?.data_nascimento) : "",
-
-                        isCompany: consumidor?.type == "PJ" ? true : false,
-                        cnpj: consumidor?.type == "PJ" ? instalacao?.cnpj : "",
-                        companyName: consumidor?.type == "PJ" ? checkForCompanyName(instalacao?.razao_social, instalacao?.nome) : "",
-
-                        nationality: consumidor?.nacionalidade,
-                        profession: consumidor?.profissao,
-                        maritalStatus: consumidor?.estado_civil,
-
-                        discount: instalacao?.desconto,
-                        clientId: instalacao?.clientes_id,
-
-                        distributor: distribuidora?.nome,
-                        distributorPhotoUrl: distribuidora?.foto_numero_instalacao
-                    }
-
-                    store.updateUser(updatedUser);
-
-                    const updatedAddress = {
-                        cityId: consumidor?.cidade_id,
-                        stateId: consumidor?.estado_id,
-                        installationNumber: instalacao?.numero_instalacao
-                    }
-                    storeAddress.updateAddress(updatedAddress)
-
-                    const addressResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, {
-                        params: { cep: cep },
-                        withCredentials: false
-                    });
-
-                    if (requestSuccessful(addressResponse?.status)) {
-                        const address = addressResponse?.data
-                        const updatedFullAddress = {
-                            street: address?.logradouro,
-                            neighborhood: address?.bairro,
-                            city: address?.cidade,
-                            state: address?.uf,
-                            cep: address?.cep,
-                        }
-                        storeAddress.updateAddress(updatedFullAddress)
-
-                    }
-                }
-            } catch (error) {
-                console.error(error);
-            }
+            await getLeadData(uuid, store, storeAddress)
         };
 
         fetchData();

@@ -37,7 +37,7 @@ export default function NewInvoicesTable() {
             </NewInvoicesSelectedInstallation>
 
             <NewInvoicesTableHeader className='newInvoicesTableHeader'>
-                <p className='tableHeader'>Mes e Ano</p>
+                <p className='tableHeader'>Mês e Ano</p>
                 <p className='tableHeader'>Valor</p>
                 <p className='tableHeader'>Vencimento</p>
                 <p className='tableHeaderStatus'>Status</p>

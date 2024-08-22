@@ -17,7 +17,8 @@ export const dummyForm = {
     },
     login: {
         email: "dalbenmilton@gmail.com",
-        password: "123456"
+        password: "123456",
+        invalidPassword: "asdasdasd",
     },
     company: {
         name: "Empresa de Churros do Marcos"
@@ -49,6 +50,7 @@ export const destinationPattern = {
     contractSignature: `/signup/contract-signature/?uuid=`,
     outOfRange: `/fail/out-of-range`,
     dashboard: `/dashboard`,
+    login: `/login`,
 }
 
 export const dummyPath = {

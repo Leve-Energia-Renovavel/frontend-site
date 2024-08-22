@@ -10,4 +10,13 @@ export const createLoginTestData = (scenario) => {
             destinationPattern: destinationPattern.dashboard,
         };
     }
+    if (scenario === "fail") {
+        return {
+            path: dummyPath.login,
+            email: dummyForm.login.email,
+            password: dummyForm.login.invalidPassword,
+            requestUrl: dummyUrl.login,
+            destinationPattern: destinationPattern.login,
+        };
+    }
 }

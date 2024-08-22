@@ -10,20 +10,18 @@ import { ContentContainer as Content, CouponAppliedContainer, LeveEconomy, LeveE
 export default function NewResultEconomy() {
 
     const storeUser = useStoreUser()
-    const user = JSON.parse(window.localStorage.getItem('user')) || storeUser?.user
+    const user = JSON.parse(localStorage.getItem('user'))
 
-    const cost = user?.user?.cost
-    const couponValue = user?.user?.couponValue
+    const { cost, couponValue, discount } = user?.user ?? (storeUser?.user || {})
 
     const userHasCoupon = couponValue !== 0
-
-    const discount = user?.user?.discount
 
     const todayCost = cost?.toFixed(2).toString().replace(".", ",")
 
     const percentageValue = parseFloat((cost * discount) / 100)?.toFixed(2)?.replace(".", ",");
-    var leveEconomyValue = parseFloat(cost - ((discount / 100) * cost))?.toFixed(2)?.replace(".", ",");
     const leveYearTotalDiscount = parseFloat(((cost * (discount / 100)) * 12))?.toFixed(2)?.replace(".", ",");
+
+    var leveEconomyValue = parseFloat(cost - ((discount / 100) * cost))?.toFixed(2)?.replace(".", ",");
 
     if (userHasCoupon) {
         leveEconomyValue = parseFloat(cost - ((discount / 100) * cost) - couponValue)?.toFixed(2)?.replace(".", ",");
@@ -41,7 +39,7 @@ export default function NewResultEconomy() {
 
             <Content className='content'>
                 <TodayEconomyContainer className='todayEconomyContainer'>
-                    <TodayEconomyContent>
+                    <TodayEconomyContent className='todayEconomyContent'>
                         <Typography variant='subtitle1'>Você paga a concessionária:</Typography>
                         <TodayEconomy>
                             <Typography className='today'>Hoje:</Typography>

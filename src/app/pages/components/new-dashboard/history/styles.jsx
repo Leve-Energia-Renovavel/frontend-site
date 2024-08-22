@@ -104,11 +104,11 @@ export const LegendPaid = styled(LegendBase)`
 `;
 
 export const LegendDue = styled(LegendBase)`
-    background-color: ${newBackground.orange};
-    `;
-export const LegendExpired = styled(LegendBase)`
     background-color: ${newBackground.orangeFocused};
     color: ${newBackground.orange};
+    `;
+export const LegendExpired = styled(LegendBase)`
+background-color: ${newBackground.orange};
 `;
 export const LegendCarrier = styled(LegendBase)`
     background-color: ${background.grey};

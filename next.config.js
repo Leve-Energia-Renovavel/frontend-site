@@ -8,7 +8,8 @@ const nextConfig = {
     reactStrictMode: false,
     transpilePackages: ['@mui/x-charts'],
     compiler: {
-        styledComponents: true
+        styledComponents: true,
+        removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error"] } : false
     },
     env: {
         NEXT_PUBLIC_SIGNUP_BASE_URL: process.env.NEXT_PUBLIC_SIGNUP_BASE_URL,
