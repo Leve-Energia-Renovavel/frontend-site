@@ -130,7 +130,7 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
             setNotifications(["Dados atualizados com sucesso!"])
             handleEdition()
         } else {
-            setNotifications(["Erro ao atualizar os dados. Por favor, tente novamente."])
+            setErrorMessage(["Erro ao atualizar os dados. Por favor, tente novamente."])
             handleEdition()
         }
 

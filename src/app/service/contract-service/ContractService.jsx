@@ -26,7 +26,10 @@ export const finishSignup = async (router) => {
     }
 }
 
-export const signContract = async (uuid) => {
+export const signContract = async (uuid, router, path) => {
     const data = { uuid: uuid }
-    return await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/finalizar-cadastro`, data)
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/finalizar-cadastro`, data)
+    if (requestSuccessful(response?.status)) {
+        router.push(path)
+    }
 }

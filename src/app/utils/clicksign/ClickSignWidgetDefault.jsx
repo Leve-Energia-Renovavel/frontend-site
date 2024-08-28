@@ -7,9 +7,9 @@ import { ClicksignComponentContainer as Container } from './styles';
 
 export default function ClicksignWidgetDefault({ uuid }) {
 
-    const [key, setKey] = useState(null)
     const router = useRouter()
 
+    const [key, setKey] = useState(null)
     const [widget, setWidget] = useState(null);
 
     useEffect(() => {
@@ -32,8 +32,7 @@ export default function ClicksignWidgetDefault({ uuid }) {
             widgetInstance.mount('clicksign-container');
 
             widgetInstance.on('signed', async function (event) {
-                const response = await signContract(uuid)
-                console.log("fetchClicksignData run ===>>", response)
+                await signContract(uuid, router, `/dashboard/installations/success`)
             });
 
             setWidget(widgetInstance);
@@ -49,7 +48,6 @@ export default function ClicksignWidgetDefault({ uuid }) {
                 widget.unmount();
             }
         };
-
 
     }, [key]);
 

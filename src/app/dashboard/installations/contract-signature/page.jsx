@@ -1,7 +1,7 @@
 "use client"
 
 import NewDashboardMain from '@/app/pages/components/new-dashboard/NewDashboardMain'
-import NewInstallationContractSignatureModal from '@/app/pages/components/utils/modals/installations-modal/new-installation-contract-signature/NewInstallationContractSignatureModal'
+import NewInstallationContractSignatureModal from '@/app/pages/components/utils/modals/installations-modal/contract-signature-modal/NewInstallationContractSignatureModal'
 import { useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 
