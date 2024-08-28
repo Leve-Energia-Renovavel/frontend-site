@@ -97,7 +97,7 @@ export const updateInstallationsStoreData = async (response, storeMainInstallati
             const otherInstallation = {
                 id: installation?.id,
                 uuid: installation?.uuid,
-                address: installation?.nome,
+                address: installation?.endereco,
                 street: installation?.nome,
                 number: installation?.numero,
                 cityId: installation?.cidade_id,

@@ -7,6 +7,7 @@ export default function NewInstallationContractSignatureModal({ uuid, isOpen, cl
     return (
         <Modal
             open={isOpen}
+            // onClose={closeModal}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             slots={{ backdrop: Backdrop }}

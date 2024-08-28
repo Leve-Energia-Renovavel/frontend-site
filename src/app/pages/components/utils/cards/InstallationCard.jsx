@@ -6,7 +6,7 @@ import { capitalizeFirstLetter } from "@/app/utils/formatters/textFormatter"
 
 export default function InstallationCard({ installation, index }) {
 
-    const { status, street, zipCode, neighborhood, number, stateId, cityId, } = installation
+    const { status, address, street, zipCode, neighborhood, number, stateId, cityId, } = installation
 
     return (
         <CardParentContainer status={status} hoverColor={false}>
@@ -19,7 +19,7 @@ export default function InstallationCard({ installation, index }) {
                     {/* <EditIcon /> */}
                 </CardHeader>
                 <CardContent>
-                    <p>{`${street}, ${number} - ${neighborhood}, ${getCityNameByStateIdAndCityId(stateId, cityId)} - ${stateOptions[stateId]?.sigla}, ${formatCep(zipCode)}`}</p>
+                    <p>{`${address ? address : street}, ${number} - ${neighborhood}, ${getCityNameByStateIdAndCityId(stateId, cityId)} - ${stateOptions[stateId]?.sigla}, ${formatCep(zipCode)}`}</p>
                 </CardContent>
 
             </CardContainer>

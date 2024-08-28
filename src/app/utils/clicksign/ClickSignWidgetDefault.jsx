@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { getClicksignKey } from '@/app/service/contract-service/ContractService';
+import { getClicksignKey, signContract } from '@/app/service/contract-service/ContractService';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Clicksign from "./embedded";
@@ -31,7 +31,9 @@ export default function ClicksignWidgetDefault({ uuid }) {
 
             widgetInstance.mount('clicksign-container');
 
-            widgetInstance.on('signed', function (event) {
+            widgetInstance.on('signed', async function (event) {
+                const response = await signContract(uuid)
+                console.log("fetchClicksignData run ===>>", response)
             });
 
             setWidget(widgetInstance);
