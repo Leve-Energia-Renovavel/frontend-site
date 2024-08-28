@@ -62,7 +62,7 @@ export const confirmNewPassword = async (newPassword, confirmedNewPassword, toke
         };
 
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/recovery-pass/${token}`, data);
+            const response = await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/recovery-pass/${token}`, data);
 
             if (requestSuccessful(response?.status)) {
                 setNotifications(["Nova senha confirmada com sucesso!"]);
