@@ -17,9 +17,12 @@ import { Box, CircularProgress, MenuItem, Typography } from '@mui/material';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import { Form, FormButtonContainer, FormCancelButton, FormContent, FormInput, FormLastRow, FormRow, FormSubmitButton, InstallationFormContainer, InstallationInput, InstallationNumberDisclaimer } from './styles';
+import { addNewInstallation } from '@/app/service/installation-service/InstallationService';
+import { useRouter } from 'next/navigation';
 
 export default function InstallationForm({ closeModal }) {
 
+    const router = useRouter()
     const store = useStoreUser()
 
     const user = JSON.parse(localStorage.getItem('user'))
@@ -101,11 +104,12 @@ export default function InstallationForm({ closeModal }) {
             complemento: addressRefs.complement.current.value,
             estado_id: stateValue.cod_estados,
             cidade_id: await findCityIdByName(addressRefs.city.current.value, stateValue.cod_estados),
-            valor: validatedCost,
+            valor_base_consumo: validatedCost,
             numero_instalacao: addressRefs.installationNumber.current.value
         }
 
         console.log("submitData ===>>>", submitData)
+        await addNewInstallation(submitData, router)
     }
 
     const labelColor = "#005940"
@@ -338,6 +342,7 @@ export default function InstallationForm({ closeModal }) {
 
                     <FormLastRow>
                         <InstallationInput
+                            required
                             inputRef={addressRefs.installationNumber}
                             className="inputForm"
                             label={`Número de Instalação`}

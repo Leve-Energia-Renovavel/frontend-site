@@ -25,7 +25,14 @@ export const getMainInstallationData = async (storeMainInstallation, storeInstal
     }
 }
 
-export const getInstallationByUUID = async (uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling) => {
+export const getInstallationByUUID = async (uuid) => {
+    const headers = {
+        "Authorization": `Bearer ${Cookies.get('accessToken')}`
+    };
+    return await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/${uuid}`, { headers });
+}
+
+export const getInstallationByUUIDandUpdateStore = async (uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling) => {
     const headers = {
         "Authorization": `Bearer ${Cookies.get('accessToken')}`
     };
@@ -35,6 +42,19 @@ export const getInstallationByUUID = async (uuid, storeMainInstallation, storeIn
     } else {
         console.error("Failed to fetch selected installation data");
     }
+}
+
+export const addNewInstallation = async (data, router) => {
+    const headers = {
+        "Authorization": `Bearer ${Cookies.get('accessToken')}`
+    };
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/add-uc`, data, { headers });
+    console.log("addNewInstallation response ==>>", response)
+    const uuid = response?.data?.uuid
+    if (requestSuccessful(response?.status) && uuid && uuid != "") {
+        router.push(`/dashboard/installations/contract-signature/?uuid=${uuid}`)
+    }
+
 }
 
 export const updateInstallationsStoreData = async (response, storeMainInstallation, storeInstallations, storeNextBills, storeBilling) => {

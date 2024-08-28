@@ -44,6 +44,7 @@ export const updateInvoicesStoreData = async (response, storeNextBills, storeBil
   if (storeBilling) {
     storeBilling.clearBillings()
     ciclosConsumo?.forEach(bill => {
+      // if (billWasSend(bill.send)) {
       const newBilling = {
         uuid: bill.uuid,
         installationId: bill.cliente_instalacao_id,
@@ -65,6 +66,7 @@ export const updateInvoicesStoreData = async (response, storeNextBills, storeBil
         storeNextBills.updateExists(true)
         storeNextBills.addNextBill(newBilling)
       }
+      // }
     })
   }
 

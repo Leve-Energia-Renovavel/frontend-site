@@ -2,7 +2,7 @@
 "use client"
 
 import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills } from "@/app/hooks/useStore";
-import { getInstallationByUUID, getMainInstallationData } from "@/app/service/installation-service/InstallationService";
+import { getInstallationByUUIDandUpdateStore, getMainInstallationData } from "@/app/service/installation-service/InstallationService";
 import { getCityNameByStateIdAndCityId } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { formatCep } from "@/app/utils/formatters/documentFormatter";
@@ -43,7 +43,7 @@ export default function DashboardInstallation({ isMobileContent }) {
 
     const handleChangeSelectedInstallation = async (selectedInstallation) => {
         const uuid = selectedInstallation?.uuid
-        await getInstallationByUUID(uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling)
+        await getInstallationByUUIDandUpdateStore(uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling)
     }
     const handleCloseModal = () => {
         setOpenNewInstallationModal(false)
@@ -77,10 +77,10 @@ export default function DashboardInstallation({ isMobileContent }) {
                 <InstallationDetails>
                     <p className="installationDetails">{street ? street : "Rua"}, {number ? number : "123"}  - {neighborhood ? neighborhood : "Bairro"}, {city ? "Cidade" : getCityNameByStateIdAndCityId(stateId, cityId)} - {state ? "Estado" : stateOptions[stateId]?.sigla}, CEP: {formatCep(zipCode)}</p>
                 </InstallationDetails>
-                {/* <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>
+                <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>
                     <AddCircleIcon className="addInstallationIcon" />
                     <p className="addInstallation">Nova unidade</p>
-                </InstallationFooter> */}
+                </InstallationFooter>
             </NewDashboardInstallation>
             {openNewInstallationModal && <AddInstallationModal isOpen={openNewInstallationModal} closeModal={handleCloseModal} />}
         </>

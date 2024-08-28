@@ -1,5 +1,5 @@
 import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills } from "@/app/hooks/useStore";
-import { getInstallationByUUID } from "@/app/service/installation-service/InstallationService";
+import { getInstallationByUUIDandUpdateStore } from "@/app/service/installation-service/InstallationService";
 import { BoxInstallation, NewInstallationsHeader as Header, InstallationItem, KeyArrowDownIcon, NewInvoicesSelectButton, SelectInstallation, SelectOrCreateNewInstallation } from "./styles";
 
 export default function NewInstallationsMainHeader() {
@@ -17,7 +17,7 @@ export default function NewInstallationsMainHeader() {
 
     const handleChangeSelectedInstallation = async (selectedInstallation) => {
         const uuid = selectedInstallation?.uuid
-        await getInstallationByUUID(uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling)
+        await getInstallationByUUIDandUpdateStore(uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling)
     }
 
     return (

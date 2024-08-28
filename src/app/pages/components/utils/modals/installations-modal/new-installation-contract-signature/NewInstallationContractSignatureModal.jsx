@@ -1,10 +1,9 @@
+import ClicksignWidgetDefault from "@/app/utils/clicksign/ClickSignWidgetDefault";
 import { Backdrop, Modal } from "@mui/material";
-import dynamic from "next/dynamic";
 import { ModalBox, ModalTitleContainer } from "./styles";
 
-const InstallationForm = dynamic(() => import("../forms/InstallationForm"), { ssr: false });
+export default function NewInstallationContractSignatureModal({ uuid, isOpen, closeModal }) {
 
-export default function AddInstallationModal({ isOpen, closeModal }) {
     return (
         <Modal
             open={isOpen}
@@ -20,10 +19,10 @@ export default function AddInstallationModal({ isOpen, closeModal }) {
             }}>
             <ModalBox>
                 <ModalTitleContainer>
-                    <h1 className='modalTitle'>Cadastre seu novo endereço</h1>
-                    <p className="description">Preencha o formulário abaixo:</p>
+                    <h1 className='modalTitle'>Assine o contrato do seu novo endereço:</h1>
+                    <p className="description">Contrato ID: {uuid}</p>
                 </ModalTitleContainer>
-                <InstallationForm closeModal={closeModal} />
+                <ClicksignWidgetDefault uuid={uuid} />
             </ModalBox>
         </Modal>
     )

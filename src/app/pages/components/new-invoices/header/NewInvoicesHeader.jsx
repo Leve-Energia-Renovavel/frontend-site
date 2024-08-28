@@ -1,7 +1,7 @@
 "use client"
 
 import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser } from "@/app/hooks/useStore";
-import { getInstallationByUUID } from "@/app/service/installation-service/InstallationService";
+import { getInstallationByUUIDandUpdateStore } from "@/app/service/installation-service/InstallationService";
 import { changeInvoiceDate } from "@/app/service/invoices-service/InvoicesService";
 import { availableDueDates } from "@/app/utils/helper/invoices/invoicesHelper";
 import { useState } from "react";
@@ -30,7 +30,7 @@ export default function NewInvoicesHeader({ setErrorMessage, setNotifications })
 
     const handleChangeSelectedInstallation = async (selectedInstallation) => {
         const uuid = selectedInstallation?.uuid
-        await getInstallationByUUID(uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling)
+        await getInstallationByUUIDandUpdateStore(uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling)
     }
 
     const handleChangeDueDate = async () => {
