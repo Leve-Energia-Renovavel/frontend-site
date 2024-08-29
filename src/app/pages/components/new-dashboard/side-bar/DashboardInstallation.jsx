@@ -13,7 +13,6 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useEffect, useState } from "react";
 import AddInstallationModal from "../../utils/modals/installations-modal/new-installation-modal/AddInstallationModal";
 import { BoxInstallation, InstallationDetails, InstallationFooter, InstallationHeader, InstallationItem, NewDashboardInstallation, SelectInstallation } from "./styles";
-import { number } from "yup";
 
 
 export default function DashboardInstallation({ isMobileContent }) {
@@ -28,7 +27,7 @@ export default function DashboardInstallation({ isMobileContent }) {
     const mainInstallation = JSON.parse(localStorage?.getItem('mainInstallation'))
     const installations = JSON.parse(localStorage?.getItem('installations'))
 
-    const { uuid, address, street, number, neighborhood, city, state, stateId, cityId, zipCode, installationNumber, id } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+    const { uuid, address, street, number, neighborhood, city, state, stateId, cityId, zipCode, installationNumber, id, hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
     const allInstallations = installations?.installations ?? (storeInstallations?.installations || {})
 
@@ -82,10 +81,10 @@ export default function DashboardInstallation({ isMobileContent }) {
                 <InstallationDetails>
                     <p className="installationDetails">{getAddress(address, street)}, {getNumber(number)}  - {neighborhood ? neighborhood : "Bairro"}, {city ? "Cidade" : getCityNameByStateIdAndCityId(stateId, cityId)} - {state ? "Estado" : stateOptions[stateId]?.sigla}, CEP: {formatCep(zipCode)}</p>
                 </InstallationDetails>
-                <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>
+                {hasStartedBilling && <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>
                     <AddCircleIcon className="addInstallationIcon" />
                     <p className="addInstallation">Novo endereço</p>
-                </InstallationFooter>
+                </InstallationFooter>}
             </NewDashboardInstallation>
             {openNewInstallationModal && <AddInstallationModal isOpen={openNewInstallationModal} closeModal={handleCloseModal} />}
         </>
