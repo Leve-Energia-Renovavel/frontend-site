@@ -137,7 +137,9 @@ export const FormButtonContainer = styled.div`
     gap: 10px;
 
     .submitLoading {
-        color: ${newBackground.green};
+        margin-top: .5rem;
+        margin-right: 1rem;
+        color: ${newBackground.orange};
     }
 
 `

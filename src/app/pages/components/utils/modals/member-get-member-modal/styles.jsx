@@ -24,6 +24,8 @@ export const ModalBox = styled(Box)`
     box-shadow: 24px;
     
     padding: 2rem;
+
+    outline: none;
     
     @media (max-width: 900px) {
         padding: 1.5rem;

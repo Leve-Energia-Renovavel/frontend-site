@@ -1,4 +1,4 @@
-import { chartLegends } from '@/app/utils/helper/installationsCarrouselHelper'
+import { chartLegends } from '@/app/utils/helper/installations/installationsCarrouselHelper'
 import { Legend, LegendDetailLegend } from './styles'
 
 export default function ChartLegend() {

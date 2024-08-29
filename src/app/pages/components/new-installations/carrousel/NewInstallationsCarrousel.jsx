@@ -1,7 +1,7 @@
 "use client"
 
 import { useStoreBillingHistory } from '@/app/hooks/useStore';
-import { formatBillingArray } from '@/app/utils/helper/installationsCarrouselHelper';
+import { formatBillingArray } from '@/app/utils/helper/installations/installationsCarrouselHelper';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 import ChartStepper from '../chart-stepper/ChartStepper';

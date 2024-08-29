@@ -27,6 +27,8 @@ export const ModalBox = styled(Box)`
 
     padding: 60px 55px;
 
+    outline: none;
+
     .modalTitle {
         white-space: nowrap;
             font-family: "Graphie";

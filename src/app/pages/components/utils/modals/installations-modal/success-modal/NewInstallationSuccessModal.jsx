@@ -1,12 +1,15 @@
 import { Backdrop, Modal } from "@mui/material";
-import { ModalBox, ModalTitleContainer } from "./styles";
+import { ModalBox, ModalMainButton, ModalTitleContainer } from "./styles";
+import { useRouter } from "next/navigation";
 
 export default function NewInstallationSuccessModal({ isOpen, closeModal }) {
+
+    const router = useRouter()
 
     return (
         <Modal
             open={isOpen}
-            // onClose={closeModal}
+            onClose={closeModal}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             slots={{ backdrop: Backdrop }}
@@ -19,9 +22,13 @@ export default function NewInstallationSuccessModal({ isOpen, closeModal }) {
             }}>
             <ModalBox>
                 <ModalTitleContainer>
-                    <h1 className='modalTitle'>Sucesso!</h1>
-                    <p className="description">Contrato assinado com sucesso</p>
+                    <h1 className='modalTitle'>Contrato assinado com sucesso!</h1>
+                    <p className="description">Seu novo endereço passará por uma validação e em até 45 dias te daremos um retorno. </p>
+                    <p >Não se preocupe! Você poderá acompanhar o status na aba <span className="underlined" onClick={() => router.push("/dashboard/installations")}>Endereços</span></p>
                 </ModalTitleContainer>
+                <ModalMainButton onClick={closeModal}>
+                    <span>Entendi</span>
+                </ModalMainButton>
             </ModalBox>
         </Modal>
     )

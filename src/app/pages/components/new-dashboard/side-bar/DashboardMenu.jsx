@@ -1,5 +1,5 @@
 import { clearBrowserData } from '@/app/utils/browser/BrowserUtils';
-import { menuOptions } from '@/app/utils/helper/dashboardHelper';
+import { menuOptions } from '@/app/utils/helper/dashboard/dashboardHelper';
 import { useRouter } from 'next/navigation';
 import { MenuOption, NewDashboardMenu } from './styles';
 

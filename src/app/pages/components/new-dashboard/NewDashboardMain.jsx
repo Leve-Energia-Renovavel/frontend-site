@@ -9,9 +9,9 @@ import { useEffect, useState } from 'react';
 import { NewDashboardContainer as Container, NewDashboardContent as Content } from './styles';
 
 import { getDashboardMainData } from '@/app/service/dashboard-service/DashboardService';
-import { menuOptions } from '@/app/utils/helper/dashboardHelper';
 import DashboardMenu from './side-bar/DashboardMenu';
 import DashboardSideBar from './side-bar/DashboardSideBar';
+import { menuOptions } from '@/app/utils/helper/dashboard/dashboardHelper';
 
 const StatusStepper = dynamic(() => import('./status-stepper/StatusStepper'), { ssr: false });
 

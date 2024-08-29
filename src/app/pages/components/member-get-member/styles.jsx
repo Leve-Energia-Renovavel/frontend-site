@@ -126,6 +126,8 @@ export const ModalBox = styled(Box)`
 
     padding: 1rem 2rem;
 
+    outline: none;
+
     @media (max-width: 600px) {
         width: 100%;
         height: 100%;

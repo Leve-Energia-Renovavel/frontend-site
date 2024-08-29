@@ -1,7 +1,7 @@
 "use client"
 
 import { clearBrowserData } from "@/app/utils/browser/BrowserUtils";
-import { menuOptions } from "@/app/utils/helper/dashboardHelper";
+import { menuOptions } from "@/app/utils/helper/dashboard/dashboardHelper";
 import CloseIcon from '@mui/icons-material/Close';
 import { Backdrop, IconButton, Modal, Typography } from "@mui/material";
 import Image from "next/image";

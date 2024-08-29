@@ -49,7 +49,6 @@ export const addNewInstallation = async (data, router) => {
         "Authorization": `Bearer ${Cookies.get('accessToken')}`
     };
     const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/add-uc`, data, { headers });
-    console.log("addNewInstallation response ==>>", response)
     const uuid = response?.data?.uuid
     if (requestSuccessful(response?.status) && uuid && uuid != "") {
         router.push(`/dashboard/installations/contract-signature/?uuid=${uuid}`)
@@ -66,7 +65,7 @@ export const updateInstallationsStoreData = async (response, storeMainInstallati
     const updatedMainInstallation = {
         id: instalacao?.id,
         uuid: instalacao?.uuid,
-        address: instalacao?.nome,
+        address: instalacao?.endereco,
         street: instalacao?.nome,
         number: instalacao?.numero,
         cityId: instalacao?.cidade_id,

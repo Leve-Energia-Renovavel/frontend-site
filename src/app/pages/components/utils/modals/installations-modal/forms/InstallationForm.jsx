@@ -3,6 +3,7 @@
 import { useStoreUser } from '@/app/hooks/useStore';
 import Messages from '@/app/pages/components/messages/Messages';
 import { getAddressByCEP } from '@/app/service/address-service/AddressService';
+import { addNewInstallation } from '@/app/service/installation-service/InstallationService';
 import { findCityIdByName } from '@/app/service/utils/addressUtilsService';
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
 import { maritalStatusOptions, nationalityOptions } from '@/app/utils/form-options/formOptions';
@@ -14,11 +15,10 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import InfoIcon from '@mui/icons-material/Info';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, CircularProgress, MenuItem, Typography } from '@mui/material';
+import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import { Form, FormButtonContainer, FormCancelButton, FormContent, FormInput, FormLastRow, FormRow, FormSubmitButton, InstallationFormContainer, InstallationInput, InstallationNumberDisclaimer } from './styles';
-import { addNewInstallation } from '@/app/service/installation-service/InstallationService';
-import { useRouter } from 'next/navigation';
 
 export default function InstallationForm({ closeModal }) {
 
@@ -85,6 +85,7 @@ export default function InstallationForm({ closeModal }) {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+        setIsLoading(true)
 
         const validatedCost = costValidation(userRefs.cost.current.value)
 
@@ -108,8 +109,8 @@ export default function InstallationForm({ closeModal }) {
             numero_instalacao: addressRefs.installationNumber.current.value
         }
 
-        console.log("submitData ===>>>", submitData)
         await addNewInstallation(submitData, router)
+        setIsLoading(false)
     }
 
     const labelColor = "#005940"

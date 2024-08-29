@@ -6,11 +6,12 @@ import { getInstallationByUUIDandUpdateStore, getMainInstallationData } from "@/
 import { getCityNameByStateIdAndCityId } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { formatCep } from "@/app/utils/formatters/documentFormatter";
+import { getAddress, getNumber } from "@/app/utils/helper/installations/installationsHelper";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useEffect, useState } from "react";
-import AddInstallationModal from "../../utils/modals/installations-modal/add-new-installation-modal/AddInstallationModal";
+import AddInstallationModal from "../../utils/modals/installations-modal/new-installation-modal/AddInstallationModal";
 import { BoxInstallation, InstallationDetails, InstallationFooter, InstallationHeader, InstallationItem, NewDashboardInstallation, SelectInstallation } from "./styles";
 
 
@@ -26,7 +27,7 @@ export default function DashboardInstallation({ isMobileContent }) {
     const mainInstallation = JSON.parse(localStorage?.getItem('mainInstallation'))
     const installations = JSON.parse(localStorage?.getItem('installations'))
 
-    const { uuid, street, number, neighborhood, city, state, stateId, cityId, zipCode, installationNumber, id } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+    const { uuid, address, street, number, neighborhood, city, state, stateId, cityId, zipCode, installationNumber, id } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
     const allInstallations = installations?.installations ?? (storeInstallations?.installations || {})
 
@@ -67,7 +68,7 @@ export default function DashboardInstallation({ isMobileContent }) {
                             {filteredInstallations?.map((otherInstallation, index) => {
                                 return (
                                     <InstallationItem key={otherInstallation?.id} value={index + 1}>
-                                        <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>{otherInstallation.street}</span>
+                                        <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>{otherInstallation.address} {otherInstallation.number}</span>
                                     </InstallationItem>
                                 )
                             })}
@@ -75,7 +76,7 @@ export default function DashboardInstallation({ isMobileContent }) {
                     </BoxInstallation>
                 </InstallationHeader>
                 <InstallationDetails>
-                    <p className="installationDetails">{street ? street : "Rua"}, {number ? number : "123"}  - {neighborhood ? neighborhood : "Bairro"}, {city ? "Cidade" : getCityNameByStateIdAndCityId(stateId, cityId)} - {state ? "Estado" : stateOptions[stateId]?.sigla}, CEP: {formatCep(zipCode)}</p>
+                    <p className="installationDetails">{getAddress(address, street)}, {getNumber(number)}  - {neighborhood ? neighborhood : "Bairro"}, {city ? "Cidade" : getCityNameByStateIdAndCityId(stateId, cityId)} - {state ? "Estado" : stateOptions[stateId]?.sigla}, CEP: {formatCep(zipCode)}</p>
                 </InstallationDetails>
                 <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>
                     <AddCircleIcon className="addInstallationIcon" />
