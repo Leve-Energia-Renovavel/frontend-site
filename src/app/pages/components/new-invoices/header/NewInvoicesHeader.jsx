@@ -3,6 +3,7 @@
 import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser } from "@/app/hooks/useStore";
 import { getInstallationByUUIDandUpdateStore } from "@/app/service/installation-service/InstallationService";
 import { changeInvoiceDate } from "@/app/service/invoices-service/InvoicesService";
+import { getAddress, getNumber } from "@/app/utils/helper/installations/installationsHelper";
 import { availableDueDates } from "@/app/utils/helper/invoices/invoicesHelper";
 import { useState } from "react";
 import NewDefaultModal from "../../utils/modals/default-modal/NewDefaultModal";
@@ -21,7 +22,7 @@ export default function NewInvoicesHeader({ setErrorMessage, setNotifications })
 
     const user = JSON.parse(localStorage.getItem('user'))
 
-    const { id } = storeMainInstallation?.mainInstallation || {}
+    const { id, address, street } = storeMainInstallation?.mainInstallation || {}
     const { invoiceDate } = user?.user ?? (store?.user || {})
 
     const allInstallations = storeInstallations?.installations || {}
@@ -65,12 +66,15 @@ export default function NewInvoicesHeader({ setErrorMessage, setNotifications })
                                     displayEmpty
                                     IconComponent={filteredInstallations.length > 0 ? KeyArrowDownIcon : ""}>
                                     <li value={0} style={{ display: 'none' }}>
-                                        <span className="defaultInstallation">Casa</span>
+                                        <span className="defaultInstallation">{getAddress(address, street)}</span>
                                     </li>
                                     {filteredInstallations?.map((otherInstallation, index) => {
+                                        const address = otherInstallation.address
+                                        const street = otherInstallation.street
+                                        const number = getNumber(otherInstallation.number)
                                         return (
                                             <InstallationItem key={otherInstallation?.id} value={index + 1}>
-                                                <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>{otherInstallation.street}</span>
+                                                <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>{getAddress(address, street)}{number !== "Nº" ? `, ${number}` : ""}</span>
                                             </InstallationItem>
                                         )
                                     })}

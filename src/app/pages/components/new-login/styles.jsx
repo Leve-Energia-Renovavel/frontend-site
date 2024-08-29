@@ -30,6 +30,8 @@ export const LoginBox = styled(Box)`
 
     padding: 1rem 2rem;
 
+    outline: none;
+
     .MuiOutlinedInput-root {
         &:hover .MuiOutlinedInput-notchedOutline {
             border-color: ${newBackground.orangeFocused}; // Border color on hover

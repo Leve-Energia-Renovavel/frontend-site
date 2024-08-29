@@ -14,8 +14,9 @@ export const loginValidation = async (data, store, setErrorMessage) => {
                     accessToken: response?.data?.access_token,
                     refreshToken: response?.data?.refresh_token
                 })
-                Cookies.set('accessToken', response?.data?.access_token)
-                Cookies.set('refreshToken', response?.data?.refresh_token)
+                console.log("@@@@@@@@@@ response ===>>", response.data)
+                Cookies.set('accessToken', response.data.access_token)
+                Cookies.set('refreshToken', response.data.refresh_token)
             }
             return response
         })

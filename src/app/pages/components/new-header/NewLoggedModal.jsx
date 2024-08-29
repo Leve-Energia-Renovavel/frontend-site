@@ -1,20 +1,18 @@
 "use client"
 
-import { clearBrowserData } from "@/app/utils/browser/BrowserUtils";
 import { menuOptions } from "@/app/utils/helper/dashboard/dashboardHelper";
 import CloseIcon from '@mui/icons-material/Close';
 import { Backdrop, IconButton, Modal, Typography } from "@mui/material";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import soleProfile from "../../../../resources/icons/large/sole-icon-profile-large.png";
-import DashboardMenu from "../new-dashboard/side-bar/DashboardMenu";
-import { LoggoutButton, LoginBox, MenuContent, MenuHeaderContent } from "./styles";
 import DashboardMemberGetMember from "../new-dashboard/side-bar/DashboardMemberGetMember";
+import DashboardMenu from "../new-dashboard/side-bar/DashboardMenu";
+import { LoginBox, MenuContent, MenuHeaderContent } from "./styles";
 
 export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
 
-    const router = useRouter()
     const path = usePathname()
 
     const user = JSON.parse(localStorage.getItem('user'))
@@ -26,12 +24,6 @@ export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
 
     const filteredOption = menuOptions?.find(option => option?.link === path?.toString());
     const [menuSelected, setMenuSelection] = useState(filteredOption)
-
-    const handleLoggout = () => {
-        clearBrowserData()
-        closeModal()
-        router.push("/")
-    }
 
     return (
         <>
@@ -64,8 +56,6 @@ export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
                             menuSelected={menuSelected}
                             setMenuSelection={setMenuSelection}
                             closeModal={closeModal} />
-
-
                     </MenuContent>
                 </LoginBox>
             </Modal >

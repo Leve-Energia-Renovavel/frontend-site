@@ -2,6 +2,7 @@
 
 import { useStoreUser } from '@/app/hooks/useStore';
 import { forgotPasswordValidation, loginValidation } from '@/app/service/login-service/LoginService';
+import { requestSuccessful } from '@/app/service/utils/Validations';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Backdrop, Box, CircularProgress, Divider, IconButton, InputAdornment, Modal, TextField, Typography } from '@mui/material';
@@ -59,7 +60,7 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
             }
 
             const response = await loginValidation(data, store, setErrorMessage)
-            if (response?.status === 200 && response?.data?.access_token) {
+            if (requestSuccessful(response?.status) && response?.data?.access_token) {
                 router.push(`/dashboard`)
                 closeModal()
             } else if (response?.data?.error) {

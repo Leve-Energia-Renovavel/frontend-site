@@ -1,9 +1,10 @@
 "use client"
 
+import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import LoginBanner from '../pages/components/banners/login-banner/LoginBanner';
 import HomeMain from '../pages/components/home/HomeMain';
-import NewLoginModal from '../pages/components/new-login/NewLoginModal';
+
+const NewLoginModal = dynamic(() => import('../pages/components/new-login/NewLoginModal'), { ssr: false });
 
 export default function LoginPage() {
 
@@ -18,7 +19,6 @@ export default function LoginPage() {
     };
     return (
         <>
-            <LoginBanner />
             <HomeMain />
             <NewLoginModal
                 isOpen={openLogin}

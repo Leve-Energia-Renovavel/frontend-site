@@ -59,6 +59,7 @@ export default function Header() {
                 ) : (
                     <NewLoginModal
                         isOpen={openLogin}
+                        hasForgottenPassword={false}
                         openModal={openLoginModal}
                         closeModal={closeLoginModal} />
                 )

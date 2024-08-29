@@ -17,7 +17,7 @@ export const dummyForm = {
     },
     login: {
         email: "dalbenmilton@gmail.com",
-        password: "123456",
+        password: "1234567",
         invalidPassword: "asdasdasd",
     },
     company: {

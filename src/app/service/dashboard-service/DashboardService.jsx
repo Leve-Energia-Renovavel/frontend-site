@@ -30,6 +30,9 @@ export const getDashboardMainData = async (router, storeEconomy) => {
             "Authorization": `Bearer ${Cookies.get('accessToken')}`
         };
 
+        console.log("accessToken ==>>", Cookies.get('accessToken'))
+        console.log("refreshToken ==>>", Cookies.get('refreshToken'))
+        console.log("headers ==>>", headers)
         const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
         console.log("response ==>>", response)
 

@@ -84,7 +84,7 @@ export default function DashboardInstallation({ isMobileContent }) {
                 </InstallationDetails>
                 <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>
                     <AddCircleIcon className="addInstallationIcon" />
-                    <p className="addInstallation">Nova unidade</p>
+                    <p className="addInstallation">Novo endereço</p>
                 </InstallationFooter>
             </NewDashboardInstallation>
             {openNewInstallationModal && <AddInstallationModal isOpen={openNewInstallationModal} closeModal={handleCloseModal} />}
