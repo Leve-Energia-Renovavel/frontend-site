@@ -13,6 +13,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useEffect, useState } from "react";
 import AddInstallationModal from "../../utils/modals/installations-modal/new-installation-modal/AddInstallationModal";
 import { BoxInstallation, InstallationDetails, InstallationFooter, InstallationHeader, InstallationItem, NewDashboardInstallation, SelectInstallation } from "./styles";
+import { number } from "yup";
 
 
 export default function DashboardInstallation({ isMobileContent }) {
@@ -66,9 +67,12 @@ export default function DashboardInstallation({ isMobileContent }) {
                                 <span className="home">{`Casa`}</span>
                             </li>
                             {filteredInstallations?.map((otherInstallation, index) => {
+                                const address = otherInstallation.address
+                                const street = otherInstallation.street
+                                const number = getNumber(otherInstallation.number)
                                 return (
                                     <InstallationItem key={otherInstallation?.id} value={index + 1}>
-                                        <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>{otherInstallation.address} {otherInstallation.number}</span>
+                                        <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>{getAddress(address, street)}{number !== "Nº" ? `, ${number}` : ""}</span>
                                     </InstallationItem>
                                 )
                             })}
