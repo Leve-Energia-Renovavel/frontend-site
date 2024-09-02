@@ -29,6 +29,10 @@ export const ModalBox = styled(Box)`
     @media (max-width: 900px) {
         width: 100%;
         height: 100%;
+        
+        max-width: 1980px;
+        max-height: 1080px;
+
         border-radius: 0;
         top: 0;
         left: 0;
@@ -62,5 +66,11 @@ export const ModalTitleContainer = styled.div`
             color: ${newBackground.green};
 
             margin-top: 24px;
+    }
+
+    @media (max-width: 900px) {
+        .modalTitle {
+            white-space: wrap;
+        }
     }
 `

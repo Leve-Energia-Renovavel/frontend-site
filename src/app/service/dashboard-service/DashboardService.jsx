@@ -1,7 +1,8 @@
+import { awaitSeconds } from "@/app/utils/browser/BrowserUtils";
 import { formatBrazillianDate } from "@/app/utils/formatters/dateFormatter";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { requestSuccessful } from "../utils/Validations";
+import { requestSuccessful, requestUnauthorized } from "../utils/Validations";
 
 export const handleSendInvite = async (invitedEmail, setAlert) => {
     if (invitedEmail) {
@@ -24,18 +25,14 @@ export const handleSendInvite = async (invitedEmail, setAlert) => {
     }
 }
 
-export const getDashboardMainData = async (router, storeEconomy) => {
+export const getDashboardMainData = async (router, storeUser, storeEconomy, setErrorMessage) => {
     try {
+        const token = Cookies.get('accessToken') || storeUser.accessToken
         const headers = {
-            "Authorization": `Bearer ${Cookies.get('accessToken')}`
+            "Authorization": `Bearer ${token}`
         };
 
-        console.log("accessToken ==>>", Cookies.get('accessToken'))
-        console.log("refreshToken ==>>", Cookies.get('refreshToken'))
-        console.log("headers ==>>", headers)
         const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
-        console.log("response ==>>", response)
-
         if (requestSuccessful(response?.status)) {
             const { consumidor, economia } = response?.data
             const receivedCredits = response?.data?.creditos_recebidos
@@ -50,15 +47,25 @@ export const getDashboardMainData = async (router, storeEconomy) => {
 
             storeEconomy.updateUserEconomy(updatedUserEconomy)
 
+        } else if (requestUnauthorized(response?.status)) {
+            setErrorMessage(["Erro ao autenticar. Por favor, faça o login e tente novamente"])
+            awaitSeconds(3)
+            router.push(`/login`)
         } else {
+            setErrorMessage(["Erro ao validar as informações. Por favor, tente novamente"])
+            awaitSeconds(3)
             router.push(`/login`)
         }
     } catch (error) {
         console.error("Error fetching dashboard data:", error);
         if (error?.response?.data?.message === "Unauthenticated.") {
+            setErrorMessage(["Erro de autenticação. Por favor, faça o login e tente novamente"])
+            awaitSeconds(3)
             router.push("/login")
         }
         if (error?.response?.data?.error === "Consumidor não encontrado") {
+            setErrorMessage(["Erro ao logar. Por favor, faça o login e tente novamente"])
+            awaitSeconds(3)
             router.push("/login")
         }
     }

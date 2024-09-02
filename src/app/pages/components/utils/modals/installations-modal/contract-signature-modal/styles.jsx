@@ -29,6 +29,10 @@ export const ModalBox = styled(Box)`
     @media (max-width: 900px) {
         width: 100%;
         height: 100%;
+
+        max-width: 1920px;
+        max-height: 1080px;
+
         border-radius: 0;
         top: 0;
         left: 0;
@@ -47,11 +51,11 @@ export const ModalTitleContainer = styled.div`
 
     .modalTitle {
         white-space: nowrap;
-            font-family: "Graphie";
-            font-size: 27px;
-            line-height: 42px;
-            font-weight: 600;
-            color: ${newBackground.orange};
+        font-family: "Graphie";
+        font-size: 27px;
+        line-height: 42px;
+        font-weight: 600;
+        color: ${newBackground.orange};
     }
 
     .description {
@@ -62,5 +66,15 @@ export const ModalTitleContainer = styled.div`
             color: ${newBackground.green};
 
             margin-top: 24px;
+    }
+
+    @media (max-width: 900px) {
+        .modalTitle {
+            white-space: wrap;
+        }
+
+        .description {
+            display: none;
+        }
     }
 `

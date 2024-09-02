@@ -16,3 +16,6 @@ export const permanentRedirect = (status) => {
 export const requestNotFound = (status) => {
     return status === 404
 }
+export const requestUnauthorized = (status) => {
+    return status === 401
+}

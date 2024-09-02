@@ -6,19 +6,17 @@ import { getAddressByCEP } from '@/app/service/address-service/AddressService';
 import { addNewInstallation } from '@/app/service/installation-service/InstallationService';
 import { findCityIdByName } from '@/app/service/utils/addressUtilsService';
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
-import { maritalStatusOptions, nationalityOptions } from '@/app/utils/form-options/formOptions';
 import { statesAcronymOptions } from '@/app/utils/form-options/statesIdOptions';
 import { costValidation } from '@/app/utils/formatters/costFormatter';
 import { formatCpfUnrestricted } from '@/app/utils/formatters/documentFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import InfoIcon from '@mui/icons-material/Info';
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, CircularProgress, MenuItem, Typography } from '@mui/material';
+import { Box, CircularProgress, MenuItem } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
-import { Form, FormButtonContainer, FormCancelButton, FormContent, FormInput, FormLastRow, FormRow, FormSubmitButton, InstallationFormContainer, InstallationInput, InstallationNumberDisclaimer } from './styles';
+import { Form, FormButtonContainer, FormCancelButton, FormContent, FormInput, FormLastRow, FormRow, FormSubmitButton, InstallationFormContainer, InstallationInput } from './styles';
 
 export default function InstallationForm({ closeModal }) {
 
@@ -158,20 +156,6 @@ export default function InstallationForm({ closeModal }) {
                             )}
                         </InputMask>
 
-                        <InputMask mask="********-*" disabled defaultValue={rg || ""}>
-                            {() => <FormInput
-                                defaultValue={rg || ""}
-                                className="inputForm"
-                                label="RG"
-                                variant="outlined"
-                                placeholder="RG"
-                                type="text"
-                                disabled
-                                inputProps={{ inputMode: 'numeric' }}
-                                InputLabelProps={{ shrink: true, style: { color: labelColor } }}
-                            />}
-                        </InputMask>
-
                         <InputMask mask="999.999.999-99" disabled defaultValue={formatCpfUnrestricted(cpf) || ""}>
                             {() =>
                                 <FormInput
@@ -201,45 +185,6 @@ export default function InstallationForm({ closeModal }) {
                         </InputMask>
 
                         <FormInput
-                            id="maritalStatus"
-                            disabled
-                            select
-                            defaultValue={maritalStatus ? maritalStatus : ""}
-                            label="Estado Civil"
-                            className="inputForm"
-                            inputProps={{ inputMode: 'numeric' }}
-                            InputLabelProps={{
-                                component: 'span', style: { color: labelColor }
-                            }}
-                            inputRef={userRefs.maritalStatus || ''}>
-                            {maritalStatusOptions?.map((maritalStatus) => {
-                                return (
-                                    <MenuItem key={maritalStatus.label} value={maritalStatus.value}>{maritalStatus.label}</MenuItem>
-                                )
-                            })}
-                        </FormInput>
-
-                        <FormInput
-                            id="nationality"
-                            select
-                            disabled
-                            defaultValue={nationality ? nationality : ""}
-                            className="inputForm"
-                            label="Nacionalidade"
-                            variant="outlined"
-                            placeholder="Nacionalidade"
-                            type="text"
-                            InputLabelProps={{
-                                component: 'span', style: { color: labelColor }
-                            }}>
-                            {nationalityOptions?.map((nationality) => {
-                                return (
-                                    <MenuItem key={nationality.label} value={nationality.value}>{nationality.label}</MenuItem>
-                                )
-                            })}
-                        </FormInput>
-
-                        <FormInput
                             className="inputForm"
                             inputRef={userRefs.cost}
                             value={userCost || ""}
@@ -250,11 +195,8 @@ export default function InstallationForm({ closeModal }) {
                             type="text"
                             required
                             inputProps={{ inputMode: 'numeric' }}
-                            InputLabelProps={{ style: { color: labelColor } }} />
+                            InputLabelProps={{ shrink: true, style: { color: labelColor } }} />
 
-                    </FormContent>
-
-                    <FormContent>
                         <InputMask mask="99999-999"
                             onBlur={(e) => handleGetCEP()}>
                             {() => <FormInput
@@ -341,6 +283,10 @@ export default function InstallationForm({ closeModal }) {
                             InputLabelProps={{ shrink: true, style: { color: labelColor } }} required />
                     </FormContent>
 
+                    <FormContent>
+
+                    </FormContent>
+
                     <FormLastRow>
                         <InstallationInput
                             required
@@ -351,10 +297,6 @@ export default function InstallationForm({ closeModal }) {
                             placeholder={`Número de Instalação`}
                             type="text"
                         />
-                        <InstallationNumberDisclaimer>
-                            <InfoIcon className='infoIcon' />
-                            <Typography className='installationNumberDisclaimer'><span className='underlined'>Encontre este número</span> no canto superior direito de sua fatura atual.</Typography>
-                        </InstallationNumberDisclaimer>
                     </FormLastRow>
                 </Form>
 

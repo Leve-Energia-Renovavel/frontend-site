@@ -1,15 +1,12 @@
 import { Backdrop, Modal } from "@mui/material";
 import { ModalBox, ModalMainButton, ModalTitleContainer } from "./styles";
-import { useRouter } from "next/navigation";
 
 export default function NewInstallationSuccessModal({ isOpen, closeModal }) {
-
-    const router = useRouter()
 
     return (
         <Modal
             open={isOpen}
-            onClose={closeModal}
+            // onClose={closeModal}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             slots={{ backdrop: Backdrop }}
@@ -23,8 +20,8 @@ export default function NewInstallationSuccessModal({ isOpen, closeModal }) {
             <ModalBox>
                 <ModalTitleContainer>
                     <h1 className='modalTitle'>Contrato assinado com sucesso!</h1>
-                    <p className="description">Seu novo endereço passará por uma validação e em até 45 dias te daremos um retorno. </p>
-                    <p >Não se preocupe! Você poderá acompanhar o status na aba <span className="underlined" onClick={() => router.push("/dashboard/installations")}>Endereços</span></p>
+                    <p className="description">Seu novo endereço está em validação.</p>
+                    <p>Após validarmos, <span className="underlined">em até 60 dias</span>, sua unidade será ativada e você começará a receber créditos de energia da Leve Energia.</p>
                 </ModalTitleContainer>
                 <ModalMainButton onClick={closeModal}>
                     <span>Entendi</span>

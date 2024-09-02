@@ -76,9 +76,10 @@ export const ClicksignComponentContainer = styled.div`
     height: 27rem;
 
     @media (max-width: 600px) {
-        width: 90vw; 
-        max-width: 90vw; 
-        height: 70vh;
+        width: 20rem; 
+        height: 35rem;
+
+        margin: 0;
     }
   }
 `

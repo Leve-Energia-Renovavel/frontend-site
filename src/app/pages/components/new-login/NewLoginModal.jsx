@@ -64,10 +64,11 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
                 router.push(`/dashboard`)
                 closeModal()
             } else if (response?.data?.error) {
-                setErrorMessage(["E-mail ou senha estão incorretos"])
+                setErrorMessage(["E-mail e/ou senha estão incorretos"])
 
             } else {
-                setErrorMessage([response?.response?.data?.message])
+                setErrorMessage(["Erro ao realizar login. Tente novamente mais tarde"])
+                // setErrorMessage([response?.response?.data?.message])
             }
 
         } else {

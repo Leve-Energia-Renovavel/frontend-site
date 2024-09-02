@@ -21,6 +21,7 @@ export const updateProfileData = async (response, store) => {
         cost: consumidor?.valor,
         rg: consumidor?.rg,
 
+        profession: consumidor?.profissao,
         nationality: consumidor?.nacionalidade,
         maritalStatus: consumidor?.estado_civil,
         memberGetMemberCode: consumidor?.ref_code,
