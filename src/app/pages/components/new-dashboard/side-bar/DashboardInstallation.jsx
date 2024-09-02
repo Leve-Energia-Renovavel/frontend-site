@@ -6,12 +6,13 @@ import { getInstallationByUUIDandUpdateStore, getMainInstallationData } from "@/
 import { getCityNameByStateIdAndCityId } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { formatCep } from "@/app/utils/formatters/documentFormatter";
-import { getAddress, getNumber } from "@/app/utils/helper/installations/installationsHelper";
+import { getAddress, getNumber, isPending } from "@/app/utils/helper/installations/installationsHelper";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useEffect, useState } from "react";
 import AddInstallationModal from "../../utils/modals/installations-modal/new-installation-modal/AddInstallationModal";
+import NewInstallationPendingContractModal from "../../utils/modals/installations-modal/pending-contract-modal/NewInstallationPendingContractModal";
 import { BoxInstallation, InstallationDetails, InstallationFooter, InstallationHeader, InstallationItem, NewDashboardInstallation, SelectInstallation } from "./styles";
 
 
@@ -19,10 +20,10 @@ export default function DashboardInstallation({ isMobileContent }) {
 
     const [openNewInstallationModal, setOpenNewInstallationModal] = useState(false)
 
+    const storeBilling = useStoreBillingHistory()
+    const storeNextBills = useStoreNextBills()
     const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
-    const storeNextBills = useStoreNextBills()
-    const storeBilling = useStoreBillingHistory()
 
     const mainInstallation = JSON.parse(localStorage?.getItem('mainInstallation'))
     const installations = JSON.parse(localStorage?.getItem('installations'))
@@ -33,6 +34,11 @@ export default function DashboardInstallation({ isMobileContent }) {
 
     const filteredInstallations = allInstallations?.filter(installation => installation?.id !== id);
 
+    const pendingInstallations = filteredInstallations?.filter(installation => isPending(installation?.status));
+
+    const hasPendingContracts = pendingInstallations?.length > 0
+
+
     useEffect(() => {
         const fetchUserData = async () => {
             await getMainInstallationData(storeMainInstallation, storeInstallations)
@@ -40,13 +46,14 @@ export default function DashboardInstallation({ isMobileContent }) {
         if (!uuid) {
             fetchUserData();
         }
+
     }, []);
 
     const handleChangeSelectedInstallation = async (selectedInstallation) => {
         const uuid = selectedInstallation?.uuid
         await getInstallationByUUIDandUpdateStore(uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling)
     }
-    const handleCloseModal = () => {
+    const closeNewInstallationModal = () => {
         setOpenNewInstallationModal(false)
     }
 
@@ -86,7 +93,15 @@ export default function DashboardInstallation({ isMobileContent }) {
                     <p className="addInstallation">Novo endereço</p>
                 </InstallationFooter>}
             </NewDashboardInstallation>
-            {openNewInstallationModal && <AddInstallationModal isOpen={openNewInstallationModal} closeModal={handleCloseModal} />}
+
+            {<AddInstallationModal
+                isOpen={openNewInstallationModal}
+                closeModal={closeNewInstallationModal} />}
+
+            {<NewInstallationPendingContractModal
+                pendingInstallations={pendingInstallations}
+                isOpen={hasPendingContracts}
+            />}
         </>
     )
 }

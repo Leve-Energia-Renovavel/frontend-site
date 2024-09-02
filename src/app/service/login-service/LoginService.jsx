@@ -9,9 +9,6 @@ export const loginValidation = async (data, store, setErrorMessage) => {
     return await loginSchema.validate(data, { abortEarly: false })
         .then(async () => {
             const response = await getAccessToken(data)
-            console.log("@@@@@@@@@@ response ===>>", response.data)
-            console.log("@@@@@@@@@@ access_token ===>>", response.data.access_token)
-            console.log("@@@@@@@@@@ refresh_token ===>>", response.data.refresh_token)
             if (requestSuccessful(response.status)) {
                 store.updateUser({
                     accessToken: response.data.access_token,

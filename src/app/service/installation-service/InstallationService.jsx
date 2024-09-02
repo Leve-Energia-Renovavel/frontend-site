@@ -77,6 +77,8 @@ export const updateInstallationsStoreData = async (response, storeMainInstallati
         status: instalacao?.situacao,
         installationNumber: instalacao?.numero_instalacao,
 
+        documentKey: instalacao?.document_key,
+
         percentageAllocatedEnergy: instalacao?.porcentagem_energia_alocada,
         kwhContracted: instalacao?.kwh_contratado,
         discount: instalacao?.desconto,
@@ -93,6 +95,7 @@ export const updateInstallationsStoreData = async (response, storeMainInstallati
     if (storeInstallations) {
         storeInstallations.addInstallation(updatedMainInstallation);
         outrasInstalacoes?.forEach(installation => {
+
             const otherInstallation = {
                 id: installation?.id,
                 uuid: installation?.uuid,
@@ -107,6 +110,8 @@ export const updateInstallationsStoreData = async (response, storeMainInstallati
                 amount: installation?.valor_base_consumo,
                 status: installation?.situacao,
                 installationNumber: installation?.numero_instalacao,
+
+                documentKey: installation?.document_key,
 
                 percentageAllocatedEnergy: installation?.porcentagem_energia_alocada,
                 kwhContracted: installation?.kwh_contratado,

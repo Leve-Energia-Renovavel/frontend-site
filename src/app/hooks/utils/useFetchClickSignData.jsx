@@ -5,7 +5,7 @@ import { useStoreClickSign, useStoreUser } from '../useStore';
 const useFetchClickSignData = () => {
 
     const store = useStoreUser()
-    const storeClicksign = useStoreClickSign()
+    const sign = useStoreClickSign()
 
     const fetchData = async () => {
         const uuid = store.uuid;

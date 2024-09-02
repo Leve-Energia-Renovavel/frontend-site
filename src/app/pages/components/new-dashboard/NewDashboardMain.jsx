@@ -59,7 +59,6 @@ export default function NewDashboardMain(props) {
             </Container>
 
             <Messages notifications={notifications} errors={errors} setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
-
         </>
     )
 }
