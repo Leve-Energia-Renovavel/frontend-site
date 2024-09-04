@@ -34,7 +34,6 @@ export default function NewInstallationPendingContractModal({ pendingInstallatio
                     <h1 className='modalTitle'>Atenção!</h1>
                     <p className="description">falta assinar os contratos relativos ao endereço</p>
                     <p>{installation?.address} - {installation?.number} - {installation?.neighborhood}</p>
-                    <p>Contrato ID: {installation?.documentKey}</p>
                 </ModalTitleContainer>
                 <ModalMainButton onClick={handleSignPendingContract}>
                     <span>Finalizar agora!</span>

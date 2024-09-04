@@ -14,11 +14,10 @@ export const handleSendInvite = async (invitedEmail, setAlert) => {
         }
         const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/send-code`, data, { headers })
         if (requestSuccessful(response.status)) {
-            setAlert({ status: 'success', message: "Código de indicação com sucesso com sucesso!" });
+            setAlert({ status: 'success', message: "Código de indicação enviado com sucesso!" });
         } else {
             setAlert({ status: 'warning', message: "Erro ao enviar código. Verifique as informações e tente novamente" });
         }
-
 
     } else {
         setErrorMessages(["Informe um e-mail válido"])
