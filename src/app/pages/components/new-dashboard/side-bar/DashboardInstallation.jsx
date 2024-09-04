@@ -88,20 +88,20 @@ export default function DashboardInstallation({ isMobileContent }) {
                 <InstallationDetails>
                     <p className="installationDetails">{getAddress(address, street)}, {getNumber(number)}  - {neighborhood ? neighborhood : "Bairro"}, {city ? "Cidade" : getCityNameByStateIdAndCityId(stateId, cityId)} - {state ? "Estado" : stateOptions[stateId]?.sigla}, CEP: {formatCep(zipCode)}</p>
                 </InstallationDetails>
-                {hasStartedBilling && <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>
+                {/* {hasStartedBilling && <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>
                     <AddCircleIcon className="addInstallationIcon" />
                     <p className="addInstallation">Novo endereço</p>
-                </InstallationFooter>}
+                </InstallationFooter>} */}
             </NewDashboardInstallation>
 
             {<AddInstallationModal
                 isOpen={openNewInstallationModal}
                 closeModal={closeNewInstallationModal} />}
 
-            {<NewInstallationPendingContractModal
+            {/* {<NewInstallationPendingContractModal
                 pendingInstallations={pendingInstallations}
-                isOpen={hasPendingContracts}
-            />}
+                isOpen={!hasPendingContracts}
+            />} */}
         </>
     )
 }

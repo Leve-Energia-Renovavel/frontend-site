@@ -15,7 +15,7 @@ import MultipleInstallationsModal from '../../utils/modals/multiple-installation
 import OwnershipModal from '../../utils/modals/ownership-modal/OwnershipModal';
 import SingleInstallationModal from '../../utils/modals/single-installation-modal/SingleInstallationModal';
 import NewSuccessModal from '../../utils/modals/success-modal/NewSuccessModal';
-import { CancelEditionButton, EditionContainer, FormContent, FormInput, FormLastRow, FormRow, InstallationInput, SaveEditionButton } from './styles';
+import { CancelEditionButton, ChangeOwnershipButton, ChangeOwnershipIcon, EditionContainer, FormContent, FormInput, FormLastRow, FormRow, InstallationInput, SaveEditionButton } from './styles';
 
 
 export default function NewProfileMainForm({ isEdition, handleEdition, setNotifications, setErrorMessage }) {

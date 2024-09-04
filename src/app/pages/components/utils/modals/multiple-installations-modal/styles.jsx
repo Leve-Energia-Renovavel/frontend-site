@@ -55,6 +55,7 @@ export const ModalBox = styled(Box)`
 export const RegisteredInstallationsContainer = styled.div`
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     
     gap: 1rem;
 
