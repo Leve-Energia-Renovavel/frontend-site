@@ -32,11 +32,11 @@ export default function NewInstallationPendingContractModal({ pendingInstallatio
             <ModalBox>
                 <ModalTitleContainer>
                     <h1 className='modalTitle'>Atenção!</h1>
-                    <p className="description">falta assinar os contratos relativos ao endereço</p>
-                    <p>{installation?.address} - {installation?.number} - {installation?.neighborhood}</p>
+                    <p className="description">Notamos que você iniciou o processo para adicionar uma nova unidade consumidora, mas não concluiu a assinatura dos contratos.</p>
+                    <p>Para garantir que seu novo endereço comece a receber nossos créditos de energia, finalize a assinatura o quanto antes. Estamos aqui para ajudar, caso precise de qualquer suporte!</p>
                 </ModalTitleContainer>
                 <ModalMainButton onClick={handleSignPendingContract}>
-                    <span>Finalizar agora!</span>
+                    <span>Assinar Contratos</span>
                 </ModalMainButton>
             </ModalBox>
         </Modal>
