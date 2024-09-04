@@ -14,6 +14,7 @@ export const dummyForm = {
         rg: '393613045',
         cpf: '36735996828',
         birthDate: '22021995',
+        cost: '85000',
     },
     login: {
         email: "dalbenmilton@gmail.com",
@@ -57,6 +58,7 @@ export const dummyPath = {
     home: "/",
     signup: "/signup/?uuid=",
     login: "/login",
+    dashboard: "/dashboard",
     lp: {
         tribanco: `https://new-homolog-cliente.leveenergia.com.br/lp/tribanco/`,
         martins: `https://new-homolog-cliente.leveenergia.com.br/lp/martins/`,

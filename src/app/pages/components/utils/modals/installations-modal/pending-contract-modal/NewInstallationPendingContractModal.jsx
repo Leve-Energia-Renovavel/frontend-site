@@ -12,7 +12,7 @@ export default function NewInstallationPendingContractModal({ pendingInstallatio
     const installation = pendingInstallations[0]
 
     const handleSignPendingContract = () => {
-        router.push(`/dashboard/installations/contract-signature/?uuid=${installation.documentKey}`)
+        router.push(`/dashboard/installations/contract-signature/?uuid=${installation?.documentKey}`)
     }
 
     return (
@@ -33,8 +33,8 @@ export default function NewInstallationPendingContractModal({ pendingInstallatio
                 <ModalTitleContainer>
                     <h1 className='modalTitle'>Atenção!</h1>
                     <p className="description">falta assinar os contratos relativos ao endereço</p>
-                    <p>{installation.address} - {installation.number} - {installation.neighborhood}</p>
-                    <p>Contrato ID: {installation.documentKey}</p>
+                    <p>{installation?.address} - {installation?.number} - {installation?.neighborhood}</p>
+                    <p>Contrato ID: {installation?.documentKey}</p>
                 </ModalTitleContainer>
                 <ModalMainButton onClick={handleSignPendingContract}>
                     <span>Finalizar agora!</span>
