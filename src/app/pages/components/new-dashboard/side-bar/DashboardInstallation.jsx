@@ -6,19 +6,21 @@ import { getInstallationByUUIDandUpdateStore, getMainInstallationData } from "@/
 import { getCityNameByStateIdAndCityId } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { formatCep } from "@/app/utils/formatters/documentFormatter";
+import { pascalCaseWord } from "@/app/utils/formatters/textFormatter";
 import { getAddress, getNumber, isPending } from "@/app/utils/helper/installations/installationsHelper";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
 import AddInstallationModal from "../../utils/modals/installations-modal/new-installation-modal/AddInstallationModal";
-import NewInstallationPendingContractModal from "../../utils/modals/installations-modal/pending-contract-modal/NewInstallationPendingContractModal";
-import { BoxInstallation, InstallationDetails, InstallationFooter, InstallationHeader, InstallationItem, NewDashboardInstallation, SelectInstallation } from "./styles";
+import { BoxInstallation, InstallationDetails, InstallationHeader, InstallationItem, NewDashboardInstallation, SelectInstallation } from "./styles";
 
 
 export default function DashboardInstallation({ isMobileContent }) {
 
     const [openNewInstallationModal, setOpenNewInstallationModal] = useState(false)
+
+    const [isLoading, setIsLoading] = useState(true)
 
     const storeBilling = useStoreBillingHistory()
     const storeNextBills = useStoreNextBills()
@@ -38,20 +40,19 @@ export default function DashboardInstallation({ isMobileContent }) {
 
     const hasPendingContracts = pendingInstallations?.length > 0
 
-
     useEffect(() => {
         const fetchUserData = async () => {
-            await getMainInstallationData(storeMainInstallation, storeInstallations)
+            await getMainInstallationData(storeMainInstallation, storeInstallations, storeNextBills, storeBilling, setIsLoading);
         };
         if (!uuid) {
             fetchUserData();
         }
-
     }, []);
 
     const handleChangeSelectedInstallation = async (selectedInstallation) => {
+        setIsLoading(true)
         const uuid = selectedInstallation?.uuid
-        await getInstallationByUUIDandUpdateStore(uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling)
+        await getInstallationByUUIDandUpdateStore(uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling, setIsLoading)
     }
     const closeNewInstallationModal = () => {
         setOpenNewInstallationModal(false)
@@ -59,7 +60,7 @@ export default function DashboardInstallation({ isMobileContent }) {
 
     return (
         <>
-            <NewDashboardInstallation isMobileContent={isMobileContent}>
+            <NewDashboardInstallation isMobileContent={isMobileContent} className="dashboardInstallation">
                 <InstallationHeader>
                     <InventoryIcon className="installationIcon" />
                     <BoxInstallation >
@@ -86,7 +87,14 @@ export default function DashboardInstallation({ isMobileContent }) {
                     </BoxInstallation>
                 </InstallationHeader>
                 <InstallationDetails>
-                    <p className="installationDetails">{getAddress(address, street)}, {getNumber(number)}  - {neighborhood ? neighborhood : "Bairro"}, {city ? "Cidade" : getCityNameByStateIdAndCityId(stateId, cityId)} - {state ? "Estado" : stateOptions[stateId]?.sigla}, CEP: {formatCep(zipCode)}</p>
+                    {isLoading ?
+                        (<>
+                            <Skeleton className="installationDetails" variant="text" width={230} />
+                            <Skeleton className="installationDetails" variant="text" width={230} />
+                        </>)
+                        :
+                        <p className="installationDetails">{getAddress(address, street)}, {getNumber(number)}  - {neighborhood ? neighborhood : "Bairro"}, {city ? "Cidade" : pascalCaseWord(getCityNameByStateIdAndCityId(stateId, cityId))} - {state ? "Estado" : stateOptions[stateId]?.sigla}, CEP: {formatCep(zipCode)}</p>
+                    }
                 </InstallationDetails>
                 {/* {hasStartedBilling && <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>
                     <AddCircleIcon className="addInstallationIcon" />

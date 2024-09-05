@@ -40,6 +40,7 @@ export const DashboardInvoicesContent = styled.div`
     padding: 0 1rem;
 
     width: 100%;
+    min-width: 287px;
     max-width: 287px;
 `
 export const AllBillsPaidContainer = styled.div`

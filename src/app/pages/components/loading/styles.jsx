@@ -1,13 +1,14 @@
 import styled from "@emotion/styled";
-import { background, newBackground } from "../../styles";
+import { newBackground } from "../../styles";
 
 export const LoadingContainer = styled.div`
     background-color: ${newBackground.orange};
-    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center; 
     align-items: center;
+
+    min-height: 100vh;
 
     h1 {
         font-family: "Graphie", sans-serif, system-ui, -apple-system;

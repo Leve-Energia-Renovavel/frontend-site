@@ -2,10 +2,10 @@
 
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import { useState } from 'react';
-import { MenuOption } from './styles';
 import MemberGetMemberModal from '../../utils/modals/member-get-member-modal/MemberGetMemberModal';
+import { MenuOption } from './styles';
 
-export default function DashboardMemberGetMember({ isSideBar }) {
+export default function DashboardMemberGetMember({ isSideBar, setErrorMessage, setNotifications }) {
 
     const [openModal, setOpenModal] = useState(false)
 
@@ -16,14 +16,17 @@ export default function DashboardMemberGetMember({ isSideBar }) {
         setOpenModal(false)
     }
 
-
     return (
         <>
-            <MenuOption highlighted={true} isSideBar={isSideBar} onClick={() => handleOpenModal()}>
+            <MenuOption highlighted={true} isSideBar={isSideBar} onClick={() => handleOpenModal()} className='dashboardMemberGetMember'>
                 <PersonAddAltIcon className='icon' />
                 <span className='memberGetMember'>Indique um amigo e ganhe, para cada um, <span className='couponValue'>R$50 na fatura</span></span>
             </MenuOption>
-            {openModal && <MemberGetMemberModal isOpen={openModal} closeModal={handleCloseModal} />}
+
+            {<MemberGetMemberModal isOpen={openModal}
+                closeModal={handleCloseModal}
+                setErrorMessage={setErrorMessage}
+                setNotifications={setNotifications} />}
         </>
     )
 }

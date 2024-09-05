@@ -3,7 +3,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { requestSuccessful } from "../utils/Validations";
 
-export const getInvoicesData = async (storeNextBills, storeBilling) => {
+export const getInvoicesData = async (storeNextBills, storeBilling, setIsLoading) => {
   try {
     const headers = {
       "Authorization": `Bearer ${Cookies.get('accessToken')}`
@@ -17,6 +17,8 @@ export const getInvoicesData = async (storeNextBills, storeBilling) => {
     }
   } catch (error) {
     console.error("Error fetching invoices data:", error);
+  } finally {
+    setIsLoading(false);
   }
 };
 

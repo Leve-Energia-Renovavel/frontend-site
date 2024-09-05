@@ -7,7 +7,7 @@ export const getConsumerByUUID = async (uuid) => {
     return await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
 }
 
-export const getMainInstallationData = async (storeMainInstallation, storeInstallations, storeNextBills, storeBilling) => {
+export const getMainInstallationData = async (storeMainInstallation, storeInstallations, storeNextBills, storeBilling, setIsLoading) => {
     try {
         const headers = {
             "Authorization": `Bearer ${Cookies.get('accessToken')}`
@@ -22,6 +22,8 @@ export const getMainInstallationData = async (storeMainInstallation, storeInstal
         }
     } catch (error) {
         console.error("Error fetching dashboard data:", error);
+    } finally {
+        setIsLoading(false); 
     }
 }
 
@@ -32,7 +34,7 @@ export const getInstallationByUUID = async (uuid) => {
     return await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/${uuid}`, { headers });
 }
 
-export const getInstallationByUUIDandUpdateStore = async (uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling) => {
+export const getInstallationByUUIDandUpdateStore = async (uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling, setIsLoading) => {
     const headers = {
         "Authorization": `Bearer ${Cookies.get('accessToken')}`
     };
@@ -42,6 +44,7 @@ export const getInstallationByUUIDandUpdateStore = async (uuid, storeMainInstall
     } else {
         console.error("Failed to fetch selected installation data");
     }
+    setIsLoading(false)
 }
 
 export const addNewInstallation = async (data, router) => {

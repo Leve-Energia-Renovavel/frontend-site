@@ -1,9 +1,7 @@
 "use client"
 
-import Image from "next/image";
-import { LoadingContainer } from "./styles";
-import leveLogo from '../../../../resources/img/logo-header.png'
 import { CircularProgress } from "@mui/material";
+import { LoadingContainer } from "./styles";
 
 export default function LoadingMain() {
     return (

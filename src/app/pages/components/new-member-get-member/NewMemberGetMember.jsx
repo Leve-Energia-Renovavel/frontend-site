@@ -2,17 +2,14 @@
 
 import { useStoreUser } from "@/app/hooks/useStore";
 import { handleSendInvite } from "@/app/service/dashboard-service/DashboardService";
-import { Alert, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import { useRef, useState } from "react";
 import { CancelButton, CodeButton, CodeContainer, MemberGetMemberContainer as Container, MemberGetMemberContent as Content, CopyIcon, IndicateButton, IndicationButtonContainer, IndicationContainer, MemberGetMemberCodeBox, MessageIcon, ShareButton, ShareContainer, MemberGetMemberTextContainer as TextContainer, WhatsIcon } from "./styles";
 
-export default function NewMemberGetMember({ closeModal }) {
+export default function NewMemberGetMember({ closeModal, setErrorMessage, setNotifications }) {
 
     const [copiedToClipboard, setCopiedToClipboard] = useState(false)
     const [openIndications, setOpenIndications] = useState(false)
-
-    const [alert, setAlert] = useState({ status: '', message: '' });
-
 
     const invitedEmailRef = useRef(null)
 
@@ -38,14 +35,9 @@ export default function NewMemberGetMember({ closeModal }) {
         const invitedEmail = invitedEmailRef.current.value
 
         if (invitedEmail && invitedEmail !== "" && emailRegex.test(invitedEmail)) {
-            if (emailRegex.test(invitedEmail)) {
-                await handleSendInvite(invitedEmail, setAlert);
-            } else {
-                setAlert({ status: 'warning', message: "Preencha o campo com um e-mail válido." });
-            }
-            await handleSendInvite(invitedEmail, setAlert)
+            await handleSendInvite(invitedEmail, closeModal, setErrorMessage, setNotifications);
         } else {
-            setAlert({ status: 'warning', message: "Preencha o campo com um e-mail válido." });
+            setErrorMessage(["Preencha o campo com um e-mail válido."]);
         }
     }
 
@@ -90,9 +82,6 @@ export default function NewMemberGetMember({ closeModal }) {
                 {openIndications && (
                     <IndicationContainer className='memberGetMemberIndicationContainer'>
                         <h6 className="indicationTitle">Enviar Convite</h6>
-                        {alert?.message && (
-                            <Alert severity={alert.status}>{alert.message}</Alert>
-                        )}
                         <TextField
                             className="indicatorEmailInput"
                             inputRef={invitedEmailRef}
@@ -112,7 +101,6 @@ export default function NewMemberGetMember({ closeModal }) {
                     </IndicationContainer>
                 )}
             </Container>
-            {/* <Messages  notifications={notifications} errors={errors} setErrorMessage={setErrorMessage} setNotifications={setNotifications} /> */}
         </>
     )
 }

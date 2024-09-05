@@ -32,7 +32,7 @@ export const updateProfileData = async (response, store) => {
     });
 
 }
-export const getProfileData = async (store) => {
+export const getProfileData = async (store, setIsLoading) => {
     try {
         const headers = {
             "Authorization": `Bearer ${Cookies.get('accessToken')}`
@@ -47,5 +47,7 @@ export const getProfileData = async (store) => {
         }
     } catch (error) {
         console.error("Error fetching user data:", error);
+    } finally {
+        setIsLoading(false);
     }
 }

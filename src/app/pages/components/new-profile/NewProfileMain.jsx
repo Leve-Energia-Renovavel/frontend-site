@@ -62,7 +62,9 @@ export default function NewProfileMain() {
 
             <RegisteredInstallations />
 
-            <NewMemberGetMember  />
+            <NewMemberGetMember
+                setErrorMessage={setErrorMessage}
+                setNotifications={setNotifications} />
 
             <FinalOptions />
 

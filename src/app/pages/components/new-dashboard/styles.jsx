@@ -9,14 +9,17 @@ export const NewDashboardContainer = styled.div`
 
     padding: 46px 85px;
     
+    min-height: 1000px;
     /* max-width: 1920px; */
     max-width: 1366px;
     margin: 74px auto;
     
     @media (max-width: 900px) {
+        min-height: 600px;
         padding: 1rem 1rem 3rem 1rem;
     }
     @media (max-width: 700px) {
+        min-height: 600px;
         padding: 1rem 10px 3rem 10px;
     }
 `
@@ -27,6 +30,7 @@ export const NewDashboardSideBar = styled.div`
     
     gap: 1rem;
 
+    min-width: 287px;
     max-width: 287px;
 
     @media (max-width: 1300px) {

@@ -11,6 +11,7 @@ const DashboardHistory = dynamic(() => import('../history/DashboardHistory'), { 
 const DashboardInvoices = dynamic(() => import('../invoices/DashboardInvoices'), { ssr: false });
 
 export default function NewDashboardMainContent() {
+
     return (
         <>
             <DashboardProfile isMobileContent={true} />

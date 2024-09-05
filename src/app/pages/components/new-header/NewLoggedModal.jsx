@@ -7,6 +7,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import soleProfile from "../../../../resources/icons/large/sole-icon-profile-large.png";
+import Messages from "../messages/Messages";
 import DashboardMemberGetMember from "../new-dashboard/side-bar/DashboardMemberGetMember";
 import DashboardMenu from "../new-dashboard/side-bar/DashboardMenu";
 import { LoginBox, MenuContent, MenuHeaderContent } from "./styles";
@@ -24,6 +25,9 @@ export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
 
     const filteredOption = menuOptions?.find(option => option?.link === path?.toString());
     const [menuSelected, setMenuSelection] = useState(filteredOption)
+
+    const [notifications, setNotifications] = useState([])
+    const [errors, setErrorMessage] = useState([])
 
     return (
         <>
@@ -50,7 +54,8 @@ export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
                             <Typography variant="subtitle1" className="helloUser">Olá, {username ? username : "Visitante"}</Typography>
                         </MenuHeaderContent>
 
-                        <DashboardMemberGetMember isSideBar={false} />
+                        <DashboardMemberGetMember isSideBar={false} setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
+
                         <DashboardMenu
                             isSideBar={false}
                             menuSelected={menuSelected}
@@ -59,6 +64,7 @@ export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
                     </MenuContent>
                 </LoginBox>
             </Modal >
+            <Messages notifications={notifications} errors={errors} setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
         </>
     );
 }

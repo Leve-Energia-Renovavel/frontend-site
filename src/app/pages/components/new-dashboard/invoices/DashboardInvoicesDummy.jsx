@@ -1,3 +1,4 @@
+import { Skeleton } from '@mui/material';
 import { NextBill, NextBillDivider, NextBillInfo } from './styles';
 
 export default function DashboardInvoicesDummy() {
@@ -7,17 +8,17 @@ export default function DashboardInvoicesDummy() {
                 <NextBill key={index}>
                     <h6 className='billDate'>Mês / Ano</h6>
                     <NextBillInfo status={"due"}>
-                        <h6 className='value'>R$ 0,00</h6>
-                        <p className='status'>Em aberto</p>
+                        <Skeleton variant="text" sx={{ fontSize: '45px' }} width={120}/>
+                        <Skeleton variant="text" sx={{ fontSize: '30px' }} width={80}/>
                     </NextBillInfo>
                     <NextBillInfo>
                         <p className='label'>Vencimento</p>
-                        <p className='info'>00/00/1900</p>
+                        <Skeleton variant="text" sx={{ fontSize: '18px' }} width={80}/>
                     </NextBillInfo>
                     <NextBillDivider className='divider' />
                     <NextBillInfo>
-                        <p className='label'>Consumo</p>
-                        <p className='info'>000,0KWh</p>
+                        <p className='label'>Créditos de energia</p>
+                        <Skeleton variant="text" sx={{ fontSize: '18px' }} width={80}/>
                     </NextBillInfo>
                     <NextBillDivider className='divider' />
                 </NextBill>

@@ -1,19 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useStoreBillingHistory, useStoreMainInstallation, useStoreNextBills } from '@/app/hooks/useStore';
 import { getInvoicesData } from '@/app/service/invoices-service/InvoicesService';
+import { billHasExpired } from '@/app/utils/date/DateUtils';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
+import { handlePayButtonText } from '@/app/utils/helper/invoices/invoicesHelper';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import NewDefaultButton from '../../utils/buttons/NewDefaultButton';
 import DashboardInvoicesDummy from './DashboardInvoicesDummy';
 import { AllBillsPaidContainer, DashboardInvoicesContainer as Container, DashboardInvoicesContent as Content, NextBill, NextBillDivider, NextBillInfo, NextBillsContainer, NextBillsFooter, NoBillsContainer, PayBillButtonContainer } from './styles';
-import { billHasExpired } from '@/app/utils/date/DateUtils';
 
 export default function DashboardInvoices() {
 
   const router = useRouter()
-
-  const [isLoading, setLoading] = useState(true)
 
   const storeMainInstallation = useStoreMainInstallation()
   const storeNextBills = useStoreNextBills()
@@ -24,18 +23,19 @@ export default function DashboardInvoices() {
 
   const mainInstallation = JSON.parse(localStorage?.getItem('mainInstallation'))
 
+  const [isLoading, setIsLoading] = useState(true)
+
   const { uuid, hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
   useEffect(() => {
     const fetchInvoicesData = async () => {
-      await getInvoicesData(storeNextBills, storeBilling)
+      await getInvoicesData(storeNextBills, storeBilling, setIsLoading)
     }
 
     if (!uuid) {
       fetchInvoicesData();
     }
 
-    setLoading(false)
   }, []);
 
   const dontHaveBills = billings?.length === 0
@@ -47,7 +47,7 @@ export default function DashboardInvoices() {
         <Container className='dashboardInvoicesContainer'>
           <h2 className='myInvoices'>Minhas Faturas</h2>
           <Content className='dashboardInvoicesContent'>
-            {billings?.length > 0 ? (
+            {billings?.length > 0 || isLoading ? (
               <>
                 <NextBillsContainer className='nextBillsContainer'>
                   {isLoading ?
@@ -101,7 +101,7 @@ export default function DashboardInvoices() {
                   </AllBillsPaidContainer>
                   :
                   <PayBillButtonContainer>
-                    <NewDefaultButton variant="outlined-inverse" text={nextBills?.length > 1 ? "Pagar Faturas" : "Pagar Fatura"} onClick={() => router.push(`/dashboard/invoices/`)} />
+                    <NewDefaultButton variant="outlined-inverse" text={handlePayButtonText(isLoading, nextBills)} onClick={() => router.push(`/dashboard/invoices/`)} />
                   </PayBillButtonContainer>}
               </>)
               :

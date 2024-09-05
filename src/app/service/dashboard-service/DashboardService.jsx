@@ -4,7 +4,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { requestSuccessful, requestUnauthorized } from "../utils/Validations";
 
-export const handleSendInvite = async (invitedEmail, setAlert) => {
+export const handleSendInvite = async (invitedEmail, closeModal, setErrorMessage, setNotifications) => {
     if (invitedEmail) {
         const headers = {
             Authorization: `Bearer ${Cookies.get('accessToken')}`
@@ -14,13 +14,14 @@ export const handleSendInvite = async (invitedEmail, setAlert) => {
         }
         const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/send-code`, data, { headers })
         if (requestSuccessful(response.status)) {
-            setAlert({ status: 'success', message: "Código de indicação enviado com sucesso!" });
+            setNotifications(["Código de indicação enviado com sucesso!"])
+            closeModal()
         } else {
-            setAlert({ status: 'warning', message: "Erro ao enviar código. Verifique as informações e tente novamente" });
+            setErrorMessage(["Erro ao enviar código. Verifique as informações e tente novamente"])
         }
 
     } else {
-        setErrorMessages(["Informe um e-mail válido"])
+        setErrorMessage(["Informe um e-mail válido"])
     }
 }
 

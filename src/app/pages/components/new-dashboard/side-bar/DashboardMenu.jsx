@@ -24,7 +24,7 @@ export default function DashboardMenu({ isSideBar, menuSelected, setMenuSelectio
 
     return (
         <>
-            <NewDashboardMenu isSideBar={isSideBar}>
+            <NewDashboardMenu isSideBar={isSideBar} className='dashboardMenu'>
                 {menuOptions.map((option, index) => {
                     if (option.id !== 3 && option.id !== 5) {
                         return (
