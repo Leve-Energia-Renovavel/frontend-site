@@ -12,8 +12,6 @@ export const getMainInstallationData = async (storeMainInstallation, storeInstal
         const headers = {
             "Authorization": `Bearer ${Cookies.get('accessToken')}`,
             "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
-            "Pragma": "no-cache",
-            "Expires": "0"
           };
 
         const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
