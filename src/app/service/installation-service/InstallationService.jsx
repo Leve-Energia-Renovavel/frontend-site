@@ -11,8 +11,7 @@ export const getMainInstallationData = async (storeMainInstallation, storeInstal
     try {
         const headers = {
             "Authorization": `Bearer ${Cookies.get('accessToken')}`,
-            "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
-          };
+        };
 
         const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
         if (requestSuccessful(response?.status)) {
@@ -24,7 +23,7 @@ export const getMainInstallationData = async (storeMainInstallation, storeInstal
     } catch (error) {
         console.error("Error fetching dashboard data:", error);
     } finally {
-        setIsLoading(false); 
+        setIsLoading(false);
     }
 }
 
