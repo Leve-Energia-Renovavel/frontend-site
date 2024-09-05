@@ -47,13 +47,13 @@ export const recoverPassword = async (data) => {
 }
 
 const newPasswodVerification = (newPassword, confirmedNewPassword) => {
-    if (newPassword !== confirmedNewPassword) {
-        return false
-    } else {
+    if (newPassword === confirmedNewPassword) {
         return true
+    } else {
+        return false
     }
 }
-export const confirmNewPassword = async (newPassword, confirmedNewPassword, token, setNotifications, setValidationErrors, router) => {
+export const confirmNewPassword = async (newPassword, confirmedNewPassword, token, setNotifications, setValidationErrors, router, setIsLoading) => {
     const validated = newPasswodVerification(newPassword, confirmedNewPassword)
     if (validated) {
         const data = {
@@ -65,9 +65,11 @@ export const confirmNewPassword = async (newPassword, confirmedNewPassword, toke
             const response = await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/recovery-pass/${token}`, data);
 
             if (requestSuccessful(response?.status)) {
-                setNotifications(["Nova senha confirmada com sucesso!"]);
-                awaitSeconds(3);
+                setNotifications(["Nova senha confirmada com sucesso! Em 3 segundos vamos te redirecionar para o login"]);
+                await awaitSeconds(4);
+                setIsLoading(false)
                 router.push(`/login/`);
+
             } else {
                 setValidationErrors(["Erro ao confirmar a nova senha. Por favor, tente novamente."]);
             }

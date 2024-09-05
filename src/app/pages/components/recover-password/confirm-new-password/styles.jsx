@@ -17,6 +17,8 @@ export const ConfirmNewPasswordBox = styled(Box)`
 
     padding: 1rem 2rem;
 
+    outline: none;
+
     .MuiOutlinedInput-root {
         &:hover .MuiOutlinedInput-notchedOutline {
             border-color: ${newBackground.orangeFocused}; // Border color on hover
@@ -55,6 +57,12 @@ export const IconContainer = styled.div`
     justify-content: space-between;
 
     margin: 0;
+
+    .closeIcon {
+        &:hover {
+            cursor: pointer;
+        }
+    }
 `
 export const TitleContainer = styled.div`
     text-align: center;

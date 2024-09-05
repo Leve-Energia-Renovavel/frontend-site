@@ -26,7 +26,6 @@ export default function ConfirmNewPassword({ token, isOpen, openModal, closeModa
         const newPassword = newPasswordRef.current.value
         const confirmedNewPassword = confirmNewPasswordRef.current.value
         await confirmNewPassword(newPassword, confirmedNewPassword, token, setNotifications, setValidationErrors, router, setIsLoading)
-        setIsLoading(false)
     }
 
     return (
@@ -48,7 +47,7 @@ export default function ConfirmNewPassword({ token, isOpen, openModal, closeModa
                 <ConfirmNewPasswordBox>
                     <IconContainer>
                         <div style={{ marginLeft: 'auto' }}>
-                            <CloseIcon />
+                            <CloseIcon className="closeIcon" onClick={() => router.push("/")} />
                         </div>
                     </IconContainer>
                     <TitleContainer>
@@ -105,7 +104,7 @@ export default function ConfirmNewPassword({ token, isOpen, openModal, closeModa
                                     <ConfirmNewPasswordButton onClick={() => handleConfirmNewPassword()}>
                                         <span>Confirmar Nova Senha</span>
                                     </ConfirmNewPasswordButton>}
-                                <Typography className='forgotPassword' variant='subtitle1'>
+                                <Typography className='forgotPassword' variant='subtitle1' onClick={() => router.push("/login/")}>
                                     Cancelar
                                 </Typography>
                                 <FormFooterContainer>

@@ -1,13 +1,11 @@
 "use client"
 
-import { Snackbar } from '@mui/material';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
-import LoginBanner from '../banners/login-banner/LoginBanner';
 import HomeMain from '../home/HomeMain';
+import Messages from '../messages/Messages';
 import NewLoginModal from '../new-login/NewLoginModal';
 import ConfirmNewPassword from './confirm-new-password/ConfirmNewPassword';
-import { SnackbarMessageAlert, SnackbarMessageNotification } from './styles';
 
 export default function NewRecoverPasswordMain() {
 
@@ -18,7 +16,7 @@ export default function NewRecoverPasswordMain() {
     const [openLogin, setOpenLogin] = useState(true);
     const [confirmNewPassword, setConfirmNewPassword] = useState(true);
 
-    const [validationErrors, setValidationErrors] = useState([])
+    const [errors, setErrorMessage] = useState([])
     const [notifications, setNotifications] = useState([])
 
     const openLoginModal = () => {
@@ -40,7 +38,6 @@ export default function NewRecoverPasswordMain() {
 
     return (
         <>
-            <LoginBanner />
             <HomeMain />
             {token ?
                 (<ConfirmNewPassword
@@ -49,7 +46,7 @@ export default function NewRecoverPasswordMain() {
                     openModal={openConfirmPasswordModal}
                     closeModal={closeConfirmPasswordModal}
                     setNotifications={setNotifications}
-                    setValidationErrors={setValidationErrors} />)
+                    setValidationErrors={setErrorMessage} />)
                 :
                 (<NewLoginModal
                     isOpen={openLogin}
@@ -57,47 +54,7 @@ export default function NewRecoverPasswordMain() {
                     openModal={openLoginModal}
                     closeModal={closeLoginModal} />)}
 
-            {validationErrors.map((error, index) => {
-                return (
-                    <Snackbar
-                        key={index}
-                        open={validationErrors.length >= 1}
-                        autoHideDuration={3000}
-                        message={error}
-                        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-                        onClose={() => setValidationErrors([])}>
-                        <SnackbarMessageAlert
-                            sx={{ marginBottom: `${index * 5}rem` }}
-                            severity="error"
-                            variant="filled"
-                            onClose={() => setValidationErrors([])}
-                        >
-                            {error}
-                        </SnackbarMessageAlert>
-                    </Snackbar>
-                )
-            })}
-
-            {notifications.map((notification, index) => {
-                return (
-                    <Snackbar
-                        key={index}
-                        open={notifications.length >= 1}
-                        autoHideDuration={6000}
-                        message={notification}
-                        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-                        onClose={() => setNotifications([])}>
-                        <SnackbarMessageNotification
-                            sx={{ marginBottom: `${index * 5}rem` }}
-                            severity="error"
-                            variant="filled"
-                            onClose={() => setNotifications([])}
-                        >
-                            {notification}
-                        </SnackbarMessageNotification>
-                    </Snackbar>
-                )
-            })}
+            <Messages notifications={notifications} errors={errors} setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
 
         </>
     );
