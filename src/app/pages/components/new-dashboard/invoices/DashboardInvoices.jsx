@@ -95,7 +95,7 @@ export default function DashboardInvoices() {
                         )
                       })}
                 </NextBillsContainer>
-                {dontHaveBills || dontHaveNextBills ?
+                {!isLoading && (dontHaveBills || dontHaveNextBills) ?
                   <AllBillsPaidContainer>
                     <p>Tudo em dia! Você não tem faturas pendentes.</p>
                   </AllBillsPaidContainer>

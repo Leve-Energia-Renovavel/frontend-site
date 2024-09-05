@@ -29,7 +29,10 @@ export const getDashboardMainData = async (router, storeUser, storeEconomy, setE
     try {
         const token = Cookies.get('accessToken') || storeUser.accessToken
         const headers = {
-            "Authorization": `Bearer ${token}`
+            "Authorization": `Bearer ${token}`,
+            "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+            "Pragma": "no-cache",
+            "Expires": "0"
         };
 
         const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });

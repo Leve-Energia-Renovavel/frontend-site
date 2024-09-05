@@ -32,8 +32,6 @@ export default function NewDashboardMain(props) {
     const [notifications, setNotifications] = useState([])
     const [errors, setErrorMessage] = useState([])
 
-    const [isLoading, setIsLoading] = useState(true)
-
     useEffect(() => {
         clearStorageData()
         const fetchDashboardData = async () => {

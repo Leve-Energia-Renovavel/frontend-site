@@ -6,7 +6,10 @@ import { requestSuccessful } from "../utils/Validations";
 export const getInvoicesData = async (storeNextBills, storeBilling, setIsLoading) => {
   try {
     const headers = {
-      "Authorization": `Bearer ${Cookies.get('accessToken')}`
+      "Authorization": `Bearer ${Cookies.get('accessToken')}`,
+      "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
+      "Pragma": "no-cache",
+      "Expires": "0"
     };
 
     const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
