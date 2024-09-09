@@ -11,9 +11,9 @@ export default function NewInvoicesActionButtonContainer({ status, urlBill, uuid
         window.open(urlBill, '_blank', 'noopener noreferrer');
     }
 
-    const handleDownloadBill = () => {
+    const handleDownloadBill = async () => {
         const filename = `Fatura_Leve_${referenceDate}`
-        downloadBillByUrl(urlBill, filename)
+        await downloadBillByUrl(urlBill, filename)
 
     }
 
