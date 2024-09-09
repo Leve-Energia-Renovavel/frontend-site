@@ -63,7 +63,7 @@ export default function NewInvoicesTable() {
                                 aria-controls="panel1-content"
                                 id="panel1-header">
                                 <p className='leveBillValue'>{formatFullMonthAndYear(billing?.billDate)}</p>
-                                <p className='leveBillValue'>{`R$ ${parseFloat(billing?.value).toFixed(2).replace(".", ",")}`}</p>
+                                <p className='leveBillValue'>{`R$ ${(billing?.value).replace(".", ",")}`}</p>
                                 <p className='leveBillValue'>{formatDateClearYear(billing?.dueDate)}</p>
                                 <p className='leveBillStatus'>{billingStatusOptions[billHasExpired(billing?.status, billing?.dueDate)]}</p>
 
