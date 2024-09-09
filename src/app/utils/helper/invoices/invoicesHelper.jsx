@@ -14,14 +14,14 @@ export const handlePayButtonText = (isLoading, nextBills) => {
     }
 }
 
-export const  formatToTwoDecimals = (value) => {
+export const formatToTwoDecimals = (value) => {
     const dotCount = (value.match(/\./g) || []).length;
 
     if (dotCount > 1) {
         let parts = value.split('.');
-        
-        value = parts.slice(0, 2).join('') + ',' + parts.slice(2).join('.');
-        return value
+
+        return parts.slice(0, 2).join('') + ',' + parts.slice(2).join('.');
+    } else {
+        return value.replace(".", ",")
     }
-    return value.replace(".",",")
 }
