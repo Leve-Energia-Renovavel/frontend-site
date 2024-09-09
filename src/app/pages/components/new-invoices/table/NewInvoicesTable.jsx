@@ -6,7 +6,6 @@ import { billHasExpired } from '@/app/utils/date/DateUtils';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import { formatDateClearYear, formatFullMonthAndYear } from '@/app/utils/formatters/dateFormatter';
 import { getAddress } from '@/app/utils/helper/installations/installationsHelper';
-import { formatToTwoDecimals } from '@/app/utils/helper/invoices/invoicesHelper';
 import { useState } from 'react';
 import NewInstallationButton from '../../utils/buttons/NewInstallationButton';
 import NewInvoicesActionButtonContainer from '../action-button-container/NewInvoicesActionButton';

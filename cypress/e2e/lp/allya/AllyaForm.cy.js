@@ -1,25 +1,25 @@
 const { createTestData } = require("../../../../tests/builder/lp/scenarioBuilder");
 
-const partner = "empresas"
+const partner = "allya"
 const partnerName = partner.toUpperCase()
 
 describe(`Complete LP Form ${partnerName}`, () => {
 
-    it('should complete the form and navigate to signup', () => {
+    it('should complete the form and navigate to signup (SUCCESS scenario)', () => {
 
         const scenario = "success"
         const allTestData = createTestData(scenario, partner)
-        const { path, name, companyName, email, phone, cep, requestUrl, destinationPattern } = allTestData
+        const { path, name, email, phone, cep, requestUrl, destinationPattern } = allTestData
 
         cy.task('log', `--- START testing for ${partnerName} ---`);
         cy.task('log', `TEST DATA: ${JSON.stringify(allTestData)}`)
 
         cy.visit(path);
 
-        cy.get('input[placeholder="Nome do Responsável"]').type(name);
-        cy.get('input[placeholder="Empresa"]').type(companyName);
+        cy.get('input[placeholder="Nome Completo"]').type(name);
+        cy.get('input[placeholder="Telefone"]').type(phone);
         cy.get('input[placeholder="E-mail"]').type(email);
-        cy.get('input[placeholder="Celular (com DDD)"]').type(phone);
+        cy.get('input[placeholder="E-mail Corporativo"]').type(email);
         cy.get('input[placeholder="CEP"]').type(cep);
 
         cy.get('.MuiSlider-rail').then(($slider) => {
@@ -42,21 +42,21 @@ describe(`Complete LP Form ${partnerName}`, () => {
         cy.task('log', `--- END tests for ${partnerName.toUpperCase()} ---`)
     });
 
-    it('should complete the form and navigate to signup (FAILURE scenario)', () => {
 
+    it('should complete the form and navigate to signup (FAILURE scenario)', () => {
         const scenario = "failure"
         const allTestData = createTestData(scenario, partner)
-        const { path, name, companyName, email, phone, cep, requestUrl, destinationPattern } = allTestData
+        const { path, name, email, phone, cep, requestUrl, destinationPattern } = allTestData
 
         cy.task('log', `--- START testing for ${partnerName} ---`);
         cy.task('log', `TEST DATA: ${JSON.stringify(allTestData)}`)
 
         cy.visit(path);
 
-        cy.get('input[placeholder="Nome do Responsável"]').type(name);
-        cy.get('input[placeholder="Empresa"]').type(companyName);
+        cy.get('input[placeholder="Nome Completo"]').type(name);
+        cy.get('input[placeholder="Telefone"]').type(phone);
         cy.get('input[placeholder="E-mail"]').type(email);
-        cy.get('input[placeholder="Celular (com DDD)"]').type(phone);
+        cy.get('input[placeholder="E-mail Corporativo"]').type(email);
         cy.get('input[placeholder="CEP"]').type(cep);
 
         cy.get('.MuiSlider-rail').then(($slider) => {

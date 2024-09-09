@@ -35,6 +35,7 @@ export const dummyForm = {
         },
         fail: {
             saoPauloCapital: `04408090`,
+            saoPauloCapitalSecond: `08311010`,
         }
     },
 }
@@ -63,6 +64,7 @@ export const dummyPath = {
         tribanco: `https://new-homolog-cliente.leveenergia.com.br/lp/tribanco/`,
         martins: `https://new-homolog-cliente.leveenergia.com.br/lp/martins/`,
         tim: `https://new-homolog-cliente.leveenergia.com.br/lp/tim/`,
+        allya: `https://new-homolog-cliente.leveenergia.com.br/lp/allya/`,
         localiza: `https://new-homolog-cliente.leveenergia.com.br/lp/localiza/`,
         yduqs: `https://new-homolog-cliente.leveenergia.com.br/lp/yduqs/`,
         novosClientes: `https://new-homolog-cliente.leveenergia.com.br/lp/novos-clientes/`,
@@ -85,6 +87,9 @@ export const dummyFormLP = {
     },
     tim: {
         email: generateEmail('tim')
+    },
+    allya: {
+        email: generateEmail('allya')
     },
     arraia: {
         email: generateEmail('arraia')

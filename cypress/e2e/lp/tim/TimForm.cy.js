@@ -1,6 +1,6 @@
 const { createTestData } = require("../../../../tests/builder/lp/scenarioBuilder");
 
-const partner = "yduqs"
+const partner = "tim"
 const partnerName = partner.toUpperCase()
 
 describe(`Complete LP Form ${partnerName}`, () => {
@@ -42,8 +42,8 @@ describe(`Complete LP Form ${partnerName}`, () => {
     cy.task('log', `--- END tests for ${partnerName.toUpperCase()} ---`)
   });
 
-  it('should complete the form and navigate to signup (FAILURE scenario)', () => {
 
+  it('should complete the form and navigate to signup (FAILURE scenario)', () => {
     const scenario = "failure"
     const allTestData = createTestData(scenario, partner)
     const { path, name, email, phone, cep, requestUrl, destinationPattern } = allTestData
