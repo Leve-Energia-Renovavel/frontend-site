@@ -1,3 +1,4 @@
+import { useStoreAddress, useStoreCompany, useStoreInstallations, useStoreUser } from '@/app/hooks/useStore';
 import { clearBrowserData } from '@/app/utils/browser/BrowserUtils';
 import { menuOptions } from '@/app/utils/helper/dashboard/dashboardHelper';
 import { useRouter } from 'next/navigation';
@@ -6,9 +7,17 @@ import { MenuOption, NewDashboardMenu } from './styles';
 export default function DashboardMenu({ isSideBar, menuSelected, setMenuSelection, closeModal }) {
 
     const router = useRouter()
+    const storeUser = useStoreUser()
+    const storeCompany = useStoreCompany()
+    const storeAddress = useStoreAddress()
+    const storeInstallation = useStoreInstallations()
 
-    const handleLoggout = () => {
-        clearBrowserData()
+    const handleLoggout = async () => {
+        await clearBrowserData()
+        storeUser.clearUser()
+        storeAddress.clearAddress()
+        storeCompany.clearCompany()
+        storeInstallation.clearInstallations()
         router.push("/")
     }
 

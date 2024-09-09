@@ -6,6 +6,8 @@ import HomeMain from '../pages/components/home/HomeMain';
 
 const NewLoginModal = dynamic(() => import('../pages/components/new-login/NewLoginModal'), { ssr: false });
 
+export const fetchCache = 'force-no-store';
+
 export default function LoginPage() {
 
     const [openLogin, setOpenLogin] = useState(true);

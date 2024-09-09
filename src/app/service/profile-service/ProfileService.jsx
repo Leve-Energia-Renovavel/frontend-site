@@ -8,6 +8,7 @@ export const updateProfileData = async (response, store) => {
     const instalacao = response?.data?.instalacao
 
     store.updateUser({
+        uuid: consumidor?.uuid,
         name: consumidor?.nome + " " + consumidor?.sobrenome,
         phone: consumidor?.telefone,
         email: consumidor?.email,

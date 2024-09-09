@@ -23,7 +23,7 @@ export default function DashboardInvoices() {
 
   const mainInstallation = JSON.parse(localStorage?.getItem('mainInstallation'))
 
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   const { uuid, hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
@@ -33,9 +33,9 @@ export default function DashboardInvoices() {
     }
 
     if (!uuid) {
+      setIsLoading(true)
       fetchInvoicesData();
     }
-
   }, []);
 
   const dontHaveBills = billings?.length === 0

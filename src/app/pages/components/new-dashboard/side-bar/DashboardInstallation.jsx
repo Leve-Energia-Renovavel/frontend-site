@@ -20,7 +20,7 @@ export default function DashboardInstallation({ isMobileContent }) {
 
     const [openNewInstallationModal, setOpenNewInstallationModal] = useState(false)
 
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
     const storeBilling = useStoreBillingHistory()
     const storeNextBills = useStoreNextBills()
@@ -45,6 +45,7 @@ export default function DashboardInstallation({ isMobileContent }) {
             await getMainInstallationData(storeMainInstallation, storeInstallations, storeNextBills, storeBilling, setIsLoading);
         };
         if (!uuid) {
+            setIsLoading(true)
             fetchUserData();
         }
     }, []);

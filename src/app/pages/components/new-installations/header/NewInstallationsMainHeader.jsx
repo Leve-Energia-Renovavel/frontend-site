@@ -1,9 +1,13 @@
 import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills } from "@/app/hooks/useStore";
 import { getInstallationByUUIDandUpdateStore } from "@/app/service/installation-service/InstallationService";
 import { getAddress, getNumber } from "@/app/utils/helper/installations/installationsHelper";
+import { Skeleton } from "@mui/material";
+import { useState } from "react";
 import { BoxInstallation, NewInstallationsHeader as Header, InstallationItem, KeyArrowDownIcon, NewInvoicesSelectButton, SelectInstallation, SelectOrCreateNewInstallation } from "./styles";
 
 export default function NewInstallationsMainHeader() {
+
+    const [isLoading, setIsLoading] = useState(false)
 
     const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
@@ -17,13 +21,13 @@ export default function NewInstallationsMainHeader() {
     const filteredInstallations = allInstallations?.filter(installation => installation?.id !== id);
 
     const handleChangeSelectedInstallation = async (selectedInstallation) => {
+        setIsLoading(true)
         const uuid = selectedInstallation?.uuid
-        await getInstallationByUUIDandUpdateStore(uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling)
+        await getInstallationByUUIDandUpdateStore(uuid, storeMainInstallation, storeInstallations, storeNextBills, storeBilling, setIsLoading)
     }
 
     return (
         <Header className='installationsMainHeader'>
-            {/* <h6 className="mainInstallation">{`${street}`}</h6> */}
             <SelectOrCreateNewInstallation>
                 {filteredInstallations?.length > 0 && (
                     <NewInvoicesSelectButton className="invoicesSelectButton">
@@ -34,7 +38,9 @@ export default function NewInstallationsMainHeader() {
                                 displayEmpty
                                 IconComponent={KeyArrowDownIcon}>
                                 <li value={0} style={{ display: 'none' }}>
-                                    <span className="defaultInstallation">{`${address}`}</span>
+                                    {isLoading ?
+                                        <Skeleton variant="text" sx={{ fontSize: '45px' }} width={170} />
+                                        : <span className="defaultInstallation">{`${address}`}</span>}
                                 </li>
                                 {filteredInstallations?.map((otherInstallation, index) => {
                                     const address = otherInstallation.address

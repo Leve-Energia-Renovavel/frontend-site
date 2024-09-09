@@ -1,4 +1,6 @@
 import { useStoreAddress, useStoreCompany, useStoreInstallations, useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
+import { clearBrowserData } from '@/app/utils/browser/BrowserUtils';
+import { pathHelper } from '@/app/utils/helper/pathHelper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Box, Select } from "@mui/material";
 import Image from 'next/image';
@@ -7,7 +9,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import logo from "../../../../resources/img/logo-header.png";
 import HeaderButton from '../utils/buttons/HeaderButton';
 import { HeaderMenuItem, LogoContainer, MenuItem, Nav, Ul, installationFieldStyle } from "./styles";
-import { pathHelper } from '@/app/utils/helper/pathHelper';
 
 export default function LoggedUserHeader() {
 
@@ -30,7 +31,7 @@ export default function LoggedUserHeader() {
 
     const homeUrl = "https://leveenergia.com.br/"
 
-    const handleLogout = () => {
+    const handleLogout = async () => {
         storeUser.clearUser()
         storeAddress.clearAddress()
         storeCompany.clearCompany()
@@ -50,7 +51,7 @@ export default function LoggedUserHeader() {
         <>
             <LogoContainer>
                 <Image
-                    loading="lazy" 
+                    loading="lazy"
                     className='logoImage'
                     src={logo}
                     alt="Leve Energia Logo"

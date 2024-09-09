@@ -62,10 +62,8 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
             const response = await loginValidation(data, store, setErrorMessage)
             if (requestSuccessful(response?.status) && response?.data?.access_token) {
                 router.push(`/dashboard`)
-                closeModal()
             } else if (response?.data?.error) {
                 setErrorMessage(["E-mail e/ou senha estão incorretos"])
-
             } else {
                 setErrorMessage(["Erro ao realizar login. Tente novamente mais tarde"])
                 // setErrorMessage([response?.response?.data?.message])
@@ -76,6 +74,7 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
             await forgotPasswordValidation(data, setNotifications, setErrorMessage)
         }
         setIsLoading(false)
+        closeModal()
     }
 
     const handleKeyPress = (event) => {

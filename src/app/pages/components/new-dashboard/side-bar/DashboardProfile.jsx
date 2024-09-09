@@ -16,17 +16,20 @@ export default function DashboardProfile({ isMobileContent }) {
     const store = useStoreUser()
     const user = JSON.parse(localStorage.getItem('user'))
 
-    const { name, cpf } = user?.user ?? (store?.user || {})
+    const { uuid, name, cpf } = user?.user ?? (store?.user || {})
 
     const username = name.split(" ")[0] !== "" ? name.split(" ")[0] : name.split(" ")[1]
 
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         const fetchUserData = async () => {
             await getProfileData(store, setIsLoading)
         };
-        fetchUserData();
+        if (!uuid) {
+            setIsLoading(true)
+            fetchUserData();
+        }
     }, []);
 
     return (

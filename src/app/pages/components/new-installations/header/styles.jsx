@@ -7,15 +7,6 @@ export const NewInstallationsHeader = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
-    .mainInstallation {
-        font-family: "Graphie";
-        font-size: 21px;
-        line-height: 27px;
-        font-weight: 800;
-        color: ${newBackground.orange};
-    }
-
 `
 export const SelectOrCreateNewInstallation = styled.div`
     display: flex;
