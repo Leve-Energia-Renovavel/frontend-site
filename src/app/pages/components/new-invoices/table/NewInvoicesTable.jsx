@@ -6,6 +6,7 @@ import { billHasExpired } from '@/app/utils/date/DateUtils';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import { formatDateClearYear, formatFullMonthAndYear } from '@/app/utils/formatters/dateFormatter';
 import { getAddress } from '@/app/utils/helper/installations/installationsHelper';
+import { formatToTwoDecimals } from '@/app/utils/helper/invoices/invoicesHelper';
 import { useState } from 'react';
 import NewInstallationButton from '../../utils/buttons/NewInstallationButton';
 import NewInvoicesActionButtonContainer from '../action-button-container/NewInvoicesActionButton';
@@ -63,7 +64,7 @@ export default function NewInvoicesTable() {
                                 aria-controls="panel1-content"
                                 id="panel1-header">
                                 <p className='leveBillValue'>{formatFullMonthAndYear(billing?.billDate)}</p>
-                                <p className='leveBillValue'>{`R$ ${(billing?.value).replace(".", ",")}`}</p>
+                                <p className='leveBillValue'>{`R$ ${formatToTwoDecimals(billing?.value)}`}</p>
                                 <p className='leveBillValue'>{formatDateClearYear(billing?.dueDate)}</p>
                                 <p className='leveBillStatus'>{billingStatusOptions[billHasExpired(billing?.status, billing?.dueDate)]}</p>
 
