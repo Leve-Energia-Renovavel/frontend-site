@@ -15,7 +15,7 @@ import MultipleInstallationsModal from '../../utils/modals/multiple-installation
 import OwnershipModal from '../../utils/modals/ownership-modal/OwnershipModal';
 import SingleInstallationModal from '../../utils/modals/single-installation-modal/SingleInstallationModal';
 import NewSuccessModal from '../../utils/modals/success-modal/NewSuccessModal';
-import { CancelEditionButton, ChangeOwnershipButton, ChangeOwnershipIcon, EditionContainer, FormContent, FormInput, FormLastRow, FormRow, InstallationInput, SaveEditionButton } from './styles';
+import { CancelEditionButton, EditionContainer, FormContent, FormInput, FormLastRow, FormRow, InstallationInput, SaveEditionButton } from './styles';
 
 
 export default function NewProfileMainForm({ isEdition, handleEdition, setNotifications, setErrorMessage }) {
@@ -25,7 +25,6 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
     const storeMainInstallation = useStoreMainInstallation()
 
     const userEconomy = useStoreUserEconomy().userEconomy
-    const economySince = userEconomy?.economySince
 
     const user = JSON.parse(localStorage.getItem('user'))
     const mainInstallation = JSON.parse(localStorage.getItem('mainInstallation'))
@@ -36,8 +35,8 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
 
     const { name, email, phone, cost, distributor, companyName, rg, cpf, cnpj, birthDate, secondaryEmail, maritalStatus, profession, nationality } = user?.user ?? (store?.user || {})
     const { street, neighborhood, number, city, state, complement, stateId, cityId, zipCode, installationNumber } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+    const { economySince } = userEconomy
     const allInstallations = installations?.installations ?? (storeInstallations?.installations || {})
-
 
     const [isForeigner, setIsForeigner] = useState(false);
 
