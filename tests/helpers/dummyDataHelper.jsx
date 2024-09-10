@@ -1,14 +1,18 @@
 import { getBrazilianDate } from "../utils/dateUtils";
 
-const generateEmail = (partner) => {
+export const generateEmail = (scenario, partner) => {
     const dateSuffix = getBrazilianDate();
-    return `marcos.ferreira+${partner}-${dateSuffix}@leveenergia.com.br`;
+    return `marcos.ferreira+${partner}-${scenario}-${dateSuffix}@leveenergia.com.br`;
 };
 
 export const dummyForm = {
     user: {
         name: `Marcos Vinicius Ferreira`,
         email: `marcos.ferreira+${getBrazilianDate()}@leveenergia.com.br`,
+        dynamicEmail: {
+            success: generateEmail('success', 'mainForm'),
+            failure: generateEmail('failure', 'mainForm'),
+        },
         phone: `11989332002`,
         registration: `123456`,
         rg: '393613045',
@@ -74,30 +78,75 @@ export const dummyPath = {
 
 export const dummyFormLP = {
     tribanco: {
-        email: generateEmail('tribanco')
+        success: {
+            email: generateEmail('success', 'tribanco')
+        },
+        failure: {
+            email: generateEmail('failure', 'tribanco')
+        }
     },
     martins: {
-        email: generateEmail('martins')
+        success: {
+            email: generateEmail('success', 'martins')
+        },
+        failure: {
+            email: generateEmail('failure', 'martins')
+        }
     },
     localiza: {
-        email: generateEmail('localiza')
+        success: {
+            email: generateEmail('success', 'localiza')
+        },
+        failure: {
+            email: generateEmail('failure', 'localiza')
+        }
     },
     yduqs: {
-        email: generateEmail('yduqs')
+        success: {
+            email: generateEmail('success', 'yduqs')
+        },
+        failure: {
+            email: generateEmail('failure', 'yduqs')
+        }
     },
     tim: {
-        email: generateEmail('tim')
+        success: {
+            email: generateEmail('success', 'tim')
+        },
+        failure: {
+            email: generateEmail('failure', 'tim')
+        }
     },
     allya: {
-        email: generateEmail('allya')
+        success: {
+            email: generateEmail('success', 'allya')
+        },
+        failure: {
+            email: generateEmail('failure', 'allya')
+        }
     },
     arraia: {
-        email: generateEmail('arraia')
+        success: {
+            email: generateEmail('success', 'arraia')
+        },
+        failure: {
+            email: generateEmail('failure', 'arraia')
+        }
     },
     empresas: {
-        email: generateEmail('empresas')
+        success: {
+            email: generateEmail('success', 'empresas')
+        },
+        failure: {
+            email: generateEmail('failure', 'empresas')
+        }
     },
     novosClientes: {
-        email: generateEmail('novosClientes')
-    },
+        success: {
+            email: generateEmail('success', 'novosClientes')
+        },
+        failure: {
+            email: generateEmail('failure', 'novosClientes')
+        }
+    }
 };

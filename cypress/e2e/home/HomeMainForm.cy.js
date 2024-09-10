@@ -1,4 +1,4 @@
-const { createHomeTestData } = require("../../../tests/builder/home/scenarioBuilder");
+const { createHomeTestData, createMainFormTestData } = require("../../../tests/builder/home/scenarioBuilder");
 
 const location = "home"
 
@@ -7,7 +7,7 @@ describe('Complete Home Main Form', () => {
   it('should complete the form and navigate to out-of-range (FAILURE scenario 1)', () => {
 
     const scenario = "fail-region"
-    const allTestData = createHomeTestData(scenario)
+    const allTestData = createMainFormTestData(scenario)
     const { path, name, email, phone, cep, requestUrl, destinationPattern } = allTestData
 
     cy.task('log', `--- START testing for ${location} ---`);
@@ -43,7 +43,7 @@ describe('Complete Home Main Form', () => {
   it('should complete the form and navigate to out-of-range (FAILURE scenario 2)', () => {
 
     const scenario = "fail-region"
-    const allTestData = createHomeTestData(scenario)
+    const allTestData = createMainFormTestData(scenario)
     const { path, name, email, phone, cep, requestUrl, destinationPattern } = allTestData
 
     cy.task('log', `--- START testing for ${location} ---`);
@@ -80,7 +80,7 @@ describe('Complete Home Main Form', () => {
   it('should complete the form and navigate to out-of-range (FAILURE scenario 3)', () => {
 
     const scenario = "fail-region"
-    const allTestData = createHomeTestData(scenario)
+    const allTestData = createMainFormTestData(scenario)
     const { path, name, email, phone, cep, requestUrl, destinationPattern } = allTestData
 
     cy.task('log', `--- START testing for ${location} ---`);
@@ -117,7 +117,7 @@ describe('Complete Home Main Form', () => {
   it('should complete the form and navigate to signup (SUCCESS scenario)', () => {
 
     const scenario = "success"
-    const allTestData = createHomeTestData(scenario)
+    const allTestData = createMainFormTestData(scenario)
     const { path, name, email, phone, cep, requestUrl, destinationPattern } = allTestData
 
     cy.task('log', `--- START testing for ${location} ---`);
