@@ -26,20 +26,21 @@ export const loginValidation = async (data, store, setErrorMessage) => {
 }
 
 export const forgotPasswordValidation = async (data, setNotifications, setErrorMessage) => {
-    const response = await forgotPasswordSchema.validate(data, { abortEarly: false })
+    await forgotPasswordSchema.validate(data, { abortEarly: false })
         .then(async () => {
-            return await recoverPassword(data)
+            const response = await recoverPassword(data)
+            if (requestSuccessful(response?.status)) {
+                setNotifications(["E-mail enviado com sucesso!"])
+            } else {
+                setErrorMessage(["Erro ao recuperar senha. Por favor, tente novamente"])
+            }
         })
         .catch((err) => {
             console.log(err.errors);
+            setErrorMessage(["Erro ao recuperar senha. Por favor, tente novamente"])
             return (err.errors)
         });
 
-    if (requestSuccessful(response?.status)) {
-        setNotifications(["E-mail enviado com sucesso!"])
-    } else {
-        setErrorMessage(["Erro ao recuperar senha. Por favor, tente novamente"])
-    }
 }
 
 export const recoverPassword = async (data) => {

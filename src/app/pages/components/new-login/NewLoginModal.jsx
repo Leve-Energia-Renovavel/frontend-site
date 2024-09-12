@@ -13,6 +13,7 @@ import leveLogo from '../../../../resources/icons/large/leve-logo-orange-icon-la
 import Messages from '../messages/Messages';
 import ModalCloseButton from '../utils/buttons/close-button/ModalCloseButton';
 import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginContentContainer, LoginForm, LoginIconContainer, LoginTitleContainer } from './styles';
+import { awaitSeconds } from '@/app/utils/browser/BrowserUtils';
 
 export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgottenPassword }) {
 
@@ -49,7 +50,6 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
         setIsLoading(true)
 
         if (!forgotPassword) {
-
             const data = {
                 username: loginRef.email.current.value,
                 password: loginRef.password.current.value,
@@ -74,6 +74,7 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
             await forgotPasswordValidation(data, setNotifications, setErrorMessage)
         }
         setIsLoading(false)
+        await awaitSeconds(2)
         closeModal()
     }
 
