@@ -24,7 +24,7 @@ export const updateProfileData = async (response, store) => {
 
         cpf: consumidor?.cpf,
         rg: consumidor?.rg,
-        cost: consumidor?.valor,
+        cost: instalacao?.valor_base_consumo,
 
         profession: consumidor?.profissao,
         nationality: consumidor?.nacionalidade,
