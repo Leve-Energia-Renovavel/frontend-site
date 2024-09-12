@@ -1,4 +1,5 @@
 const { createHomeTestData, createMainFormTestData } = require("../../../tests/builder/home/scenarioBuilder");
+const { generateEmail } = require("../../../tests/helpers/dummyDataHelper");
 
 const location = "home"
 
@@ -52,7 +53,7 @@ describe('Complete Home Main Form', () => {
     cy.visit(path);
     cy.get('input[placeholder="Nome Completo "]').type(name);
     cy.get('input[placeholder="Telefone"]').type(phone);
-    cy.get('input[placeholder="E-mail "]').type(email);
+    cy.get('input[placeholder="E-mail "]').type(generateEmail('failure', 'mainForm2'));
     cy.get('input[placeholder="CEP"]').type("08311010");
 
     cy.get('.MuiSlider-rail').then(($slider) => {
@@ -89,7 +90,7 @@ describe('Complete Home Main Form', () => {
     cy.visit(path);
     cy.get('input[placeholder="Nome Completo "]').type(name);
     cy.get('input[placeholder="Telefone"]').type(phone);
-    cy.get('input[placeholder="E-mail "]').type(email);
+    cy.get('input[placeholder="E-mail "]').type(generateEmail('failure', 'mainForm3'));
     cy.get('input[placeholder="CEP"]').type("01224050");
 
     cy.get('.MuiSlider-rail').then(($slider) => {

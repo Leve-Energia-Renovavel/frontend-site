@@ -49,23 +49,23 @@ export const getDashboardMainData = async (router, storeUser, storeEconomy, setE
 
         } else if (requestUnauthorized(response?.status)) {
             setErrorMessage(["Erro ao autenticar. Por favor, faça o login e tente novamente"])
-            awaitSeconds(3)
+            await awaitSeconds(3)
             router.push(`/login`)
         } else {
             setErrorMessage(["Erro ao validar as informações. Por favor, tente novamente"])
-            awaitSeconds(3)
+            await awaitSeconds(3)
             router.push(`/login`)
         }
     } catch (error) {
         console.error("Error fetching dashboard data:", error);
         if (error?.response?.data?.message === "Unauthenticated.") {
             setErrorMessage(["Erro de autenticação. Por favor, faça o login e tente novamente"])
-            awaitSeconds(3)
+            await awaitSeconds(3)
             router.push("/login")
         }
         if (error?.response?.data?.error === "Consumidor não encontrado") {
             setErrorMessage(["Erro ao logar. Por favor, faça o login e tente novamente"])
-            awaitSeconds(3)
+            await awaitSeconds(3)
             router.push("/login")
         }
     }
