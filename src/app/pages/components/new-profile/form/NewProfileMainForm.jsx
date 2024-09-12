@@ -140,9 +140,25 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
             <div className='profileMainForm'>
                 {isCompany && (
                     <FormRow>
-                        <FormInput className="inputForm" defaultValue={company.razao_social || companyName || ''} inputRef={companyRefs.razao_social} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" InputLabelProps={{ shrink: true, style: { color: leveGreen } }} required />
-                        <InputMask mask="99.999.999/9999-99" defaultValue={company.cnpj || cnpj || ''}>
-                            {() => <FormInput className="inputForm" defaultValue={company.cnpj || cnpj || ''} inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text" required
+                        <FormInput className="inputForm"
+                            defaultValue={company.razao_social || companyName || ''}
+                            inputRef={companyRefs.razao_social}
+                            label="Razão Social" variant="outlined"
+                            placeholder="Razão Social"
+                            type="text"
+                            InputLabelProps={{ shrink: true, style: { color: leveGreen } }}
+                            disabled />
+                        <InputMask mask="99.999.999/9999-99"
+                            disabled
+                            defaultValue={company.cnpj || cnpj || ''}>
+                            {() => <FormInput className="inputForm"
+                                defaultValue={company.cnpj || cnpj || ''}
+                                inputRef={companyRefs.cnpj}
+                                label="CNPJ"
+                                variant="outlined"
+                                placeholder="CNPJ"
+                                type="text"
+                                disabled
                                 InputLabelProps={{ style: { color: leveGreen } }}
                             />}
                         </InputMask>

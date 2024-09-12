@@ -42,9 +42,8 @@ export default function SignupForm() {
   const user = JSON.parse(localStorage.getItem('user'))
   const address = JSON.parse(localStorage.getItem('address'))
   const company = useStoreCompany().company
-  const isCompany = user?.user.isCompany
 
-  const { name, email, phone, cost, distributor, companyName, cnpj, birthDate } = user?.user ?? (store?.user || {})
+  const { name, email, phone, cost, distributor, companyName, cnpj, birthDate, isCompany } = user?.user ?? (store?.user || {})
   const { street, neighborhood, city, state, stateId, cityId, cep } = address?.address ?? (storeAddress?.address || {})
 
   const [userCost, setUserCost] = useState(cost || null)
