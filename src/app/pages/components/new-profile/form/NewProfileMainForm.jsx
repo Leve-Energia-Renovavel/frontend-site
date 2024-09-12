@@ -31,9 +31,8 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
     const installations = JSON.parse(localStorage.getItem('installations'))
 
     const company = useStoreCompany().company
-    const isCompany = user?.user.isCompany
 
-    const { name, email, phone, cost, distributor, companyName, rg, cpf, cnpj, birthDate, secondaryEmail, maritalStatus, profession, nationality } = user?.user ?? (store?.user || {})
+    const { name, email, phone, cost, distributor, companyName, rg, cpf, cnpj, birthDate, secondaryEmail, maritalStatus, profession, nationality, isCompany } = user?.user ?? (store?.user || {})
     const { street, neighborhood, number, city, state, complement, stateId, cityId, zipCode, installationNumber } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
     const { economySince } = userEconomy
     const allInstallations = installations?.installations ?? (storeInstallations?.installations || {})
