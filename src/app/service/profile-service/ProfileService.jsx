@@ -18,9 +18,13 @@ export const updateProfileData = async (response, store) => {
         discount: instalacao?.desconto,
         birthDate: consumidor?.data_nascimento ? formatBasicBirthDate(consumidor?.data_nascimento) : "",
 
+        isCompany: consumidor?.type === "PJ" ? true : false,
+        companyName: instalacao?.razao_social,
+        cnpj: instalacao?.cnpj,
+
         cpf: consumidor?.cpf,
-        cost: consumidor?.valor,
         rg: consumidor?.rg,
+        cost: consumidor?.valor,
 
         profession: consumidor?.profissao,
         nationality: consumidor?.nacionalidade,
