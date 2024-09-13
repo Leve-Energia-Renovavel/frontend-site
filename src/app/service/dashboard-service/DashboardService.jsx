@@ -1,4 +1,4 @@
-import { awaitSeconds } from "@/app/utils/browser/BrowserUtils";
+import { awaitSeconds, clearBrowserData, reloadPage } from "@/app/utils/browser/BrowserUtils";
 import { formatBrazillianDate } from "@/app/utils/formatters/dateFormatter";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -60,11 +60,13 @@ export const getDashboardMainData = async (router, storeUser, storeEconomy, setE
         console.error("Error fetching dashboard data:", error);
         if (error?.response?.data?.message === "Unauthenticated.") {
             setErrorMessage(["Erro de autenticação. Por favor, faça o login e tente novamente"])
+            await clearBrowserData()
             await awaitSeconds(3)
             router.push("/login")
         }
         if (error?.response?.data?.error === "Consumidor não encontrado") {
             setErrorMessage(["Erro ao logar. Por favor, faça o login e tente novamente"])
+            await clearBrowserData()
             await awaitSeconds(3)
             router.push("/login")
         }

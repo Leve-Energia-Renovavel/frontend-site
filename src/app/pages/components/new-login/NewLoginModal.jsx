@@ -13,7 +13,7 @@ import leveLogo from '../../../../resources/icons/large/leve-logo-orange-icon-la
 import Messages from '../messages/Messages';
 import ModalCloseButton from '../utils/buttons/close-button/ModalCloseButton';
 import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginContentContainer, LoginForm, LoginIconContainer, LoginTitleContainer } from './styles';
-import { awaitSeconds } from '@/app/utils/browser/BrowserUtils';
+import { awaitSeconds, reloadPage } from '@/app/utils/browser/BrowserUtils';
 
 export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgottenPassword }) {
 

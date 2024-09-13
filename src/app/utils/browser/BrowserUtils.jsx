@@ -1,5 +1,11 @@
 import Cookies from "js-cookie";
 
+export const reloadPage = () => {
+    if (typeof window !== 'undefined') {
+        window.location.reload();
+    }
+};
+
 export const loadBrowserInfos = () => {
     const browserInfo = {
         name: window.navigator.userAgent,

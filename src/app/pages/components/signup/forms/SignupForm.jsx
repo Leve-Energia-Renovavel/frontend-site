@@ -79,14 +79,14 @@ export default function SignupForm() {
   const handleGetCNPJ = async (cnpj) => {
     if (cnpj !== "") {
       setIsLoadingCNPJ(true)
-      console.log("Getting CEP data....")
+      console.log("Getting CNPJ data....")
       try {
         const response = await fetchCNPJ(cnpj)
         if (requestSuccessful(response?.status)) {
           console.log(response?.data)
         }
       } catch (error) {
-        // console.log("Error fetching CNPJ data: ", error)
+        console.log("Error fetching CNPJ data: ", error)
       } finally {
         setIsLoadingCNPJ(false)
       }

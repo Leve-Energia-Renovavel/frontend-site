@@ -58,11 +58,14 @@ export const useStoreUser = create((set) => ({
                 phone: null,
                 cep: "",
                 cost: 0,
+                coupon: "",
+                couponValue: 0,
 
                 companyName: "",
+                cnpj: "",
 
                 discount: 0,
-                isCompany: false,
+                isCompany: null,
                 isLowCost: false,
                 isOutOfRange: false,
 
@@ -84,6 +87,8 @@ export const useStoreUser = create((set) => ({
                 hasSyncDistributorData: false,
 
                 memberGetMemberCode: "",
+
+                invoiceDate: 0
             },
         }))
 }));

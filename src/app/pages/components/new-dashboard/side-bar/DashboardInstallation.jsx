@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills } from "@/app/hooks/useStore";
+import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser } from "@/app/hooks/useStore";
 import { getInstallationByUUIDandUpdateStore, getMainInstallationData } from "@/app/service/installation-service/InstallationService";
 import { getCityNameByStateIdAndCityId } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
@@ -22,15 +22,19 @@ export default function DashboardInstallation({ isMobileContent }) {
 
     const [isLoading, setIsLoading] = useState(false)
 
+    const store = useStoreUser()
     const storeBilling = useStoreBillingHistory()
     const storeNextBills = useStoreNextBills()
     const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
 
+    const user = JSON.parse(localStorage.getItem('user'))
     const mainInstallation = JSON.parse(localStorage?.getItem('mainInstallation'))
     const installations = JSON.parse(localStorage?.getItem('installations'))
 
-    const { uuid, address, street, number, neighborhood, city, state, stateId, cityId, zipCode, installationNumber, id, hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+    const { uuid } = user?.user ?? (store?.user || {})
+
+    const { address, street, number, neighborhood, city, state, stateId, cityId, zipCode, installationNumber, id, hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
     const allInstallations = installations?.installations ?? (storeInstallations?.installations || {})
 
