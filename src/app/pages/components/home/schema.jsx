@@ -7,10 +7,8 @@ export const schemaValidation = async (data) => {
     const response = await leadSchema.validate(data, { abortEarly: false })
         .then(async () => {
             return await startSignUp(data)
-
         })
         .catch((error) => {
-            console.log(error);
             return error
         });
 

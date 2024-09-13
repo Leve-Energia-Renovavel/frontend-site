@@ -31,6 +31,8 @@ const signupValidationCodes = {
 export const requestValidation = async (response, setNotifications, setErrorMessage, router) => {
     const status = response?.status
     const responseCode = response?.data?.code
+    const uuid = response?.data?.uuid
+
     if (requestSuccessful(status)) {
         if (responseCode === "VJPC") {
             setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])
@@ -38,7 +40,6 @@ export const requestValidation = async (response, setNotifications, setErrorMess
             router.push(`/login`)
         }
         else {
-            const uuid = response?.data?.uuid
             if (!uuid || uuid == "undefined") {
                 setErrorMessage(["Erro ao criar conta. Mas nao se preocupe! Em alguns segundos vamos te redirecionar ao nosso Suporte."])
                 await awaitSeconds(4)
@@ -85,7 +86,9 @@ export const requestValidation = async (response, setNotifications, setErrorMess
         const errorCode = "BDM001"
         setErrorMessage([`Erro de servidor. Por favor, tente novamente mais tarde (cod. ${errorCode})`])
     }
-
+    else if (response?.errors) {
+        setErrorMessage(response?.errors)
+    }
     else {
         setErrorMessage(["Erro de servidor. Por favor, tente novamente mais tarde"])
         // setErrorMessage([response?.message])
