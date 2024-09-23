@@ -21,12 +21,23 @@
         "hundredDigital": "100% digital",
         "houseOrBusiness": " para sua casa e/ou seu negócio.",
         "simpleFastFree": "É simples, rápido, sem obras e livre de burocracias!",
-        "howItWorks": "Como funciona na prática:",
+        "howItWorks": "Como funciona a Leve Energia",
         "weBelieve": "Nós acreditamos que você merece um dinheiro extra na sua conta para investir no que realmente importa para você e sua família.",
         "moreToKnow": "Saiba mais sobre como podemos proporcionar isso ",
-        "brandsThatTrust": "Empresas que confiam na Leve Energia:",
+        "brandsThatTrust": "Empresas que confiam na Leve Energia",
         "agreedToReceiveEmails": "Ao clicar em \"Calcular desconto\" você concorda em receber e-mails da Leve Energia e aceita nossa ",
-        "privacyPolicy": "Política de Privacidade"
+        "privacyPolicy": "Política de Privacidade",
+        "mobile": {
+            "title": "Sua conta de luz até ",
+            "cheaper": "20% mais barata",
+            "withClearEnergy": " com energia limpa",
+            "subtitle": "Solução 100% digital da Leve Energia que garante economia mensal na sua conta de luz a partir da produção de energia limpa",
+            "description": "Sem custos adicionais, sem instalações ou obras, e sem exigência de fidelidade",
+            "form": {
+                "title": "Calcule sua economia",
+                "subtitle": "e também veja como você ajuda a reduzir os danos ao meio ambiente sendo Leve"
+            }
+        }
     },
     "footer": {
         "title": "Temos a melhor solução de energia para você",

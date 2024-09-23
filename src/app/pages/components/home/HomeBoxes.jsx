@@ -8,7 +8,7 @@ import { HomeSecondaryBoxContent as Box, HomeSecondaryBoxTitle as BoxTitle, Home
 export default function BoxesContainer() {
 
     return (
-        <Container>
+        <Container className='homeMainBoxesContainer'>
             {homeBoxes.map((box) => {
                 return (
                     <Box color={box.backgroundColor} descriptionColor={box.descriptionColor} key={box.description}>

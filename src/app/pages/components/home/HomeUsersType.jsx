@@ -11,7 +11,7 @@ export default function HomeUsersType({ handlePreSignup }) {
     const texts = infoJson.home
 
     return (
-        <HomeSecondaryImagesContainer >
+        <HomeSecondaryImagesContainer className='homeSecondaryImagesContainer'>
             <HomeSecondaryImagesContent image={homeCardImage} onClick={() => handlePreSignup("Residencia")} >
                 <h6 variant="subtitle1">{texts.forYourHouse}</h6>
                 <ArrowCircleRightOutlinedIcon className='arrowIcon' />

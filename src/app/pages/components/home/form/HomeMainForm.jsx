@@ -6,15 +6,17 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
 import { TextField } from "@mui/material";
-import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import infoJson from '../../../../../../public/info.json';
-import economyIcon from "../../../../../resources/icons/small/economy-icon-small.png";
 import { schemaValidation } from '../schema';
-import { HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormFooterContainer, FormSlider, FormTitleContainer, HomeFormContainer, HomeMainFormSimulationContainer, Loading, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "../styles";
+import { HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormFooterContainer, FormSlider, HomeFormContainer, HomeMainFormSimulationContainer, Loading, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "../styles";
 import { requestValidation } from '../validation';
+
+import HomeMainFormHeader from './header/HomeMainFormHeader';
+import HomeMainFormSimulator from './simulator/HomeMainFormSimulator';
+import HomeFormButton from '../../utils/buttons/home/form/HomeFormButton';
 
 export default function HomeMainForm({ setErrorMessage, setNotifications, selectedUserType, setSelectedUserType }) {
 
@@ -24,9 +26,6 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
     const cupom = search.get("cupom")
 
     const [isLoading, setLoading] = useState(false)
-    const [simulationCost, setSimulationCost] = useState(200)
-
-    const minSimulationCost = 200
 
     const nameRef = useRef()
     const emailRef = useRef()
@@ -66,11 +65,8 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
         <HomeFormContainer>
             <FormContainer>
                 <Form id='leadForm' onSubmit={handleSubmit}>
-                    <FormTitleContainer>
-                        <Image src={economyIcon} className='economyIcon' alt={"Logo Leve"} priority />
-                        <h2>{texts.simulate}</h2>
-                    </FormTitleContainer>
-                    <p variant="body1">{texts.in}<span className="highlighted">{texts.threeClicks}</span>{texts.guarantee}<span className="highlighted">{texts.solarEnergy}</span>{texts.reduceInvoices}</p>
+                    <HomeMainFormHeader />
+
                     <TextField
                         inputRef={nameRef}
                         className="homeFormInput"
@@ -78,6 +74,11 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                         placeholder={`Nome Completo ${selectedUserType === 'Empresa' ? "do Responsável" : ""}`}
                         variant="outlined"
                         type="text"
+                        FormHelperTextProps={{
+                            style: {
+                                textAlign: `center`
+                            }
+                        }}
                         disabled={isLoading}
                         required
                     />
@@ -148,29 +149,14 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                             disabled={isLoading}
                         />
                     </FormFooterContainer>
+                    <HomeMainFormSimulator isMobile={true} />
+                    <HomeFormButton title={texts.discountCalculate} isLoading={isLoading} isMobile={true} />
                 </Form>
-                <HomeMainFormSimulationContainer>
-                    <h6 variant="subtitle1" className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === 3000 ? "+" : ""}</span></h6>
-                    <FormSlider
-                        className='formSlider'
-                        onChange={(event) => setSimulationCost(event.target.value)}
-                        value={simulationCost}
-                        step={10}
-                        defaultValue={minSimulationCost}
-                        min={minSimulationCost}
-                        max={3000}
-                        valueLabelDisplay="off"
-                        aria-labelledby="simulationSlider"
-                    />
-                    {/* <SwipeRightOutlinedIcon className='sliderTip' /   */}
-                </HomeMainFormSimulationContainer>
+
+                <HomeMainFormSimulator isMobile={false} />
             </FormContainer>
-            <FormButton
-                type='submit'
-                form='leadForm'
-                endIcon={!isLoading ? <ArrowForwardIcon /> : <ArrowForwardIcon sx={{ display: "none" }} />}>
-                {isLoading ? <Loading size={20} /> : <span>{texts.discountCalculate}</span>}
-            </FormButton>
+
+            <HomeFormButton title={texts.discountCalculate} isLoading={isLoading} isMobile={false} />
             <p className='privacyPolicyDisclaimer'>{texts.agreedToReceiveEmails}<span className='privacyPolicy' onClick={() => router.push(`politica-de-privacidade`)}>{texts.privacyPolicy}</span>.</p>
         </HomeFormContainer>
     )

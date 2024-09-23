@@ -1,6 +1,5 @@
 "use client"
 
-
 import Image from 'next/image';
 import infoJson from '../../../../../../../public/info.json';
 import soleImage from "../../../../../../resources/icons/large/sole-icon-large.webp";
@@ -10,7 +9,7 @@ const texts = infoJson.home
 
 export default function HomeSoleBanner() {
     return (
-        <HomeThirdSectionContainer>
+        <HomeThirdSectionContainer className='homeMainSoleBannerContainer'>
             <HomeThirdSectionTitleContainer >
                 <h6 variant="subtitle1" className='sectionTitle'>{texts.accession}<span className='highlighted'>{texts.hundredDigital}</span>{texts.guarantee}<span className='highlighted'>{texts.solarEnergy}</span>{texts.houseOrBusiness}</h6>
             </HomeThirdSectionTitleContainer>

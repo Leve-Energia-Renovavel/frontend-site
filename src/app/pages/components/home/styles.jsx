@@ -56,6 +56,8 @@ export const HomeMainContent = styled.div`
     max-height: 750px;
     
     @media (max-width: 600px) {
+      display: none;
+      
       background-position: 50% 50%;
       padding: 1rem;
       width: 100vw;
@@ -69,6 +71,51 @@ export const HomeMainContent = styled.div`
     }
 `
 
+export const HomeMobileMainContent = styled.div`
+  display: flex; 
+  flex-direction: column; 
+  
+  display: none;
+
+  padding: 42px 29px 10px 20px;
+  
+  .homeMainTitleMobile {
+    font-family: "Graphie";
+    font-size: 31px;
+    line-height: 30px;
+    font-weight: 700;
+    color: ${newBackground.green};
+  }
+  .highlighted {
+    font-weight: 700;
+    color: ${newBackground.orange};
+  }
+  .homeMainSubtitleMobile {
+    font-family: "Graphie";
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: 500;
+    color: ${newBackground.greyHigh};
+    
+    margin-top: 17px;
+  }
+  .homeMainDescriptionMobile {
+    font-family: "Graphie";
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 600;
+    color: ${newBackground.green};
+
+    margin-top: 11px;
+
+    max-width: 290px;
+  }
+  
+  @media (max-width: 600px) {
+    display: block;
+  }
+
+`
 export const HomeContent = styled.div`
   display: flex; 
   flex-direction: column; 
@@ -165,15 +212,10 @@ export const HomeFormContainer = styled.div`
     font-weight: 500;
     text-align: left;
     color: ${newBackground.orange};
-
+    
     max-width: 360px;
     
     margin: 0 auto;
-    
-    @media (max-width: 600px) {
-      max-width: 320px;
-      margin-bottom: 24px;
-    }
   }
 
   .privacyPolicy {
@@ -192,12 +234,19 @@ export const HomeFormContainer = styled.div`
       background-color: ${newBackground.yellow};
     }
   }
+
+  
+  @media (max-width: 600px) {
+    .privacyPolicyDisclaimer, .privacyPolicy {
+      display: none;
+    }
+  }
 `
 
 export const HomeMainFormContainer = styled.div`
     background-color: ${newBackground.white};
     border: 1px solid ${newBackground.orange};
-
+    
     border-radius: 15px;
     
     /* height: 85vh; */
@@ -208,54 +257,23 @@ export const HomeMainFormContainer = styled.div`
       width: 100vw;
       max-width: 100vw;
       border-radius: 0px;
+
+      background-color: ${newBackground.grey};
+      border: none;
+      padding: 1rem;
     }
 `
 export const HomeMainForm = styled.form`
     display: flex;
     flex-direction: column;
     background-color: ${newBackground.orange};
-
+    
     border-radius: 15px;
     
     padding: 1.5rem 1rem ;
     
     height: auto;
     overflow: hidden;
-    
-    @media (max-width: 600px) {
-      padding: 1.5rem;
-      width: 100%;
-      max-width: 100vw;
-
-      border-radius: 0;
-    }
-    
-    p {
-      font-family: "Graphie";
-      font-weight: 500;
-      color: ${newBackground.white};
-      font-size: 14px;
-      line-height: 12px;
-
-      animation: ${fadeInUp} 0.5s ease-out;
-
-
-      margin-top: 17px;
-      margin-bottom: 20px;
-
-      @media (max-width: 600px) {
-        text-align: center;
-        line-height: 18px;
-        margin: 20px;
-      }
-    }
-    .highlighted {
-      font-family: "Graphie";
-      font-weight: 500;
-      color: ${newBackground.yellow};
-      font-size: 14px;
-      line-height: 14px;
-    }
 
     .homeFormInput {
       background-color: ${newBackground.white};
@@ -266,15 +284,15 @@ export const HomeMainForm = styled.form`
       & .MuiInputLabel-shrink {
         /* Styles for the focused label */
         /* line-height: 2.4375em;  */
-        line-height: 3em; 
+        line-height: 45px; 
       }
 
       .MuiOutlinedInput-input {
         // styles for the user input text
         font-family: "Graphie";
         font-size: 17px;
-        height: 0.4375em;
-        padding: 20px 14px;
+        height: 2px;
+        padding: 24px 14px;
         font-weight: 700;
         color: ${newBackground.orange};
         }
@@ -288,8 +306,6 @@ export const HomeMainForm = styled.form`
 
         & .MuiFormLabel-root-MuiInputLabel-root {
           line-height: 2.4375em;
-
-
         }
         
         & .MuiOutlinedInput-root {
@@ -312,92 +328,65 @@ export const HomeMainForm = styled.form`
         }
 
     }
-`
-export const FormTitleContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 6px;
-  
-  animation: ${fadeInUp} 0.5s ease-out; 
-  
-  @media (max-width: 600px) {
-    flex-direction: column;
-    gap: 4px;
-  }
 
-  h2 {
-      font-family: "Graphie";
-      font-weight: 600;
-      color: ${newBackground.yellow};
-      white-space: nowrap;
-      font-size: 27px;
-      text-align: left;
-      
-      @media (max-width: 600px) {
-        font-size: 27px;
-      }
-
-  }
-
-  .economyIcon {
     @media (max-width: 600px) {
-      width: 32px;
-      height: 32px;
+      background-color: ${newBackground.green};
+
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 100vw;
+      
+      border-radius: 5px;
+      
+      .homeFormInput {
+        border-radius: 5px;
+
+        & .MuiInputLabel-root {
+          right: 0;
+          text-align: center;
+        }
+
+        .MuiOutlinedInput-input {
+        // styles for the user input text
+          color: ${newBackground.green};
+        }
+        & label {
+          color:  ${newBackground.green};
+      }
     }
   }
 `
-export const HomeMainFormSimulationContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
-    /* margin: 0 2rem; */
-    margin: 0 43px;
 
-    h6 {
-      font-family: "Graphie";
-      font-size: 17px;
-      font-weight: 900;
-      color:${newBackground.green};
-      
-      white-space: nowrap;
-    }
-    
-    .averageUserCost { 
-      margin: 0;
-      margin-top: 12px;
-    }
 
-    .simulationCost {
-      font-family: "Graphie";
-      font-size: 21px;
-      font-weight: 900;
-      color:${newBackground.orange};
-    }
-
-    .sliderTip {
-      position: relative;
-      top: -24px;
-      left: -13px;
-      animation: ${slideAndDisappear} 5s forwards;
-      width: 30px;
-      height: auto;
-    }
-
-`
 export const UserTypeFormContainer = styled.div`
     display: flex;
     flex-direction: column;
-
+    
+    .chooseWhereToEconomy {
+      font-family: "Graphie";
+      font-weight: 500;
+      color: ${newBackground.white};
+      font-size: 14px;
+      line-height: 12px;
+      
+      animation: ${fadeInUp} 0.5s ease-out;
+      
+      margin: 12px 0 0 0;  //25px - 8px from margin-bottom of .homeFormInput
+    }
+    
+    
     @media (max-width: 600px) {
       margin-bottom: 1rem;
+      
+      .chooseWhereToEconomy {
+        font-size: 16px;
+        line-height: 19px;
+        font-weight: 600;
+        margin: 25px auto 17px auto;
+      }
     }
 
-    .chooseWhereToEconomy {
-      margin: 12px 0 0 0;  //25px - 8px from margin-bottom of .homeFormInput
-      
-    }
 
 `
 export const FormFooterContainer = styled.div`
@@ -453,42 +442,20 @@ export const FormSelect = styled(Button)`
   
   ${props => props.selected && `background-image: linear-gradient(to left, ${newBackground.yellow}, transparent 50%);`}
   
-  `
-
-export const FormButton = styled(Button)`
-  padding: .5rem 1rem;
-  background-color: ${newBackground.yellow};
-  color: ${newBackground.green};
-  border-radius: 30px;
-
-  height: 42px;
-  
-  margin: 1rem 0;
   
   @media (max-width: 600px) {
-    width: 90vw;
-    margin: 1rem auto;
-  }
-
-  span {
-    font-family: "Graphie";
-    font-size: 20px;
-    font-weight: 700;
-    text-transform: none;
-
-    margin-left: auto;
-
+    border-radius: 5px;
+    height: 50px;
+    max-width: 144px;
+    
+    background-color: ${newBackground.green};
+    
+    background-image: none;
+    border: 1px solid ${newBackground.grey};
+    
+    ${props => props.selected && `border: 1px solid ${newBackground.yellow};`}
   }
   
-  &:hover {
-    background-color: ${newBackground.orange};
-    color: ${newBackground.yellow};
-    cursor: pointer;
-  }
-  
-  & .MuiButton-endIcon {
-    margin-left: auto;
-  }
 `
 
 export const ButtonSimulateYourEconomy = styled(Button)`
@@ -520,31 +487,7 @@ export const ButtonSimulateYourEconomy = styled(Button)`
 `
 
 
-export const FormSlider = styled(Slider)`
-    color: ${newBackground.green};
-    height: 8px;
-    
-    @media (max-width: 600px) {
-      height: 10px;
-    }
-    
-    & .MuiSlider-thumb {
-        background-color: ${newBackground.orange};
-        height: 12px;
-        width: 12px;
-    }
-    
-    & .MuiSlider-rail {
-      background-color: ${newBackground.yellow};
-      height: 8px;
-      opacity: 1;
-    } 
 
-    .sliderLabel {
-      /* background-color: aqua; */
-    }
-
-`;
 
 
 
@@ -686,9 +629,10 @@ export const HomeSecondaryImagesContainer = styled.div`
     gap: 1rem;
     
     @media (max-width: 600px) {
-      flex-wrap: wrap;
+      display: none;
     }
-    `
+`
+
 export const HomeSecondaryImagesContent = styled.div`
     display: flex;
     flex-direction: row;
@@ -765,22 +709,25 @@ export const HomeFourthSectionContainer = styled.div`
     @media (max-width: 600px) {
       margin-bottom: 12px;
     }
-    
-    .sectionTitle {
+    `
+export const HomeFourthSectionTitleContainer = styled.div`
+  text-align: center;
+
+  .sectionTitle {
       font-family: "Graphie";
       font-size: 34px;
       font-weight: 600;
       color: ${newBackground.green};
-      
-      @media (max-width: 600px) {
-        font-size: 21px;
-      }
+  }
+
+  @media (max-width: 600px) {
+    .sectionTitle {
+      font-weight: 700;
+      font-size: 21px;
     }
-    `
-export const HomeFourthSectionTitleContainer = styled.div`
-  text-align: center;
-  
+  }
 `
+
 export const HomeFourthSectionCardContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -885,6 +832,8 @@ export const HomeFifthSectionContainer = styled.div`
       flex-wrap: wrap;
     }
     @media (max-width: 600px) {
+      display: none;
+      
       overflow: auto;
       max-width: 90vw;
       margin: 0 auto;

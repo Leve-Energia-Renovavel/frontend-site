@@ -3,7 +3,7 @@
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import infoJson from '../../../../../../public/info.json';
 import bannerImage from "../../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large-compressed.webp";
-import { HomeContent, HomeMainContent, HomeMainTitle, HomeMainTitleContainer, HomeSubtitleContainer } from '../styles';
+import { HomeContent, HomeMainContent, HomeMainTitle, HomeMainTitleContainer, HomeMobileMainContent, HomeSubtitleContainer } from '../styles';
 
 export default function HomeMainBanner() {
 
@@ -20,16 +20,24 @@ export default function HomeMainBanner() {
 
 
     return (
-        <HomeMainContent image={bannerImage} className='homeMainContent'>
-            <HomeContent>
-                <HomeMainTitleContainer>
-                    <HomeMainTitle variant="h1">{texts.title}<span className='underline'>{texts.leve}</span></HomeMainTitle>
-                    <HomeSubtitleContainer onClick={() => handleScroll()}>
-                        <h6 className='moreAboutLeve'>{texts.about}</h6>
-                        <ArrowCircleDownIcon className='arrowIcon' />
-                    </HomeSubtitleContainer>
-                </HomeMainTitleContainer>
-            </HomeContent>
-        </HomeMainContent>
+        <>
+            <HomeMainContent image={bannerImage} className='homeMainContent'>
+                <HomeContent>
+                    <HomeMainTitleContainer>
+                        <HomeMainTitle variant="h1">{texts.title}<span className='underline'>{texts.leve}</span></HomeMainTitle>
+                        <HomeSubtitleContainer onClick={() => handleScroll()}>
+                            <h6 className='moreAboutLeve'>{texts.about}</h6>
+                            <ArrowCircleDownIcon className='arrowIcon' />
+                        </HomeSubtitleContainer>
+                    </HomeMainTitleContainer>
+                </HomeContent>
+            </HomeMainContent>
+
+            <HomeMobileMainContent className='homeMainContentMobile'>
+                <h1 className='homeMainTitleMobile'>{texts.mobile.title}<span className='highlighted'>{texts.mobile.cheaper}</span>{texts.mobile.withClearEnergy}</h1>
+                <p className='homeMainSubtitleMobile'>{texts.mobile.subtitle}</p>
+                <p className='homeMainDescriptionMobile'>{texts.mobile.description}</p>
+            </HomeMobileMainContent>
+        </>
     )
 }

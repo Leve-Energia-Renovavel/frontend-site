@@ -28,7 +28,10 @@ export default function NewHeader({ isLoggedUser, isOpen, openModal, closeModal,
             {isLoggedUser ?
                 <MenuIcon className='profile' onClick={openModal} />
                 :
-                <PersonOutlineOutlinedIcon className='profile' onClick={openModal} />}
+                (<>
+                    <PersonOutlineOutlinedIcon className='profile' onClick={openModal} />
+                    <MenuIcon className='mobileMenu' onClick={openModal} />
+                    </>)}
         </MobileNewHeaderContainer>
     )
 }

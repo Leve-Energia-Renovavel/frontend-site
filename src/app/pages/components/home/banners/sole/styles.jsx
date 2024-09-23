@@ -28,6 +28,9 @@ export const HomeThirdSectionContainer = styled.div`
     }
 
     @media (max-width: 600px) {
+      display: none;
+
+      
       flex-wrap: wrap;
       padding: 3rem 2rem 0 2rem;
       gap: 0;

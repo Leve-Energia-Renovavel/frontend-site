@@ -95,6 +95,7 @@ export const newBackground = {
     white: "#FCFCFA",
     grey: "#EFEFEC",
     greyMedium: "#BBB",
+    greyHigh: "#787878",
     greyDark: "#838383",
     greyTranslucent: "#F3F3F1",
 }

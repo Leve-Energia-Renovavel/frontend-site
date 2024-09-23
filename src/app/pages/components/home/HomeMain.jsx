@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { HomeContainer as Container, HomeContentContainer as HomeBanner, HomeSecondarySectionContainer } from "./styles";
+import { HomeContainer as Container, HomeContentContainer as HomeBanner, HomeSecondarySectionContainer as SecondarySection } from "./styles";
 
 import HomeMainBanner from './banners/HomeMainBanner';
 import HomeMainForm from './form/HomeMainForm';
@@ -35,10 +35,10 @@ export default function HomeMain() {
                     <HomeMainForm setErrorMessage={setErrorMessage} setNotifications={setNotifications} selectedUserType={selectedUserType} setSelectedUserType={setSelectedUserType} />
                 </HomeBanner>
 
-                <HomeSecondarySectionContainer>
+                <SecondarySection className="homeSecondarySectionContainer">
                     <BoxesContainer />
                     <HomeUsersType handlePreSignup={handlePreSignup} />
-                </HomeSecondarySectionContainer>
+                </SecondarySection>
 
                 <HomeSoleBanner />
 
