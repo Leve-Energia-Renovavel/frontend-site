@@ -13,8 +13,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
 import AddInstallationModal from "../../utils/modals/installations-modal/new-installation-modal/AddInstallationModal";
-import { BoxInstallation, InstallationDetails, InstallationHeader, InstallationItem, NewDashboardInstallation, SelectInstallation } from "./styles";
-
+import { BoxInstallation, InstallationDetails, InstallationFooter, InstallationHeader, InstallationItem, NewDashboardInstallation, SelectInstallation } from "./styles";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 export default function DashboardInstallation({ isMobileContent }) {
 
@@ -101,10 +101,10 @@ export default function DashboardInstallation({ isMobileContent }) {
                         <p className="installationDetails">{getAddress(address, street)}, {getNumber(number)}  - {neighborhood ? neighborhood : "Bairro"}, {city ? "Cidade" : pascalCaseWord(getCityNameByStateIdAndCityId(stateId, cityId))} - {state ? "Estado" : stateOptions[stateId]?.sigla}, CEP: {formatCep(zipCode)}</p>
                     }
                 </InstallationDetails>
-                {/* {hasStartedBilling && <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>
+                {hasStartedBilling && <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>
                     <AddCircleIcon className="addInstallationIcon" />
                     <p className="addInstallation">Novo endereço</p>
-                </InstallationFooter>} */}
+                </InstallationFooter>}
             </NewDashboardInstallation>
 
             {<AddInstallationModal

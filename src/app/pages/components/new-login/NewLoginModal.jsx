@@ -64,9 +64,13 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
                 router.push(`/dashboard`)
             } else if (response?.data?.error) {
                 setErrorMessage(["E-mail e/ou senha estão incorretos"])
+            } else if (response?.errors) {
+                setErrorMessage([response?.errors])
             } else {
                 setErrorMessage(["Erro ao realizar login. Tente novamente mais tarde"])
                 // setErrorMessage([response?.response?.data?.message])
+                await awaitSeconds(2)
+                closeModal()
             }
 
         } else {
@@ -74,8 +78,6 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
             await forgotPasswordValidation(data, setNotifications, setErrorMessage)
         }
         setIsLoading(false)
-        await awaitSeconds(2)
-        closeModal()
     }
 
     const handleKeyPress = (event) => {

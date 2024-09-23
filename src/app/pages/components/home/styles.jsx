@@ -18,6 +18,41 @@ export const HomeContainer = styled.div`
       padding: 0;
     }
 `
+
+export const FormTitleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  
+  animation: ${fadeInUp} 0.5s ease-out; 
+  
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  h2 {
+      font-family: "Graphie";
+      font-weight: 600;
+      color: ${newBackground.yellow};
+      white-space: nowrap;
+      font-size: 27px;
+      text-align: left;
+      
+      @media (max-width: 600px) {
+        font-size: 27px;
+      }
+
+  }
+
+  .economyIcon {
+    @media (max-width: 600px) {
+      width: 32px;
+      height: 32px;
+    }
+  }
+`
 export const HomeContentContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -455,7 +490,108 @@ export const FormSelect = styled(Button)`
     
     ${props => props.selected && `border: 1px solid ${newBackground.yellow};`}
   }
+`
+
+export const FormSlider = styled(Slider)`
+    color: ${newBackground.green};
+    height: 8px;
+    
+    @media (max-width: 600px) {
+      height: 10px;
+    }
+    
+    & .MuiSlider-thumb {
+        background-color: ${newBackground.orange};
+        height: 12px;
+        width: 12px;
+    }
+    
+    & .MuiSlider-rail {
+      background-color: ${newBackground.yellow};
+      height: 8px;
+      opacity: 1;
+    } 
+
+    .sliderLabel {
+      /* background-color: aqua; */
+    }
+
+`;
+
+export const FormButton = styled(Button)`
+  padding: .5rem 1rem;
+  background-color: ${newBackground.yellow};
+  color: ${newBackground.green};
+  border-radius: 30px;
+
+  height: 42px;
   
+  margin: 1rem 0;
+  
+  @media (max-width: 600px) {
+    width: 90vw;
+    margin: 1rem auto;
+  }
+
+  span {
+    font-family: "Graphie";
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: none;
+
+    margin-left: auto;
+
+  }
+  
+  &:hover {
+    background-color: ${newBackground.orange};
+    color: ${newBackground.yellow};
+    cursor: pointer;
+  }
+  
+  & .MuiButton-endIcon {
+    margin-left: auto;
+  }
+`
+
+export const HomeMainFormSimulationContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /* margin: 0 2rem; */
+    margin: 0 43px;
+
+    h6 {
+      font-family: "Graphie";
+      font-size: 17px;
+      font-weight: 900;
+      color:${newBackground.green};
+      
+      white-space: nowrap;
+    }
+    
+    .averageUserCost { 
+      margin: 0;
+      margin-top: 12px;
+    }
+
+    .simulationCost {
+      font-family: "Graphie";
+      font-size: 21px;
+      font-weight: 900;
+      color:${newBackground.orange};
+    }
+
+    .sliderTip {
+      position: relative;
+      top: -24px;
+      left: -13px;
+      animation: ${slideAndDisappear} 5s forwards;
+      width: 30px;
+      height: auto;
+    }
+
 `
 
 export const ButtonSimulateYourEconomy = styled(Button)`

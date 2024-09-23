@@ -47,16 +47,35 @@ export const getInstallationByUUIDandUpdateStore = async (uuid, storeMainInstall
     setIsLoading(false)
 }
 
-export const addNewInstallation = async (data, router) => {
+export const addNewInstallation = async (data, router, setErrorMessage, setIsLoading, closeModal) => {
     const headers = {
-        "Authorization": `Bearer ${Cookies.get('accessToken')}`
+        "Authorization": `Bearer ${Cookies.get('accessToken')}`,
+        "Content-Type": "application/json",
     };
-    const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/add-uc`, data, { headers });
-    const uuid = response?.data?.uuid
-    if (requestSuccessful(response?.status) && uuid && uuid != "") {
-        router.push(`/dashboard/installations/contract-signature/?uuid=${uuid}`)
-    }
 
+    try {
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/add-uc`, data, { headers });
+        console.log("API Response:", response);
+        const uuid = response?.data?.uuid
+        if (requestSuccessful(response?.status) && uuid && uuid != "") {
+            router.push(`/dashboard/installations/contract-signature/?uuid=${uuid}`)
+        }
+    } catch (error) {
+        console.log("Error details:", JSON.stringify(error));
+        if (error?.response?.data?.code === "ALANCASR") {
+            setErrorMessage(["Não é possível adicionar este endereço pois a Leve ainda não chegou na região"])
+        } else if (error?.response?.data?.message === "Instalação com consumo baixo") {
+            setErrorMessage(["Não é possível adicionar este endereço pois o consumo de energia já é baixo"])
+        } else {
+            setErrorMessage(["Não é possível adicionar este endereço. Tente novamente mais tarde"])
+        }
+
+        console.log("Error response:", error?.response);
+        console.log("Error details:", error.message);
+    } finally {
+        setIsLoading(false)
+        closeModal()
+    }
 }
 
 export const updateInstallationsStoreData = async (response, storeMainInstallation, storeInstallations, storeNextBills, storeBilling) => {

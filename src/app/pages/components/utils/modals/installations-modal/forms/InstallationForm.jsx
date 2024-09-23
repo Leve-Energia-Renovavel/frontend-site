@@ -107,8 +107,7 @@ export default function InstallationForm({ closeModal }) {
             numero_instalacao: addressRefs.installationNumber.current.value
         }
 
-        await addNewInstallation(submitData, router)
-        setIsLoading(false)
+        await addNewInstallation(submitData, router, setErrorMessage, setIsLoading, closeModal)
     }
 
     const labelColor = "#005940"

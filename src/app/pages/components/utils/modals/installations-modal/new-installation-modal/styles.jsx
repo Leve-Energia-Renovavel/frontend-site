@@ -19,6 +19,7 @@ export const ModalBox = styled(Box)`
 
     max-width: 800px;
     max-height: 650px;
+    min-height: 500px;
     
     box-shadow: 24px;
 

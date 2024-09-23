@@ -19,9 +19,8 @@ export const loginValidation = async (data, store, setErrorMessage) => {
             }
             return response
         })
-        .catch((err) => {
-            console.log(err.errors);
-            setErrorMessage(err.errors)
+        .catch((error) => {
+            return error
         });
 }
 

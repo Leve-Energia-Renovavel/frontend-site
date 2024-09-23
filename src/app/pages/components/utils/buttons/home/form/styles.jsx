@@ -12,7 +12,7 @@ export const FormButton = styled(Button)`
   padding: 8px 16px;
   margin: 1rem 0;
 
-  ${props => props.isMobile && 'display: none;'};
+  ${props => props.ismobile && 'display: none;'};
 
   span {
     font-family: "Graphie";
@@ -30,7 +30,7 @@ export const FormButton = styled(Button)`
   }
   
     @media (max-width: 600px) {
-      ${props => props.isMobile ? `display: flex;` : `display: none;`};
+      ${props => props.ismobile ? `display: flex;` : `display: none;`};
     }
 `
 

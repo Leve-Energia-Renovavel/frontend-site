@@ -2,21 +2,22 @@
 
 import { createSignupPayload } from '@/app/service/lead-service/LeadService';
 import { clearCookiesAndStorageData } from '@/app/utils/browser/BrowserUtils';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
 import { TextField } from "@mui/material";
+import dynamic from 'next/dynamic';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import infoJson from '../../../../../../public/info.json';
 import { schemaValidation } from '../schema';
-import { HomeMainForm as Form, FormButton, HomeMainFormContainer as FormContainer, FormFooterContainer, FormSlider, HomeFormContainer, HomeMainFormSimulationContainer, Loading, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "../styles";
+import { HomeMainForm as Form, HomeMainFormContainer as FormContainer, FormFooterContainer, HomeFormContainer, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "../styles";
 import { requestValidation } from '../validation';
 
 import HomeMainFormHeader from './header/HomeMainFormHeader';
-import HomeMainFormSimulator from './simulator/HomeMainFormSimulator';
-import HomeFormButton from '../../utils/buttons/home/form/HomeFormButton';
+
+const HomeFormButton = dynamic(() => import('../../utils/buttons/home/form/HomeFormButton'), { ssr: false });
+const HomeMainFormSimulator = dynamic(() => import('./simulator/HomeMainFormSimulator'), { ssr: false });
 
 export default function HomeMainForm({ setErrorMessage, setNotifications, selectedUserType, setSelectedUserType }) {
 
