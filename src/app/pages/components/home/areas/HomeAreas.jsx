@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import brasilMap from '../../../../resources/img/large/area-atendimento-leve-large.svg';
+import brasilMap from '../../../../../resources/img/large/area-atendimento-leve-large.svg';
 import { AreaListContainer, HomeAreasContainer, LegendIcon, MapLegend, MapLegendContainer } from './styles';
 
 export default function HomeAreas() {
