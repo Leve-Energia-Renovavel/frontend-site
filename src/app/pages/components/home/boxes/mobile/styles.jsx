@@ -4,6 +4,12 @@ import { Button } from "@mui/material"
 
 export const HomeSecondaryBoxesContainerMobile = styled.div`
     background-color: ${newBackground.grey};
+
+    display: none;
+    
+    @media (max-width: 600px) {
+        display: block;
+    }
 `
 export const HomeSecondaryBannerContainerMobile = styled.div`
     display: flex;

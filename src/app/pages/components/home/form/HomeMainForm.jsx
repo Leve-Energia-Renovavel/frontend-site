@@ -61,7 +61,6 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
         setLoading(false)
     }
 
-
     return (
         <HomeFormContainer isMobile={isMobile}>
             <FormContainer>

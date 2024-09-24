@@ -112,14 +112,13 @@ export const HomeMobileMainContent = styled.div`
   display: none;
 
   padding: 42px 29px 10px 20px;
-  
+
   .homeMainTitleMobile {
     font-family: "Graphie";
     font-size: 31px;
     line-height: 30px;
     font-weight: 600;
     color: ${newBackground.green};
-
     
     // Ensuring each part of the title is on a new line
     span, 
@@ -284,7 +283,8 @@ export const HomeFormContainer = styled.div`
 
   
   @media (max-width: 600px) {
-    ${props => props.isMobile ? `display:block;` : `display:none;`}
+    ${props => props.isMobile ? `display:block;` : `display:none;`};
+    max-width: 100vw;
 
     .privacyPolicyDisclaimer, .privacyPolicy {
       display: none;
