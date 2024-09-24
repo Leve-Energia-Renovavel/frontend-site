@@ -120,7 +120,18 @@ export const HomeMobileMainContent = styled.div`
     line-height: 30px;
     font-weight: 700;
     color: ${newBackground.green};
+
+    
+    // Ensuring each part of the title is on a new line
+    span, 
+      &::before, 
+      &::after {
+        display: block;
+      }
   }
+
+
+
   .highlighted {
     font-weight: 700;
     color: ${newBackground.orange};

@@ -1,3 +1,4 @@
+import { awaitSeconds } from "@/app/utils/browser/BrowserUtils";
 import { billHasToBePaid } from "@/app/utils/form-options/billingStatusOptions";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -61,7 +62,6 @@ export const addNewInstallation = async (data, router, setErrorMessage, setIsLoa
             router.push(`/dashboard/installations/contract-signature/?uuid=${uuid}`)
         }
     } catch (error) {
-        console.log("Error details:", JSON.stringify(error));
         if (error?.response?.data?.code === "ALANCASR") {
             setErrorMessage(["Não é possível adicionar este endereço pois a Leve ainda não chegou na região"])
         } else if (error?.response?.data?.message === "Instalação com consumo baixo") {
@@ -69,11 +69,9 @@ export const addNewInstallation = async (data, router, setErrorMessage, setIsLoa
         } else {
             setErrorMessage(["Não é possível adicionar este endereço. Tente novamente mais tarde"])
         }
-
-        console.log("Error response:", error?.response);
-        console.log("Error details:", error.message);
     } finally {
         setIsLoading(false)
+        await awaitSeconds(6)
         closeModal()
     }
 }

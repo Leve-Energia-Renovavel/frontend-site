@@ -28,10 +28,12 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
 
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
+
   return (
-    <html lang="pt-BR" suppressHydrationWarning={true}>
-      <body>
-        <GoogleTagManager gtmId="GTM-TTH843C" />
+    <html lang="pt-BR" suppressHydrationWarning={true} >
+      <body suppressHydrationWarning={true}>
+        <GoogleTagManager gtmId={gtmId} />
         <Header />
         {children}
         <WhatsAppFAB />
