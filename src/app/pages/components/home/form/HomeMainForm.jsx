@@ -19,7 +19,7 @@ import HomeMainFormHeader from './header/HomeMainFormHeader';
 const HomeFormButton = dynamic(() => import('../../utils/buttons/home/form/HomeFormButton'), { ssr: false });
 const HomeMainFormSimulator = dynamic(() => import('./simulator/HomeMainFormSimulator'), { ssr: false });
 
-export default function HomeMainForm({ setErrorMessage, setNotifications, selectedUserType, setSelectedUserType }) {
+export default function HomeMainForm({ setErrorMessage, setNotifications, selectedUserType, setSelectedUserType, isMobile }) {
 
     const router = useRouter()
     const search = useSearchParams()
@@ -63,9 +63,9 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
 
 
     return (
-        <HomeFormContainer>
+        <HomeFormContainer isMobile={isMobile}>
             <FormContainer>
-                <Form id='leadForm' onSubmit={handleSubmit}>
+                <Form id={`leadForm${isMobile && "Mobile"}`} onSubmit={handleSubmit}>
                     <HomeMainFormHeader />
 
                     <TextField

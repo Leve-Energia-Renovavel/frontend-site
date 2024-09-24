@@ -2,9 +2,9 @@
 
 
 import { useState } from "react";
-import HomeAreas from "../../home/HomeAreas";
+import HomeAreas from "../../home/areas/HomeAreas";
 import BrandsContainer from "../../home/HomeBrands";
-import TutorialContainer from "../../home/HomeTutorial";
+import TutorialContainer from "../../home/tutorial/HomeTutorial";
 import Messages from "../../messages/Messages";
 import DefaultForm from "../form/default/DefaultForm";
 import LandingPageContactBanner from "../novos-clientes/LandingPageContactBanner";

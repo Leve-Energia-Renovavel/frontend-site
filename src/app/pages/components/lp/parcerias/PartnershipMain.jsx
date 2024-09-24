@@ -9,8 +9,8 @@ import { PartnershipMainContainer as Container, MainContentContainer } from "./s
 
 const PartnerForm = dynamic(() => import("../form/PartnerForm"), { ssr: false });
 const LandingPageSecondaryBanner = dynamic(() => import("../novos-clientes/LandingPageSecondaryBanner"), { ssr: false });
-const TutorialContainer = dynamic(() => import("../../home/HomeTutorial"), { ssr: false });
-const HomeAreas = dynamic(() => import("../../home/HomeAreas"), { ssr: false });
+const TutorialContainer = dynamic(() => import("../../home/tutorial/HomeTutorial"), { ssr: false });
+const HomeAreas = dynamic(() => import("../../home/areas/HomeAreas"), { ssr: false });
 const BrandsContainer = dynamic(() => import("../../home/HomeBrands"), { ssr: false });
 const LandingPageContactBanner = dynamic(() => import("../novos-clientes/LandingPageContactBanner"), { ssr: false });
 const LandingPageFaqBanner = dynamic(() => import("../novos-clientes/LandingPageFaqBanner"), { ssr: false });

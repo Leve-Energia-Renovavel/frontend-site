@@ -56,6 +56,26 @@ export const homeBoxes = [
 
 ]
 
+export const homeBoxesMobile = [
+    {
+        title: "Economia mensal",
+        subtitle: <p className="subtitle"><span className="highlighted">Desconto de até 20%</span> na conta de luz todo mês</p>
+    },
+    {
+        title: "Energia limpa e renovável",
+        subtitle: <p className="subtitle">Nossa energia é produzida a partir de <span className="highlighted">fontes solares</span></p>
+    },
+    {
+        title: "Simples e rápido",
+        subtitle: <p className="subtitle">Sem obras, sem instalação e <span className="highlighted">sem custos adicionais</span></p>
+    },
+    {
+        title: "Cancele quando quiser",
+        subtitle: <p className="subtitle">O cancelamento também é <span className="highlighted">100% digital</span> e simples</p>
+    },
+]
+
+
 export const homeTutorialCards = [
     {
         icon: signIcon,
@@ -72,6 +92,24 @@ export const homeTutorialCards = [
     {
         icon: economyIcon,
         description: "Pronto! Você tem energia (créditos de energia solar) na sua casa ou no seu negócio, com muita economia todos os meses.",
+    },
+]
+export const homeTutorialCardsMobile = [
+    {
+        icon: signIcon,
+        description: "Você preenche o nosso cadastro de adesão digital, rápido e seguro para se tornar cliente Leve",
+    },
+    {
+        icon: solarPanelIcon,
+        description: "A energia limpa que produzimos é inserida na rede da sua distribuidora que continua responsável pelo seu serviço de energia",
+    },
+    {
+        icon: batteryIcon,
+        description: "Essa energia se transforma em créditos que abatem parte do seu consumo e deixa sua conta de luz mais barata todo mês",
+    },
+    {
+        icon: economyIcon,
+        description: "Isso é possível porque fazemos parte do sistema de Geração Distribuída regulado pela ANEEL com base na lei 14.300/22",
     },
 ]
 

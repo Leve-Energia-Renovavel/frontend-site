@@ -1,5 +1,5 @@
 import infoJson from "../../../../../../public/info.json";
-import BoxesContainer from '../../home/HomeBoxes';
+import BoxesContainer from '../../home/boxes/HomeBoxes';
 import { ThirdSectionContainer } from './styles';
 
 export default function LandingPageOurSolutions() {

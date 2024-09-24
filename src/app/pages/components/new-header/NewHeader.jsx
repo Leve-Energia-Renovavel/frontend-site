@@ -5,6 +5,7 @@ import Image from "next/image"
 import { useRouter } from "next/navigation"
 import logoLeve from "../../../../resources/icons/small/leve-logo-orange-icon-small.svg"
 import { MobileNewHeaderContainer, PartnerContainer } from './styles'
+
 export default function NewHeader({ isLoggedUser, isOpen, openModal, closeModal, isLandingPage, isPartner, partner }) {
 
     const router = useRouter()
@@ -18,7 +19,7 @@ export default function NewHeader({ isLoggedUser, isOpen, openModal, closeModal,
     }
 
     return (
-        <MobileNewHeaderContainer isLandingPage={isLandingPage} isPartner={isPartner} isOpen={isOpen}>
+        <MobileNewHeaderContainer isLandingPage={isLandingPage} isPartner={isPartner} isOpen={isOpen} className="leveHeader">
             <Image src={logoLeve} onClick={() => handleRoute()} className='logoLeve' alt={"Logo da Leve na cor laranja"} priority={true} />
             {isPartner && (
                 <PartnerContainer>
@@ -31,7 +32,7 @@ export default function NewHeader({ isLoggedUser, isOpen, openModal, closeModal,
                 (<>
                     <PersonOutlineOutlinedIcon className='profile' onClick={openModal} />
                     <MenuIcon className='mobileMenu' onClick={openModal} />
-                    </>)}
+                </>)}
         </MobileNewHeaderContainer>
     )
 }

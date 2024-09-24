@@ -6,13 +6,14 @@ import { HomeContainer as Container, HomeContentContainer as HomeBanner, HomeSec
 
 import HomeMainBanner from './banners/HomeMainBanner';
 import HomeMainForm from './form/HomeMainForm';
+import HomeBoxesMobile from "./boxes/mobile/HomeBoxesMobile";
 
-const BoxesContainer = dynamic(() => import('./HomeBoxes'), { ssr: false });
+const BoxesContainer = dynamic(() => import('./boxes/HomeBoxes'), { ssr: false });
 const HomeUsersType = dynamic(() => import('./HomeUsersType'), { ssr: false });
 const BrandsContainer = dynamic(() => import('./HomeBrands'), { ssr: false });
 const HomeEconomyBanner = dynamic(() => import('./banners/HomeEconomyBanner'), { ssr: false });
 const HomeSoleBanner = dynamic(() => import('./banners/sole/HomeSoleBanner'), { ssr: false });
-const TutorialContainer = dynamic(() => import('./HomeTutorial'), { ssr: false });
+const TutorialContainer = dynamic(() => import('./tutorial/HomeTutorial'), { ssr: false });
 const Messages = dynamic(() => import('../messages/Messages'), { ssr: false });
 
 export default function HomeMain() {
@@ -29,10 +30,15 @@ export default function HomeMain() {
 
     return (
         <>
-            <Container>
-                <HomeBanner>
+            <Container className="homeContainer">
+                <HomeBanner className="homeBanner">
                     <HomeMainBanner />
-                    <HomeMainForm setErrorMessage={setErrorMessage} setNotifications={setNotifications} selectedUserType={selectedUserType} setSelectedUserType={setSelectedUserType} />
+                    <HomeMainForm
+                        setErrorMessage={setErrorMessage}
+                        setNotifications={setNotifications}
+                        selectedUserType={selectedUserType}
+                        setSelectedUserType={setSelectedUserType}
+                        isMobile={false} />
                 </HomeBanner>
 
                 <SecondarySection className="homeSecondarySectionContainer">
@@ -40,9 +46,18 @@ export default function HomeMain() {
                     <HomeUsersType handlePreSignup={handlePreSignup} />
                 </SecondarySection>
 
+                <HomeBoxesMobile className='homeMainBoxesContainerMobile' />
+
                 <HomeSoleBanner />
 
                 <TutorialContainer />
+
+                <HomeMainForm
+                    setErrorMessage={setErrorMessage}
+                    setNotifications={setNotifications}
+                    selectedUserType={selectedUserType}
+                    setSelectedUserType={setSelectedUserType}
+                    isMobile={true} />
 
                 <HomeEconomyBanner />
 

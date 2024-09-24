@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 import SimulationForm from '../../home/form/SimulationForm';
 import LandingPageMainContent from './LandingPageMainContent';
 const BrandsContainer = dynamic(() => import('../../home/HomeBrands'), { ssr: false });
-const TutorialContainer = dynamic(() => import('../../home/HomeTutorial'), { ssr: false });
+const TutorialContainer = dynamic(() => import('../../home/tutorial/HomeTutorial'), { ssr: false });
 const LandingPageContactBanner = dynamic(() => import('./LandingPageContactBanner'), { ssr: false });
 const LandingPageFaqBanner = dynamic(() => import('./LandingPageFaqBanner'), { ssr: false });
 const LandingPageSecondaryBanner = dynamic(() => import('./LandingPageSecondaryBanner'), { ssr: false });

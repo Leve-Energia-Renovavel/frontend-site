@@ -78,6 +78,7 @@ export const MobileNewHeaderContainer = styled.header`
             display: none;
         }
 
+
         .logoLeve {
         width: 155px; 
         height: 33px;

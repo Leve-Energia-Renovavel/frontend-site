@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import CircleIcon from '@mui/icons-material/Circle';
 import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/material";
 import { fadeInUp, fadeInUpAnimation, slideAndDisappear } from "../../animations";
 import { newBackground, notification } from "../../styles";
@@ -118,7 +117,7 @@ export const HomeMobileMainContent = styled.div`
     font-family: "Graphie";
     font-size: 31px;
     line-height: 30px;
-    font-weight: 700;
+    font-weight: 600;
     color: ${newBackground.green};
 
     
@@ -133,7 +132,7 @@ export const HomeMobileMainContent = styled.div`
 
 
   .highlighted {
-    font-weight: 700;
+    font-weight: 600;
     color: ${newBackground.orange};
   }
   .homeMainSubtitleMobile {
@@ -143,18 +142,18 @@ export const HomeMobileMainContent = styled.div`
     font-weight: 500;
     color: ${newBackground.greyHigh};
     
-    margin-top: 17px;
+    margin-top: 18px;
   }
   .homeMainDescriptionMobile {
     font-family: "Graphie";
-    font-size: 16px;
+    font-size: 17px;
     line-height: 16px;
     font-weight: 600;
     color: ${newBackground.green};
 
-    margin-top: 11px;
+    margin-top: 18px;
 
-    max-width: 290px;
+    max-width: 316px;
   }
   
   @media (max-width: 600px) {
@@ -248,6 +247,8 @@ export const HomeFormContainer = styled.div`
   display: flex;
   flex-direction: column;
 
+  ${props => props.isMobile && `display:none;`}
+
   width: 388px;
   max-width: 388px;  
 
@@ -283,6 +284,8 @@ export const HomeFormContainer = styled.div`
 
   
   @media (max-width: 600px) {
+    ${props => props.isMobile ? `display:block;` : `display:none;`}
+
     .privacyPolicyDisclaimer, .privacyPolicy {
       display: none;
     }
@@ -605,33 +608,7 @@ export const HomeMainFormSimulationContainer = styled.div`
 
 `
 
-export const ButtonSimulateYourEconomy = styled(Button)`
- padding: .5rem 2rem;
-  background-color: ${newBackground.orange};
-  color: ${newBackground.yellow};
-  border-radius: 30px;
-  
-  margin: 1rem 0 0 0;
-  
-  @media (max-width: 600px) {
-    margin: 0;
-  }
 
-  span {
-    font-family: "Graphie";
-    font-size: 20px;
-    font-weight: 500;
-    text-transform: none;
-
-    margin-left: auto;
-  }
-  
-  &:hover {
-    background-color: ${newBackground.yellow};
-    color: ${newBackground.orange};
-    cursor: pointer;
-  }
-`
 
 
 
@@ -653,116 +630,14 @@ export const HomeSecondarySectionContainer = styled.div`
     max-width: 1366px;
     
     @media (max-width: 600px) {
+      display: none;
+      
       width: 100vw;
       max-width: 100vw;
 
       gap: 40px;
 
       padding: 15px;
-    }
-`
-
-export const HomeSecondaryBoxesContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
-    gap: 1rem;
-
-    @media (max-width: 1000px) {
-      flex-wrap: wrap;
-      gap: 1.2rem;
-    }
-    @media (max-width: 600px) {
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.5rem;
-    }
-`
-
-export const HomeSecondaryBoxContent = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 15px;
-
-    height: 170px;
-    /* width: 287px; */
-    width: 310px;
-
-    padding: 1rem;
-
-    background-color: ${props => props.color};
-
-    .boxDescription {
-      font-family: "Graphie";
-      font-size: 17px;
-      line-height: 17px;
-      font-weight: 500;
-      color: ${props => props.descriptionColor};
-      text-align: left;
-
-      margin-bottom: 20px;
-      
-      @media (max-width: 600px) {
-        margin-bottom: 4px;
-        font-size: 12px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      width: 180px;
-      height: 180px;
-
-      padding: .8rem;
-
-      border-radius: 15px;
-    }
-    @media (max-width: 415px) {
-      width: 150px;
-      height: 150px;
-
-      padding: .8rem;
-
-      border-radius: 15px;
-    }
-    @media (max-width: 362px) {
-      width: 135px;
-      height: 135px;
-
-      padding: .8rem;
-
-      border-radius: 15px;
-    }
-`
-export const HomeSecondaryBoxTitle = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: .5rem;
-
-    h6 {
-      font-family: "Graphie";
-      font-size: 27px;
-      font-weight: 600;
-      color: ${props => props.titleColor};
-      
-      @media (max-width: 600px) {
-        font-size: 18px;
-      }
-      @media (max-width: 415px) {
-        font-size: 16px;
-      }
-    }
-    
-    .titleIcon {
-      width: 30px;
-      height: 30px;
-      
-      @media (max-width: 600px) {
-        height: 20px;
-        width: 20px;
-      }
     }
 `
 
@@ -840,127 +715,6 @@ export const HomeSecondaryImagesContent = styled.div`
     }
 `
 
-
-export const HomeFourthSectionContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: ${newBackground.white};
-
-    gap: 2rem;
-
-    padding: 2rem;
-    margin-bottom: 64px; //80px - 16px from banner below
-    
-    @media (max-width: 600px) {
-      margin-bottom: 12px;
-    }
-    `
-export const HomeFourthSectionTitleContainer = styled.div`
-  text-align: center;
-
-  .sectionTitle {
-      font-family: "Graphie";
-      font-size: 34px;
-      font-weight: 600;
-      color: ${newBackground.green};
-  }
-
-  @media (max-width: 600px) {
-    .sectionTitle {
-      font-weight: 700;
-      font-size: 21px;
-    }
-  }
-`
-
-export const HomeFourthSectionCardContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
-    ${(props) => props.visible && fadeInUpAnimation};
-
-    gap: 1rem;
-
-    @media (max-width: 1150px) {
-      flex-wrap: wrap;
-    }
-    @media (max-width: 600px) {
-      flex-wrap: wrap;
-    }
-`
-export const HomeFourthSectionCard = styled.div`
-    display: flex;
-    flex-direction: column;
-    
-    border: 1px solid #ccc;
-    
-    border-radius: 25px;
-    width: 280px;
-    max-width: 300px;
-    
-    padding: 2rem;
-
-    .invisible { 
-      @media (max-width: 600px) {
-      flex-direction: row-reverse;
-      }
-    }
-    
-    @media (max-width: 600px) {
-      flex-direction: row-reverse;
-      width: 327px;
-      height: auto;
-      padding: 1rem;
-    }
-`
-export const HomeFourthSectionIcon = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-    
-    @media (max-width: 600px) {
-      flex-direction: column;
-      justify-content: start;
-    }
-
-    .titleIcon {
-      width: 65px;
-      height: auto;
-
-      object-fit: contain;
-      
-      @media (max-width: 600px) {
-        width: 50px;
-        height: auto;
-      }
-    }
-`
-export const HomeFourthSectionTitle = styled.div`
-
-  .cardTitle {
-    font-family: "Graphie";
-    font-size: 42px;
-    font-weight: 600;
-    color: ${newBackground.green};
-    
-    @media (max-width: 600px) {
-      font-size: 34px;
-    }
-  }
-`
-export const HomeFourthSectionDescription = styled.div`
-  .cardDescription {
-    font-family: "Graphie";
-    font-size: 17px;
-    font-weight: 500;
-    color: ${newBackground.green};
-
-    line-height: 17px;
-  }
-`
 
 export const HomeFifthSectionContainer = styled.div`
     display: flex;
@@ -1165,92 +919,6 @@ export const HomeSixthSectionCard = styled.div`
     }
 
 `
-
-export const HomeAreasContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: ${newBackground.white};
-  gap: 2rem;
-
-  .map {
-      width: 100%;
-      max-width: 572px;
-      height: auto;
-    }
-
-  .areasTitle {
-    font-family: "Graphie";
-    font-size: 34px;
-    line-height: 30px;
-    font-weight: 600;
-    color: ${newBackground.green};
-  }
-
-  @media (max-width: 600px) {
-    .areasTitle {
-      font-size: 26px;
-      line-height: 26px;
-    }
-
-    .map {
-      width: 80%;
-      height: auto;
-    }
-  }
-`
-export const LegendIcon = styled(CircleIcon)`
-`
-
-export const MapLegendContainer = styled.div`
-`
-
-export const MapLegend = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 4px;
-
-  .legendIcon {
-    color: ${props => props.hasFactory ? newBackground.orange : newBackground.green};
-  }
-  
-  .legendDescription {
-    font-family: "Graphie";
-    font-size: 17px;
-    line-height: 21px;
-    font-weight: 500;
-    color: ${props => props.hasFactory ? newBackground.orange : newBackground.green};
-  }
-`
-export const AreaListContainer = styled.div`
-  margin-top: -1rem;
-
-  .areaList {
-    font-family: "Graphie";
-    font-size: 14px;
-    line-height: 21px;
-    font-weight: 500;
-    color: ${newBackground.green};
-  }
-
-  .highlighted {
-    font-weight: 700;
-    text-decoration: underline;
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .areaList {
-      text-align: center;
-      max-width: 200px;
-    }
-  }
-`
-
-
 
 
 
