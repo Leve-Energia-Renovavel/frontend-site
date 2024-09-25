@@ -8,13 +8,14 @@ import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { formatCep } from "@/app/utils/formatters/documentFormatter";
 import { pascalCaseWord } from "@/app/utils/formatters/textFormatter";
 import { getAddress, getNumber, isPending } from "@/app/utils/helper/installations/installationsHelper";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
 import AddInstallationModal from "../../utils/modals/installations-modal/new-installation-modal/AddInstallationModal";
+import NewInstallationPendingContractModal from "../../utils/modals/installations-modal/pending-contract-modal/NewInstallationPendingContractModal";
 import { BoxInstallation, InstallationDetails, InstallationFooter, InstallationHeader, InstallationItem, NewDashboardInstallation, SelectInstallation } from "./styles";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 export default function DashboardInstallation({ isMobileContent }) {
 
@@ -111,10 +112,10 @@ export default function DashboardInstallation({ isMobileContent }) {
                 isOpen={openNewInstallationModal}
                 closeModal={closeNewInstallationModal} />}
 
-            {/* {<NewInstallationPendingContractModal
+            {<NewInstallationPendingContractModal
                 pendingInstallations={pendingInstallations}
                 isOpen={!hasPendingContracts}
-            />} */}
+            />}
         </>
     )
 }
