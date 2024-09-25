@@ -77,7 +77,7 @@ export const confirmNewPassword = async (newPassword, confirmedNewPassword, toke
             if (!error.response) {
                 setValidationErrors(["Erro de rede. Verifique sua conexão e tente novamente."]);
             } else {
-                setValidationErrors(["Erro ao confirmar a nova senha. Por favor, tente novamente."]);
+                setValidationErrors(["Erro ao confirmar a nova senha. Por favor, tente novamente mais tarde."]);
             }
         }
     } else {
