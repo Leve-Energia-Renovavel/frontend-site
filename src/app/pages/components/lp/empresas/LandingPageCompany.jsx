@@ -27,14 +27,15 @@ export default function LandingPageCompany() {
                     <CompanyPartnerForm setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
                 </MainContentContainer>
 
-                <Controll>
+                <Controll className='landingPageControlComponent'>
                     <LandingPageInvertedSolarPanelBanner />
                 </Controll>
 
                 <BrandsContainer />
+
                 <LandingPageVideo />
 
-                <Controll>
+                <Controll className='landingPageControlComponent'>
                     <HomeInvertedSoleBanner />
                 </Controll>
 

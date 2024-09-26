@@ -484,6 +484,10 @@ export const HomeMainForm = styled.form`
 
     }
 
+    .mobilePrivacyPolicy, .mobilePrivacyPolicyDisclaimer {
+      display: none;
+    }
+
     @media (max-width: 600px) {
       background-color: ${newBackground.green};
 
@@ -508,6 +512,23 @@ export const HomeMainForm = styled.form`
         & label {
           color:  ${newBackground.green};
       }
+    }
+
+    .mobilePrivacyPolicy, .mobilePrivacyPolicyDisclaimer {
+      display: inline;
+
+      width: 300px;
+
+      font-family: "Graphie";
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 12px;
+      color:  ${newBackground.white};
+      
+    }
+    
+    .mobilePrivacyPolicy {
+      font-weight: 500;
     }
   }
 `

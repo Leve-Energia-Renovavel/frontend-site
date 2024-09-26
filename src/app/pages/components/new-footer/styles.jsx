@@ -20,15 +20,18 @@ export const FooterContainer = styled.div`
         background: linear-gradient(
         to top,
         ${newBackground.orange}, 
+        ${newBackground.orange}, 
         ${newBackground.white} 88%,
         transparent 100%);
+
+        background-color: ${newBackground.grey};
         
-        gap: 0; //change later...
+        gap: 0px //change later...
     }
 
 
 `
-export const FooterPrimaryContainer = styled.div`
+export const FooterMainContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -91,7 +94,8 @@ export const FooterPrimaryContainer = styled.div`
         }
     }
     `
-export const FooterSecondaryContainer = styled.div`
+
+export const FooterSecondaryContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -115,27 +119,44 @@ export const FooterSecondaryContainer = styled.div`
     }
     
     @media (max-width: 600px) {
-        height: 500px;
-
         background-image: url(${props => props.image.src});
         background-repeat: no-repeat;
         background-size: 420px;
+
+        height: 500px;
         background-position: -26px 150px;
 
         .rights, .leveLegalData {
+            font-family: "Graphie";
             font-size: 10px;
+            line-height: 12px;
+            font-weight: 400;
         }
         
         .rights {
-            margin-top: 21px;
+            margin-top: 42px;
             margin-bottom: 0px;
         }
 
         .leveLogoImage {
-            width: 97px; 
-            height: 44px;
+            width: 130px; 
+            height: auto;
+
+            margin-top: 16px;
         }
     }
+
+    @media (max-height: 1100px) {
+        height: 900px;
+        background-size: 600px;
+        background-position: -100px 250px;
+    }
+    @media (max-height: 900px) {
+        height: 800px;
+        background-size: 600px;
+        background-position: -100px 200px;
+    }
+
 `
 export const SunContainer = styled.div`
     position: fixed; /* Ensure the container remains fixed */
@@ -172,6 +193,9 @@ export const SunContainer = styled.div`
 export const FooterSocialMediaContainer = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
     gap: 1rem;
 
     max-width: 460px;
@@ -195,8 +219,13 @@ export const FooterSocialMediaContainer = styled.div`
     }
     
     @media (max-width: 600px) {
-        gap: 2px;
+        gap: 30px;
         margin-bottom: 30px;
+
+        .iconButton {
+            width: 32px;
+            height: 32px;
+        }
     }
 `
 
@@ -217,5 +246,96 @@ export const FooterButton = styled(Button)`
       background-color: ${newBackground.green};
       color: ${newBackground.yellow};
         cursor: pointer;
+  }
+`
+
+export const FooterMobile = styled.div`
+    display: none;
+
+    .title {
+        font-family: "Graphie";
+        font-size: 24px;  
+        font-weight: 600;
+        color: ${newBackground.green};
+    }
+    .subtitle {
+        font-family: "Graphie";
+        font-size: 18px;  
+        font-weight: 500;
+        color: ${newBackground.greyHigh};
+
+        margin-top: 6px;
+    }
+    
+    @media (max-width: 600px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    //adapting by device height...
+    @media (max-height: 1000px) {
+        margin-bottom: -260px;
+    }
+
+    @media (max-height: 900px) {
+        margin-bottom: -240px;
+    }
+`
+
+export const VideoContainer = styled.div`
+    margin: 0 auto;
+    padding: 2rem;
+
+    border-radius: 10px;
+
+    margin-top: 16px;
+
+    .embededVideo {
+        width: 1000px;
+        height: 581px;
+        border-radius: 15px;
+    }
+
+    @media (max-width: 600px) {
+    padding: 0;
+    
+    .embededVideo {
+        width: 336px;
+        height: 220px;
+    }
+}
+`
+
+export const ButtonContainer = styled.div`
+    text-align: center;
+`
+
+export const CTAButton = styled(Button)`
+  background-color: ${newBackground.orange};
+  color: ${newBackground.white};
+  border-radius: 30px;
+
+  height: 48px;
+
+  margin: 12px 0 0 0;
+
+  padding: 15px 27px;
+
+  max-width: 305px;
+  
+  span {
+    font-family: "Graphie";
+    font-size: 17px;
+    line-height: 21px;
+    font-weight: 500;
+    text-transform: none;
+    white-space: nowrap;
+  }
+
+  &:hover {
+      background-color: ${newBackground.yellow};
+      color: ${newBackground.green};
+      cursor: pointer;
   }
 `

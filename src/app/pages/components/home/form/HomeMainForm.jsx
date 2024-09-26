@@ -151,6 +151,7 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                     </FormFooterContainer>
                     <HomeMainFormSimulator isMobile={true} />
                     <HomeFormButton title={texts.discountCalculate} isLoading={isLoading} isMobile={true} />
+                    <p className='mobilePrivacyPolicyDisclaimer'>{texts.mobile.byClickingButtonAbove}<span className='mobilePrivacyPolicy' onClick={() => router.push(`/politica-de-privacidade`)}>{texts.mobile.privacyPolicy}</span></p>
                 </Form>
 
                 <HomeMainFormSimulator isMobile={false} />

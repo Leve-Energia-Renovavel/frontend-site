@@ -3,7 +3,7 @@ import { VideoContainer } from './styles'
 export default function LandingPageVideo() {
     const videoId = "Zs9r8xWwn3I"
     return (
-        <VideoContainer>
+        <VideoContainer className='leveLandingPageVideoContainer'>
             <iframe
                 className='embededVideo'
                 src={`https://www.youtube.com/embed/${videoId}`}
