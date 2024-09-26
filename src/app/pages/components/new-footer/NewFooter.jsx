@@ -8,7 +8,7 @@ import Image from "next/image";
 import infoJson from '../../../../../public/info.json';
 import sunImage from "../../../../resources/icons/small/ellipse-small-reduced.webp";
 import logoLeve from "../../../../resources/icons/small/leve-logo-white-icon-small.png";
-import { ButtonContainer, FooterContainer as Container, CTAButton, FooterButton, FooterMainContent, FooterMobile, FooterSecondaryContent, FooterSocialMediaContainer as SocialMediaContent, SunContainer, VideoContainer } from './styles';
+import { ButtonContainer, FooterContainer as Container, CTAButton, FooterButton, FooterMainContent, FooterMobile, FooterSecondaryContent, LegalContainer, FooterSocialMediaContainer as SocialMediaContent, SunContainer, VideoContainer } from './styles';
 
 export default function NewFooter() {
 
@@ -77,8 +77,11 @@ export default function NewFooter() {
 
           <Image src={logoLeve} className="leveLogoImage" alt={"Logo da Leve Energia Renovável"} priority={false} loading='lazy' />
 
-          <p className='rights'>{texts.rights}</p>
-          <p className='leveLegalData'>Leve Energia Renovável - CNPJ 45.193.816/0001-17</p>
+          <LegalContainer className='legalContainer'>
+            <p className='rights'>{texts.rights}</p>
+            <p className='leveLegalData'>Leve Energia Renovável - CNPJ 45.193.816/0001-17</p>
+          </LegalContainer>
+
 
           <SunContainer className='leveFooterSunContainer'>
             <Image src={sunImage} className='sunImage' alt={"Imagem de um sol se pondo, ao fundo do logo da Leve"} loading="lazy" />

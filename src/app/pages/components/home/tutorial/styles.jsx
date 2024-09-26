@@ -104,7 +104,7 @@ export const HomeFourthSectionCardMobile = styled.div`
     border-radius: 5px;
 
     min-height: 110px;
-    max-height: 114px;
+    max-height: 124px;
     
     min-width: 300px;
     width: 338px;
@@ -113,6 +113,7 @@ export const HomeFourthSectionCardMobile = styled.div`
     margin-top: 7px;
     
     padding: 13px 10px;
+    padding-bottom: 26px;
 
     .cardNumber {
       font-family: "Graphie";

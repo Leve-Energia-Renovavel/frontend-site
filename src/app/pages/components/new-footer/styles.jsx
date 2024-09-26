@@ -102,16 +102,6 @@ export const FooterSecondaryContent = styled.div`
     align-items: center;
 
     overflow: hidden;
-
-    .rights, .leveLegalData {
-        color: ${newBackground.white};
-        font-size: 15px;
-    }
-    
-    .rights {
-        margin-top: 43px;
-        margin-bottom: 143px;
-    }
     
     .leveLogoImage {
         width:250px; 
@@ -126,17 +116,7 @@ export const FooterSecondaryContent = styled.div`
         height: 500px;
         background-position: -26px 150px;
 
-        .rights, .leveLegalData {
-            font-family: "Graphie";
-            font-size: 10px;
-            line-height: 12px;
-            font-weight: 400;
-        }
-        
-        .rights {
-            margin-top: 42px;
-            margin-bottom: 0px;
-        }
+
 
         .leveLogoImage {
             width: 130px; 
@@ -156,7 +136,31 @@ export const FooterSecondaryContent = styled.div`
         background-size: 600px;
         background-position: -100px 200px;
     }
+    
+    `
+export const LegalContainer = styled.div`
+    text-align: center;
 
+    .rights, .leveLegalData {
+        color: ${newBackground.white};
+        font-size: 15px;
+    }
+    .rights {
+        margin-top: 43px;
+    }
+    @media (max-width: 600px) {
+        .rights, .leveLegalData {
+            font-family: "Graphie";
+            font-size: 10px;
+            line-height: 12px;
+            font-weight: 400;
+        }
+                    
+        .rights {
+            margin-top: 42px;
+            margin-bottom: 0px;
+        }
+    }
 `
 export const SunContainer = styled.div`
     position: fixed; /* Ensure the container remains fixed */
