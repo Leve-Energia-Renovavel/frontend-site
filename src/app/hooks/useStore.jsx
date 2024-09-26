@@ -36,10 +36,12 @@ export const useStoreUser = create((set) => ({
 
         hasSignContract: false,
         hasSyncDistributorData: false,
-
+        
         memberGetMemberCode: "",
-
-        invoiceDate: 0
+        
+        invoiceDate: 0,
+        
+        hasConnectedByBackoffice: false,
     },
     updateUser: (newUser) =>
         set((state) => ({
@@ -88,7 +90,9 @@ export const useStoreUser = create((set) => ({
 
                 memberGetMemberCode: "",
 
-                invoiceDate: 0
+                invoiceDate: 0,
+
+                hasConnectedByBackoffice: false,
             },
         }))
 }));

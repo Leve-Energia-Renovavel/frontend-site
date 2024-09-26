@@ -33,7 +33,7 @@ export default function DashboardInstallation({ isMobileContent }) {
     const mainInstallation = JSON.parse(localStorage?.getItem('mainInstallation'))
     const installations = JSON.parse(localStorage?.getItem('installations'))
 
-    const { uuid } = user?.user ?? (store?.user || {})
+    const { uuid, hasConnectedByBackoffice } = user?.user ?? (store?.user || {})
 
     const { address, street, number, neighborhood, city, state, stateId, cityId, zipCode, installationNumber, id, hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
@@ -102,7 +102,7 @@ export default function DashboardInstallation({ isMobileContent }) {
                         <p className="installationDetails">{getAddress(address, street)}, {getNumber(number)}  - {neighborhood ? neighborhood : "Bairro"}, {city ? "Cidade" : pascalCaseWord(getCityNameByStateIdAndCityId(stateId, cityId))} - {state ? "Estado" : stateOptions[stateId]?.sigla}, CEP: {formatCep(zipCode)}</p>
                     }
                 </InstallationDetails>
-                {hasStartedBilling && <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>
+                {hasStartedBilling && hasConnectedByBackoffice && <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>
                     <AddCircleIcon className="addInstallationIcon" />
                     <p className="addInstallation">Novo endereço</p>
                 </InstallationFooter>}
@@ -114,7 +114,7 @@ export default function DashboardInstallation({ isMobileContent }) {
 
             {<NewInstallationPendingContractModal
                 pendingInstallations={pendingInstallations}
-                isOpen={!hasPendingContracts}
+                isOpen={hasPendingContracts}
             />}
         </>
     )

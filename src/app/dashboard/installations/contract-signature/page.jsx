@@ -12,20 +12,14 @@ export default function NewInstallationContractSignaturePage() {
     const search = useSearchParams()
 
     const uuid = search.get("uuid")
-    const token = Cookies.get("accessToken")
 
     const [isOpen, setIsOpenModal] = useState(true)
 
     const installationsInitialPageIndex = 0
 
-    if (!token) {
-        router.push("/")
-    }
-
-    if (!uuid || uuid == "undefined") {
-        router.push("/dashboard")
-    }
-
+    // if (!uuid || uuid == "undefined") {
+    //     router.push("/dashboard")
+    // }
 
     const closeModal = () => {
         setIsOpenModal(false)
