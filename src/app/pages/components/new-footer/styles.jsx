@@ -12,12 +12,7 @@ export const FooterContainer = styled.div`
     /* max-width: 1366px; */
     margin: 0 auto;
 
-    background: linear-gradient(
-    to top,
-    ${newBackground.orange}, 
-    ${newBackground.orange} 10%,
-    transparent 100%
-  );
+    background: linear-gradient(to top,${newBackground.orange}, ${newBackground.orange} 10%,transparent 100%);
 
     gap: 10rem; //change later...
     
@@ -28,7 +23,7 @@ export const FooterContainer = styled.div`
         ${newBackground.white} 88%,
         transparent 100%);
         
-        gap: 3rem; //change later...
+        gap: 0; //change later...
     }
 
 
@@ -41,7 +36,7 @@ export const FooterPrimaryContainer = styled.div`
 
     text-align: center;
 
-    h2 {
+    .footerTitle {
         font-family: "Graphie";
         font-size: 70px;
         font-weight: 600;
@@ -53,37 +48,42 @@ export const FooterPrimaryContainer = styled.div`
         
         margin-top: 5rem; //change later...
         margin-bottom: 62px; //change later...
-        
-        @media (max-width: 600px) {
-            font-size: 27px;
-            max-width: 330px;
-            
-            margin-top: 120px;
-            margin-bottom: 20px; //change later...
-        }
     }
     
-    h3{ 
+    .footerSubtitle { 
         font-family: "Graphie";
         color: ${newBackground.green};
         font-size: 32px;
         font-weight: 600;
         margin-bottom: 20px; //change later...
-        
-        @media (max-width: 600px) {
-            font-size: 14px;
-            margin-bottom: 10px; //change later...
-        }
     }
-    h4{
+
+    .footerDescription {
         font-family: "Graphie";
         font-weight: 500;
         color: ${newBackground.green};
         
         font-size: 20px;
         margin-bottom: 50px; //change later...
+    }
 
-        @media (max-width: 600px) {
+    @media (max-width: 600px) {
+        display: none;
+
+        .footerTitle {
+            font-size: 27px;
+            max-width: 330px;
+            
+            margin-top: 120px;
+            margin-bottom: 20px; //change later...
+        }
+
+        .footerSubtitle {
+            font-size: 14px;
+            margin-bottom: 10px; //change later...
+        }
+
+        .footerDescription {
             font-size: 14px;
             max-width: 330px;
 
@@ -99,42 +99,45 @@ export const FooterSecondaryContainer = styled.div`
 
     overflow: hidden;
 
-    @media (max-width: 600px) {
-        background-image: url(${props => props.image.src});
-        background-repeat: no-repeat;
-        background-position: left;
-        background-size: 800px; 
-    }
-
-    h6 {
+    .rights, .leveLegalData {
         color: ${newBackground.white};
         font-size: 15px;
+    }
+    
+    .rights {
         margin-top: 43px;
         margin-bottom: 143px;
-        
-        @media (max-width: 600px) {
-            font-size: 10px;
-            margin-top: 21px;
-            margin-bottom: 21px;
-        }
     }
-
+    
     .leveLogoImage {
         width:250px; 
         height:auto;
+    }
+    
+    @media (max-width: 600px) {
+        height: 500px;
 
-        @media (max-width: 600px) {
-            width:97px; 
-            height:44px;
+        background-image: url(${props => props.image.src});
+        background-repeat: no-repeat;
+        background-size: 420px;
+        background-position: -26px 150px;
+
+        .rights, .leveLegalData {
+            font-size: 10px;
+        }
+        
+        .rights {
+            margin-top: 21px;
+            margin-bottom: 0px;
+        }
+
+        .leveLogoImage {
+            width: 97px; 
+            height: 44px;
         }
     }
-
-    @media (max-width: 600px) {
-        background-size: 430px;
-        background-position: end;
-    }
 `
-export const MyNiceDiv = styled.div`
+export const SunContainer = styled.div`
     position: fixed; /* Ensure the container remains fixed */
     bottom: 0;
     left: 0;
@@ -160,18 +163,10 @@ export const MyNiceDiv = styled.div`
             width: 750px; 
             height: 750px; 
         }
-        @media (max-width: 700px) {
-            width: 650px; 
-            height: 650px; 
-        }
-    }
 
-    @media (max-width: 900px) {
-        display: none;
-    }
-    @media (max-width: 400px) {
-        max-width: 100vw;
-        display: none;
+        @media (max-width: 600px) {
+            display: none;
+        }
     }
 `;
 export const FooterSocialMediaContainer = styled.div`
@@ -181,7 +176,7 @@ export const FooterSocialMediaContainer = styled.div`
 
     max-width: 460px;
 
-    margin-top: 150px;
+    /* margin-top: 150px; */
     margin-bottom: 102px;
 
     .socialIcon {
@@ -197,19 +192,11 @@ export const FooterSocialMediaContainer = styled.div`
             color: ${newBackground.green};
             cursor: pointer;
         }
-        
-        @media (max-width: 600px) {
-            width: 41px;
-            height: 41px;
-            padding: 4px;
-        }
     }
-
+    
     @media (max-width: 600px) {
         gap: 2px;
-
-        margin-top: 150px;
-        margin-bottom: 33px;
+        margin-bottom: 30px;
     }
 `
 

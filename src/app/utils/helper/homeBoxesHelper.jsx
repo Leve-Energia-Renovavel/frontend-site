@@ -9,6 +9,10 @@ import signIcon from "../../../resources/icons/small/leve-energia-clique-icone-s
 import solarPanelIcon from "../../../resources/icons/small/leve-painel-solar-icone-small.png"
 import batteryIcon from "../../../resources/icons/small/leve-recarregar-energia-icone-small.png"
 
+import solarPanelConnectedPollIcon from "../../../resources/icons/large/leve-solar-panel-connected-to-poll.svg"
+import flowerLightIcon from "../../../resources/icons/large/leve-flower-light-large.svg"
+import economyRenewalIcon from "../../../resources/icons/large/leve-economy-renewal.svg"
+
 import localizaLogo from "../../../resources/img/small/logo-localiza-small.png"
 import lorealLogo from "../../../resources/img/small/logo-loreal-small.png"
 import martinsLogo from "../../../resources/img/small/logo-martins-small.png"
@@ -100,54 +104,63 @@ export const homeTutorialCardsMobile = [
         description: "Você preenche o nosso cadastro de adesão digital, rápido e seguro para se tornar cliente Leve",
     },
     {
-        icon: solarPanelIcon,
+        icon: solarPanelConnectedPollIcon,
         description: "A energia limpa que produzimos é inserida na rede da sua distribuidora que continua responsável pelo seu serviço de energia",
     },
     {
-        icon: batteryIcon,
+        icon: economyRenewalIcon,
         description: "Essa energia se transforma em créditos que abatem parte do seu consumo e deixa sua conta de luz mais barata todo mês",
     },
     {
-        icon: economyIcon,
+        icon: flowerLightIcon,
         description: "Isso é possível porque fazemos parte do sistema de Geração Distribuída regulado pela ANEEL com base na lei 14.300/22",
     },
 ]
 
 export const brands = [
     {
-        company: "Localiza",
-        logo: localizaLogo,
-    },
-    {
+        label: "loreal",
         company: "L'Oréal",
         logo: lorealLogo,
     },
     {
-        company: "Grupo Martins",
-        logo: martinsLogo,
-    },
-    {
+        label: "tim",
         company: "Tim",
         logo: timLogo,
     },
     {
-        company: "Tribanco",
-        logo: tribancoLogo,
+        label: "localiza",
+        company: "Localiza",
+        logo: localizaLogo,
     },
     {
+        label: "martins",
+        company: "Grupo Martins",
+        logo: martinsLogo,
+    },
+    {
+        label: "renner",
         company: "Renner",
         logo: rennerLogo,
     },
     {
+        label: "estacio",
         company: "Estacio",
         logo: estacioLogo,
     },
     {
+        label: "drogasil",
+        company: "Raia Drogasil",
+        logo: raiaDrogasilLogo,
+    },
+    {
+        label: "estapar",
         company: "Estapar",
         logo: estaparLogo,
     },
     {
-        company: "Raia Drogasil",
-        logo: raiaDrogasilLogo,
+        label: "tribanco",
+        company: "Tribanco",
+        logo: tribancoLogo,
     },
 ]

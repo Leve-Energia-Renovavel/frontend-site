@@ -126,7 +126,7 @@ export const HomeFourthSectionCardMobile = styled.div`
       font-family: "Graphie";
       font-size: 15.5px;
       line-height: 17px;
-      font-weight: 600;
+      font-weight: 500;
       color: ${newBackground.greyHigh};
 
       max-width: 255px;

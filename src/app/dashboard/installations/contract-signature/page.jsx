@@ -2,7 +2,6 @@
 
 import NewDashboardMain from '@/app/pages/components/new-dashboard/NewDashboardMain'
 import NewInstallationContractSignatureModal from '@/app/pages/components/utils/modals/installations-modal/contract-signature-modal/NewInstallationContractSignatureModal'
-import Cookies from 'js-cookie'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 

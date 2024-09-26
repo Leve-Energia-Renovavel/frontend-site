@@ -956,11 +956,13 @@ export const HomeSixthSectionContainer = styled.div`
     justify-content: center;
     align-items: center;
     background-color: ${newBackground.white};
+    
+    min-height: 670px;
 
     gap: 2rem;
-
+    
     padding: 2rem 2rem 1rem 2rem;
-
+    
     .sectionTitle {
       font-family: "Graphie";
       font-size: 34px;
@@ -970,7 +972,8 @@ export const HomeSixthSectionContainer = styled.div`
     
     @media (max-width: 600px) {
       padding: 1rem;
-
+      background-color: ${newBackground.grey};
+      
       .sectionTitle {
         font-size: 21px;
         line-height: 21px;
@@ -1006,24 +1009,35 @@ export const HomeSixthSectionCard = styled.div`
     justify-content: center;
     align-items: center;
     border: 1px solid #ccc;
+    background-color: ${newBackground.white};
     
     border-radius: 15px;
-
+    
     width: 180px;
     height: 180px;
-
+    
     @media (max-width: 600px) {
-      width: 140px;
+      border: 0;
+      border-radius: 5px;
+
+      min-width: 160px;
+      width: 161px;
+      max-width: 161px;
+      
+      min-height: 92px;
       height: 94px;
-    }
+      max-height: 94px;
 
-    .brandLogo{ 
-      @media (max-width: 600px) {
-      width: 90px;
-      height: auto;
-      }
+      .brandLogo { 
+          width: 90px;
+          height: auto;
+        }
+        
+      #drogasil, #martins {
+          width: 70px;
+          height: auto;
+        }
     }
-
 `
 
 
