@@ -520,6 +520,7 @@ export const HomeMainForm = styled.form`
 
     .mobilePrivacyPolicy, .mobilePrivacyPolicyDisclaimer {
       display: inline;
+      margin: 0 auto;
 
       width: 300px;
 
