@@ -31,7 +31,7 @@ export default function NewHeader({ isLoggedUser, isOpen, openModal, closeModal,
                 :
                 (<>
                     <PersonOutlineOutlinedIcon className='profile' onClick={openModal} />
-                    <MenuIcon className='mobileMenu' onClick={openModal} />
+                    <PersonOutlineOutlinedIcon className='mobileMenu' onClick={openModal} />
                 </>)}
         </MobileNewHeaderContainer>
     )
