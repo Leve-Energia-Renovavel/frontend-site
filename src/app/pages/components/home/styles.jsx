@@ -15,6 +15,7 @@ export const HomeContainer = styled.div`
     
     @media (max-width: 600px) {
       padding: 0;
+      border: 0;
     }
 `
 
@@ -63,9 +64,9 @@ export const HomeContentContainer = styled.div`
     margin-top: 74px;
     
     @media (max-width: 600px) {
-      margin-top: 60px;
+      margin: 60px auto 0 auto;
       flex-wrap: wrap;
-      
+
       /* padding: 1rem 1.5rem; */
       padding: 0;
 
@@ -129,7 +130,6 @@ export const HomeMobileMainContent = styled.div`
   }
 
 
-
   .highlighted {
     font-weight: 600;
     color: ${newBackground.orange};
@@ -138,21 +138,25 @@ export const HomeMobileMainContent = styled.div`
     font-family: "Graphie";
     font-size: 16px;
     line-height: 18px;
-    font-weight: 500;
+    font-weight: 400;
     color: ${newBackground.greyHigh};
+
+    text-align: justify;
+    max-width: 320px;
     
     margin-top: 18px;
   }
+  
   .homeMainDescriptionMobile {
     font-family: "Graphie";
-    font-size: 17px;
+    font-size: 18px;
     line-height: 16px;
     font-weight: 600;
     color: ${newBackground.green};
-
+    
     margin-top: 18px;
 
-    max-width: 316px;
+    max-width: 320px;
   }
   
   @media (max-width: 600px) {

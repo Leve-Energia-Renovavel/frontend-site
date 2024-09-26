@@ -67,6 +67,7 @@ export const addNewInstallation = async (data, router, setErrorMessage, setIsLoa
         } else if (error?.response?.data?.message === "Instalação com consumo baixo") {
             setErrorMessage(["Não é possível adicionar este endereço pois o consumo de energia já é baixo"])
         } else {
+            console.error(error)
             setErrorMessage(["Não é possível adicionar este endereço. Tente novamente mais tarde"])
         }
     } finally {

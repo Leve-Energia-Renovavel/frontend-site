@@ -7,7 +7,7 @@ export const CTAButton = styled(Button)`
   color: ${newBackground.white};
   border-radius: 30px;
 
-  height: 42px;
+  height: 48px;
 
   padding: 15px 53px;
   margin: 30px auto;

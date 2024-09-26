@@ -3,13 +3,13 @@ import styled from "@emotion/styled";
 import { Button, CircularProgress } from "@mui/material";
 
 export const FormButton = styled(Button)`
-  background-color: ${newBackground.yellow};
-  color: ${newBackground.green};
+  background-color: ${newBackground.orange};
+  color: ${newBackground.yellow};
   border-radius: 30px;
 
-  height: 42px;
+  height: 48px;
 
-  padding: 8px 16px;
+  padding: 14px 16px;
   margin: 1rem 0;
   
   //this is very ugly but necessary to avoid hydratation error in nextjs webpack

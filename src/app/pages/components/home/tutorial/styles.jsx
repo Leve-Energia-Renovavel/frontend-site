@@ -98,17 +98,15 @@ export const HomeFourthSectionCardMobile = styled.div`
     display: flex;
     flex-direction: row;
     align-items: start;
-
-    background-color: ${newBackground.white};
-    
     border-radius: 5px;
+    background-color: ${newBackground.white};
 
     min-height: 110px;
     max-height: 124px;
     
-    min-width: 300px;
-    width: 338px;
-    max-width: 338px;
+    min-width: 360px;
+    width: 375px;
+    max-width: 380px;
 
     margin-top: 7px;
     
@@ -117,7 +115,7 @@ export const HomeFourthSectionCardMobile = styled.div`
 
     .cardNumber {
       font-family: "Graphie";
-      font-size: 20px;
+      font-size: 21px;
       line-height: 24px;
       font-weight: 600;
       color: ${newBackground.green};
@@ -125,18 +123,47 @@ export const HomeFourthSectionCardMobile = styled.div`
     
     .cardDescription {
       font-family: "Graphie";
-      font-size: 15.5px;
+      font-size: 17px;
       line-height: 17px;
       font-weight: 500;
       color: ${newBackground.greyHigh};
 
-      max-width: 255px;
+      max-width: 280px;
     }
 
     .cardIcon {
       margin-left: auto;
-      width: 42px;
-      height: 44px;
+      width: 44px;
+      height: 46px;
+    }
+
+    @media (max-width: 400px) {
+      min-height: 110px;
+      max-height: 124px;
+      
+      min-width: 300px;
+      width: 338px;
+      max-width: 338px;
+  
+      margin-top: 7px;
+      
+      padding: 13px 10px;
+      padding-bottom: 26px;
+
+      .cardNumber {
+        font-size: 20px;
+      }
+    
+      .cardDescription {
+        font-size: 15.5px;
+        max-width: 255px;
+      }
+
+      .cardIcon {
+        margin-left: auto;
+        width: 42px;
+        height: 44px;
+      }
     }
 
 `
@@ -215,7 +242,7 @@ export const CTAButton = styled(Button)`
   color: ${newBackground.white};
   border-radius: 30px;
 
-  height: 42px;
+  height: 48px;
 
   padding: 15px 53px;
 

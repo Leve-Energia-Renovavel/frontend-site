@@ -60,34 +60,32 @@ export const MobileBoxesContainer = styled.div`
 export const MobileBox = styled.div`
     display: flex;
     flex-direction: column;
+    background-color: ${newBackground.white};
+    border-radius: 5px;
 
     gap: 9px;
 
     padding: 11px 12px;
-
-    border-radius: 5px;
-
-    background-color: ${newBackground.white};
-
+    
     min-height: 120px;
     max-height: 130px;
-
-    min-width: 165px;
-    max-width: 170px;
-
+    
+    min-width: 185px;
+    max-width: 190px;
+    
     .title {
         font-family: "Graphie";
-        font-size: 16.5px;
+        font-size: 18px;
         line-height: 18px;
         font-weight: 700;
         color: ${newBackground.orange};
 
-        max-width: 120px;
+        max-width: 130px;
     }
 
     .subtitle {
         font-family: "Graphie";
-        font-size: 15.5px;
+        font-size: 16px;
         line-height: 16px;
         font-weight: 500;
         color: ${newBackground.green};
@@ -103,6 +101,33 @@ export const MobileBox = styled.div`
         font-weight: 700;
 
     }
+
+    @media (max-width: 400px) {
+        padding: 11px 12px;
+
+        min-height: 120px;
+        max-height: 130px;
+
+        min-width: 165px;
+        max-width: 170px;
+
+        .title {
+            font-size: 16.5px;
+            line-height: 18px;
+
+            max-width: 120px;
+        }
+
+        .subtitle {
+            font-size: 15.5px;
+            line-height: 16px;
+
+            max-width: 130px;
+
+            margin-top: auto;
+            margin-bottom: 16px;
+        }
+    }
 `
 export const ButtonContainer = styled.div`
     text-align: center;
@@ -113,7 +138,7 @@ export const CTAButton = styled(Button)`
   color: ${newBackground.white};
   border-radius: 30px;
 
-  height: 42px;
+  height: 48px;
 
   margin-bottom: 30px;
 

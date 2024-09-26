@@ -1,12 +1,6 @@
+import { capitalizeFirstLetter } from "@/app/utils/formatters/textFormatter"
 
 export async function generateMetadata({ params, searchParams }) {
-
-    function capitalizeFirstLetter(string) {
-        if (!string || string === "") {
-            return ""
-        }
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
 
     return {
         title: `Leve + ${capitalizeFirstLetter(params?.partner)}`,
@@ -14,12 +8,8 @@ export async function generateMetadata({ params, searchParams }) {
     }
 }
 
-
 export default function Layout({ children }) {
-
     return (
-        <>
-            <main>{children}</main>
-        </>
+        <main>{children}</main>
     )
 }

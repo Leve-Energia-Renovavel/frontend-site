@@ -20,7 +20,6 @@ export default function HomeMainBanner() {
 
     const texts = infoJson.home
 
-
     return (
         <>
             <HomeMainContent image={bannerImage} className='homeMainContent'>

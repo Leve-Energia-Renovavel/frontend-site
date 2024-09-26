@@ -268,6 +268,8 @@ export const FooterMobile = styled.div`
         font-weight: 500;
         color: ${newBackground.greyHigh};
 
+        white-space: nowrap;
+
         margin-top: 6px;
     }
     
