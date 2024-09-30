@@ -17,10 +17,10 @@ export default function RegisteredInstallations() {
                         <InstallationCard key={installation?.uuid} installation={installation} index={index + 1} />
                     )
                 })}
-                <NewInstallationsContainer>
+                {/* <NewInstallationsContainer>
                     <AddIcon />
                     <p className="addNewInstallationButton">Cadastrar nova unidade</p>
-                </NewInstallationsContainer>
+                </NewInstallationsContainer> */}
 
             </RegisteredInstallationsContainer>
         </MainContainer>

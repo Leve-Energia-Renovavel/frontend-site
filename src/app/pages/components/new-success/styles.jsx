@@ -51,8 +51,6 @@ export const NewSuccessFormContent = styled.div`
     gap: 20px;
 
     .checkIcon {
-        margin-top: 124px;
-        
         @media (max-width: 600px) {
             margin-top: 54px;
         }
