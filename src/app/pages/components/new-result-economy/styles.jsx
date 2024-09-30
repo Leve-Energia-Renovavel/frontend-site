@@ -16,6 +16,8 @@ export const SimulateContainer = styled.div`
     
     width: 100%;
     max-width: 100vw;
+
+    min-height: 450px;
     
     @media (max-width: 600px) {
         padding: 10px;
