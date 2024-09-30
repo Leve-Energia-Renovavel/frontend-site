@@ -27,6 +27,7 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
     const cupom = search.get("cupom")
 
     const [isLoading, setLoading] = useState(false)
+    const [simulationCost, setSimulationCost] = useState(200)
 
     const nameRef = useRef()
     const emailRef = useRef()
@@ -149,12 +150,17 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                             disabled={isLoading}
                         />
                     </FormFooterContainer>
-                    <HomeMainFormSimulator isMobile={true} />
+                    <HomeMainFormSimulator isMobile={true}
+                        simulationCost={simulationCost}
+                        handleSimulationCost={setSimulationCost} />
                     <HomeFormButton title={texts.discountCalculate} isLoading={isLoading} isMobile={true} />
                     <p className='mobilePrivacyPolicyDisclaimer'>{texts.mobile.byClickingButtonAbove}<span className='mobilePrivacyPolicy' onClick={() => router.push(`/politica-de-privacidade`)}>{texts.mobile.privacyPolicy}</span></p>
                 </Form>
 
-                <HomeMainFormSimulator isMobile={false} />
+                <HomeMainFormSimulator
+                    isMobile={false}
+                    simulationCost={simulationCost}
+                    handleSimulationCost={setSimulationCost} />
             </FormContainer>
 
             <HomeFormButton title={texts.discountCalculate} isLoading={isLoading} isMobile={false} />

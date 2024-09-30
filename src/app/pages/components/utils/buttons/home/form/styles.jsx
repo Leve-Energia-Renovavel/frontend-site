@@ -20,8 +20,7 @@ export const FormButton = styled(Button)`
     font-size: 20px;
     font-weight: 700;
     text-transform: none;
-
-    margin-left: auto;
+    color: ${newBackground.white};
   }
   
   &:hover {

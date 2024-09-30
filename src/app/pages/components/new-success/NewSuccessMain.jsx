@@ -1,8 +1,6 @@
 "use client"
 
-import { useStoreUser } from '@/app/hooks/useStore';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/navigation';
 import ConfettiExplosion from "react-confetti-explosion";
 import { NewSuccessContainer as Container, NewSuccessForm, SignupLinearProgress } from "./styles";
 

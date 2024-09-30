@@ -16,23 +16,23 @@ describe('Complete Home Main Form', () => {
     cy.task('log', `TEST DATA: ${JSON.stringify(allTestData)}`)
 
     cy.visit(path);
-    cy.get('input[placeholder="Nome Completo "]').type(name);
-    cy.get('input[placeholder="Telefone"]').type(phone);
-    cy.get('input[placeholder="E-mail "]').type(email);
-    cy.get('input[placeholder="CEP"]').type(cep);
+    cy.get('input[placeholder="Nome Completo "]').first().type(name);
+    cy.get('input[placeholder="Telefone"]').first().type(phone);
+    cy.get('input[placeholder="E-mail "]').first().type(email);
+    cy.get('input[placeholder="CEP"]').first().type(cep);
 
-    cy.get('.MuiSlider-rail').then(($slider) => {
+    cy.get('.MuiSlider-rail').first().then(($slider) => {
       const sliderWidth = $slider.width();
       const sliderHeight = $slider.height();
       const centerX = sliderWidth / 2;
       const centerY = sliderHeight / 2;
 
-      cy.wrap($slider).click(centerX, centerY);
+      cy.wrap($slider).click(centerX, centerY, { force: true });
     });
 
     cy.intercept('POST', `${requestUrl}`).as('postRequest');
 
-    cy.get('button[type="submit"]').contains('Calcular desconto').click();
+    cy.get('button[type="submit"]').contains('Calcular desconto').first().click();
 
     cy.wait('@postRequest').then((interception) => {
       cy.task('log', `- PAYLOAD: ${JSON.stringify(interception?.request?.body)}`);

@@ -15,7 +15,7 @@ export const HomeFourthSectionContainer = styled.div`
     margin-bottom: 64px; //80px - 16px from banner below
     
     @media (max-width: 600px) {
-      background-color: ${newBackground.grey};
+      background-color: ${newBackground.orange};
       margin: 0;
     }
     `
@@ -26,7 +26,7 @@ export const HomeFourthSectionTitleContainer = styled.div`
       font-family: "Graphie";
       font-size: 34px;
       font-weight: 600;
-      color: ${newBackground.green};
+      color: ${newBackground.white};
   }
 
   @media (max-width: 600px) {
@@ -96,13 +96,15 @@ export const HomeFourthSectionCard = styled.div`
 
 export const HomeFourthSectionCardMobile = styled.div`
     display: flex;
-    flex-direction: row;
-    align-items: start;
+    flex-direction: column;
+    justify-content: start;
     border-radius: 5px;
     background-color: ${newBackground.white};
 
-    min-height: 110px;
-    max-height: 124px;
+    gap: 8px;
+
+    min-height: 200px;
+    max-height: 203px;
     
     min-width: 360px;
     width: 375px;
@@ -110,10 +112,10 @@ export const HomeFourthSectionCardMobile = styled.div`
 
     margin-top: 7px;
     
-    padding: 13px 10px;
+    padding: 20px;
     padding-bottom: 26px;
 
-    .cardNumber {
+    .cardTitle {
       font-family: "Graphie";
       font-size: 21px;
       line-height: 24px;
@@ -123,18 +125,16 @@ export const HomeFourthSectionCardMobile = styled.div`
     
     .cardDescription {
       font-family: "Graphie";
-      font-size: 17px;
-      line-height: 17px;
+      font-size: 18px;
+      line-height: 20px;
       font-weight: 500;
       color: ${newBackground.greyHigh};
-
-      max-width: 280px;
     }
 
     .cardIcon {
-      margin-left: auto;
-      width: 44px;
-      height: 46px;
+      width: 49px;
+      height: 49px;
+      color: ${newBackground.green};
     }
 
     @media (max-width: 400px) {
@@ -238,23 +238,23 @@ export const ButtonSimulateYourEconomy = styled(Button)`
 `
 
 export const CTAButton = styled(Button)`
-  background-color: ${newBackground.orange};
+  background-color: ${newBackground.green};
   color: ${newBackground.white};
   border-radius: 30px;
 
-  height: 48px;
+  height: 52px;
 
   padding: 15px 53px;
 
-  max-width: 305px;
+  max-width: 330px;
 
   margin-top: 19px;
   margin-bottom: 40px;
   
   span {
     font-family: "Graphie";
-    font-size: 17px;
-    line-height: 21px;
+    font-size: 20px;
+    line-height: 22px;
     font-weight: 500;
     text-transform: none;
     white-space: nowrap;

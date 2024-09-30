@@ -3,6 +3,23 @@ import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/materi
 import { fadeInUp, fadeInUpAnimation, slideAndDisappear } from "../../animations";
 import { newBackground, notification } from "../../styles";
 
+export const HomeMainContainer = styled.div`
+
+  .mobileBar {
+    display: none;
+  }
+
+  @media (max-width: 600px) {
+    .mobileBar {
+          display: block;
+          width: 100%;
+          position: absolute;
+  
+          border: 12px solid ${newBackground.grey};
+        }
+    }
+`
+
 export const HomeContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -60,14 +77,12 @@ export const HomeContentContainer = styled.div`
     
     height: auto;
     
-    /* padding: 27px 39px; */
     margin-top: 74px;
     
     @media (max-width: 600px) {
       margin: 60px auto 0 auto;
       flex-wrap: wrap;
 
-      /* padding: 1rem 1.5rem; */
       padding: 0;
 
       height: auto;
@@ -92,17 +107,6 @@ export const HomeMainContent = styled.div`
     
     @media (max-width: 600px) {
       display: none;
-      
-      background-position: 50% 50%;
-      padding: 1rem;
-      width: 100vw;
-      max-width: 100vw;
-
-      margin: 1rem 24px;
-
-      height: 70vh;
-
-      border-radius: 15px;
     }
 `
 
@@ -112,14 +116,17 @@ export const HomeMobileMainContent = styled.div`
   
   display: none;
 
-  padding: 42px 29px 10px 20px;
+  padding: 24px 24px;
 
   .homeMainTitleMobile {
     font-family: "Graphie";
-    font-size: 31px;
-    line-height: 30px;
+    font-size: 38px;
+    line-height: 34px;
+    letter-spacing: 0.72px;
     font-weight: 600;
     color: ${newBackground.green};
+
+    margin-top: 31px;
     
     // Ensuring each part of the title is on a new line
     span, 
@@ -136,27 +143,27 @@ export const HomeMobileMainContent = styled.div`
   }
   .homeMainSubtitleMobile {
     font-family: "Graphie";
-    font-size: 16px;
-    line-height: 18px;
+    font-size: 21px;
+    line-height: 22px;
     font-weight: 400;
     color: ${newBackground.greyHigh};
-
-    text-align: justify;
-    max-width: 320px;
+    
+    /* text-align: justify; */
+    /* max-width: 352px; */
     
     margin-top: 18px;
   }
   
   .homeMainDescriptionMobile {
     font-family: "Graphie";
-    font-size: 18px;
-    line-height: 16px;
+    font-size: 23px;
+    line-height: 22px;
     font-weight: 600;
     color: ${newBackground.green};
     
-    margin-top: 18px;
+    margin-top: 24px;
 
-    max-width: 320px;
+    /* max-width: 320px; */
   }
   
   @media (max-width: 600px) {

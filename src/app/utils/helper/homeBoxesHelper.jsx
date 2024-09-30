@@ -9,6 +9,11 @@ import signIcon from "../../../resources/icons/small/leve-energia-clique-icone-s
 import solarPanelIcon from "../../../resources/icons/small/leve-painel-solar-icone-small.png"
 import batteryIcon from "../../../resources/icons/small/leve-recarregar-energia-icone-small.png"
 
+import touchpadIcon from "../../../resources/icons/large/touchpad.png"
+import solarEnegyIcon from "../../../resources/icons/large/solar_energy.png"
+import getRevenueIcon from "../../../resources/icons/large/get_revenue.png"
+import guaranteeIcon from "../../../resources/icons/large/guarantee.png"
+
 import solarPanelConnectedPollIcon from "../../../resources/icons/large/leve-solar-panel-connected-to-poll.svg"
 import flowerLightIcon from "../../../resources/icons/large/leve-flower-light-large.svg"
 import economyRenewalIcon from "../../../resources/icons/large/leve-economy-renewal.svg"
@@ -100,19 +105,23 @@ export const homeTutorialCards = [
 ]
 export const homeTutorialCardsMobile = [
     {
-        icon: signIcon,
+        icon: touchpadIcon,
+        title: "Cadastro digital",
         description: "Você preenche o nosso cadastro de adesão digital, rápido e seguro para se tornar cliente Leve",
     },
     {
-        icon: solarPanelConnectedPollIcon,
+        icon: solarEnegyIcon,
+        title: "Produção de energia",
         description: "A energia limpa que produzimos é inserida na rede da sua distribuidora que continua responsável pelo seu serviço de energia",
     },
     {
-        icon: economyRenewalIcon,
+        icon: getRevenueIcon,
+        title: "Créditos de energia",
         description: "Essa energia se transforma em créditos que abatem parte do seu consumo e deixa sua conta de luz mais barata todo mês",
-    },
+},
     {
-        icon: flowerLightIcon,
+        icon: guaranteeIcon,
+        title: "Embasamento legal",
         description: "Isso é possível porque fazemos parte do sistema de Geração Distribuída regulado pela ANEEL com base na lei 14.300/22",
     },
 ]

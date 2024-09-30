@@ -29,6 +29,7 @@ import { FormTermsCheckbox as Checkbox, SignupFormContainer as Container, FileUp
 import { signUp } from '@/app/service/user-service/UserService';
 import dynamic from 'next/dynamic';
 import { handleRequestsErrors } from './validation';
+
 const Messages = dynamic(() => import('../../messages/Messages'), { ssr: false });
 
 export default function SignupForm() {
@@ -290,7 +291,8 @@ export default function SignupForm() {
         storeAddress.updateAddress(updatedAddress)
 
         setNotifications(["Cadastro realizado com sucesso!"])
-        router.push(`/signup/contract-signature/?uuid=${uuid}`)
+        // router.push(`/signup/contract-signature/?uuid=${uuid}`)
+        router.push(`/signup/success`)
 
       } else await handleRequestsErrors(response, setNotifications, setErrorMessage, router)
 

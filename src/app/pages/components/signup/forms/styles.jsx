@@ -27,6 +27,8 @@ export const SignupFormContainer = styled.div`
 
     width: 100%;
     max-width: 1196px;
+
+    min-height: 900px;
     
     padding: 2rem 0 0 0;  //change later !!!!
     

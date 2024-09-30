@@ -28,11 +28,11 @@
         "agreedToReceiveEmails": "Ao clicar em \"Calcular desconto\" você concorda em receber e-mails da Leve Energia e aceita nossa ",
         "privacyPolicy": "Política de Privacidade",
         "mobile": {
-            "title": "Sua conta de luz até ",
-            "cheaper": "20% mais barata",
-            "withClearEnergy": " com energia limpa",
+            "title": "Economia de até",
+            "cheaper": " 20% na conta de luz",
+            "withClearEnergy": "com energia limpa",
             "subtitle": "Solução 100% digital da Leve Energia que garante economia mensal na sua conta de luz a partir da produção de energia limpa",
-            "description": "Sem custos adicionais, sem instalações ou obras, e sem exigência de fidelidade",
+            "description": "Sem custos adicionais, sem obras, instalações e sem fidelidade",
             "form": {
                 "title": "Calcule sua economia",
                 "subtitle": "e também veja como você ajuda a reduzir os danos ao meio ambiente sendo Leve"

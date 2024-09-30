@@ -1,7 +1,7 @@
+import { handleScrollToId } from '@/app/utils/browser/BrowserUtils';
 import { homeBoxesMobile } from '@/app/utils/helper/homeBoxesHelper';
 import bannerImage from "../../../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large-compressed.webp";
 import { HomeSecondaryBannerContainerMobile as BannerImageMobile, MobileBoxesContainer as BoxesContainer, ButtonContainer, CTAButton, HomeSecondaryBoxesContainerMobile, MobileBox } from './styles';
-import { handleScrollToId } from '@/app/utils/browser/BrowserUtils';
 
 export default function HomeBoxesMobile() {
     return (
@@ -20,7 +20,7 @@ export default function HomeBoxesMobile() {
                 })}
             </BoxesContainer>
 
-            <ButtonContainer>
+            <ButtonContainer className='homeSecondaryMobileButtonContainer'>
                 <CTAButton onClick={() => handleScrollToId("leadFormMobile")}><span>Calcular minha economia</span></CTAButton>
             </ButtonContainer>
 

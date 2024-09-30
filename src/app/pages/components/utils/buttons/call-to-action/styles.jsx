@@ -7,20 +7,21 @@ export const CTAButton = styled(Button)`
   color: ${newBackground.white};
   border-radius: 30px;
 
-  height: 48px;
+  height: 52px;
 
   padding: 15px 53px;
   margin: 30px auto;
 
-  max-width: 305px;
+  min-width: 330px;
+  max-width: 330px;
   
   //this is very ugly but necessary to avoid hydratation error in nextjs webpack
   ${props => props.ismobile === "true" && 'display: none;'}
 
   span {
     font-family: "Graphie";
-    font-size: 17px;
-    line-height: 21px;
+    font-size: 20px;
+    line-height: 22px;
     font-weight: 500;
     text-transform: none;
     white-space: nowrap;

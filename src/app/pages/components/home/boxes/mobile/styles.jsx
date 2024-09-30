@@ -17,31 +17,32 @@ export const HomeSecondaryBannerContainerMobile = styled.div`
     justify-content: center;
 
     min-width: 100vw;
-    min-height: 210px;
-
-    width: 100%;
+    
     height: 100%;
-
-    max-height: 211px;
+    width: 100%;
+    
+    min-height: 290px;
+    max-height: 299px;
 
     padding: 79px 19px;
 
     background-image: url(${props => props.image.src});
     background-repeat: no-repeat;
     background-size: cover; 
-    background-position: 0% 25%;
-    background-size: 120%; /* Zoom in the background image */
+    background-position: 20% 20%;
+    background-size: 130%; /* Zoom in the background image */
     z-index: 9; 
     
     .homeBoxesSecondarySectionTitle {
         font-family: "Graphie";
-        font-size: 25px;
+        font-size: 28px;
         line-height: 23px;
         font-weight: 600;
         color: ${newBackground.white};
         
-        max-width: 240px;
-        margin-top: 10px;
+        max-width: 260px;
+        margin-top: 100px;
+        margin-bottom: 32px;
     }
     `
 export const MobileBoxesContainer = styled.div`
@@ -65,35 +66,36 @@ export const MobileBox = styled.div`
 
     gap: 9px;
 
-    padding: 11px 12px;
+    padding: 14px;
     
     min-height: 120px;
-    max-height: 130px;
+    max-height: 150px;
     
     min-width: 185px;
     max-width: 190px;
     
     .title {
         font-family: "Graphie";
-        font-size: 18px;
+        font-size: 20px;
         line-height: 18px;
         font-weight: 700;
         color: ${newBackground.orange};
 
         max-width: 130px;
+        margin-bottom: 10px;
     }
 
     .subtitle {
         font-family: "Graphie";
-        font-size: 16px;
-        line-height: 16px;
+        font-size: 18px;
+        line-height: 18px;
         font-weight: 500;
         color: ${newBackground.green};
 
-        max-width: 130px;
+        max-width: 160px;
 
         margin-top: auto;
-        margin-bottom: 16px;
+        margin-bottom: 10px;
     }
     
     
@@ -138,18 +140,18 @@ export const CTAButton = styled(Button)`
   color: ${newBackground.white};
   border-radius: 30px;
 
-  height: 48px;
+  height: 52px;
 
   margin-bottom: 30px;
 
   padding: 15px 53px;
 
-  max-width: 305px;
+  max-width: 330px;
   
   span {
     font-family: "Graphie";
-    font-size: 17px;
-    line-height: 21px;
+    font-size: 20px;
+    line-height: 22px;
     font-weight: 500;
     text-transform: none;
     white-space: nowrap;

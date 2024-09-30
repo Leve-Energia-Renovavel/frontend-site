@@ -1,17 +1,15 @@
 "use client"
 
 import DefaultButton from "@/app/pages/components/utils/buttons/DefaultButton";
-import { FormControl, TextField, Typography } from "@mui/material";
+import { requestSuccessful } from "@/app/service/utils/Validations";
+import { Typography } from "@mui/material";
+import axios from "axios";
+import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
-import DistibuitorSyncData from "./DistribuitorSyncData";
+import { useState } from "react";
 import SuccessFormProgress from "./SuccessFormProgress";
 import SuccessFormTitle from "./SuccessFormTitle";
-import { ButtonContainer, Form, FormContainer, FormContent, FormHeader, SimpleFormContent } from "./styles";
-import { useStoreUser } from "@/app/hooks/useStore";
-import axios from "axios";
-import { requestSuccessful } from "@/app/service/utils/Validations";
-import Cookies from "js-cookie";
+import { FormContainer, FormHeader, SimpleFormContent } from "./styles";
 
 export default function SuccessForm() {
     const router = useRouter()

@@ -1,12 +1,10 @@
 "use client"
 
-import { useState } from 'react';
 import infoJson from '../../../../../../../public/info.json';
 import { FormSlider, HomeMainFormSimulationContainer } from './styles';
 
-export default function HomeMainFormSimulator({ isMobile }) {
+export default function HomeMainFormSimulator({ isMobile, simulationCost, handleSimulationCost }) {
 
-    const [simulationCost, setSimulationCost] = useState(200)
     const minSimulationCost = 200
 
     const texts = infoJson.home
@@ -16,7 +14,7 @@ export default function HomeMainFormSimulator({ isMobile }) {
             <h6 className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === 3000 ? "+" : ""}</span></h6>
             <FormSlider
                 className='formSlider'
-                onChange={(event) => setSimulationCost(event.target.value)}
+                onChange={(event) => handleSimulationCost(event.target.value)}
                 value={simulationCost}
                 step={10}
                 defaultValue={minSimulationCost}
