@@ -48,9 +48,13 @@ export const NewSuccessFormContent = styled.div`
     align-items: center;
     background-color: ${newBackground.white};
 
+    min-height: 300px;
+
     gap: 20px;
 
     .checkIcon {
+        /* margin-top: 124px; */
+        
         @media (max-width: 600px) {
             margin-top: 54px;
         }
