@@ -2,7 +2,7 @@ import { Backdrop, Modal } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 import { ModalBox, ModalMainButton, ModalTitleContainer } from "./styles";
 
-export default function NewInstallationPendingContractModal({ pendingInstallations, isOpen }) {
+export default function NewInstallationPendingContractModal({ pendingInstallations, isOpen, closeModal }) {
 
     const router = useRouter()
     const path = usePathname()
@@ -18,7 +18,7 @@ export default function NewInstallationPendingContractModal({ pendingInstallatio
     return (
         <Modal
             open={isOpen && notContractPage}
-            // onClose={closeModal}
+            onClose={closeModal}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             slots={{ backdrop: Backdrop }}

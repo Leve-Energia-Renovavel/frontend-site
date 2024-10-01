@@ -14,12 +14,12 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Skeleton } from "@mui/material";
 import { useEffect, useState } from "react";
 import AddInstallationModal from "../../utils/modals/installations-modal/new-installation-modal/AddInstallationModal";
-import NewInstallationPendingContractModal from "../../utils/modals/installations-modal/pending-contract-modal/NewInstallationPendingContractModal";
 import { BoxInstallation, InstallationDetails, InstallationFooter, InstallationHeader, InstallationItem, NewDashboardInstallation, SelectInstallation } from "./styles";
 
 export default function DashboardInstallation({ isMobileContent }) {
 
     const [openNewInstallationModal, setOpenNewInstallationModal] = useState(false)
+    const [openPendingInstallationModal, setOpenPendingInstallationModal] = useState(true)
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -62,6 +62,9 @@ export default function DashboardInstallation({ isMobileContent }) {
     }
     const closeNewInstallationModal = () => {
         setOpenNewInstallationModal(false)
+    }
+    const closeModal = () => {
+        setOpenPendingInstallationModal(false)
     }
 
     return (
@@ -114,7 +117,8 @@ export default function DashboardInstallation({ isMobileContent }) {
 
             {/* {<NewInstallationPendingContractModal
                 pendingInstallations={pendingInstallations}
-                isOpen={hasPendingContracts}
+                closeModal={closeModal}
+                isOpen={hasPendingContracts && openPendingInstallationModal}
             />} */}
         </>
     )
