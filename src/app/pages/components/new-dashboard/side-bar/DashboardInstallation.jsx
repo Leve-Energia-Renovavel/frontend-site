@@ -112,10 +112,10 @@ export default function DashboardInstallation({ isMobileContent }) {
                 isOpen={openNewInstallationModal}
                 closeModal={closeNewInstallationModal} />}
 
-            {<NewInstallationPendingContractModal
+            {/* {<NewInstallationPendingContractModal
                 pendingInstallations={pendingInstallations}
                 isOpen={hasPendingContracts}
-            />}
+            />} */}
         </>
     )
 }
