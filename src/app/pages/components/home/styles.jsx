@@ -117,6 +117,7 @@ export const HomeMobileMainContent = styled.div`
   display: none;
 
   padding: 24px 24px;
+  max-width: 100vw;
 
   .homeMainTitleMobile {
     font-family: "Graphie";
@@ -133,9 +134,9 @@ export const HomeMobileMainContent = styled.div`
       &::before, 
       &::after {
         display: block;
+        white-space: nowrap;
       }
   }
-
 
   .highlighted {
     font-weight: 600;
@@ -168,6 +169,12 @@ export const HomeMobileMainContent = styled.div`
   
   @media (max-width: 600px) {
     display: block;
+  }
+
+  @media (max-width: 400px) {
+    .homeMainTitleMobile {
+      font-size: 34px;
+    }
   }
 
 `

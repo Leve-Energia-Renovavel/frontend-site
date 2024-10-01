@@ -71,15 +71,15 @@ export const FormSubtitleContainer = styled.div`
     display: none;
 
     font-family: "Graphie";
-    font-size: 19px;
+    font-size: 18px;
     line-height: 18px;
     font-weight: 400;
     color: ${newBackground.white};
     text-align: center;
 
-    max-width: 288px;
+    max-width: 300px;
 
-    margin: 12px auto;
+    margin: 12px auto 31px auto;
   }
 
   @media (max-width: 600px) {
