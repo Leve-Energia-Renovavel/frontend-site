@@ -53,10 +53,10 @@ export default function TutorialContainer() {
                     })}
                 </CardContainer>
 
-                <CardContainerMobile>
+                <CardContainerMobile className='cardContainerMobile'>
                     {homeTutorialCardsMobile.map((card, index) => {
                         return (
-                            <CardMobile key={index}>
+                            <CardMobile key={index} className={`cardMobile-${index}`}>
                                 <Image src={card.icon} className="cardIcon" alt={card.description} loading="lazy" />
                                 <p className='cardTitle'>{`${card.title}`}</p>
                                 <p className='cardDescription'>{card.description}</p>

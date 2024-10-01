@@ -34,7 +34,7 @@ export default function SignupMain() {
 
     return (
         <>
-            <Container className='container'>
+            <Container className='signupMainContainer'>
                 <NewResultEconomy />
                 <SignupForm />
             </Container>

@@ -42,7 +42,15 @@ export const HomeMainFormSimulationContainer = styled.div`
       ${props => props.isMobile ? `display: block;` : `display: none;`};
 
       .averageUserCost {
+        font-family: "Graphie";
+        font-size: 20px;
+        font-weight: 900;
         color:${newBackground.white};
+
+        width: fit-content;
+        max-width: 280px;
+
+        margin-top: 20px;
       }
       .simulationCost {
         color:${newBackground.yellow};

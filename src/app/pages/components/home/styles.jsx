@@ -521,6 +521,7 @@ export const HomeMainForm = styled.form`
           color: ${newBackground.green};
         }
         & label {
+          font-size: 18px;
           color:  ${newBackground.green};
       }
     }
@@ -568,7 +569,7 @@ export const UserTypeFormContainer = styled.div`
       margin-bottom: 1rem;
       
       .chooseWhereToEconomy {
-        font-size: 16px;
+        font-size: 20px;
         line-height: 19px;
         font-weight: 600;
         margin: 25px auto 17px auto;
@@ -615,7 +616,7 @@ export const FormSelect = styled(Button)`
   border-radius: 10px;
 
   font-family: "Graphie";
-  font-size: 14px;
+  font-size: 18px;
   color: ${props => props.selected ? newBackground.yellow : newBackground.white};
   font-weight: 400;
   text-transform: none;

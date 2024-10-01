@@ -25,10 +25,10 @@ export const FormTitleContainer = styled.div`
     margin: 0 auto;
 
     font-family: "Graphie";
+    font-size: 24px;
     font-weight: 600;
     color: ${newBackground.yellow};
     white-space: nowrap;
-    font-size: 21px;
   }
 
   @media (max-width: 600px) {
@@ -71,7 +71,7 @@ export const FormSubtitleContainer = styled.div`
     display: none;
 
     font-family: "Graphie";
-    font-size: 16px;
+    font-size: 19px;
     line-height: 18px;
     font-weight: 400;
     color: ${newBackground.white};

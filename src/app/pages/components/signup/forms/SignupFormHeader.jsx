@@ -10,12 +10,12 @@ export default function SignupFormHeader(props) {
         4: "Pronto!",
     }
     return (
-        <SignupFormHeaderContainer>
+        <SignupFormHeaderContainer className='signupFormHeaderContainer'>
             <div>
-                <Typography variant='h1'>{props.step}. {title[props.step]}</Typography>
+                <h2 className='formHeaderTitle'>{props.step}. {title[props.step]}</h2>
             </div>
             <SignupFormHeaderHelpContainer>
-                <Typography variant='subtitle1'>{props.step} de 4</Typography>
+                <Typography variant='subtitle1' className='formHeaderSubtitle'>{props.step} de 4</Typography>
                 <SignupFormHeaderHelpContentContainer>
                     <Typography variant='subtitle1'>Ajuda</Typography>
                     <HelpIcon className='helpIcon' />

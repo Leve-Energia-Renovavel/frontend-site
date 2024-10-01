@@ -295,7 +295,7 @@ export const VideoContainer = styled.div`
 
     border-radius: 10px;
 
-    margin-top: 16px;
+    margin-top: 30px;
 
     .embededVideo {
         width: 1000px;
@@ -322,21 +322,24 @@ export const CTAButton = styled(Button)`
   color: ${newBackground.white};
   border-radius: 30px;
 
-  height: 48px;
+  height: 52px;
 
   margin: 12px 0 0 0;
 
   padding: 15px 27px;
 
-  max-width: 305px;
+  max-width: 330px;
+  
+  margin-top: 20px;
   
   span {
     font-family: "Graphie";
-    font-size: 17px;
+    font-size: 18px;
     line-height: 21px;
     font-weight: 500;
     text-transform: none;
     white-space: nowrap;
+
   }
 
   &:hover {

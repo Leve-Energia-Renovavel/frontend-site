@@ -129,6 +129,8 @@ export const ContentContainer = styled.div`
     background-color: ${newBackground.white};
 
     gap: 1rem;
+
+    min-height: 200px;
     
     padding: 71px 202px 80px 202px;
     

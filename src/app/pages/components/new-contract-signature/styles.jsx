@@ -29,6 +29,8 @@ export const ContractSignatureForm = styled.div`
 
     width: 100%;
     max-width: 1196px;
+
+    min-height: 300px;
     
     padding: 1rem;  //change later !!!!
     

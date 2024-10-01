@@ -75,7 +75,7 @@ export default function NewContractSignature() {
     return (
         <>
             <Container>
-                <ContractSignatureForm>
+                <ContractSignatureForm className="contractSignatureForm">
                     <SignupFormHeader step={step} />
                     <SignupLinearProgress variant="determinate" value={value} />
                     <Typography className="contractSignInfo">Para assinar o contrato, esteja com o telefone <span className="phoneNumber">{formatPhoneNumber(phone)}</span> em mãos. Insira o código de confirmação que enviaremos a você via SMS.</Typography>

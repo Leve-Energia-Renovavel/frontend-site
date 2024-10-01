@@ -115,18 +115,22 @@ export const SignupFormHeaderContainer = styled.div`
 
     justify-content: space-between;
 
-    h1 { 
+    .formHeaderTitle { 
         font-family: "Graphie";
         font-size: 27px;
         font-weight: 700;
         color: ${newBackground.orange};
-    }
 
-    h6 {
+        white-space: nowrap;
+    }
+    
+    .formHeaderSubtitle {
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 600;
         color: ${newBackground.orange};
+
+        white-space: nowrap;
     }
 `
 export const SignupFormHeaderHelpContainer = styled.div`

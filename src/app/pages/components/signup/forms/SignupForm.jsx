@@ -291,8 +291,7 @@ export default function SignupForm() {
         storeAddress.updateAddress(updatedAddress)
 
         setNotifications(["Cadastro realizado com sucesso!"])
-        // router.push(`/signup/contract-signature/?uuid=${uuid}`)
-        router.push(`/signup/success`)
+        router.push(`/signup/contract-signature/?uuid=${uuid}`)
 
       } else await handleRequestsErrors(response, setNotifications, setErrorMessage, router)
 

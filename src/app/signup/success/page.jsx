@@ -4,7 +4,7 @@ const ProvisorySuccess = dynamic(() => import("@/app/pages/components/new-succes
 
 export default function SuccessPage() {
     return (
-        // <NewSuccessMain />
-        <ProvisorySuccess />
+        <NewSuccessMain />
+        // <ProvisorySuccess />
     )
 }

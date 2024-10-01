@@ -37,7 +37,7 @@ export default function NewResultEconomy() {
                 <Typography variant='subtitle1'><span className='bold'>A Leve já chegou na sua região!</span> Veja abaixo o resultado da sua economia:</Typography>
             </SimulateHeader>
 
-            <Content className='content'>
+            <Content className='simulateContent'>
                 <TodayEconomyContainer className='todayEconomyContainer'>
                     <TodayEconomyContent className='todayEconomyContent'>
                         <Typography variant='subtitle1'>Você paga a concessionária:</Typography>

@@ -138,8 +138,8 @@ export const HomeFourthSectionCardMobile = styled.div`
     }
 
     @media (max-width: 400px) {
-      min-height: 110px;
-      max-height: 124px;
+      min-height: 200px;
+      max-height: 203px;
       
       min-width: 300px;
       width: 338px;
@@ -148,19 +148,17 @@ export const HomeFourthSectionCardMobile = styled.div`
       margin-top: 7px;
       
       padding: 13px 10px;
-      padding-bottom: 26px;
 
       .cardNumber {
         font-size: 20px;
       }
     
       .cardDescription {
-        font-size: 15.5px;
-        max-width: 255px;
+        font-size: 17px;
+        max-width: 320px;
       }
 
       .cardIcon {
-        margin-left: auto;
         width: 42px;
         height: 44px;
       }

@@ -19,7 +19,9 @@ export const NewSuccessContainer = styled.div`
 
     width: 100%;
     max-width: 100vw;
+    
     height: auto;
+    min-height: 300px;
 
 `
 
@@ -54,7 +56,6 @@ export const NewSuccessFormContent = styled.div`
 
     .checkIcon {
         /* margin-top: 124px; */
-        
         @media (max-width: 600px) {
             margin-top: 54px;
         }
