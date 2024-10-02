@@ -137,7 +137,7 @@ export const ButtonContainer = styled.div`
 
 export const CTAButton = styled(Button)`
   background-color: ${newBackground.green};
-  color: ${newBackground.white};
+  color: ${newBackground.yellow};
   border-radius: 30px;
 
   height: 52px;

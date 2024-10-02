@@ -238,7 +238,7 @@ export const ButtonSimulateYourEconomy = styled(Button)`
 
 export const CTAButton = styled(Button)`
   background-color: ${newBackground.green};
-  color: ${newBackground.yellow};
+  color: ${newBackground.white};
   border-radius: 30px;
 
   height: 52px;
