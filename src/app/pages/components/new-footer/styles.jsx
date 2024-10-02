@@ -101,8 +101,6 @@ export const FooterSecondaryContent = styled.div`
     justify-content: center;
     align-items: center;
 
-    z-index: 1;
-
     overflow: hidden;
     
     .leveLogoImage {
@@ -188,14 +186,13 @@ export const SunContainer = styled.div`
             width: 750px; 
             height: 750px; 
         }
+        @media (max-width: 600px) {
+            display: none;
+        }
     }
 
     @media (max-width: 600px) {
         display: none;
-
-        .sunImage { 
-            display: none;
-        }
     }
 `;
 export const FooterSocialMediaContainer = styled.div`
