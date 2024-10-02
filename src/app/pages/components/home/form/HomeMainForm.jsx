@@ -71,8 +71,8 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                     <TextField
                         inputRef={nameRef}
                         className="homeFormInput"
-                        label={`Nome Completo ${selectedUserType === 'Empresa' ? "do Responsável" : ""}`}
-                        placeholder={`Nome Completo ${selectedUserType === 'Empresa' ? "do Responsável" : ""}`}
+                        label={`Nome completo ${selectedUserType === 'Empresa' ? "do responsável" : ""}`}
+                        placeholder={`Nome completo ${selectedUserType === 'Empresa' ? "do responsável" : ""}`}
                         variant="outlined"
                         type="text"
                         FormHelperTextProps={{
@@ -100,8 +100,8 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                     <TextField
                         className="homeFormInput"
                         inputRef={emailRef}
-                        label={`E-mail ${selectedUserType === 'Empresa' ? "do Responsável" : ""}`}
-                        placeholder={`E-mail ${selectedUserType === 'Empresa' ? "do Responsável" : ""}`}
+                        label={`E-mail ${selectedUserType === 'Empresa' ? "do responsável" : ""}`}
+                        placeholder={`E-mail ${selectedUserType === 'Empresa' ? "do responsável" : ""}`}
                         variant="outlined"
                         type="text"
                         disabled={isLoading}
@@ -143,7 +143,7 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                             className="homeFormInput"
                             inputRef={couponRef}
                             defaultValue={cupom ? cupom : ""}
-                            label={`Cupom de Desconto`}
+                            label={`Cupom de desconto`}
                             placeholder={`Cupom`}
                             variant="outlined"
                             type="text"

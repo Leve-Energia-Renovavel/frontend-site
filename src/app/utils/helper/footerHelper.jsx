@@ -9,6 +9,7 @@ export const linkTo = {
     "youtube": "https://www.youtube.com/watch?v=Zs9r8xWwn3I",
     "twitter": "",
     "mail": "",
+    "reclameAqui": "https://www.reclameaqui.com.br/empresa/leve-energia-renovavel/",
 }
 
 export const socialMedia = [
@@ -23,10 +24,10 @@ export const socialMedia = [
         icon: <InstagramIcon className="socialIcon" />
     },
     {
-        name: "Youtube",
+        name: "YouTube",
         redirect: "youtube",
         icon: <YouTubeIcon className="socialIcon" />
-    },
+    }
 ]
 
 export const footerBasedOn = {

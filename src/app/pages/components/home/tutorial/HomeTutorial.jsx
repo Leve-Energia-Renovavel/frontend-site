@@ -30,7 +30,7 @@ export default function TutorialContainer() {
         <>
             <HomeFourthSectionContainer id="howLeveWorks">
                 <TitleContainer>
-                    <Typography variant="subtitle1" className='sectionTitle'>{texts.howItWorks}</Typography>
+                    <h2 className='sectionTitle'>{texts.howItWorks}</h2>
                 </TitleContainer>
 
                 <CardContainer >

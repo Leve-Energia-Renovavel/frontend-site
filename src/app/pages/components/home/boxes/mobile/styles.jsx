@@ -90,7 +90,7 @@ export const MobileBox = styled.div`
         font-size: 18px;
         line-height: 18px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${newBackground.greyHigh};
 
         max-width: 160px;
 

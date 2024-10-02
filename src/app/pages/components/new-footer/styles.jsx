@@ -101,6 +101,8 @@ export const FooterSecondaryContent = styled.div`
     justify-content: center;
     align-items: center;
 
+    z-index: 1;
+
     overflow: hidden;
     
     .leveLogoImage {
@@ -115,8 +117,6 @@ export const FooterSecondaryContent = styled.div`
 
         height: 500px;
         background-position: -26px 150px;
-
-
 
         .leveLogoImage {
             width: 130px; 
@@ -188,8 +188,12 @@ export const SunContainer = styled.div`
             width: 750px; 
             height: 750px; 
         }
+    }
 
-        @media (max-width: 600px) {
+    @media (max-width: 600px) {
+        display: none;
+
+        .sunImage { 
             display: none;
         }
     }
@@ -207,14 +211,25 @@ export const FooterSocialMediaContainer = styled.div`
     /* margin-top: 150px; */
     margin-bottom: 102px;
 
+    .socialIcon, .reclameAquiLogo {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .reclameAquiLogo {
+        border-radius: 30px;
+
+        &:hover {
+            background-color: ${newBackground.green};
+            cursor: pointer;
+        }
+    }
+
     .socialIcon {
         color: ${newBackground.orangeLight};
         background-color: ${newBackground.white};
         border-radius: 30px;
         padding: 8px;
-        
-        width: 50px;
-        height: 50px;
         
         &:hover {
             color: ${newBackground.green};
@@ -287,64 +302,63 @@ export const FooterMobile = styled.div`
     @media (max-height: 900px) {
         margin-bottom: -240px;
     }
-`
+    `
 
+export const VideoPlayButtonContainer = styled.div`
+`
 export const VideoContainer = styled.div`
     margin: 0 auto;
     padding: 2rem;
-
     border-radius: 10px;
 
+    z-index: 9;
+    
     margin-top: 30px;
-
+    
     .embededVideo {
         width: 1000px;
         height: 581px;
-        border-radius: 15px;
+        border-radius: 5px;
     }
-
-    @media (max-width: 600px) {
-    padding: 0;
     
-    .embededVideo {
-        width: 336px;
-        height: 220px;
+    @media (max-width: 600px) {
+        padding: 0;
+        
+        .videoThumbnail, .embededVideo {
+            z-index: 10;
+        }
+
+        .videoThumbnail {
+            width: 336px;
+            height: auto;
+            border-radius: 5px;
+
+        &:hover {
+            cursor: pointer;
+            }
+        }
+        
+        .embededVideo {
+            width: 336px;
+            height: 220px;
+        }
     }
-}
 `
 
 export const ButtonContainer = styled.div`
     text-align: center;
-`
 
-export const CTAButton = styled(Button)`
-  background-color: ${newBackground.orange};
-  color: ${newBackground.white};
-  border-radius: 30px;
+    .checkOurYouTubeChannel {
+        font-family: "Graphie";
+        font-size: 17px;  
+        font-weight: 500;
+        color: ${newBackground.orange};
+        text-decoration: underline;
 
-  height: 52px;
+        margin-top: 18px;
 
-  margin: 12px 0 0 0;
+        white-space: nowrap;
 
-  padding: 15px 27px;
-
-  max-width: 330px;
-  
-  margin-top: 20px;
-  
-  span {
-    font-family: "Graphie";
-    font-size: 18px;
-    line-height: 21px;
-    font-weight: 500;
-    text-transform: none;
-    white-space: nowrap;
-
-  }
-
-  &:hover {
-      background-color: ${newBackground.yellow};
-      color: ${newBackground.green};
-      cursor: pointer;
-  }
+        margin-bottom: 90px;
+    }
 `

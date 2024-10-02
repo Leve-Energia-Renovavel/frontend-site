@@ -31,8 +31,9 @@ export const HomeFourthSectionTitleContainer = styled.div`
 
   @media (max-width: 600px) {
     .sectionTitle {
-      font-weight: 700;
-      font-size: 21px;
+      font-size: 28px;
+      font-weight: 600;
+      max-width: 220px;
     }
   }
 `
@@ -237,7 +238,7 @@ export const ButtonSimulateYourEconomy = styled(Button)`
 
 export const CTAButton = styled(Button)`
   background-color: ${newBackground.green};
-  color: ${newBackground.white};
+  color: ${newBackground.yellow};
   border-radius: 30px;
 
   height: 52px;
@@ -259,8 +260,8 @@ export const CTAButton = styled(Button)`
   }
 
   &:hover {
-      background-color: ${newBackground.green};
-      color: ${newBackground.white};
+      background-color: ${newBackground.yellow};
+      color: ${newBackground.green};
       cursor: pointer;
   }
 `

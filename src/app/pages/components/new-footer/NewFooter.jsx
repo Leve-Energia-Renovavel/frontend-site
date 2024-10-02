@@ -1,16 +1,25 @@
-
+/* eslint-disable @next/next/no-img-element */
 "use client"
 
 import { linkTo, socialMedia } from '@/app/utils/helper/footerHelper';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import { IconButton } from "@mui/material";
 import Image from "next/image";
+import { useState } from 'react';
 import infoJson from '../../../../../public/info.json';
+import reclameAquiLogo from '../../../../resources/icons/icon-RA.png';
 import sunImage from "../../../../resources/icons/small/ellipse-small-reduced.webp";
 import logoLeve from "../../../../resources/icons/small/leve-logo-white-icon-small.png";
+import thumbnail from '../../../../resources/img/capa-manifesto.png';
 import { ButtonContainer, FooterContainer as Container, CTAButton, FooterButton, FooterMainContent, FooterMobile, FooterSecondaryContent, LegalContainer, FooterSocialMediaContainer as SocialMediaContent, SunContainer, VideoContainer } from './styles';
 
 export default function NewFooter() {
+
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlay = () => {
+    setIsPlaying(true);
+  };
 
   const texts = infoJson.footer
   const videoId = "Zs9r8xWwn3I"
@@ -47,17 +56,25 @@ export default function NewFooter() {
           <p className='subtitle'>Assista ao nosso vídeo manifesto</p>
 
           <VideoContainer>
-            <iframe
-              className='embededVideo'
-              src={`https://www.youtube.com/embed/${videoId}`}
-              title="Video da Leve Energia Renovavel"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-            ></iframe>
+            {!isPlaying ? (
+              <Image src={thumbnail} className="videoThumbnail"
+                alt={"Thumbnail do Vídeo da Leve Energia Renovavel"}
+                priority={false}
+                loading='lazy'
+                onClick={handlePlay} />
+            ) : (
+              <iframe
+                className='embededVideo'
+                src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+                title="Video da Leve Energia Renovavel"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+            )}
           </VideoContainer>
 
-          <ButtonContainer>
-            <CTAButton onClick={() => handleOpenYouTube()}><span>Conheça nosso canal no YouTube</span></CTAButton>
+          <ButtonContainer className='leveFooterYouTubeVideoButton'>
+            <p className='checkOurYouTubeChannel'>Conheça nosso canal no YouTube</p>
           </ButtonContainer>
         </FooterMobile>
 
@@ -73,6 +90,10 @@ export default function NewFooter() {
                 </IconButton>
               )
             })}
+
+            <IconButton className="iconButton" onClick={() => handleRedirect("reclameAqui")}>
+              <Image src={reclameAquiLogo} className="reclameAquiLogo" alt={"Logo da Leve Energia Renovável"} priority={false} loading='lazy' />
+            </IconButton>
           </SocialMediaContent>
 
           <Image src={logoLeve} className="leveLogoImage" alt={"Logo da Leve Energia Renovável"} priority={false} loading='lazy' />
@@ -87,7 +108,7 @@ export default function NewFooter() {
             <Image src={sunImage} className='sunImage' alt={"Imagem de um sol se pondo, ao fundo do logo da Leve"} loading="lazy" />
           </SunContainer>
         </FooterSecondaryContent>
-      </Container>
+      </Container >
     </>
   )
 }
