@@ -1043,8 +1043,6 @@ export const HomeSixthSectionCardContainer = styled.div`
     @media (max-width: 600px) {
       max-width: 100vw;
       flex-wrap: wrap;
-
-      gap: 6px;
     }
 `
 export const HomeSixthSectionCard = styled.div`
@@ -1080,6 +1078,12 @@ export const HomeSixthSectionCard = styled.div`
           width: 70px;
           height: auto;
         }
+    }
+
+    @media (max-width: 400px) {
+      min-width: 140px;
+      width: 100%;
+      max-width: 151px;
     }
 `
 
