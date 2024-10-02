@@ -2,11 +2,11 @@
 
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { HomeContainer as Container, HomeContentContainer as HomeBanner, HomeSecondarySectionContainer as SecondarySection } from "./styles";
+import { HomeContainer as Container, HomeContentContainer as HomeBanner, HomeMainContainer, HomeSecondarySectionContainer as SecondarySection } from "./styles";
 
 import HomeMainBanner from './banners/HomeMainBanner';
-import HomeMainForm from './form/HomeMainForm';
 import HomeBoxesMobile from "./boxes/mobile/HomeBoxesMobile";
+import HomeMainForm from './form/HomeMainForm';
 
 const BoxesContainer = dynamic(() => import('./boxes/HomeBoxes'), { ssr: false });
 const HomeUsersType = dynamic(() => import('./HomeUsersType'), { ssr: false });
@@ -29,7 +29,7 @@ export default function HomeMain() {
     }
 
     return (
-        <>
+        <HomeMainContainer className="homeMainContainer">
             <Container className="homeContainer">
                 <HomeBanner className="homeBanner">
                     <HomeMainBanner />
@@ -66,7 +66,6 @@ export default function HomeMain() {
             </Container >
 
             <Messages notifications={notifications} errors={errors} setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
-
-        </>
+        </HomeMainContainer>
     )
 }

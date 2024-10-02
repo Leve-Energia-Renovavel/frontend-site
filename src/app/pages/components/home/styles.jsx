@@ -24,7 +24,7 @@ export const HomeContainer = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${newBackground.white};
-    
+
     /* max-width: 1920px; */
     max-width: 1366px;
     margin: 0 auto;
@@ -1043,6 +1043,8 @@ export const HomeSixthSectionCardContainer = styled.div`
     @media (max-width: 600px) {
       max-width: 100vw;
       flex-wrap: wrap;
+
+      gap: 6px;
     }
 `
 export const HomeSixthSectionCard = styled.div`

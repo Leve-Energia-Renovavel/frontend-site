@@ -46,6 +46,10 @@ export const CTAButton = styled(Button)`
     @media (max-width: 600px) {
       //this is very ugly but necessary to avoid hydratation error in nextjs webpack
       ${props => props.ismobile === "true" ? `display: flex;` : `display: none;`}
+
+      min-width: 200px;
+      width: 100%;
+      max-width: 330px;
     }
 `
 
