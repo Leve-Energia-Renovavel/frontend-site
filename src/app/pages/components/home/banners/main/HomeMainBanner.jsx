@@ -2,10 +2,10 @@
 
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import { Divider } from '@mui/material';
-import infoJson from '../../../../../../public/info.json';
-import bannerImage from "../../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large-compressed.webp";
-import CallToActionButton from '../../utils/buttons/call-to-action/CallToActionButton';
-import { HomeContent, HomeMainContent, HomeMainTitle, HomeMainTitleContainer, HomeMobileMainContent, HomeSubtitleContainer } from '../styles';
+import infoJson from '../../../../../../../public/info.json';
+import bannerImage from "../../../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large-compressed.webp";
+import CallToActionButton from '../../../utils/buttons/call-to-action/CallToActionButton';
+import { HomeContent, HomeMainContent, HomeMainTitle, HomeMainTitleContainer, HomeMobileMainContent, HomeSubtitleContainer } from '../../styles';
 export default function HomeMainBanner() {
 
     const handleScroll = () => {
@@ -32,8 +32,6 @@ export default function HomeMainBanner() {
                     </HomeMainTitleContainer>
                 </HomeContent>
             </HomeMainContent>
-
-            <Divider className='mobileBar' />
 
             <HomeMobileMainContent className='homeMainContentMobile'>
                 <h1 className='homeMainTitleMobile'>{texts.mobile.title}<span className='highlighted'>{texts.mobile.cheaper}</span>{texts.mobile.withClearEnergy}</h1>

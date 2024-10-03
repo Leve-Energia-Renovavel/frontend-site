@@ -3,32 +3,17 @@ import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/materi
 import { fadeInUp, fadeInUpAnimation, slideAndDisappear } from "../../animations";
 import { newBackground, notification } from "../../styles";
 
-export const HomeMainContainer = styled.div`
-
-  .mobileBar {
-    display: none;
-  }
-
-  @media (max-width: 600px) {
-    .mobileBar {
-          display: block;
-          width: 100%;
-          position: absolute;
-  
-          border: 12px solid ${newBackground.grey};
-        }
-    }
-`
-
 export const HomeContainer = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${newBackground.white};
-
-    /* max-width: 1920px; */
-    max-width: 1366px;
+    
+    max-width: 1920px;
+    /* max-width: 1366px; */
     margin: 0 auto;
     padding: 0 3rem;
+    
+    overflow-x: hidden; /* Disables horizontal scrolling */
     
     @media (max-width: 600px) {
       padding: 0;
@@ -72,12 +57,23 @@ export const FormTitleContainer = styled.div`
 `
 export const HomeContentContainer = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 1rem;
     
     height: auto;
-    
     margin-top: 74px;
+    
+    position: relative; /* Ensure it's positioned correctly for absolute child */
+
+    .dividerBar {
+      display: block;
+      width: 100vw; 
+      position: absolute;
+      left: 0;
+      right: 0; 
+      border: 10px solid ${newBackground.grey};
+      margin-left: calc(-50vw + 50%); /*Centers the bar by compensating for parent's padding */
+    }
     
     @media (max-width: 600px) {
       margin: 60px auto 0 auto;
@@ -86,6 +82,14 @@ export const HomeContentContainer = styled.div`
       padding: 0;
 
       height: auto;
+
+    .dividerBar {
+          display: block;
+          width: 100%;
+          position: absolute;
+  
+          border: 12px solid ${newBackground.grey};
+        }
     }
 `
 export const HomeMainContent = styled.div`
@@ -1139,3 +1143,37 @@ export const Loading = styled(CircularProgress)`
 
 `
 
+export const CTAButton = styled(Button)`
+  background-color: ${newBackground.orange};
+  color: ${newBackground.white};
+  border-radius: 30px;
+
+  height: 52px;
+
+  padding: 15px 53px;
+
+  max-width: 330px;
+
+  margin-top: 19px;
+  margin-bottom: 40px;
+  
+  span {
+    font-family: "Graphie";
+    font-size: 20px;
+    line-height: 22px;
+    font-weight: 500;
+    text-transform: none;
+    white-space: nowrap;
+  }
+
+  &:hover {
+      background-color: ${newBackground.green};
+      color: ${newBackground.yellow};
+      cursor: pointer;
+  }
+`
+
+export const ButtonContainer = styled.div`
+    text-align: left;
+    padding: 0px 85px; //same as NewHomeMainBannerContainer padding
+`
