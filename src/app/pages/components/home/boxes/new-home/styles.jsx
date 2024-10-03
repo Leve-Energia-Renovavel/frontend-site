@@ -2,7 +2,7 @@ import { newBackground } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 import { Button } from "@mui/material"
 
-export const NewHomeBoxesContainer = styled.div`
+export const NewHomeBoxesContainer = styled.section`
     display: flex;
     flex-direction: column;
     background-color: ${newBackground.grey};

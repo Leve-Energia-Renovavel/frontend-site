@@ -1,13 +1,12 @@
 "use client"
 
 
-import { handleScrollToId } from '@/app/utils/browser/BrowserUtils';
-import { homeTutorialCards, homeTutorialCardsMobile } from '@/app/utils/helper/homeBoxesHelper';
+import { homeTutorialCards } from '@/app/utils/helper/homeBoxesHelper';
 import { Typography } from '@mui/material';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import infoJson from '../../../../../../public/info.json';
-import { ButtonContainer, ButtonSimulateYourEconomy, HomeFourthSectionCard as Card, HomeFourthSectionCardContainer as CardContainer, HomeFourthSectionCardContainerMobile as CardContainerMobile, HomeFourthSectionDescription as CardDescription, HomeFourthSectionIcon as CardIcon, HomeFourthSectionCardMobile as CardMobile, HomeFourthSectionTitle as CardTitle, CTAButton, HomeFourthSectionContainer, HomeFourthSectionTitleContainer as TitleContainer } from './styles';
+import { ButtonSimulateYourEconomy, HomeFourthSectionCard as Card, HomeFourthSectionCardContainer as CardContainer, HomeFourthSectionDescription as CardDescription, HomeFourthSectionIcon as CardIcon, HomeFourthSectionTitle as CardTitle, HomeFourthSectionContainer, HomeFourthSectionTitleContainer as TitleContainer } from './styles';
 
 const texts = infoJson.home
 
@@ -52,24 +51,6 @@ export default function TutorialContainer() {
                         )
                     })}
                 </CardContainer>
-
-                <CardContainerMobile className='cardContainerMobile'>
-                    {homeTutorialCardsMobile.map((card, index) => {
-                        return (
-                            <CardMobile key={index} className={`cardMobile-${index}`}>
-                                <Image src={card.icon} className="cardIcon" alt={card.description} loading="lazy" />
-                                <p className='cardTitle'>{`${card.title}`}</p>
-                                <p className='cardDescription'>{card.description}</p>
-                            </CardMobile>
-                        )
-                    })}
-
-
-                    <ButtonContainer>
-                        <CTAButton onClick={() => handleScrollToId("leadFormMobile")}><span>Calcular minha economia</span></CTAButton>
-                    </ButtonContainer>
-
-                </CardContainerMobile>
 
                 <ButtonSimulateYourEconomy onClick={() => isLP ? router.push("/") : handlePreSignup()}>
                     <span>{texts.simulateYourEconomy}</span>

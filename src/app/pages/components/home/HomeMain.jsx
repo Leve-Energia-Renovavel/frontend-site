@@ -6,6 +6,7 @@ import { ButtonContainer, HomeContainer as Container, CTAButton, HomeContentCont
 import { Divider } from "@mui/material";
 import NewHomeMainBanner from "./banners/main/new-home/NewHomeMainBanner";
 import HomeMainForm from './form/HomeMainForm';
+import NewHomeTutorial from "./tutorial/new-home/NewHomeTutorial";
 
 const NewHomeBoxes = dynamic(() => import("./boxes/new-home/NewHomeBoxes"), { ssr: false });
 const BrandsContainer = dynamic(() => import('./HomeBrands'), { ssr: false });
@@ -34,7 +35,7 @@ export default function HomeMain() {
 
                 <NewHomeBoxes />
 
-                <TutorialContainer />
+                <NewHomeTutorial />
 
                 <HomeMainForm
                     setErrorMessage={setErrorMessage}
