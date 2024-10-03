@@ -65,7 +65,7 @@ export const homeBoxes = [
 
 ]
 
-export const homeBoxesMobile = [
+export const newHomeBoxes = [
     {
         title: "Economia mensal",
         subtitle: <p className="subtitle"><span className="highlighted">Desconto de até 20%</span> na conta de luz todo mês</p>

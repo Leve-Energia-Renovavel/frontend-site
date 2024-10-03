@@ -3,12 +3,11 @@
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { ButtonContainer, HomeContainer as Container, CTAButton, HomeContentContainer as HomeBanner } from "./styles";
-
 import { Divider } from "@mui/material";
 import NewHomeMainBanner from "./banners/main/new-home/NewHomeMainBanner";
-import HomeBoxesMobile from "./boxes/mobile/HomeBoxesMobile";
 import HomeMainForm from './form/HomeMainForm';
 
+const NewHomeBoxes = dynamic(() => import("./boxes/new-home/NewHomeBoxes"), { ssr: false });
 const BrandsContainer = dynamic(() => import('./HomeBrands'), { ssr: false });
 const TutorialContainer = dynamic(() => import('./tutorial/HomeTutorial'), { ssr: false });
 const Messages = dynamic(() => import('../messages/Messages'), { ssr: false });
@@ -23,17 +22,17 @@ export default function HomeMain() {
     return (
         <>
             <Container className="homeContainer">
+
                 <HomeBanner className="homeBanner">
                     <Divider className='dividerBar' />
-
                     <NewHomeMainBanner />
 
-                    <ButtonContainer  className="homeBannerButtonContainer">
+                    <ButtonContainer className="homeBannerButtonContainer">
                         <CTAButton><span>Calcular meu desconto</span></CTAButton>
                     </ButtonContainer>
                 </HomeBanner>
 
-                <HomeBoxesMobile className='homeMainBoxesContainerMobile' />
+                <NewHomeBoxes />
 
                 <TutorialContainer />
 

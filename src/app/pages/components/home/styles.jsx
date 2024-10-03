@@ -58,7 +58,6 @@ export const FormTitleContainer = styled.div`
 export const HomeContentContainer = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 1rem;
     
     height: auto;
     margin-top: 74px;
@@ -114,74 +113,6 @@ export const HomeMainContent = styled.div`
     }
 `
 
-export const HomeMobileMainContent = styled.div`
-  display: flex; 
-  flex-direction: column; 
-  
-  display: none;
-
-  padding: 24px 24px;
-  max-width: 100vw;
-
-  .homeMainTitleMobile {
-    font-family: "Graphie";
-    font-size: 38px;
-    line-height: 34px;
-    letter-spacing: 0.72px;
-    font-weight: 600;
-    color: ${newBackground.green};
-
-    margin-top: 31px;
-    
-    // Ensuring each part of the title is on a new line
-    span, 
-      &::before, 
-      &::after {
-        display: block;
-        white-space: nowrap;
-      }
-  }
-
-  .highlighted {
-    font-weight: 600;
-    color: ${newBackground.orange};
-  }
-  .homeMainSubtitleMobile {
-    font-family: "Graphie";
-    font-size: 21px;
-    line-height: 22px;
-    font-weight: 400;
-    color: ${newBackground.greyHigh};
-    
-    /* text-align: justify; */
-    /* max-width: 352px; */
-    
-    margin-top: 18px;
-  }
-  
-  .homeMainDescriptionMobile {
-    font-family: "Graphie";
-    font-size: 23px;
-    line-height: 22px;
-    font-weight: 600;
-    color: ${newBackground.green};
-    
-    margin-top: 24px;
-
-    /* max-width: 320px; */
-  }
-  
-  @media (max-width: 600px) {
-    display: block;
-  }
-
-  @media (max-width: 400px) {
-    .homeMainTitleMobile {
-      font-size: 34px;
-    }
-  }
-
-`
 export const HomeContent = styled.div`
   display: flex; 
   flex-direction: column; 
@@ -1176,4 +1107,12 @@ export const CTAButton = styled(Button)`
 export const ButtonContainer = styled.div`
     text-align: left;
     padding: 0px 85px; //same as NewHomeMainBannerContainer padding
+
+    width: 100%;
+    max-width: 1366px;
+    margin: 0 auto;
+
+    @media (max-width: 600px) {
+      display: none;
+  }
 `

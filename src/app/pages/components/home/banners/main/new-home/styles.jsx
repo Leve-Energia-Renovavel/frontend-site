@@ -1,36 +1,41 @@
 import { newBackground } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
-const minHeight = "200px"
+const maxWidth = "1366px"
+const halfWidth = "683px"
 
 export const NewHomeMainBannerContainer = styled.section`
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: stretch;
+
     background-color: ${newBackground.white};
+
+    margin: 0 auto;
 
     padding: 75px 85px 0px 85px;
 
     gap: 43px;
 
-    min-height: ${minHeight};
     height: 480px;
     max-height: 589px;
     
-    min-width: 1366px;
     width: 100%;
-    max-width: 100vw;
-    `
+    max-width: ${maxWidth};
+
+    @media (max-width: 600px) {
+        display: none;
+    }
+`
 export const NewHomeMainContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: ${newBackground.white};
     
-    min-height: ${minHeight};
     height: 100%;
     
-    max-width: 50vw;
+    max-width: ${halfWidth};
 
     .homeMainTitle {
         font-family: "Graphie";
@@ -73,15 +78,20 @@ export const NewHomeMainContainer = styled.div`
     }
 `
 export const NewHomeBannerImageContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: ${newBackground.green};
+    background-image: url(${props => props.image.src});
+    background-repeat: no-repeat;
+    background-size: cover; 
+    /* background-position: 80% 20%; */
 
-    min-height: ${minHeight};
+    margin-top: -30px;
+    
+    min-width: 550px;
+    width: 100%;
+    max-width: ${halfWidth};
 
-    min-width: 200px;
-    width: 400px;
-    max-width: 50vw;
-
+    
+    min-height: 360px;
+    height: 365px;
+    
+    border-radius: 5px;
 `

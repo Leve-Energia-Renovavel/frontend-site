@@ -1,11 +1,9 @@
 "use client"
 
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
-import { Divider } from '@mui/material';
 import infoJson from '../../../../../../../public/info.json';
 import bannerImage from "../../../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large-compressed.webp";
-import CallToActionButton from '../../../utils/buttons/call-to-action/CallToActionButton';
-import { HomeContent, HomeMainContent, HomeMainTitle, HomeMainTitleContainer, HomeMobileMainContent, HomeSubtitleContainer } from '../../styles';
+import { HomeContent, HomeMainContent, HomeMainTitle, HomeMainTitleContainer, HomeSubtitleContainer } from '../../styles';
 export default function HomeMainBanner() {
 
     const handleScroll = () => {
@@ -32,13 +30,6 @@ export default function HomeMainBanner() {
                     </HomeMainTitleContainer>
                 </HomeContent>
             </HomeMainContent>
-
-            <HomeMobileMainContent className='homeMainContentMobile'>
-                <h1 className='homeMainTitleMobile'>{texts.mobile.title}<span className='highlighted'>{texts.mobile.cheaper}</span>{texts.mobile.withClearEnergy}</h1>
-                <p className='homeMainSubtitleMobile'>{texts.mobile.subtitle}</p>
-                <p className='homeMainDescriptionMobile'>{texts.mobile.description}</p>
-                <CallToActionButton isMobile={true} title={`Calcular meu desconto`} starIcon={false} endIcon={false} />
-            </HomeMobileMainContent>
         </>
 
     )
