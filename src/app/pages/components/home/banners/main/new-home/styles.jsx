@@ -35,7 +35,7 @@ export const NewHomeMainContainer = styled.div`
     
     height: 100%;
     
-    max-width: ${halfWidth};
+    max-width: 485px;
 
     .homeMainTitle {
         font-family: "Graphie";
@@ -81,17 +81,17 @@ export const NewHomeBannerImageContainer = styled.div`
     background-image: url(${props => props.image.src});
     background-repeat: no-repeat;
     background-size: cover; 
-    /* background-position: 80% 20%; */
+    /* background-position: 80% 30%; */
 
     margin-top: -30px;
     
     min-width: 550px;
-    width: 100%;
-    max-width: ${halfWidth};
+    width: 618px;
+    max-width: 618px;
 
     
     min-height: 360px;
-    height: 365px;
+    height: auto;
     
     border-radius: 5px;
 `

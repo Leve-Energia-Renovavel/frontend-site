@@ -13,27 +13,24 @@ export const HomeMainFormSimulationContainer = styled.div`
 
     ${props => props.isMobile && `display: none;`}
 
+    text-align: center;
     .averageUserCost {
       font-family: "Graphie";
-      font-size: 17px;
-      font-weight: 900;
-      color:${newBackground.green};
-      
-      white-space: nowrap;
+        font-size: 20px;
+        font-weight: 900;
+        color:${newBackground.white};
 
-      margin: 0;
-      margin-top: 12px;
 
-      width: 260px;
-      max-width: 100%;
+        min-width: 340px;
+
+        margin-top: 20px;
     }
 
     .simulationCost {
       font-family: "Graphie";
       font-size: 21px;
       font-weight: 900;
-      color:${newBackground.orange};
-
+      color:${newBackground.yellow};
     }
 
     @media (max-width: 600px) {
@@ -68,20 +65,23 @@ export const HomeMainFormSimulationContainer = styled.div`
 `
 
 export const FormSlider = styled(Slider)`
-    color: ${newBackground.green};
+    color: ${newBackground.orange};
     height: 8px;
+
+    max-width: 305px;
+    margin: 19px auto 0 auto;
     
     & .MuiSlider-thumb {
-        background-color: ${newBackground.orange};
-        height: 12px;
-        width: 12px;
-    }
+        background-color: ${newBackground.yellow};
+        height: 22px;
+        width: 22px;
+      }
     
-    & .MuiSlider-rail {
-      background-color: ${newBackground.yellow};
-      height: 8px;
-      opacity: 1;
-    } 
+      & .MuiSlider-rail {
+        background-color: ${newBackground.green};
+        border: 1px solid ${newBackground.white};
+        height: 5px;
+      } 
 
     .sliderLabel {
       /* background-color: aqua; */

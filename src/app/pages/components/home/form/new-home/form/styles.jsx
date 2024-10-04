@@ -1,7 +1,7 @@
+import { fadeInUp, fadeInUpAnimation, slideAndDisappear } from "@/app/pages/animations";
+import { newBackground, notification } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/material";
-import { fadeInUp, fadeInUpAnimation, slideAndDisappear } from "../../animations";
-import { newBackground, notification } from "../../styles";
 
 export const HomeContainer = styled.div`
     display: flex;
@@ -201,39 +201,9 @@ export const HomeFormContainer = styled.div`
 
   ${props => props.isMobile && `display:none;`}
 
-  width: 388px;
-  max-width: 388px;  
-
-  .privacyPolicyDisclaimer {
-    font-family: "Graphie";
-    font-size: 12px;
-    line-height: 12px;
-    font-weight: 500;
-    text-align: left;
-    color: ${newBackground.orange};
-    
-    max-width: 360px;
-    
-    margin: 0 auto;
-  }
-
-  .privacyPolicy {
-    font-family: "Graphie";
-    font-size: 12px;
-    line-height: 12px;
-    font-weight: 700;
-    text-decoration: underline;
-    text-align: left;
-    color: ${newBackground.orange};
-    border-radius: 5px;
-
-    &:hover{
-      cursor: pointer;
-      color: ${newBackground.green};
-      background-color: ${newBackground.yellow};
-    }
-  }
-
+  min-width: 450px;
+  width: 454px;
+  max-width: 454px;  
   
   @media (max-width: 600px) {
     ${props => props.isMobile ? `display:block;` : `display:none;`};
@@ -351,48 +321,31 @@ export const HomeSecondaryBoxTitle = styled.div`
     }
 `
 
-export const HomeMainFormContainer = styled.div`
-    background-color: ${newBackground.white};
-    border: 1px solid ${newBackground.orange};
-    
-    border-radius: 15px;
-    
-    /* height: 85vh; */
-    height: 590px;
-    
-    @media (max-width: 600px) {
-      height: auto;
-      width: 100vw;
-      max-width: 100vw;
-      border-radius: 0px;
-
-      background-color: ${newBackground.grey};
-      border: none;
-      padding: 1rem;
-    }
-`
 export const HomeMainForm = styled.form`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.orange};
+    background-color: ${newBackground.green};
     
-    border-radius: 15px;
+    border-radius: 5px;
     
     padding: 1.5rem 1rem ;
     
     height: auto;
+    max-height: 756px;
+    
     overflow: hidden;
 
-    .homeFormInput {
+    .homeFormInput, .homeFormInputCEP {
       background-color: ${newBackground.white};
-      border-radius: 10px;
+      border-radius: 5px;
       height: 42px;
       margin-bottom: 8px;
 
       & .MuiInputLabel-shrink {
         /* Styles for the focused label */
         /* line-height: 2.4375em;  */
-        line-height: 45px; 
+        line-height: 55px;   //label lower
+        margin-left: 65px;   //label centralized
       }
 
       .MuiOutlinedInput-input {
@@ -402,16 +355,19 @@ export const HomeMainForm = styled.form`
         height: 2px;
         padding: 24px 14px;
         font-weight: 700;
-        color: ${newBackground.orange};
+        color: ${newBackground.green};
         }
 
         & label {
           font-family: "Graphie";
           font-weight: 500;
           font-size: 14px;
-          color:  ${newBackground.orange};
-        }
+          color:  ${newBackground.green};
 
+          margin-top: -5px;
+
+        }
+        
         & .MuiFormLabel-root-MuiInputLabel-root {
           line-height: 2.4375em;
         }
@@ -424,6 +380,11 @@ export const HomeMainForm = styled.form`
           }
         } 
 
+        & .MuiInputLabel-root {
+          right: 0;
+          text-align: center;
+        }
+        
         input {
           all: inset;
         }
@@ -437,55 +398,50 @@ export const HomeMainForm = styled.form`
 
     }
 
+    .homeFormInputCEP {
+      width: 100%;
+      max-width: 305px;
+      margin: 0 auto;
+    }
+
+    .privacyPolicyDisclaimer {
+    font-family: "Graphie";
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 400;
+    text-align: left;
+    color: ${newBackground.white};
+    
+    max-width: 305px;
+    
+    margin: 13px auto 0 auto;
+  }
+
+  .privacyPolicy {
+    font-family: "Graphie";
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 500;
+    text-decoration: underline;
+    text-align: left;
+    color: ${newBackground.white};
+    border-radius: 5px;
+
+    &:hover{
+      cursor: pointer;
+      color: ${newBackground.green};
+      background-color: ${newBackground.yellow};
+    }
+  }
+
     .mobilePrivacyPolicy, .mobilePrivacyPolicyDisclaimer {
       display: none;
     }
 
     @media (max-width: 600px) {
-      background-color: ${newBackground.green};
-
-      padding: 1.5rem;
-      width: 100%;
-      max-width: 100vw;
-      
-      border-radius: 5px;
-      
-      .homeFormInput {
-        border-radius: 5px;
-
-        & .MuiInputLabel-root {
-          right: 0;
-          text-align: center;
-        }
-
-        .MuiOutlinedInput-input {
-        // styles for the user input text
-          color: ${newBackground.green};
-        }
-        & label {
-          font-size: 18px;
-          color:  ${newBackground.green};
-      }
+      display: none;
     }
 
-    .mobilePrivacyPolicy, .mobilePrivacyPolicyDisclaimer {
-      display: inline;
-      margin: 0 auto;
-
-      width: 300px;
-
-      font-family: "Graphie";
-      font-weight: 300;
-      font-size: 12px;
-      line-height: 12px;
-      color:  ${newBackground.white};
-      
-    }
-    
-    .mobilePrivacyPolicy {
-      font-weight: 500;
-    }
-  }
 `
 
 
@@ -498,12 +454,14 @@ export const UserTypeFormContainer = styled.div`
       font-family: "Graphie";
       font-weight: 500;
       color: ${newBackground.white};
-      font-size: 14px;
-      line-height: 12px;
+      font-size: 18px;
+      line-height: 19px;
       
       animation: ${fadeInUp} 0.5s ease-out;
       
-      margin: 12px 0 0 0;  //25px - 8px from margin-bottom of .homeFormInput
+      margin: 25px 0 17px 0;  //25px - 8px from margin-bottom of .homeFormInput
+
+      text-align: center;
     }
     
     
@@ -553,26 +511,25 @@ export const HomeMainTitle = styled(Typography)`
     word-wrap: break-word;
 `
 export const FormSelect = styled(Button)`
-  background-color: ${newBackground.orange};
+  background-color: ${newBackground.green};
   border: 1px solid ${newBackground.yellow};
-  border-radius: 10px;
+  border-radius: 5px;
 
   font-family: "Graphie";
-  font-size: 18px;
+  font-size: 16px;
   color: ${props => props.selected ? newBackground.yellow : newBackground.white};
+  border: 1px solid ${props => props.selected ? newBackground.yellow : newBackground.grey};
+
   font-weight: 400;
   text-transform: none;
   padding: 0.5rem 2rem;
 
   width: 100%;
-  max-width: 250px;
+  max-width: 144px;
   
   &:hover {
     cursor: pointer;
   }
-  
-  ${props => props.selected && `background-image: linear-gradient(to left, ${newBackground.yellow}, transparent 50%);`}
-  
   
   @media (max-width: 600px) {
     border-radius: 5px;

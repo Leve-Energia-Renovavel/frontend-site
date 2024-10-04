@@ -6,6 +6,10 @@ export const HomeTutorialContainer = styled.div`
     background-color: ${newBackground.white};
 
     padding: 57px 79px;
+
+    @media (max-width: 600px) {
+      padding: 0px;
+    }
 `
 export const HomeTutorialContent = styled.div`
     display: flex;
@@ -23,14 +27,23 @@ export const HomeTutorialContent = styled.div`
     .leveTutorialTitle {
       font-family: "Graphie";
       font-size: 34px;
-      line-height: 23px;
+      line-height: 30px;
       font-weight: 600;
       color: ${newBackground.white};
+
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      border-radius: 0px;
+      padding: 50px 37px 15px 37px;
+
     }
 `
 export const HomeTutorialCardContainer = styled.div`
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
 
     gap: 1rem;
@@ -45,39 +58,39 @@ export const HomeTutorialCard = styled.div`
     border-radius: 5px;
     background-color: ${newBackground.white};
 
-    gap: 8px;
+    gap: 15px;
 
-    min-height: 200px;
-    max-height: 203px;
+    min-height: 280px;
+    height: 282px;
+    max-height: 282px;
     
     min-width: 360px;
-    width: 375px;
-    max-width: 380px;
+    width: 500px;
+    max-width: 500px;
 
     margin-top: 7px;
     
-    padding: 20px;
-    padding-bottom: 26px;
+    padding: 18px 32px;
 
     .cardTitle {
       font-family: "Graphie";
-      font-size: 21px;
+      font-size: 28px;
       line-height: 24px;
-      font-weight: 600;
+      font-weight: 700;
       color: ${newBackground.green};
     }
     
     .cardDescription {
       font-family: "Graphie";
-      font-size: 18px;
-      line-height: 20px;
+      font-size: 22px;
+      line-height: 28px;
       font-weight: 500;
       color: ${newBackground.greyHigh};
     }
 
     .cardIcon {
-      width: 49px;
-      height: 49px;
+      width: 75px;
+      height: 75px;
       color: ${newBackground.green};
     }
 

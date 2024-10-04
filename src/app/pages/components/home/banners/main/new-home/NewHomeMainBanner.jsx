@@ -1,4 +1,4 @@
-import bannerImage from '../../../../../../../resources/img/new-home-image-provisoria.png'
+import bannerImage from '../../../../../../../resources/img/new-home-image.png'
 import HomeMainBannerMobile from '../mobile/HomeMainBannerMobile'
 import { NewHomeBannerImageContainer as BannerImageContainer, NewHomeMainBannerContainer as Container, NewHomeMainContainer as HomeMain } from './styles'
 

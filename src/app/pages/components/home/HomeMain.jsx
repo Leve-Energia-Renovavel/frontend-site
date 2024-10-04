@@ -1,11 +1,12 @@
 "use client"
 
+import { Divider } from "@mui/material";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { ButtonContainer, HomeContainer as Container, CTAButton, HomeContentContainer as HomeBanner } from "./styles";
-import { Divider } from "@mui/material";
 import NewHomeMainBanner from "./banners/main/new-home/NewHomeMainBanner";
 import HomeMainForm from './form/HomeMainForm';
+import NewHomeForm from "./form/new-home/NewHomeForm";
+import { ButtonContainer, HomeContainer as Container, CTAButton, HomeContentContainer as HomeBanner } from "./styles";
 import NewHomeTutorial from "./tutorial/new-home/NewHomeTutorial";
 
 const NewHomeBoxes = dynamic(() => import("./boxes/new-home/NewHomeBoxes"), { ssr: false });
@@ -36,6 +37,8 @@ export default function HomeMain() {
                 <NewHomeBoxes />
 
                 <NewHomeTutorial />
+
+                <NewHomeForm />
 
                 <HomeMainForm
                     setErrorMessage={setErrorMessage}
