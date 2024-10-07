@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { Button } from "@mui/material";
 import { newBackground } from "../../styles";
 
-export const FooterContainer = styled.div`
+export const FooterContainer = styled.footer`
     display: flex;
     flex-direction: column;
 
@@ -105,7 +105,7 @@ export const FooterSecondaryContent = styled.div`
     align-items: center;
 
     overflow: hidden;
-    
+
     .leveLogoImage {
         width:250px; 
         height:auto;
@@ -115,7 +115,7 @@ export const FooterSecondaryContent = styled.div`
         background-image: url(${props => props.image.src});
         background-repeat: no-repeat;
         background-size: 420px;
-
+        
         height: 500px;
         background-position: -26px 150px;
 
@@ -173,13 +173,18 @@ export const SunContainer = styled.div`
     z-index: -1; /* Move the container behind other content */
     
     .sunImage { 
-        position: absolute; /* Ensure the sun image remains absolutely positioned */
+        position: fixed; /* Ensure the sun image remains absolutely positioned */
         bottom: -418px; /* Position the sun image at the bottom of its container */
         left: 50%; /* Position the sun image horizontally centered */
         transform: translateX(-50%) scaleY(-1); 
         width: 1200px; /* Adjust the width of the sun image */
         height: 1200px; /* Adjust the height of the sun image */
         border-radius: 50%; /* Make the sun image round */
+        
+        /* TESTES MARCOS */
+        width: 1120px; 
+        height: auto; 
+        /* FIM TESTES MARCOS */
         
         @media (max-width: 1400px) {
             width: 850px; 

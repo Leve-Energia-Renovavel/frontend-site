@@ -1,12 +1,15 @@
 import { newBackground } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
-export const NewHomeMainFormContainer = styled.div`
+export const NewHomeMainFormContainer = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     background-color: ${newBackground.grey};
+
+    max-width: 1366px;
+    margin: 0 auto;
 
     padding: 77px;
     
@@ -37,7 +40,7 @@ export const NewHomeMainFormContent = styled.div`
         font-family: "Graphie";
         font-size: 24px;
         line-height: 27px;
-        font-weight: 600;
+        font-weight: 500;
         color: ${newBackground.greyMediumHigh};
         
         max-width: 1096px;

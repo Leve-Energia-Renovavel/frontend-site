@@ -1,13 +1,19 @@
 import { newBackground } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
-export const NewHomeVideoContainer = styled.div`
+export const NewHomeVideoContainer = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     background-color: ${newBackground.grey};
-    background: linear-gradient(to bottom, ${newBackground.grey} 0%, transparent 100%);
+    background: linear-gradient(to bottom, ${newBackground.grey} 85%, transparent 100%);
+
+    background-color: transparent;
+
+    width: 100%;
+    max-width: 1366px;
+    margin: 0 auto;
 
     padding: 45px 65px;
 

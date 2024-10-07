@@ -6,8 +6,12 @@ export const NewHomeBoxesContainer = styled.section`
     display: flex;
     flex-direction: column;
     background-color: ${newBackground.grey};
+
+    width: 100%;
+    max-width: 1366px;
+    margin: 0 auto;
     
-    padding: 47px 85px;
+    padding: 47px 65px;
 
     gap: 42px;
     
@@ -42,25 +46,24 @@ export const BoxCard = styled.div`
     flex-direction: column;
 
     border-radius: 10px;
-    padding: 27px 21px;
+    padding: 27px 21px 52px 21px;
     background-color: ${newBackground.white};
 
     min-width: 250px;
     width: 100%;
-    /* max-width: 265px; */
+    max-width: 297px;
 
     min-height: 200px;
-    height: 100%;
     max-height: 218px;
     
     .boxTitle {
         font-family: "Graphie";
-        font-size: 28px;
+        font-size: 24px;
         line-height: 24px;
         font-weight: 600;
         color: ${newBackground.orange};
 
-        max-width: 185px;
+        max-width: 90px;
     }
 
     .boxSubtitle {
@@ -70,7 +73,7 @@ export const BoxCard = styled.div`
         font-weight: 800;
         color: ${newBackground.greyHigh};
         
-        margin-top: 8px;
+        margin-top: 16px;
         max-width: 180px;
     }
 `

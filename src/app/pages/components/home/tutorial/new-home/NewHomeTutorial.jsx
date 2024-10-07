@@ -4,7 +4,7 @@ import { homeTutorialCardsMobile } from '@/app/utils/helper/homeBoxesHelper';
 import Image from 'next/image';
 import { ButtonContainer, HomeTutorialCard as Card, HomeTutorialCardContainer as CardContainer, HomeTutorialContainer as Container, HomeTutorialContent as Content, CTAButton } from './styles';
 
-export default function NewHomeTutorial() {
+export default function NewHomeTutorial({isMobile}) {
     return (
         <>
             <Container className='leveTutorialContainer'>
@@ -23,7 +23,7 @@ export default function NewHomeTutorial() {
                     </CardContainer>
 
                     <ButtonContainer>
-                        <CTAButton onClick={() => handleScrollToId("leadFormMobile")}><span>Calcular minha economia</span></CTAButton>
+                        <CTAButton onClick={() => handleScrollToId(isMobile ? "leadFormMobile" : "leadForm")}><span>Calcular minha economia</span></CTAButton>
                     </ButtonContainer>
                 </Content>
             </Container>

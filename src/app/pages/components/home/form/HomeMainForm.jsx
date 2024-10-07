@@ -11,7 +11,7 @@ import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import infoJson from '../../../../../../public/info.json';
 import { schemaValidation } from '../schema';
-import { HomeMainForm as Form, HomeMainFormContainer as FormContainer, FormFooterContainer, HomeFormContainer, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "../styles";
+import { HomeMainForm as Form, HomeMainFormContainer as FormContainer, HomeFormContainer, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "../styles";
 import { requestValidation } from '../validation';
 
 import NewHomeMainFormHeader from './new-home/form/header/NewHomeMainFormHeader';
@@ -85,6 +85,9 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                                 style: { textAlign: "center" }
                             }
                         }}
+                        InputLabelProps={{
+                            required: false,
+                        }}
                         disabled={isLoading}
                         required
                     />
@@ -101,6 +104,9 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                                 inputProps: {
                                     style: { textAlign: "center" }
                                 }
+                            }}
+                            InputLabelProps={{
+                                required: false,
                             }}
                             inputProps={{ inputMode: 'numeric' }}
                             disabled={isLoading}
@@ -119,8 +125,48 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                                 style: { textAlign: "center" }
                             }
                         }}
+                        InputLabelProps={{
+                            required: false,
+                        }}
                         disabled={isLoading}
                         required
+                    />
+
+                    <InputMask mask="99999-999" disabled={isLoading}>
+                        {() => <TextField
+                            className="homeFormInput"
+                            inputRef={cepRef}
+                            label={`CEP`}
+                            placeholder={`CEP`}
+                            variant="outlined"
+                            type="text"
+                            InputLabelProps={{
+                                required: false,
+                            }}
+                            InputProps={{
+                                inputProps: {
+                                    style: { textAlign: "center" }
+                                }
+                            }}
+                            disabled={isLoading}
+                            inputProps={{ inputMode: 'numeric' }}
+                            required
+                        />}
+                    </InputMask>
+                    <TextField
+                        className="homeFormInput"
+                        inputRef={couponRef}
+                        defaultValue={cupom ? cupom : ""}
+                        label={`Cupom de desconto`}
+                        placeholder={`Cupom`}
+                        variant="outlined"
+                        InputProps={{
+                            inputProps: {
+                                style: { textAlign: "center" }
+                            }
+                        }}
+                        type="text"
+                        disabled={isLoading}
                     />
 
                     <UserTypeFormContainer>
@@ -140,41 +186,6 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                             </Select>
                         </UserTypeFormButtonContainer>
                     </UserTypeFormContainer>
-                    <FormFooterContainer>
-                        <InputMask mask="99999-999" disabled={isLoading}>
-                            {() => <TextField
-                                className="homeFormInput"
-                                inputRef={cepRef}
-                                label={`CEP`}
-                                placeholder={`CEP`}
-                                variant="outlined"
-                                type="text"
-                                InputProps={{
-                                    inputProps: {
-                                        style: { textAlign: "center" }
-                                    }
-                                }}
-                                disabled={isLoading}
-                                inputProps={{ inputMode: 'numeric' }}
-                                required
-                            />}
-                        </InputMask>
-                        <TextField
-                            className="homeFormInput"
-                            inputRef={couponRef}
-                            defaultValue={cupom ? cupom : ""}
-                            label={`Cupom de desconto`}
-                            placeholder={`Cupom`}
-                            variant="outlined"
-                            InputProps={{
-                                inputProps: {
-                                    style: { textAlign: "center" }
-                                }
-                            }}
-                            type="text"
-                            disabled={isLoading}
-                        />
-                    </FormFooterContainer>
                     <HomeMainFormSimulator isMobile={true}
                         simulationCost={simulationCost}
                         handleSimulationCost={setSimulationCost} />

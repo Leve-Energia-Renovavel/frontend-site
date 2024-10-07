@@ -3,9 +3,8 @@ import styled from "@emotion/styled"
 import { Button } from "@mui/material"
 
 export const HomeSecondaryBoxesContainerMobile = styled.div`
-    background-color: ${newBackground.grey};
-
     display: none;
+    background-color: ${newBackground.grey};
     
     @media (max-width: 600px) {
         display: block;

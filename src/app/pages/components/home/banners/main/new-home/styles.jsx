@@ -4,18 +4,18 @@ import styled from "@emotion/styled";
 import { Button } from "@mui/material";
 
 const maxWidth = "1366px"
-const halfWidth = "683px"
 
 export const NewHomeMainBannerContainer = styled.section`
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     align-items: stretch;
 
     background-color: ${newBackground.white};
 
-    margin: 0 auto;
+    margin: 10px auto 0px auto;
 
-    padding: 75px 85px;
+    padding: 75px 0px;
 
     gap: 43px;
 
@@ -24,6 +24,8 @@ export const NewHomeMainBannerContainer = styled.section`
     
     width: 100%;
     max-width: ${maxWidth};
+
+    position: relative;  // Added this line to make the balloon relative to the container
 
     @media (max-width: 600px) {
         display: none;
@@ -74,19 +76,6 @@ export const NewHomeMainContainer = styled.div`
         
         max-width: 475px;
     }
-    .homeMainDescription {
-        font-family: "Graphie";
-        font-size: 24px;
-        line-height: 30px;
-        font-weight: 600;
-        color: ${newBackground.green};
-
-        animation: ${fadeInUp} 0.5s ease-out;
-        
-        margin-top: 48px;
-
-        max-width: 475px;
-    }
 `
 
 export const NewHomeMainDescriptionContainer = styled.div`
@@ -95,6 +84,30 @@ export const NewHomeMainDescriptionContainer = styled.div`
     align-items: center;
 
     gap: 8px;
+
+    margin-top: 48px;
+
+
+    .checkIcon {
+        display: block;
+        width: 36px;
+        height: auto;
+    }
+    
+    .homeMainDescription {
+        display: block;
+
+        font-family: "Graphie";
+        font-size: 24px;
+        line-height: 30px;
+        font-weight: 600;
+        color: ${newBackground.green};
+
+        animation: ${fadeInUp} 0.5s ease-out;
+        
+
+        max-width: 475px;
+    }
 `
 export const NewHomeMainBaloon = styled.div`
     position: absolute;
@@ -106,8 +119,8 @@ export const NewHomeMainBaloon = styled.div`
 
     padding: 14px 19px;
     
-    right: 420px;
-    top: 230px;
+    right: 25%; 
+    top: 48%;   
 
     min-width: 300px;
     width: 100%;
@@ -131,11 +144,11 @@ export const NewHomeBannerImageContainer = styled.div`
     background-image: url(${props => props.image.src});
     background-repeat: no-repeat;
     background-size: cover; 
-    /* background-position: 80% 30%; */
+    background-position: 90% 10%;
 
     /* min-width: 550px; */
     width: 100%;
-    max-width: 618px;
+    max-width: 718px;
     
     min-height: 360px;
     height: 453px;
@@ -148,13 +161,14 @@ export const CTAButton = styled(Button)`
   color: ${newBackground.white};
   border-radius: 30px;
 
-  height: 50px;
+  height: 57px;
 
   padding: 15px 53px;
 
-  max-width: 330px;
+  width: 100%;
+  max-width: 340px;
 
-  margin-top: 64px;
+  margin-top: 54px;
   /* margin-bottom: 40px; */
   
   span {

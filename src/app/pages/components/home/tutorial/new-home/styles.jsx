@@ -2,10 +2,13 @@ import { newBackground } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 import { Button } from "@mui/material"
 
-export const HomeTutorialContainer = styled.div`
+export const HomeTutorialContainer = styled.section`
     background-color: ${newBackground.white};
 
     padding: 57px 79px;
+
+    max-width: 1366px;
+    margin: 0 auto;
 
     @media (max-width: 600px) {
       padding: 0px;
@@ -36,8 +39,11 @@ export const HomeTutorialContent = styled.div`
 
     @media (max-width: 600px) {
       border-radius: 0px;
-      padding: 50px 37px 15px 37px;
-
+      padding: 50px 20px;
+    }
+    @media (max-width: 400px) {
+      border-radius: 0px;
+      padding: 30px 1rem;
     }
 `
 export const HomeTutorialCardContainer = styled.div`

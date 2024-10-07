@@ -66,8 +66,8 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
     }
 
     return (
-        <HomeFormContainer isMobile={isMobile}>
-            <Form id={`leadForm${isMobile && "Mobile"}`} onSubmit={handleSubmit}>
+        <HomeFormContainer isMobile={isMobile} className='leveHomeMainFormContainer'>
+            <Form id={`leadForm`} onSubmit={handleSubmit}>
                 <NewHomeMainFormHeader />
 
                 <TextField

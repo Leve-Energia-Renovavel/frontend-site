@@ -7,6 +7,7 @@ export const HomeContainer = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${newBackground.white};
+    background-color: transparent;
     
     max-width: 1920px;
     /* max-width: 1366px; */
@@ -55,7 +56,7 @@ export const FormTitleContainer = styled.div`
     }
   }
 `
-export const HomeContentContainer = styled.div`
+export const HomeContentContainer = styled.section`
     display: flex;
     flex-direction: column;
     
@@ -929,7 +930,7 @@ export const HomeFifthSectionDescriptionContainer = styled.div`
     }
 }
 `
-export const HomeSixthSectionContainer = styled.div`
+export const HomeSixthSectionContainer = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
