@@ -68,6 +68,23 @@ export const fadeInUp = keyframes`
     transform: translateY(0);
   }
 `;
+export const float = keyframes`
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(5px, -0px);
+    }
+    50% {
+        transform: translate(0, -10px);
+    }
+    75% {
+        transform: translate(-5px, -5px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+`;
 
 export const fadeInUpAnimation = css`
   animation: ${fadeInUp} 2s ease;

@@ -969,7 +969,7 @@ export const HomeSixthSectionCardContainer = styled.div`
 
     ${(props) => props.visible && fadeInUpAnimation};
 
-    max-width: 990px;
+    max-width: 1300px;
     
     gap: 1rem;
 
@@ -984,13 +984,16 @@ export const HomeSixthSectionCard = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #ccc;
+    border: 2px solid ${newBackground.green};
     background-color: ${newBackground.white};
     
-    border-radius: 15px;
+    border-radius: 5px;
     
-    width: 180px;
-    height: 180px;
+    width: 260px;
+    max-width: 260px;
+
+    height: 152px;
+    max-height: 152px;
     
     @media (max-width: 600px) {
       border: 0;

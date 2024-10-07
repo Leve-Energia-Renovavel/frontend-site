@@ -32,10 +32,13 @@ export const FooterContainer = styled.div`
 
 `
 export const FooterMainContent = styled.div`
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    display: none;    //hiding this component FooterMainContent!!!
 
     text-align: center;
 
@@ -301,8 +304,6 @@ export const FooterMobile = styled.div`
     }
     `
 
-export const VideoPlayButtonContainer = styled.div`
-`
 export const VideoContainer = styled.div`
     margin: 0 auto;
     padding: 2rem;

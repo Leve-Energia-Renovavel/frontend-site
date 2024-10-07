@@ -3,8 +3,8 @@
 import { brands } from '@/app/utils/helper/homeBoxesHelper';
 import { Typography } from '@mui/material';
 import Image from 'next/image';
-import infoJson from '../../../../../public/info.json';
-import { HomeSixthSectionCard as Card, HomeSixthSectionContainer as Container, HomeSixthSectionCardContainer as ContentContainer, HomeSixthSectionTitleContainer as TitleContainer } from './styles';
+import infoJson from '../../../../../../public/info.json';
+import { HomeSixthSectionCard as Card, HomeSixthSectionContainer as Container, HomeSixthSectionCardContainer as ContentContainer, HomeSixthSectionTitleContainer as TitleContainer } from '../styles';
 
 const texts = infoJson.home
 

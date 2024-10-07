@@ -6,12 +6,12 @@ import { useState } from "react";
 import NewHomeMainBanner from "./banners/main/new-home/NewHomeMainBanner";
 import HomeMainForm from './form/HomeMainForm';
 import NewHomeForm from "./form/new-home/NewHomeForm";
-import { ButtonContainer, HomeContainer as Container, CTAButton, HomeContentContainer as HomeBanner } from "./styles";
+import { HomeContainer as Container, HomeContentContainer as HomeBanner } from "./styles";
 import NewHomeTutorial from "./tutorial/new-home/NewHomeTutorial";
+import NewHomeVideo from "./video/NewHomeVideo";
 
 const NewHomeBoxes = dynamic(() => import("./boxes/new-home/NewHomeBoxes"), { ssr: false });
-const BrandsContainer = dynamic(() => import('./HomeBrands'), { ssr: false });
-const TutorialContainer = dynamic(() => import('./tutorial/HomeTutorial'), { ssr: false });
+const BrandsContainer = dynamic(() => import('./brands/HomeBrands'), { ssr: false });
 const Messages = dynamic(() => import('../messages/Messages'), { ssr: false });
 
 export default function HomeMain() {
@@ -29,9 +29,9 @@ export default function HomeMain() {
                     <Divider className='dividerBar' />
                     <NewHomeMainBanner />
 
-                    <ButtonContainer className="homeBannerButtonContainer">
+                    {/* <ButtonContainer className="homeBannerButtonContainer">
                         <CTAButton><span>Calcular meu desconto</span></CTAButton>
-                    </ButtonContainer>
+                    </ButtonContainer> */}
                 </HomeBanner>
 
                 <NewHomeBoxes />
@@ -49,6 +49,8 @@ export default function HomeMain() {
 
 
                 <BrandsContainer />
+
+                <NewHomeVideo />
 
             </Container >
 

@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import HomeAreas from "../../home/areas/HomeAreas";
-import BrandsContainer from "../../home/HomeBrands";
+import BrandsContainer from "../../home/brands/HomeBrands";
 import TutorialContainer from "../../home/tutorial/HomeTutorial";
 import Messages from "../../messages/Messages";
 import DefaultForm from "../form/default/DefaultForm";

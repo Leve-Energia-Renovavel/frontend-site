@@ -12,7 +12,7 @@ import CompanyPartnerForm from '../form/CompanyPartnerForm';
 import EconomyTable from '../tables/EconomyTable';
 import LandingPageCompanyMainBanner from './LandingPageCompanyMainBanner';
 
-const BrandsContainer = dynamic(() => import('../../home/HomeBrands'), { ssr: false });
+const BrandsContainer = dynamic(() => import('../../home/brands/HomeBrands'), { ssr: false });
 
 export default function LandingPageCompany() {
 

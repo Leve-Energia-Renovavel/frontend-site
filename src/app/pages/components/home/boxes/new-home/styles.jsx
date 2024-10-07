@@ -46,8 +46,8 @@ export const BoxCard = styled.div`
     background-color: ${newBackground.white};
 
     min-width: 250px;
-    max-width: 100%;
-    max-width: 265px;
+    width: 100%;
+    /* max-width: 265px; */
 
     min-height: 200px;
     height: 100%;
