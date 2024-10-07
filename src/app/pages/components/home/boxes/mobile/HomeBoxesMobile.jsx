@@ -21,7 +21,7 @@ export default function HomeBoxesMobile() {
             </BoxesContainer>
 
             <ButtonContainer className='homeSecondaryMobileButtonContainer'>
-                <CTAButton onClick={() => handleScrollToId("leadFormMobile")}><span>Calcular minha economia</span></CTAButton>
+                <CTAButton onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular minha economia</span></CTAButton>
             </ButtonContainer>
 
         </HomeSecondaryBoxesContainerMobile>

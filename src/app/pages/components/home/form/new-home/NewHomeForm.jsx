@@ -3,12 +3,12 @@ import { NewHomeMainFormContainer as Container, NewHomeMainFormContent as Conten
 
 export default function NewHomeForm() {
     return (
-        <Container className='leveHomeMainFormContainer'>
+        <Container className='leveHomeMainFormContainer' id='calculateYourEconomy'>
             <Content className='leveHomeMainFormContainer'>
                 <div>
                     <h2 className='leveHomeMainFormContentTitle'>Calcule sua economia e poder de impacto</h2>
                 </div>
-                <h6 className='leveHomeMainFormContentSubtitle'>Utilize a <span className='highlighted'>calculadora Leve</span> para saber quanto você vai economizar sendo cliente Leve e como ajuda a reduzir os dados ao meio ambiente em nossa calculadora.</h6>
+                <h6 className='leveHomeMainFormContentSubtitle'>Utilize a <span className='highlighted'>calculadora Leve</span> para saber quanto você vai economizar sendo cliente Leve e como ajuda a reduzir os dados ao meio ambiente..</h6>
             </Content>
 
             <NewHomeMainForm />

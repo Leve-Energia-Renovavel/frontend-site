@@ -18,7 +18,7 @@ export default function NewHomeMainBanner({ isMobile }) {
             <h3 className='homeMainDescription'>Sem custos adicionais, sem obras ou instalações e sem fidelidade</h3>
           </DescriptionContainer>
 
-          <CTAButton className='homeMainBannerButton' onClick={() => handleScrollToId(isMobile ? "leadFormMobile" : "leadForm")}><span>Calcular meu desconto</span></CTAButton>
+          <CTAButton className='homeMainBannerButton' onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular meu desconto</span></CTAButton>
         </HomeMain>
 
         <NewHomeMainBaloon>

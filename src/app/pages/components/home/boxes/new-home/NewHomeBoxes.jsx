@@ -22,7 +22,7 @@ export default function NewHomeBoxes({ isMobile }) {
                 <h6 className='homeBoxesDescription'>Calcule seu desconto e veja quanto você pode economizar</h6>
 
                 <ButtonContainer className="homeBoxesButtonContainer">
-                    <CTAButton onClick={() => handleScrollToId(isMobile ? "leadFormMobile" : "leadForm")}><span>Calcular minha economia</span></CTAButton>
+                    <CTAButton onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular minha economia</span></CTAButton>
                 </ButtonContainer>
 
             </Container>

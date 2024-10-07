@@ -4,7 +4,7 @@ import { CTAButton } from './styles';
 export default function CallToActionButton({ isMobile, onClick, title, icon, endIcon, starIcon }) {
 
     return (
-        <CTAButton onClick={() => handleScrollToId("leadFormMobile")}
+        <CTAButton onClick={() => handleScrollToId("calculateYourEconomy")}
             ismobile={isMobile.toString()}
             startIcon={starIcon && icon}
             endIcon={endIcon && icon}>

@@ -23,7 +23,7 @@ export default function NewHomeTutorial({isMobile}) {
                     </CardContainer>
 
                     <ButtonContainer>
-                        <CTAButton onClick={() => handleScrollToId(isMobile ? "leadFormMobile" : "leadForm")}><span>Calcular minha economia</span></CTAButton>
+                        <CTAButton onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular minha economia</span></CTAButton>
                     </ButtonContainer>
                 </Content>
             </Container>

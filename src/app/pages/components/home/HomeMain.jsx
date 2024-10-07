@@ -2,7 +2,7 @@
 
 import { Divider } from "@mui/material";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NewHomeMainBanner from "./banners/main/new-home/NewHomeMainBanner";
 import HomeMainForm from './form/HomeMainForm';
 import NewHomeForm from "./form/new-home/NewHomeForm";
@@ -18,25 +18,8 @@ export default function HomeMain() {
 
     const [selectedUserType, setSelectedUserType] = useState('Residencia');
 
-    const [isMobile, setIsMobile] = useState(false);
     const [errors, setErrorMessage] = useState([]);
     const [notifications, setNotifications] = useState([])
-
-    const mobileWidth = 900
-
-    useEffect(() => {
-        const handleResize = () => {
-            const windowSize = window.innerWidth <= mobileWidth;
-            if (windowSize !== isMobile) setIsMobile(windowSize);
-        };
-
-        window.addEventListener('resize', handleResize);
-        handleResize();
-        return () => {
-            window.removeEventListener('resize', handleResize);
-            console.log(isMobile)
-        };
-    }, [isMobile]);
 
     return (
         <>
@@ -44,12 +27,12 @@ export default function HomeMain() {
 
                 <HomeBanner className="homeBanner">
                     <Divider className='dividerBar' />
-                    <NewHomeMainBanner isMobile={isMobile} />
+                    <NewHomeMainBanner />
                 </HomeBanner>
 
-                <NewHomeBoxes isMobile={isMobile} />
+                <NewHomeBoxes />
 
-                <NewHomeTutorial isMobile={isMobile} />
+                <NewHomeTutorial />
 
                 <NewHomeForm />
 
