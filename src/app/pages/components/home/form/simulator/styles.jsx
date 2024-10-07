@@ -14,12 +14,12 @@ export const HomeMainFormSimulationContainer = styled.div`
     ${props => props.isMobile && `display: none;`}
 
     text-align: center;
+
     .averageUserCost {
       font-family: "Graphie";
         font-size: 20px;
         font-weight: 900;
         color:${newBackground.white};
-
 
         min-width: 340px;
 
@@ -44,10 +44,12 @@ export const HomeMainFormSimulationContainer = styled.div`
         font-weight: 900;
         color:${newBackground.white};
 
+        min-width: 200px;
         width: fit-content;
         max-width: 280px;
 
         margin-top: 20px;
+        
       }
       .simulationCost {
         color:${newBackground.yellow};

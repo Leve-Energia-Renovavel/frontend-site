@@ -94,9 +94,38 @@ export const HomeTutorialCard = styled.div`
       color: ${newBackground.green};
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: 600px) {
       min-height: 200px;
-      max-height: 203px;
+      height: fit-content;
+      max-height: 260px;
+      
+      min-width: 300px;
+      width: 380px;
+      max-width: 380px;
+  
+      margin-top: 7px;
+      
+      padding: 16px 10px;
+
+      .cardNumber {
+        font-size: 20px;
+      }
+    
+      .cardDescription {
+        font-size: 18px;
+        max-width: 330px;
+      }
+
+      .cardIcon {
+        width: 42px;
+        height: 44px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      min-height: 220px;
+      height: fit-content;
+      max-height: 230px;
       
       min-width: 300px;
       width: 338px;

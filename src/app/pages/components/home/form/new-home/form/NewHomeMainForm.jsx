@@ -6,12 +6,12 @@ import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
 import { TextField } from "@mui/material";
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import infoJson from '../../../../../../../../public/info.json';
 import { requestValidation } from '../../../validation';
-import { HomeMainForm as Form, FormFooterContainer, HomeFormContainer, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
+import { HomeMainForm as Form, HomeFormContainer, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 
 import { schemaValidation } from '../../../schema';
 import NewHomeMainFormHeader from './header/NewHomeMainFormHeader';
@@ -22,6 +22,10 @@ const HomeMainFormSimulator = dynamic(() => import('../../simulator/HomeMainForm
 export default function NewHomeMainForm({ setErrorMessage, setNotifications, isMobile }) {
 
     const router = useRouter()
+
+    const search = useSearchParams()
+
+    const cupom = search.get("cupom")
 
     const [isLoading, setLoading] = useState(false)
     const [simulationCost, setSimulationCost] = useState(200)
@@ -75,6 +79,9 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
                     type="text"
                     disabled={isLoading}
                     required
+                    InputLabelProps={{
+                        required: false,
+                    }}
                     InputProps={{
                         inputProps: {
                             style: { textAlign: "center" }
@@ -98,6 +105,9 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
                                 style: { textAlign: "center" }
                             }
                         }}
+                        InputLabelProps={{
+                            required: false,
+                        }}
                     />}
                 </InputMask>
                 <TextField
@@ -109,11 +119,52 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
                     type="text"
                     disabled={isLoading}
                     required
+                    InputLabelProps={{
+                        required: false,
+                    }}
                     InputProps={{
                         inputProps: {
                             style: { textAlign: "center" }
                         }
                     }}
+                />
+
+                <InputMask mask="99999-999" disabled={isLoading}>
+                    {() => <TextField
+                        className="homeFormInput"
+                        inputRef={cepRef}
+                        label={`CEP`}
+                        placeholder={`CEP`}
+                        variant="outlined"
+                        type="text"
+                        disabled={isLoading}
+                        inputProps={{ inputMode: 'numeric' }}
+                        required
+                        InputProps={{
+                            inputProps: {
+                                style: { textAlign: "center" }
+                            }
+                        }}
+                        InputLabelProps={{
+                            required: false,
+                        }}
+                    />}
+                </InputMask>
+
+                <TextField
+                    className="homeFormInput"
+                    inputRef={couponRef}
+                    defaultValue={cupom ? cupom : ""}
+                    label={`Cupom de desconto`}
+                    placeholder={`Cupom`}
+                    variant="outlined"
+                    InputProps={{
+                        inputProps: {
+                            style: { textAlign: "center" }
+                        }
+                    }}
+                    type="text"
+                    disabled={isLoading}
                 />
 
                 <UserTypeFormContainer>
@@ -133,26 +184,6 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
                         </Select>
                     </UserTypeFormButtonContainer>
                 </UserTypeFormContainer>
-                <FormFooterContainer>
-                    <InputMask mask="99999-999" disabled={isLoading}>
-                        {() => <TextField
-                            className="homeFormInputCEP"
-                            inputRef={cepRef}
-                            label={`CEP`}
-                            placeholder={`CEP`}
-                            variant="outlined"
-                            type="text"
-                            disabled={isLoading}
-                            inputProps={{ inputMode: 'numeric' }}
-                            required
-                            InputProps={{
-                                inputProps: {
-                                    style: { textAlign: "center" }
-                                }
-                            }}
-                        />}
-                    </InputMask>
-                </FormFooterContainer>
 
                 <HomeMainFormSimulator isMobile={true}
                     simulationCost={simulationCost}
@@ -163,9 +194,9 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
                     simulationCost={simulationCost}
                     handleSimulationCost={setSimulationCost} />
 
-                <HomeFormButton title={"Calcular meu desconto"} isLoading={isLoading} isMobile={true} />
+                <HomeFormButton title={"Calcular"} isLoading={isLoading} isMobile={true} />
 
-                <HomeFormButton title={"Calcular meu desconto"} isLoading={isLoading} isMobile={false} />
+                <HomeFormButton title={"Calcular"} isLoading={isLoading} isMobile={false} />
 
                 <p className='mobilePrivacyPolicyDisclaimer'>{texts.mobile.byClickingButtonAbove}<span className='mobilePrivacyPolicy' onClick={() => router.push(`/politica-de-privacidade`)}>{texts.mobile.privacyPolicy}</span></p>
                 <p className='privacyPolicyDisclaimer'>{texts.mobile.byClickingButtonAbove}<span className='privacyPolicy' onClick={() => router.push(`politica-de-privacidade`)}>{texts.privacyPolicy}</span>.</p>

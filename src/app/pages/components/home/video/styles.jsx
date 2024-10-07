@@ -7,6 +7,7 @@ export const NewHomeVideoContainer = styled.div`
     align-items: center;
     text-align: center;
     background-color: ${newBackground.grey};
+    background: linear-gradient(to bottom, ${newBackground.grey} 0%, transparent 100%);
 
     padding: 45px 65px;
 
@@ -27,6 +28,10 @@ export const NewHomeVideoContainer = styled.div`
         white-space: nowrap;
 
         margin-top: 16px;
+    }
+
+    @media (max-width: 600px) {
+        display: none;
     }
 `
 

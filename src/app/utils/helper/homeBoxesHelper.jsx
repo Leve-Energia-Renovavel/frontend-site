@@ -121,7 +121,7 @@ export const homeTutorialCardsMobile = [
 },
     {
         icon: guaranteeIcon,
-        title: "Embasamento legal",
+        title: "Aprovado pela ANEEL",
         description: "Isso é possível porque fazemos parte do sistema de Geração Distribuída regulado pela ANEEL com base na lei 14.300/22",
     },
 ]

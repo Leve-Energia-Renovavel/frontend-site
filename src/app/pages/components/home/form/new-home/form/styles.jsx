@@ -478,15 +478,6 @@ export const UserTypeFormContainer = styled.div`
 
 
 `
-export const FormFooterContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    /* margin: 0 auto; */
-    
-    @media (max-width: 600px) {
-      gap: 8px;
-    }
-`
 export const UserTypeFormButtonContainer = styled.div`
     display: flex;
     flex-direction: row;

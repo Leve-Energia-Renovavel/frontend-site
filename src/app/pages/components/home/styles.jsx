@@ -392,7 +392,8 @@ export const HomeMainForm = styled.form`
       & .MuiInputLabel-shrink {
         /* Styles for the focused label */
         /* line-height: 2.4375em;  */
-        line-height: 45px; 
+        line-height: 55px;   //label lower
+        margin-left: 65px;   //label centralized
       }
 
       .MuiOutlinedInput-input {
@@ -410,6 +411,8 @@ export const HomeMainForm = styled.form`
           font-weight: 500;
           font-size: 14px;
           color:  ${newBackground.orange};
+
+          margin-top: -5px;  //to put the label/placeholder centralized
         }
 
         & .MuiFormLabel-root-MuiInputLabel-root {

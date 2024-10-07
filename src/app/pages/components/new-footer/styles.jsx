@@ -226,7 +226,7 @@ export const FooterSocialMediaContainer = styled.div`
     }
 
     .socialIcon {
-        color: ${newBackground.orangeLight};
+        color: ${newBackground.orangeHigh};
         background-color: ${newBackground.white};
         border-radius: 30px;
         padding: 8px;

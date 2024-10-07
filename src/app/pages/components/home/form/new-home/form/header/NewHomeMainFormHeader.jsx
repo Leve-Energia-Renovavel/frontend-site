@@ -1,15 +1,12 @@
-import { FormSubtitleContainer, FormTitleContainer } from './styles';
+import Image from 'next/image';
+import logoLeve from '../../../../../../../../resources/icons/small/logo-leve-yellow.svg';
+import { FormTitleContainer as Container } from './styles';
 
 export default function NewHomeMainFormHeader() {
-
     return (
-        <>
-            <FormTitleContainer className='formTitleContainer'>
-                <h2 className='formTitle'>Calcule sua economia</h2>
-            </FormTitleContainer>
-            <FormSubtitleContainer className='formSubtitleContainer'>
-                <p className='formSubtitle'>e veja como você ajuda a reduzir os danos ao meio ambiente sendo Leve</p>
-            </FormSubtitleContainer>
-        </>
+        <Container className='formTitleContainer'>
+            <h2 className='formTitle'>Calculadora</h2>
+            <Image src={logoLeve} alt='logo Leve' className='homeFormLogoLeve' />
+        </Container>
     )
 }

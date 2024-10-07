@@ -86,7 +86,8 @@ export const partners = {
 export const newBackground = {
     yellow: "#E1FF0F",
     orange: "#FF7133",
-    orangeLight: "#ff814b",
+    orangeLight: "#f89368",
+    orangeHigh: "#FAB681",
     orangeFocused: "#FDDCCB",
     orangeTranslucent: "#FCEEE6",
     green: "#005940",

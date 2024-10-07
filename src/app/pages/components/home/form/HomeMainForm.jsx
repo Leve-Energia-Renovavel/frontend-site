@@ -14,7 +14,7 @@ import { schemaValidation } from '../schema';
 import { HomeMainForm as Form, HomeMainFormContainer as FormContainer, FormFooterContainer, HomeFormContainer, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "../styles";
 import { requestValidation } from '../validation';
 
-import HomeMainFormHeader from './header/HomeMainFormHeader';
+import NewHomeMainFormHeader from './new-home/form/header/NewHomeMainFormHeader';
 
 const HomeFormButton = dynamic(() => import('../../utils/buttons/home/form/HomeFormButton'), { ssr: false });
 const HomeMainFormSimulator = dynamic(() => import('./simulator/HomeMainFormSimulator'), { ssr: false });
@@ -66,7 +66,7 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
         <HomeFormContainer isMobile={isMobile}>
             <FormContainer>
                 <Form id={`leadForm${isMobile && "Mobile"}`} onSubmit={handleSubmit}>
-                    <HomeMainFormHeader />
+                    <NewHomeMainFormHeader />
 
                     <TextField
                         inputRef={nameRef}
@@ -78,6 +78,11 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                         FormHelperTextProps={{
                             style: {
                                 textAlign: `center`
+                            }
+                        }}
+                        InputProps={{
+                            inputProps: {
+                                style: { textAlign: "center" }
                             }
                         }}
                         disabled={isLoading}
@@ -92,6 +97,11 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                             placeholder={`Telefone`}
                             variant="outlined"
                             type="text"
+                            InputProps={{
+                                inputProps: {
+                                    style: { textAlign: "center" }
+                                }
+                            }}
                             inputProps={{ inputMode: 'numeric' }}
                             disabled={isLoading}
                             required
@@ -104,6 +114,11 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                         placeholder={`E-mail ${selectedUserType === 'Empresa' ? "do responsável" : ""}`}
                         variant="outlined"
                         type="text"
+                        InputProps={{
+                            inputProps: {
+                                style: { textAlign: "center" }
+                            }
+                        }}
                         disabled={isLoading}
                         required
                     />
@@ -134,6 +149,11 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                                 placeholder={`CEP`}
                                 variant="outlined"
                                 type="text"
+                                InputProps={{
+                                    inputProps: {
+                                        style: { textAlign: "center" }
+                                    }
+                                }}
                                 disabled={isLoading}
                                 inputProps={{ inputMode: 'numeric' }}
                                 required
@@ -146,6 +166,11 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                             label={`Cupom de desconto`}
                             placeholder={`Cupom`}
                             variant="outlined"
+                            InputProps={{
+                                inputProps: {
+                                    style: { textAlign: "center" }
+                                }
+                            }}
                             type="text"
                             disabled={isLoading}
                         />
