@@ -71,7 +71,7 @@ export const newHomeBoxes = [
         subtitle: <p className="subtitle"><span className="highlighted">Desconto de até 20%</span> na conta de luz todo mês</p>
     },
     {
-        title: "Energia limpa e renovável",
+        title: "Energia limpa",
         subtitle: <p className="subtitle">Nossa energia é produzida a partir de <span className="highlighted">fontes solares</span></p>
     },
     {

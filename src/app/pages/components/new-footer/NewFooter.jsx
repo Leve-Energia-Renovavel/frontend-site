@@ -103,10 +103,6 @@ export default function NewFooter() {
             <p className='leveLegalData'>Leve Energia Renovável - CNPJ 45.193.816/0001-17</p>
           </LegalContainer>
 
-
-          <SunContainer className='leveFooterSunContainer'>
-            <Image src={sunImage} className='sunImage' alt={"Imagem de um sol se pondo, ao fundo do logo da Leve"} loading="lazy" />
-          </SunContainer>
         </FooterSecondaryContent>
       </Container >
     </>

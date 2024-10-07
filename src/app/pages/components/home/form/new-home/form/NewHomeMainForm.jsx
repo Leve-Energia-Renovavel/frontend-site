@@ -79,9 +79,6 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
                     type="text"
                     disabled={isLoading}
                     required
-                    InputLabelProps={{
-                        required: false,
-                    }}
                     InputProps={{
                         inputProps: {
                             style: { textAlign: "center" }
@@ -105,9 +102,7 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
                                 style: { textAlign: "center" }
                             }
                         }}
-                        InputLabelProps={{
-                            required: false,
-                        }}
+
                     />}
                 </InputMask>
                 <TextField
@@ -119,9 +114,6 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
                     type="text"
                     disabled={isLoading}
                     required
-                    InputLabelProps={{
-                        required: false,
-                    }}
                     InputProps={{
                         inputProps: {
                             style: { textAlign: "center" }
@@ -144,9 +136,6 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
                             inputProps: {
                                 style: { textAlign: "center" }
                             }
-                        }}
-                        InputLabelProps={{
-                            required: false,
                         }}
                     />}
                 </InputMask>

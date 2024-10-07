@@ -411,10 +411,12 @@ export const HomeMainForm = styled.form`
     font-weight: 400;
     text-align: left;
     color: ${newBackground.white};
+
+    text-align: center;
     
     max-width: 305px;
     
-    margin: 13px auto 0 auto;
+    margin: 0 auto;
   }
 
   .privacyPolicy {

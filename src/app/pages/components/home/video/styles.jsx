@@ -7,9 +7,6 @@ export const NewHomeVideoContainer = styled.section`
     align-items: center;
     text-align: center;
     background-color: ${newBackground.grey};
-    background: linear-gradient(to bottom, ${newBackground.grey} 85%, transparent 100%);
-
-    background-color: transparent;
 
     width: 100%;
     max-width: 1366px;
@@ -19,8 +16,8 @@ export const NewHomeVideoContainer = styled.section`
 
     .title {
         font-family: "Graphie";
-        font-size: 44px;  
-        line-height: 44px;  
+        font-size: 34px;  
+        line-height: 30px;  
         font-weight: 600;
         color: ${newBackground.green};
     }

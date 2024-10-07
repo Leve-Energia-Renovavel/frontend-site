@@ -33,17 +33,21 @@ export const HomeTutorialContent = styled.div`
       line-height: 30px;
       font-weight: 600;
       color: ${newBackground.white};
-
+      
       text-align: center;
     }
-
+    
     @media (max-width: 600px) {
+      .leveTutorialTitle {
+        font-size: 24px;
+      }
+
       border-radius: 0px;
       padding: 50px 20px;
     }
     @media (max-width: 400px) {
       border-radius: 0px;
-      padding: 30px 1rem;
+      padding: 30px 10px;
     }
 `
 export const HomeTutorialCardContainer = styled.div`
@@ -80,9 +84,9 @@ export const HomeTutorialCard = styled.div`
 
     .cardTitle {
       font-family: "Graphie";
-      font-size: 28px;
+      font-size: 22px;
       line-height: 24px;
-      font-weight: 700;
+      font-weight: 600;
       color: ${newBackground.green};
     }
     
@@ -108,6 +112,8 @@ export const HomeTutorialCard = styled.div`
       min-width: 300px;
       width: 380px;
       max-width: 380px;
+
+      gap: 10px;
   
       margin-top: 7px;
       
@@ -119,6 +125,7 @@ export const HomeTutorialCard = styled.div`
     
       .cardDescription {
         font-size: 18px;
+        line-height: 20px;
         max-width: 330px;
       }
 

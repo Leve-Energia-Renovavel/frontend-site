@@ -79,16 +79,13 @@ export const MobileBox = styled.div`
         line-height: 18px;
         font-weight: 700;
         color: ${newBackground.orange};
-
-        max-width: 130px;
-        margin-bottom: 10px;
     }
 
     .subtitle {
         font-family: "Graphie";
         font-size: 18px;
         line-height: 18px;
-        font-weight: 500;
+        font-weight: 400;
         color: ${newBackground.greyHigh};
 
         max-width: 160px;

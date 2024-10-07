@@ -17,8 +17,8 @@ export const HomeMainFormSimulationContainer = styled.div`
 
     .averageUserCost {
       font-family: "Graphie";
-        font-size: 20px;
-        font-weight: 900;
+        font-size: 18px;
+        font-weight: 500;
         color:${newBackground.white};
 
         min-width: 340px;
@@ -41,7 +41,7 @@ export const HomeMainFormSimulationContainer = styled.div`
       .averageUserCost {
         font-family: "Graphie";
         font-size: 20px;
-        font-weight: 900;
+        font-weight: 600;
         color:${newBackground.white};
 
         min-width: 200px;

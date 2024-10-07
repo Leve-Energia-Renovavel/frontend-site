@@ -85,9 +85,7 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                                 style: { textAlign: "center" }
                             }
                         }}
-                        InputLabelProps={{
-                            required: false,
-                        }}
+                        
                         disabled={isLoading}
                         required
                     />
@@ -104,9 +102,6 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                                 inputProps: {
                                     style: { textAlign: "center" }
                                 }
-                            }}
-                            InputLabelProps={{
-                                required: false,
                             }}
                             inputProps={{ inputMode: 'numeric' }}
                             disabled={isLoading}
@@ -125,9 +120,6 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                                 style: { textAlign: "center" }
                             }
                         }}
-                        InputLabelProps={{
-                            required: false,
-                        }}
                         disabled={isLoading}
                         required
                     />
@@ -140,9 +132,6 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                             placeholder={`CEP`}
                             variant="outlined"
                             type="text"
-                            InputLabelProps={{
-                                required: false,
-                            }}
                             InputProps={{
                                 inputProps: {
                                     style: { textAlign: "center" }

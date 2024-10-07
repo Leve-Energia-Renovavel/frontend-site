@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 export const FABContainer = styled.div`
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  right: 180px;
   z-index: 1000;
   cursor: pointer;
   background-color: #25d366;
@@ -19,8 +19,18 @@ export const FABContainer = styled.div`
   
   @media (max-width: 600px) {
     padding: 12px;
-    bottom: 40px;
-    right: 10px;
+    bottom: 34%;
+    right: 5%;
+  }
+  @media (max-width: 395px) {
+    padding: 12px;
+    bottom: 240px;
+    right: 20px;
+  }
+  @media (max-width: 380px) {
+    padding: 12px;
+    bottom: 8%;
+    right: 5%;
   }
 `
 

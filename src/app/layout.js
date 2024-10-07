@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="pt-BR" suppressHydrationWarning={true} >
-      <body suppressHydrationWarning={true}>
+      <body suppressHydrationWarning={true} style={{ background: "#EFEFEC"}}>
         <GoogleTagManager gtmId={gtmId} />
         <Header />
         {children}

@@ -11,7 +11,7 @@ export const NewHomeBoxesContainer = styled.section`
     max-width: 1366px;
     margin: 0 auto;
     
-    padding: 47px 65px;
+    padding: 47px 25px;
 
     gap: 42px;
     
@@ -51,7 +51,7 @@ export const BoxCard = styled.div`
 
     min-width: 250px;
     width: 100%;
-    max-width: 297px;
+    /* max-width: 297px; */
 
     min-height: 200px;
     max-height: 218px;
@@ -63,7 +63,9 @@ export const BoxCard = styled.div`
         font-weight: 600;
         color: ${newBackground.orange};
 
-        max-width: 90px;
+        white-space: nowrap;
+
+        /* max-width: 90px; */
     }
 
     .boxSubtitle {
@@ -73,8 +75,12 @@ export const BoxCard = styled.div`
         font-weight: 800;
         color: ${newBackground.greyHigh};
         
-        margin-top: 16px;
-        max-width: 180px;
+        margin-top: 20px;
+        max-width: 260px;
+        margin-bottom: 50px;
+    }
+
+    @media (max-width: 600px) {
     }
 `
 

@@ -54,14 +54,20 @@ export const NewHomeMainFormContent = styled.div`
     
     @media (max-width: 600px) {
         gap: 20px;
-        
+
         .leveHomeMainFormContentTitle {
-            font-size: 34px;
-        }
-        .leveHomeMainFormContentSubtitle {
             font-size: 24px;
-            line-height: 35px;
+            line-height: 24px;
+
+            margin-top: 20px;
+        }
+        span, .leveHomeMainFormContentSubtitle {
+            font-size: 18px;
+            line-height: 27px;
             max-width: 504px;
+
+            margin-bottom: 4px;
+
         }
     }
 `

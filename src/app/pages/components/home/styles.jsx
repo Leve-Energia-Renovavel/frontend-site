@@ -68,11 +68,13 @@ export const HomeContentContainer = styled.section`
     .dividerBar {
       display: block;
       width: 100vw; 
+      width: 1366px; 
       position: absolute;
       left: 0;
       right: 0; 
       border: 4px solid ${newBackground.grey};
       margin-left: calc(-50vw + 50%); /*Centers the bar by compensating for parent's padding */
+      margin: 0 auto;
     }
     
     @media (max-width: 600px) {
@@ -483,6 +485,8 @@ export const HomeMainForm = styled.form`
       font-size: 12px;
       line-height: 12px;
       color:  ${newBackground.white};
+
+      text-align: center;
       
     }
     
@@ -940,6 +944,9 @@ export const HomeSixthSectionContainer = styled.section`
     min-height: 670px;
 
     gap: 2rem;
+
+    max-width: 1366px;
+    margin: 0 auto;
     
     padding: 2rem 2rem 1rem 2rem;
     
@@ -988,7 +995,7 @@ export const HomeSixthSectionCard = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid ${newBackground.green};
+    border: 1px solid ${newBackground.green};
     background-color: ${newBackground.white};
     
     border-radius: 5px;

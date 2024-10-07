@@ -18,7 +18,7 @@ export const MobileNewHeaderContainer = styled.header`
     margin: 0 auto;
 
     height: 74px;
-    padding: 0 4rem;
+    padding: 0 2rem;
     
     position: fixed;
     top: 0;
@@ -47,10 +47,9 @@ export const MobileNewHeaderContainer = styled.header`
         padding: 8px;
 
         border-radius: 30px;
-        border: 1px solid ${newBackground.orange};
 
         color: ${props => props.isOpen ? newBackground.yellow : newBackground.orange};
-        background-color: ${props => props.isOpen ? newBackground.orange : newBackground.white};
+        background-color: ${props => props.isOpen ? newBackground.orange : newBackground.yellow};
         
         cursor: pointer;
         

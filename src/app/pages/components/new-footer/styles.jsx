@@ -8,11 +8,11 @@ export const FooterContainer = styled.footer`
 
     overflow: hidden;
 
-    max-width: 1920px;
-    /* max-width: 1366px; */
+    /* max-width: 1920px; */
+    max-width: 1366px;
     margin: 0 auto;
 
-    background: linear-gradient(to top,${newBackground.orange}, ${newBackground.orange} 10%,transparent 100%);
+    background: linear-gradient(to top,${newBackground.orange}, ${newBackground.orange} 10%, ${newBackground.grey} 100%);
 
     gap: 10rem; //change later...
     
@@ -164,6 +164,7 @@ export const LegalContainer = styled.div`
     }
 `
 export const SunContainer = styled.div`
+display: none;
     position: fixed; /* Ensure the container remains fixed */
     bottom: 0;
     left: 0;
@@ -173,7 +174,7 @@ export const SunContainer = styled.div`
     z-index: -1; /* Move the container behind other content */
     
     .sunImage { 
-        position: fixed; /* Ensure the sun image remains absolutely positioned */
+        position: absolute; /* Ensure the sun image remains absolutely positioned */
         bottom: -418px; /* Position the sun image at the bottom of its container */
         left: 50%; /* Position the sun image horizontally centered */
         transform: translateX(-50%) scaleY(-1); 
