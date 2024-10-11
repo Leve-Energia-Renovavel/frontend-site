@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import Clicksign from "./embedded";
 import { ClicksignComponentContainer as Container } from './styles';
 
-export default function ClicksignWidgetComponent() {
+export default function ClicksignWidgetComponent({ uuid }) {
 
     const router = useRouter()
 
@@ -36,7 +36,7 @@ export default function ClicksignWidgetComponent() {
 
             widgetInstance.on('signed', async function (event) {
                 storeUser.updateUser({ hasSignContract: true })
-                await finishSignup(router)
+                await finishSignup(router, uuid)
             });
 
             setWidget(widgetInstance);

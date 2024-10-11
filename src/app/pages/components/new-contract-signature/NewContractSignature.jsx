@@ -17,17 +17,16 @@ const ClicksignWidgetComponent = dynamic(() => import("@/app/utils/clicksign/Cli
 
 export default function NewContractSignature() {
 
-
-    const search = useSearchParams()
-
-    const uuid = search.get("uuid") || store.user.uuid || Cookies.get('leveUUID')
-
-    const router = useRouter()
     const store = useStoreUser()
     const storeClicksign = useStoreClickSign()
+    
+    const router = useRouter()
+    const search = useSearchParams()
 
     const user = JSON.parse(window.localStorage.getItem('user')) || store?.user
     const { phone } = user?.user ?? (store?.user || {})
+
+    const uuid = search.get("uuid") || store.user.uuid || Cookies.get('leveUUID')
 
     if (!uuid || uuid == "undefined") {
         router.push("/")
@@ -79,7 +78,7 @@ export default function NewContractSignature() {
                     <SignupFormHeader step={step} />
                     <SignupLinearProgress variant="determinate" value={value} />
                     <Typography className="contractSignInfo">Para assinar o contrato, esteja com o telefone <span className="phoneNumber">{formatPhoneNumber(phone)}</span> em mãos. Insira o código de confirmação que enviaremos a você via SMS.</Typography>
-                    <ClicksignWidgetComponent />
+                    <ClicksignWidgetComponent uuid={uuid}/>
                 </ContractSignatureForm>
             </Container>
         </>

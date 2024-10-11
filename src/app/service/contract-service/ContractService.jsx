@@ -11,9 +11,9 @@ export const getClicksignKey = async (uuid) => {
     }
 }
 
-export const finishSignup = async (router) => {
+export const finishSignup = async (router, uuid) => {
     try {
-        const data = { uuid: Cookies.get("leveUUID") }
+        const data = { uuid: uuid }
         const response = await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/finalizar-cadastro`, data)
         if (requestSuccessful(response?.status)) {
             const accessToken = response.data.access_token

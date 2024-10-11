@@ -65,7 +65,7 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
     return (
         <HomeFormContainer isMobile={isMobile}>
             <FormContainer>
-                <Form id={`leadForm${isMobile && "Mobile"}`} onSubmit={handleSubmit}>
+                <Form id={`leadForm`} onSubmit={handleSubmit}>
                     <NewHomeMainFormHeader />
 
                     <TextField
@@ -85,7 +85,7 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                                 style: { textAlign: "center" }
                             }
                         }}
-                        
+
                         disabled={isLoading}
                         required
                     />
@@ -188,7 +188,6 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                     handleSimulationCost={setSimulationCost} />
             </FormContainer>
 
-            <HomeFormButton title={texts.discountCalculate} isLoading={isLoading} isMobile={false} />
             <p className='privacyPolicyDisclaimer'>{texts.agreedToReceiveEmails}<span className='privacyPolicy' onClick={() => router.push(`politica-de-privacidade`)}>{texts.privacyPolicy}</span>.</p>
         </HomeFormContainer>
     )

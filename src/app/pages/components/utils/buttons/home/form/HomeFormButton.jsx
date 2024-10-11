@@ -7,7 +7,7 @@ export default function HomeFormButton({ title, isLoading, isMobile }) {
         <FormButton
             ismobile={isMobile.toString()}
             type='submit'
-            form={`leadForm${isMobile && "Mobile"}`}>
+            form={`leadForm`}>
             {isLoading ? <Loading size={20} /> : <span>{title}</span>}
         </FormButton>
     )

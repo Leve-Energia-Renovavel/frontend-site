@@ -34,7 +34,9 @@ export default function HomeMain() {
 
                 <NewHomeTutorial />
 
-                <NewHomeForm />
+                <NewHomeForm
+                    setErrorMessage={setErrorMessage}
+                    setNotifications={setNotifications}/>
 
                 <HomeMainForm
                     setErrorMessage={setErrorMessage}
