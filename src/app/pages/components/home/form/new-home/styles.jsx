@@ -55,17 +55,22 @@ export const NewHomeMainFormContent = styled.div`
     @media (max-width: 600px) {
         gap: 20px;
 
+        text-align: center;
+
         .leveHomeMainFormContentTitle {
             font-size: 24px;
             line-height: 24px;
 
             margin-top: 20px;
+
+            max-width: 250px;
+            margin: 0 auto;
         }
         span, .leveHomeMainFormContentSubtitle {
             font-size: 18px;
             line-height: 27px;
-            max-width: 504px;
-
+            max-width: 350px;
+            
             margin-bottom: 4px;
 
         }
