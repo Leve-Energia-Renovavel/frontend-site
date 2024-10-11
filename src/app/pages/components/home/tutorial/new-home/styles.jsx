@@ -117,7 +117,7 @@ export const HomeTutorialCard = styled.div`
   
       margin-top: 7px;
       
-      padding: 16px 10px;
+      padding: 16px 20px;
 
       .cardNumber {
         font-size: 20px;
@@ -146,7 +146,7 @@ export const HomeTutorialCard = styled.div`
   
       margin-top: 7px;
       
-      padding: 13px 10px;
+      padding: 13px 20px;
 
       .cardNumber {
         font-size: 20px;
