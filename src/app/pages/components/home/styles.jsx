@@ -16,7 +16,7 @@ export const HomeContainer = styled.div`
     
     overflow-x: hidden; /* Disables horizontal scrolling */
     
-    @media (max-width: 600px) {
+    @media (max-width: 600px)  {
       padding: 0;
       border: 0;
     }
@@ -30,32 +30,28 @@ export const FormTitleContainer = styled.div`
   
   animation: ${fadeInUp} 0.5s ease-out; 
   
+  h2 {
+    font-family: "Graphie";
+    font-weight: 600;
+    color: ${newBackground.yellow};
+    white-space: nowrap;
+    font-size: 27px;
+    text-align: left;
+  }
+
   @media (max-width: 600px) {
     flex-direction: column;
     gap: 4px;
-  }
-
-  h2 {
-      font-family: "Graphie";
-      font-weight: 600;
-      color: ${newBackground.yellow};
-      white-space: nowrap;
-      font-size: 27px;
-      text-align: left;
-      
-      @media (max-width: 600px) {
-        font-size: 27px;
-      }
-
-  }
-
-  .economyIcon {
-    @media (max-width: 600px) {
+    
+    .economyIcon {
       width: 32px;
       height: 32px;
     }
-  }
-`
+    h2 {
+      font-size: 27px;
+      }
+    }
+  `
 export const HomeContentContainer = styled.section`
     display: flex;
     flex-direction: column;
@@ -237,7 +233,6 @@ export const HomeFormContainer = styled.div`
     }
   }
 
-  
   @media (max-width: 600px) {
     ${props => props.isMobile ? `display:block;` : `display:none;`};
     max-width: 100vw;

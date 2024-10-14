@@ -36,7 +36,7 @@ export default function HomeMain() {
 
                 <NewHomeForm
                     setErrorMessage={setErrorMessage}
-                    setNotifications={setNotifications}/>
+                    setNotifications={setNotifications} />
 
                 <HomeMainForm
                     setErrorMessage={setErrorMessage}
