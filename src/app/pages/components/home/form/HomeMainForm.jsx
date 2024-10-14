@@ -63,9 +63,9 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
     }
 
     return (
-        <HomeFormContainer isMobile={isMobile}>
-            <FormContainer>
-                <Form id={`leadForm`} onSubmit={handleSubmit}>
+        <HomeFormContainer isMobile={isMobile} className='homeMainFormGeneralContainer'>
+            <FormContainer className='homeMainFormContainer'>
+                <Form id={`${isMobile ? "leadFormMobile" : "leadForm"}`} onSubmit={handleSubmit}>
                     <NewHomeMainFormHeader />
 
                     <TextField
@@ -100,10 +100,10 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                             type="text"
                             InputProps={{
                                 inputProps: {
-                                    style: { textAlign: "center" }
+                                    style: { textAlign: "center" },
+                                    inputMode: 'numeric'
                                 }
                             }}
-                            inputProps={{ inputMode: 'numeric' }}
                             disabled={isLoading}
                             required
                         />}
@@ -134,11 +134,11 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                             type="text"
                             InputProps={{
                                 inputProps: {
-                                    style: { textAlign: "center" }
+                                    style: { textAlign: "center" },
+                                    inputMode: 'numeric'
                                 }
                             }}
                             disabled={isLoading}
-                            inputProps={{ inputMode: 'numeric' }}
                             required
                         />}
                     </InputMask>
