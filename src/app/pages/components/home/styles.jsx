@@ -390,7 +390,9 @@ export const HomeMainForm = styled.form`
       & .MuiInputLabel-shrink {
         /* Styles for the focused label */
         /* line-height: 2.4375em;  */
-        line-height: 55px;   //label lower
+        font-size: 17px;
+        //line-height: 55px;
+        line-height: 57px;   //label lower
         margin-left: 65px;   //label centralized
       }
 
@@ -459,9 +461,18 @@ export const HomeMainForm = styled.form`
           text-align: center;
         }
 
+        & .MuiInputLabel-shrink {
+          /* Styles for the focused label */
+          /* line-height: 2.4375em;  */
+          font-size: 16px;
+          //line-height: 55px;
+          line-height: 57px;   //label lower
+          margin-left: 65px;   //label centralized
+      }
+
         .MuiOutlinedInput-input {
         // styles for the user input text
-          color: ${newBackground.green};
+          color: ${newBackground.orange};
         }
         & label {
           font-size: 20px;

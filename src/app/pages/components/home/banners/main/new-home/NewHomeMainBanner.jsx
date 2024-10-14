@@ -5,7 +5,7 @@ import bannerImage from '../../../../../../../resources/img/new-home-image.png'
 import HomeMainBannerMobile from '../mobile/HomeMainBannerMobile'
 import { NewHomeBannerImageContainer as BannerImageContainer, NewHomeMainBannerContainer as Container, CTAButton, NewHomeMainDescriptionContainer as DescriptionContainer, NewHomeMainContainer as HomeMain, NewHomeMainBaloon } from './styles'
 
-export default function NewHomeMainBanner({ isMobile }) {
+export default function NewHomeMainBanner() {
   return (
     <>
       <Container className="leveHomeMainBannerContainer">

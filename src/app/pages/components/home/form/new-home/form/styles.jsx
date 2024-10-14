@@ -344,18 +344,19 @@ export const HomeMainForm = styled.form`
       & .MuiInputLabel-shrink {
         /* Styles for the focused label */
         /* line-height: 2.4375em;  */
-        line-height: 55px;   //label lower
+        font-size: 17px;
+        line-height: 57px;   //label lower
         margin-left: 65px;   //label centralized
       }
 
       .MuiOutlinedInput-input {
         // styles for the user input text
         font-family: "Graphie";
-        font-size: 20px;
+        font-size: 22px;
         height: 2px;
         padding: 24px 14px;
         font-weight: 700;
-        color: ${newBackground.green};
+        color: ${newBackground.orange};
         }
 
         & label {

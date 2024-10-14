@@ -1,11 +1,9 @@
-import Script from 'next/script'
+import Script from 'next/script';
 
-export default function Hotjar({ hotjarId }) {
-    console.log("RICK ASLEY ==>>", process.env.NODE_ENV)
-    console.log("RICK ASLEY ==>>", process.env.NODE_ENV)
+export default function Hotjar() {
+    const hotjarId = process.env.NEXT_PUBLIC_HOTJAR_ID;
     return (
         <Script id="hotjar">
-
             {`(function (h, o, t, j, a, r) {
                     h.hj =
                     h.hj ||
