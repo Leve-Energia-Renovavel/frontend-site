@@ -1,9 +1,11 @@
-import Head from 'next/head'
 import Script from 'next/script'
 
 export default function Hotjar({ hotjarId }) {
+    console.log("RICK ASLEY ==>>", process.env.NODE_ENV)
+    console.log("RICK ASLEY ==>>", process.env.NODE_ENV)
     return (
-        <Head id="hotjar">
+        <Script id="hotjar">
+
             {`(function (h, o, t, j, a, r) {
                     h.hj =
                     h.hj ||
@@ -18,6 +20,6 @@ export default function Hotjar({ hotjarId }) {
                         r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
                         a.appendChild(r);
                         })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");`}
-        </Head>
+        </Script>
     )
 }

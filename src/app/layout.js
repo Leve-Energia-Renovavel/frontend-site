@@ -5,7 +5,6 @@ import "./globals.css";
 import Footer from './pages/components/footer/Footer';
 import Header from './pages/components/header/Header';
 import Hotjar from './pages/components/hotjar/Hotjar';
-import Head from 'next/head';
 
 const WhatsAppFAB = dynamic(() => import('./pages/components/fabWhatsapp/WhatsappFAB'), { ssr: false });
 
@@ -36,7 +35,10 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="pt-BR" suppressHydrationWarning={true} >
-      {productionEnv && <Hotjar hotjarId={hotjarId} />}
+      {/* {productionEnv && <Hotjar hotjarId={hotjarId} />} */}
+      <head>
+        <Hotjar hotjarId={hotjarId} />
+      </head>
       <body suppressHydrationWarning={true} style={{ background: "#EFEFEC" }}>
         <GoogleTagManager gtmId={gtmId} />
         <Header />
