@@ -386,14 +386,15 @@ export const HomeMainForm = styled.form`
       border-radius: 10px;
       height: 42px;
       margin-bottom: 8px;
+      border: 1px solid ${newBackground.white};
 
       & .MuiInputLabel-shrink {
         /* Styles for the focused label */
         /* line-height: 2.4375em;  */
         font-size: 17px;
-        //line-height: 55px;
-        line-height: 57px;   //label lower
+        line-height: 16px;   //label lower
         margin-left: 65px;   //label centralized
+        margin-top: 10px;
       }
 
       .MuiOutlinedInput-input {
@@ -461,13 +462,15 @@ export const HomeMainForm = styled.form`
           text-align: center;
         }
 
+
         & .MuiInputLabel-shrink {
           /* Styles for the focused label */
           /* line-height: 2.4375em;  */
           font-size: 16px;
-          //line-height: 55px;
-          line-height: 57px;   //label lower
+          line-height: 16px;   //label lower
           margin-left: 65px;   //label centralized
+          margin-top: 10px;
+
       }
 
         .MuiOutlinedInput-input {
@@ -477,6 +480,7 @@ export const HomeMainForm = styled.form`
         & label {
           font-size: 20px;
           color:  ${newBackground.green};
+
       }
     }
 

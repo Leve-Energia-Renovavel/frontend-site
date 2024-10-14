@@ -10,7 +10,7 @@ import infoJson from '../../../../../public/info.json';
 import reclameAquiLogo from '../../../../resources/icons/icon-RA.png';
 import sunImage from "../../../../resources/icons/small/ellipse-small-reduced.webp";
 import logoLeve from "../../../../resources/icons/small/leve-logo-white-icon-small.png";
-import thumbnail from '../../../../resources/img/capa-manifesto.png';
+import thumbnail from '../../../../resources/img/capa-manifesto.webp';
 import { ButtonContainer, FooterContainer as Container, FooterButton, FooterMainContent, FooterMobile, FooterSecondaryContent, LegalContainer, FooterSocialMediaContainer as SocialMediaContent, SunContainer, VideoContainer } from './styles';
 
 export default function NewFooter() {
@@ -60,6 +60,8 @@ export default function NewFooter() {
               <Image src={thumbnail} className="videoThumbnail"
                 alt={"Thumbnail do Vídeo da Leve Energia Renovavel"}
                 priority={false}
+                width={650}
+                height={365}
                 loading='lazy'
                 onClick={handlePlay} />
             ) : (

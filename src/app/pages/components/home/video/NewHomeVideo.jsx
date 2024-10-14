@@ -1,7 +1,7 @@
 "use client"
 
 import Image from 'next/image';
-import thumbnail from '../../../../../resources/img/capa-manifesto.png';
+import thumbnail from '../../../../../resources/img/capa-manifesto.webp';
 import { ButtonContainer, NewHomeVideoContainer, VideoContainer } from './styles';
 import { useState } from 'react';
 
@@ -25,6 +25,8 @@ export default function NewHomeVideo() {
                     <Image src={thumbnail} className="videoThumbnail"
                         alt={"Thumbnail do Vídeo da Leve Energia Renovavel"}
                         priority={false}
+                        width={650}
+                        height={365}
                         loading='lazy'
                         onClick={handlePlay} />
                 ) : (

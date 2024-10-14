@@ -345,8 +345,9 @@ export const HomeMainForm = styled.form`
         /* Styles for the focused label */
         /* line-height: 2.4375em;  */
         font-size: 17px;
-        line-height: 57px;   //label lower
+        line-height: 17px;   //label lower
         margin-left: 65px;   //label centralized
+        margin-top: 10px;
       }
 
       .MuiOutlinedInput-input {
