@@ -53,12 +53,11 @@ export const viewport = {
 export default function RootLayout({ children }) {
 
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
-  const productionEnv = process.env.NODE_ENV === "production"
 
   return (
     <html lang="pt-BR" suppressHydrationWarning={true} >
       <head>
-        {productionEnv && <Hotjar />}
+        <Hotjar />
       </head>
       <body suppressHydrationWarning={true} style={{ background: "#EFEFEC" }}>
         <GoogleTagManager gtmId={gtmId} />
