@@ -15,12 +15,13 @@ describe('Complete Home Main Form', () => {
     cy.task('log', `TEST DATA: ${JSON.stringify(allTestData)}`)
 
     cy.visit(path);
-    cy.get('input[placeholder="Nome Completo "]').type(name);
-    cy.get('input[placeholder="Telefone"]').type(phone);
-    cy.get('input[placeholder="E-mail "]').type(email);
-    cy.get('input[placeholder="CEP"]').type(cep);
+    cy.get('.homeMainBannerButton').contains('Calcular meu desconto').click();
+    cy.get('input[placeholder="Nome completo "]').first().type(name);
+    cy.get('input[placeholder="Telefone"]').first().type(phone);
+    cy.get('input[placeholder="E-mail "]').first().type(email);
+    cy.get('input[placeholder="CEP"]').first().type(cep);
 
-    cy.get('.MuiSlider-rail').then(($slider) => {
+    cy.get('.homeSimulatorContainer .MuiSlider-rail').first().then(($slider) => {
       const sliderWidth = $slider.width();
       const sliderHeight = $slider.height();
       const centerX = sliderWidth / 2;
@@ -29,7 +30,7 @@ describe('Complete Home Main Form', () => {
       cy.wrap($slider).click(centerX, centerY);
     });
 
-    cy.get('button[type="submit"]').contains('Calcular desconto').click();
+    cy.get('button[type="submit"]').eq(1).contains('Calcular').click();
 
     cy.intercept('POST', `${requestUrl}`).as('postRequest');
     cy.wait('@postRequest').then((interception) => {
@@ -51,12 +52,13 @@ describe('Complete Home Main Form', () => {
     cy.task('log', `TEST DATA: ${JSON.stringify(allTestData)}`)
 
     cy.visit(path);
-    cy.get('input[placeholder="Nome Completo "]').type(name);
-    cy.get('input[placeholder="Telefone"]').type(phone);
-    cy.get('input[placeholder="E-mail "]').type(generateEmail('failure', 'mainForm2'));
-    cy.get('input[placeholder="CEP"]').type("08311010");
+    cy.get('.homeMainBannerButton').contains('Calcular meu desconto').click();
+    cy.get('input[placeholder="Nome completo "]').first().type(name);
+    cy.get('input[placeholder="Telefone"]').first().type(phone);
+    cy.get('input[placeholder="E-mail "]').first().type(email);
+    cy.get('input[placeholder="CEP"]').first().type(cep);
 
-    cy.get('.MuiSlider-rail').then(($slider) => {
+    cy.get('.homeSimulatorContainer .MuiSlider-rail').first().then(($slider) => {
       const sliderWidth = $slider.width();
       const sliderHeight = $slider.height();
       const centerX = sliderWidth / 2;
@@ -65,7 +67,7 @@ describe('Complete Home Main Form', () => {
       cy.wrap($slider).click(centerX, centerY);
     });
 
-    cy.get('button[type="submit"]').contains('Calcular desconto').click();
+    cy.get('button[type="submit"]').eq(1).contains('Calcular').click();
 
     cy.intercept('POST', `${requestUrl}`).as('postRequest');
     cy.wait('@postRequest').then((interception) => {
@@ -88,12 +90,13 @@ describe('Complete Home Main Form', () => {
     cy.task('log', `TEST DATA: ${JSON.stringify(allTestData)}`)
 
     cy.visit(path);
-    cy.get('input[placeholder="Nome Completo "]').type(name);
-    cy.get('input[placeholder="Telefone"]').type(phone);
-    cy.get('input[placeholder="E-mail "]').type(generateEmail('failure', 'mainForm3'));
-    cy.get('input[placeholder="CEP"]').type("01224050");
+    cy.get('.homeMainBannerButton').contains('Calcular meu desconto').click();
+    cy.get('input[placeholder="Nome completo "]').first().type(name);
+    cy.get('input[placeholder="Telefone"]').first().type(phone);
+    cy.get('input[placeholder="E-mail "]').first().type(email);
+    cy.get('input[placeholder="CEP"]').first().type(cep);
 
-    cy.get('.MuiSlider-rail').then(($slider) => {
+    cy.get('.homeSimulatorContainer .MuiSlider-rail').first().then(($slider) => {
       const sliderWidth = $slider.width();
       const sliderHeight = $slider.height();
       const centerX = sliderWidth / 2;
@@ -102,7 +105,7 @@ describe('Complete Home Main Form', () => {
       cy.wrap($slider).click(centerX, centerY);
     });
 
-    cy.get('button[type="submit"]').contains('Calcular desconto').click();
+    cy.get('button[type="submit"]').eq(1).contains('Calcular').click();
 
     cy.intercept('POST', `${requestUrl}`).as('postRequest');
     cy.wait('@postRequest').then((interception) => {
@@ -124,12 +127,13 @@ describe('Complete Home Main Form', () => {
     cy.task('log', `TEST DATA: ${JSON.stringify(allTestData)}`)
 
     cy.visit(path);
-    cy.get('input[placeholder="Nome Completo "]').type(name);
-    cy.get('input[placeholder="Telefone"]').type(phone);
-    cy.get('input[placeholder="E-mail "]').type(generateEmail('failure', 'mainForm3'));
-    cy.get('input[placeholder="CEP"]').type("03621120");
+    cy.get('.homeMainBannerButton').contains('Calcular meu desconto').click();
+    cy.get('input[placeholder="Nome completo "]').first().type(name);
+    cy.get('input[placeholder="Telefone"]').first().type(phone);
+    cy.get('input[placeholder="E-mail "]').first().type(email);
+    cy.get('input[placeholder="CEP"]').first().type(cep);
 
-    cy.get('.MuiSlider-rail').then(($slider) => {
+    cy.get('.homeSimulatorContainer .MuiSlider-rail').first().then(($slider) => {
       const sliderWidth = $slider.width();
       const sliderHeight = $slider.height();
       const centerX = sliderWidth / 2;
@@ -138,7 +142,7 @@ describe('Complete Home Main Form', () => {
       cy.wrap($slider).click(centerX, centerY);
     });
 
-    cy.get('button[type="submit"]').contains('Calcular desconto').click();
+    cy.get('button[type="submit"]').eq(1).contains('Calcular').click();
 
     cy.intercept('POST', `${requestUrl}`).as('postRequest');
     cy.wait('@postRequest').then((interception) => {
@@ -161,12 +165,13 @@ describe('Complete Home Main Form', () => {
     cy.task('log', `TEST DATA: ${JSON.stringify(allTestData)}`)
 
     cy.visit(path);
-    cy.get('input[placeholder="Nome Completo "]').type(name);
-    cy.get('input[placeholder="Telefone"]').type(phone);
-    cy.get('input[placeholder="E-mail "]').type(email);
-    cy.get('input[placeholder="CEP"]').type(cep);
+    cy.get('.homeMainBannerButton').contains('Calcular meu desconto').click();
+    cy.get('input[placeholder="Nome completo "]').first().type(name);
+    cy.get('input[placeholder="Telefone"]').first().type(phone);
+    cy.get('input[placeholder="E-mail "]').first().type(email);
+    cy.get('input[placeholder="CEP"]').first().type(cep);
 
-    cy.get('.MuiSlider-rail').then(($slider) => {
+    cy.get('.homeSimulatorContainer .MuiSlider-rail').first().then(($slider) => {
       const sliderWidth = $slider.width();
       const sliderHeight = $slider.height();
       const centerX = sliderWidth / 2;
@@ -175,7 +180,7 @@ describe('Complete Home Main Form', () => {
       cy.wrap($slider).click(centerX, centerY);
     });
 
-    cy.get('button[type="submit"]').contains('Calcular desconto').click();
+    cy.get('button[type="submit"]').eq(1).contains('Calcular').click();
 
     cy.intercept('POST', `${requestUrl}`).as('postRequest');
     cy.wait('@postRequest').then((interception) => {

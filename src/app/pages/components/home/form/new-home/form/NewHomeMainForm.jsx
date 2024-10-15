@@ -94,12 +94,12 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
                         placeholder={`Telefone`}
                         variant="outlined"
                         type="text"
-                        inputProps={{ inputMode: 'numeric' }}
                         disabled={isLoading}
                         required
                         InputProps={{
                             inputProps: {
-                                style: { textAlign: "center" }
+                                style: { textAlign: "center" },
+                                inputMode: 'numeric'
                             }
                         }}
 
@@ -130,11 +130,11 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
                         variant="outlined"
                         type="text"
                         disabled={isLoading}
-                        inputProps={{ inputMode: 'numeric' }}
                         required
                         InputProps={{
                             inputProps: {
-                                style: { textAlign: "center" }
+                                style: { textAlign: "center" },
+                                inputMode: 'numeric'
                             }
                         }}
                     />}
