@@ -158,16 +158,18 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                         disabled={isLoading}
                     />
 
-                    <UserTypeFormContainer>
+                    <UserTypeFormContainer className='homeFormUserTypeFormContainer'>
                         <p className='chooseWhereToEconomy'>{texts.iWantToEconomy}</p>
-                        <UserTypeFormButtonContainer>
+                        <UserTypeFormButtonContainer className='homeFormUserTypeButtons'>
                             <Select
+                                className='homeFormCompanySelect'
                                 startIcon={<StoreIcon />}
                                 onClick={() => handleSelect('Empresa')}
                                 selected={selectedUserType === 'Empresa'} >
                                 {texts.company}
                             </Select>
                             <Select
+                                className='homeFormHouseSelect'
                                 startIcon={<HomeIcon />}
                                 onClick={() => handleSelect('Residencia')}
                                 selected={selectedUserType === 'Residencia'}>

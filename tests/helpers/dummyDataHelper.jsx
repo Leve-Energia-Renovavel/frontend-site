@@ -4,6 +4,10 @@ export const generateEmail = (scenario, partner) => {
     const dateSuffix = getBrazilianDate();
     return `marcos.ferreira+${partner}-${scenario}-${dateSuffix}@leveenergia.com.br`;
 };
+export const generateEmailForStressTesting = (scenario, partner, usertype) => {
+    const dateSuffix = getBrazilianDate();
+    return `marcos.ferreira+${usertype}-${partner}-${scenario}-${dateSuffix}@leveenergia.com.br`;
+};
 
 export const dummyForm = {
     user: {
