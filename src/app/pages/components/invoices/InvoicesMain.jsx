@@ -10,7 +10,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
-import { newBackground } from '../../styles';
+import { background } from '../../styles';
 import Messages from '../messages/Messages';
 import FormButton from '../utils/buttons/FormButton';
 import { InvoiceContainer as Container, InvoicesMainCardChangeDate, InvoicesMainCardContainer, InvoicesMainContainer, InvoicesTimelineContainer, NextBillButtonContainer, NextBillDetail, NextBillTitleContainer, PreviousInvoicesContainer, WarningBox } from './styles';
@@ -132,7 +132,7 @@ export default function InvoicesMain() {
                         >
                             Painel
                         </Link>
-                        <Typography style={{ fontWeight: 'bold', color: newBackground.orange }}>Faturas</Typography>
+                        <Typography style={{ fontWeight: 'bold', color: background.orange }}>Faturas</Typography>
                     </Breadcrumbs>
                     <InvoicesMainCardContainer>
                         {nextBillExists ? (

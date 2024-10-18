@@ -1,10 +1,10 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Button, CircularProgress } from "@mui/material";
 
 export const FormButton = styled(Button)`
-  background-color: ${newBackground.orange};
-  color: ${newBackground.white};
+  background-color: ${background.orange};
+  color: ${background.white};
   border-radius: 30px;
 
   height: 52px;
@@ -23,15 +23,15 @@ export const FormButton = styled(Button)`
     font-size: 20px;
     font-weight: 700;
     text-transform: none;
-    color: ${newBackground.white};
+    color: ${background.white};
   }
   
   &:hover {
     cursor: pointer;
-    background-color: ${newBackground.yellow};
+    background-color: ${background.yellow};
 
     span {
-      color: ${newBackground.green};
+      color: ${background.green};
     }
   }
   
@@ -42,7 +42,7 @@ export const FormButton = styled(Button)`
 `
 
 export const Loading = styled(CircularProgress)`
-  color: ${newBackground.green};
+  color: ${background.green};
   width: 10px;
   height: 10px;
 

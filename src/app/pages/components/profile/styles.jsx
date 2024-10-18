@@ -1,7 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Alert } from "@mui/material";
-import { newBackground, notification } from "../../styles";
+import { background, notification } from "../../styles";
 
 const fadeInUp = keyframes`
   from {
@@ -18,14 +18,14 @@ export const ProfileContainer = styled.div`
     display: flex;
     flex-direction: row;
     max-width: 100vw;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     padding: 2rem;
     
     h1 {
       font-family: "Graphie", sans-serif;
       font-size: 1.5rem;
-      color: ${newBackground.orange};
+      color: ${background.orange};
       font-weight: 700;
     }
 
@@ -42,8 +42,8 @@ export const ProfileContainer = styled.div`
 
 `
 export const ProfileMainContent = styled.div`
-    background-color: ${newBackground.white};
-    border: 1px solid ${newBackground.orange};
+    background-color: ${background.white};
+    border: 1px solid ${background.orange};
     border-radius: 4px;
     
     padding: 2rem;
@@ -81,8 +81,8 @@ export const ProfileChangePasswordContent = styled.div`
     align-items: center;
     gap: 1rem;
     
-    background-color: ${newBackground.white};
-    border: 1px solid ${newBackground.orange};
+    background-color: ${background.white};
+    border: 1px solid ${background.orange};
     border-radius: 4px;
     
     padding: 2rem;
@@ -120,8 +120,8 @@ export const ProfileSecondaryEmailContent = styled.div`
     display: flex;
     flex-direction: column;
 
-    background-color: ${newBackground.white};
-    border: 1px solid ${newBackground.orange};
+    background-color: ${background.white};
+    border: 1px solid ${background.orange};
     border-radius: 4px;
     
     padding: 2rem;

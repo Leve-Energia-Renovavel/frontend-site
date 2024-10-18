@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Box, MenuItem, Select } from "@mui/material";
@@ -24,7 +24,7 @@ export const NewInvoicesSelectButton = styled.div`
     max-height: 42px;
 
     background-color: transparent;
-    border: 2px solid ${newBackground.green};
+    border: 2px solid ${background.green};
     padding: 12px 8px;
 
     border-radius: 8px;
@@ -38,7 +38,7 @@ export const NewInstallationAddButton = styled.div`
 
     gap: 4px;
 
-    background-color: ${newBackground.orange};
+    background-color: ${background.orange};
     padding: 12px 8px;
     
     border-radius: 8px;
@@ -48,12 +48,12 @@ export const NewInstallationAddButton = styled.div`
         font-size: 17px;
         line-height: 21px;
         font-weight: 600;
-        color: ${newBackground.white};
+        color: ${background.white};
     }
     
     &:hover {
         cursor: pointer;
-        background-color: ${newBackground.green};
+        background-color: ${background.green};
     }
 `
 
@@ -69,7 +69,7 @@ export const SelectInstallation = styled(Select)`
         font-size: 17px;
         line-height: 21px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 
     &.MuiOutlinedInput-root {
@@ -88,7 +88,7 @@ export const SelectInstallation = styled(Select)`
     }
 
     .Mui-focused {
-        border-color: ${newBackground.green}; // Border color: ;
+        border-color: ${background.green}; // Border color: ;
     }
 
     .MuiOutlinedInput-notchedOutline {
@@ -98,7 +98,7 @@ export const SelectInstallation = styled(Select)`
         border-color: transparent; // Border color on hover
     }
     .MuiSvgIcon-root {
-        fill: ${newBackground.green} !important;
+        fill: ${background.green} !important;
     }
 `
 
@@ -109,7 +109,7 @@ export const InstallationItem = styled(MenuItem)`
     font-weight: 600;
     font-size: 17px;
     line-height: 21px;
-    color: ${newBackground.orange};
+    color: ${background.orange};
 `
 
 

@@ -1,5 +1,5 @@
 import { fadeInUp, slideAndDisappear } from "@/app/pages/animations";
-import { newBackground, partners } from "@/app/pages/styles";
+import { background, partners } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Button, CircularProgress, Slider } from "@mui/material";
 
@@ -19,7 +19,7 @@ export const HomeFormContainer = styled.div`
     line-height: 12px;
     font-weight: 500;
     text-align: left;
-    color: ${props => props.islocaliza === "true" ? partners.localiza.green : newBackground.orange};
+    color: ${props => props.islocaliza === "true" ? partners.localiza.green : background.orange};
 
     max-width: 360px;
     
@@ -38,22 +38,22 @@ export const HomeFormContainer = styled.div`
     font-weight: 700;
     text-decoration: underline;
     text-align: left;
-    color: ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
+    color: ${props => props.islocaliza == "true" ? partners.localiza.green : background.orange};
 
     border-radius: 5px;
 
     &:hover{
       cursor: pointer;
-      color: ${newBackground.green};
-      background-color: ${newBackground.yellow};
+      color: ${background.green};
+      background-color: ${background.yellow};
     }
   }
 
 `
 
 export const HomeMainFormContainer = styled.div`
-    background-color: ${newBackground.white};
-    border: 1px solid ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
+    background-color: ${background.white};
+    border: 1px solid ${props => props.islocaliza == "true" ? partners.localiza.green : background.orange};
     border-radius: 15px;
 
     height: auto;
@@ -73,7 +73,7 @@ export const HomeMainFormContainer = styled.div`
 export const HomeMainForm = styled.form`
     display: flex;
     flex-direction: column;
-    background-color: ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
+    background-color: ${props => props.islocaliza == "true" ? partners.localiza.green : background.orange};
 
     border-radius: 15px;
     
@@ -93,7 +93,7 @@ export const HomeMainForm = styled.form`
     p {
       font-family: "Graphie";
       font-weight: 500;
-      color: ${newBackground.white};
+      color: ${background.white};
       font-size: 14px;
       line-height: 12px;
 
@@ -112,7 +112,7 @@ export const HomeMainForm = styled.form`
     .highlighted {
       font-family: "Graphie";
       font-weight: 500;
-      color: ${newBackground.yellow};
+      color: ${background.yellow};
       font-size: 14px;
       line-height: 14px;
     }
@@ -122,7 +122,7 @@ export const HomeMainForm = styled.form`
     }
 
     .homeFormInput {
-      background-color: ${newBackground.white};
+      background-color: ${background.white};
       border-radius: 10px;
       height: 42px;
       margin-bottom: 8px;
@@ -140,7 +140,7 @@ export const HomeMainForm = styled.form`
         height: 0.4375em;
         padding: 20px 14px;
         font-weight: 700;
-        color: ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
+        color: ${props => props.islocaliza == "true" ? partners.localiza.green : background.orange};
 
         }
 
@@ -148,7 +148,7 @@ export const HomeMainForm = styled.form`
           font-family: "Graphie";
           font-weight: 500;
           font-size: 14px;
-          color: ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
+          color: ${props => props.islocaliza == "true" ? partners.localiza.green : background.orange};
 
         }
 
@@ -160,7 +160,7 @@ export const HomeMainForm = styled.form`
           & fieldset {
             height: 42px;
             border-radius: 10px;
-            border-color: ${newBackground.white};
+            border-color: ${background.white};
           }
         }
 
@@ -182,7 +182,7 @@ export const FormTitleContainer = styled.div`
   h2 {
       font-family: "Graphie";
       font-weight: 600;
-      color: ${newBackground.yellow};
+      color: ${background.yellow};
       white-space: nowrap;
       font-size: 27px;
       text-align: left;
@@ -213,7 +213,7 @@ export const HomeMainFormSimulationContainer = styled.div`
       font-family: "Graphie";
       font-size: 17px;
       font-weight: 900;
-      color:${newBackground.green};
+      color:${background.green};
       
       white-space: nowrap;
     }
@@ -227,8 +227,8 @@ export const HomeMainFormSimulationContainer = styled.div`
       font-family: "Graphie";
       font-size: 21px;
       font-weight: 900;
-      color: ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
-      background-color: ${props => props.islocaliza && newBackground.yellow};
+      color: ${props => props.islocaliza == "true" ? partners.localiza.green : background.orange};
+      background-color: ${props => props.islocaliza && background.yellow};
     }
 
     .sliderTip {
@@ -278,13 +278,13 @@ export const UserTypeFormButtonContainer = styled.div`
 `
 
 export const FormSelect = styled(Button)`
-    background-color: ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
-  border: 1px solid ${newBackground.yellow};
+    background-color: ${props => props.islocaliza == "true" ? partners.localiza.green : background.orange};
+  border: 1px solid ${background.yellow};
   border-radius: 10px;
 
   font-family: "Graphie";
   font-size: 14px;
-  color: ${props => props.selected ? newBackground.yellow : newBackground.white};
+  color: ${props => props.selected ? background.yellow : background.white};
   font-weight: 400;
   text-transform: none;
   padding: 0.5rem 2rem;
@@ -296,14 +296,14 @@ export const FormSelect = styled(Button)`
     cursor: pointer;
   }
   
-  ${props => props.selected && `background-image: linear-gradient(to left, ${newBackground.yellow}, transparent 50%);`}
+  ${props => props.selected && `background-image: linear-gradient(to left, ${background.yellow}, transparent 50%);`}
   
   `
 
 export const FormButton = styled(Button)`
   padding: .5rem 1rem;
-  background-color: ${newBackground.yellow};
-  color: ${newBackground.green};
+  background-color: ${background.yellow};
+  color: ${background.green};
   border-radius: 30px;
 
   height: 42px;
@@ -326,8 +326,8 @@ export const FormButton = styled(Button)`
   }
   
   &:hover {
-    background-color: ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
-    color: ${newBackground.yellow};
+    background-color: ${props => props.islocaliza == "true" ? partners.localiza.green : background.orange};
+    color: ${background.yellow};
     cursor: pointer;
   }
   
@@ -338,8 +338,8 @@ export const FormButton = styled(Button)`
 
 export const ButtonSimulateYourEconomy = styled(Button)`
  padding: .5rem 2rem;
-  background-color: ${newBackground.orange};
-  color: ${newBackground.yellow};
+  background-color: ${background.orange};
+  color: ${background.yellow};
   border-radius: 30px;
   
   margin: 1rem 0 0 0;
@@ -358,15 +358,15 @@ export const ButtonSimulateYourEconomy = styled(Button)`
   }
   
   &:hover {
-    background-color: ${newBackground.yellow};
-    color: ${newBackground.orange};
+    background-color: ${background.yellow};
+    color: ${background.orange};
     cursor: pointer;
   }
 `
 
 
 export const FormSlider = styled(Slider)`
-    color: ${newBackground.green};
+    color: ${background.green};
 
     height: 8px;
     
@@ -375,14 +375,14 @@ export const FormSlider = styled(Slider)`
     }
     
     & .MuiSlider-thumb {
-        background-color: ${props => props.islocaliza == "true" ? partners.localiza.green : newBackground.orange};
+        background-color: ${props => props.islocaliza == "true" ? partners.localiza.green : background.orange};
 
         height: 12px;
         width: 12px;
     }
     
     & .MuiSlider-rail {
-      background-color: ${newBackground.yellow};
+      background-color: ${background.yellow};
       height: 8px;
       opacity: 1;
     } 
@@ -394,7 +394,7 @@ export const FormSlider = styled(Slider)`
 `;
 
 export const Loading = styled(CircularProgress)`
-  color: ${newBackground.green};
+  color: ${background.green};
   width: 10px;
   height: 10px;
 

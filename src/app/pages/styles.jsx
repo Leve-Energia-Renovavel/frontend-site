@@ -1,24 +1,6 @@
 import styled from "@emotion/styled";
-import { Alert, keyframes } from "@mui/material";
-
-const fadeInUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-export const theme = {
-    primary: "#1779ba",
-    primaryFocus: "#126195",
-    secondary: "#767676",
-    secondaryFocus: "#5e5e5e",
-}
+import { Alert } from "@mui/material";
+import { fadeInUp } from "./animations";
 
 export const notification = {
     success: "#3adb76",
@@ -48,11 +30,7 @@ export const newFontStatusColors = {
     pending: "#FFF"
 }
 
-export const button = {
-    primary: "#0075FF",
-    secondary: "#333",
-    background: "#FFD300",
-}
+
 
 export const partners = {
     tribanco: {
@@ -83,45 +61,23 @@ export const partners = {
     },
 }
 
-export const newBackground = {
-    yellow: "#E1FF0F",
+export const background = {
     orange: "#FF7133",
-    orangeLight: "#f89368",
-    orangeHigh: "#FAB681",
-    orangeFocused: "#FDDCCB",
-    orangeTranslucent: "#FCEEE6",
+    yellow: "#E1FF0F",
     green: "#005940",
+    white: "#FFFFFF",
     greenLight: "#B0CBC2",
     greenSoft: "#81AD9F",
-    white: "#FCFCFA",
     grey: "#EFEFEC",
     greyMedium: "#BBB",
     greyMediumHigh: "#757575",
     greyHigh: "#787878",
     greyDark: "#838383",
     greyTranslucent: "#F3F3F1",
-}
-
-export const background = {
-    primary: "#0075FF",
-    secondary: "#FFD300",
-    secondaryLight: "#fce053",
-    blueLeve: "#0075FF",
-    yellowLeve: "#FFE04C",
-    orangeLeve: "#EB641B",
-    error: "#F00",
-    light: "#fefefe",
-    dark: "#0a0a0a",
-    lightBorder: "#e6e6e6",
-    mediumGrey: "#B0BEC5",
-    higherGrey: "#a8a8a8",
-    grey: "#7F7F7F",
-    darkGrey: "#343434",
-    white: "#FFFFFF",
-    stroke: "#CACACB",
-    greyLeve: "#F5F5F5",
-    textLeve: "#343434",
-
+    orangeLight: "#FF8D5C",
+    orangeHigh: "#FFBEA1",
+    orangeFocused: "#FDDCCB",
+    orangeTranslucent: "#FFF1EB",
 }
 
 export const SnackbarMessageAlert = styled(Alert)`

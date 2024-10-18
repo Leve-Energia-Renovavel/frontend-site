@@ -1,11 +1,11 @@
-import { newBackground } from "@/app/pages/styles"
+import { background } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 import { Button } from "@mui/material"
 
 export const NewHomeBoxesContainer = styled.section`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.grey};
+    background-color: ${background.grey};
 
     width: 100%;
     max-width: 1366px;
@@ -20,7 +20,7 @@ export const NewHomeBoxesContainer = styled.section`
         font-size: 34px;
         line-height: 23px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
     
     .homeBoxesDescription{
@@ -28,7 +28,7 @@ export const NewHomeBoxesContainer = styled.section`
         font-size: 24px;
         line-height: 30px;
         font-weight: 500;
-        color: ${newBackground.greyMediumHigh};
+        color: ${background.greyMediumHigh};
     }
     
     @media (max-width: 600px) {
@@ -47,7 +47,7 @@ export const BoxCard = styled.div`
 
     border-radius: 10px;
     padding: 27px 21px 52px 21px;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     min-width: 250px;
     width: 100%;
@@ -61,7 +61,7 @@ export const BoxCard = styled.div`
         font-size: 24px;
         line-height: 24px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
 
         white-space: nowrap;
 
@@ -73,7 +73,7 @@ export const BoxCard = styled.div`
         font-size: 22px;
         line-height: 24px;
         font-weight: 800;
-        color: ${newBackground.greyHigh};
+        color: ${background.greyHigh};
         
         margin-top: 20px;
         max-width: 260px;
@@ -85,8 +85,8 @@ export const BoxCard = styled.div`
 `
 
 export const CTAButton = styled(Button)`
-  background-color: ${newBackground.green};
-  color: ${newBackground.yellow};
+  background-color: ${background.green};
+  color: ${background.yellow};
   border-radius: 30px;
 
   height: 52px;
@@ -108,8 +108,8 @@ export const CTAButton = styled(Button)`
   }
 
   &:hover {
-      background-color: ${newBackground.orange};
-      color: ${newBackground.white};
+      background-color: ${background.orange};
+      color: ${background.white};
       cursor: pointer;
   }
 `

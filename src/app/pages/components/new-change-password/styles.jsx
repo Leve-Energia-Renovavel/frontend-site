@@ -3,13 +3,13 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Button, TextField } from "@mui/material";
-import { newBackground } from "../../styles";
+import { background } from "../../styles";
 
 
 export const ChangePasswordContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     gap: 1rem;
 
@@ -29,13 +29,13 @@ export const TitleContainer = styled.div`
         font-size: 17px;
         line-height: 21px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
     
 
 `
 export const LockIcon = styled(LockOutlinedIcon)`
-    color: ${newBackground.orange};
+    color: ${background.orange};
 
     width: 20px;
     height: auto;
@@ -75,7 +75,7 @@ export const FormInput = styled(TextField)`
     border-radius: 10px;
 
     && {
-        background-color: ${newBackground.greyTranslucent}; 
+        background-color: ${background.greyTranslucent}; 
     }
 
     .MuiInputLabel-shrink {
@@ -92,12 +92,12 @@ export const FormInput = styled(TextField)`
         font-size: 14px;
         line-height: 17px;
         font-weight: 700;
-        color: ${newBackground.green};
+        color: ${background.green};
         
         &:focus {
-            color: ${newBackground.green};
-            border: 2px solid ${newBackground.green};
-            background-color: ${newBackground.greyTranslucent}; 
+            color: ${background.green};
+            border: 2px solid ${background.green};
+            background-color: ${background.greyTranslucent}; 
             }
         }
 
@@ -109,10 +109,10 @@ export const FormInput = styled(TextField)`
             font-family: "Graphie";
             font-size: 14px;
             font-weight: 600;
-            color: ${newBackground.greenLight};
+            color: ${background.greenLight};
 
             &:focus {
-                color: ${newBackground.greenLight};
+                color: ${background.greenLight};
             }
         }
 
@@ -136,8 +136,8 @@ export const FormInput = styled(TextField)`
 
 export const ChangePasswordButton = styled(Button)`
         text-transform: none;
-        border: 1px solid ${newBackground.orange};
-        background-color: ${newBackground.white};
+        border: 1px solid ${background.orange};
+        background-color: ${background.white};
         padding: 11px 18px;
 
         border-radius: 10px;
@@ -152,15 +152,15 @@ export const ChangePasswordButton = styled(Button)`
             font-size: 16px;
             line-height: 21px;
             font-weight: 600;
-            color: ${newBackground.orange};
+            color: ${background.orange};
         }
 
         &:hover {
-            background-color: ${newBackground.orange};
-            border-color: ${newBackground.orange};
+            background-color: ${background.orange};
+            border-color: ${background.orange};
             
             span {
-                color: ${newBackground.white};
+                color: ${background.white};
             } 
         }
 

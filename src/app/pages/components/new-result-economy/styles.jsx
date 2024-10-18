@@ -1,13 +1,13 @@
 import styled from "@emotion/styled";
 import PercentIcon from '@mui/icons-material/Percent';
 import { Slider } from "@mui/material";
-import { newBackground } from "../../styles";
+import { background } from "../../styles";
 
 
 export const SimulateContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     border-radius: 20px;
     
@@ -28,7 +28,7 @@ export const SimulateHeader = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: ${newBackground.yellow};
+    background-color: ${background.yellow};
 
     border-radius: 10px;
 
@@ -40,7 +40,7 @@ export const SimulateHeader = styled.div`
         font-size: 21px;
         line-height: 21px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
     
     h6 {
@@ -48,7 +48,7 @@ export const SimulateHeader = styled.div`
         font-size: 17px;
         margin-left: 60px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
         
         @media (max-width: 600px) {
             margin: 10px 10px;
@@ -69,7 +69,7 @@ export const SimulateHeader = styled.div`
 export const CouponAppliedContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.orange};
+    background-color: ${background.orange};
     border-radius: 15px;
     padding: 1rem;
 
@@ -83,17 +83,17 @@ export const CouponAppliedContainer = styled.div`
         line-height: 17px;
         font-weight: 500;
         text-align: center;
-        color: ${newBackground.white};
+        color: ${background.white};
     }
 
     .couponValue {
-        color: ${newBackground.green};
+        color: ${background.green};
         font-size: 17px;
         line-height: 20px;
         padding: 2px;
         border-radius: 4px;
         font-weight: 700;
-        background-color: ${newBackground.yellow};
+        background-color: ${background.yellow};
     }
 
     .firstMonthOnly { 
@@ -126,7 +126,7 @@ export const ContentContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     gap: 1rem;
 
@@ -140,48 +140,69 @@ export const ContentContainer = styled.div`
         gap: 2rem;
     }
 `
+
 export const TodayEconomyContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.orange};
+    background-color: ${background.orangeTranslucent};
 
-    border: 1px solid ${newBackground.orange};
+    border: 1px solid ${background.orange};
     border-radius: 15px;
+
+    padding: 16px;
+
+    gap: 8px;
 
     width: 388px;
     height: 180px;
+
+    .todayEconomyTitle {
+        font-family: "Graphie";
+        font-size: 17px;
+        line-height: 17px;
+        font-weight: 500;
+        color: ${background.orange};
+        text-align: center;
+
+        margin: 0 auto;
+    }
 
     .sliderTitle {
         font-family: "Graphie";
         font-size: 14px;
         font-weight: 500;
-        color: ${newBackground.white};
+        color: ${background.orange};
         text-align: center;
+
+        margin-top: 16px;
     }
 `
-export const TodayEconomyContent = styled.div`
+
+export const TodayCost = styled.div`
     display: flex;
-    flex-direction: column;
-    background-color: ${newBackground.white};
+    flex-direction: row;
+    align-items: baseline;
 
-    border-radius: 15px;
-    
-    width: 100%;
-    height: auto;
+    margin: 0 auto;
 
-    padding: 1rem;
-
-    h6 {
+    .monetary {
         font-family: "Graphie";
-        font-size: 17px;
-        line-height: 17px;
-        font-weight: 500;
-        color: ${newBackground.orange};
+        font-size: 18px;
+        line-height: 120%;        
+        font-weight: 600;
+        color: ${background.orange};
+    }
+    .todayCost {
+        font-family: "Graphie";
+        font-size: 34px;
+        line-height: 34px;
+        font-weight: 700;
+        color: ${background.orange};
         text-align: center;
-
-        margin-left: 2rem;  //double of value margin to align vertically
     }
 `
+
+
 export const TodayEconomy = styled.div`
     display: flex;
     flex-direction: row;
@@ -189,28 +210,7 @@ export const TodayEconomy = styled.div`
 
     padding: 10px;
 
-    .today {
-        font-family: "Graphie";
-        font-size: 17px;
-        font-weight: 700;
-        color: ${newBackground.orange};
-        text-align: start;
 
-        border: 1px solid ${newBackground.orange};
-        border-radius: 30px;
-        padding: 2px 8px;
-    }
-
-    .value {
-        font-family: "Graphie";
-        font-size: 34px;
-        line-height: 34px;
-        font-weight: 700;
-        color: ${newBackground.orange};
-        text-align: center;
-
-        margin-left: 1rem;
-    }
 `
 
 
@@ -222,19 +222,30 @@ export const TodayEconomy = styled.div`
 export const LeveEconomyContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.green};
+    background-color: ${background.greenLight};
 
-    border: 1px solid ${newBackground.green};
+    border: 1px solid ${background.green};
     border-radius: 15px;
 
 
     width: 388px;
     height: auto;
+
+    .leveEconomyTitle {
+        font-family: "Graphie";
+        font-size: 17px;
+        line-height: 17px;
+        font-weight: 400;
+        color: ${background.white};
+        text-align: center;
+
+        white-space: nowrap;
+    }
 `
 export const LeveEconomyContent = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.yellow};
+    background-color: ${background.green};
     border-radius: 15px;
 
     width: 100%;
@@ -242,32 +253,32 @@ export const LeveEconomyContent = styled.div`
 
     padding: 1rem;
 
-    h6 {
-        font-family: "Graphie";
-        font-size: 17px;
-        line-height: 17px;
-        font-weight: 500;
-        color: ${newBackground.green};
-        text-align: center;
-    }
+
 
 `
 export const LeveEconomy = styled.div`
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: baseline;
+    justify-content: center;
 
     padding: 10px;
 
-    .value {
+    .monetary {
+        font-family: "Graphie";
+        font-size: 20px;
+        line-height: 20px;
+        font-weight: 400;
+        color: ${background.yellow};
+    }
+
+    .leveEconomyValue {
         font-family: "Graphie";
         font-size: 34px;
         line-height: 34px;
         font-weight: 700;
-        color: ${newBackground.green};
+        color: ${background.yellow};
         text-align: center;
-
-        margin-left: 1rem;
     }
 `
 
@@ -297,14 +308,14 @@ export const LeveEconomySecondaryContent = styled.div`
         font-size: 14px;
         line-height: 14px;
         font-weight: 400;
-        color: ${newBackground.white};
+        color: ${background.white};
     }
     
     .economyDifference {
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 500;
-        color: ${newBackground.yellow};
+        color: ${background.yellow};
 
         white-space: nowrap;
     }
@@ -315,12 +326,12 @@ export const LeveEconomySecondaryContent = styled.div`
     }
 `
 export const PercentageIcon = styled(PercentIcon)`
-    color: ${newBackground.yellow};
+    color: ${background.yellow};
     width: 40px;
     height: 40px;
 
     padding: 3px;
-    border: 4px solid ${newBackground.yellow};
+    border: 4px solid ${background.yellow};
     border-radius: 30px;
 `
 
@@ -331,7 +342,7 @@ export const SimulateFooter = styled.div`
     justify-content: center;
     align-items: center;
 
-    background-color: ${newBackground.green};
+    background-color: ${background.green};
 
     border-radius: 15px;
 
@@ -347,7 +358,7 @@ export const SimulateFooter = styled.div`
         font-size: 17px;
         font-weight: 300;
         text-align: center;
-        color: ${newBackground.white};
+        color: ${background.white};
         
         @media (max-width: 600px) {
             line-height: 22px;
@@ -363,7 +374,7 @@ export const SimulateFooter = styled.div`
         padding: 10px;
         text-decoration: underline;
         font-weight: 700;
-        color: ${newBackground.yellow};
+        color: ${background.yellow};
         
         @media (max-width: 600px) {
             font-size: 27px;
@@ -386,30 +397,28 @@ export const SimulateFooter = styled.div`
 export const SimulationContainer = styled.div`
     padding: 10px;
     margin: 0 auto;
+    
 
-    .sliderTitle {
-        white-space: nowrap;
-    }
 `
 
 export const SimulationSlider = styled(Slider)`
-    color: ${newBackground.yellow};
+    color: ${background.orange};
     height: 8px;
     max-width: 300px;
 
     margin: 0 auto;
     
     & .MuiSlider-thumb {
-        background-color: ${newBackground.yellow};
-        height: 12px;
-        width: 12px;
+        background-color: ${background.orangeLight};
+        height: 16px;
+        width: 16px;
     }
     
     & .MuiSlider-rail {
-      background-color: ${newBackground.orange};
+      background-color: ${background.orangeHigh};
       height: 8px;
       opacity: 1;
-      border: 1px solid ${newBackground.yellow};
+      border: 1px solid ${background.yellow};
     } 
 
 `;

@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Box } from "@mui/material";
 
@@ -10,7 +10,7 @@ export const ModalBox = styled(Box)`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     border-radius: 15px;
 
@@ -55,7 +55,7 @@ export const ModalTitleContainer = styled.div`
         font-size: 27px;
         line-height: 42px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 
     .description {
@@ -63,7 +63,7 @@ export const ModalTitleContainer = styled.div`
             font-size: 17px;
             line-height: 21px;
             font-weight: 500;
-            color: ${newBackground.green};
+            color: ${background.green};
 
             margin-top: 24px;
     }

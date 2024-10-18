@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Box } from "@mui/material";
 
@@ -11,7 +11,7 @@ export const ModalBox = styled(Box)`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     border-radius: 20px;
 
@@ -32,7 +32,7 @@ export const ModalBox = styled(Box)`
         font-size: 27px;
         line-height: 32px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
 
         margin-bottom: 42px;
     }

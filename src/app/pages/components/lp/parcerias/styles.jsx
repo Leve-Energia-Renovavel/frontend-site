@@ -1,10 +1,10 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
 export const PartnershipMainContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     max-width: 1366px;
     margin: 74px auto;

@@ -1,7 +1,7 @@
 import { useStoreBillingHistory } from '@/app/hooks/useStore';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { useEffect, useState } from 'react';
-import { background, newBackground } from '../../styles';
+import { background } from '../../styles';
 
 export default function HistorySpendingChart() {
 
@@ -50,7 +50,7 @@ export default function HistorySpendingChart() {
     return (
         <>
             <BarChart
-                colors={[newBackground.green]}
+                colors={[background.green]}
                 xAxis={[{ scaleType: 'band', label: "2024", position: 'left', data: chartData.map(item => item.category) }]}
                 yAxis={[{ label: 'kWh', position: 'left' }]}
                 series={[{ data: chartData.map(item => item.value) }]}

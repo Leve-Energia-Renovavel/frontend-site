@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Box, Button } from "@mui/material";
 
@@ -11,7 +11,7 @@ export const ModalBox = styled(Box)`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     border-radius: 15px;
 
@@ -56,7 +56,7 @@ export const ModalTitleContainer = styled.div`
             font-size: 27px;
             line-height: 42px;
             font-weight: 600;
-            color: ${newBackground.orange};
+            color: ${background.orange};
     }
 
     p, .underlined {
@@ -64,7 +64,7 @@ export const ModalTitleContainer = styled.div`
         font-size: 17px;
         line-height: 21px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         margin-top: 10px;
     }
@@ -98,8 +98,8 @@ export const ModalMainButton = styled(Button)`
         gap: 4px;
 
         text-transform: none;
-        border: 1px solid ${newBackground.orange};
-        background-color: ${newBackground.orange};
+        border: 1px solid ${background.orange};
+        background-color: ${background.orange};
         padding: 11px 18px;
 
         border-radius: 10px;
@@ -114,15 +114,15 @@ export const ModalMainButton = styled(Button)`
             font-size: 16px;
             line-height: 21px;
             font-weight: 600;
-            color: ${newBackground.white};
+            color: ${background.white};
         }
 
         &:hover {
-            background-color: ${newBackground.green};
-            border-color: ${newBackground.green};
+            background-color: ${background.green};
+            border-color: ${background.green};
             
             span {
-                color: ${newBackground.yellow};
+                color: ${background.yellow};
             } 
         }
 `;

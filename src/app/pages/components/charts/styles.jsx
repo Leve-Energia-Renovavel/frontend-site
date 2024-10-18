@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { newBackground } from "../../styles";
+import { background } from "../../styles";
 
 export const ChartContainer = styled.div`
   display: flex;
@@ -50,7 +50,7 @@ position: relative;
     font-family: "Graphie";
     font-size: 12px;
     font-weight: 600;
-    color: ${newBackground.green};
+    color: ${background.green};
     margin-left: 15px;
   }
 `;

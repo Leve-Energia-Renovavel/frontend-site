@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
 export const NewHomeMainFormContainer = styled.section`
@@ -6,7 +6,7 @@ export const NewHomeMainFormContainer = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    background-color: ${newBackground.grey};
+    background-color: ${background.grey};
 
     max-width: 1366px;
     margin: 0 auto;
@@ -24,7 +24,7 @@ export const NewHomeMainFormContainer = styled.section`
 export const NewHomeMainFormContent = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.grey};
+    background-color: ${background.grey};
 
     gap: 20px;
 
@@ -33,7 +33,7 @@ export const NewHomeMainFormContent = styled.div`
         font-size: 34px;
         line-height: 40px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
     
     span, .leveHomeMainFormContentSubtitle {
@@ -41,7 +41,7 @@ export const NewHomeMainFormContent = styled.div`
         font-size: 24px;
         line-height: 27px;
         font-weight: 500;
-        color: ${newBackground.greyMediumHigh};
+        color: ${background.greyMediumHigh};
         
         max-width: 1096px;
 
@@ -49,7 +49,7 @@ export const NewHomeMainFormContent = styled.div`
     }
     
     .highlighted {
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
     
     @media (max-width: 600px) {

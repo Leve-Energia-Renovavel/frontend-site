@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { background, newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 
 export const ClicksignWidgetContainer = styled.div`
   border: 1px solid #ccc; 

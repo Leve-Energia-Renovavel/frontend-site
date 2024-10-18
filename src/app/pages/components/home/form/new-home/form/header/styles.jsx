@@ -1,5 +1,5 @@
 import { fadeInUp } from "@/app/pages/animations"
-import { newBackground } from "@/app/pages/styles"
+import { background } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 
 export const FormTitleContainer = styled.div`
@@ -20,7 +20,7 @@ export const FormTitleContainer = styled.div`
     font-family: "Graphie";
     font-size: 27px;
     font-weight: 500;
-    color: ${newBackground.yellow};
+    color: ${background.yellow};
     white-space: nowrap;
   } 
   

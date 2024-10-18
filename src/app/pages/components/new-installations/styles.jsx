@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Switch } from "@mui/material";
-import { newBackground } from "../../styles";
+import { background } from "../../styles";
 
 export const NewInstallationsContainer = styled.div`
     display: flex;
@@ -13,7 +13,7 @@ export const NewInstallationsContainer = styled.div`
         font-size: 27px;
         line-height: 32px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
     `
 export const ConsumptionHistoryContainer = styled.div`
@@ -26,7 +26,7 @@ export const ConsumptionHistoryContainer = styled.div`
     
     border-radius: 10px;
     padding: 1rem;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 `
 export const ConsumptionHistoryTitleContainer = styled.div`
     display: flex;
@@ -46,7 +46,7 @@ export const ConsuptiomHistorySwitchContainer = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 700;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 `
 export const AntSwitch = styled(Switch)`
@@ -73,13 +73,13 @@ export const AntSwitch = styled(Switch)`
 
       + .MuiSwitch-track {
         opacity: 1;
-        background-color: ${newBackground.white};
+        background-color: ${background.white};
       }
     }
   }
 
   .MuiSwitch-thumb {
-    color: ${newBackground.green};
+    color: ${background.green};
     box-shadow: 0 2px 4px 0 rgb(0 35 11 / 20%);
     width: 12px;
     height: 12px;
@@ -88,12 +88,12 @@ export const AntSwitch = styled(Switch)`
   }
 
   .MuiSwitch-track {
-    border: 2px solid ${newBackground.green};
+    border: 2px solid ${background.green};
 
     border-radius: 8px;
     opacity: 1;
     
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     box-sizing: border-box;
   }
 `;

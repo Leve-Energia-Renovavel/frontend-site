@@ -1,11 +1,11 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { StepConnector, StepIcon, StepLabel, Stepper, stepConnectorClasses } from "@mui/material";
 
 export const StepperContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     border-radius: 15px;
 
     /* height: auto; */
@@ -18,7 +18,7 @@ export const StepperContainer = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         margin-top: auto;
         margin-bottom: 1rem;
@@ -31,7 +31,7 @@ export const StepperContainer = styled.div`
         font-size: 12px;
         line-height: 14px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         margin-top: auto;
         margin-bottom: 1rem;
@@ -54,18 +54,18 @@ export const CustomStepIcon = styled(StepIcon)`
         margin-top: 3px;
         width: 16px;
         height: auto;
-        color: ${newBackground.orangeFocused}; /* Default dot color */
+        color: ${background.orangeFocused}; /* Default dot color */
     }
     &.Mui-active {
         width: 16px;
         height: auto;
-        color: ${newBackground.orange}; /* Active dot color */
+        color: ${background.orange}; /* Active dot color */
     }
     &.Mui-completed {
         margin-top: 0px;
         width: 20px;
         height: auto;
-        color: ${newBackground.green}; /* Completed dot color */
+        color: ${background.green}; /* Completed dot color */
     }
 `;
 
@@ -131,17 +131,17 @@ export const CustomConnector = styled(StepConnector)`
     }
     
     &.${stepConnectorClasses.active} .${stepConnectorClasses.line} {
-        border-color: ${newBackground.orange};
+        border-color: ${background.orange};
         border-width: 4px;
     }
 
     &.${stepConnectorClasses.completed} .${stepConnectorClasses.line} {
-        border-color: ${newBackground.green};
+        border-color: ${background.green};
 
     }
     
     & .${stepConnectorClasses.line} {
-        border-color: ${newBackground.orangeFocused};
+        border-color: ${background.orangeFocused};
         border-width: 4px;
 
     }

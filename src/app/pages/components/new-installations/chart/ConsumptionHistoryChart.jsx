@@ -1,6 +1,6 @@
 "use client"
 
-import { newBackground } from '@/app/pages/styles'
+import { background } from '@/app/pages/styles'
 import { formatFullMonthAndYear } from '@/app/utils/formatters/dateFormatter'
 import ReactApexChart from 'react-apexcharts'
 import { BarChartWrapper, ChartLegendContainer, LegendDetail } from './styles'
@@ -75,7 +75,7 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
             style: {
                 fontSize: '14px',
                 fontWeight: 900,
-                color: newBackground.green
+                color: background.green
             },
             formatter: function (val, option) {
                 if (option?.seriesIndex === 0) {
@@ -108,7 +108,7 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
                             fontFamily: "Graphie", //total style
                             fontSize: '18px',
                             fontWeight: 900,
-                            color: newBackground.green
+                            color: background.green
                         }
                     },
                 },
@@ -130,12 +130,12 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
         fill: {
             opacity: 1,
         },
-        colors: [newBackground.greyMedium, newBackground.greyDark, (item) => {
+        colors: [background.greyMedium, background.greyDark, (item) => {
             const bill = selectedBillings[item?.dataPointIndex];
             // if (bill?.status === "paid") return newBackground.green;
             // if (bill?.status === "due") return newBackground.orange;
             // if (bill?.status === "pending") return newBackground.orangeFocused;
-            return newBackground.green;
+            return background.green;
         }],
         legend: {
             show: false,

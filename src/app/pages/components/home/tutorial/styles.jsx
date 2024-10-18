@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles"
+import { background } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 import { Button } from "@mui/material"
 
@@ -7,7 +7,7 @@ export const HomeFourthSectionContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     gap: 2rem;
     
@@ -15,7 +15,7 @@ export const HomeFourthSectionContainer = styled.div`
     margin-bottom: 64px; //80px - 16px from banner below
     
     @media (max-width: 600px) {
-      background-color: ${newBackground.orange};
+      background-color: ${background.orange};
       margin: 0;
     }
     `
@@ -26,7 +26,7 @@ export const HomeFourthSectionTitleContainer = styled.div`
       font-family: "Graphie";
       font-size: 34px;
       font-weight: 600;
-      color: ${newBackground.white};
+      color: ${background.white};
   }
 
   @media (max-width: 600px) {
@@ -111,7 +111,7 @@ export const HomeFourthSectionTitle = styled.div`
     font-family: "Graphie";
     font-size: 42px;
     font-weight: 600;
-    color: ${newBackground.green};
+    color: ${background.green};
   }
 `
 export const HomeFourthSectionDescription = styled.div`
@@ -119,15 +119,15 @@ export const HomeFourthSectionDescription = styled.div`
     font-family: "Graphie";
     font-size: 17px;
     font-weight: 500;
-    color: ${newBackground.green};
+    color: ${background.green};
 
     line-height: 17px;
   }
 `
 export const ButtonSimulateYourEconomy = styled(Button)`
  padding: .5rem 2rem;
-  background-color: ${newBackground.orange};
-  color: ${newBackground.yellow};
+  background-color: ${background.orange};
+  color: ${background.yellow};
   border-radius: 30px;
   
   margin: 1rem 0 0 0;
@@ -147,8 +147,8 @@ export const ButtonSimulateYourEconomy = styled(Button)`
   }
   
   &:hover {
-    background-color: ${newBackground.yellow};
-    color: ${newBackground.orange};
+    background-color: ${background.yellow};
+    color: ${background.orange};
     cursor: pointer;
   }
 `

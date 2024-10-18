@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import { newBackground } from "../../styles";
+import { background } from "../../styles";
 
 export const LoadingContainer = styled.div`
-    background-color: ${newBackground.orange};
+    background-color: ${background.orange};
     display: flex;
     flex-direction: column;
     justify-content: center; 
@@ -12,7 +12,7 @@ export const LoadingContainer = styled.div`
 
     h1 {
         font-family: "Graphie", sans-serif, system-ui, -apple-system;
-        color: ${newBackground.yellow};
+        color: ${background.yellow};
         font-style: bold;
         font-weight: 700;
         font-size: 2.625rem;
@@ -24,6 +24,6 @@ export const LoadingContainer = styled.div`
         height: auto;
     }
     .circularProgress {
-        color: ${newBackground.yellow};
+        color: ${background.yellow};
     }
 `

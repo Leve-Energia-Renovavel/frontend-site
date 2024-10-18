@@ -1,4 +1,4 @@
-import { newBackground, notification } from "@/app/pages/styles";
+import { background, notification } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { Alert, Button, Checkbox, FormControlLabel, FormGroup, TextField, keyframes } from "@mui/material";
@@ -20,7 +20,7 @@ const fadeInUp = keyframes`
 export const SignupFormContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.orange};
+    background-color: ${background.orange};
     
     border-radius: 20px;
     margin: 0 auto;
@@ -54,7 +54,7 @@ export const FormTitleContainer = styled.div`
         font-family: "Graphie";
         font-size: 27px;
         font-weight: 500;
-        color: ${newBackground.white};
+        color: ${background.white};
     }
     
     @media (max-width: 600px) {
@@ -65,8 +65,8 @@ export const FormTitleContainer = styled.div`
     }
 `
 export const FormTitleButton = styled(Button)`
-    color: ${newBackground.orange};
-    background-color: ${newBackground.yellow};
+    color: ${background.orange};
+    background-color: ${background.yellow};
     border-radius: 30px;
     text-transform: none;
     
@@ -77,15 +77,15 @@ export const FormTitleButton = styled(Button)`
     font-weight: 700;
     
     &:hover {
-        color: ${newBackground.yellow};
-        background-color: ${newBackground.green};
+        color: ${background.yellow};
+        background-color: ${background.green};
     }
 `
 
 export const SignupFormContentContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     border-radius: 20px;
 
@@ -100,7 +100,7 @@ export const SignupFormContentContainer = styled.div`
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 
     @media (max-width: 600px) {
@@ -119,7 +119,7 @@ export const SignupFormHeaderContainer = styled.div`
         font-family: "Graphie";
         font-size: 27px;
         font-weight: 700;
-        color: ${newBackground.orange};
+        color: ${background.orange};
 
         white-space: nowrap;
     }
@@ -128,7 +128,7 @@ export const SignupFormHeaderContainer = styled.div`
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
 
         white-space: nowrap;
     }
@@ -150,10 +150,10 @@ export const SignupFormHeaderHelpContentContainer = styled.div`
     &:hover {
         cursor: pointer;
             h6 {
-                color: ${newBackground.orange};
+                color: ${background.orange};
             }
             .helpIcon {
-                color: ${newBackground.orange};
+                color: ${background.orange};
             }
         }
 
@@ -161,30 +161,30 @@ export const SignupFormHeaderHelpContentContainer = styled.div`
         font-family: "Graphie";
         font-size: 12px;
         font-weight: 700;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 `
 
 export const HelpIcon = styled(HelpOutlineIcon)`
-    color: ${newBackground.green};
+    color: ${background.green};
     width: 20px;
     height: 20px;
 `
 
 export const SignupLinearProgress = styled(LinearProgress)`
-    background-color: ${newBackground.yellow};
+    background-color: ${background.yellow};
     border-bottom-width: 5px;
 
     margin-bottom: 15px;
     
     & .MuiLinearProgress-bar {
-        background-color: ${newBackground.orange};
+        background-color: ${background.orange};
     }
 `
 
 export const Form = styled.form`
     padding: 8px 100px;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     @media (max-width: 600px) {
         padding: 8px 10px;
@@ -239,7 +239,7 @@ export const FormInput = styled(TextField)`
     border-radius: 14px;
     
     && {
-        background-color: ${newBackground.orangeTranslucent}; 
+        background-color: ${background.orangeTranslucent}; 
     }
 
     .MuiInputLabel-shrink {
@@ -255,12 +255,12 @@ export const FormInput = styled(TextField)`
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 700;
-        color: ${newBackground.orange};
+        color: ${background.orange};
         
         &:focus {
-            color: ${newBackground.orange};
-            border: 2px solid ${newBackground.orange};
-            background-color: ${newBackground.orangeFocused}; 
+            color: ${background.orange};
+            border: 2px solid ${background.orange};
+            background-color: ${background.orangeFocused}; 
             }
         }
 
@@ -272,10 +272,10 @@ export const FormInput = styled(TextField)`
             font-family: "Graphie";
             font-size: 14px;
             font-weight: 600;
-            color: ${newBackground.orange};
+            color: ${background.orange};
 
             &:focus {
-                color: ${newBackground.orange};
+                color: ${background.orange};
             }
         }
 
@@ -284,14 +284,14 @@ export const FormInput = styled(TextField)`
         } */
 
         .searchIcon { 
-            color:${newBackground.orange};
+            color:${background.orange};
             &:hover{
                 cursor: pointer;
             }
         }
 
         .formLoading {
-            color: ${newBackground.orange};
+            color: ${background.orange};
         }
 
 
@@ -315,7 +315,7 @@ export const FileUploadItem = styled.div`
     font-family: "Graphie";
     font-size: 14px;
     font-weight: 600;
-    color: ${newBackground.orange};
+    color: ${background.orange};
     text-decoration: underline;
     text-transform: none;
   }
@@ -354,7 +354,7 @@ export const FormTermsContainer = styled(FormGroup)`
 export const FormTermsControl = styled(FormControlLabel)`
 
     &.MuiFormControlLabel-root	 {
-        color: ${newBackground.green};
+        color: ${background.green};
         max-width: 320px;
     }
     
@@ -368,10 +368,10 @@ export const FormTermsControl = styled(FormControlLabel)`
 `
 
 export const FormTermsCheckbox = styled(Checkbox)`
-    color: ${newBackground.green};
+    color: ${background.green};
     
     &.Mui-checked {
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 `
 
@@ -385,18 +385,18 @@ export const FormButtonContainer = styled.div`
             font-family: "Graphie";
             font-size: 12px;
             font-weight: 500;
-            color: ${newBackground.orange};
+            color: ${background.orange};
     }
 
     .submitLoading {
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 
 `
 
 export const FormSubmitButton = styled(Button)`
-    color: ${newBackground.yellow};
-    background-color: ${newBackground.orange};
+    color: ${background.yellow};
+    background-color: ${background.orange};
     border-radius: 30px;
     text-transform: none;
     
@@ -407,8 +407,8 @@ export const FormSubmitButton = styled(Button)`
     font-weight: 700;
     
     &:hover {
-        color: ${newBackground.yellow};
-        background-color: ${newBackground.green};
+        color: ${background.yellow};
+        background-color: ${background.green};
     }
 `
 
@@ -417,7 +417,7 @@ export const InstallationInput = styled(TextField)`
     border-radius: 10px;
     
     && {
-        background-color: ${newBackground.orangeTranslucent}; 
+        background-color: ${background.orangeTranslucent}; 
     }
     .MuiInputLabel-shrink {
         /* Styles for the focused label */
@@ -425,18 +425,18 @@ export const InstallationInput = styled(TextField)`
     }
     
     .MuiOutlinedInput-input {
-        border: 2px solid ${newBackground.orange};
+        border: 2px solid ${background.orange};
         border-radius: 14px;  
 
         // styles for the user input text
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 700;
-        color: ${newBackground.orange};
+        color: ${background.orange};
 
         
         &:focus {
-            background-color: ${newBackground.orangeFocused}; 
+            background-color: ${background.orangeFocused}; 
             }
         }
 
@@ -448,10 +448,10 @@ export const InstallationInput = styled(TextField)`
             font-family: "Graphie";
             font-size: 14px;
             font-weight: 600;
-            color: ${newBackground.orange};
+            color: ${background.orange};
             
             &:focus {
-                color: ${newBackground.orange};
+                color: ${background.orange};
             }
             
         }
@@ -461,7 +461,7 @@ export const InstallationNumberDisclaimer = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: ${newBackground.yellow};
+    background-color: ${background.yellow};
     border-radius: 15px;
     
     gap: 8px;
@@ -473,31 +473,31 @@ export const InstallationNumberDisclaimer = styled.div`
         font-size: 12px;
         line-height: 12px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
     
     .underlined {
         font-family: "Graphie";
         font-size: 12px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
         text-decoration: underline;
     }
     .infoIcon {
-        color: ${newBackground.green};
+        color: ${background.green};
     }
     
     &:hover {
         cursor: pointer;
-        background-color: ${newBackground.green};
+        background-color: ${background.green};
         .installationNumberDisclaimer {
-            color: ${newBackground.yellow};
+            color: ${background.yellow};
         }
         .underlined {
-            color: ${newBackground.yellow};
+            color: ${background.yellow};
         }
         .infoIcon {
-            color: ${newBackground.yellow};
+            color: ${background.yellow};
         }
     }
 

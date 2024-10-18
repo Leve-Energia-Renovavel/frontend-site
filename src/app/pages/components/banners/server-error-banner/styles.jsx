@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 
@@ -15,7 +15,7 @@ const fadeInUp = keyframes`
 `;
 
 export const BannerContainer = styled.div`
-    background-color: ${newBackground.orange};
+    background-color: ${background.orange};
     height: 28rem;
     max-width: 1366px;
     margin: 74px auto;
@@ -38,7 +38,7 @@ export const ContentContainer = styled.div`
 
     h1 {
         font-family: "Graphie";
-        color: ${newBackground.yellow};
+        color: ${background.yellow};
         font-weight: 700;
         font-style: bold;
         font-size: 48px;
@@ -47,7 +47,7 @@ export const ContentContainer = styled.div`
 
     .subtitle {
         font-family:"Graphie";
-        color: ${newBackground.white};
+        color: ${background.white};
         font-size: 24px;
         line-height: 27px;
         font-weight: 500;
@@ -60,7 +60,7 @@ export const ContentContainer = styled.div`
     }
     .boldSubtitle {
         font-family: "Graphie";
-        color: ${newBackground.white};
+        color: ${background.white};
         font-weight: bold;
         font-size: 24px;
         line-height: 27px;
@@ -88,8 +88,8 @@ export const ButtonContainer = styled.div`
     .backToMainPage { 
         text-transform: none;
         font-size: 18px;
-        color: ${newBackground.orange};
-        background-color: ${newBackground.yellow};
+        color: ${background.orange};
+        background-color: ${background.yellow};
         height: 3rem;
         border-radius: 12px;
         cursor: pointer;
@@ -98,8 +98,8 @@ export const ButtonContainer = styled.div`
         white-space: nowrap;
         
         &:hover {
-            background-color: ${newBackground.white};
-            color:${newBackground.orange};
+            background-color: ${background.white};
+            color:${background.orange};
         }
     }
 `

@@ -1,5 +1,5 @@
 import { slideAndDisappear } from "@/app/pages/animations";
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Slider } from "@mui/material";
 
@@ -19,7 +19,7 @@ export const HomeMainFormSimulationContainer = styled.div`
       font-family: "Graphie";
         font-size: 18px;
         font-weight: 500;
-        color:${newBackground.white};
+        color:${background.white};
 
         min-width: 340px;
 
@@ -30,7 +30,7 @@ export const HomeMainFormSimulationContainer = styled.div`
       font-family: "Graphie";
       font-size: 21px;
       font-weight: 900;
-      color:${newBackground.yellow};
+      color:${background.yellow};
     }
 
     @media (max-width: 600px) {
@@ -42,7 +42,7 @@ export const HomeMainFormSimulationContainer = styled.div`
         font-family: "Graphie";
         font-size: 20px;
         font-weight: 600;
-        color:${newBackground.white};
+        color:${background.white};
 
         min-width: 200px;
         width: fit-content;
@@ -52,7 +52,7 @@ export const HomeMainFormSimulationContainer = styled.div`
         
       }
       .simulationCost {
-        color:${newBackground.yellow};
+        color:${background.yellow};
       }
     }
 
@@ -67,21 +67,21 @@ export const HomeMainFormSimulationContainer = styled.div`
 `
 
 export const FormSlider = styled(Slider)`
-    color: ${newBackground.orange};
+    color: ${background.orange};
     height: 8px;
 
     max-width: 305px;
     margin: 19px auto 0 auto;
     
     & .MuiSlider-thumb {
-        background-color: ${newBackground.yellow};
+        background-color: ${background.yellow};
         height: 22px;
         width: 22px;
       }
     
       & .MuiSlider-rail {
-        background-color: ${newBackground.green};
-        border: 1px solid ${newBackground.white};
+        background-color: ${background.green};
+        border: 1px solid ${background.white};
         height: 5px;
       } 
 
@@ -91,17 +91,17 @@ export const FormSlider = styled(Slider)`
 
     @media (max-width: 600px) {
       height: 10px;
-      color: ${newBackground.orange};
+      color: ${background.orange};
 
       & .MuiSlider-thumb {
-        background-color: ${newBackground.yellow};
+        background-color: ${background.yellow};
         height: 22px;
         width: 22px;
       }
 
       & .MuiSlider-rail {
-        background-color: ${newBackground.green};
-        border: 1px solid ${newBackground.white};
+        background-color: ${background.green};
+        border: 1px solid ${background.white};
         height: 5px;
       } 
     }

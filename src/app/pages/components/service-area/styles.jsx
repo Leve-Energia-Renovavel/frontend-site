@@ -1,11 +1,11 @@
 
 import styled from "@emotion/styled";
-import { background, newBackground } from "../../styles";
+import { background } from "../../styles";
 
 export const ServiceAreaContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     min-height: 600px;
 
@@ -31,7 +31,7 @@ export const ServiceAreaContent = styled.div`
         font-size: 34px;
         line-height: 37px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
 
         margin-top: 1rem;
     }
@@ -40,22 +40,22 @@ export const ServiceAreaContent = styled.div`
         margin: 2rem 0;
 
         .MuiOutlinedInput-root {
-            border-color: ${newBackground.white};
+            border-color: ${background.white};
         }
 
         .MuiInputLabel-root {
-            color: ${newBackground.orange};
+            color: ${background.orange};
         }
         .MuiOutlinedInput-input {
         // styles for the user input text
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 500;
-        color: ${newBackground.orange};
+        color: ${background.orange};
         }
 
         &:hover .MuiOutlinedInput-notchedOutline {
-            border-color: ${newBackground.orange};
+            border-color: ${background.orange};
         }
     }
 
@@ -102,7 +102,7 @@ export const AreaContent = styled.div`
         font-family: "Graphie";
         font-size: 27px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
 
         margin-bottom: 2rem;
     }
@@ -112,7 +112,7 @@ export const AreaContent = styled.div`
         font-size: 21px;
         line-height: 24px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 
     .backButtonContainer {

@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";
@@ -19,7 +19,7 @@ export const LandingPageContainer = styled.div`
     display: flex;
     flex-direction: column;
     
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     /* max-width: 1920px; */
     max-width: 1366px;
@@ -63,7 +63,7 @@ position: relative; // Ensure relative positioning for absolute positioning insi
 
 h1 { 
     font-family: "Graphie";
-    color: ${newBackground.orange};
+    color: ${background.orange};
     font-size: 42px;
     line-height: 45px;
     font-weight: 600;
@@ -81,7 +81,7 @@ h1 {
 
 h2 {
     font-family: "Graphie";
-    color: ${newBackground.orange};
+    color: ${background.orange};
     font-size: 21px;
     line-height: 25px;
     font-weight: 600;
@@ -101,7 +101,7 @@ h2 {
 }
 
 .highlighted { 
-    background-color: ${newBackground.yellow};
+    background-color: ${background.yellow};
     padding: 0 2px;
     border-radius: 10px;
     font-weight: 600;
@@ -127,7 +127,7 @@ export const MoreAboutLeveFooter = styled.div`
     &:hover {
         cursor: pointer;
         text-decoration: underline;
-        text-decoration-color: ${newBackground.white};
+        text-decoration-color: ${background.white};
     }
 
     .moreAboutLeve {
@@ -135,12 +135,12 @@ export const MoreAboutLeveFooter = styled.div`
         font-size: 17px;
         line-height: 17px;
         font-weight: 400;
-        color: ${newBackground.white};
+        color: ${background.white};
     }
     .arrowIcon {
         width: 32px;
         height: 32px;
-        color: ${newBackground.white};
+        color: ${background.white};
     }
 
     @media (max-width: 600px) {
@@ -155,8 +155,8 @@ export const MoreAboutLeveFooter = styled.div`
 
 export const MainBannerButton = styled(Button)`
   padding: .5rem 1rem;
-  background-color: ${newBackground.orange};
-  color: ${newBackground.yellow};
+  background-color: ${background.orange};
+  color: ${background.yellow};
   border-radius: 30px;
 
   height: 42px;
@@ -175,8 +175,8 @@ export const MainBannerButton = styled(Button)`
   }
   
   &:hover {
-    background-color: ${newBackground.yellow};
-    color: ${newBackground.orange};
+    background-color: ${background.yellow};
+    color: ${background.orange};
     cursor: pointer;
   }
   
@@ -200,7 +200,7 @@ export const SecondSectionContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: ${newBackground.green};
+    background-color: ${background.green};
     border-radius: 20px;
 
     height: 609px;
@@ -225,10 +225,10 @@ export const SecondSectionTitleContainer = styled.div`
         font-size: 34px;
         line-height: 30px;
         font-weight: 600;
-        color: ${newBackground.white};
+        color: ${background.white};
     }
     .yellow {
-        color: ${newBackground.yellow};
+        color: ${background.yellow};
     }
 
     @media (max-width: 600px) {
@@ -250,7 +250,7 @@ export const SecondSectionContent = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: ${newBackground.orange};
+    background-color: ${background.orange};
     
     border-radius: 20px;
 
@@ -293,7 +293,7 @@ export const SecondSectionContentTitleContainer = styled.div`
         font-size: 42px;
         line-height: 45px;
         font-weight: 600;
-        color: ${newBackground.white};
+        color: ${background.white};
 
         max-width: 306px;
     }
@@ -301,7 +301,7 @@ export const SecondSectionContentTitleContainer = styled.div`
     .arrowDownIcon {
       display: none;
       font-size: 42px;
-      color: ${newBackground.yellow};
+      color: ${background.yellow};
     }
 
     @media (max-width: 600px) {
@@ -340,7 +340,7 @@ export const SecondSectionBox = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     padding: 14px 12px;
 
@@ -350,7 +350,7 @@ export const SecondSectionBox = styled.div`
     .iconContainer {
         text-align: center;
         margin-left: auto;
-        background-color: ${newBackground.yellow};
+        background-color: ${background.yellow};
         border-radius: 60px;
         padding: 15px 18px;
 
@@ -362,7 +362,7 @@ export const SecondSectionBox = styled.div`
         font-size: 17px;
         line-height: 20px;
         font-weight: 500;
-        color: ${newBackground.orange};
+        color: ${background.orange};
 
         margin-top: auto;
 
@@ -390,8 +390,8 @@ export const SecondSectionBox = styled.div`
 
 export const SecondSectionButton = styled(Button)`
   padding: .5rem 1rem;
-  background-color: ${newBackground.yellow};
-  color: ${newBackground.orange};
+  background-color: ${background.yellow};
+  color: ${background.orange};
   border-radius: 30px;
 
   height: 42px;
@@ -410,8 +410,8 @@ export const SecondSectionButton = styled(Button)`
   }
   
   &:hover {
-    background-color: ${newBackground.green};
-    color: ${newBackground.yellow};
+    background-color: ${background.green};
+    color: ${background.yellow};
     cursor: pointer;
   }
   
@@ -446,7 +446,7 @@ export const ThirdSectionContainer = styled.div`
         font-family: "Graphie";
         font-size: 42px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 
     .solutionsDescription {
@@ -456,13 +456,13 @@ export const ThirdSectionContainer = styled.div`
         font-size: 21px;
         line-height: 24px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
         
         max-width: 1050px;
     }
     
     .highlighted {
-        background-color: ${newBackground.yellow};
+        background-color: ${background.yellow};
         padding: 2px;
         border-radius: 8px;
         font-weight: 700;
@@ -550,7 +550,7 @@ export const ThirdSectionTitle = styled.div`
     font-family: "Graphie";
     font-size: 42px;
     font-weight: 600;
-    color: ${newBackground.green};
+    color: ${background.green};
     
     @media (max-width: 600px) {
       font-size: 34px;
@@ -563,7 +563,7 @@ export const ThirdSectionDescription = styled.div`
     font-family: "Graphie";
     font-size: 17px;
     font-weight: 500;
-    color: ${newBackground.green};
+    color: ${background.green};
 
     line-height: 17px;
   }
@@ -620,7 +620,7 @@ export const FourthSectionImagesContent = styled.div`
       font-family: "Graphie";
       font-size: 27px;
       font-weight: 600;
-      color: ${newBackground.white};
+      color: ${background.white};
       
       @media (max-width: 600px) {
         font-size: 21px;
@@ -630,22 +630,22 @@ export const FourthSectionImagesContent = styled.div`
 
     .arrowIcon {
       font-size: 50px;
-      color: ${newBackground.yellow};
+      color: ${background.yellow};
       
       &:hover {
-        color: ${newBackground.green};
-        background-color: ${newBackground.yellow};
+        color: ${background.green};
+        background-color: ${background.yellow};
         border-radius: 30px;
       }
     }
     .arrowIconCompany {
       margin-top: auto;
       font-size: 50px;
-      color: ${newBackground.yellow};
+      color: ${background.yellow};
       
       &:hover {
-        color: ${newBackground.green};
-        background-color: ${newBackground.yellow};
+        color: ${background.green};
+        background-color: ${background.yellow};
         border-radius: 30px;
       }
     }
@@ -664,7 +664,7 @@ export const FifthSectionContent = styled.div`
     flex-direction: column;
     align-items: center;
     border-radius: 32px;
-    background-color: ${newBackground.yellow};
+    background-color: ${background.yellow};
 
     background-image: url(${props => props.image.src});
     background-repeat: no-repeat;
@@ -685,7 +685,7 @@ export const FifthSectionContent = styled.div`
         font-size: 27px;
         line-height: 30px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
 
     }
 
@@ -707,8 +707,8 @@ export const FifthSectionContent = styled.div`
 
 export const FifthSectionButton = styled(Button)`
   padding: .5rem 1rem;
-  background-color: ${newBackground.green};
-  color: ${newBackground.yellow};
+  background-color: ${background.green};
+  color: ${background.yellow};
   border-radius: 30px;
 
   height: 42px;
@@ -727,8 +727,8 @@ export const FifthSectionButton = styled(Button)`
   }
   
   &:hover {
-    background-color: ${newBackground.orange};
-    color: ${newBackground.yellow};
+    background-color: ${background.orange};
+    color: ${background.yellow};
     cursor: pointer;
   }
   
@@ -766,7 +766,7 @@ export const SixthSectionContent = styled.div`
   gap: 1rem;
 `
 export const SixthSectionContentHeader = styled.div`
-background-color: ${newBackground.yellow};
+background-color: ${background.yellow};
 border-radius: 15px;
 padding: 28px 21px;
 
@@ -777,7 +777,7 @@ max-width: 590px;
   font-size: 34px;
   line-height: 38px;
   font-weight: 600;
-  color: ${newBackground.orange};
+  color: ${background.orange};
 }
 
   @media (max-width: 600px) {
@@ -794,7 +794,7 @@ max-width: 590px;
 export const SixthSectionContentManifest = styled.div`
   text-align: left;
   border-radius: 15px;
-  background-color: ${newBackground.orange};
+  background-color: ${background.orange};
   padding: 37px 29px;
 
   max-width: 590px;
@@ -804,7 +804,7 @@ export const SixthSectionContentManifest = styled.div`
     font-size: 21px;
     line-height: 25px;
     font-weight: 400;
-    color: ${newBackground.white};
+    color: ${background.white};
     
     margin-bottom: 22px;
   }
@@ -860,7 +860,7 @@ export const SixthSectionBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: ${newBackground.green};
+  background-color: ${background.green};
   
   border-radius: 15px;
   padding: 1rem;
@@ -872,7 +872,7 @@ export const SixthSectionBox = styled.div`
     font-family: "Graphie";
     font-size: 21px;
     font-weight: 500;
-    color: ${newBackground.yellow};
+    color: ${background.yellow};
   }
   
   .description {
@@ -880,28 +880,28 @@ export const SixthSectionBox = styled.div`
     font-size: 15px;
     line-height: 17px;
     font-weight: 400;
-    color: ${newBackground.white};
+    color: ${background.white};
   }
 
   @media (max-width: 600px) {
     max-width: 280px;
-    background: linear-gradient(to top, #ffffff 5%, ${newBackground.yellow} 93%);
+    background: linear-gradient(to top, #ffffff 5%, ${background.yellow} 93%);
 
 
     .title {
       font-weight: 700;
-      color: ${newBackground.orange};
+      color: ${background.orange};
     }
     .description {
       font-weight: 600;
-      color: ${newBackground.orange};
+      color: ${background.orange};
     }
   }
 `
 
 export const VideoContainer = styled.div`
   margin: 0 auto;
-  background-color: ${newBackground.white};
+  background-color: ${background.white};
   padding: 2rem;
 
   .embededVideo {

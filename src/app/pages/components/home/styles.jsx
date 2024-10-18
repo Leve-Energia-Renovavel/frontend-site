@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/material";
 import { fadeInUp, fadeInUpAnimation, slideAndDisappear } from "../../animations";
-import { newBackground, notification } from "../../styles";
+import { background, notification } from "../../styles";
 
 export const HomeContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     background-color: transparent;
     
     max-width: 1920px;
@@ -33,7 +33,7 @@ export const FormTitleContainer = styled.div`
   h2 {
     font-family: "Graphie";
     font-weight: 600;
-    color: ${newBackground.yellow};
+    color: ${background.yellow};
     white-space: nowrap;
     font-size: 27px;
     text-align: left;
@@ -68,7 +68,7 @@ export const HomeContentContainer = styled.section`
       position: absolute;
       left: 0;
       right: 0; 
-      border: 4px solid ${newBackground.grey};
+      border: 4px solid ${background.grey};
       margin-left: calc(-50vw + 50%); /*Centers the bar by compensating for parent's padding */
       margin: 0 auto;
     }
@@ -86,7 +86,7 @@ export const HomeContentContainer = styled.section`
           width: 100%;
           position: absolute;
   
-          border: 12px solid ${newBackground.grey};
+          border: 12px solid ${background.grey};
         }
     }
 `
@@ -168,7 +168,7 @@ export const HomeSubtitleContainer = styled.div`
   flex-direction: row;
   justify-content: end;
   align-items: center;
-  color: ${newBackground.white};
+  color: ${background.white};
   
   gap: 1rem;
   
@@ -209,7 +209,7 @@ export const HomeFormContainer = styled.div`
     line-height: 12px;
     font-weight: 500;
     text-align: left;
-    color: ${newBackground.orange};
+    color: ${background.orange};
     
     max-width: 360px;
     
@@ -223,13 +223,13 @@ export const HomeFormContainer = styled.div`
     font-weight: 700;
     text-decoration: underline;
     text-align: left;
-    color: ${newBackground.orange};
+    color: ${background.orange};
     border-radius: 5px;
 
     &:hover{
       cursor: pointer;
-      color: ${newBackground.green};
-      background-color: ${newBackground.yellow};
+      color: ${background.green};
+      background-color: ${background.yellow};
     }
   }
 
@@ -350,8 +350,8 @@ export const HomeSecondaryBoxTitle = styled.div`
 `
 
 export const HomeMainFormContainer = styled.div`
-    background-color: ${newBackground.white};
-    border: 1px solid ${newBackground.orange};
+    background-color: ${background.white};
+    border: 1px solid ${background.orange};
     
     border-radius: 15px;
     
@@ -364,7 +364,7 @@ export const HomeMainFormContainer = styled.div`
       max-width: 100vw;
       border-radius: 0px;
 
-      background-color: ${newBackground.grey};
+      background-color: ${background.grey};
       border: none;
       padding: 1rem;
     }
@@ -372,7 +372,7 @@ export const HomeMainFormContainer = styled.div`
 export const HomeMainForm = styled.form`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.orange};
+    background-color: ${background.orange};
     
     border-radius: 15px;
     
@@ -382,11 +382,11 @@ export const HomeMainForm = styled.form`
     overflow: hidden;
 
     .homeFormInput {
-      background-color: ${newBackground.white};
+      background-color: ${background.white};
       border-radius: 10px;
       height: 42px;
       margin-bottom: 8px;
-      border: 1px solid ${newBackground.white};
+      border: 1px solid ${background.white};
 
       & .MuiInputLabel-shrink {
         /* Styles for the focused label */
@@ -404,14 +404,14 @@ export const HomeMainForm = styled.form`
         height: 2px;
         padding: 24px 14px;
         font-weight: 700;
-        color: ${newBackground.orange};
+        color: ${background.orange};
         }
 
         & label {
           font-family: "Graphie";
           font-size: 20px;
           font-weight: 500;
-          color:  ${newBackground.orange};
+          color:  ${background.orange};
 
           margin-top: -5px;  //to put the label/placeholder centralized
         }
@@ -424,7 +424,7 @@ export const HomeMainForm = styled.form`
           & fieldset {
             height: 42px;
             border-radius: 10px;
-            border-color: ${newBackground.white};
+            border-color: ${background.white};
           }
         } 
 
@@ -446,7 +446,7 @@ export const HomeMainForm = styled.form`
     }
 
     @media (max-width: 600px) {
-      background-color: ${newBackground.green};
+      background-color: ${background.green};
 
       padding: 1.5rem;
       width: 100%;
@@ -475,11 +475,11 @@ export const HomeMainForm = styled.form`
 
         .MuiOutlinedInput-input {
         // styles for the user input text
-          color: ${newBackground.orange};
+          color: ${background.orange};
         }
         & label {
           font-size: 20px;
-          color:  ${newBackground.green};
+          color:  ${background.green};
 
       }
     }
@@ -494,7 +494,7 @@ export const HomeMainForm = styled.form`
       font-weight: 300;
       font-size: 12px;
       line-height: 12px;
-      color:  ${newBackground.white};
+      color:  ${background.white};
 
       text-align: center;
       
@@ -515,7 +515,7 @@ export const UserTypeFormContainer = styled.div`
     .chooseWhereToEconomy {
       font-family: "Graphie";
       font-weight: 500;
-      color: ${newBackground.white};
+      color: ${background.white};
       font-size: 14px;
       line-height: 12px;
       
@@ -564,20 +564,20 @@ export const UserTypeFormButtonContainer = styled.div`
 
 export const HomeMainTitle = styled(Typography)`
     font-family: "Graphie", sans-serif;
-    color: ${newBackground.yellow};
+    color: ${background.yellow};
     font-size: 5rem;
     font-weight: bold;
     max-width: 400px;
     word-wrap: break-word;
 `
 export const FormSelect = styled(Button)`
-  background-color: ${newBackground.orange};
-  border: 1px solid ${newBackground.yellow};
+  background-color: ${background.orange};
+  border: 1px solid ${background.yellow};
   border-radius: 10px;
 
   font-family: "Graphie";
   font-size: 18px;
-  color: ${props => props.selected ? newBackground.yellow : newBackground.white};
+  color: ${props => props.selected ? background.yellow : background.white};
   font-weight: 400;
   text-transform: none;
   padding: 0.5rem 2rem;
@@ -589,7 +589,7 @@ export const FormSelect = styled(Button)`
     cursor: pointer;
   }
   
-  ${props => props.selected && `background-image: linear-gradient(to left, ${newBackground.yellow}, transparent 50%);`}
+  ${props => props.selected && `background-image: linear-gradient(to left, ${background.yellow}, transparent 50%);`}
   
   
   @media (max-width: 600px) {
@@ -597,17 +597,17 @@ export const FormSelect = styled(Button)`
     height: 50px;
     max-width: 144px;
     
-    background-color: ${newBackground.green};
+    background-color: ${background.green};
     
     background-image: none;
-    border: 1px solid ${newBackground.grey};
+    border: 1px solid ${background.grey};
     
-    ${props => props.selected && `border: 1px solid ${newBackground.yellow};`}
+    ${props => props.selected && `border: 1px solid ${background.yellow};`}
   }
 `
 
 export const FormSlider = styled(Slider)`
-    color: ${newBackground.green};
+    color: ${background.green};
     height: 8px;
     
     @media (max-width: 600px) {
@@ -615,13 +615,13 @@ export const FormSlider = styled(Slider)`
     }
     
     & .MuiSlider-thumb {
-        background-color: ${newBackground.orange};
+        background-color: ${background.orange};
         height: 12px;
         width: 12px;
     }
     
     & .MuiSlider-rail {
-      background-color: ${newBackground.yellow};
+      background-color: ${background.yellow};
       height: 8px;
       opacity: 1;
     } 
@@ -634,8 +634,8 @@ export const FormSlider = styled(Slider)`
 
 export const FormButton = styled(Button)`
   padding: .5rem 1rem;
-  background-color: ${newBackground.yellow};
-  color: ${newBackground.green};
+  background-color: ${background.yellow};
+  color: ${background.green};
   border-radius: 30px;
 
   height: 42px;
@@ -658,8 +658,8 @@ export const FormButton = styled(Button)`
   }
   
   &:hover {
-    background-color: ${newBackground.orange};
-    color: ${newBackground.yellow};
+    background-color: ${background.orange};
+    color: ${background.yellow};
     cursor: pointer;
   }
   
@@ -680,7 +680,7 @@ export const HomeMainFormSimulationContainer = styled.div`
       font-family: "Graphie";
       font-size: 17px;
       font-weight: 900;
-      color:${newBackground.green};
+      color:${background.green};
       
       white-space: nowrap;
     }
@@ -694,7 +694,7 @@ export const HomeMainFormSimulationContainer = styled.div`
       font-family: "Graphie";
       font-size: 21px;
       font-weight: 900;
-      color:${newBackground.orange};
+      color:${background.orange};
     }
 
     .sliderTip {
@@ -718,7 +718,7 @@ export const HomeMainFormSimulationContainer = styled.div`
 export const HomeSecondarySectionContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     gap: 80px;
     
@@ -794,7 +794,7 @@ export const HomeSecondaryImagesContent = styled.div`
       font-family: "Graphie";
       font-size: 27px;
       font-weight: 600;
-      color: ${newBackground.white};
+      color: ${background.white};
       
       @media (max-width: 600px) {
         font-size: 21px;
@@ -805,11 +805,11 @@ export const HomeSecondaryImagesContent = styled.div`
     .arrowIcon {
       ${props => props.invertedBox ? "margin-top: auto" : ""};
       font-size: 50px;
-      color: ${newBackground.yellow};
+      color: ${background.yellow};
       
       &:hover {
-        color: ${newBackground.green};
-        background-color: ${newBackground.yellow};
+        color: ${background.green};
+        background-color: ${background.yellow};
         border-radius: 30px;
       }
     }
@@ -819,7 +819,7 @@ export const HomeSecondaryImagesContent = styled.div`
 export const HomeFifthSectionContainer = styled.div`
     display: flex;
     flex-direction: row;
-    background-color: ${newBackground.green};
+    background-color: ${background.green};
 
     gap: 2rem;
     
@@ -886,7 +886,7 @@ export const HomeFifthSectionTitleContainer = styled.div`
     font-family: "Graphie";
     font-size: 34px;
     font-weight: 600;
-    color: ${newBackground.white};
+    color: ${background.white};
     
     line-height: 34px;
     
@@ -914,7 +914,7 @@ export const HomeFifthSectionDescriptionContainer = styled.div`
     font-size: 21px;
     line-height: 21px;
     font-weight: 500;
-    color: ${newBackground.yellow};
+    color: ${background.yellow};
     
     text-decoration: underline;
     max-width: 300px;
@@ -939,7 +939,7 @@ export const HomeFifthSectionDescriptionContainer = styled.div`
     }
     
     &:hover {
-      color: ${newBackground.orange};
+      color: ${background.orange};
       cursor: pointer;
     }
 }
@@ -949,7 +949,7 @@ export const HomeSixthSectionContainer = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     min-height: 670px;
 
@@ -964,12 +964,12 @@ export const HomeSixthSectionContainer = styled.section`
       font-family: "Graphie";
       font-size: 34px;
       font-weight: 600;
-      color: ${newBackground.green};
+      color: ${background.green};
     }
     
     @media (max-width: 600px) {
       padding: 1rem;
-      background-color: ${newBackground.grey};
+      background-color: ${background.grey};
       
       .sectionTitle {
         font-size: 21px;
@@ -1005,8 +1005,8 @@ export const HomeSixthSectionCard = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid ${newBackground.green};
-    background-color: ${newBackground.white};
+    border: 1px solid ${background.green};
+    background-color: ${background.white};
     
     border-radius: 5px;
     
@@ -1092,15 +1092,15 @@ export const SnackbarMessageNotification = styled(Alert)`
 
 
 export const Loading = styled(CircularProgress)`
-  color: ${newBackground.green};
+  color: ${background.green};
   width: 10px;
   height: 10px;
 
 `
 
 export const CTAButton = styled(Button)`
-  background-color: ${newBackground.orange};
-  color: ${newBackground.white};
+  background-color: ${background.orange};
+  color: ${background.white};
   border-radius: 30px;
 
   height: 52px;
@@ -1122,8 +1122,8 @@ export const CTAButton = styled(Button)`
   }
 
   &:hover {
-      background-color: ${newBackground.green};
-      color: ${newBackground.yellow};
+      background-color: ${background.green};
+      color: ${background.yellow};
       cursor: pointer;
   }
 `

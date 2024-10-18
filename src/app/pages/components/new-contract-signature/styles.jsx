@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { LinearProgress } from "@mui/material";
 
@@ -6,7 +6,7 @@ export const ContractSignatureContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: ${newBackground.grey};
+    background-color: ${background.grey};
     margin: 74px auto 0 auto;   //margin-top for header
 
     padding: 74px 85px;
@@ -22,7 +22,7 @@ export const ContractSignatureContainer = styled.div`
 export const ContractSignatureForm = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     border-radius: 20px;
 
     gap: 10px;
@@ -44,7 +44,7 @@ export const ContractSignatureForm = styled.div`
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         max-width: 600px;
     }
@@ -53,20 +53,20 @@ export const ContractSignatureForm = styled.div`
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 700;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         text-decoration: underline;
-        background-color: ${newBackground.yellow};
+        background-color: ${background.yellow};
     }
 `
 
 export const SignupLinearProgress = styled(LinearProgress)`
-    background-color: ${newBackground.yellow};
+    background-color: ${background.yellow};
     border-bottom-width: 5px;
 
     margin-bottom: 15px;
     
     & .MuiLinearProgress-bar {
-        background-color: ${newBackground.orange};
+        background-color: ${background.orange};
     }
 `

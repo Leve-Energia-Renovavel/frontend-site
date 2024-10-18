@@ -1,11 +1,11 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
 export const LandingPageContainer = styled.div`
     display: flex;
     flex-direction: column;
     
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     max-width: 1920px;
     /* max-width: 1366px; */
@@ -71,12 +71,12 @@ export const BannerMain = styled.div`
       font-size: 42px;
       line-height: 45px;
       font-weight: 600;
-      color: ${newBackground.white};
+      color: ${background.white};
     }
     .titleHighlighted {
       font-family: "Graphie";
       font-weight: 600;
-      color: ${newBackground.yellow};
+      color: ${background.yellow};
       border-radius: 4px;
     }
 
@@ -115,7 +115,7 @@ export const ArrowScrollerContainer = styled.div`
       font-size: 21px;
       line-height: 25px;
       font-weight: 500;
-      color: ${newBackground.white};
+      color: ${background.white};
 
       max-width: 371px;
   }

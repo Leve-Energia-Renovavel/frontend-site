@@ -36,7 +36,7 @@ export default function SignupMain() {
         <>
             <Container className='signupMainContainer'>
                 <NewResultEconomy />
-                <SignupForm />
+                {/* <SignupForm /> */}
             </Container>
         </>
     )

@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
 export const BarChartWrapper = styled.div`
@@ -41,8 +41,8 @@ export const ChartLegendContainer = styled.div`
     .chartLegend-0, .chartLegend-1, .chartLegend-2, .chartLegend-3 {
       font-family: "Graphie";
       font-weight: 600;
-      color: ${newBackground.green};
-      background-color: ${newBackground.grey};
+      color: ${background.green};
+      background-color: ${background.grey};
 
       padding: 2px 4px;
       min-width: 156px;
@@ -118,10 +118,10 @@ export const LegendDetail = styled.div`
     }
 
     .withoutLeve {
-      color: ${newBackground.greyDark};
+      color: ${background.greyDark};
     }
     .withLeve {
-      color: ${newBackground.green};
+      color: ${background.green};
     }
 
     @media (max-width: 900px) {

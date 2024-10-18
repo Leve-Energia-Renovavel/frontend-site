@@ -1,4 +1,4 @@
-import { background, newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import BarChartIcon from '@mui/icons-material/BarChart';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
@@ -37,25 +37,25 @@ export const DueButton = styled.button`
     background-color: ${background.white};
     border-radius: 10px;
 
-    border: 2px solid ${props => props.status === "paid" ? newBackground.green : newBackground.orange};
+    border: 2px solid ${props => props.status === "paid" ? background.green : background.orange};
 
     span {
         font-family: "Graphie";
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${props => props.status === "paid" ? newBackground.green : newBackground.orange};
+        color: ${props => props.status === "paid" ? background.green : background.orange};
 
         white-space: nowrap;
     }
 
     .icon {
-        color: ${props => props.status === "paid" ? newBackground.green : newBackground.orange};
+        color: ${props => props.status === "paid" ? background.green : background.orange};
     }
 
     &:hover {
         cursor: pointer;
-        background-color: ${props => props.status === "paid" ? newBackground.greenLight : newBackground.orangeFocused}
+        background-color: ${props => props.status === "paid" ? background.greenLight : background.orangeFocused}
     }
 `
 
@@ -70,19 +70,19 @@ export const PaidButton = styled.button`
     background-color: ${background.white};
     border-radius: 10px;
 
-    border: 2px solid ${newBackground.green};
+    border: 2px solid ${background.green};
 
     span {
         font-family: "Graphie";
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 
     &:hover {
         cursor: pointer;
-        background-color: ${newBackground.greenLight};
+        background-color: ${background.greenLight};
     }
 `
 export const PendingButton = styled.button`
@@ -100,12 +100,12 @@ export const PendingButton = styled.button`
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.white};
+        color: ${background.white};
     }
 
     &:hover {
         cursor: pointer;
-        background-color: ${newBackground.green};
+        background-color: ${background.green};
     }
 `
 
@@ -118,15 +118,15 @@ export const IconButton = styled.button`
 
     padding: 8px;
     background-color: ${background.white};
-    border: 2px solid ${props => props.status === "paid" ? newBackground.green : newBackground.orange};
+    border: 2px solid ${props => props.status === "paid" ? background.green : background.orange};
     border-radius: 10px;
 
     .icon{
-        color: ${props => props.status === "paid" ? newBackground.green : newBackground.orange};
+        color: ${props => props.status === "paid" ? background.green : background.orange};
     }
     
     &:hover {
         cursor: pointer;
-        background-color: ${props => props.status === "paid" ? newBackground.greenLight : newBackground.orangeFocused};
+        background-color: ${props => props.status === "paid" ? background.greenLight : background.orangeFocused};
     }
 `

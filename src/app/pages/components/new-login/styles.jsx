@@ -1,26 +1,13 @@
-import { background, newBackground, notification } from "../../styles";
 import styled from "@emotion/styled";
-import { Alert, Box, Button } from "@mui/material";
-import { keyframes } from "@emotion/react";
-
-const fadeInUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`
+import { Box, Button } from "@mui/material";
+import { background } from "../../styles";
 
 export const LoginBox = styled(Box)`
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     border-radius: 15px;
 
     width: 60vw;
@@ -34,18 +21,18 @@ export const LoginBox = styled(Box)`
 
     .MuiOutlinedInput-root {
         &:hover .MuiOutlinedInput-notchedOutline {
-            border-color: ${newBackground.orangeFocused}; // Border color on hover
+            border-color: ${background.orangeFocused}; // Border color on hover
         }
         &.Mui-focused .MuiOutlinedInput-notchedOutline {
-            border-color: ${newBackground.orange} !important; // Border color when focused
+            border-color: ${background.orange} !important; // Border color when focused
         }
         &:not(.Mui-focused) .MuiOutlinedInput-notchedOutline {
-            border-color: ${newBackground.orangeFocused} !important; // Border color when not focused
+            border-color: ${background.orangeFocused} !important; // Border color when not focused
         }
     }
 
     .MuiOutlinedInput-notchedOutline {
-        border-color: ${newBackground.orangeFocused}; // Border color: ;
+        border-color: ${background.orangeFocused}; // Border color: ;
     }
 
     @media (max-width: 900px) {
@@ -80,7 +67,7 @@ export const LoginTitleContainer = styled.div`
         font-weight: 700;
         font-size: 1.5rem;
         line-height: 1.5rem;
-        color: ${newBackground.orange};
+        color: ${background.orange};
 
         margin-top: 6rem;
     }
@@ -142,14 +129,14 @@ export const LoginForm = styled.form`
         }
 
         .MuiInputLabel-root {
-            color: ${newBackground.orange};
+            color: ${background.orange};
         }
 
         &:hover .MuiOutlinedInput-notchedOutline {
-            border-color: ${newBackground.orange};
+            border-color: ${background.orange};
         }
         & .MuiSelect-select:focus {
-            background-color: ${newBackground.orange};
+            background-color: ${background.orange};
         }
     }
     
@@ -184,7 +171,7 @@ export const LoginButtonContainer = styled.form`
     }
     
     .createNewAccount {
-        color: ${newBackground.orange};
+        color: ${background.orange};
         font-weight: 500;
         
         &:hover {
@@ -199,14 +186,14 @@ export const LoginButtonContainer = styled.form`
     }
 
     .loading {
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 `
 export const LoginButton = styled(Button)`
     text-transform: none;
-    color: ${newBackground.yellow};
-    border-color: ${newBackground.white};
-    background-color: ${newBackground.orange};
+    color: ${background.yellow};
+    border-color: ${background.white};
+    background-color: ${background.orange};
     border-radius: 13px;
     cursor: pointer;
     height: 3rem;
@@ -234,8 +221,8 @@ export const LoginButton = styled(Button)`
 
     &:hover {
         background-color: ${background.light};
-        color: ${newBackground.orange};
-        border: 1px solid ${newBackground.orange};
+        color: ${background.orange};
+        border: 1px solid ${background.orange};
     }
 `
 

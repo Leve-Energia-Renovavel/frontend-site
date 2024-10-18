@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Divider } from "@mui/material";
 
@@ -11,7 +11,7 @@ export const EconomyTableContainer = styled.div`
 
     padding: 2rem;
 
-    background-color: ${newBackground.green};
+    background-color: ${background.green};
 `
 export const EconomyTableContent = styled.div`
     display: flex;
@@ -27,7 +27,7 @@ export const EconomyTableTitleContainer = styled.div`
         font-size: 42px;
         line-height: 30px;
         font-weight: 600;
-        color: ${newBackground.white};
+        color: ${background.white};
     }
 
     @media (max-width: 900px) {
@@ -70,8 +70,8 @@ export const TableContent = styled.div`
         z-index: 99;
         text-align: center;
         border-radius: 30px;
-        background-color: ${newBackground.yellow};
-        border: 2px solid ${newBackground.green};
+        background-color: ${background.yellow};
+        border: 2px solid ${background.green};
         
         padding: 0px 7px;
         
@@ -80,7 +80,7 @@ export const TableContent = styled.div`
         
         right: 255px;
         top: 182px;
-        color: ${newBackground.green};
+        color: ${background.green};
         font-weight: 700;
         font-size: 30px;
     }
@@ -119,22 +119,22 @@ export const TableHeader = styled.div`
 `
 
 export const TableHeaderOne = styled(TableHeader)`
-    background-color: ${newBackground.orange};
+    background-color: ${background.orange};
     width: 287px;
 
     margin-left: auto;
     
-    color: ${newBackground.white};
+    color: ${background.white};
     
     @media (max-width: 900px) {
         margin-left: 0;
     }
 `
 export const TableHeaderTwo = styled(TableHeader)`
-    background-color: ${newBackground.yellow};
+    background-color: ${background.yellow};
     width: 100%;
     max-width: 590px;
-    color: ${newBackground.green};
+    color: ${background.green};
 
     .economyIcon {
         width: 32px;
@@ -190,7 +190,7 @@ export const TableCard = styled.div`
 `
 
 export const TableCardOne = styled(TableCard)`
-    background-color: ${newBackground.green};
+    background-color: ${background.green};
     text-align: start;
     width: 287px;
     
@@ -200,7 +200,7 @@ export const TableCardOne = styled(TableCard)`
         font-size: 17px;
         line-height: 21px;
         font-weight: 500;
-        color: ${newBackground.yellow};
+        color: ${background.yellow};
     }
     .taxes {
         font-size: 14px;
@@ -222,7 +222,7 @@ export const TableCardOne = styled(TableCard)`
 `
 export const TableCardTwo = styled(TableCard)`
     text-align: center;
-    background-color: ${newBackground.greenLight};
+    background-color: ${background.greenLight};
 
 
     p {
@@ -230,7 +230,7 @@ export const TableCardTwo = styled(TableCard)`
         font-size: 21px;
         line-height: 21px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 
     .tinyValue {
@@ -238,7 +238,7 @@ export const TableCardTwo = styled(TableCard)`
         line-height: 21px;
     }
     .thinValue {
-        color: ${newBackground.greenSoft};
+        color: ${background.greenSoft};
     }
     .boldValue {
         font-weight: 800;
@@ -250,14 +250,14 @@ export const TableCardTwo = styled(TableCard)`
 `
 export const TableCardThree = styled(TableCard)`
     text-align: center;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     p {
         font-family: "Graphie";
         font-size: 21px;
         line-height: 21px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
     
     span, .tinyValue {
@@ -266,14 +266,14 @@ export const TableCardThree = styled(TableCard)`
         line-height: 21px;
     }
     .thinValue {
-        color: ${newBackground.greenSoft};
+        color: ${background.greenSoft};
     }
     .boldValue {
         font-weight: 800;
     }
 
     .highlighted {
-        background-color: ${newBackground.yellow};
+        background-color: ${background.yellow};
     }
 `
 
@@ -293,7 +293,7 @@ export const TableCardTitle = styled.div`
         font-size: 17px;
         line-height: 21px;
         font-weight: 700;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 
     .boletoLeve {
@@ -301,9 +301,9 @@ export const TableCardTitle = styled.div`
         font-size: 17px;
         line-height: 21px;
         font-weight: 700;
-        color: ${newBackground.orange};
+        color: ${background.orange};
         padding: 0 8px;
-        border: 1px solid ${newBackground.orange};
+        border: 1px solid ${background.orange};
         border-radius: 15px;
     }
 
@@ -320,10 +320,10 @@ export const CardDivider = styled(Divider)`
     margin: 10px 0;
 `
 export const CardDividerOne = styled(CardDivider)`
-    background-color: ${newBackground.greenLight};
+    background-color: ${background.greenLight};
 `
 export const CardDividerTwo = styled(CardDivider)`
-    background-color: ${newBackground.green};
+    background-color: ${background.green};
     margin: 10px 1rem;
 `
 
@@ -350,7 +350,7 @@ export const TableFooterDescription = styled.div`
         font-size: 12px;
         line-height: 15px;
         font-weight: 100;
-        color: ${newBackground.white};
+        color: ${background.white};
 
         max-width: 269px;
     }
@@ -364,7 +364,7 @@ export const TableFooterDiscount = styled.div`
     flex-direction: row;
     padding: 18px;
     border-radius: 15px;
-    border: 1px solid ${newBackground.yellow};
+    border: 1px solid ${background.yellow};
 
     margin-top: 30px;
 
@@ -387,14 +387,14 @@ export const TableFooterDiscountValue = styled.div`
         font-size: 34px;
         line-height: 21px;
         font-weight: 600;
-        color: ${newBackground.yellow};
+        color: ${background.yellow};
     }
     .description{
         font-family: "Graphie";
         font-size: 17px;
         line-height: 21px;
         font-weight: 500;
-        color: ${newBackground.white};
+        color: ${background.white};
 
         margin-top: 8px;
     }
@@ -415,17 +415,17 @@ export const TableFooterButtonContainer = styled.div`
     }
 `
 export const TableFooterButton = styled.div`
-    background-color: ${newBackground.yellow};
+    background-color: ${background.yellow};
     border-radius: 20px;
     padding: 10px 18px;
-    color: ${newBackground.green};
+    color: ${background.green};
 
     span {
         font-family: "Graphie";
         font-size: 21px;
         line-height: 21px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
     
     &:hover {

@@ -1,11 +1,11 @@
-import { newBackground } from "@/app/pages/styles"
+import { background } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 import { Box, MenuItem, Select } from "@mui/material"
 
 export const NewDashboardProfile = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     border-radius: 15px;
 
     padding: 14px;
@@ -18,7 +18,7 @@ export const NewDashboardProfile = styled.div`
         line-height: 17px;
         font-weight: 500;
         margin-left: 40px;
-        color: ${newBackground.greyDark};
+        color: ${background.greyDark};
 
         margin-top: 8px;
     }
@@ -35,7 +35,7 @@ export const ProfileHeader = styled.div`
     gap: 1rem;
 
     .profileIcon {
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
     
     .username  {
@@ -43,7 +43,7 @@ export const ProfileHeader = styled.div`
         font-size: 21px;
         line-height: 26px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
         margin-right: auto;
 
         white-space: nowrap;
@@ -54,7 +54,7 @@ export const ProfileHeader = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         white-space: nowrap;
         
@@ -70,7 +70,7 @@ export const ProfileHeader = styled.div`
 export const NewDashboardInstallation = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     gap: 10px;
 
     padding: 14px;
@@ -95,7 +95,7 @@ display: flex;
     .installationIcon {
         width: 21px;
         height: auto;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 `
 export const InstallationDetails = styled.div`
@@ -104,7 +104,7 @@ export const InstallationDetails = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 400;
-        color: ${newBackground.greyDark};  
+        color: ${background.greyDark};  
         
         margin-left: 34px;
     }
@@ -121,20 +121,20 @@ export const InstallationFooter = styled.div`
     .addInstallationIcon {
         width: 15px;
         height: auto;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
     .addInstallation {
         font-family: "Graphie";
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 
     &:hover {
         cursor: pointer;
         text-decoration: underline;
-        text-decoration-color: ${newBackground.green};
+        text-decoration-color: ${background.green};
     }
 `
 
@@ -142,7 +142,7 @@ export const InstallationFooter = styled.div`
 export const NewDashboardMenu = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     border-radius: 15px;
 
     padding: 14px;
@@ -152,7 +152,7 @@ export const NewDashboardMenu = styled.div`
         font-size: 21px;
         line-height: 27px;
         font-weight: 500;
-        color: ${newBackground.orange};
+        color: ${background.orange};
 
         ${props => !props.isSideBar && "margin: 3rem 10rem 0rem 10rem;"}
         ${props => props.isSideBar && "display: none;"}
@@ -183,8 +183,8 @@ export const MenuOption = styled.div`
     padding: 8px;
     margin-top: 4px;
     border-radius: 10px;
-    ${props => props.highlighted ? `background-color:${newBackground.orange}` : ""};
-    ${props => props.selected ? `background-color:${newBackground.grey}` : ""};
+    ${props => props.highlighted ? `background-color:${background.orange}` : ""};
+    ${props => props.selected ? `background-color:${background.grey}` : ""};
 
     width: 100%;
     max-width: 300px;
@@ -192,8 +192,8 @@ export const MenuOption = styled.div`
     .icon {
         width: 24px;
         height: auto;
-        color: ${newBackground.orange};
-        ${props => props.highlighted ? `color:${newBackground.yellow}` : ""};
+        color: ${background.orange};
+        ${props => props.highlighted ? `color:${background.yellow}` : ""};
     }
     .option {
         display: block;
@@ -201,7 +201,7 @@ export const MenuOption = styled.div`
         font-size: 17px;
         line-height: 21px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         white-space: nowrap;
     }
@@ -211,7 +211,7 @@ export const MenuOption = styled.div`
         font-size: 17px;
         line-height: 21px;
         font-weight: 500;
-        color: ${newBackground.white};
+        color: ${background.white};
     }
 
     .couponValue {
@@ -219,7 +219,7 @@ export const MenuOption = styled.div`
         font-size: 17px;
         line-height: 21px;
         font-weight: 600;
-        color: ${newBackground.yellow};
+        color: ${background.yellow};
         text-decoration: underline;
 
         white-space: nowrap;
@@ -227,17 +227,17 @@ export const MenuOption = styled.div`
 
     &:hover { 
         cursor: pointer;
-        background-color: ${newBackground.grey};
+        background-color: ${background.grey};
         .option {
             text-decoration: underline;
         }
         
         .icon { 
-            color: ${newBackground.orange};
+            color: ${background.orange};
         }
     }
 
-    ${props => props.highlighted ? `background-color:${newBackground.orange}; padding: 10px 12px; align-items: start; &:hover { background-color: ${newBackground.yellow}; cursor: pointer; .option { text-decoration: underline; } .memberGetMember { color: ${newBackground.green} } .icon, .couponValue { color: ${newBackground.green}; font-weight: 900; }}` : ""};
+    ${props => props.highlighted ? `background-color:${background.orange}; padding: 10px 12px; align-items: start; &:hover { background-color: ${background.yellow}; cursor: pointer; .option { text-decoration: underline; } .memberGetMember { color: ${background.green} } .icon, .couponValue { color: ${background.green}; font-weight: 900; }}` : ""};
 
 
     @media (max-width: 900px) {
@@ -259,7 +259,7 @@ export const SelectInstallation = styled(Select)`
         font-weight: 600;
         font-size: 21px;
         line-height: 24px;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 
     &.MuiOutlinedInput-root {
@@ -288,7 +288,7 @@ export const SelectInstallation = styled(Select)`
         border-color: transparent; // Border color on hover
     }
     .MuiSvgIcon-root {
-        fill: ${newBackground.green} !important;
+        fill: ${background.green} !important;
     }
 `
 
@@ -299,7 +299,7 @@ export const InstallationItem = styled(MenuItem)`
     font-weight: 600;
     font-size: 17px;
     line-height: 21px;
-    color: ${newBackground.orange};
+    color: ${background.orange};
 `
 
 
@@ -308,25 +308,25 @@ export const installationFieldStyle = {
     fontWeight: '800',
     fontSize: 20,
     padding: '0px', // Adjust the padding as needed
-    color: newBackground.orange,
+    color: background.orange,
     '& .MuiOutlinedInput-root': {
         '&.MuiSelect-select MuiSelect-outlined .MuiInputBase-input .MuiOutlinedInput-input .MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input': {
             padding: '0 !important', // Remove padding
         },
         '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: newBackground.white, // Border color on hover
+            borderColor: background.white, // Border color on hover
         },
         '& .MuiSelect-select:focus': {
-            backgroundColor: newBackground.white, // Avoid the blue background on focus
+            backgroundColor: background.white, // Avoid the blue background on focus
         },
     },
     '& .MuiOutlinedInput-notchedOutline': {
-        borderColor: newBackground.orange, // Border color
+        borderColor: background.orange, // Border color
     },
     '&:hover .MuiOutlinedInput-notchedOutline': {
-        borderColor: newBackground.white, // Border color on hover
+        borderColor: background.white, // Border color on hover
     },
     '.MuiSvgIcon-root ': {
-        fill: `${newBackground.orange} !important`,
+        fill: `${background.orange} !important`,
     },
 }

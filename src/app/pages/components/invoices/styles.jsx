@@ -3,7 +3,7 @@ import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import { Alert } from "@mui/material";
-import { background, newBackground } from "../../styles";
+import { background } from "../../styles";
 
 const fadeInUp = keyframes`
   from {
@@ -19,7 +19,7 @@ const fadeInUp = keyframes`
 export const InvoiceContainer = styled.div`
     display: flex;
     flex-direction: row;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     padding: 2rem 0;
     
@@ -37,7 +37,7 @@ export const InvoiceContainer = styled.div`
     h1 {
         font-family: "Graphie", sans-serif;
         font-size: 1.5rem;
-        color: ${newBackground.orange};
+        color: ${background.orange};
         font-weight: 700;
       }
 
@@ -49,7 +49,7 @@ export const InvoiceContainer = styled.div`
 export const InvoicesMainContent = styled.div`
     display: flex;
     flex-direction: row;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     border-radius: 4px;
     
     margin: 1rem auto;
@@ -145,7 +145,7 @@ export const InvoicesMainCardContainer = styled.div`
     display: flex;
     flex-direction: column;
     
-    border: 1px solid ${newBackground.orange};
+    border: 1px solid ${background.orange};
     animation: ${fadeInUp} 0.5s ease-out;
 
     border-radius: 4px;
@@ -207,7 +207,7 @@ export const InvoicesMainCardChangeDate = styled.div`
     flex-direction: column;
     gap: 1rem;
     
-    border: 1px solid ${newBackground.orange};
+    border: 1px solid ${background.orange};
     border-radius: 4px;
 
 
@@ -240,7 +240,7 @@ export const InvoicesMainCardChangeDate = styled.div`
         font-size: 21px;
         line-height: 27px;
         font-weight: 700;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 
     .invoiceDateField {
@@ -248,45 +248,45 @@ export const InvoicesMainCardChangeDate = styled.div`
       width: 100%;
 
       .MuiOutlinedInput-notchedOutline {
-          border-color: ${newBackground.orangeFocused}; // Border color: ;
+          border-color: ${background.orangeFocused}; // Border color: ;
       }
 
       .MuiOutlinedInput-root {
-            border-color: ${newBackground.white};
+            border-color: ${background.white};
         
           &:hover .MuiOutlinedInput-notchedOutline {
-            border-color: ${newBackground.orangeFocused}; // Border color on hover
+            border-color: ${background.orangeFocused}; // Border color on hover
           }
           
           &.Mui-focused .MuiOutlinedInput-notchedOutline {
-              border-color: ${newBackground.orange} !important; // Border color when focused
+              border-color: ${background.orange} !important; // Border color when focused
           }
           &:not(.Mui-focused) .MuiOutlinedInput-notchedOutline {
-              border-color: ${newBackground.orangeFocused} !important; // Border color when not focused
+              border-color: ${background.orangeFocused} !important; // Border color when not focused
           }
         }
 
         .MuiInputLabel-root {
-            color: ${newBackground.orange};
+            color: ${background.orange};
         }
         .MuiOutlinedInput-input {
         // styles for the user input text
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 500;
-        color: ${newBackground.orange};
+        color: ${background.orange};
         }
 
         &:hover .MuiOutlinedInput-notchedOutline {
-            border-color: ${newBackground.orange};
+            border-color: ${background.orange};
         }
     }
 
     .buttonChangeDate {
       display: block;
-      background-color: ${newBackground.orange};
-      color: ${newBackground.white};
-      border: 1px solid ${newBackground.orange};
+      background-color: ${background.orange};
+      color: ${background.white};
+      border: 1px solid ${background.orange};
       margin: 1rem 0;
       border-radius: 8px;
       
@@ -299,8 +299,8 @@ export const InvoicesMainCardChangeDate = styled.div`
       }
       
       &:hover {
-        background-color: ${newBackground.white};
-        color: ${newBackground.orange};
+        background-color: ${background.white};
+        color: ${background.orange};
         
       }
       

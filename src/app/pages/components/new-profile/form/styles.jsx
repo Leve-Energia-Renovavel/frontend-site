@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import AutorenewOutlinedIcon from '@mui/icons-material/AutorenewOutlined';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
@@ -72,8 +72,8 @@ export const ChangeOwnershipButton = styled(Button)`
         gap: 4px;
 
         text-transform: none;
-        border: 1px solid ${newBackground.orange};
-        background-color: ${newBackground.white};
+        border: 1px solid ${background.orange};
+        background-color: ${background.white};
         padding: 11px 18px;
 
         border-radius: 10px;
@@ -88,19 +88,19 @@ export const ChangeOwnershipButton = styled(Button)`
             font-size: 16px;
             line-height: 21px;
             font-weight: 600;
-            color: ${newBackground.orange};
+            color: ${background.orange};
         }
 
         &:hover {
-            background-color: ${newBackground.orange};
-            border-color: ${newBackground.orange};
+            background-color: ${background.orange};
+            border-color: ${background.orange};
             
             span {
-                color: ${newBackground.white};
+                color: ${background.white};
             } 
             
             .changeOwnershipIcon {
-                color: ${newBackground.white};
+                color: ${background.white};
             }
         }
 `;
@@ -124,7 +124,7 @@ export const SaveEditionButton = styled(Button)`
         gap: 4px;
 
         text-transform: none;
-        background-color: ${newBackground.orange};
+        background-color: ${background.orange};
         padding: 20px 30px;
 
         border-radius: 10px;
@@ -139,14 +139,14 @@ export const SaveEditionButton = styled(Button)`
             font-size: 16px;
             line-height: 21px;
             font-weight: 600;
-            color: ${newBackground.white};
+            color: ${background.white};
         }
 
         &:hover {
-            background-color: ${newBackground.green};
+            background-color: ${background.green};
             
             span {
-                color: ${newBackground.white};
+                color: ${background.white};
             } 
         }
 `;
@@ -159,8 +159,8 @@ export const CancelEditionButton = styled(Button)`
         gap: 4px;
 
         text-transform: none;
-        border: 1px solid ${newBackground.orange};
-        background-color: ${newBackground.white};
+        border: 1px solid ${background.orange};
+        background-color: ${background.white};
         padding: 11px 18px;
 
         border-radius: 10px;
@@ -175,15 +175,15 @@ export const CancelEditionButton = styled(Button)`
             font-size: 16px;
             line-height: 21px;
             font-weight: 600;
-            color: ${newBackground.orange};
+            color: ${background.orange};
         }
 
         &:hover {
-            background-color: ${newBackground.orange};
-            border-color: ${newBackground.orange};
+            background-color: ${background.orange};
+            border-color: ${background.orange};
             
             span {
-                color: ${newBackground.white};
+                color: ${background.white};
             } 
         }
 `;
@@ -192,7 +192,7 @@ export const FormInput = styled(TextField)`
     border-radius: 10px;
     
     && {
-        background-color: ${newBackground.greyTranslucent}; 
+        background-color: ${background.greyTranslucent}; 
     }
 
     .MuiInputLabel-shrink {
@@ -211,12 +211,12 @@ export const FormInput = styled(TextField)`
         font-size: 14px;
         line-height: 17px;
         font-weight: 700;
-        color: ${newBackground.green};
+        color: ${background.green};
         
         &:focus {
-            color: ${newBackground.green};
-            border: 2px solid ${newBackground.green};
-            background-color: ${newBackground.greyTranslucent}; 
+            color: ${background.green};
+            border: 2px solid ${background.green};
+            background-color: ${background.greyTranslucent}; 
             }
         }
 
@@ -228,10 +228,10 @@ export const FormInput = styled(TextField)`
             font-family: "Graphie";
             font-size: 14px;
             font-weight: 600;
-            color: ${newBackground.greenLight};
+            color: ${background.greenLight};
 
             &:focus {
-                color: ${newBackground.greenLight};
+                color: ${background.greenLight};
             }
         }
 
@@ -253,7 +253,7 @@ export const FormInput = styled(TextField)`
 `
 
 export const EditIcon = styled(BorderColorOutlinedIcon)`
-    color: ${newBackground.orange};
+    color: ${background.orange};
     width: 18px;
     height: auto;
     
@@ -262,7 +262,7 @@ export const EditIcon = styled(BorderColorOutlinedIcon)`
     }
     `
 export const ChangeOwnershipIcon = styled(AutorenewOutlinedIcon)`
-    color: ${newBackground.orange};
+    color: ${background.orange};
     width: 20px;
     height: auto;
 `
@@ -270,7 +270,7 @@ export const InstallationInput = styled(TextField)`
     border-radius: 10px;
 
     && {
-        background-color: ${newBackground.greyTranslucent}; 
+        background-color: ${background.greyTranslucent}; 
     }
     .MuiInputLabel-shrink {
         /* Styles for the focused label */
@@ -278,7 +278,7 @@ export const InstallationInput = styled(TextField)`
     }
     
     .MuiOutlinedInput-input {
-        border: 2px solid ${newBackground.green};
+        border: 2px solid ${background.green};
         border-radius: 10px;  
 
         // styles for the user input text
@@ -286,11 +286,11 @@ export const InstallationInput = styled(TextField)`
         font-size: 14px;
         line-height: 17px;
         font-weight: 700;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         
         &:focus {
-            background-color: ${newBackground.greyTranslucent}; 
+            background-color: ${background.greyTranslucent}; 
             }
         }
 
@@ -302,10 +302,10 @@ export const InstallationInput = styled(TextField)`
             font-family: "Graphie";
             font-size: 14px;
             font-weight: 600;
-            color: ${newBackground.orange};
+            color: ${background.orange};
             
             &:focus {
-                color: ${newBackground.orange};
+                color: ${background.orange};
             }
             
         }

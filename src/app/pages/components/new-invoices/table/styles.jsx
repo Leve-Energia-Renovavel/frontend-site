@@ -1,4 +1,4 @@
-import { newBackground, newStatusColors } from "@/app/pages/styles";
+import { background, newStatusColors } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 
@@ -8,7 +8,7 @@ export const NewInvoicesSelectedInstallation = styled.div`
         font-size: 21px;
         line-height: 27px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
 
         margin-right: auto;
     }
@@ -23,7 +23,7 @@ export const NewInvoicesTableHeader = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         margin-left: 70px;
     }
@@ -82,7 +82,7 @@ export const InvoicesTableLeveBill = styled(AccordionSummary)`
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
         
         white-space: nowrap;
         text-align: center;
@@ -100,7 +100,7 @@ export const InvoicesTableLeveBill = styled(AccordionSummary)`
         height: fit-content;
 
         background-color: ${props => newStatusColors[props.status]};
-        color: ${props => props.status === "due" ? newBackground.orange : newBackground.white};
+        color: ${props => props.status === "due" ? background.orange : background.white};
         padding: 4px 8px;
         border-radius: 10px;
     }
@@ -108,10 +108,10 @@ export const InvoicesTableLeveBill = styled(AccordionSummary)`
     
     &.Mui-expanded {
         border-radius: 10px;
-        border: 2px solid ${newBackground.orange};
+        border: 2px solid ${background.orange};
 
         .leveBillValue {
-            color: ${newBackground.orange};
+            color: ${background.orange};
         }
 
     }
@@ -125,7 +125,7 @@ export const InvoicesTableLeveBill = styled(AccordionSummary)`
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
 
         margin: 0 auto;
      }
@@ -170,7 +170,7 @@ export const InvoicesTableDistributorBill = styled(AccordionDetails)`
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.greyDark};
+        color: ${background.greyDark};
 
         white-space: nowrap;
         text-align: center;
@@ -185,8 +185,8 @@ export const InvoicesTableDistributorBill = styled(AccordionDetails)`
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.greyDark};
-        border: 1px solid ${newBackground.greyDark};
+        color: ${background.greyDark};
+        border: 1px solid ${background.greyDark};
         
         white-space: nowrap;
         text-align: center;

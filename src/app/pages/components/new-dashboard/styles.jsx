@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
-import { newBackground } from "../../styles";
+import { background } from "../../styles";
 
 export const NewDashboardContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: stretch;
-    background-color: ${newBackground.grey};
+    background-color: ${background.grey};
 
     padding: 46px 85px;
     
@@ -26,7 +26,7 @@ export const NewDashboardContainer = styled.div`
 export const NewDashboardSideBar = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.grey};
+    background-color: ${background.grey};
     
     gap: 1rem;
 

@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 
@@ -15,7 +15,7 @@ export const RegisteredInstallationsMainContainer = styled.div`
         font-size: 27px;
         line-height: 32px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
     
     @media (max-width: 900px) {
@@ -40,7 +40,7 @@ export const RegisteredInstallationsContainer = styled.div`
 `
 
 export const AddIcon = styled(AddCircleRoundedIcon)`
-    color: ${newBackground.green};
+    color: ${background.green};
 `
 export const NewInstallationsContainer = styled.div`
     display: flex;
@@ -52,11 +52,11 @@ export const NewInstallationsContainer = styled.div`
 
     display: none; //just for v0
 
-    border: 1px dashed ${newBackground.green};
+    border: 1px dashed ${background.green};
 
     &:hover {
         cursor: pointer;
-        background-color: ${newBackground.greenLight};
+        background-color: ${background.greenLight};
 
     }
 
@@ -65,7 +65,7 @@ export const NewInstallationsContainer = styled.div`
         font-size: 17px;
         line-height: 21px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         text-align: center;
     }

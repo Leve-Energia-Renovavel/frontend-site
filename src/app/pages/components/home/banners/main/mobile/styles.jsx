@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
 export const HomeMobileMainContent = styled.div`
@@ -16,7 +16,7 @@ export const HomeMobileMainContent = styled.div`
     line-height: 34px;
     letter-spacing: 0.72px;
     font-weight: 600;
-    color: ${newBackground.green};
+    color: ${background.green};
 
     margin-top: 31px;
     
@@ -31,14 +31,14 @@ export const HomeMobileMainContent = styled.div`
 
   .highlighted {
     font-weight: 600;
-    color: ${newBackground.orange};
+    color: ${background.orange};
   }
   .homeMainSubtitleMobile {
     font-family: "Graphie";
     font-size: 21px;
     line-height: 22px;
     font-weight: 400;
-    color: ${newBackground.greyHigh};
+    color: ${background.greyHigh};
     
     /* text-align: justify; */
     /* max-width: 352px; */
@@ -51,7 +51,7 @@ export const HomeMobileMainContent = styled.div`
     font-size: 23px;
     line-height: 22px;
     font-weight: 600;
-    color: ${newBackground.green};
+    color: ${background.green};
     
     margin-top: 24px;
 

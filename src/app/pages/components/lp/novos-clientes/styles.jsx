@@ -1,7 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/material";
-import { newBackground, notification } from "../../../styles";
+import { background, notification } from "../../../styles";
 
 const fadeInUp = keyframes`
   from {
@@ -19,7 +19,7 @@ export const LandingPageContainer = styled.div`
     display: flex;
     flex-direction: column;
     
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     /* max-width: 1920px; */
     max-width: 1366px;
@@ -28,7 +28,7 @@ export const LandingPageContainer = styled.div`
     
     @media (max-width: 600px) {
       padding: 0;
-      background: linear-gradient(to top, #ffffff 82%, ${newBackground.yellow} 90%,  #ffffff 98%);
+      background: linear-gradient(to top, #ffffff 82%, ${background.yellow} 90%,  #ffffff 98%);
     }
 `
 
@@ -95,14 +95,14 @@ export const LandingPageContent = styled.div`
 
 export const LandingPageMainTitle = styled(Typography)`
     font-family: "Graphie", sans-serif;
-    color: ${newBackground.orange};
+    color: ${background.orange};
     font-size: 55px;
     line-height: 55px;
     font-weight: 500;
     max-width: 680px;
     
     .highlighted { 
-      background-color: ${newBackground.yellow};
+      background-color: ${background.yellow};
       border-radius: 12px;
       font-size: 55px;
       font-weight: 600;
@@ -123,7 +123,7 @@ export const LandingPageMainTitle = styled(Typography)`
 `
 export const LandingPageSubtitle = styled(Typography)`
     font-family: "Graphie";
-    color: ${newBackground.orange};
+    color: ${background.orange};
     font-size: 27px;
     line-height: 30px;
     font-weight: 600;
@@ -153,7 +153,7 @@ export const LandingPageBannerFooter = styled.div`
   bottom: 0;
   left: 0;
 
-  background-color: ${newBackground.yellow};
+  background-color: ${background.yellow};
   width: 675px;
   height: 85px;
   border-radius: 10px;
@@ -171,7 +171,7 @@ export const LandingPageBannerSecondFooter = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  background-color: ${newBackground.green};
+  background-color: ${background.green};
   width: 473px;
   height: 85px;
   border-radius: 0 10px 10px 0;
@@ -180,7 +180,7 @@ export const LandingPageBannerSecondFooter = styled.div`
     font-family: "Graphie";
     font-size: 21px;
     line-height: 21px;
-    color: ${newBackground.yellow};
+    color: ${background.yellow};
 
     margin-left: 85px;
   }
@@ -188,7 +188,7 @@ export const LandingPageBannerSecondFooter = styled.div`
     font-family: "Graphie";
     font-size: 21px;
     line-height: 21px;
-    color: ${newBackground.white};
+    color: ${background.white};
     
     margin-left: 85px;
   }
@@ -229,11 +229,11 @@ export const MoreAboutLeveFooter = styled.div`
   h6 {
     font-family: "Graphie";
     font-size: 14px;
-    color: ${newBackground.green};
+    color: ${background.green};
   }
   
   .arrowIcon {
-    color: ${newBackground.green};
+    color: ${background.green};
     width: 32px;
     height: 32px;
   }
@@ -258,7 +258,7 @@ export const LandingPageFormContainer = styled.div`
     line-height: 12px;
     font-weight: 500;
     text-align: left;
-    color: ${newBackground.orange};
+    color: ${background.orange};
 
     max-width: 360px;
     
@@ -277,20 +277,20 @@ export const LandingPageFormContainer = styled.div`
     font-weight: 700;
     text-decoration: underline;
     text-align: left;
-    color: ${newBackground.orange};
+    color: ${background.orange};
     border-radius: 5px;
 
     &:hover{
       cursor: pointer;
-      color: ${newBackground.green};
-      background-color: ${newBackground.yellow};
+      color: ${background.green};
+      background-color: ${background.yellow};
     }
   }
 `
 
 export const LandingMainFormContainer = styled.div`
-    background-color: ${newBackground.white};
-    border: 1px solid ${newBackground.orange};
+    background-color: ${background.white};
+    border: 1px solid ${background.orange};
 
     border-radius: 15px;
     
@@ -307,7 +307,7 @@ export const LandingMainFormContainer = styled.div`
 export const LandingPageForm = styled.form`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.orange};
+    background-color: ${background.orange};
 
     border-radius: 15px;
     
@@ -327,7 +327,7 @@ export const LandingPageForm = styled.form`
     p {
       font-family: "Graphie";
       font-weight: 500;
-      color: ${newBackground.white};
+      color: ${background.white};
       font-size: 14px;
       line-height: 14px;
 
@@ -343,13 +343,13 @@ export const LandingPageForm = styled.form`
     .highlighted {
       font-family: "Graphie";
       font-weight: 500;
-      color: ${newBackground.yellow};
+      color: ${background.yellow};
       font-size: 14px;
       line-height: 14px;
     }
 
     .homeFormInput {
-      background-color: ${newBackground.white};
+      background-color: ${background.white};
       border-radius: 10px;
       height: 42px;
       margin-bottom: 8px;
@@ -367,14 +367,14 @@ export const LandingPageForm = styled.form`
         height: 0.4375em;
         padding: 20px 14px;
         font-weight: 700;
-        color: ${newBackground.orange};
+        color: ${background.orange};
         }
 
         & label {
           font-family: "Graphie";
           font-weight: 500;
           font-size: 14px;
-          color:  ${newBackground.orange};
+          color:  ${background.orange};
         }
 
         & .MuiFormLabel-root-MuiInputLabel-root {
@@ -385,7 +385,7 @@ export const LandingPageForm = styled.form`
           & fieldset {
             height: 42px;
             border-radius: 10px;
-            border-color: ${newBackground.white};
+            border-color: ${background.white};
           }
         }
 
@@ -407,7 +407,7 @@ export const FormTitleContainer = styled.div`
   h2 {
       font-family: "Graphie";
       font-weight: 600;
-      color: ${newBackground.yellow};
+      color: ${background.yellow};
       white-space: nowrap;
       font-size: 27px;
       text-align: left;
@@ -437,7 +437,7 @@ export const LandingPageFormSimulationContainer = styled.div`
       font-family: "Graphie";
       font-size: 17px;
       font-weight: 900;
-      color:${newBackground.green};
+      color:${background.green};
       
       white-space: nowrap;
     }
@@ -451,7 +451,7 @@ export const LandingPageFormSimulationContainer = styled.div`
       font-family: "Graphie";
       font-size: 21px;
       font-weight: 900;
-      color:${newBackground.orange};
+      color:${background.orange};
     }
 
 `
@@ -484,13 +484,13 @@ export const UserTypeFormButtonContainer = styled.div`
 `
 
 export const FormSelect = styled(Button)`
-  background-color: ${newBackground.orange};
-  border: 1px solid ${newBackground.yellow};
+  background-color: ${background.orange};
+  border: 1px solid ${background.yellow};
   border-radius: 10px;
 
   font-family: "Graphie";
   font-size: 14px;
-  color: ${props => props.selected ? newBackground.yellow : newBackground.white};
+  color: ${props => props.selected ? background.yellow : background.white};
   font-weight: 400;
   text-transform: none;
   padding: 0.5rem 2rem;
@@ -502,14 +502,14 @@ export const FormSelect = styled(Button)`
     cursor: pointer;
   }
   
-  ${props => props.selected && `background-image: linear-gradient(to left, ${newBackground.yellow}, transparent 50%);`}
+  ${props => props.selected && `background-image: linear-gradient(to left, ${background.yellow}, transparent 50%);`}
   
   `
 
 export const FormButton = styled(Button)`
   padding: .5rem 1rem;
-  background-color: ${newBackground.yellow};
-  color: ${newBackground.green};
+  background-color: ${background.yellow};
+  color: ${background.green};
   border-radius: 30px;
 
   height: 42px;
@@ -532,8 +532,8 @@ export const FormButton = styled(Button)`
   }
   
   &:hover {
-    background-color: ${newBackground.orange};
-    color: ${newBackground.yellow};
+    background-color: ${background.orange};
+    color: ${background.yellow};
     cursor: pointer;
   }
   
@@ -542,7 +542,7 @@ export const FormButton = styled(Button)`
   }
 `
 export const FormSlider = styled(Slider)`
-    color: ${newBackground.green};
+    color: ${background.green};
     height: 8px;
     
     @media (max-width: 600px) {
@@ -550,13 +550,13 @@ export const FormSlider = styled(Slider)`
     }
     
     & .MuiSlider-thumb {
-        background-color: ${newBackground.orange};
+        background-color: ${background.orange};
         height: 12px;
         width: 12px;
     }
     
     & .MuiSlider-rail {
-      background-color: ${newBackground.yellow};
+      background-color: ${background.yellow};
       height: 8px;
       opacity: 1;
     } 
@@ -564,7 +564,7 @@ export const FormSlider = styled(Slider)`
 `;
 
 export const Loading = styled(CircularProgress)`
-  color: ${newBackground.green};
+  color: ${background.green};
   width: 10px;
   height: 10px;
 
@@ -598,7 +598,7 @@ export const SecondSectionBanner = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(to left, #ffffff 5%, ${newBackground.yellow});
+    background: linear-gradient(to left, #ffffff 5%, ${background.yellow});
 
     border-radius: 32px;
     
@@ -610,7 +610,7 @@ export const SecondSectionBanner = styled.div`
       font-family: "Graphie";
       font-size: 55px;
       font-weight: 600;
-      color: ${newBackground.green};
+      color: ${background.green};
 
       margin-top: 52px;
     }
@@ -618,14 +618,14 @@ export const SecondSectionBanner = styled.div`
       font-family: "Graphie";
       font-size: 21px;
       font-weight: 500;
-      color: ${newBackground.green};
+      color: ${background.green};
 
       margin-top: 20px;
     }
     .simulateButton {
       font-family: "Graphie";
-      color: ${newBackground.yellow};
-      background-color: ${newBackground.green};
+      color: ${background.yellow};
+      background-color: ${background.green};
       padding: 8px 21px;
       max-width: 200px;
       border-radius: 32px;
@@ -633,14 +633,14 @@ export const SecondSectionBanner = styled.div`
 
       &:hover {
         cursor: pointer;
-        background-color: ${newBackground.orange};
+        background-color: ${background.orange};
       }
      }
 
      @media (max-width: 600px) {
       height: auto;
       padding: 0 1rem 1rem 1rem;
-      background: linear-gradient(to bottom, #ffffff 5%, ${newBackground.yellow});
+      background: linear-gradient(to bottom, #ffffff 5%, ${background.yellow});
 
 
       .bannerTitle {
@@ -666,11 +666,11 @@ export const ContactBannerContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom, #ffffff 30%, ${newBackground.orange});
+  background: linear-gradient(to bottom, #ffffff 30%, ${background.orange});
 
   h4 {
     font-family: "Graphie";
-    color: ${newBackground.orange};
+    color: ${background.orange};
     font-size: 34px;
     font-weight: 600;
     line-height: 30px;
@@ -678,7 +678,7 @@ export const ContactBannerContainer = styled.div`
 
   h5 {
     font-family: "Graphie";
-    color: ${newBackground.orange};
+    color: ${background.orange};
     font-size: 21px;
     line-height: 21px;
     font-weight: 600;
@@ -692,8 +692,8 @@ export const ContactBannerContainer = styled.div`
     gap: 4px;
     
     font-family: "Graphie";
-    color: ${newBackground.yellow};
-    background-color: ${newBackground.green};
+    color: ${background.yellow};
+    background-color: ${background.green};
     padding: 8px 21px;
     max-width: 329px;
     height: 42px;
@@ -702,7 +702,7 @@ export const ContactBannerContainer = styled.div`
 
       &:hover {
         cursor: pointer;
-        background-color: ${newBackground.orange};
+        background-color: ${background.orange};
       }
      }
      
@@ -729,7 +729,7 @@ export const FaqBannerContainer = styled.div`
   width: 100%;
   border-radius: 0 0 10px 10px;
 
-  background-color: ${newBackground.orange};
+  background-color: ${background.orange};
 
   margin: 0 auto;
   padding: 3rem 2rem;
@@ -738,7 +738,7 @@ export const FaqBannerContainer = styled.div`
 
   .faqTitle {
     font-family: "Graphie";
-    color: ${newBackground.yellow};
+    color: ${background.yellow};
     font-size: 42px;
     line-height: 30px;
     font-weight: 500;
@@ -758,25 +758,25 @@ export const FaqBannerContainer = styled.div`
 
     &:hover {
       .arrowIcon{
-        background-color: ${newBackground.green};
-        color: ${newBackground.yellow};
+        background-color: ${background.green};
+        color: ${background.yellow};
       }
       .question {
-        color: ${newBackground.green};
+        color: ${background.green};
      }
     }
   }
   
   .question {
     font-family: "Graphie";
-    color: ${newBackground.orange};
+    color: ${background.orange};
     font-size: 21px;
     font-weight: 600;
   }
 
   .answer{
     font-family: "Graphie";
-    color: ${newBackground.green};
+    color: ${background.green};
     font-size: 17px;
     line-height: 21px;
     font-weight: 500;
@@ -784,7 +784,7 @@ export const FaqBannerContainer = styled.div`
   }
 
   .arrowIcon{
-    background-color: ${newBackground.orange};
+    background-color: ${background.orange};
     border-radius: 30px;
     padding: 8px;
     width: 40px;

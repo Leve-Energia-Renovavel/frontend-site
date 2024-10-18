@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
 export const NewHomeVideoContainer = styled.section`
@@ -6,7 +6,7 @@ export const NewHomeVideoContainer = styled.section`
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: ${newBackground.grey};
+    background-color: ${background.grey};
 
     width: 100%;
     max-width: 1366px;
@@ -19,14 +19,14 @@ export const NewHomeVideoContainer = styled.section`
         font-size: 34px;  
         line-height: 30px;  
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
     .subtitle {
         font-family: "Graphie";
         font-size: 24px;  
         line-height: 30px;  
         font-weight: 500;
-        color: ${newBackground.greyHigh};
+        color: ${background.greyHigh};
 
         white-space: nowrap;
 
@@ -67,7 +67,7 @@ export const ButtonContainer = styled.div`
         font-size: 27px;  
         line-height: 30px;  
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
         text-decoration: underline;
         
         margin-top: 18px;
@@ -78,8 +78,8 @@ export const ButtonContainer = styled.div`
         
         &:hover {
             cursor: pointer;
-            color: ${newBackground.green};
-            background-color: ${newBackground.yellow};
+            color: ${background.green};
+            background-color: ${background.yellow};
         }
     }
 `

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { background, newBackground } from "@/app/pages/styles"
+import { background } from "@/app/pages/styles"
 import { Box, Button } from "@mui/material"
 
 export const ModalBox = styled(Box)`
@@ -9,7 +9,7 @@ export const ModalBox = styled(Box)`
     top: 50vh;
     left: 50vw;
     transform: translate(-50%, -50%);
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     border: 1px solid ${background.lightBorder} ;
     border-radius: 10px;
     box-shadow: 12;
@@ -24,7 +24,7 @@ export const ModalBox = styled(Box)`
 
     .modal-title {
         font-family: "Graphie";
-        color: ${newBackground.orange}; 
+        color: ${background.orange}; 
         font-weight: 700;
         
         @media (max-width: 600px) {
@@ -34,7 +34,7 @@ export const ModalBox = styled(Box)`
     }
     .modal-description {
         font-family: "Graphie";
-        color: ${newBackground.green};
+        color: ${background.green};
         font-weight: 600;
         margin: 1rem 0 1rem 0;
 
@@ -54,14 +54,14 @@ export const ModalBox = styled(Box)`
 `
 
 export const ModalButton = styled(Button)`
-    background-color: ${newBackground.yellow};
-    color: ${newBackground.orange};
+    background-color: ${background.yellow};
+    color: ${background.orange};
     border-radius: 10px;
 
     &:hover {
         cursor: pointer;
-        background-color: ${newBackground.orange};
-        color: ${newBackground.yellow};
+        background-color: ${background.orange};
+        color: ${background.yellow};
     }
 
     span {

@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Button, TextField } from "@mui/material";
 
@@ -65,7 +65,7 @@ export const FormInput = styled(TextField)`
     max-height: 50px;
     
     && {
-        background-color: ${newBackground.grey}; 
+        background-color: ${background.grey}; 
     }
 
 
@@ -82,14 +82,14 @@ export const FormInput = styled(TextField)`
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 700;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         height: 8px;
         
         &:focus {
-            color: ${newBackground.green};
-            border: 2px solid ${newBackground.green};
-            background-color: ${newBackground.greenLight}; 
+            color: ${background.green};
+            border: 2px solid ${background.green};
+            background-color: ${background.greenLight}; 
             }
         }
 
@@ -101,13 +101,13 @@ export const FormInput = styled(TextField)`
             font-family: "Graphie";
             font-size: 14px;
             font-weight: 600;
-            color: ${newBackground.green};
+            color: ${background.green};
 
             height: 100%;
             max-height: 50px;
 
             &:focus {
-                color: ${newBackground.green};
+                color: ${background.green};
             }
         }
 
@@ -116,14 +116,14 @@ export const FormInput = styled(TextField)`
         } */
 
         .searchIcon { 
-            color:${newBackground.green};
+            color:${background.green};
             &:hover{
                 cursor: pointer;
             }
         }
 
         .formLoading {
-            color: ${newBackground.green};
+            color: ${background.green};
         }
 `
 
@@ -139,14 +139,14 @@ export const FormButtonContainer = styled.div`
     .submitLoading {
         margin-top: .5rem;
         margin-right: 1rem;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 
 `
 
 export const FormSubmitButton = styled(Button)`
-    color: ${newBackground.white};
-    background-color: ${newBackground.orange};
+    color: ${background.white};
+    background-color: ${background.orange};
     border-radius: 10px;
     text-transform: none;
     
@@ -157,16 +157,16 @@ export const FormSubmitButton = styled(Button)`
     font-weight: 600;
     
     &:hover {
-        color: ${newBackground.yellow};
-        background-color: ${newBackground.green};
+        color: ${background.yellow};
+        background-color: ${background.green};
     }
 `
 export const FormCancelButton = styled(Button)`
-    color: ${newBackground.orange};
-    background-color: ${newBackground.white};
+    color: ${background.orange};
+    background-color: ${background.white};
     border-radius: 10px;
     text-transform: none;
-    border: 1px solid ${newBackground.orange};
+    border: 1px solid ${background.orange};
     
     padding: 4px 14px;
     
@@ -175,8 +175,8 @@ export const FormCancelButton = styled(Button)`
     font-weight: 600;
     
     &:hover {
-        color: ${newBackground.white};
-        background-color: ${newBackground.orange};
+        color: ${background.white};
+        background-color: ${background.orange};
 
     }
 `
@@ -186,7 +186,7 @@ export const InstallationInput = styled(TextField)`
     border-radius: 10px;
     
     && {
-        background-color: ${newBackground.greenLight}; 
+        background-color: ${background.greenLight}; 
     }
     .MuiInputLabel-shrink {
         /* Styles for the focused label */
@@ -194,18 +194,18 @@ export const InstallationInput = styled(TextField)`
     }
     
     .MuiOutlinedInput-input {
-        border: 2px solid ${newBackground.green};
+        border: 2px solid ${background.green};
         border-radius: 14px;  
 
         // styles for the user input text
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 700;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         
         &:focus {
-            background-color: ${newBackground.grey}; 
+            background-color: ${background.grey}; 
             }
         }
 
@@ -217,10 +217,10 @@ export const InstallationInput = styled(TextField)`
             font-family: "Graphie";
             font-size: 14px;
             font-weight: 600;
-            color: ${newBackground.green};
+            color: ${background.green};
             
             &:focus {
-                color: ${newBackground.green};
+                color: ${background.green};
             }
             
         }
@@ -230,7 +230,7 @@ export const InstallationNumberDisclaimer = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: ${newBackground.yellow};
+    background-color: ${background.yellow};
     border-radius: 15px;
     
     gap: 8px;
@@ -242,31 +242,31 @@ export const InstallationNumberDisclaimer = styled.div`
         font-size: 12px;
         line-height: 12px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
     
     .underlined {
         font-family: "Graphie";
         font-size: 12px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
         text-decoration: underline;
     }
     .infoIcon {
-        color: ${newBackground.green};
+        color: ${background.green};
     }
     
     &:hover {
         cursor: pointer;
-        background-color: ${newBackground.green};
+        background-color: ${background.green};
         .installationNumberDisclaimer {
-            color: ${newBackground.yellow};
+            color: ${background.yellow};
         }
         .underlined {
-            color: ${newBackground.yellow};
+            color: ${background.yellow};
         }
         .infoIcon {
-            color: ${newBackground.yellow};
+            color: ${background.yellow};
         }
     }
 

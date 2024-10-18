@@ -1,27 +1,27 @@
-import { background, newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";
 
 const colorForVariants = {
-    "contained": newBackground.orange,
-    "outlined": newBackground.yellow,
-    "outlined-inverse": newBackground.white,
+    "contained": background.orange,
+    "outlined": background.yellow,
+    "outlined-inverse": background.white,
 }
 const backgroundColorForVariants = {
-    "contained": newBackground.yellow,
-    "outlined": newBackground.orange,
-    "outlined-inverse": newBackground.orange,
+    "contained": background.yellow,
+    "outlined": background.orange,
+    "outlined-inverse": background.orange,
 }
 const backgroundHoverColor = {
-    "contained": newBackground.white,
-    "outlined": newBackground.yellow,
-    "outlined-inverse": newBackground.white,
+    "contained": background.white,
+    "outlined": background.yellow,
+    "outlined-inverse": background.white,
 }
 
 const hoverColor = {
-    "contained": newBackground.orange,
-    "outlined": newBackground.orange,
-    "outlined-inverse": newBackground.orange,
+    "contained": background.orange,
+    "outlined": background.orange,
+    "outlined-inverse": background.orange,
 
 }
 
@@ -65,9 +65,9 @@ export const DefaultButtonStyle = styled(Button)`
 
 export const FormButtonStyle = styled(Button)`
         text-transform: none;
-        color: ${newBackground.white};
+        color: ${background.white};
         border-color: ${background.lightBorder};
-        background-color: ${newBackground.orange};
+        background-color: ${background.orange};
         padding: 1rem 4rem;
         height: 3rem;
         border-radius: 13px;
@@ -88,17 +88,17 @@ export const FormButtonStyle = styled(Button)`
         }
 
         &:hover {
-            background-color: ${newBackground.yellow};
-            color: ${newBackground.orange};
+            background-color: ${background.yellow};
+            color: ${background.orange};
             border-color: ${background.lightBorder};
         }
 `;
 
 export const HeaderButtonStyle = styled(Button)`
         text-transform: none;
-        color: ${newBackground.white};
-        border: 1px solid ${newBackground.white};
-        background-color: ${newBackground.orange};
+        color: ${background.white};
+        border: 1px solid ${background.white};
+        background-color: ${background.orange};
         padding: 12px 24px;
         height: 3rem;
         border-radius: 8px;
@@ -113,17 +113,17 @@ export const HeaderButtonStyle = styled(Button)`
         }
 
         &:hover {
-            background-color: ${newBackground.yellow};
-            color: ${newBackground.orange};
+            background-color: ${background.yellow};
+            color: ${background.orange};
             border-color: ${background.lightBorder};
         }
 `;
 
 export const DashboardButtonStyle = styled(Button)`
         text-transform: none;
-        color: ${newBackground.orange};
-        border: 1px solid ${newBackground.orange};
-        background-color: ${newBackground.white};
+        color: ${background.orange};
+        border: 1px solid ${background.orange};
+        background-color: ${background.white};
         padding: 12px 48px;
         height: 3rem;
         border-radius: 8px;
@@ -138,16 +138,16 @@ export const DashboardButtonStyle = styled(Button)`
         }
 
         &:hover {
-            background-color: ${newBackground.orange};
-            color: ${newBackground.white};
+            background-color: ${background.orange};
+            color: ${background.white};
             border-color: ${background.lightBorder};
         }
 `;
 export const NewInstallationButtonStyle = styled(Button)`
         text-transform: none;
-        color: ${newBackground.orange};
-        border: 1px solid ${newBackground.orange};
-        background-color: ${newBackground.white};
+        color: ${background.orange};
+        border: 1px solid ${background.orange};
+        background-color: ${background.white};
         padding: 12px 24px;
         height: 3rem;
         border-radius: 8px;
@@ -166,17 +166,17 @@ export const NewInstallationButtonStyle = styled(Button)`
         }
 
         &:hover {
-            background-color: ${newBackground.orange};
-            color: ${newBackground.white};
+            background-color: ${background.orange};
+            color: ${background.white};
             border-color: ${background.lightBorder};
         }
 `;
 
 export const NewInstallationButtonConfirmStyle = styled(Button)`
         text-transform: none;
-        color: ${newBackground.white};
+        color: ${background.white};
         border: 1px solid ${background.lightBorder};
-        background-color: ${newBackground.orange};
+        background-color: ${background.orange};
         padding: 12px 24px;
         height: 3rem;
         border-radius: 8px;
@@ -195,8 +195,8 @@ export const NewInstallationButtonConfirmStyle = styled(Button)`
         }
 
         &:hover {
-            background-color: ${newBackground.orange};
-            color: ${newBackground.white};
+            background-color: ${background.orange};
+            color: ${background.white};
             border-color: ${background.lightBorder};
         }
 `;
@@ -204,9 +204,9 @@ export const NewInstallationButtonConfirmStyle = styled(Button)`
 
 export const MobileHeaderButtonContained = styled(Button)`
     text-transform: none;
-    color: ${newBackground.orange};
-    border-color: ${newBackground.orange};
-    background-color: ${newBackground.yellow};
+    color: ${background.orange};
+    border-color: ${background.orange};
+    background-color: ${background.yellow};
     border-radius: 13px;
     cursor: pointer;
     margin: 2rem;
@@ -232,18 +232,18 @@ export const MobileHeaderButtonContained = styled(Button)`
     }
 
     &:hover {
-        background-color: ${newBackground.white};
-        color: ${newBackground.orange};
-        border: 1px solid ${newBackground.orange};
+        background-color: ${background.white};
+        color: ${background.orange};
+        border: 1px solid ${background.orange};
     }
 `;
 
 
 export const MobileHeaderButtonOutlined = styled(Button)`
     text-transform: none;
-    color: ${newBackground.yellow};
-    border: 1px solid ${newBackground.yellow};
-    background-color: ${newBackground.orange};
+    color: ${background.yellow};
+    border: 1px solid ${background.yellow};
+    background-color: ${background.orange};
     border-radius: 13px;
     cursor: pointer;
     margin: 2rem;
@@ -269,17 +269,17 @@ export const MobileHeaderButtonOutlined = styled(Button)`
     }
 
     &:hover {
-        background-color: ${newBackground.white};
-        color: ${newBackground.orange};
-        border: 1px solid ${newBackground.orange};
+        background-color: ${background.white};
+        color: ${background.orange};
+        border: 1px solid ${background.orange};
     }
 `;
 
 export const TimelineButtonStyled = styled(Button)`
     text-transform: none;
-    color: ${newBackground.orange};
-    border: 1px solid ${newBackground.orange};
-    background-color: ${newBackground.white};
+    color: ${background.orange};
+    border: 1px solid ${background.orange};
+    background-color: ${background.white};
     border-radius: 13px;
     cursor: pointer;
     margin: 2rem;
@@ -310,9 +310,9 @@ export const TimelineButtonStyled = styled(Button)`
     }
 
     &:hover {
-        background-color: ${newBackground.orange};
-        color: ${newBackground.white};
-        border: 1px solid ${newBackground.orange};
+        background-color: ${background.orange};
+        color: ${background.white};
+        border: 1px solid ${background.orange};
     }
 `;
 
@@ -354,8 +354,8 @@ export const NewDefaultButtonStyle = styled(Button)`
 
 export const OutlinedButtonStyle = styled(Button)`
         text-transform: none;
-        border: 1px solid ${newBackground.orange};
-        background-color: ${newBackground.white};
+        border: 1px solid ${background.orange};
+        background-color: ${background.white};
         padding: 11px 18px;
 
         border-radius: 10px;
@@ -369,15 +369,15 @@ export const OutlinedButtonStyle = styled(Button)`
             font-size: 16px;
             line-height: 21px;
             font-weight: 600;
-            color: ${newBackground.orange};
+            color: ${background.orange};
         }
 
         &:hover {
-            background-color: ${newBackground.orange};
+            background-color: ${background.orange};
             border-color: ${background.lightBorder};
             
             span {
-                color: ${newBackground.white};
+                color: ${background.white};
             } 
         }
 `;

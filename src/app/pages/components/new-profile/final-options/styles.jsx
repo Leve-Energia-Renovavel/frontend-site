@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
 export const FinalOptionsContainer = styled.div`
@@ -18,7 +18,7 @@ export const FinalOptionsButton = styled.div`
 
     padding: 10px;
 
-    border: 1px solid ${newBackground.orange};
+    border: 1px solid ${background.orange};
     border-radius: 6px;
 
     span {
@@ -26,15 +26,15 @@ export const FinalOptionsButton = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
     
     &:hover {
         cursor: pointer;
-        background-color: ${newBackground.orange};
+        background-color: ${background.orange};
 
         span {
-            color: ${newBackground.white};
+            color: ${background.white};
         }
 
     }

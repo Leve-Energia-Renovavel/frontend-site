@@ -4,8 +4,7 @@ import { useStoreUser } from '@/app/hooks/useStore'
 import { Typography } from '@mui/material'
 import Image from 'next/image'
 import homeIcon from '../../../../resources/icons/small/local-home-icon-green-small.svg'
-import leveLogo from '../../../../resources/img/small/leve-logo-button-green-small.png'
-import { ContentContainer as Content, CouponAppliedContainer, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomySecondaryContent, LeveEconomySecondaryContentContainer, PercentageIcon, SimulateContainer, SimulateFooter, SimulateHeader, SimulateHeaderGoodNews, SimulationContainer, SimulationSlider, TodayEconomy, TodayEconomyContainer, TodayEconomyContent } from './styles'
+import { ContentContainer as Content, CouponAppliedContainer, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomySecondaryContent, LeveEconomySecondaryContentContainer, PercentageIcon, SimulateContainer, SimulateFooter, SimulateHeader, SimulateHeaderGoodNews, SimulationSlider, TodayCost, TodayEconomyContainer } from './styles'
 
 export default function NewResultEconomy() {
 
@@ -39,25 +38,21 @@ export default function NewResultEconomy() {
 
             <Content className='simulateContent'>
                 <TodayEconomyContainer className='todayEconomyContainer'>
-                    <TodayEconomyContent className='todayEconomyContent'>
-                        <Typography variant='subtitle1'>Você paga a concessionária:</Typography>
-                        <TodayEconomy>
-                            <Typography className='today'>Hoje:</Typography>
-                            <Typography className='value'>R${todayCost}</Typography>
-                        </TodayEconomy>
-                    </TodayEconomyContent>
-                    <SimulationContainer className='simulationContainer'>
-                        <Typography className='sliderTitle'>Ajuste o valor para recalcular sua economia:</Typography>
-                        <SimulationSlider
-                            onChange={(event) => storeUser.updateUser({ cost: event.target.value })}
-                            value={cost}
-                            step={10}
-                            defaultValue={150}
-                            min={150}
-                            max={3000}
-                            valueLabelDisplay="off"
-                        />
-                    </SimulationContainer>
+                    <p className='todayEconomyTitle'>Valor médio da sua conta de luz atual</p>
+                    <TodayCost>
+                        <p className='monetary'>R$</p>
+                        <p className='todayCost'>{todayCost}</p>
+                    </TodayCost>
+                    <p className='sliderTitle'>Ajuste o valor para recalcular sua economia:</p>
+                    <SimulationSlider
+                        onChange={(event) => storeUser.updateUser({ cost: event.target.value })}
+                        value={cost}
+                        step={10}
+                        defaultValue={150}
+                        min={150}
+                        max={3000}
+                        valueLabelDisplay="off"
+                    />
                 </TodayEconomyContainer>
 
                 {userHasCoupon &&
@@ -67,13 +62,12 @@ export default function NewResultEconomy() {
                     </CouponAppliedContainer>}
 
                 <LeveEconomyContainer className='leveEconomyContainer'>
-                    <LeveEconomyContent className='leveEconomyContent'>
-                        <Typography variant='subtitle1'>Com a Leve você pagará:</Typography>
-                        <LeveEconomy>
-                            <Image src={leveLogo} alt={"Desconto com a Leve"} loading="lazy" />
-                            <Typography className='value'>R${leveEconomyValue}</Typography>
-                        </LeveEconomy>
-                    </LeveEconomyContent>
+                    <p className='leveEconomyTitle'>Valor potencial médio do seu desconto mensal*</p>
+                    <LeveEconomy>
+                        <p className='monetary'>R$</p>
+                        <p className='leveEconomyValue'>{leveEconomyValue}</p>
+                    </LeveEconomy>
+
                     <LeveEconomySecondaryContentContainer className='leveEconomySecondaryContent'>
                         <PercentageIcon />
                         <LeveEconomySecondaryContent>

@@ -2,7 +2,7 @@ import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import HomeIcon from '@mui/icons-material/Home';
 import { Alert } from "@mui/material";
-import { background, newBackground, notification } from "../../styles";
+import { background, background, notification } from "../../styles";
 
 const fadeInUp = keyframes`
   from {
@@ -19,27 +19,27 @@ const fadeInUp = keyframes`
 export const InstallationsMainContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     padding: 2rem;
 
     h1 {
         font-family: "Graphie", sans-serif;
         font-size: 1.5rem;
-        color: ${newBackground.orange};
+        color: ${background.orange};
         font-weight: 700;
       }
       
       .noInstallationRegistered {
         font-family: "Graphie", sans-serif;
         font-size: 1rem;
-        color: ${newBackground.orange};
+        color: ${background.orange};
         font-weight: 500;
         }
 `
 export const InstallationsMainContent = styled.div`
-    background-color: ${newBackground.white};
-    border: 1px solid ${newBackground.orange};
+    background-color: ${background.white};
+    border: 1px solid ${background.orange};
     border-radius: 4px;
     
     padding: 2rem;
@@ -127,7 +127,7 @@ export const MainInstallationInfoContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr); 
   grid-gap: 20px 40px;
-  background-color: ${newBackground.white};
+  background-color: ${background.white};
   max-width: 100%;
 
   @media (max-width: 600px) {
@@ -143,14 +143,14 @@ export const MainInstallationInfoContainer = styled.div`
     h3 {
         margin: 6px 0;
         font-size: 1.5rem;
-        color: ${newBackground.orange};
+        color: ${background.orange};
 
         @media (max-width: 600px) {
             font-size: 1.2rem;
         }
     }
     .mainAddress {
-        color: ${newBackground.orange};
+        color: ${background.orange};
         font-size: 2rem;
         font-weight: 500;
 
@@ -178,8 +178,8 @@ export const ButtonContainer = styled.div`
 `
 
 export const NewInstallationContent = styled.div`
-    background-color: ${newBackground.white};
-    border: 1px solid ${newBackground.orange};
+    background-color: ${background.white};
+    border: 1px solid ${background.orange};
     border-radius: 4px;
     
     padding: 2rem;
@@ -223,23 +223,23 @@ export const FormContentNewInstallation = styled.form`
   }
 
   .installationNumberField {
-    border-color: ${newBackground.orange};
+    border-color: ${background.orange};
 
       & label {
-        color: ${newBackground.orange};
+        color: ${background.orange};
       }
 
       & .MuiOutlinedInput-root {
         & fieldset {
-          border-color: ${newBackground.orange};
+          border-color: ${background.orange};
         }
 
         &:hover fieldset {
-          border-color: ${newBackground.orange};
+          border-color: ${background.orange};
         }
 
         &.Mui-focused fieldset {
-          border-color: ${newBackground.orange};
+          border-color: ${background.orange};
         }
       }
 

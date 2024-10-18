@@ -1,10 +1,10 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Button, CircularProgress } from "@mui/material";
 
 export const CTAButton = styled(Button)`
-  background-color: ${newBackground.orange};
-  color: ${newBackground.white};
+  background-color: ${background.orange};
+  color: ${background.white};
   border-radius: 30px;
 
   height: 52px;
@@ -30,16 +30,16 @@ export const CTAButton = styled(Button)`
   }
 
   .icon {
-      color: ${newBackground.yellow};
+      color: ${background.yellow};
   }
   
   &:hover {
-      background-color: ${newBackground.yellow};
-      color: ${newBackground.green};
+      background-color: ${background.yellow};
+      color: ${background.green};
       cursor: pointer;
 
       .icon {
-          color: ${newBackground.green};
+          color: ${background.green};
       }
   }
   
@@ -54,7 +54,7 @@ export const CTAButton = styled(Button)`
 `
 
 export const Loading = styled(CircularProgress)`
-  color: ${newBackground.green};
+  color: ${background.green};
   width: 10px;
   height: 10px;
 

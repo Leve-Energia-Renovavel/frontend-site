@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";
-import { newBackground } from "../../styles";
+import { background } from "../../styles";
 
 export const FooterContainer = styled.footer`
     display: flex;
@@ -12,19 +12,19 @@ export const FooterContainer = styled.footer`
     max-width: 1366px;
     margin: 0 auto;
 
-    background: linear-gradient(to top,${newBackground.orange}, ${newBackground.orange} 10%, ${newBackground.grey} 100%);
+    background: linear-gradient(to top,${background.orange}, ${background.orange} 10%, ${background.grey} 100%);
 
     gap: 10rem; //change later...
     
     @media (max-width: 600px) {
         background: linear-gradient(
         to top,
-        ${newBackground.orange}, 
-        ${newBackground.orange}, 
-        ${newBackground.white} 88%,
+        ${background.orange}, 
+        ${background.orange}, 
+        ${background.white} 88%,
         transparent 100%);
 
-        background-color: ${newBackground.grey};
+        background-color: ${background.grey};
         
         gap: 0px //change later...
     }
@@ -47,7 +47,7 @@ export const FooterMainContent = styled.div`
         font-size: 70px;
         font-weight: 600;
         
-        color: ${newBackground.orange};
+        color: ${background.orange};
         text-align: center;
         
         max-width: 1022px;
@@ -58,7 +58,7 @@ export const FooterMainContent = styled.div`
     
     .footerSubtitle { 
         font-family: "Graphie";
-        color: ${newBackground.green};
+        color: ${background.green};
         font-size: 32px;
         font-weight: 600;
         margin-bottom: 20px; //change later...
@@ -67,7 +67,7 @@ export const FooterMainContent = styled.div`
     .footerDescription {
         font-family: "Graphie";
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
         
         font-size: 20px;
         margin-bottom: 50px; //change later...
@@ -143,7 +143,7 @@ export const LegalContainer = styled.div`
     text-align: center;
 
     .rights, .leveLegalData {
-        color: ${newBackground.white};
+        color: ${background.white};
         font-size: 15px;
     }
     .rights {
@@ -226,19 +226,19 @@ export const FooterSocialMediaContainer = styled.div`
         border-radius: 30px;
 
         &:hover {
-            background-color: ${newBackground.green};
+            background-color: ${background.green};
             cursor: pointer;
         }
     }
 
     .socialIcon {
-        color: ${newBackground.orangeHigh};
-        background-color: ${newBackground.white};
+        color: ${background.orangeHigh};
+        background-color: ${background.white};
         border-radius: 30px;
         padding: 8px;
         
         &:hover {
-            color: ${newBackground.green};
+            color: ${background.green};
             cursor: pointer;
         }
     }
@@ -255,8 +255,8 @@ export const FooterSocialMediaContainer = styled.div`
 `
 
 export const FooterButton = styled(Button)`
-  background-color: ${newBackground.orange};
-  color: ${newBackground.yellow};
+  background-color: ${background.orange};
+  color: ${background.yellow};
   border-radius: 30px;
   font-size: 17px;
   text-transform: none;
@@ -268,8 +268,8 @@ export const FooterButton = styled(Button)`
 
   
   &:hover {
-      background-color: ${newBackground.green};
-      color: ${newBackground.yellow};
+      background-color: ${background.green};
+      color: ${background.yellow};
         cursor: pointer;
   }
 `
@@ -281,13 +281,13 @@ export const FooterMobile = styled.div`
         font-family: "Graphie";
         font-size: 24px;  
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
     .subtitle {
         font-family: "Graphie";
         font-size: 18px;  
         font-weight: 500;
-        color: ${newBackground.greyHigh};
+        color: ${background.greyHigh};
 
         white-space: nowrap;
 
@@ -356,7 +356,7 @@ export const ButtonContainer = styled.div`
         font-family: "Graphie";
         font-size: 17px;  
         font-weight: 500;
-        color: ${newBackground.orange};
+        color: ${background.orange};
         text-decoration: underline;
 
         margin-top: 18px;

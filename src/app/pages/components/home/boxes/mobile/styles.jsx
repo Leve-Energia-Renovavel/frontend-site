@@ -1,10 +1,10 @@
-import { newBackground } from "@/app/pages/styles"
+import { background } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 import { Button } from "@mui/material"
 
 export const HomeSecondaryBoxesContainerMobile = styled.div`
     display: none;
-    background-color: ${newBackground.grey};
+    background-color: ${background.grey};
     
     @media (max-width: 600px) {
         display: block;
@@ -37,7 +37,7 @@ export const HomeSecondaryBannerContainerMobile = styled.div`
         font-size: 28px;
         line-height: 23px;
         font-weight: 600;
-        color: ${newBackground.white};
+        color: ${background.white};
         
         max-width: 260px;
         margin-top: 100px;
@@ -60,7 +60,7 @@ export const MobileBoxesContainer = styled.div`
 export const MobileBox = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     border-radius: 5px;
 
     gap: 9px;
@@ -78,7 +78,7 @@ export const MobileBox = styled.div`
         font-size: 20px;
         line-height: 18px;
         font-weight: 700;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 
     .subtitle {
@@ -86,7 +86,7 @@ export const MobileBox = styled.div`
         font-size: 18px;
         line-height: 18px;
         font-weight: 400;
-        color: ${newBackground.greyHigh};
+        color: ${background.greyHigh};
 
         max-width: 160px;
 
@@ -132,8 +132,8 @@ export const ButtonContainer = styled.div`
 `
 
 export const CTAButton = styled(Button)`
-  background-color: ${newBackground.green};
-  color: ${newBackground.yellow};
+  background-color: ${background.green};
+  color: ${background.yellow};
   border-radius: 30px;
 
   height: 52px;
@@ -154,8 +154,8 @@ export const CTAButton = styled(Button)`
   }
 
   &:hover {
-      background-color: ${newBackground.yellow};
-      color: ${newBackground.green};
+      background-color: ${background.yellow};
+      color: ${background.green};
       cursor: pointer;
   }
 `

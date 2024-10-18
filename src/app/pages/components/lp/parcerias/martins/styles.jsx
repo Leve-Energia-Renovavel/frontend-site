@@ -1,4 +1,4 @@
-import { newBackground, partners } from "@/app/pages/styles";
+import { background, partners } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
 export const MartinsMain = styled.div`
@@ -25,7 +25,7 @@ export const MartinsMain = styled.div`
       font-size: 55px;
       line-height: 60px;
       font-weight: 600;
-      color: ${newBackground.white};
+      color: ${background.white};
     }
     .titleHighlighted {
       font-family: "Graphie";
@@ -63,7 +63,7 @@ export const ArrowScrollerContainer = styled.div`
       font-size: 21px;
       line-height: 25px;
       font-weight: 500;
-      color: ${newBackground.white};
+      color: ${background.white};
 
       max-width: 371px;
   }
@@ -234,7 +234,7 @@ export const PartnerDescriptionContainer = styled.div`
     font-size: 42px;
     line-height: 45px;
     font-weight: 600;
-    color: ${newBackground.white};
+    color: ${background.white};
 
     max-width: 450px;
 
@@ -260,7 +260,7 @@ export const PartnerDescriptionContainer = styled.div`
     font-size: 14px;
     line-height: 17px;
     font-weight: 500;
-    color: ${newBackground.white};
+    color: ${background.white};
 
     max-width: 520px;
 
@@ -272,7 +272,7 @@ export const PartnerDescriptionContainer = styled.div`
     font-size: 17px;
     line-height: 21px;
     font-weight: 600;
-    color: ${newBackground.white};
+    color: ${background.white};
 
     margin-top: 10px;
 

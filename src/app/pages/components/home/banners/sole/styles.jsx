@@ -1,12 +1,12 @@
 import { fadeInUpAnimation } from "@/app/pages/animations"
-import { newBackground } from "@/app/pages/styles"
+import { background } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 
 export const HomeThirdSectionContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: ${newBackground.orange};
+    background-color: ${background.orange};
 
     gap: 2rem;
 
@@ -66,7 +66,7 @@ export const HomeThirdSectionTitleContainer = styled.div`
     }
 
     .sectionTitle {
-      color: ${newBackground.white};
+      color: ${background.white};
       font-weight: 200;
 
     }
@@ -99,7 +99,7 @@ export const HomeThirdSectionSubTitle = styled.div`
     }
 
     .sectionSubtitle {
-          color: ${newBackground.yellow};
+          color: ${background.yellow};
           font-weight: 500;
 
           @media (max-width: 600px) {
@@ -131,7 +131,7 @@ export const InvertedSoleBannerContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${newBackground.orange};
+  background-color: ${background.orange};
 
   gap: 1rem;
 
@@ -150,7 +150,7 @@ export const InvertedSoleBannerContainer = styled.div`
     font-size: 55px;
     line-height: 50px;
     font-weight: 600;
-    color: ${newBackground.yellow};
+    color: ${background.yellow};
   }
 
   .invertedSoleBannerSubtitle {
@@ -158,14 +158,14 @@ export const InvertedSoleBannerContainer = styled.div`
     font-size: 21px;
     line-height: 21px;
     font-weight: 600;
-    color: ${newBackground.white};
+    color: ${background.white};
   }
   .invertedSoleBannerDescription {
     font-family: "Graphie";
     font-size: 17px;
     line-height: 21px;
     font-weight: 500;
-    color: ${newBackground.white};
+    color: ${background.white};
   }
 
   .sole {
@@ -217,14 +217,14 @@ export const InvertedSoleButton = styled.div`
   max-width: 329px;
   margin-top: 25px;
 
-  background-color: ${newBackground.green};
+  background-color: ${background.green};
   border-radius: 20px;
   padding: 7px 11px;
   
   .whatsappIcon {
     width: 20px;
     height: 20px;
-    color: ${newBackground.yellow};
+    color: ${background.yellow};
   }
   
   span {
@@ -232,17 +232,17 @@ export const InvertedSoleButton = styled.div`
     font-size: 21px;
     line-height: 21px;
     font-weight: 600;
-    color: ${newBackground.yellow};
+    color: ${background.yellow};
   }
   
   &:hover {
     cursor: pointer;
-    background-color: ${newBackground.yellow};
+    background-color: ${background.yellow};
     span {
-      color: ${newBackground.green};
+      color: ${background.green};
     }
     .whatsappIcon {
-    color: ${newBackground.green};
+    color: ${background.green};
   }
     
   }

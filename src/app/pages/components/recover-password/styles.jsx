@@ -1,7 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Alert } from "@mui/material";
-import { background, newBackground, notification } from "../../styles";
+import { background, background, notification } from "../../styles";
 
 const fadeInUp = keyframes`
   from {
@@ -19,7 +19,7 @@ export const RecoverPasswordContainer = styled.div`
     display: flex;
     flex-direction: column;
     
-    background-color: ${newBackground.orange};
+    background-color: ${background.orange};
     
     padding: 2rem;
     text-align: center;
@@ -45,7 +45,7 @@ export const RecoverPasswordFormContainer = styled.div`
     padding: 2rem;
     
     border-radius: 8px;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     margin: 2rem auto;
 
@@ -55,7 +55,7 @@ export const RecoverPasswordFormContainer = styled.div`
       font-weight: 500;
       line-height: 1rem;
       font-size: 1rem;
-      color: ${newBackground.orange};
+      color: ${background.orange};
     }
     
     @media (max-width: 600px) {

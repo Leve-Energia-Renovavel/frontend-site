@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
@@ -18,7 +18,7 @@ export const CarrouselContentContainer = styled.div`
     }
 `
 export const ArrowBack = styled(ArrowBackIosIcon)`
-    color: ${props => props.disabled ? newBackground.greyDark : newBackground.green};
+    color: ${props => props.disabled ? background.greyDark : background.green};
     width: 30px;
     height: 30px;
 
@@ -26,13 +26,13 @@ export const ArrowBack = styled(ArrowBackIosIcon)`
     border-radius: 20px;
     padding: 4px 4px 4px 6px;
     
-    border: 2px solid ${props => props.disabled ? newBackground.greyDark : newBackground.green};
+    border: 2px solid ${props => props.disabled ? background.greyDark : background.green};
     
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     &:hover {
-        background-color:  ${props => props.disabled ? "" : newBackground.green};
-        color:  ${props => props.disabled ? "" : newBackground.white};
+        background-color:  ${props => props.disabled ? "" : background.green};
+        color:  ${props => props.disabled ? "" : background.white};
         cursor: pointer;
     }
     
@@ -45,7 +45,7 @@ export const ArrowBack = styled(ArrowBackIosIcon)`
 
 
 export const ArrowForward = styled(ArrowForwardIosIcon)`
-    color: ${props => props.disabled ? newBackground.greyDark : newBackground.green};
+    color: ${props => props.disabled ? background.greyDark : background.green};
     width: 30px;
     height: 30px;
 
@@ -53,13 +53,13 @@ export const ArrowForward = styled(ArrowForwardIosIcon)`
     border-radius: 20px;
     padding: 6px;
     text-align: center;
-    border: 2px solid ${props => props.disabled ? newBackground.greyDark : newBackground.green};
+    border: 2px solid ${props => props.disabled ? background.greyDark : background.green};
 
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     &:hover {
-        background-color:  ${props => props.disabled ? "" : newBackground.green};
-        color:  ${props => props.disabled ? "" : newBackground.white};
+        background-color:  ${props => props.disabled ? "" : background.green};
+        color:  ${props => props.disabled ? "" : background.white};
         cursor: pointer;
     }
 
@@ -73,7 +73,7 @@ export const ArrowForward = styled(ArrowForwardIosIcon)`
 export const InfoIcon = styled(InfoOutlinedIcon)`
     width: 20px;
     height: auto;
-    color: ${newBackground.green};
+    color: ${background.green};
 `
 
 export const FooterContainer = styled.div`
@@ -88,7 +88,7 @@ export const FooterContainer = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
     
     &:hover {

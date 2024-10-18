@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 
 export function formatBillingArray(array, maxSize) {
     if (array.length < maxSize || array.length < 1) {
@@ -30,17 +30,17 @@ export function formatBillingArray(array, maxSize) {
 export const chartLegends = [
     {
         title: "Consumo Energia Renovável Leve",
-        fontColor: newBackground.white,
-        backgroundColor: newBackground.green,
+        fontColor: background.white,
+        backgroundColor: background.green,
     },
     {
         title: "Taxa mín. distribuidora",
-        fontColor: newBackground.white,
-        backgroundColor: newBackground.greyDark,
+        fontColor: background.white,
+        backgroundColor: background.greyDark,
     },
     {
         title: "Conta sem o plano LEVE",
-        fontColor: newBackground.greyMedium,
-        backgroundColor: newBackground.grey,
+        fontColor: background.greyMedium,
+        backgroundColor: background.grey,
     },
 ]

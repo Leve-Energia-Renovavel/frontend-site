@@ -1,11 +1,11 @@
-import { background, newBackground } from "@/app/pages/styles"
+import { background } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 import { Divider, Switch } from "@mui/material"
 
 export const DashboardHistoryContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.green};
+    background-color: ${background.green};
     border-radius: 15px;
     
     width: 100%;
@@ -16,7 +16,7 @@ export const DashboardHistoryContainer = styled.div`
         font-size: 17px;
         line-height: 21px;
         font-weight: 600;
-        color: ${newBackground.white};
+        color: ${background.white};
 
         white-space: nowrap;
 
@@ -45,14 +45,14 @@ export const DashboardHistorySwitchContainer = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 500;
-        color: ${newBackground.yellow};
+        color: ${background.yellow};
     }
 `
 
 export const DashboardHistoryContent = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     border-radius: 15px;
 
     padding: 0 1rem;
@@ -88,7 +88,7 @@ align-items: center;
     font-weight: 500;
     padding: 4px 8px;
     border-radius: 15px;
-    color: ${newBackground.white};
+    color: ${background.white};
     
     width: fit-content;
     height: auto;
@@ -100,19 +100,19 @@ align-items: center;
 `;
 
 export const LegendPaid = styled(LegendBase)`
-    background-color: ${newBackground.green};
+    background-color: ${background.green};
 `;
 
 export const LegendDue = styled(LegendBase)`
-    background-color: ${newBackground.orangeFocused};
-    color: ${newBackground.orange};
+    background-color: ${background.orangeFocused};
+    color: ${background.orange};
     `;
 export const LegendExpired = styled(LegendBase)`
-background-color: ${newBackground.orange};
+background-color: ${background.orange};
 `;
 export const LegendCarrier = styled(LegendBase)`
     background-color: ${background.grey};
-    color: ${newBackground.white};
+    color: ${background.white};
 `;
 
 
@@ -142,13 +142,13 @@ export const AntSwitch = styled(Switch)`
 
       + .MuiSwitch-track {
         opacity: 1;
-        background-color: ${newBackground.yellow};
+        background-color: ${background.yellow};
       }
     }
   }
 
   .MuiSwitch-thumb {
-    color: ${newBackground.yellow};
+    color: ${background.yellow};
     box-shadow: 0 2px 4px 0 rgb(0 35 11 / 20%);
     width: 12px;
     height: 12px;
@@ -157,12 +157,12 @@ export const AntSwitch = styled(Switch)`
   }
 
   .MuiSwitch-track {
-    border: 2px solid ${newBackground.yellow};
+    border: 2px solid ${background.yellow};
 
     border-radius: 8px;
     opacity: 1;
     
-    background-color: ${newBackground.green};
+    background-color: ${background.green};
     box-sizing: border-box;
   }
 `;

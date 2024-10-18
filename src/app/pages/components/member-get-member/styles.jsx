@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import { Alert, Box, Button } from "@mui/material"
-import { background, newBackground, notification, statusColors } from "../../styles"
+import { background, background, notification, statusColors } from "../../styles"
 import { keyframes } from "@emotion/react";
 
 const fadeInUp = keyframes`
@@ -18,7 +18,7 @@ export const MemberGetMemberContainer = styled.div`
   display: flex;
   flex-direction: column;
   
-  border: 1px solid ${newBackground.orange};
+  border: 1px solid ${background.orange};
   border-radius: 4px;
   
   margin: 1rem auto;
@@ -159,7 +159,7 @@ export const ModalTitleContainer = styled.div`
         font-weight: 700;
         font-size: 1.5rem;
         line-height: 1.5rem;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 
     .logoLeve { 

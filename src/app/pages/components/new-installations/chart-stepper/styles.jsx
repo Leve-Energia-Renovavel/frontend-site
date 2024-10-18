@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
@@ -9,13 +9,13 @@ export const StepperContainer = styled.div`
 `
 
 export const Dot = styled(FiberManualRecordIcon)`
-    color: ${props => props.selected ? newBackground.green : newBackground.greyDark};
+    color: ${props => props.selected ? background.green : background.greyDark};
     width: 10px;
     height: auto;
 
     
     &:hover {
-        color: ${newBackground.orange};
+        color: ${background.orange};
         cursor: pointer;
     }
 `

@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles"
+import { background } from "@/app/pages/styles"
 import simpleIcon from "../../../resources/icons/small/leve-carregando-orange-icone-small.svg"
 import sustainableIcon from "../../../resources/icons/small/leve-folha-icone-small.svg"
 import safeIcon from "../../../resources/icons/small/leve-protecao-white-icone-small.svg"
@@ -34,33 +34,33 @@ export const homeBoxes = [
         icon: fastIcon,
         title: "É rápido",
         description: "Adesão 100% digital em apenas 3 cliques.",
-        backgroundColor: newBackground.orange,
-        titleColor: newBackground.yellow,
-        descriptionColor: newBackground.white
+        backgroundColor: background.orange,
+        titleColor: background.yellow,
+        descriptionColor: background.white
     },
     {
         icon: simpleIcon,
         title: "Simples",
         description: "Sem obras, instalações ou custos adicionais.",
-        backgroundColor: newBackground.yellow,
-        titleColor: newBackground.orange,
-        descriptionColor: newBackground.orange
+        backgroundColor: background.yellow,
+        titleColor: background.orange,
+        descriptionColor: background.orange
     },
     {
         icon: safeIcon,
         title: "Seguro",
         description: "A energia chegará para você da mesma forma que chega hoje.",
-        backgroundColor: newBackground.orange,
-        titleColor: newBackground.white,
-        descriptionColor: newBackground.white
+        backgroundColor: background.orange,
+        titleColor: background.white,
+        descriptionColor: background.white
     },
     {
         icon: sustainableIcon,
         title: "Sustentável",
         description: "Energia solar limpa e 100% renovável.",
-        backgroundColor: newBackground.green,
-        titleColor: newBackground.yellow,
-        descriptionColor: newBackground.white
+        backgroundColor: background.green,
+        titleColor: background.yellow,
+        descriptionColor: background.white
     },
 
 ]

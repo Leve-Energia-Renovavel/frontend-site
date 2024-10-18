@@ -1,5 +1,5 @@
 import { fadeInUp } from "@/app/pages/animations"
-import { newBackground } from "@/app/pages/styles"
+import { background } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 
 export const FormTitleContainer = styled.div`
@@ -13,7 +13,7 @@ export const FormTitleContainer = styled.div`
   .formTitle {
     font-family: "Graphie";
     font-weight: 600;
-    color: ${newBackground.yellow};
+    color: ${background.yellow};
     white-space: nowrap;
     font-size: 27px;
     text-align: left;
@@ -27,7 +27,7 @@ export const FormTitleContainer = styled.div`
     font-family: "Graphie";
     font-size: 24px;
     font-weight: 600;
-    color: ${newBackground.yellow};
+    color: ${background.yellow};
     white-space: nowrap;
   }
 
@@ -49,7 +49,7 @@ export const FormSubtitleContainer = styled.div`
     .formSubtitle { 
       font-family: "Graphie";
       font-weight: 500;
-      color: ${newBackground.white};
+      color: ${background.white};
       font-size: 14px;
       line-height: 12px;
 
@@ -62,7 +62,7 @@ export const FormSubtitleContainer = styled.div`
     .highlighted {
       font-family: "Graphie";
       font-weight: 500;
-      color: ${newBackground.yellow};
+      color: ${background.yellow};
       font-size: 14px;
       line-height: 14px;
     }
@@ -74,7 +74,7 @@ export const FormSubtitleContainer = styled.div`
     font-size: 18px;
     line-height: 18px;
     font-weight: 400;
-    color: ${newBackground.white};
+    color: ${background.white};
     text-align: center;
 
     max-width: 300px;

@@ -1,10 +1,10 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
 export const FooterContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     padding: 1rem 2rem;
 
@@ -52,7 +52,7 @@ export const PrivacyPolicyAndHelp = styled.div`
         font-size: 14px;
         line-height: 20px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
         
         &:hover {
             cursor: pointer;
@@ -74,7 +74,7 @@ export const SocialMediaContainer = styled.div`
     .socialIcon {
         width: 30px;
         height: 30px;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
     
     @media (max-width: 900px) {
@@ -91,7 +91,7 @@ export const FooterRightsReserved = styled.div`
         font-size: 12px;
         line-height: 20px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
     
     @media (max-width: 900px) {

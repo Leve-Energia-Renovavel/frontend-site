@@ -1,8 +1,8 @@
-import { background, newBackground } from "@/app/pages/styles"
+import { background } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 
 export const BannerContainer = styled.div`
-    background-color: ${newBackground.orange};
+    background-color: ${background.orange};
     border-radius: 0px 0px 15px 15px;
 
     width: 100%;
@@ -26,7 +26,7 @@ export const ContentContainer = styled.div`
 
     h1 {
         font-family: "Graphie";
-        color: ${newBackground.yellow};
+        color: ${background.yellow};
         font-weight: 700;
         font-style: bold;
         font-size: 48px;
@@ -44,7 +44,7 @@ export const ContentContainer = styled.div`
     
     h6 {
         font-family:"Graphie";
-        color: ${newBackground.white};
+        color: ${background.white};
         font-size: 24px;
         line-height: 27px;
         font-weight: 500;
@@ -77,8 +77,8 @@ export const ButtonContainer = styled.div`
 
         text-transform: none;
         font-size: 18px;
-        color: ${newBackground.orange};
-        background-color: ${newBackground.yellow};
+        color: ${background.orange};
+        background-color: ${background.yellow};
         height: 3rem;
         border-radius: 12px;
         cursor: pointer;
@@ -86,7 +86,7 @@ export const ButtonContainer = styled.div`
         
         &:hover {
             background-color: ${background.white};
-            color:${newBackground.orange};
+            color:${background.orange};
         }
     }
 

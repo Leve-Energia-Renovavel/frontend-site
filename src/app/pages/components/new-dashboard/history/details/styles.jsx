@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles"
+import { background } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 
 export const HistoryDetail = styled.div`
@@ -27,14 +27,14 @@ export const HistoryDetailHeader = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
     .initialDate{
         font-family: "Graphie";
         font-size: 14px;
         line-height: 17px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
     `
 export const HistoryDetailContent = styled.div`
@@ -52,7 +52,7 @@ export const HistoryDetailValue = styled.div`
         font-size: 27px;
         line-height: 32px;
         font-weight: 700;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         white-space: nowrap;
     }
@@ -62,8 +62,8 @@ export const HistoryDetailValue = styled.div`
         font-size: 27px;
         line-height: 32px;
         font-weight: 700;
-        color: ${newBackground.green};
-        background-color: ${newBackground.yellow};
+        color: ${background.green};
+        background-color: ${background.yellow};
         
         white-space: nowrap;
     }
@@ -72,7 +72,7 @@ export const HistoryDetailValue = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 `
 
@@ -87,7 +87,7 @@ export const HistoryDetailFooter = styled.div`
     font-size: 14px;
     line-height: 17px;
     font-weight: 600;
-    color: ${newBackground.orange};
+    color: ${background.orange};
     margin-top: auto;
     
     &:hover {
@@ -111,7 +111,7 @@ export const HistoryDetailFooterHeader = styled.div`
     gap: 2px;
 
     .infoIcon {
-        color: ${newBackground.orange};
+        color: ${background.orange};
         width: 16px;
         height: auto;
 

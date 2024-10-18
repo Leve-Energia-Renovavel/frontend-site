@@ -1,11 +1,11 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
 export const ArraiaMain = styled.div`
     display: flex;
     flex-direction: column;
     border-radius: 15px;
-    background-color: ${newBackground.orange};
+    background-color: ${background.orange};
 
     position: relative;
 
@@ -56,8 +56,8 @@ export const ArraiaMain = styled.div`
       font-size: 18px;
       line-height: 22px;
       font-weight: 500;
-      color: ${newBackground.yellow};
-      border: 1px solid ${newBackground.yellow};
+      color: ${background.yellow};
+      border: 1px solid ${background.yellow};
       border-radius: 20px;
       padding: 0px 8px;
       width: fit-content;
@@ -200,7 +200,7 @@ export const ArraiaMain = styled.div`
 export const ArraiaSection = styled.div`
     margin-top: auto;
     border-radius: 15px;
-    background-color: ${newBackground.green};
+    background-color: ${background.green};
 
     z-index: 8;
 
@@ -216,13 +216,13 @@ export const ArraiaSection = styled.div`
       font-size: 55px;
       line-height: 55px;
       font-weight: 600;
-      color: ${newBackground.white};
+      color: ${background.white};
     }
     
     .titleHighlighted {
       font-family: "Graphie";
       font-weight: 500;
-      color: ${newBackground.yellow};
+      color: ${background.yellow};
       border-radius: 10px;
       text-decoration: underline;
     }
@@ -232,7 +232,7 @@ export const ArraiaSection = styled.div`
       font-size: 55px;
       line-height: 55px;
       font-weight: 600;
-      color: ${newBackground.white};
+      color: ${background.white};
     }
 
     @media (max-width: 1300px) {
@@ -280,7 +280,7 @@ export const ArrowScrollerContainer = styled.div`
       font-size: 21px;
       line-height: 36px;
       font-weight: 500;
-      color: ${newBackground.yellow};
+      color: ${background.yellow};
   }
 
   .whiteArrow {

@@ -1,21 +1,21 @@
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";
-import { newBackground } from "../../styles";
+import { background } from "../../styles";
 
 
 export const PolicyContainer = styled.div`
     margin: 74px auto 1rem auto;
 
     max-width: 1366px;
-    background-color: ${newBackground.white};
-    border: 1px solid ${newBackground.orange};
+    background-color: ${background.white};
+    border: 1px solid ${background.orange};
     border-radius: 15px;
 
     padding: 2rem;
     
     .mainTitle {
         font-family: "Graphie";
-        color: ${newBackground.orange};
+        color: ${background.orange};
         font-size: 41px;
         font-weight: 700;
         text-align: center;
@@ -23,7 +23,7 @@ export const PolicyContainer = styled.div`
     
     .lastUpdate { 
         font-family: "Graphie";
-        color: ${newBackground.orange};
+        color: ${background.orange};
         font-size: 17px;
         font-weight: 500;
         
@@ -37,7 +37,7 @@ export const PolicyContainer = styled.div`
 
     .topicTitle { 
         font-family: "Graphie";
-        color: ${newBackground.orange};
+        color: ${background.orange};
         font-size: 34px;
         font-weight: 600;
         

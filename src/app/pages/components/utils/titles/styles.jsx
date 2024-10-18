@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
 
@@ -10,13 +10,13 @@ export const DefaultTitleContainer = styled.div`
     gap: 4px;
 
     .icon {
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
     .title {
         font-family: "Graphie";
         font-size: 17px;
         line-height: 21px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 `

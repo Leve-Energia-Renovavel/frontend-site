@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Box } from "@mui/material";
 
@@ -11,7 +11,7 @@ export const ModalBox = styled(Box)`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     border-radius: 20px;
 
@@ -51,7 +51,7 @@ export const ModalHeader = styled.div`
         font-size: 27px;
         line-height: 32px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 `
 export const ModalContent = styled.div`
@@ -67,7 +67,7 @@ export const ModalTitleIcon = styled.div`
     align-items: center;
 
     .personIcon, .installationIcon, .renewIcon {
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 
     .installationIcon {
@@ -83,11 +83,11 @@ export const ModalTitleIcon = styled.div`
 export const ModalOption = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     gap: 10px;
     border-radius: 10px;
-    border: 1px solid ${newBackground.green};
+    border: 1px solid ${background.green};
 
     padding: 1rem;
 
@@ -103,7 +103,7 @@ export const ModalOption = styled.div`
         font-size: 21px;
         line-height: 25px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         max-width: 280px;
     }
@@ -112,7 +112,7 @@ export const ModalOption = styled.div`
         font-size: 15px;
         line-height: 17px;
         font-weight: 500;
-        color: ${newBackground.greyDark};
+        color: ${background.greyDark};
 
         max-width: 280px;
     }
@@ -122,7 +122,7 @@ export const ModalOption = styled.div`
         font-size: 15px;
         line-height: 17px;
         font-weight: 500;
-        color: ${newBackground.greyDark};
+        color: ${background.greyDark};
     }
 
     .underlined {
@@ -139,6 +139,6 @@ export const ModalOption = styled.div`
 
     &:hover {
         cursor: pointer;
-        background-color: ${newBackground.grey};
+        background-color: ${background.grey};
     }
     `

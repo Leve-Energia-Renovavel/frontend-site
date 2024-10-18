@@ -1,9 +1,9 @@
-import { newBackground } from "@/app/pages/styles"
+import { background } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 import { Button } from "@mui/material"
 
 export const HomeTutorialContainer = styled.section`
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     padding: 57px 79px;
 
@@ -19,7 +19,7 @@ export const HomeTutorialContent = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: ${newBackground.orange};
+    background-color: ${background.orange};
 
     gap: 36px;
 
@@ -32,7 +32,7 @@ export const HomeTutorialContent = styled.div`
       font-size: 34px;
       line-height: 30px;
       font-weight: 600;
-      color: ${newBackground.white};
+      color: ${background.white};
       
       text-align: center;
     }
@@ -66,7 +66,7 @@ export const HomeTutorialCard = styled.div`
     flex-direction: column;
     justify-content: start;
     border-radius: 5px;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     gap: 15px;
 
@@ -87,7 +87,7 @@ export const HomeTutorialCard = styled.div`
       font-size: 22px;
       line-height: 24px;
       font-weight: 600;
-      color: ${newBackground.green};
+      color: ${background.green};
     }
     
     .cardDescription {
@@ -95,13 +95,13 @@ export const HomeTutorialCard = styled.div`
       font-size: 22px;
       line-height: 28px;
       font-weight: 500;
-      color: ${newBackground.greyHigh};
+      color: ${background.greyHigh};
     }
 
     .cardIcon {
       width: 75px;
       height: 75px;
-      color: ${newBackground.green};
+      color: ${background.green};
     }
 
     @media (max-width: 600px) {
@@ -165,8 +165,8 @@ export const HomeTutorialCard = styled.div`
 `
 
 export const CTAButton = styled(Button)`
-  background-color: ${newBackground.green};
-  color: ${newBackground.white};
+  background-color: ${background.green};
+  color: ${background.white};
   border-radius: 30px;
 
   height: 52px;
@@ -188,8 +188,8 @@ export const CTAButton = styled(Button)`
   }
 
   &:hover {
-      background-color: ${newBackground.yellow};
-      color: ${newBackground.green};
+      background-color: ${background.yellow};
+      color: ${background.green};
       cursor: pointer;
   }
 `

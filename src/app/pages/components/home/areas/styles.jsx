@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles"
+import { background } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 import { CircleNotifications } from "@mui/icons-material"
 
@@ -6,7 +6,7 @@ export const HomeAreasContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${newBackground.white};
+  background-color: ${background.white};
   gap: 2rem;
 
   .map {
@@ -20,7 +20,7 @@ export const HomeAreasContainer = styled.div`
     font-size: 34px;
     line-height: 30px;
     font-weight: 600;
-    color: ${newBackground.green};
+    color: ${background.green};
   }
 
   @media (max-width: 600px) {
@@ -48,7 +48,7 @@ export const MapLegend = styled.div`
   gap: 4px;
 
   .legendIcon {
-    color: ${props => props.hasFactory ? newBackground.orange : newBackground.green};
+    color: ${props => props.hasFactory ? background.orange : background.green};
   }
   
   .legendDescription {
@@ -56,7 +56,7 @@ export const MapLegend = styled.div`
     font-size: 17px;
     line-height: 21px;
     font-weight: 500;
-    color: ${props => props.hasFactory ? newBackground.orange : newBackground.green};
+    color: ${props => props.hasFactory ? background.orange : background.green};
   }
 `
 export const AreaListContainer = styled.div`
@@ -67,7 +67,7 @@ export const AreaListContainer = styled.div`
     font-size: 14px;
     line-height: 21px;
     font-weight: 500;
-    color: ${newBackground.green};
+    color: ${background.green};
   }
 
   .highlighted {

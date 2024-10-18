@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EmailIcon from '@mui/icons-material/Email';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import { newBackground } from "../../styles";
+import { background } from "../../styles";
 
 export const MemberGetMemberContainer = styled.div`
     display: flex;
@@ -17,7 +17,7 @@ export const MemberGetMemberContainer = styled.div`
         font-size: 27px;
         line-height: 32px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 `
 
@@ -25,7 +25,7 @@ export const MemberGetMemberContent = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: ${newBackground.green};
+    background-color: ${background.green};
     border-radius: 20px;
     
     padding: 1rem;
@@ -51,7 +51,7 @@ export const MemberGetMemberTextContainer = styled.div`
         font-size: 17px;
         line-height: 21px;
         font-weight: 500;
-        color: ${newBackground.white};
+        color: ${background.white};
         
         max-width: 362px;
     }
@@ -61,20 +61,20 @@ export const MemberGetMemberTextContainer = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 500;
-        color: ${newBackground.white};
+        color: ${background.white};
 
     }
     
     .highlighted {
         text-decoration: underline;
-        color: ${newBackground.yellow};
+        color: ${background.yellow};
     }
 `
 export const MemberGetMemberCodeBox = styled.div`
     display: flex;
     flex-direction: column;
 
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     border-radius: 20px;
     
     padding: 10px;
@@ -86,7 +86,7 @@ export const MemberGetMemberCodeBox = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
 
         text-align: center;
     }
@@ -105,7 +105,7 @@ export const CodeContainer = styled.div`
         font-size: 27px;
         line-height: 32px;
         font-weight: 700;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 `
 export const CodeButton = styled.div`
@@ -113,8 +113,8 @@ export const CodeButton = styled.div`
     flex-direction: row;
     align-items: center;
 
-    border: 1px solid ${newBackground.orange};
-    background-color: ${newBackground.white};
+    border: 1px solid ${background.orange};
+    background-color: ${background.white};
     
     border-radius: 8px;
 
@@ -130,16 +130,16 @@ export const CodeButton = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
         
         white-space: nowrap;
     }
 
     &:hover {
         cursor: pointer;
-        background-color: ${newBackground.orange};
+        background-color: ${background.orange};
         span, .copyIcon {
-            color: ${newBackground.white};
+            color: ${background.white};
         }
     }
 
@@ -157,7 +157,7 @@ export const ShareButton = styled.div`
     flex-direction: row;
     align-items: center;
     
-    background-color: ${props => props.share ? newBackground.orange : newBackground.green};
+    background-color: ${props => props.share ? background.orange : background.green};
     border-radius: 8px;
     
     padding: 8px 11px;
@@ -169,26 +169,26 @@ export const ShareButton = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 500;
-        color: ${newBackground.white};
+        color: ${background.white};
 
         white-space: nowrap;
     }
 
     &:hover {
         cursor: pointer;
-        background-color: ${props => props.share ? newBackground.orangeFocused : newBackground.greenSoft};
+        background-color: ${props => props.share ? background.orangeFocused : background.greenSoft};
     }
 
 `
 
 export const MessageIcon = styled(EmailIcon)`
-    color: ${newBackground.white};
+    color: ${background.white};
 `
 export const WhatsIcon = styled(WhatsAppIcon)`
-    color: ${newBackground.white};  
+    color: ${background.white};  
 `
 export const CopyIcon = styled(ContentCopyIcon)`
-    color: ${newBackground.orange};  
+    color: ${background.orange};  
 `
 
 
@@ -208,16 +208,16 @@ export const IndicationContainer = styled.div`
         font-size: 21px;
         line-height: 27px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
     
     .indicatorEmailInput {
-        background-color: ${newBackground.white};
+        background-color: ${background.white};
         border-radius: 10px;
         height: 42px;
         margin-bottom: 8px;
 
-      border: 1px solid ${newBackground.orange};
+      border: 1px solid ${background.orange};
 
       & .MuiInputLabel-shrink {
         /* Styles for the focused label */
@@ -232,14 +232,14 @@ export const IndicationContainer = styled.div`
         height: 0.4375em;
         padding: 20px 14px;
         font-weight: 700;
-        color: ${newBackground.orange};
+        color: ${background.orange};
         }
 
         & label {
           font-family: "Graphie";
           font-weight: 500;
           font-size: 14px;
-          color:  ${newBackground.orange};
+          color:  ${background.orange};
         }
 
         & .MuiFormLabel-root-MuiInputLabel-root {
@@ -252,7 +252,7 @@ export const IndicationContainer = styled.div`
           & fieldset {
             height: 42px;
             border-radius: 10px;
-            border-color: ${newBackground.white};
+            border-color: ${background.white};
           }
         } 
 
@@ -283,7 +283,7 @@ export const IndicateButton = styled.div`
     flex-direction: row;
     align-items: center;
     
-    background-color: ${newBackground.orange};
+    background-color: ${background.orange};
     border-radius: 8px;
     
     padding: 8px 11px;
@@ -295,17 +295,17 @@ export const IndicateButton = styled.div`
         font-size: 17px;
         line-height: 21px;
         font-weight: 500;
-        color: ${newBackground.white};
+        color: ${background.white};
 
         white-space: nowrap;
     }
 
     &:hover {
         cursor: pointer;
-        background-color: ${newBackground.orangeFocused};
+        background-color: ${background.orangeFocused};
 
         span {
-            color: ${newBackground.orange};
+            color: ${background.orange};
         }
     }
 
@@ -315,7 +315,7 @@ export const CancelButton = styled.div`
     flex-direction: row;
     align-items: center;
     
-    background-color: ${newBackground.greyDark};
+    background-color: ${background.greyDark};
     border-radius: 8px;
     
     padding: 8px 11px;
@@ -327,17 +327,17 @@ export const CancelButton = styled.div`
         font-size: 17px;
         line-height: 21px;
         font-weight: 500;
-        color: ${newBackground.white};
+        color: ${background.white};
 
         white-space: nowrap;
     }
 
     &:hover {
         cursor: pointer;
-        background-color: ${newBackground.grey};
+        background-color: ${background.grey};
 
         span {
-            color: ${newBackground.orange};
+            color: ${background.orange};
         }
     }
 

@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
 
@@ -18,27 +18,27 @@ export const ExtractHeaderContainer = styled.div`
 export const ExtractHeaderDate = styled.div`
     width: 160px;
     text-align: center;
-    border-bottom: 2px solid ${newBackground.green};
+    border-bottom: 2px solid ${background.green};
 
     span { 
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 `
 export const ExtractHeaderDistributor = styled.div`
     width: 280px;
     
     text-align: center;
-    border-bottom: 2px solid ${newBackground.greyDark};
+    border-bottom: 2px solid ${background.greyDark};
     
     span { 
-        color: ${newBackground.greyDark};
+        color: ${background.greyDark};
     }
     `
 export const ExtractHeaderLeve = styled.div`
     width: 300px;
     text-align: center;
-    border-bottom: 2px solid ${newBackground.green};
+    border-bottom: 2px solid ${background.green};
     span { 
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 `

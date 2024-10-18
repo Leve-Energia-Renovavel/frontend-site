@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import InventoryIcon from '@mui/icons-material/Inventory';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -14,7 +14,7 @@ export const NewInvoicesHeader = styled.div`
         font-size: 27px;
         line-height: 32px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
 
         margin-right: auto;
     }
@@ -31,7 +31,7 @@ export const NewInvoicesSelectInstallation = styled.div`
     gap: 10px;
 
     .installationIcon {
-        color: ${newBackground.white};
+        color: ${background.white};
         max-width: 16px;
         margin-right: 4px;
         margin-bottom: 5px;
@@ -42,7 +42,7 @@ export const NewInvoicesSelectInstallation = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 
     .defaultInstallation {
@@ -59,7 +59,7 @@ export const NewInvoicesSelectButton = styled.div`
     flex-direction: row;
     align-items: center;
     
-    background-color: ${newBackground.green};
+    background-color: ${background.green};
     padding: 12px 8px;
     
     border-radius: 8px;
@@ -75,13 +75,13 @@ export const NewInvoicesSelectDueDateButton = styled.div`
     align-items: center;
 
     background-color: transparent;
-    border: 2px solid ${newBackground.orange};
+    border: 2px solid ${background.orange};
     padding: 12px 8px;
 
     border-radius: 8px;
 
     .dueDateOption {
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 
 `
@@ -108,7 +108,7 @@ export const SelectInstallation = styled(Select)`
     font-size: 17px;
     line-height: 21px;
     font-weight: bold;
-    color: ${newBackground.white};
+    color: ${background.white};
 
 
     &.MuiOutlinedInput-root {
@@ -137,7 +137,7 @@ export const SelectInstallation = styled(Select)`
         border-color: transparent; // Border color on hover
     }
     .MuiSvgIcon-root {
-        fill: ${newBackground.white} !important;
+        fill: ${background.white} !important;
     }
 `
 
@@ -151,7 +151,7 @@ export const InstallationItem = styled(MenuItem)`
     font-weight: 600;
     font-size: 17px;
     line-height: 21px;
-    color: ${newBackground.orange};
+    color: ${background.orange};
 `
 
 export const SelectDueDateChoose = styled(Select)`
@@ -159,7 +159,7 @@ export const SelectDueDateChoose = styled(Select)`
     font-size: 17px;
     line-height: 21px;
     font-weight: bold;
-    color: ${newBackground.white};
+    color: ${background.white};
 
     width: 210px;
 
@@ -190,7 +190,7 @@ export const SelectDueDateChoose = styled(Select)`
         border-color: transparent; // Border color on hover
     }
     .MuiSvgIcon-root {
-        fill: ${newBackground.orange} !important;
+        fill: ${background.orange} !important;
     }
 
 
@@ -204,11 +204,11 @@ export const StyledMenuItem = styled(MenuItem)`
     font-size: 17px;
     line-height: 21px;
     font-weight: 500;
-    color: ${newBackground.orange};
+    color: ${background.orange};
 }
 
 &:hover {
-    background-color: ${newBackground.grey};
+    background-color: ${background.grey};
 
     span {
         font-weight: 700;

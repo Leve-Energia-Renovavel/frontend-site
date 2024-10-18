@@ -1,4 +1,4 @@
-import { newBackground, partners } from "@/app/pages/styles";
+import { background, partners } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
 export const LocalizaMain = styled.div`
@@ -25,12 +25,12 @@ export const LocalizaMain = styled.div`
       font-size: 55px;
       line-height: 58px;
       font-weight: 600;
-      color: ${newBackground.white};
+      color: ${background.white};
     }
     .titleHighlighted {
       font-family: "Graphie";
       font-weight: 600;
-      color: ${newBackground.white};
+      color: ${background.white};
       border-radius: 10px;
       background-color: ${partners.localiza.lightGreen};
       color: ${partners.localiza.green};
@@ -67,7 +67,7 @@ export const ArrowScrollerContainer = styled.div`
       font-size: 21px;
       line-height: 36px;
       font-weight: 500;
-      color: ${newBackground.white};
+      color: ${background.white};
   }
 
   .whiteArrow {
@@ -142,7 +142,7 @@ export const PartnerDescriptionContainer = styled.div`
     font-size: 42px;
     line-height: 45px;
     font-weight: 600;
-    color: ${newBackground.white};
+    color: ${background.white};
 
     max-width: 670px;
   }
@@ -161,7 +161,7 @@ export const PartnerDescriptionContainer = styled.div`
     font-size: 21px;
     line-height: 24px;
     font-weight: 500;
-    color: ${newBackground.white};
+    color: ${background.white};
 
     max-width: 670px;
 
@@ -173,7 +173,7 @@ export const PartnerDescriptionContainer = styled.div`
     font-size: 21px;
     line-height: 24px;
     font-weight: 500;
-    color: ${newBackground.white};
+    color: ${background.white};
 
     max-width: 670px;
 

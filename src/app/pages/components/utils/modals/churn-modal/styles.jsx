@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Box } from "@mui/material";
 
@@ -11,7 +11,7 @@ export const ModalBox = styled(Box)`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     border-radius: 20px;
 
@@ -31,7 +31,7 @@ export const ModalBox = styled(Box)`
         font-size: 27px;
         line-height: 32px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 
     .modalDescription {
@@ -39,7 +39,7 @@ export const ModalBox = styled(Box)`
             font-size: 17px;
             line-height: 20px;
             font-weight: 600;
-            color: ${newBackground.green};
+            color: ${background.green};
 
             margin-top: 29px;
 
@@ -70,7 +70,7 @@ export const HistoryDetailsContainer = styled.div`
     padding: 12px;
     
     border-radius: 10px;
-    border: 1px solid ${newBackground.green};
+    border: 1px solid ${background.green};
     
     `
 export const FactoryDetailsContainer = styled.div`
@@ -82,13 +82,13 @@ export const FactoryDetailsContainer = styled.div`
     padding: 10px 28px;
     
     border-radius: 10px;
-    border: 1px solid ${newBackground.green};
+    border: 1px solid ${background.green};
 
     .factoryName {
         font-size: 21px;
         line-height: 25px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         margin: 0 auto;
         margin-bottom: 33px;
@@ -130,7 +130,7 @@ export const FactoryInfoCard = styled.div`
         font-size: 17px;
         line-height: 18px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         max-width: 190px;
     }
@@ -139,8 +139,8 @@ export const FactoryInfoCard = styled.div`
         font-size: 19px;
         line-height: 21px;
         font-weight: 700;
-        color: ${newBackground.green};
-        background-color: ${newBackground.yellow};
+        color: ${background.green};
+        background-color: ${background.yellow};
 
         width: fit-content;
     }
@@ -218,26 +218,26 @@ export const OptionsButton = styled.div`
 
     padding: 10px;
 
-    border: 1px solid ${newBackground.orange};
+    border: 1px solid ${background.orange};
     border-radius: 6px;
 
-    background-color: ${props => props.isChurn ? newBackground.orange : newBackground.white};
+    background-color: ${props => props.isChurn ? background.orange : background.white};
     
     span {
         font-family: "Graphie";
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${props => props.isChurn ? newBackground.white : newBackground.orange};
+        color: ${props => props.isChurn ? background.white : background.orange};
     }
     
     &:hover {
         cursor: pointer;
-        background-color: ${props => props.isChurn ? newBackground.white : newBackground.green};
-        border-color: ${props => props.isChurn ? newBackground.orange : newBackground.green};
+        background-color: ${props => props.isChurn ? background.white : background.green};
+        border-color: ${props => props.isChurn ? background.orange : background.green};
         
         span {
-            color: ${props => props.isChurn ? newBackground.orange : newBackground.white};
+            color: ${props => props.isChurn ? background.orange : background.white};
         }
         
     }

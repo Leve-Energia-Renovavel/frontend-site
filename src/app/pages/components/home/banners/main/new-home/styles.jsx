@@ -1,5 +1,5 @@
 import { fadeInUp, float } from "@/app/pages/animations";
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";
 
@@ -11,7 +11,7 @@ export const NewHomeMainBannerContainer = styled.section`
     justify-content: space-around;
     align-items: stretch;
 
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     margin: 10px auto 0px auto;
 
@@ -37,7 +37,7 @@ export const NewHomeMainContainer = styled.div`
     flex-direction: column;
     align-items: start;
 
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     height: 453px;
     max-height: 453px;
@@ -50,7 +50,7 @@ export const NewHomeMainContainer = styled.div`
         line-height: 40px;
         font-weight: 600;
         text-align: left;
-        color: ${newBackground.green};
+        color: ${background.green};
         
         max-width: 475px;
 
@@ -58,7 +58,7 @@ export const NewHomeMainContainer = styled.div`
         
     }
     .highlighted {
-        color: ${newBackground.orange};
+        color: ${background.orange};
         font-weight: 600;
     }
     .homeMainSubtitle {
@@ -66,7 +66,7 @@ export const NewHomeMainContainer = styled.div`
         font-size: 24px;
         line-height: 30px;
         font-weight: 500;
-        color: ${newBackground.greyHigh};
+        color: ${background.greyHigh};
 
         animation: ${fadeInUp} 0.5s ease-out;
 
@@ -101,7 +101,7 @@ export const NewHomeMainDescriptionContainer = styled.div`
         font-size: 24px;
         line-height: 30px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         animation: ${fadeInUp} 0.5s ease-out;
         
@@ -112,8 +112,8 @@ export const NewHomeMainDescriptionContainer = styled.div`
 export const NewHomeMainBaloon = styled.div`
     position: absolute;
     border-radius: 0px 10px;
-    border: 1px solid ${newBackground.orange};
-    background-color: ${newBackground.white};
+    border: 1px solid ${background.orange};
+    background-color: ${background.white};
 
     animation: ${float} 4s ease-in-out infinite;
 
@@ -132,12 +132,12 @@ export const NewHomeMainBaloon = styled.div`
         font-size: 16px;
         line-height: 19px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
     
     .hihglighted {
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 `
 export const NewHomeBannerImageContainer = styled.div`
@@ -157,8 +157,8 @@ export const NewHomeBannerImageContainer = styled.div`
 `
 
 export const CTAButton = styled(Button)`
-  background-color: ${newBackground.orange};
-  color: ${newBackground.white};
+  background-color: ${background.orange};
+  color: ${background.white};
   border-radius: 30px;
 
   height: 57px;
@@ -181,8 +181,8 @@ export const CTAButton = styled(Button)`
   }
 
   &:hover {
-      background-color: ${newBackground.green};
-      color: ${newBackground.yellow};
+      background-color: ${background.green};
+      color: ${background.yellow};
       cursor: pointer;
   }
 `

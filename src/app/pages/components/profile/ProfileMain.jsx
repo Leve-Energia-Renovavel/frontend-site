@@ -14,7 +14,7 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
-import { newBackground } from "../../styles";
+import { background } from "../../styles";
 import FormButton from "../utils/buttons/FormButton";
 import { ProfileChangePasswordContent, ProfileContainer, ProfileMainContent, ProfileSecondaryContent, ProfileSecondaryEmailContent, SnackbarMessageAlert, SnackbarMessageNotification } from "./styles";
 
@@ -118,7 +118,7 @@ export default function ProfileMain() {
                         >
                             Painel
                         </Link>
-                        <Typography style={{ fontWeight: 'bold', color: newBackground.orange }}>Meu Perfil</Typography>
+                        <Typography style={{ fontWeight: 'bold', color: background.orange }}>Meu Perfil</Typography>
                     </Breadcrumbs>
                     <ProfileMainContent>
                         <FormContent acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>

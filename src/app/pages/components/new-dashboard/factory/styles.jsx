@@ -1,11 +1,11 @@
-import { newBackground } from "@/app/pages/styles"
+import { background } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 
 export const FactoryContainer = styled.div`
     display: flex;
     flex-direction: row;
     
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     border-radius: 15px;
     
     @media (max-width: 900px) {
@@ -39,7 +39,7 @@ export const FactoryInfoContent = styled.div`
 export const FactoryDescription = styled.div`
     display: flex;
     flex-direction: column;  
-    background-color: ${newBackground.green};
+    background-color: ${background.green};
 
     padding: 1rem;
 
@@ -58,14 +58,14 @@ export const FactoryDescription = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 500;
-        color: ${newBackground.white};
+        color: ${background.white};
     }
 
     .factoryName {
         font-size: 27px;
         line-height: 32px;
         font-weight: 600;
-        color: ${newBackground.yellow};
+        color: ${background.yellow};
 
         margin-top: 37px;
     }
@@ -73,7 +73,7 @@ export const FactoryDescription = styled.div`
         font-size: 17px;
         line-height: 21px;
         font-weight: 300;
-        color: ${newBackground.white};
+        color: ${background.white};
     }
 
     @media (max-width: 900px) {
@@ -113,7 +113,7 @@ export const MainContentInfo = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         max-width: 230px;
     }
@@ -165,7 +165,7 @@ export const MainContentCard = styled.div`
         font-size: 17px;
         line-height: 18px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         max-width: 190px;
     }
@@ -174,8 +174,8 @@ export const MainContentCard = styled.div`
         font-size: 19px;
         line-height: 21px;
         font-weight: 700;
-        color: ${newBackground.green};
-        background-color: ${newBackground.yellow};
+        color: ${background.green};
+        background-color: ${background.yellow};
 
         width: fit-content;
     }

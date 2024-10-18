@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Button, LinearProgress } from "@mui/material";
-import { newBackground } from "../../styles";
+import { background } from "../../styles";
 
 export const NewSuccessContainer = styled.div`
     display: flex;
@@ -8,9 +8,9 @@ export const NewSuccessContainer = styled.div`
     align-items: center;
     background: linear-gradient(
         to bottom,
-        ${newBackground.yellow} 0%,
-        ${newBackground.white} 50%,  
-        ${newBackground.orange} 100%
+        ${background.yellow} 0%,
+        ${background.white} 50%,  
+        ${background.orange} 100%
     );    
     
     margin: 74px auto 0 auto;   //margin-top for header
@@ -28,7 +28,7 @@ export const NewSuccessContainer = styled.div`
 export const NewSuccessForm = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     border-radius: 20px;
 
     gap: 10px;
@@ -48,7 +48,7 @@ export const NewSuccessFormContent = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     min-height: 300px;
 
@@ -66,7 +66,7 @@ export const NewSuccessFormContent = styled.div`
         font-size: 34px;
         line-height: 34px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
 
         @media (max-width: 600px) {
             text-align: center;
@@ -78,7 +78,7 @@ export const NewSuccessFormContent = styled.div`
         font-size: 21px;
         line-height: 26px;
         font-weight: 500;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         max-width: 700px;
         
@@ -93,8 +93,8 @@ export const NewSuccessFormContent = styled.div`
 `
 
 export const FormButton = styled(Button)`
-  background-color: ${newBackground.orange};
-  color: ${newBackground.yellow};
+  background-color: ${background.orange};
+  color: ${background.yellow};
   border-radius: 30px;
 
   margin-top: 100px;
@@ -117,8 +117,8 @@ export const FormButton = styled(Button)`
   }
   
   &:hover {
-    background-color: ${newBackground.yellow};
-    color: ${newBackground.orange};
+    background-color: ${background.yellow};
+    color: ${background.orange};
     cursor: pointer;
   }
 
@@ -129,13 +129,13 @@ export const FormButton = styled(Button)`
 `
 
 export const SignupLinearProgress = styled(LinearProgress)`
-    background-color: ${newBackground.yellow};
+    background-color: ${background.yellow};
     border-bottom-width: 5px;
 
     margin-bottom: 15px;
     
     & .MuiLinearProgress-bar {
-        background-color: ${newBackground.orange};
+        background-color: ${background.orange};
     }
 `
 

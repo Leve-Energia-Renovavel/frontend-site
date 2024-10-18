@@ -3,6 +3,7 @@
 import { useStoreUser } from '@/app/hooks/useStore';
 import { forgotPasswordValidation, loginValidation } from '@/app/service/login-service/LoginService';
 import { requestSuccessful } from '@/app/service/utils/Validations';
+import { awaitSeconds } from '@/app/utils/browser/BrowserUtils';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Backdrop, Box, CircularProgress, Divider, IconButton, InputAdornment, Modal, TextField, Typography } from '@mui/material';
@@ -13,7 +14,6 @@ import leveLogo from '../../../../resources/icons/large/leve-logo-orange-icon-la
 import Messages from '../messages/Messages';
 import ModalCloseButton from '../utils/buttons/close-button/ModalCloseButton';
 import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginContentContainer, LoginForm, LoginIconContainer, LoginTitleContainer } from './styles';
-import { awaitSeconds, reloadPage } from '@/app/utils/browser/BrowserUtils';
 
 export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgottenPassword }) {
 

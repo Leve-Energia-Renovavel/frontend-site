@@ -1,12 +1,12 @@
 import styled from "@emotion/styled";
 import { Box, Button } from "@mui/material";
-import { newBackground } from "../../styles";
+import { background } from "../../styles";
 
 export const MobileNewHeaderContainer = styled.header`
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     ${props => props.isPartner ? "" : `justify-content: ${props.isLandingPage ? 'center' : 'space-between'};`};
     
     overflow: hidden;
@@ -33,8 +33,8 @@ export const MobileNewHeaderContainer = styled.header`
         padding: 8px;
 
         border-radius: 30px;
-        color: ${props => props.isOpen ? newBackground.yellow : newBackground.orange};
-        background-color: ${props => props.isOpen ? newBackground.orange : newBackground.yellow};
+        color: ${props => props.isOpen ? background.yellow : background.orange};
+        background-color: ${props => props.isOpen ? background.orange : background.yellow};
         
         cursor: pointer;
         ${props => props.isLandingPage && "display:none"};
@@ -48,8 +48,8 @@ export const MobileNewHeaderContainer = styled.header`
 
         border-radius: 30px;
 
-        color: ${props => props.isOpen ? newBackground.yellow : newBackground.orange};
-        background-color: ${props => props.isOpen ? newBackground.orange : newBackground.yellow};
+        color: ${props => props.isOpen ? background.yellow : background.orange};
+        background-color: ${props => props.isOpen ? background.orange : background.yellow};
         
         cursor: pointer;
         
@@ -91,7 +91,7 @@ export const LoginBox = styled(Box)`
     top: 48%;
     left: 100%;
     transform: translate(-50%, -50%);
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     width: 60vw;
     height: 80vh;
@@ -100,7 +100,7 @@ export const LoginBox = styled(Box)`
 
     border-width: 0px 1px 1px 1px;
     border-style: solid;
-    border-color: ${newBackground.yellow};
+    border-color: ${background.yellow};
     
     padding: 1rem 2rem;
 
@@ -138,7 +138,7 @@ export const MenuHeaderContent = styled.div`
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
         
         margin-left: 5rem;
         margin-top: 1rem;
@@ -154,25 +154,25 @@ export const MenuOptionsContent = styled.div`
 `
 
 export const MenuOption = styled.div`
-    border: 1px solid ${newBackground.orange};
+    border: 1px solid ${background.orange};
     border-radius: 30px;
     padding: 5px 30px;
     
     max-width: 220px;
     
     &:hover { 
-        background-color: ${newBackground.orange}; 
+        background-color: ${background.orange}; 
     }
     
     .menuTitle { 
         font-family: "Graphie";
         font-size: 21px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
         text-align: center;
         
         &:hover { 
-            color: ${newBackground.white};
+            color: ${background.white};
             cursor: pointer;
         }
     }
@@ -185,7 +185,7 @@ export const LoggoutButton = styled(Button)`
         
         font-family: "Graphie";
         font-size: 21px;
-        color: ${newBackground.orange};
+        color: ${background.orange};
         
         text-transform: none;
         border-radius: 30px;
@@ -206,12 +206,12 @@ export const PartnerContainer = styled.div`
     padding-left: 1rem;
 
     .partnershipIcon {
-        color: ${newBackground.orange};
+        color: ${background.orange};
         font-weight: 700;
         font-size: 15px;
         text-align: center;
-        background: linear-gradient(to bottom, #ffffff 6%, ${newBackground.yellow} 94%);
-        border: 2px solid ${newBackground.orange};
+        background: linear-gradient(to bottom, #ffffff 6%, ${background.yellow} 94%);
+        border: 2px solid ${background.orange};
         border-radius: 30px;
         padding: 3px 6px;
     }

@@ -13,7 +13,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
-import { newBackground } from "../../styles";
+import { background } from "../../styles";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
 import NewInstallationButtonConfirm from "../utils/buttons/NewInstallationButtonConfirm";
 import { ButtonContainer, InstallationsMainContainer as Container, FormContentNewInstallation, HomeIconStyled, InstallationsMainContent, MainInstallationInfoContainer as MainInstallationInfo, MainTitleContainer, NewInstallationContent, SnackbarMessageAlert, SnackbarMessageNotification, TitleContainer, TitleIconsContainer } from "./styles";
@@ -210,7 +210,7 @@ export default function InstallationsMain() {
                     >
                         Painel
                     </Link>
-                    <Typography style={{ fontWeight: 'bold', color: newBackground.orange }}>Meus Endereços</Typography>
+                    <Typography style={{ fontWeight: 'bold', color: background.orange }}>Meus Endereços</Typography>
                 </Breadcrumbs>
             </MainTitleContainer>
             {installations?.length >= 1 ?

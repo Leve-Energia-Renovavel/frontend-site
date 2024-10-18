@@ -1,4 +1,4 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
 export const ExtractContainer = styled.div`
@@ -23,14 +23,14 @@ export const Extract = styled.div`
 
     padding: 1rem;
 
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
 
     .dueDate {
         font-family: "Graphie";
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
 
         white-space: nowrap;
 
@@ -44,7 +44,7 @@ export const Extract = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 `
 export const ExtractDetail = styled.div`
@@ -60,7 +60,7 @@ export const ExtractDetail = styled.div`
         padding: 6px 0;
         margin: 6px 2px;
 
-        color: ${props => props.distributor ? newBackground.greyDark : newBackground.green};
+        color: ${props => props.distributor ? background.greyDark : background.green};
     }
 `
 export const ExtractDetailValue = styled.div`
@@ -78,8 +78,8 @@ export const ExtractDetailValue = styled.div`
         text-align: center;
         width: 120px;
 
-        background-color: ${props => props.distributor ? newBackground.grey : newBackground.greenLight};
-        color: ${props => props.distributor ? newBackground.greyDark : newBackground.green};
+        background-color: ${props => props.distributor ? background.grey : background.greenLight};
+        color: ${props => props.distributor ? background.greyDark : background.green};
 
         border-radius: 18px;
 

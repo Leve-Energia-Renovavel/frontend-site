@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import CloseIcon from '@mui/icons-material/Close';
-import { newBackground } from "../../styles";
+import { background } from "../../styles";
 
 export const NewProfileContainer = styled.div`
     display: flex;
@@ -14,13 +14,13 @@ export const NewProfileContainer = styled.div`
         font-size: 27px;
         line-height: 32px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 `
 export const NewProfileContentContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     
     gap: 10px;
 
@@ -42,14 +42,14 @@ export const NewProfileTitleHeader = styled.div`
     align-items: center;
 
     .profileIcon {
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
     .formTitle {
         font-family: "Graphie";
         font-size: 17px;
         line-height: 21px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 `
 export const NewProfileEditHeader = styled.div`
@@ -64,14 +64,14 @@ export const NewProfileEditHeader = styled.div`
         font-size: 17px;
         line-height: 21px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
     .cancelEditTitle {
         font-family: "Graphie";
         font-size: 17px;
         line-height: 21px;
         font-weight: 600;
-        color: ${newBackground.greyDark};
+        color: ${background.greyDark};
     }
 
     &:hover {
@@ -85,7 +85,7 @@ export const NewProfileEditHeader = styled.div`
 `
 
 export const EditIcon = styled(BorderColorOutlinedIcon)`
-    color: ${newBackground.orange};
+    color: ${background.orange};
     width: 18px;
     height: auto;
     
@@ -95,7 +95,7 @@ export const EditIcon = styled(BorderColorOutlinedIcon)`
 `
 
 export const CancelEditIcon = styled(CloseIcon)`
-    color: ${newBackground.greyDark};
+    color: ${background.greyDark};
     width: 18px;
     height: auto;
     

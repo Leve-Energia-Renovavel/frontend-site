@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { newBackground } from "../../styles";
+import { background } from "../../styles";
 
 export const NewPaymentContainer = styled.div`
     display: flex;
@@ -12,6 +12,6 @@ export const NewPaymentContainer = styled.div`
         font-size: 27px;
         line-height: 32px;
         font-weight: 600;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 `

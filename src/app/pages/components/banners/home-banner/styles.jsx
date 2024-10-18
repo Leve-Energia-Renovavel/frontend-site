@@ -1,8 +1,8 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 
 export const HomeBannerContainer = styled.div`
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     max-width: 100dvw;
     height: 13vh;       //margin for header
 `

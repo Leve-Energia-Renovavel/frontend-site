@@ -1,10 +1,10 @@
-import { newBackground } from "@/app/pages/styles";
+import { background } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import InventoryIcon from '@mui/icons-material/Inventory';
 
 export const CardParentContainer = styled.div`
-    background-color: ${props => props.status === "ativo" ? newBackground.green : newBackground.orange};
+    background-color: ${props => props.status === "ativo" ? background.green : background.orange};
     border-radius: 15px;
     text-align: center;
 
@@ -19,13 +19,13 @@ export const CardParentContainer = styled.div`
         font-size: 17px;
         line-height: 21px;
         font-weight: 600;
-        color: ${newBackground.white};
+        color: ${background.white};
 
         margin: 5px 0px;
     }
 `
 export const CardContainer = styled.div`
-    background-color: ${newBackground.white};
+    background-color: ${background.white};
     border-radius: 15px;
     padding: 1rem;
 
@@ -37,7 +37,7 @@ export const CardContainer = styled.div`
 `
 
 export const HomeIcon = styled(InventoryIcon)`
-    color: ${newBackground.orange};
+    color: ${background.orange};
 `
 export const CardHeader = styled.div`
     display: flex;
@@ -57,7 +57,7 @@ export const CardTitleContainer = styled.div`
         font-size: 17px;
         line-height: 21px;
         font-weight: 600;
-        color: ${newBackground.green};
+        color: ${background.green};
     }
 
     .cardTitleIcon {
@@ -75,13 +75,13 @@ export const CardContent = styled.div`
         font-size: 14px;
         line-height: 17px;
         font-weight: 500;
-        color: ${newBackground.orange};
+        color: ${background.orange};
     }
 `
 
 export const EditIcon = styled(BorderColorOutlinedIcon)`
     display: block;
-    color: ${newBackground.orange};
+    color: ${background.orange};
     width: 18px;
     height: auto;
 

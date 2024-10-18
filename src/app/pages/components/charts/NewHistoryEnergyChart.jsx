@@ -4,7 +4,7 @@ import { useStoreBillingHistory } from '@/app/hooks/useStore';
 import { billHasExpired } from '@/app/utils/date/DateUtils';
 import { formatMonthAndYearInFull } from '@/app/utils/formatters/dateFormatter';
 import ReactApexChart from 'react-apexcharts';
-import { background, newBackground } from '../../styles';
+import { background } from '../../styles';
 import { BarChartWrapper } from './styles';
 
 export default function NewHistoryEnergyChart() {
@@ -25,7 +25,7 @@ export default function NewHistoryEnergyChart() {
     const billDateData = billings?.slice(chartSize).map((bill) => formatMonthAndYearInFull(bill?.billDate))
 
     const labelColors = billings?.slice(chartSize).map((_, index, arr) => {
-        return index === arr.length - 1 ? newBackground.orange : newBackground.green;
+        return index === arr.length - 1 ? background.orange : background.green;
     });
 
     const energyNetwork = billings?.slice(chartSize).map((item) => {
@@ -92,7 +92,7 @@ export default function NewHistoryEnergyChart() {
                             fontFamily: "Graphie", //total style
                             fontSize: '18px',
                             fontWeight: 900,
-                            color: newBackground.green
+                            color: background.green
                         }
                     },
                 },
@@ -102,7 +102,7 @@ export default function NewHistoryEnergyChart() {
             style: {
                 fontSize: '14px',
                 fontWeight: 900,
-                color: newBackground.green
+                color: background.green
             },
             formatter: function (val, option) {
                 if (option?.seriesIndex === 0) {
@@ -118,10 +118,10 @@ export default function NewHistoryEnergyChart() {
 
             const status = billHasExpired(bill.status, bill.dueDate)
 
-            if (status === "paid") return newBackground.green;
-            if (status === "due") return newBackground.orangeFocused;
-            if (status === "pending") return newBackground.orange;
-            return newBackground.green;
+            if (status === "paid") return background.green;
+            if (status === "due") return background.orangeFocused;
+            if (status === "pending") return background.orange;
+            return background.green;
         }],
         yaxis: {
             show: false,
