@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import { Alert, Box, Button } from "@mui/material"
-import { background, background, notification, statusColors } from "../../styles"
+import { background, notification, statusColors } from "../../styles"
 import { keyframes } from "@emotion/react";
 
 const fadeInUp = keyframes`
