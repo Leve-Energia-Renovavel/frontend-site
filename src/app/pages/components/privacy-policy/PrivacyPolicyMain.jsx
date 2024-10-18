@@ -1,6 +1,6 @@
 "use client"
 
-import { legalTopics } from "@/app/utils/helper/privacyPolicyHelper";
+import { legalTopics } from "@/app/utils/helper/privacy-policy/privacyPolicyHelper";
 import { PolicyContainer as Container } from "./styles";
 import DefaultButton from "../utils/buttons/DefaultButton";
 import { useRouter } from "next/navigation";

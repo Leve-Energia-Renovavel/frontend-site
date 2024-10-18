@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
 
-import { linkTo, socialMedia } from '@/app/utils/helper/footerHelper';
+import { linkTo, socialMedia } from '@/app/utils/helper/footer/footerHelper';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import { IconButton } from "@mui/material";
 import Image from "next/image";
@@ -12,7 +12,7 @@ import sunImage from "../../../../resources/icons/small/ellipse-small-reduced.we
 import logoLeve from "../../../../resources/icons/small/leve-logo-white-icon-small.png";
 import thumbnail from '../../../../resources/img/capa-manifesto.webp';
 import { ButtonContainer, FooterContainer as Container, FooterButton, FooterMainContent, FooterMobile, FooterSecondaryContent, LegalContainer, FooterSocialMediaContainer as SocialMediaContent, SunContainer, VideoContainer } from './styles';
-import { leveWhatsappNumber } from '../../globalEnums';
+import { LEVE_WHATSAPP_NUMBER } from '../../enums/globalEnums';
 
 export default function NewFooter() {
 
@@ -30,7 +30,7 @@ export default function NewFooter() {
   };
 
   const handleContactConsultant = () => {
-    const url = `https://api.whatsapp.com/send/?phone=${leveWhatsappNumber}&text=Ol%C3%A1%2C+estou+na+home+do+site+Leve+Energia+e+tenho+uma+d%C3%BAvida%E2%80%A6&type=phone_number&app_absent=0`;
+    const url = `https://api.whatsapp.com/send/?phone=${LEVE_WHATSAPP_NUMBER}&text=Ol%C3%A1%2C+estou+na+home+do+site+Leve+Energia+e+tenho+uma+d%C3%BAvida%E2%80%A6&type=phone_number&app_absent=0`;
     window.open(url, '_blank', 'noopener noreferrer');
   }
 

@@ -1,4 +1,4 @@
-import { leveWhatsappNumber } from "@/app/pages/globalEnums"
+import { LEVE_WHATSAPP_NUMBER } from "@/app/pages/enums/globalEnums"
 
 export const pathHelper = {
     '/': null,
@@ -89,6 +89,6 @@ export const partnersPath = {
 }
 
 export const handleWhatsapp = (location) => {
-    const url = `https://api.whatsapp.com/send/?phone=${leveWhatsappNumber}&text=Oi!+Estou+${location}+da+Leve+Energia+e+tenho+uma+d%C3%BAvida%E2%80%A6&type=phone_number&app_absent=0`
+    const url = `https://api.whatsapp.com/send/?phone=${LEVE_WHATSAPP_NUMBER}&text=Oi!+Estou+${location}+da+Leve+Energia+e+tenho+uma+d%C3%BAvida%E2%80%A6&type=phone_number&app_absent=0`
     window.open(url, '_blank', 'noopener noreferrer');
 }

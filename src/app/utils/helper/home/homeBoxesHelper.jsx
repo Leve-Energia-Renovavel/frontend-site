@@ -1,33 +1,33 @@
 import { background } from "@/app/pages/styles"
-import simpleIcon from "../../../resources/icons/small/leve-carregando-orange-icone-small.svg"
-import sustainableIcon from "../../../resources/icons/small/leve-folha-icone-small.svg"
-import safeIcon from "../../../resources/icons/small/leve-protecao-white-icone-small.svg"
-import fastIcon from "../../../resources/icons/small/leve-raio-yellow-icone-small.svg"
+import simpleIcon from "../../../../resources/icons/small/leve-carregando-orange-icone-small.svg"
+import sustainableIcon from "../../../../resources/icons/small/leve-folha-icone-small.svg"
+import safeIcon from "../../../../resources/icons/small/leve-protecao-white-icone-small.svg"
+import fastIcon from "../../../../resources/icons/small/leve-raio-yellow-icone-small.svg"
 
-import economyIcon from "../../../resources/icons/small/leve-economia-icone-small.png"
-import signIcon from "../../../resources/icons/small/leve-energia-clique-icone-small.png"
-import solarPanelIcon from "../../../resources/icons/small/leve-painel-solar-icone-small.png"
-import batteryIcon from "../../../resources/icons/small/leve-recarregar-energia-icone-small.png"
+import economyIcon from "../../../../resources/icons/small/leve-economia-icone-small.png"
+import signIcon from "../../../../resources/icons/small/leve-energia-clique-icone-small.png"
+import solarPanelIcon from "../../../../resources/icons/small/leve-painel-solar-icone-small.png"
+import batteryIcon from "../../../../resources/icons/small/leve-recarregar-energia-icone-small.png"
 
-import touchpadIcon from "../../../resources/icons/large/touchpad.png"
-import solarEnegyIcon from "../../../resources/icons/large/solar_energy.png"
-import getRevenueIcon from "../../../resources/icons/large/get_revenue.png"
-import guaranteeIcon from "../../../resources/icons/large/guarantee.png"
+import touchpadIcon from "../../../../resources/icons/large/touchpad.png"
+import solarEnegyIcon from "../../../../resources/icons/large/solar_energy.png"
+import getRevenueIcon from "../../../../resources/icons/large/get_revenue.png"
+import guaranteeIcon from "../../../../resources/icons/large/guarantee.png"
 
-import solarPanelConnectedPollIcon from "../../../resources/icons/large/leve-solar-panel-connected-to-poll.svg"
-import flowerLightIcon from "../../../resources/icons/large/leve-flower-light-large.svg"
-import economyRenewalIcon from "../../../resources/icons/large/leve-economy-renewal.svg"
+import solarPanelConnectedPollIcon from "../../../../resources/icons/large/leve-solar-panel-connected-to-poll.svg"
+import flowerLightIcon from "../../../../resources/icons/large/leve-flower-light-large.svg"
+import economyRenewalIcon from "../../../../resources/icons/large/leve-economy-renewal.svg"
 
-import localizaLogo from "../../../resources/img/small/logo-localiza-small.png"
-import lorealLogo from "../../../resources/img/small/logo-loreal-small.png"
-import martinsLogo from "../../../resources/img/small/logo-martins-small.png"
-import timLogo from "../../../resources/img/small/logo-tim-small.png"
-import tribancoLogo from "../../../resources/img/small/logo-tribanco-small.png"
+import localizaLogo from "../../../../resources/img/small/logo-localiza-small.png"
+import lorealLogo from "../../../../resources/img/small/logo-loreal-small.png"
+import martinsLogo from "../../../../resources/img/small/logo-martins-small.png"
+import timLogo from "../../../../resources/img/small/logo-tim-small.png"
+import tribancoLogo from "../../../../resources/img/small/logo-tribanco-small.png"
 
-import estacioLogo from "../../../resources/img/small/logo-estacio-small.png"
-import estaparLogo from "../../../resources/img/small/logo-estapar-small.png"
-import raiaDrogasilLogo from "../../../resources/img/small/logo-raia-drogasil-small.png"
-import rennerLogo from "../../../resources/img/small/logo-renner-small.png"
+import estacioLogo from "../../../../resources/img/small/logo-estacio-small.png"
+import estaparLogo from "../../../../resources/img/small/logo-estapar-small.png"
+import raiaDrogasilLogo from "../../../../resources/img/small/logo-raia-drogasil-small.png"
+import rennerLogo from "../../../../resources/img/small/logo-renner-small.png"
 
 export const homeBoxes = [
     {
@@ -118,7 +118,7 @@ export const homeTutorialCardsMobile = [
         icon: getRevenueIcon,
         title: "Créditos de energia",
         description: "Essa energia se transforma em créditos que abatem parte do seu consumo e deixa sua conta de luz mais barata todo mês",
-},
+    },
     {
         icon: guaranteeIcon,
         title: "Aprovado pela ANEEL",

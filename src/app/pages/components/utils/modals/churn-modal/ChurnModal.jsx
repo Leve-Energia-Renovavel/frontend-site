@@ -4,7 +4,7 @@ import { factoryInfos } from '@/app/utils/helper/dashboard/newDashboardHelper'
 import { Backdrop, Modal } from '@mui/material'
 import HistoryDetails from '../../../new-dashboard/history/details/HistoryDetails'
 import { FactoryDetailsContainer, FactoryDetailsContent, FactoryInfoCard, HistoryDetailsContainer, ModalBox, OptionsButton, OptionsContainer } from './styles'
-import { leveWhatsappNumber } from '@/app/pages/globalEnums'
+import { LEVE_WHATSAPP_NUMBER } from '@/app/pages/enums/globalEnums'
 
 export default function ChurnModal({ isOpen, closeModal, confirmChurn }) {
 
@@ -25,7 +25,7 @@ export default function ChurnModal({ isOpen, closeModal, confirmChurn }) {
     }
     const handleRequestChurn = () => {
         const message = `Oi! Estou no painel do cliente Leve Energia e desejo o cancelamento da minha conta.\n\nMeus dados são:\nNome: ${name}\nCPF: ${formatCpfUnrestricted(cpf)}\nTenho ${numberOfInstallations > 1 ? "endereços cadastrados" : "endereço cadastrado"}.`;
-        const url = `https://api.whatsapp.com/send/?phone=${leveWhatsappNumber}&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
+        const url = `https://api.whatsapp.com/send/?phone=${LEVE_WHATSAPP_NUMBER}&text=${encodeURIComponent(message)}&type=phone_number&app_absent=0`;
         window.open(url, '_blank', 'noopener noreferrer');
     }
 

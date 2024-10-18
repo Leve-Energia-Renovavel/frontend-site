@@ -12,11 +12,11 @@ import AllyaSectionBanner from "@/app/pages/components/lp/parcerias/allya/AllyaS
 import LocalizaSectionBanner from "@/app/pages/components/lp/parcerias/localiza/LocalizaSectionBanner";
 import MartinsSectionBanner from "@/app/pages/components/lp/parcerias/martins/MartinsSectionBanner";
 import YduqsSectionBanner from "@/app/pages/components/lp/parcerias/yduqs/YduqsSectionBanner";
-import localizaLogo from '../../../resources/img/partners/localiza/localiza-logo-large.png';
-import martinsLogo from '../../../resources/img/partners/martins/martins-logo-large.png';
-import timLogo from '../../../resources/img/partners/tim/tim-logo-large.png';
-import tribancoLogo from '../../../resources/img/partners/tribanco/logo-tribanco-large.png';
-import yduqsLogo from '../../../resources/img/partners/yduqs/yduqs-logo-large.png';
+import localizaLogo from '@/resources/img/partners/localiza/localiza-logo-large.png';
+import martinsLogo from '@/resources/img/partners/martins/martins-logo-large.png';
+import timLogo from '@/resources/img/partners/tim/tim-logo-large.png';
+import tribancoLogo from '@/resources/img/partners/tribanco/logo-tribanco-large.png';
+import yduqsLogo from '@/resources/img/partners/yduqs/yduqs-logo-large.png';
 
 export const clearPartnerName = (str) => {
     return str.replace(/\/|lp/g, '');

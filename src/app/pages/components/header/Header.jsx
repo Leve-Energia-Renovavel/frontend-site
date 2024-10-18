@@ -1,6 +1,6 @@
 "use client"
 
-import { clearPartnerName } from '@/app/utils/helper/partnerHelper';
+import { clearPartnerName } from '@/app/utils/helper/partners/partnerHelper';
 import { headerHelper, landingPageHelper, partnersPath } from '@/app/utils/helper/pathHelper';
 import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';

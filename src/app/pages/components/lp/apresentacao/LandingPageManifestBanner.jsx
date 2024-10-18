@@ -1,4 +1,4 @@
-import { lpPresentationVisionBoxes } from '@/app/utils/helper/landingPageHelper';
+import { lpPresentationVisionBoxes } from '@/app/utils/helper/partners/landingPageHelper';
 import Image from 'next/image';
 import infoJson from "../../../../../../public/info.json";
 import sectionBanner from "../../../../../resources/img/large/leve-criancas-brincando-image-box-large.webp";

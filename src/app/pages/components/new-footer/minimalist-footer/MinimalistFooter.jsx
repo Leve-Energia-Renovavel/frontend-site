@@ -1,4 +1,4 @@
-import { linkTo, socialMedia } from '@/app/utils/helper/footerHelper';
+import { linkTo, socialMedia } from '@/app/utils/helper/footer/footerHelper';
 import { IconButton } from '@mui/material';
 import Image from 'next/image';
 import logoLeve from '../../../../../resources/icons/small/leve-logo-orange-icon-small.svg';

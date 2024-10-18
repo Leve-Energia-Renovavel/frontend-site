@@ -1,4 +1,4 @@
-import { partners } from "@/app/utils/helper/partnerHelper"
+import { partners } from "@/app/utils/helper/partners/partnerHelper"
 import MenuIcon from '@mui/icons-material/Menu'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 import Image from "next/image"

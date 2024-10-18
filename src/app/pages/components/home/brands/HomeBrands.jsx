@@ -1,6 +1,6 @@
 "use client"
 
-import { brands } from '@/app/utils/helper/homeBoxesHelper';
+import { brands } from '@/app/utils/helper/home/homeBoxesHelper';
 import { Typography } from '@mui/material';
 import Image from 'next/image';
 import infoJson from '../../../../../../public/info.json';

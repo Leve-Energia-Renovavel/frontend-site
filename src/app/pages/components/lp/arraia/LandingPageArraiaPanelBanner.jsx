@@ -1,4 +1,4 @@
-import { landingPageArraiaBoxes } from '@/app/utils/helper/landingPageHelper';
+import { landingPageArraiaBoxes } from '@/app/utils/helper/partners/landingPageHelper';
 import Image from 'next/image';
 import sunImage from "../../../../../resources/icons/small/ellipse-small.webp";
 import { SecondSectionBox, SecondSectionBoxesContainer, SecondSectionContainer, SecondSectionContent, SecondSectionContentTitleContainer, SecondSectionFooter, SecondSectionFooterButton } from '../banners/styles';

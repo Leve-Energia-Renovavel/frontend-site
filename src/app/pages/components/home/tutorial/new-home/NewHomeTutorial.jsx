@@ -1,6 +1,6 @@
 
 import { handleScrollToId } from '@/app/utils/browser/BrowserUtils';
-import { homeTutorialCardsMobile } from '@/app/utils/helper/homeBoxesHelper';
+import { homeTutorialCardsMobile } from '@/app/utils/helper/home/homeBoxesHelper';
 import Image from 'next/image';
 import { ButtonContainer, HomeTutorialCard as Card, HomeTutorialCardContainer as CardContainer, HomeTutorialContainer as Container, HomeTutorialContent as Content, CTAButton } from './styles';
 

@@ -1,24 +1,28 @@
 "use client"
 
 import { useStoreUser } from '@/app/hooks/useStore'
-import { Typography } from '@mui/material'
+import { benefits } from '@/app/utils/helper/signup/signupHelper'
+import { ENVIRONMENTAL_IMPACT, USER_COST } from '@/enums/globalEnums'
+import logoLeveGreen from '@/resources/img/small/leve-logo-button-green-small.png'
 import Image from 'next/image'
-import homeIcon from '../../../../resources/icons/small/local-home-icon-green-small.svg'
-import { ContentContainer as Content, CouponAppliedContainer, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomySecondaryContent, LeveEconomySecondaryContentContainer, PercentageIcon, SimulateContainer, SimulateFooter, SimulateHeader, SimulateHeaderGoodNews, SimulationSlider, TodayCost, TodayEconomyContainer } from './styles'
+import { ContinueSignupButton, CouponAppliedContainer, EconomyResultContainer, EconomyResultFooter, LeveBenefit, LeveBenefitsContainer, LeveBenefitsContent, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, OneYearEconomyContainer, OneYearEconomyContent, OneYearEconomyData, OneYearEconomyHeader, PercentageIcon, SimpleArrowForward, SimpleCheckIcon, SimulationSlider, TodayCost, TodayEconomyContainer, TodayEconomyContent } from './styles'
 
 export default function NewResultEconomy() {
 
     const storeUser = useStoreUser()
     const user = JSON.parse(localStorage.getItem('user'))
 
-    const { cost, couponValue, discount } = user?.user ?? (storeUser?.user || {})
+    const { cost, couponValue, discount, carbonDiscount, carbonConsumption, carbonCompensableConsumption } = user?.user ?? (storeUser?.user || {})
 
     const userHasCoupon = couponValue !== 0
 
     const todayCost = cost?.toFixed(2).toString().replace(".", ",")
 
-    const percentageValue = parseFloat((cost * discount) / 100)?.toFixed(2)?.replace(".", ",");
     const leveYearTotalDiscount = parseFloat(((cost * (discount / 100)) * 12))?.toFixed(2)?.replace(".", ",");
+
+    const reducedCarbon = (carbonCompensableConsumption * 12 * ENVIRONMENTAL_IMPACT.REDUCED_CARBON);
+    const formattedReducedCarbon = parseInt(reducedCarbon).toLocaleString('pt-BR')
+    const treeEquivalency = Math.ceil(reducedCarbon / ENVIRONMENTAL_IMPACT.TREE_EQUIVALENCY);
 
     var leveEconomyValue = parseFloat(cost - ((discount / 100) * cost))?.toFixed(2)?.replace(".", ",");
 
@@ -27,16 +31,10 @@ export default function NewResultEconomy() {
     }
 
     return (
-        <SimulateContainer className='simulateContainer'>
-            <SimulateHeader className='simulateHeader'>
-                <SimulateHeaderGoodNews>
-                    <Image src={homeIcon} className="homeIcon" alt={"Ícone local de casa"} loading="lazy" />
-                    <Typography className='goodNews'>Boas notícias!</Typography>
-                </SimulateHeaderGoodNews>
-                <Typography variant='subtitle1'><span className='bold'>A Leve já chegou na sua região!</span> Veja abaixo o resultado da sua economia:</Typography>
-            </SimulateHeader>
-
-            <Content className='simulateContent'>
+        <EconomyResultContainer className='economyResultContainer'>
+            <TodayEconomyContent className='economyResultContent'>
+                <h1 className='economyResultTitle'>Seu potencial de economia e impacto</h1>
+                
                 <TodayEconomyContainer className='todayEconomyContainer'>
                     <p className='todayEconomyTitle'>Valor médio da sua conta de luz atual</p>
                     <TodayCost>
@@ -48,9 +46,9 @@ export default function NewResultEconomy() {
                         onChange={(event) => storeUser.updateUser({ cost: event.target.value })}
                         value={cost}
                         step={10}
-                        defaultValue={150}
-                        min={150}
-                        max={3000}
+                        defaultValue={200}
+                        min={USER_COST.MIN}
+                        max={USER_COST.MAX}
                         valueLabelDisplay="off"
                     />
                 </TodayEconomyContainer>
@@ -68,19 +66,61 @@ export default function NewResultEconomy() {
                         <p className='leveEconomyValue'>{leveEconomyValue}</p>
                     </LeveEconomy>
 
-                    <LeveEconomySecondaryContentContainer className='leveEconomySecondaryContent'>
+                    <LeveEconomyContent className='leveEconomyContent'>
                         <PercentageIcon />
-                        <LeveEconomySecondaryContent>
-                            <Typography variant='subtitle1'>Economize aproximadamente:</Typography>
-                            <Typography className='economyDifference'><span className='underlined'>R$ {percentageValue}</span> todos os meses</Typography>
-                        </LeveEconomySecondaryContent>
-                    </LeveEconomySecondaryContentContainer>
+                        <p className='discountPercentage'>Percentual de desconto <span className='highlighted'>fixo e garantido</span></p>
+                        <p className='discountPercentageValue'>{discount}%</p>
+                    </LeveEconomyContent>
                 </LeveEconomyContainer>
-            </Content>
+                <p className='leveEconomyDisclaimer'>* O desconto é aplicado sobre a parcela da conta de luz compensada com os créditos de energia da Leve</p>
+            </TodayEconomyContent>
 
-            <SimulateFooter>
-                <Typography variant='subtitle1'>Em <span className='underlined'>1 ano</span>, você terá: <span className='yearEconomyValue'>R$ {leveYearTotalDiscount}</span> <span className='underlined'>a mais</span> na sua conta para investir naquilo que torna <span className='underlined'>sua vida mais Leve</span>.</Typography>
-            </SimulateFooter>
-        </SimulateContainer>
+            <OneYearEconomyContainer className='oneYearEconomyContainer'>
+                <OneYearEconomyHeader className='oneYearEconomyHeader'>
+                    <p className='oneYear'>Em um ano sendo</p>
+                    <Image src={logoLeveGreen} alt='Leve Logo Verde' loading='lazy' priority={false} />
+                </OneYearEconomyHeader>
+
+                <OneYearEconomyContent className='oneYearEconomyContent'>
+                    <OneYearEconomyData className='yearTotalDiscount'>
+                        <p className='title'>Você economiza o total de</p>
+                        <p className='value'>R$ {leveYearTotalDiscount}</p>
+                    </OneYearEconomyData>
+                    <OneYearEconomyData className='yearTotalCarbonEmission'>
+                        <p className='title'>Reduz a emissão de CO₂ em</p>
+                        <p className='value'>{formattedReducedCarbon} Kg</p>
+                    </OneYearEconomyData>
+                    <OneYearEconomyData className='treesPlanted'>
+                        <p className='title'>Que equivale a plantação de</p>
+                        <p className='value'>{treeEquivalency} Árvores</p>
+                    </OneYearEconomyData>
+                </OneYearEconomyContent>
+
+            </OneYearEconomyContainer>
+
+            <LeveBenefitsContainer className='leveBenefitsContainer'>
+                <LeveBenefitsContent>
+                    <p className='leveBenefitsTitle'>Além disso, você conta com</p>
+                    {benefits.map((benefit, index) => {
+                        return (
+                            <LeveBenefit key={benefit + index} className={`leveBenefit-${index + 1}`}>
+                                <SimpleCheckIcon />
+                                <p className='benefit'>{benefit}</p>
+                            </LeveBenefit>
+                        )
+                    })}
+
+                </LeveBenefitsContent>
+            </LeveBenefitsContainer>
+
+            <EconomyResultFooter>
+                <h2 className='economyResultSubtitle'>Gostou? Complete seu cadastro e se torne Leve</h2>
+                <ContinueSignupButton
+                    endIcon={< SimpleArrowForward className='icon'/>}>
+                    <span>Completar cadastro</span>
+                </ContinueSignupButton>
+            </EconomyResultFooter>
+
+        </EconomyResultContainer>
     )
 }

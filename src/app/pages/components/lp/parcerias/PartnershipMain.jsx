@@ -1,6 +1,6 @@
 "use client"
 
-import { clearPartnerName, partners } from "@/app/utils/helper/partnerHelper";
+import { clearPartnerName, partners } from "@/app/utils/helper/partners/partnerHelper";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { useState } from "react";

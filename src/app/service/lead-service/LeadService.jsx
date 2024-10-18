@@ -1,3 +1,4 @@
+import { USER_TYPE } from "@/app/pages/enums/globalEnums";
 import { checkForCompanyName } from "@/app/utils/company/CompanyUtils";
 import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
 import axios from "axios";
@@ -104,6 +105,7 @@ export const getLeadData = async (uuid, store, storeAddress) => {
 
             const { instalacao, distribuidora } = userResponse?.data
             const consumidor = userResponse?.data?.instalacao?.consumidor
+            const descontosCarbono = userResponse?.data?.descontos_carbono
 
             const cep = consumidor?.cep
 
@@ -120,9 +122,9 @@ export const getLeadData = async (uuid, store, storeAddress) => {
                 rg: consumidor?.rg !== "" ? consumidor.rg : "",
                 birthDate: consumidor?.data_nascimento ? formatBasicBirthDate(consumidor?.data_nascimento) : "",
 
-                isCompany: consumidor?.type == "PJ" ? true : false,
-                cnpj: consumidor?.type == "PJ" ? instalacao?.cnpj : "",
-                companyName: consumidor?.type == "PJ" ? checkForCompanyName(instalacao?.razao_social, instalacao?.nome) : "",
+                isCompany: consumidor?.type == USER_TYPE.PJ ? true : false,
+                cnpj: consumidor?.type == USER_TYPE.PJ ? instalacao?.cnpj : "",
+                companyName: consumidor?.type == USER_TYPE.PJ ? checkForCompanyName(instalacao?.razao_social, instalacao?.nome) : "",
 
                 nationality: consumidor?.nacionalidade,
                 profession: consumidor?.profissao,
@@ -132,7 +134,11 @@ export const getLeadData = async (uuid, store, storeAddress) => {
                 clientId: instalacao?.clientes_id,
 
                 distributor: distribuidora?.nome,
-                distributorPhotoUrl: distribuidora?.foto_numero_instalacao
+                distributorPhotoUrl: distribuidora?.foto_numero_instalacao,
+
+                carbonDiscount: descontosCarbono?.desconto,
+                carbonConsumption: descontosCarbono?.consumo,
+                carbonCompensableConsumption: descontosCarbono?.consumo_compensavel,
             }
 
             store.updateUser(updatedUser);

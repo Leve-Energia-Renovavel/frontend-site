@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
-import PercentIcon from '@mui/icons-material/Percent';
-import { Slider } from "@mui/material";
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import { Button, Slider } from "@mui/material";
 import { background } from "../../styles";
+import CheckIcon from '@mui/icons-material/Check';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-
-export const SimulateContainer = styled.div`
+export const EconomyResultContainer = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${background.white};
@@ -12,19 +13,32 @@ export const SimulateContainer = styled.div`
     border-radius: 20px;
     
     margin: 0 auto;
-    padding: 1rem;
-    
+    margin-top: 16px;
+    padding: 1rem 1rem 105px 1rem;
+
     width: 100%;
-    max-width: 100vw;
+    max-width: 1366px;
 
     min-height: 450px;
+    height: 100%;
     
     @media (max-width: 600px) {
-        padding: 10px;
+        margin-top: 2px;
+        border-radius: 0px;
+        padding: 24px 0 150px 0;
+    }
+    @media (max-width: 600px) and (max-height: 950px) {
+        padding: 24px 0 350px 0;
+    }
+    @media (max-width: 600px) and (max-height: 750px) {
+        padding: 24px 0 200px 0;
+    }
+    @media (max-width: 600px) and (max-height: 670px) {
+        padding: 24px 0 150px 0;
     }
 `
 
-export const SimulateHeader = styled.div`
+export const EconomyResultHeader = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -43,7 +57,7 @@ export const SimulateHeader = styled.div`
         color: ${background.green};
     }
     
-    h6 {
+    .levesInYourArea {
         font-family: "Graphie";
         font-size: 17px;
         margin-left: 60px;
@@ -114,7 +128,7 @@ export const CouponAppliedContainer = styled.div`
         padding: 4px;
     }
 `
-export const SimulateHeaderGoodNews = styled.div`
+export const GoodNewsHeader = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -122,22 +136,79 @@ export const SimulateHeaderGoodNews = styled.div`
     gap: 10px;
 `
 
-export const ContentContainer = styled.div`
+export const TodayEconomyContent = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
     background-color: ${background.white};
+
+    position: relative;
 
     gap: 1rem;
 
     min-height: 200px;
     
     padding: 71px 202px 80px 202px;
+
+    .leveEconomyDisclaimer {
+        position: absolute;
+        
+        font-family: "Graphie";
+        font-size: 14px;
+        line-height: 120%; 
+        font-style: normal;
+        font-weight: 600;
+        color: ${background.greyMediumHigh};
+        
+        max-width: 350px;
+        right: 306px;
+        top: 257px;
+    }
+    
+    .economyResultTitle {
+        position: absolute;
+        
+        font-family: "Graphie";
+        font-size: 27px;
+        font-weight: 600;
+        line-height: 120%; 
+        color: ${background.green};
+        text-align: center;
+
+        top: 20px;
+        left: 272px;
+    }
     
     @media (max-width: 600px) {
         flex-wrap: wrap;
-        padding: 35px 1rem;
-        gap: 2rem;
+
+        .economyResultTitle {
+            top: 0px;
+            left: 30px;
+
+            max-width: 330px;
+            margin: 0 auto;
+        }
+
+        .leveEconomyDisclaimer {
+            position: absolute;
+            
+            max-width: 348px;
+            right: 20px;
+            top: 458px;
+        }
+    }
+
+    @media (max-width: 400px) {
+        padding: 71px 0px 80px 0px;
+
+        .economyResultTitle {
+            left: 20px;
+        }
+
+        .leveEconomyDisclaimer {
+            right: 7px;
+        }
     }
 `
 
@@ -145,15 +216,18 @@ export const TodayEconomyContainer = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${background.orangeTranslucent};
-
     border: 1px solid ${background.orange};
-    border-radius: 15px;
+    
+    border-radius: 8px;
 
     padding: 16px;
 
     gap: 8px;
 
+    min-width: 380px;
     width: 388px;
+    max-width: 388px;
+
     height: 180px;
 
     .todayEconomyTitle {
@@ -176,12 +250,19 @@ export const TodayEconomyContainer = styled.div`
 
         margin-top: 16px;
     }
+
+    @media (max-width: 600px) {
+        min-width: 340px;
+        width: 342px;
+        max-width: 342px;
+    }
 `
 
 export const TodayCost = styled.div`
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-items: center;
+    gap: 4px;
 
     margin: 0 auto;
 
@@ -196,39 +277,27 @@ export const TodayCost = styled.div`
         font-family: "Graphie";
         font-size: 34px;
         line-height: 34px;
-        font-weight: 700;
+        font-weight: 600;
         color: ${background.orange};
         text-align: center;
     }
 `
 
-
-export const TodayEconomy = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    padding: 10px;
-
-
-`
-
-
-
-
-
-
-
 export const LeveEconomyContainer = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${background.greenLight};
+    background: linear-gradient(to bottom, ${background.white} 5%, ${background.greenLight} 95%);
 
     border: 1px solid ${background.green};
-    border-radius: 15px;
+    border-radius: 8px;
 
+    padding: 16px;
 
+    min-width: 380px;
     width: 388px;
+    max-width: 388px;
+
     height: auto;
 
     .leveEconomyTitle {
@@ -236,175 +305,322 @@ export const LeveEconomyContainer = styled.div`
         font-size: 17px;
         line-height: 17px;
         font-weight: 400;
-        color: ${background.white};
+        color: ${background.green};
         text-align: center;
 
         white-space: nowrap;
     }
+
+    @media (max-width: 600px) {
+        min-width: 340px;
+        width: 342px;
+        max-width: 342px;
+
+        .leveEconomyTitle {
+            white-space: normal;
+        }
+    }
 `
-export const LeveEconomyContent = styled.div`
-    display: flex;
-    flex-direction: column;
-    background-color: ${background.green};
-    border-radius: 15px;
 
-    width: 100%;
-    height: auto;
-
-    padding: 1rem;
-
-
-
-`
 export const LeveEconomy = styled.div`
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-items: center;
     justify-content: center;
+    gap: 4px;
 
     padding: 10px;
 
     .monetary {
         font-family: "Graphie";
-        font-size: 20px;
-        line-height: 20px;
-        font-weight: 400;
-        color: ${background.yellow};
+        font-size: 18px;
+        line-height: 120%;
+        font-weight: 600;
+        color: ${background.green};
     }
 
     .leveEconomyValue {
         font-family: "Graphie";
         font-size: 34px;
         line-height: 34px;
-        font-weight: 700;
-        color: ${background.yellow};
+        font-weight: 600;
+        color: ${background.green};
         text-align: center;
     }
 `
 
-export const LeveEconomySecondaryContentContainer = styled.div`
+export const LeveEconomyContent = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
 
-    gap: 30px;
+    margin-top: 2px;
 
-    padding: 14px 34px;
-    
-    @media (max-width: 1250px) {
-        align-items: center;
-        padding: 1rem 1rem;
+    background-color: ${background.green};
+    border-radius: 8px;
+
+    gap: 6px;
+
+    padding: 8px;
+
+    .discountPercentage {
+        font-family: "Graphie";
+        font-size: 16px;
+        line-height: 120%;
+        font-weight: 400;
+        color: ${background.white};
+
+        max-width: 170px;
     }
+    .highlighted {
+        font-weight: 700;
+    }
+
+    .discountPercentageValue {
+        font-family: "Graphie";
+        font-size: 34px;
+        line-height: 120%;
+        font-weight: 600;
+        color: ${background.yellow};
+
+        margin-left: auto;
+    }
+
     @media (max-width: 600px) {
-        align-items: center;
-        padding: 1rem 1rem;
     }
 `
-export const LeveEconomySecondaryContent = styled.div`
+export const PercentageIcon = styled(CheckCircleOutlineOutlinedIcon)`
+    color: ${background.yellow};
+    width: 24px;
+    height: 24px;
+`
+
+export const OneYearEconomyContainer = styled.div`
     display: flex;
     flex-direction: column;
 
-    h6 {
-        font-family: "Graphie";
-        font-size: 14px;
-        line-height: 14px;
-        font-weight: 400;
-        color: ${background.white};
-    }
-    
-    .economyDifference {
-        font-family: "Graphie";
-        font-size: 17px;
-        font-weight: 500;
-        color: ${background.yellow};
+    border: 1px solid ${background.orange};
 
-        white-space: nowrap;
-    }
+    background-color: ${background.white};
 
-    .underlined { 
-        font-weight: 700;
-        text-decoration: underline;
-    }
-`
-export const PercentageIcon = styled(PercentIcon)`
-    color: ${background.yellow};
-    width: 40px;
-    height: 40px;
+    border-radius: 8px;
 
-    padding: 3px;
-    border: 4px solid ${background.yellow};
-    border-radius: 30px;
-`
-
-
-export const SimulateFooter = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-    background-color: ${background.green};
-
-    border-radius: 15px;
-
-    padding: 12px;
-    
     margin: 0 auto;
     width: 100%;
-    max-width: 1196px;
+    max-width: 792px;
 
+    @media (max-width: 600px) {
+        min-width: 340px;
+        width: 342px;
+        max-width: 342px;
+    }
+`
+export const OneYearEconomyContent = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 
-    h6 {
-        font-family: "Graphie";
-        font-size: 17px;
-        font-weight: 300;
-        text-align: center;
-        color: ${background.white};
-        
-        @media (max-width: 600px) {
-            line-height: 22px;
-        }
-    }
-    
-    .underlined {
-        font-weight: 500;
-        text-decoration: underline;
-    }
-    .yearEconomyValue {
-        font-size: 34px;
-        padding: 10px;
-        text-decoration: underline;
-        font-weight: 700;
-        color: ${background.yellow};
-        
-        @media (max-width: 600px) {
-            font-size: 27px;
-            white-space: nowrap;
-            display: block;
-            line-height: 20px;
-        }
-    }
+    padding: 16px 8px;
+
+    gap: 16px;
 
     @media (max-width: 600px) {
         flex-wrap: wrap;
-        text-align: center;
-        padding: 2rem;
-        margin-bottom: 1rem;
-        margin-top: 12px;
+    }
+`
+export const OneYearEconomyData = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 8px;
+
+    .title {
+        font-family: "Graphie";
+        font-size: 16px;
+        line-height: 120%;
+        font-style: normal;
+        font-weight: 400;
+        color: ${background.black};
+    }
+    .value {
+        font-family: "Graphie";
+        font-size: 22px;
+        line-height: 120%;
+        font-weight: 600;
+        color: ${background.green};
+        background-color: ${background.greenTranslucent};
+
+        border-radius: 4px;
+    }
+`
+
+export const OneYearEconomyHeader = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px 8px 0px 0px;
+    background-color: ${background.orange};
+
+    gap: 8px;
+
+    padding: 8px;
+
+    .oneYear {
+        font-family: "Graphie";
+        font-size: 16px;
+        line-height: 120%; 
+        font-style: normal;
+        font-weight: 400;
+        color: ${background.white};
+    }
+
+`
+
+export const LeveBenefitsContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: ${background.greenTranslucent};
+    border-radius: 8px;
+    
+    padding: 16px;
+    
+    gap: 16px;
+    
+    margin: 0 auto;
+    margin-top: 24px;
+    width: 100%;
+    max-width: 792px;
+    
+    .leveBenefitsTitle {
+        font-family: "Graphie";
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 120%; 
+        color: ${background.green};
+    }
+
+    @media (max-width: 600px) {
+        min-width: 340px;
+        width: 342px;
+        max-width: 342px;
+    }
+`
+
+export const LeveBenefitsContent = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 auto;
+
+    max-width: fit-content;
+
+    gap: 16px;
+`
+export const LeveBenefit = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 4px;
+
+    .benefit {
+        font-family: "Graphie";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 120%;
+        color: ${background.green};
+    }
+
+    @media (max-width: 600px) {
+        .benefit {
+            white-space: nowrap;
+        }
     }
 `
 
 
-export const SimulationContainer = styled.div`
-    padding: 10px;
-    margin: 0 auto;
-    
+export const EconomyResultFooter = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .economyResultSubtitle {
+        font-family: "Graphie";
+        font-size: 27px;
+        font-weight: 600;
+        line-height: 120%; 
+        color: ${background.green};
+        text-align: center;
+
+        margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+        align-items: center;
+
+        .economyResultSubtitle {
+            max-width: 342px;
+        }
+    }
 
 `
 
+export const ContinueSignupButton = styled(Button)`
+  background-color: ${background.green};
+  color: ${background.white};
+  border-radius: 30px;
+
+  height: 54px;
+
+  width: 100%;
+  max-width: 250px;
+
+  margin: 0 auto;
+
+  padding: 8px 16px;
+  
+  span {
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; 
+    text-transform: none;
+    color: ${background.white};
+
+    white-space: nowrap;
+  }
+  
+  &:hover {
+    cursor: pointer;
+    background-color: ${background.yellow};
+
+    span {
+      color: ${background.green};
+    }
+    
+    .icon {
+        color: ${background.green};
+    }
+  }
+`
+export const SimpleArrowForward = styled(ArrowForwardIcon)`
+    width: 21px;
+    height: 21px;
+    color: ${background.yellow};
+`
+export const SimpleCheckIcon = styled(CheckIcon)`
+    width: 16px;
+    height: 16px;
+    color: ${background.green};
+`
 export const SimulationSlider = styled(Slider)`
     color: ${background.orange};
     height: 8px;
-    max-width: 300px;
+    max-width: 299px;
 
     margin: 0 auto;
     
@@ -420,5 +636,10 @@ export const SimulationSlider = styled(Slider)`
       opacity: 1;
       border: 1px solid ${background.yellow};
     } 
+
+    /* Change thumb color when selected (active) */
+    & .MuiSlider-thumb.Mui-active {
+        background-color: ${background.green};
+    }
 
 `;

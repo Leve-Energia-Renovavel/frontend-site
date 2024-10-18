@@ -1,7 +1,7 @@
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
 import { usePathname } from 'next/navigation';
-import { questionsByPartner } from '../../../utils/helper/faqHelper';
+import { questionsByPartner } from '../../../utils/helper/faq/faqHelper';
 
 export default function FaqContainer() {
 

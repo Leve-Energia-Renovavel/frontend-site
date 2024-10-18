@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
+    "baseUrl": ".", 
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/components/*": ["pages/components/*"],
+      "@/icons/*": ["./resources/icons/*"],
+      "@/images/*": ["./resources/img/*"],  
+      "@/enums/*": ["src/app/pages/enums/*"]
     }
   }
 }

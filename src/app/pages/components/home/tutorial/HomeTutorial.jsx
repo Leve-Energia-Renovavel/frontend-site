@@ -1,7 +1,7 @@
 "use client"
 
 
-import { homeTutorialCards } from '@/app/utils/helper/homeBoxesHelper';
+import { homeTutorialCards } from '@/app/utils/helper/home/homeBoxesHelper';
 import { Typography } from '@mui/material';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';

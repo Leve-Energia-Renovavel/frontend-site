@@ -1,18 +1,24 @@
-"use client"
+"use client";
 
-import { footerBasedOn } from '@/app/utils/helper/footerHelper';
+import { footerBasedOn } from '@/app/utils/helper/footer/footerHelper';
 import { usePathname } from 'next/navigation';
 import NewFooter from '../new-footer/NewFooter';
 import MinimalistFooter from '../new-footer/minimalist-footer/MinimalistFooter';
 
 export default function Footer() {
+    const pathname = usePathname();
 
-    const pathname = usePathname()
-    const isMinimalist = footerBasedOn[pathname]
+    const showMinimalist = footerBasedOn[pathname];
+
+    const hideFooter = pathname === "/signup/";
+
+    if (hideFooter) {
+        return null;
+    }
 
     return (
         <>
-            {isMinimalist ? <MinimalistFooter /> : <NewFooter />}
+            {showMinimalist ? <MinimalistFooter /> : <NewFooter />}
         </>
     );
 }

@@ -1,4 +1,4 @@
-import { landingPageBoxes } from '@/app/utils/helper/landingPageHelper'
+import { landingPageBoxes } from '@/app/utils/helper/partners/landingPageHelper'
 import { Typography } from '@mui/material'
 import Image from 'next/image'
 import { HomeSecondaryBoxContent as BoxContent, HomeSecondaryBoxTitle as BoxTitle, HomeSecondaryBoxesContainer as Container } from '../home/styles'

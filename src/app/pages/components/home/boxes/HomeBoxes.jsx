@@ -1,6 +1,6 @@
 "use client"
 
-import { homeBoxes } from '@/app/utils/helper/homeBoxesHelper'
+import { homeBoxes } from '@/app/utils/helper/home/homeBoxesHelper'
 import { Typography } from '@mui/material'
 import Image from 'next/image'
 import { HomeSecondaryBoxContent as Box, HomeSecondaryBoxTitle as BoxTitle, HomeSecondaryBoxesContainer as Container } from './styles'

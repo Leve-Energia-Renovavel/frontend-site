@@ -1,7 +1,7 @@
 "use client"
 
 import { createPartnerPayload } from '@/app/service/lead-service/LeadService';
-import { capitalizeFirstLetter, partnerTokens } from '@/app/utils/helper/partnerHelper';
+import { capitalizeFirstLetter, partnerTokens } from '@/app/utils/helper/partners/partnerHelper';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import HomeIcon from '@mui/icons-material/Home';
 import { TextField } from "@mui/material";

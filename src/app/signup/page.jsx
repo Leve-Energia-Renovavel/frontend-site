@@ -1,12 +1,9 @@
 
-import dynamic from "next/dynamic";
-const SignupMain = dynamic(() => import("../pages/components/signup/SignupMain"), { ssr: false });
+import SignupMain from "../pages/components/signup/SignupMain";
 
 export default function Dashboard() {
 
     return (
-        <>
-            <SignupMain />
-        </>
+        <SignupMain />
     );
 }

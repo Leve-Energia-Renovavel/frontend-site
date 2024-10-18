@@ -1,4 +1,4 @@
-import { landingPagePresentationBoxes } from '@/app/utils/helper/landingPageHelper';
+import { landingPagePresentationBoxes } from '@/app/utils/helper/partners/landingPageHelper';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';

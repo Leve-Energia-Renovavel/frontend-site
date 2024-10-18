@@ -1,5 +1,5 @@
 import { handleScrollToId } from '@/app/utils/browser/BrowserUtils';
-import { newHomeBoxes } from '@/app/utils/helper/homeBoxesHelper';
+import { newHomeBoxes } from '@/app/utils/helper/home/homeBoxesHelper';
 import bannerImage from "../../../../../../resources/img/large/leve-mulher-sorrindo-banner-image-large-compressed.webp";
 import { HomeSecondaryBannerContainerMobile as BannerImageMobile, MobileBoxesContainer as BoxesContainer, ButtonContainer, CTAButton, HomeSecondaryBoxesContainerMobile, MobileBox } from './styles';
 

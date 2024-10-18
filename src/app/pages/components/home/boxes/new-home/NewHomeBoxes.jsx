@@ -1,5 +1,5 @@
 import { handleScrollToId } from '@/app/utils/browser/BrowserUtils'
-import { newHomeBoxes } from '@/app/utils/helper/homeBoxesHelper'
+import { newHomeBoxes } from '@/app/utils/helper/home/homeBoxesHelper'
 import HomeBoxesMobile from '../mobile/HomeBoxesMobile'
 import { BoxCard, BoxesContainer, ButtonContainer, NewHomeBoxesContainer as Container, CTAButton } from './styles'
 

@@ -2,7 +2,7 @@
 "use client"
 
 import Image from "next/image"
-import bannerImage from "../../../../../resources/img/person-banner.png"
+import bannerImage from "@/resources/img/person-banner.png"
 import BannerTitle from "./BannerTitle"
 import { BannerButton, BannerContainer, BannerImageContainer, ContentContainer } from "./styles"
 
@@ -17,7 +17,7 @@ export default function Banner(props) {
             </ContentContainer>
             <BannerImageContainer>
                 <Image
-                    loading="lazy" 
+                    loading="lazy"
                     className='logoImage'
                     src={bannerImage}
                     alt="Leve Energia Logo"
