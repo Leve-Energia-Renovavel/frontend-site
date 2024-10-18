@@ -1,5 +1,6 @@
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { awaitSeconds } from "@/app/utils/browser/BrowserUtils";
+import { leveWhatsappNumber } from "../../globalEnums";
 
 
 const signupValidationCodes = {
@@ -43,8 +44,7 @@ export const requestValidation = async (response, setNotifications, setErrorMess
             if (!uuid || uuid == "undefined") {
                 setErrorMessage(["Erro ao criar conta. Mas nao se preocupe! Em alguns segundos vamos te redirecionar ao nosso Suporte."])
                 await awaitSeconds(4)
-                const phone = "551131818210"
-                const url = `https://api.whatsapp.com/send/?phone=${phone}&text=Oi!+Tive+um+problema+ao+criar+conta+na+Leve+Energia+e+preciso++de+ajuda&type=phone_number&app_absent=0`
+                const url = `https://api.whatsapp.com/send/?phone=${leveWhatsappNumber}&text=Oi!+Tive+um+problema+ao+criar+conta+na+Leve+Energia+e+preciso++de+ajuda&type=phone_number&app_absent=0`
                 window.open(url, '_blank', 'noopener noreferrer');
             } else {
                 setNotifications(["Simulação realizada com sucesso! Aguarde 2 segundos..."])
