@@ -1,4 +1,5 @@
 const { generateEmailForStressTesting } = require("../../../tests/helpers/dummyDataHelper");
+import { CIDADE } from '../../../src/app/pages/enums/globalEnums';
 
 const FAILURE = "failure"
 const SUCCESS = "success"
@@ -9,16 +10,16 @@ const usertypes = [
 ];
 
 const testingCEPs = [
-    { cep: "49000-000", expect: FAILURE, cityName: "Aracaju" },
-    { cep: "30110-000", expect: SUCCESS, cityName: "Belo Horizonte" },
-    { cep: "74000-000", expect: FAILURE, cityName: "Goiânia" },
-    { cep: "11410-000", expect: SUCCESS, cityName: "Guarujá" },
-    { cep: "17490-000", expect: SUCCESS, cityName: "Piratininga" },
-    { cep: "50010-000", expect: SUCCESS, cityName: "Recife" },
-    { cep: "20010-000", expect: FAILURE, cityName: "Rio de Janeiro" },
-    { cep: "13960-000", expect: SUCCESS, cityName: "Socorro" },
-    { cep: "01001-000", expect: FAILURE, cityName: "São Paulo" },
-    { cep: "11310-000", expect: SUCCESS, cityName: "São Vicente" }
+    { cep: CIDADE.ARACAJU.cep, expect: FAILURE, cityName: CIDADE.ARACAJU.label },
+    { cep: CIDADE.BELO_HORIZONTE.cep, expect: SUCCESS, cityName: CIDADE.BELO_HORIZONTE.label },
+    { cep: CIDADE.GOIANIA.cep, expect: FAILURE, cityName: CIDADE.GOIANIA.label },
+    { cep: CIDADE.GUARUJA.cep, expect: SUCCESS, cityName: CIDADE.GUARUJA.label },
+    { cep: CIDADE.PIRATININGA.cep, expect: SUCCESS, cityName: CIDADE.PIRATININGA.label },
+    { cep: CIDADE.RECIFE.cep, expect: SUCCESS, cityName: CIDADE.RECIFE.label },
+    { cep: CIDADE.RIO_DE_JANEIRO.cep, expect: FAILURE, cityName: CIDADE.RIO_DE_JANEIRO.label },
+    { cep: CIDADE.SOCORRO.cep, expect: SUCCESS, cityName: CIDADE.SOCORRO.label },
+    { cep: CIDADE.SAO_PAULO.cep, expect: FAILURE, cityName: CIDADE.SAO_PAULO.label },
+    { cep: CIDADE.SAO_VICENTE.cep, expect: SUCCESS, cityName: CIDADE.SAO_VICENTE.label }
 ];
 
 describe('Complete Stress Tests for HomeMainForm', () => {

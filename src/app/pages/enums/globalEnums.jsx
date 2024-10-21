@@ -14,3 +14,47 @@ export const ENVIRONMENTAL_IMPACT = {
     REDUCED_CARBON: 8.508,
     TREE_EQUIVALENCY: 364,
 };
+
+export const CIDADE = {
+    ARACAJU: {
+        label: "Aracaju",
+        cep: "49000-000",
+    },
+    BELO_HORIZONTE: {
+        label: "Belo Horizonte",
+        cep: "30110-000",
+    },
+    GOIANIA: {
+        label: "Goiânia",
+        cep: "74000-000",
+    },
+    GUARUJA: {
+        label: "Guarujá",
+        cep: "11410-000",
+    },
+    PIRATININGA: {
+        label: "Piratininga",
+        cep: "17490-000",
+    },
+    RECIFE: {
+        label: "Recife",
+        cep: "50010-000",
+    },
+    RIO_DE_JANEIRO: {
+        label: "Rio de Janeiro",
+        cep: "20010-000",
+    },
+    SOCORRO: {
+        label: "Socorro",
+        cep: "13960-000",
+    },
+    SAO_PAULO: {
+        label: "São Paulo",
+        cep: "01001-000",
+    },
+    SAO_VICENTE: {
+        label: "São Vicente",
+        cep: "11310-000",
+    }
+};
+
