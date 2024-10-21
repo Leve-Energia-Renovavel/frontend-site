@@ -30,10 +30,10 @@ export default function NewResultEconomy() {
     const treeEquivalency = reducedCarbon / ENVIRONMENTAL_IMPACT.TREE_EQUIVALENCY
     const formattedTreeEquivalency = Math.ceil(treeEquivalency)
 
-    var leveEconomyValue = parseFloat(cost - leveDiscount)?.toFixed(2)?.replace(".", ",");
+    var leveDiscountValue = parseFloat(leveDiscount)?.toFixed(2)?.replace(".", ",");
 
     if (userHasCoupon) {
-        leveEconomyValue = parseFloat((cost - leveDiscount) - couponValue)?.toFixed(2)?.replace(".", ",");
+        leveDiscountValue = parseFloat((leveDiscount) - couponValue)?.toFixed(2)?.replace(".", ",");
     }
 
     return (
@@ -70,7 +70,7 @@ export default function NewResultEconomy() {
                     <p className='leveEconomyTitle'>Valor potencial médio do seu desconto mensal*</p>
                     <LeveEconomy>
                         <p className='monetary'>R$</p>
-                        <p className='leveEconomyValue'>{leveEconomyValue}</p>
+                        <p className='leveEconomyValue'>{leveDiscountValue}</p>
                     </LeveEconomy>
 
                     <LeveEconomyContent className='leveEconomyContent'>
