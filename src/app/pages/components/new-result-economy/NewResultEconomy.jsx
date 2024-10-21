@@ -12,29 +12,36 @@ export default function NewResultEconomy() {
     const storeUser = useStoreUser()
     const user = JSON.parse(localStorage.getItem('user'))
 
-    const { cost, couponValue, discount, carbonDiscount, carbonConsumption, carbonCompensableConsumption } = user?.user ?? (storeUser?.user || {})
+    const { cost, couponValue, discount, tusd, te, availabilityTax } = user?.user ?? (storeUser?.user || {})
 
     const userHasCoupon = couponValue !== 0
 
     const todayCost = cost?.toFixed(2).toString().replace(".", ",")
 
-    const leveYearTotalDiscount = parseFloat(((cost * (discount / 100)) * 12))?.toFixed(2)?.replace(".", ",");
+    const regularConsumption = cost / (tusd + te)
+    const compensableConsumption = regularConsumption - availabilityTax
 
-    const reducedCarbon = (carbonCompensableConsumption * 12 * ENVIRONMENTAL_IMPACT.REDUCED_CARBON);
+    const leveDiscount = compensableConsumption * (discount / 100)
+    const leveYearTotalDiscount = parseFloat(((compensableConsumption * (discount / 100)) * 12))?.toFixed(2)?.replace(".", ",");
+
+    const reducedCarbon = compensableConsumption * 12 * ENVIRONMENTAL_IMPACT.REDUCED_CARBON
     const formattedReducedCarbon = parseInt(reducedCarbon).toLocaleString('pt-BR')
-    const treeEquivalency = Math.ceil(reducedCarbon / ENVIRONMENTAL_IMPACT.TREE_EQUIVALENCY);
 
-    var leveEconomyValue = parseFloat(cost - ((discount / 100) * cost))?.toFixed(2)?.replace(".", ",");
+    const treeEquivalency = reducedCarbon / ENVIRONMENTAL_IMPACT.TREE_EQUIVALENCY
+    const formattedTreeEquivalency = Math.ceil(treeEquivalency)
+
+    var leveEconomyValue = parseFloat(cost - leveDiscount)?.toFixed(2)?.replace(".", ",");
 
     if (userHasCoupon) {
-        leveEconomyValue = parseFloat(cost - ((discount / 100) * cost) - couponValue)?.toFixed(2)?.replace(".", ",");
+        leveEconomyValue = parseFloat((cost - leveDiscount) - couponValue)?.toFixed(2)?.replace(".", ",");
     }
 
     return (
         <EconomyResultContainer className='economyResultContainer'>
             <TodayEconomyContent className='economyResultContent'>
                 <h1 className='economyResultTitle'>Seu potencial de economia e impacto</h1>
-                
+
+
                 <TodayEconomyContainer className='todayEconomyContainer'>
                     <p className='todayEconomyTitle'>Valor médio da sua conta de luz atual</p>
                     <TodayCost>
@@ -92,7 +99,7 @@ export default function NewResultEconomy() {
                     </OneYearEconomyData>
                     <OneYearEconomyData className='treesPlanted'>
                         <p className='title'>Que equivale a plantação de</p>
-                        <p className='value'>{treeEquivalency} Árvores</p>
+                        <p className='value'>{formattedTreeEquivalency} Árvores</p>
                     </OneYearEconomyData>
                 </OneYearEconomyContent>
 
@@ -116,7 +123,7 @@ export default function NewResultEconomy() {
             <EconomyResultFooter>
                 <h2 className='economyResultSubtitle'>Gostou? Complete seu cadastro e se torne Leve</h2>
                 <ContinueSignupButton
-                    endIcon={< SimpleArrowForward className='icon'/>}>
+                    endIcon={< SimpleArrowForward className='icon' />}>
                     <span>Completar cadastro</span>
                 </ContinueSignupButton>
             </EconomyResultFooter>

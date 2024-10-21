@@ -139,6 +139,13 @@ export const getLeadData = async (uuid, store, storeAddress) => {
                 carbonDiscount: descontosCarbono?.desconto,
                 carbonConsumption: descontosCarbono?.consumo,
                 carbonCompensableConsumption: descontosCarbono?.consumo_compensavel,
+
+                tusd: descontosCarbono?.tusd,
+                te: descontosCarbono?.te,
+                annualDiscount: descontosCarbono?.desconto_anual,
+                treeEquivalency: descontosCarbono?.equivalencia_arvores,
+                carbonReduction: descontosCarbono?.reducao_carbono,
+                availabilityTax: descontosCarbono?.taxa_disponibilidade,
             }
 
             store.updateUser(updatedUser);
