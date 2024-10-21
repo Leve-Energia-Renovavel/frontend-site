@@ -43,9 +43,12 @@ export const useStoreUser = create((set) => ({
         
         hasConnectedByBackoffice: false,
 
-        carbonDiscount: 0,
-        carbonConsumption: 0,
-        carbonCompensableConsumption: 0,
+        tusd: 0,
+        te: 0,
+        annualDiscount: 0,
+        treeEquivalency: 0,
+        carbonReduction: 0,
+        availabilityTax: 0,
     },
     updateUser: (newUser) =>
         set((state) => ({
@@ -98,9 +101,12 @@ export const useStoreUser = create((set) => ({
 
                 hasConnectedByBackoffice: false,
 
-                carbonDiscount: 0,
-                carbonConsumption: 0,
-                carbonCompensableConsumption: 0,
+                tusd: 0,
+                te: 0,
+                annualDiscount: 0,
+                treeEquivalency: 0,
+                carbonReduction: 0,
+                availabilityTax: 0,
             },
         }))
 }));
