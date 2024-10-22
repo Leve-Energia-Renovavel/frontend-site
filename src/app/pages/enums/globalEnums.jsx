@@ -11,7 +11,7 @@ export const USER_TYPE = {
 };
 
 export const ENVIRONMENTAL_IMPACT = {
-    REDUCED_CARBON: 8.508,
+    REDUCED_CARBON: 0.709,
     TREE_EQUIVALENCY: 364,
 };
 

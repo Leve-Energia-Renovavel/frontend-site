@@ -38,9 +38,8 @@ export default function NewResultEconomy() {
 
     return (
         <EconomyResultContainer className='economyResultContainer'>
+            <h1 className='economyResultTitle'>Seu potencial de economia e impacto</h1>
             <TodayEconomyContent className='economyResultContent'>
-                <h1 className='economyResultTitle'>Seu potencial de economia e impacto</h1>
-
 
                 <TodayEconomyContainer className='todayEconomyContainer'>
                     <p className='todayEconomyTitle'>Valor médio da sua conta de luz atual</p>

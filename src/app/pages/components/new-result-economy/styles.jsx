@@ -9,24 +9,54 @@ export const EconomyResultContainer = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${background.white};
+
+    position: relative;
     
     border-radius: 20px;
     
     margin: 0 auto;
     margin-top: 16px;
-    padding: 1rem 1rem 105px 1rem;
+    padding: 1rem 1rem 10px 1rem;
 
     width: 100%;
     max-width: 1366px;
 
     min-height: 450px;
     height: 100%;
+
+    .economyResultTitle {
+        position: absolute;
+        
+        font-family: "Graphie";
+        font-size: 27px;
+        font-weight: 600;
+        line-height: 120%; 
+        color: ${background.green};
+        text-align: center;
+
+        top: 20px;
+        left: 285px;
+    }
     
     @media (max-width: 600px) {
         margin-top: 2px;
         border-radius: 0px;
         padding: 24px 0 150px 0;
+
+        .economyResultTitle {
+            top: 0px;
+            left: 30px;
+
+            max-width: 330px;
+            margin: 0 auto;
+        }
     }
+    @media (max-width: 400px) {
+        .economyResultTitle {
+            left: 20px;
+        }
+    }
+
     @media (max-width: 600px) and (max-height: 950px) {
         padding: 24px 0 350px 0;
     }
@@ -138,17 +168,16 @@ export const GoodNewsHeader = styled.div`
 
 export const TodayEconomyContent = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     background-color: ${background.white};
-
-    position: relative;
 
     gap: 1rem;
 
     min-height: 200px;
     
-    padding: 71px 202px 80px 202px;
+    padding: 61px 202px 80px 202px;
 
     .leveEconomyDisclaimer {
         position: absolute;
@@ -157,54 +186,33 @@ export const TodayEconomyContent = styled.div`
         font-size: 14px;
         line-height: 120%; 
         font-style: normal;
-        font-weight: 600;
+        font-weight: 400;
         color: ${background.greyMediumHigh};
         
-        max-width: 350px;
-        right: 306px;
-        top: 257px;
+        /* max-width: 350px; */
+        /* right: 320px;
+        top: 275px; */
+        top: 455px;
     }
     
-    .economyResultTitle {
-        position: absolute;
-        
-        font-family: "Graphie";
-        font-size: 27px;
-        font-weight: 600;
-        line-height: 120%; 
-        color: ${background.green};
-        text-align: center;
 
-        top: 20px;
-        left: 272px;
-    }
     
     @media (max-width: 600px) {
         flex-wrap: wrap;
 
-        .economyResultTitle {
-            top: 0px;
-            left: 30px;
-
-            max-width: 330px;
-            margin: 0 auto;
-        }
-
         .leveEconomyDisclaimer {
             position: absolute;
             
-            max-width: 348px;
+            /* max-width: 348px; */
+            max-width: 342px;
             right: 20px;
-            top: 458px;
+            /* top: 458px; */
+            top: 475px;
         }
     }
 
     @media (max-width: 400px) {
-        padding: 71px 0px 80px 0px;
-
-        .economyResultTitle {
-            left: 20px;
-        }
+        padding: 61px 0px 80px 0px;
 
         .leveEconomyDisclaimer {
             right: 7px;
@@ -225,8 +233,10 @@ export const TodayEconomyContainer = styled.div`
     gap: 8px;
 
     min-width: 380px;
-    width: 388px;
-    max-width: 388px;
+    width: 100%;
+    max-width: 790px;
+    /* width: 388px;
+    max-width: 388px; */
 
     height: 180px;
 
@@ -295,8 +305,11 @@ export const LeveEconomyContainer = styled.div`
     padding: 16px;
 
     min-width: 380px;
-    width: 388px;
-    max-width: 388px;
+    width: 100%;
+    max-width: 790px;
+
+    /* width: 388px; */
+    /* max-width: 388px; */
 
     height: auto;
 
@@ -362,6 +375,10 @@ export const LeveEconomyContent = styled.div`
     gap: 6px;
 
     padding: 8px;
+
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
 
     .discountPercentage {
         font-family: "Graphie";
@@ -634,7 +651,7 @@ export const SimulationSlider = styled(Slider)`
       background-color: ${background.orangeHigh};
       height: 8px;
       opacity: 1;
-      border: 1px solid ${background.yellow};
+      border: 1px solid ${background.orange};
     } 
 
     /* Change thumb color when selected (active) */
