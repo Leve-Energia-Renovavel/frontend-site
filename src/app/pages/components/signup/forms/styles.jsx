@@ -23,15 +23,14 @@ export const SignupFormContainer = styled.div`
     background-color: ${background.orange};
     
     border-radius: 20px;
-    margin: 0 auto;
+    margin: 16px auto 0 auto;
 
     width: 100%;
-    max-width: 1196px;
+    max-width: 1366px;
 
     min-height: 900px;
     
     padding: 2rem 0 0 0;  //change later !!!!
-    
 
     @media (max-width: 600px) {
         border-radius: 0;
@@ -92,7 +91,7 @@ export const SignupFormContentContainer = styled.div`
     gap: 10px;
 
     width: 100%;
-    max-width: 1196px;
+    max-width: 1366px;
 
     padding: 1rem;  //change later !!!!
 
@@ -107,6 +106,16 @@ export const SignupFormContentContainer = styled.div`
         border-radius: 0;
         width: 100vw;
         max-width: 100vw;
+    }
+
+    @media (max-width: 600px) and (max-height: 950px) {
+        padding: 1rem 0 350px 0;
+    }
+    @media (max-width: 600px) and (max-height: 750px) {
+        padding: 1rem 0 200px 0;
+    }
+    @media (max-width: 600px) and (max-height: 670px) {
+        padding: 1rem 0 150px 0;
     }
 `
 export const SignupFormHeaderContainer = styled.div`
@@ -337,42 +346,6 @@ export const FormFooter = styled.div`
         padding: 10px;
     }
 
-`
-export const FormTermsContainer = styled(FormGroup)`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    
-    gap: 1rem;
-    align-items: flex-start; /* Align items to the start */
-    
-    @media (max-width: 600px) {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-`
-export const FormTermsControl = styled(FormControlLabel)`
-
-    &.MuiFormControlLabel-root	 {
-        color: ${background.green};
-        max-width: 320px;
-    }
-    
-    & .MuiFormControlLabel-label{
-        font-family: "Graphie"; 
-        font-size: 12px;
-        line-height: 12px;
-        font-weight: 500;
-        text-align: left;
-    }
-`
-
-export const FormTermsCheckbox = styled(Checkbox)`
-    color: ${background.green};
-    
-    &.Mui-checked {
-        color: ${background.orange};
-    }
 `
 
 export const FormButtonContainer = styled.div`

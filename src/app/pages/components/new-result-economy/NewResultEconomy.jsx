@@ -5,11 +5,16 @@ import { benefits } from '@/app/utils/helper/signup/signupHelper'
 import { ENVIRONMENTAL_IMPACT, USER_COST } from '@/enums/globalEnums'
 import logoLeveGreen from '@/resources/img/small/leve-logo-button-green-small.png'
 import Image from 'next/image'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { ContinueSignupButton, CouponAppliedContainer, EconomyResultContainer, EconomyResultFooter, LeveBenefit, LeveBenefitsContainer, LeveBenefitsContent, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, OneYearEconomyContainer, OneYearEconomyContent, OneYearEconomyData, OneYearEconomyHeader, PercentageIcon, SimpleArrowForward, SimpleCheckIcon, SimulationSlider, TodayCost, TodayEconomyContainer, TodayEconomyContent } from './styles'
 
 export default function NewResultEconomy() {
 
+    const router = useRouter()
+    const search = useSearchParams()
     const storeUser = useStoreUser()
+
+    const uuid = search.get("uuid")
     const user = JSON.parse(localStorage.getItem('user'))
 
     const { cost, couponValue, discount, tusd, te, availabilityTax } = user?.user ?? (storeUser?.user || {})
@@ -34,6 +39,10 @@ export default function NewResultEconomy() {
 
     if (userHasCoupon) {
         leveDiscountValue = parseFloat((leveDiscount) - couponValue)?.toFixed(2)?.replace(".", ",");
+    }
+
+    const handleSubmit = () => {
+        router.push(`/signup-form/?uuid=${uuid}`)
     }
 
     return (
@@ -122,6 +131,7 @@ export default function NewResultEconomy() {
             <EconomyResultFooter>
                 <h2 className='economyResultSubtitle'>Gostou? Complete seu cadastro e se torne Leve</h2>
                 <ContinueSignupButton
+                    onClick={() => handleSubmit()}
                     endIcon={< SimpleArrowForward className='icon' />}>
                     <span>Completar cadastro</span>
                 </ContinueSignupButton>

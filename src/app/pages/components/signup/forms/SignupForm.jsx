@@ -24,7 +24,7 @@ import { useEffect, useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import SignupFormHeader from './SignupFormHeader';
 import { companySchema, userSchema } from './schema';
-import { FormTermsCheckbox as Checkbox, SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, FormTermsContainer, FormTermsControl, FormTitleButton, FormTitleContainer, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupLinearProgress, fileInputStyles } from './styles';
+import { SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, FormTitleButton, FormTitleContainer, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupLinearProgress, fileInputStyles } from './styles';
 
 import { signUp } from '@/app/service/user-service/UserService';
 import dynamic from 'next/dynamic';
@@ -120,12 +120,6 @@ export default function SignupForm() {
     setIsModalOpen(false)
   }
 
-  const termsRefs = {
-    dontGenerateEnergy: useRef(null),
-    dontContractSameService: useRef(null),
-    dontParticipateGovernmentProgram: useRef(null),
-  };
-
   const userRefs = {
     name: useRef(null),
     rg: useRef(null),
@@ -197,18 +191,6 @@ export default function SignupForm() {
     }
   }
 
-  const allChecked = () => {
-    if (termsRefs.dontGenerateEnergy.current.checked &&
-      termsRefs.dontContractSameService.current.checked &&
-      termsRefs.dontParticipateGovernmentProgram.current.checked) {
-      return true
-    } else {
-      setErrorMessage(["É necessário aceitar os Termos para continuar."])
-      return false
-    }
-  }
-
-
   const schemaValidation = async (isCompany, data) => {
     try {
       const validatedData = isCompany
@@ -221,82 +203,78 @@ export default function SignupForm() {
     }
   };
 
-
   const handleSubmit = async (event) => {
     event.preventDefault()
+    setIsLoading(true)
 
-    if (allChecked()) {
-      setIsLoading(true)
+    const validatedCost = costValidation(userRefs.cost.current.value)
 
-      const validatedCost = costValidation(userRefs.cost.current.value)
-
-      var submitData = {
-        uuid: uuid,
-        nome: userRefs.name.current.value?.trimLeft(),
-        email: userRefs.email.current.value,
-        rg: userRefs.rg.current.value?.replace(/[-_]/g, ""),
-        cpf: userRefs.cpf.current.value,
-        data_nascimento: userRefs.birthDate.current.value,
-        telefone: userRefs.phone.current.value,
-        cep: addressRefs.addressCep.current.value,
-        endereco: addressRefs.address.current.value,
-        numero: parseFloat(addressRefs.addressNumber.current.value?.replace(/[^0-9.]/g, "")),
-        bairro: addressRefs.neighborhood.current.value,
-        complemento: addressRefs.complement.current.value,
-        estado_id: storeAddress.address.stateId || stateValue.cod_estados,
-        cidade_id: storeAddress.address.cityId || await findCityIdByName(addressRefs.city.current.value, stateValue.cod_estados),
-        valor: validatedCost,
-        nacionalidade: userRefs.nationality.current.value,
-        profissao: userRefs.profession.current.value,
-        estado_civil: userRefs.maritalStatus.current.value,
-        numero_instalacao: addressRefs.installationNumber.current.value
-      }
-      if (isCompany) {
-        submitData["razao_social"] = companyRefs.razao_social.current.value
-        submitData["cnpj"] = companyRefs.cnpj.current.value
-      }
-
-      const response = await schemaValidation(isCompany, submitData)
-      if (requestSuccessful(response?.status) || hasToSignContract(response?.data?.message)) {
-        console.log("Data successfully saved!")
-
-        store.updateUser({
-          birthDate: submitData.data_nascimento,
-          rg: submitData.rg,
-          cpf: submitData.cpf,
-          maritalStatus: submitData.estado_civil,
-          profession: submitData.profissao,
-          nationality: submitData.nacionalidade,
-        });
-
-        if (isCompany) {
-          store.updateUser({
-            companyName: submitData.razao_social,
-          });
-        }
-
-        const updatedAddress = {
-          street: submitData.endereco,
-          number: submitData.numero,
-          neighborhood: submitData.bairro,
-          complement: submitData.complemento,
-          city: addressRefs.city.current.value,
-          state: addressRefs.state.current.value,
-          cityId: submitData.cidade_id,
-          stateId: submitData.estado_id,
-          cep: submitData.cep,
-          installationNumber: submitData.numero_instalacao,
-        }
-
-        storeAddress.updateAddress(updatedAddress)
-
-        setNotifications(["Cadastro realizado com sucesso!"])
-        router.push(`/signup/contract-signature/?uuid=${uuid}`)
-
-      } else await handleRequestsErrors(response, setNotifications, setErrorMessage, router)
-
-      setIsLoading(false)
+    var submitData = {
+      uuid: uuid,
+      nome: userRefs.name.current.value?.trimLeft(),
+      email: userRefs.email.current.value,
+      rg: userRefs.rg.current.value?.replace(/[-_]/g, ""),
+      cpf: userRefs.cpf.current.value,
+      data_nascimento: userRefs.birthDate.current.value,
+      telefone: userRefs.phone.current.value,
+      cep: addressRefs.addressCep.current.value,
+      endereco: addressRefs.address.current.value,
+      numero: parseFloat(addressRefs.addressNumber.current.value?.replace(/[^0-9.]/g, "")),
+      bairro: addressRefs.neighborhood.current.value,
+      complemento: addressRefs.complement.current.value,
+      estado_id: storeAddress.address.stateId || stateValue.cod_estados,
+      cidade_id: storeAddress.address.cityId || await findCityIdByName(addressRefs.city.current.value, stateValue.cod_estados),
+      valor: validatedCost,
+      nacionalidade: userRefs.nationality.current.value,
+      profissao: userRefs.profession.current.value,
+      estado_civil: userRefs.maritalStatus.current.value,
+      numero_instalacao: addressRefs.installationNumber.current.value
     }
+    if (isCompany) {
+      submitData["razao_social"] = companyRefs.razao_social.current.value
+      submitData["cnpj"] = companyRefs.cnpj.current.value
+    }
+
+    const response = await schemaValidation(isCompany, submitData)
+    if (requestSuccessful(response?.status) || hasToSignContract(response?.data?.message)) {
+      console.log("Data successfully saved!")
+
+      store.updateUser({
+        birthDate: submitData.data_nascimento,
+        rg: submitData.rg,
+        cpf: submitData.cpf,
+        maritalStatus: submitData.estado_civil,
+        profession: submitData.profissao,
+        nationality: submitData.nacionalidade,
+      });
+
+      if (isCompany) {
+        store.updateUser({
+          companyName: submitData.razao_social,
+        });
+      }
+
+      const updatedAddress = {
+        street: submitData.endereco,
+        number: submitData.numero,
+        neighborhood: submitData.bairro,
+        complement: submitData.complemento,
+        city: addressRefs.city.current.value,
+        state: addressRefs.state.current.value,
+        cityId: submitData.cidade_id,
+        stateId: submitData.estado_id,
+        cep: submitData.cep,
+        installationNumber: submitData.numero_instalacao,
+      }
+
+      storeAddress.updateAddress(updatedAddress)
+
+      setNotifications(["Cadastro realizado com sucesso!"])
+      router.push(`/signup/contract-signature/?uuid=${uuid}`)
+
+    } else await handleRequestsErrors(response, setNotifications, setErrorMessage, router)
+
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -662,12 +640,6 @@ export default function SignupForm() {
           <FormDivider variant="middle" />
 
           <FormFooter>
-            <FormTermsContainer>
-              <FormTermsControl required control={<Checkbox inputRef={termsRefs.dontGenerateEnergy} />} label="Declaro que não possuo sistema de geração própria em minha residência/comércio" />
-              <FormTermsControl required control={<Checkbox inputRef={termsRefs.dontContractSameService} />} label="Declaro que não possuo nenhum serviço similar ao da Leve Energia Renovável" />
-              <FormTermsControl required control={<Checkbox inputRef={termsRefs.dontParticipateGovernmentProgram} />} label="Declaro que não sou participante de nenhum programa governamental de subsídios na tarifa de energia" />
-            </FormTermsContainer>
-
             <FormButtonContainer>
               <Typography className='requiredFields'>* Campos obrigatórios</Typography>
               {isLoading ?

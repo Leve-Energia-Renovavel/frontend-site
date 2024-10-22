@@ -5,15 +5,12 @@ import { useStoreAddress, useStoreUser } from '@/app/hooks/useStore';
 import { getLeadData } from '@/app/service/lead-service/LeadService';
 import dynamic from 'next/dynamic';
 import { notFound, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import LoadingResultEconomy from '../new-result-economy/loading/LoadingResultEconomy';
+import { useEffect } from 'react';
 import { SignUpContainer as Container } from './styles';
 
-const NewResultEconomy = dynamic(() => import('../new-result-economy/NewResultEconomy'), { ssr: false });
+const SignupForm = dynamic(() => import('./forms/SignupForm'), { ssr: false });
 
-export default function SignupMain() {
-
-    const [isLoading, setIsLoading] = useState(false)
+export default function SignupMainForm() {
 
     const search = useSearchParams()
     const store = useStoreUser()
@@ -28,7 +25,6 @@ export default function SignupMain() {
     useEffect(() => {
         const fetchData = async () => {
             await getLeadData(uuid, store, storeAddress)
-            setIsLoading(true)
         };
 
         fetchData();
@@ -37,8 +33,8 @@ export default function SignupMain() {
 
     return (
         <>
-            <Container className='signupMainContainer'>
-                {isLoading ? <NewResultEconomy /> : <LoadingResultEconomy />}
+            <Container className='signupMainFormContainer'>
+                <SignupForm />
             </Container>
         </>
     )

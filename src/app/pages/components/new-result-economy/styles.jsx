@@ -199,6 +199,7 @@ export const TodayEconomyContent = styled.div`
     
     @media (max-width: 600px) {
         flex-wrap: wrap;
+        padding: 61px 0px 80px 0px;
 
         .leveEconomyDisclaimer {
             position: absolute;
