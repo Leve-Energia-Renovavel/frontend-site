@@ -6,7 +6,8 @@ import { ENVIRONMENTAL_IMPACT, USER_COST } from '@/enums/globalEnums'
 import logoLeveGreen from '@/resources/img/small/leve-logo-button-green-small.png'
 import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { ContinueSignupButton, CouponAppliedContainer, EconomyResultContainer, EconomyResultFooter, LeveBenefit, LeveBenefitsContainer, LeveBenefitsContent, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, OneYearEconomyContainer, OneYearEconomyContent, OneYearEconomyData, OneYearEconomyHeader, PercentageIcon, SimpleArrowForward, SimpleCheckIcon, SimulationSlider, TodayCost, TodayEconomyContainer, TodayEconomyContent } from './styles'
+import { useState } from 'react'
+import { ContinueSignupButton, CouponAppliedContainer, EconomyResultContainer, EconomyResultFooter, EconomyResultTitleContainer, LeveBenefit, LeveBenefitsContainer, LeveBenefitsContent, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LoadingCircle, OneYearEconomyContainer, OneYearEconomyContent, OneYearEconomyData, OneYearEconomyHeader, PercentageIcon, SimpleArrowForward, SimpleCheckIcon, SimulationSlider, TodayCost, TodayEconomyContainer, TodayEconomyContent } from './styles'
 
 export default function NewResultEconomy() {
 
@@ -17,17 +18,24 @@ export default function NewResultEconomy() {
     const uuid = search.get("uuid")
     const user = JSON.parse(localStorage.getItem('user'))
 
+    const [isLoading, setIsLoading] = useState(false)
+
     const { cost, couponValue, discount, tusd, te, availabilityTax } = user?.user ?? (storeUser?.user || {})
 
     const userHasCoupon = couponValue !== 0
 
     const todayCost = cost?.toFixed(2).toString().replace(".", ",")
+    const formattedCost = cost.toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
 
     const regularConsumption = cost / (tusd + te)
     const compensableConsumption = regularConsumption - availabilityTax
 
     const leveDiscount = compensableConsumption * (discount / 100)
-    const leveYearTotalDiscount = parseFloat(((compensableConsumption * (discount / 100)) * 12))?.toFixed(2)?.replace(".", ",");
+    const leveYearTotalDiscount = parseFloat(((compensableConsumption * (discount / 100)) * 12));
+    const formattedLeveYearDiscount = leveYearTotalDiscount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
     const reducedCarbon = compensableConsumption * 12 * ENVIRONMENTAL_IMPACT.REDUCED_CARBON
     const formattedReducedCarbon = parseInt(reducedCarbon).toLocaleString('pt-BR')
@@ -42,19 +50,23 @@ export default function NewResultEconomy() {
     }
 
     const handleSubmit = () => {
+        setIsLoading(true)
         router.push(`/signup-form/?uuid=${uuid}`)
+        setIsLoading(false)
     }
 
     return (
         <EconomyResultContainer className='economyResultContainer'>
-            <h1 className='economyResultTitle'>Seu potencial de economia e impacto</h1>
-            <TodayEconomyContent className='economyResultContent'>
+            <EconomyResultTitleContainer className='economyResultTitleContainer'>
+                <h1 className='economyResultTitle'>Seu potencial de economia e impacto</h1>
+            </EconomyResultTitleContainer>
 
+            <TodayEconomyContent className='economyResultContent'>
                 <TodayEconomyContainer className='todayEconomyContainer'>
                     <p className='todayEconomyTitle'>Valor médio da sua conta de luz atual</p>
                     <TodayCost>
                         <p className='monetary'>R$</p>
-                        <p className='todayCost'>{todayCost}</p>
+                        <p className='todayCost'>{formattedCost}{cost === USER_COST.MAX && "+"}</p>
                     </TodayCost>
                     <p className='sliderTitle'>Ajuste o valor para recalcular sua economia:</p>
                     <SimulationSlider
@@ -99,7 +111,7 @@ export default function NewResultEconomy() {
                 <OneYearEconomyContent className='oneYearEconomyContent'>
                     <OneYearEconomyData className='yearTotalDiscount'>
                         <p className='title'>Você economiza o total de</p>
-                        <p className='value'>R$ {leveYearTotalDiscount}</p>
+                        <p className='value'>{formattedLeveYearDiscount}</p>
                     </OneYearEconomyData>
                     <OneYearEconomyData className='yearTotalCarbonEmission'>
                         <p className='title'>Reduz a emissão de CO₂ em</p>
@@ -132,7 +144,7 @@ export default function NewResultEconomy() {
                 <h2 className='economyResultSubtitle'>Gostou? Complete seu cadastro e se torne Leve</h2>
                 <ContinueSignupButton
                     onClick={() => handleSubmit()}
-                    endIcon={< SimpleArrowForward className='icon' />}>
+                    endIcon={isLoading ? <LoadingCircle className='loading' size={21} /> : <SimpleArrowForward className='icon' />}>
                     <span>Completar cadastro</span>
                 </ContinueSignupButton>
             </EconomyResultFooter>

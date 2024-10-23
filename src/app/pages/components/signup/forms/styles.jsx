@@ -24,63 +24,28 @@ export const SignupFormContainer = styled.div`
     
     border-radius: 20px;
     margin: 16px auto 0 auto;
-
+    
     width: 100%;
     max-width: 1366px;
-
-    min-height: 900px;
     
-    padding: 2rem 0 0 0;  //change later !!!!
-
     @media (max-width: 600px) {
+        margin: 4px auto 0 auto;
         border-radius: 0;
         width: 100vw;
         max-width: 100vw;
-        padding: 1rem 0 0 0;
     }
 `
-export const FormTitleContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
 
-    gap: 30px;
-    
-    margin-bottom: 34px;  //margin for form header
-    
-    h2 {
+export const SignupFormTitle = styled.div`
+    padding: 0px 10px;
+
+    .fillFormBelow {    
         font-family: "Graphie";
-        font-size: 27px;
+        font-size: 17px;
         font-weight: 500;
-        color: ${background.white};
-    }
-    
-    @media (max-width: 600px) {
-        flex-wrap: wrap;
-        gap: 10px;
-        padding: 0 1rem;
-        margin-bottom: 24px;  //margin for form header
+        color: ${background.green};
     }
 `
-export const FormTitleButton = styled(Button)`
-    color: ${background.orange};
-    background-color: ${background.yellow};
-    border-radius: 30px;
-    text-transform: none;
-    
-    padding: 4px 14px;
-    
-    font-family: "Graphie";
-    font-size: 21px;
-    font-weight: 700;
-    
-    &:hover {
-        color: ${background.yellow};
-        background-color: ${background.green};
-    }
-`
-
 export const SignupFormContentContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -88,19 +53,14 @@ export const SignupFormContentContainer = styled.div`
     
     border-radius: 20px;
 
-    gap: 10px;
+    gap: 8px;
 
     width: 100%;
     max-width: 1366px;
 
     padding: 1rem;  //change later !!!!
 
-    .fillFormBelow { 
-        font-family: "Graphie";
-        font-size: 17px;
-        font-weight: 500;
-        color: ${background.green};
-    }
+
 
     @media (max-width: 600px) {
         border-radius: 0;
@@ -196,7 +156,7 @@ export const Form = styled.form`
     background-color: ${background.white};
 
     @media (max-width: 600px) {
-        padding: 8px 10px;
+        padding: 0px 10px;
     }
 `
 export const FormRow = styled.div`
@@ -368,21 +328,47 @@ export const FormButtonContainer = styled.div`
 `
 
 export const FormSubmitButton = styled(Button)`
-    color: ${background.yellow};
-    background-color: ${background.orange};
-    border-radius: 30px;
-    text-transform: none;
-    
-    padding: 4px 14px;
-    
+    display: flex;
+    align-items: center;
+  background-color: ${background.green};
+  color: ${background.white};
+  border-radius: 30px;
+
+  height: 54px;
+
+  width: 100%;
+  max-width: 250px;
+
+  padding: 8px 16px;
+  
+  span {
     font-family: "Graphie";
     font-size: 21px;
-    font-weight: 700;
-    
-    &:hover {
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; 
+    text-transform: none;
+    color: ${background.white};
+
+    white-space: nowrap;
+  }
+
+  .icon {
         color: ${background.yellow};
-        background-color: ${background.green};
     }
+
+  &:hover {
+    cursor: pointer;
+    background-color: ${background.yellow};
+
+    span {
+      color: ${background.green};
+    }
+    
+    .icon {
+        color: ${background.green};
+    }
+  }
 `
 
 

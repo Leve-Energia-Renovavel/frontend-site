@@ -24,7 +24,7 @@ import { useEffect, useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import SignupFormHeader from './SignupFormHeader';
 import { companySchema, userSchema } from './schema';
-import { SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, FormTitleButton, FormTitleContainer, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupLinearProgress, fileInputStyles } from './styles';
+import { SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, FormTitleButton, FormTitleContainer, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupFormTitle, SignupLinearProgress, fileInputStyles } from './styles';
 
 import { signUp } from '@/app/service/user-service/UserService';
 import dynamic from 'next/dynamic';
@@ -184,13 +184,6 @@ export default function SignupForm() {
     setIsForeigner(value === "estrangeira");
   };
 
-  const handleScrollToForm = () => {
-    const element = document.getElementById('signupForm');
-    if (element) {
-      window.scrollTo({ top: element.offsetTop - 60, behavior: 'smooth' });
-    }
-  }
-
   const schemaValidation = async (isCompany, data) => {
     try {
       const validatedData = isCompany
@@ -292,18 +285,15 @@ export default function SignupForm() {
   return (
     <>
       <Container className='signupFormContainer'>
-        <FormTitleContainer>
-          <Typography variant='h2'>Vamos começar a economizar com a Leve?</Typography>
-          <FormTitleButton
-            onClick={() => handleScrollToForm()}
-            endIcon={<ArrowDownwardIcon />}>Continuar</FormTitleButton>
-        </FormTitleContainer>
-        <SignupFormContentContainer className='signupFormContent'>
 
+        <SignupFormContentContainer className='signupFormContent'>
           <SignupFormHeader step={1} />
 
           <SignupLinearProgress variant="determinate" value={25} />
-          <Typography className="fillFormBelow">Preencha o cadastro abaixo:</Typography>
+
+          <SignupFormTitle>
+            <p className="fillFormBelow">Preencha o cadastro abaixo:</p>
+          </SignupFormTitle>
 
           <Form id='signupForm' acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
             {isCompany && (
@@ -649,7 +639,7 @@ export default function SignupForm() {
                 : <FormSubmitButton
                   type='submit'
                   form='signupForm'
-                  endIcon={<ArrowForwardIcon />}>Continuar</FormSubmitButton>}
+                  endIcon={<ArrowForwardIcon className='icon'/>}><span>Continuar</span></FormSubmitButton>}
             </FormButtonContainer>
           </FormFooter>
 

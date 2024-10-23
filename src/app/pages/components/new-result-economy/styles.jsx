@@ -1,73 +1,61 @@
 import styled from "@emotion/styled";
-import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
-import { Button, Slider } from "@mui/material";
-import { background } from "../../styles";
-import CheckIcon from '@mui/icons-material/Check';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import CheckIcon from '@mui/icons-material/Check';
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import { Button, Slider , CircularProgress } from "@mui/material";
+import { background } from "../../styles";
 
 export const EconomyResultContainer = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${background.white};
 
-    position: relative;
-    
     border-radius: 20px;
     
     margin: 0 auto;
     margin-top: 16px;
-    padding: 1rem 1rem 10px 1rem;
 
     width: 100%;
     max-width: 1366px;
 
     min-height: 450px;
     height: 100%;
+    
+    @media (max-width: 600px) {
+        margin-top: 2px;
+        border-radius: 0px;
+    }
+`
+
+export const EconomyResultTitleContainer = styled.div`
+
+    padding: 1rem;
+
+    min-width: 380px;
+    width: 100%;
+    max-width: fit-content;
+
+    margin: 0 auto;
 
     .economyResultTitle {
-        position: absolute;
-        
         font-family: "Graphie";
         font-size: 27px;
         font-weight: 600;
         line-height: 120%; 
         color: ${background.green};
+
+        white-space: nowrap;
+    }
+
+    @media (max-width: 600px) {
         text-align: center;
 
-        top: 20px;
-        left: 285px;
-    }
-    
-    @media (max-width: 600px) {
-        margin-top: 2px;
-        border-radius: 0px;
-        padding: 24px 0 150px 0;
-
         .economyResultTitle {
-            top: 0px;
-            left: 30px;
-
+            white-space: normal;
             max-width: 330px;
-            margin: 0 auto;
         }
-    }
-    @media (max-width: 400px) {
-        .economyResultTitle {
-            left: 20px;
-        }
-    }
-
-    @media (max-width: 600px) and (max-height: 950px) {
-        padding: 24px 0 350px 0;
-    }
-    @media (max-width: 600px) and (max-height: 750px) {
-        padding: 24px 0 200px 0;
-    }
-    @media (max-width: 600px) and (max-height: 670px) {
-        padding: 24px 0 150px 0;
     }
 `
-
 export const EconomyResultHeader = styled.div`
     display: flex;
     flex-direction: row;
@@ -177,7 +165,7 @@ export const TodayEconomyContent = styled.div`
 
     min-height: 200px;
     
-    padding: 61px 202px 80px 202px;
+    padding: 0px 202px 80px 202px;
 
     .leveEconomyDisclaimer {
         position: absolute;
@@ -189,34 +177,31 @@ export const TodayEconomyContent = styled.div`
         font-weight: 400;
         color: ${background.greyMediumHigh};
         
-        /* max-width: 350px; */
+        max-width: 388px;
         /* right: 320px;
         top: 275px; */
-        top: 455px;
+        top: 525px;
     }
-    
-
     
     @media (max-width: 600px) {
         flex-wrap: wrap;
-        padding: 61px 0px 80px 0px;
+        padding: 0px;
+        padding-bottom: 80px;
 
         .leveEconomyDisclaimer {
             position: absolute;
             
-            /* max-width: 348px; */
-            max-width: 342px;
-            right: 20px;
+            max-width: 330px;
+            right: 40px;
             /* top: 458px; */
-            top: 475px;
+            top: 555px;
+
         }
     }
 
     @media (max-width: 400px) {
-        padding: 61px 0px 80px 0px;
-
         .leveEconomyDisclaimer {
-            right: 7px;
+            right: 20px;
         }
     }
 `
@@ -234,10 +219,11 @@ export const TodayEconomyContainer = styled.div`
     gap: 8px;
 
     min-width: 380px;
-    width: 100%;
-    max-width: 790px;
-    /* width: 388px;
-    max-width: 388px; */
+    /* width: 100%;
+    max-width: 790px; */
+
+    width: 388px;
+    max-width: 388px;
 
     height: 180px;
 
@@ -306,11 +292,11 @@ export const LeveEconomyContainer = styled.div`
     padding: 16px;
 
     min-width: 380px;
-    width: 100%;
-    max-width: 790px;
+    /* width: 100%;
+    max-width: 790px; */
 
-    /* width: 388px; */
-    /* max-width: 388px; */
+    width: 388px;
+    max-width: 388px;
 
     height: auto;
 
@@ -509,8 +495,12 @@ export const LeveBenefitsContainer = styled.div`
     
     margin: 0 auto;
     margin-top: 24px;
+    /* width: 100%;
+    max-width: 792px; */
+
+    min-width: 380px;
     width: 100%;
-    max-width: 792px;
+    max-width: 388px;
     
     .leveBenefitsTitle {
         font-family: "Graphie";
@@ -566,6 +556,8 @@ export const EconomyResultFooter = styled.div`
     flex-direction: column;
     gap: 16px;
 
+    padding-bottom: 5rem;
+
     .economyResultSubtitle {
         font-family: "Graphie";
         font-size: 27px;
@@ -585,9 +577,26 @@ export const EconomyResultFooter = styled.div`
         }
     }
 
+    @media (max-width: 600px) and (max-height: 950px) {
+        padding-bottom: 350px;
+    }
+    @media (max-width: 600px) and (max-height: 750px) {
+        padding-bottom: 200px;
+    }
+    @media (max-width: 600px) and (max-height: 670px) {
+        padding-bottom: 150px;
+    }
+
 `
 
+export const LoadingCircle = styled(CircularProgress)`
+    width: 21px;
+    height: 21px;
+    color: ${background.yellow};
+`
 export const ContinueSignupButton = styled(Button)`
+    display: flex;
+    align-items: center;
   background-color: ${background.green};
   color: ${background.white};
   border-radius: 30px;
@@ -602,6 +611,7 @@ export const ContinueSignupButton = styled(Button)`
   padding: 8px 16px;
   
   span {
+    font-family: "Graphie";
     font-size: 21px;
     font-style: normal;
     font-weight: 600;
@@ -610,6 +620,10 @@ export const ContinueSignupButton = styled(Button)`
     color: ${background.white};
 
     white-space: nowrap;
+  }
+
+  .loading {
+      color: ${background.yellow};
   }
   
   &:hover {
