@@ -1,9 +1,10 @@
 "use client"
 
 import { legalTopics } from "@/app/utils/helper/privacy-policy/privacyPolicyHelper";
-import { PolicyContainer as Container } from "./styles";
-import DefaultButton from "../utils/buttons/DefaultButton";
 import { useRouter } from "next/navigation";
+import { PATH_TO } from "../../enums/globalEnums";
+import DefaultButton from "../utils/buttons/DefaultButton";
+import { PolicyContainer as Container } from "./styles";
 
 export default function PrivacyPolicyMain() {
     const router = useRouter()
@@ -24,7 +25,7 @@ export default function PrivacyPolicyMain() {
                 })}
             </main>
             <div className="backButtonContainer">
-                <DefaultButton variant="contained" text={"Voltar"} onClick={() => router.push("/")} />
+                <DefaultButton variant="contained" text={"Voltar"} onClick={() => router.push(PATH_TO.HOME)} />
             </div>
         </Container>
     )

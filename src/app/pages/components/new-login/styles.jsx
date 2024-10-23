@@ -152,7 +152,7 @@ export const LoginButtonContainer = styled.form`
         font-weight: 700;
         font-size: 18px;
         line-height: 18px;
-        color: ${background.higherGrey};
+        color: ${background.greyHigh};
         
         margin: 1rem auto;
         
@@ -236,7 +236,7 @@ export const FormFooterContainer = styled.div`
         font-size: 1rem;
         line-height: 1rem;
         font-weight: 500;
-        color: ${background.grey}
+        color: ${background.greyMediumHigh}
     }
 `
 

@@ -1,3 +1,4 @@
+import { PATH_TO } from '@/app/pages/enums/globalEnums';
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 import { useRouter } from 'next/navigation';
 import infoJson from "../../../../../../public/info.json";
@@ -12,11 +13,11 @@ export default function LandingPageHomeOrCompany() {
 
     return (
         <FourthSectionImagesContainer>
-            <FourthSectionImagesContent image={homeCardImage} onClick={() => router.push("/")}>
+            <FourthSectionImagesContent image={homeCardImage} onClick={() => router.push(PATH_TO.HOME)}>
                 <h6 variant="subtitle1">{texts.forYourHouse}</h6>
                 <ArrowCircleRightOutlinedIcon className='arrowIcon' />
             </FourthSectionImagesContent>
-            <FourthSectionImagesContent invertedBox={true} image={companyCardImage} onClick={() => router.push("/")}>
+            <FourthSectionImagesContent invertedBox={true} image={companyCardImage} onClick={() => router.push(PATH_TO.HOME)}>
                 <h6 variant="subtitle1">{texts.forYourCompany}</h6>
                 <ArrowCircleRightOutlinedIcon className='arrowIconCompany' />
             </FourthSectionImagesContent>

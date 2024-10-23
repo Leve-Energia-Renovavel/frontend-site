@@ -1,11 +1,12 @@
+import { PATH_TO } from '@/app/pages/enums/globalEnums';
 import { landingPagePresentationBoxes } from '@/app/utils/helper/partners/landingPageHelper';
+import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import infoJson from "../../../../../../public/info.json";
 import sunImage from "../../../../../resources/icons/small/ellipse-small.webp";
 import { SecondSectionBox, SecondSectionBoxesContainer, SecondSectionButton, SecondSectionContainer, SecondSectionContent, SecondSectionContentTitleContainer, SecondSectionTitleContainer } from './styles';
-import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 
 export default function LandingPageSolarPanelBanner() {
 
@@ -24,7 +25,7 @@ export default function LandingPageSolarPanelBanner() {
                     <h4>{texts.beLeveWithFutureEnergy}</h4>
                     <SecondSectionButton
                         className='desktopButton'
-                        onClick={() => router.push("/")}
+                        onClick={() => router.push(PATH_TO.HOME)}
                         endIcon={<ArrowForwardIcon />}>
                         <span>{texts.simulate}</span>
                     </SecondSectionButton>
@@ -44,7 +45,7 @@ export default function LandingPageSolarPanelBanner() {
                     })}
                     <SecondSectionButton
                         className='mobileButton'
-                        onClick={() => router.push("/")}
+                        onClick={() => router.push(PATH_TO.HOME)}
                         endIcon={<ArrowForwardIcon />}>
                         <span>{texts.simulate}</span>
                     </SecondSectionButton>

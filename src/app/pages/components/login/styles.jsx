@@ -127,7 +127,7 @@ export const LoginButtonContainer = styled.form`
         font-weight: 700;
         font-size: 18px;
         line-height: 18px;
-        color: ${background.higherGrey};
+        color: ${background.greyMediumHigh};
         
         margin: 1rem auto;
         

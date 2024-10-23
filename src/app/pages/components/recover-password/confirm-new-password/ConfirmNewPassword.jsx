@@ -1,5 +1,6 @@
 "use client"
 
+import { PATH_TO } from '@/app/pages/enums/globalEnums';
 import { confirmNewPassword } from '@/app/service/login-service/LoginService';
 import CloseIcon from '@mui/icons-material/Close';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -47,7 +48,7 @@ export default function ConfirmNewPassword({ token, isOpen, openModal, closeModa
                 <ConfirmNewPasswordBox>
                     <IconContainer>
                         <div style={{ marginLeft: 'auto' }}>
-                            <CloseIcon className="closeIcon" onClick={() => router.push("/")} />
+                            <CloseIcon className="closeIcon" onClick={() => router.push(PATH_TO.HOME)} />
                         </div>
                     </IconContainer>
                     <TitleContainer>

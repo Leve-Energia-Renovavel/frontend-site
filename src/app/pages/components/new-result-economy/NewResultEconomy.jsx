@@ -2,7 +2,7 @@
 
 import { useStoreUser } from '@/app/hooks/useStore'
 import { benefits } from '@/app/utils/helper/signup/signupHelper'
-import { ENVIRONMENTAL_IMPACT, USER_COST } from '@/enums/globalEnums'
+import { ENVIRONMENTAL_IMPACT, PATH_TO, USER_COST } from '@/enums/globalEnums'
 import logoLeveGreen from '@/resources/img/small/leve-logo-button-green-small.png'
 import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -51,7 +51,7 @@ export default function NewResultEconomy() {
 
     const handleSubmit = () => {
         setIsLoading(true)
-        router.push(`/signup-form/?uuid=${uuid}`)
+        router.push(`${PATH_TO.SIGNUP_FORM}?uuid=${uuid}`)
         setIsLoading(false)
     }
 

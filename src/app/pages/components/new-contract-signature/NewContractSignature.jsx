@@ -10,6 +10,7 @@ import Cookies from "js-cookie";
 import dynamic from "next/dynamic";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { PATH_TO } from "../../enums/globalEnums";
 import { ContractSignatureContainer as Container, ContractSignatureForm, SignupLinearProgress } from "./styles";
 
 const SignupFormHeader = dynamic(() => import("../signup/forms/SignupFormHeader"), { ssr: false });
@@ -19,7 +20,7 @@ export default function NewContractSignature() {
 
     const store = useStoreUser()
     const storeClicksign = useStoreClickSign()
-    
+
     const router = useRouter()
     const search = useSearchParams()
 
@@ -29,7 +30,7 @@ export default function NewContractSignature() {
     const uuid = search.get("uuid") || store.user.uuid || Cookies.get('leveUUID')
 
     if (!uuid || uuid == "undefined") {
-        router.push("/")
+        router.push(PATH_TO.HOME)
     }
 
     const [step, setStep] = useState(2);
@@ -37,7 +38,7 @@ export default function NewContractSignature() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = { assinatura: true}
+            const data = { assinatura: true }
             try {
                 const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`, data);
                 if (requestSuccessful(response.status)) {
@@ -78,7 +79,7 @@ export default function NewContractSignature() {
                     <SignupFormHeader step={step} />
                     <SignupLinearProgress variant="determinate" value={value} />
                     <Typography className="contractSignInfo">Para assinar o contrato, esteja com o telefone <span className="phoneNumber">{formatPhoneNumber(phone)}</span> em mãos. Insira o código de confirmação que enviaremos a você via SMS.</Typography>
-                    <ClicksignWidgetComponent uuid={uuid}/>
+                    <ClicksignWidgetComponent uuid={uuid} />
                 </ContractSignatureForm>
             </Container>
         </>

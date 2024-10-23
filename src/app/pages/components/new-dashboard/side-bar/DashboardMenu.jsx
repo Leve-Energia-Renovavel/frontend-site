@@ -3,6 +3,7 @@ import { clearBrowserData } from '@/app/utils/browser/BrowserUtils';
 import { menuOptions } from '@/app/utils/helper/dashboard/dashboardHelper';
 import { useRouter } from 'next/navigation';
 import { MenuOption, NewDashboardMenu } from './styles';
+import { PATH_TO } from '@/app/pages/enums/globalEnums';
 
 export default function DashboardMenu({ isSideBar, menuSelected, setMenuSelection, closeModal }) {
 
@@ -24,7 +25,7 @@ export default function DashboardMenu({ isSideBar, menuSelected, setMenuSelectio
         storeMainInstallation.clearMainInstallation()
         storeNextBills.clearNextBills()
         storeUserEconomy.clearUser()
-        router.push("/")
+        router.push(PATH_TO.HOME)
     }
 
     const handleMenuSelection = (link, id) => {

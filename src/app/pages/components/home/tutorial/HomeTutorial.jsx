@@ -1,6 +1,7 @@
 "use client"
 
 
+import { PATH_TO } from '@/app/pages/enums/globalEnums';
 import { homeTutorialCards } from '@/app/utils/helper/home/homeBoxesHelper';
 import { Typography } from '@mui/material';
 import Image from 'next/image';
@@ -52,7 +53,7 @@ export default function TutorialContainer() {
                     })}
                 </CardContainer>
 
-                <ButtonSimulateYourEconomy onClick={() => isLP ? router.push("/") : handlePreSignup()}>
+                <ButtonSimulateYourEconomy onClick={() => isLP ? router.push(PATH_TO.HOME) : handlePreSignup()}>
                     <span>{texts.simulateYourEconomy}</span>
                 </ButtonSimulateYourEconomy>
             </HomeFourthSectionContainer>

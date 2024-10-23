@@ -1,10 +1,11 @@
+import { PATH_TO } from '@/app/pages/enums/globalEnums';
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Image from 'next/image';
-import infoJson from "../../../../../../public/info.json";
-import { LandingPageMainBanner as MainBanner, MainBannerButton, LandingPageMainContent as MainContent, MoreAboutLeveFooter } from './styles';
 import { useRouter } from 'next/navigation';
-import bannerImage from "../../../../../resources/img/large/leve-pai-e-filho-image-large-reduced.webp"
+import infoJson from "../../../../../../public/info.json";
+import bannerImage from "../../../../../resources/img/large/leve-pai-e-filho-image-large-reduced.webp";
+import { LandingPageMainBanner as MainBanner, MainBannerButton, LandingPageMainContent as MainContent, MoreAboutLeveFooter } from './styles';
 
 export default function LandingPagePresentationBanner() {
 
@@ -28,7 +29,7 @@ export default function LandingPagePresentationBanner() {
                 <h2>{texts.lighterBill}<span className='underlined'>{texts.twentyPercent}</span>{texts.everyMonth}</h2>
                 <MainBannerButton
                     className='mainButton'
-                    onClick={() => router.push("/")}
+                    onClick={() => router.push(PATH_TO.HOME)}
                     endIcon={<ArrowForwardIcon />}>
                     <span>{texts.simulate}</span>
                 </MainBannerButton>

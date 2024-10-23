@@ -1,4 +1,4 @@
-export const LEVE_WHATSAPP_NUMBER = "551151967327";
+export const LEVE_WHATSAPP_NUMBER = "551131818210";
 
 export const USER_COST = {
     MIN: 200,
@@ -13,6 +13,15 @@ export const USER_TYPE = {
 export const ENVIRONMENTAL_IMPACT = {
     REDUCED_CARBON: 0.709,
     TREE_EQUIVALENCY: 364,
+};
+export const PATH_TO = {
+    HOME: "/",
+    SIGNUP: "/signup/",
+    SIGNUP_FORM: "/signup-form/",
+    CONTRACT_SIGNATURE: "/signup/contract-signature",
+    LOGIN: "/login/",
+    OUT_OF_RANGE: "/fail/out-of-range",
+    LOW_COST: "/fail/low-cost",
 };
 
 export const CIDADE = {

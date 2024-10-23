@@ -1,7 +1,6 @@
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { awaitSeconds } from "@/app/utils/browser/BrowserUtils";
-import { LEVE_WHATSAPP_NUMBER } from "../../enums/globalEnums";
-
+import { LEVE_WHATSAPP_NUMBER, PATH_TO } from "../../enums/globalEnums";
 
 const signupValidationCodes = {
     ALANCASR: "A leve ainda não chegou a sua região",
@@ -38,7 +37,7 @@ export const requestValidation = async (response, setNotifications, setErrorMess
         if (responseCode === "VJPC") {
             setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])
             await awaitSeconds(4)
-            router.push(`/login`)
+            router.push(PATH_TO.LOGIN)
         }
         else {
             if (!uuid || uuid == "undefined") {
@@ -48,13 +47,13 @@ export const requestValidation = async (response, setNotifications, setErrorMess
                 window.open(url, '_blank', 'noopener noreferrer');
             } else {
                 setNotifications(["Simulação realizada com sucesso! Aguarde 2 segundos..."])
-                router.push(`/signup/?uuid=${uuid}`)
+                router.push(`${PATH_TO.SIGNUP}?uuid=${uuid}`)
             }
         }
 
     }
     if (responseCode === "ALANCASR") {
-        router.push(`/fail/out-of-range`)
+        router.push(PATH_TO.OUT_OF_RANGE)
     }
     else if (responseCode === "UE") {
         setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])
@@ -62,17 +61,16 @@ export const requestValidation = async (response, setNotifications, setErrorMess
         router.push(`/login`)
     }
     else if (responseCode === "SCJEL") {
-        router.push(`/fail/low-cost`)
+        router.push(PATH_TO.LOW_COST)
     }
     else if (responseCode === "ALANCASR") {
-        router.push(`/fail/out-of-range`)
+        router.push(PATH_TO.OUT_OF_RANGE)
     }
     else if (responseCode === "CI") {
-        router.push(`/fail/out-of-range`)
+        router.push(PATH_TO.OUT_OF_RANGE)
     }
     else if (responseCode === "TCPA") {
-        router.push(`/signup/contract-signature`)
-        // router.push(`/signup/?uuid=${uuid}`)
+        router.push(PATH_TO.CONTRACT_SIGNATURE)
     }
     else if (responseCode === "CPI") {
         setErrorMessage(["Cupom inválido. Por favor, verifique e tente novamente"])

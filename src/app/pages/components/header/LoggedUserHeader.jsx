@@ -1,5 +1,4 @@
 import { useStoreAddress, useStoreCompany, useStoreInstallations, useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
-import { clearBrowserData } from '@/app/utils/browser/BrowserUtils';
 import { pathHelper } from '@/app/utils/helper/pathHelper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Box, Select } from "@mui/material";
@@ -7,6 +6,7 @@ import Image from 'next/image';
 import Link from "next/link";
 import { usePathname, useRouter } from 'next/navigation';
 import logo from "../../../../resources/img/logo-header.png";
+import { PATH_TO } from '../../enums/globalEnums';
 import HeaderButton from '../utils/buttons/HeaderButton';
 import { HeaderMenuItem, LogoContainer, MenuItem, Nav, Ul, installationFieldStyle } from "./styles";
 
@@ -36,7 +36,7 @@ export default function LoggedUserHeader() {
         storeAddress.clearAddress()
         storeCompany.clearCompany()
         storeInstallation.clearInstallations()
-        router.push("/")
+        router.push(PATH_TO.HOME)
     }
 
     const handleClickLogo = () => {

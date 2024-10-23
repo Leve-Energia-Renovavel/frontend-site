@@ -1,3 +1,4 @@
+import { PATH_TO } from '@/app/pages/enums/globalEnums';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useRouter } from 'next/navigation';
 import infoJson from "../../../../../../public/info.json";
@@ -14,7 +15,7 @@ export default function LandingPagePercentageBanner() {
             <FifthSectionContent image={percentageImage}>
                 <h6>{texts.callToActionTitle}</h6>
                 <FifthSectionButton
-                    onClick={() => router.push("/")}
+                    onClick={() => router.push(PATH_TO.HOME)}
                     endIcon={<ArrowForwardIcon />}>
                     <span>{texts.simulate}</span>
                 </FifthSectionButton>
