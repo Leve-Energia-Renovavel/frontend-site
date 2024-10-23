@@ -495,13 +495,9 @@ export const LeveBenefitsContainer = styled.div`
     
     margin: 0 auto;
     margin-top: 24px;
-    /* width: 100%;
-    max-width: 792px; */
-
-    min-width: 380px;
     width: 100%;
-    max-width: 388px;
-    
+    max-width: 792px;
+
     .leveBenefitsTitle {
         font-family: "Graphie";
         font-size: 18px;
