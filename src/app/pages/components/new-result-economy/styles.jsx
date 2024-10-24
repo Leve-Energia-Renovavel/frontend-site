@@ -2,8 +2,9 @@ import styled from "@emotion/styled";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CheckIcon from '@mui/icons-material/Check';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
-import { Button, Slider , CircularProgress } from "@mui/material";
+import { Button, Slider, CircularProgress } from "@mui/material";
 import { background } from "../../styles";
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 export const EconomyResultContainer = styled.div`
     display: flex;
@@ -154,6 +155,39 @@ export const GoodNewsHeader = styled.div`
     gap: 10px;
 `
 
+export const LeveEconomyDisclaimer = styled.div`
+
+    min-width: 340px;
+    width: 100%;
+    max-width: 343px;
+
+    margin-bottom: 24px;
+
+    p {
+        font-family: "Graphie";
+        font-size: 14px;
+        line-height: 120%; 
+        font-style: normal;
+        font-weight: 400;
+        color: ${background.greyMediumHigh};
+    }
+
+    @media (max-width: 600px) {
+        flex-wrap: wrap;
+        padding: 0px;
+
+        p {
+            max-width: 330px;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .leveEconomyDisclaimer {
+            right: 20px;
+        }
+    }
+`
+
 export const TodayEconomyContent = styled.div`
     display: flex;
     flex-direction: column;
@@ -165,44 +199,11 @@ export const TodayEconomyContent = styled.div`
 
     min-height: 200px;
     
-    padding: 0px 202px 80px 202px;
+    padding: 0px 202px 0px 202px;
 
-    .leveEconomyDisclaimer {
-        position: absolute;
-        
-        font-family: "Graphie";
-        font-size: 14px;
-        line-height: 120%; 
-        font-style: normal;
-        font-weight: 400;
-        color: ${background.greyMediumHigh};
-        
-        max-width: 388px;
-        /* right: 320px;
-        top: 275px; */
-        top: 525px;
-    }
-    
     @media (max-width: 600px) {
         flex-wrap: wrap;
         padding: 0px;
-        padding-bottom: 80px;
-
-        .leveEconomyDisclaimer {
-            position: absolute;
-            
-            max-width: 330px;
-            right: 40px;
-            /* top: 458px; */
-            top: 555px;
-
-        }
-    }
-
-    @media (max-width: 400px) {
-        .leveEconomyDisclaimer {
-            right: 20px;
-        }
     }
 `
 
@@ -211,6 +212,8 @@ export const TodayEconomyContainer = styled.div`
     flex-direction: column;
     background-color: ${background.orangeTranslucent};
     border: 1px solid ${background.orange};
+
+    position: relative;
     
     border-radius: 8px;
 
@@ -231,7 +234,7 @@ export const TodayEconomyContainer = styled.div`
         font-family: "Graphie";
         font-size: 17px;
         line-height: 17px;
-        font-weight: 500;
+        font-weight: 400;
         color: ${background.orange};
         text-align: center;
 
@@ -255,6 +258,26 @@ export const TodayEconomyContainer = styled.div`
     }
 `
 
+export const ArrowDownContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    position: absolute;
+    background-color: ${background.green};
+
+    top: 166px;
+    right: 185px;
+
+    border-radius: 30px;
+
+    width: 100%;
+    max-width: 24px;
+
+    height: 100%;
+    max-height: 24px;
+`
 export const TodayCost = styled.div`
     display: flex;
     flex-direction: row;
@@ -292,9 +315,6 @@ export const LeveEconomyContainer = styled.div`
     padding: 16px;
 
     min-width: 380px;
-    /* width: 100%;
-    max-width: 790px; */
-
     width: 388px;
     max-width: 388px;
 
@@ -410,8 +430,10 @@ export const OneYearEconomyContainer = styled.div`
     border-radius: 8px;
 
     margin: 0 auto;
+
+    min-width: 340px;
     width: 100%;
-    max-width: 792px;
+    max-width: 388px;
 
     @media (max-width: 600px) {
         min-width: 340px;
@@ -421,7 +443,7 @@ export const OneYearEconomyContainer = styled.div`
 `
 export const OneYearEconomyContent = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
 
@@ -429,9 +451,6 @@ export const OneYearEconomyContent = styled.div`
 
     gap: 16px;
 
-    @media (max-width: 600px) {
-        flex-wrap: wrap;
-    }
 `
 export const OneYearEconomyData = styled.div`
     display: flex;
@@ -496,7 +515,7 @@ export const LeveBenefitsContainer = styled.div`
     margin: 0 auto;
     margin-top: 24px;
     width: 100%;
-    max-width: 792px;
+    max-width: 388px;
 
     .leveBenefitsTitle {
         font-family: "Graphie";
@@ -555,14 +574,17 @@ export const EconomyResultFooter = styled.div`
     padding-bottom: 5rem;
 
     .economyResultSubtitle {
+        display: block;
         font-family: "Graphie";
-        font-size: 27px;
+        font-size: 22px;
         font-weight: 600;
         line-height: 120%; 
         color: ${background.green};
         text-align: center;
 
-        margin-top: 40px;
+        margin: 40px auto 0 auto;
+
+        max-width: 342px;
     }
 
     @media (max-width: 600px) {
@@ -600,7 +622,7 @@ export const ContinueSignupButton = styled(Button)`
   height: 54px;
 
   width: 100%;
-  max-width: 250px;
+  max-width: 342px;
 
   margin: 0 auto;
 
@@ -644,6 +666,15 @@ export const SimpleCheckIcon = styled(CheckIcon)`
     width: 16px;
     height: 16px;
     color: ${background.green};
+`
+export const ArrowDownIcon = styled(ArrowDownwardIcon)`
+    color: ${background.white};
+
+    width: 100%;
+    max-width: 24px;
+
+    height: 100%;
+    max-height: 24px;
 `
 export const SimulationSlider = styled(Slider)`
     color: ${background.orange};

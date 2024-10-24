@@ -1,6 +1,7 @@
 export const benefits = [
-    "Adesão gratuita e sem custos adicionais",
-    "Sem instalações ou qualquer tipo de obra",
-    "Nosso serviço é regulado pela ANEEL",
+    "Adesão gratuita",
+    "Sem custos adicionais",
+    "Sem instalações ou obras",
+    "Serviço regulado pela ANEEL",
     "Cancele quando quiser",
 ]

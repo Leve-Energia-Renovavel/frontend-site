@@ -7,7 +7,7 @@ import logoLeveGreen from '@/resources/img/small/leve-logo-button-green-small.pn
 import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
-import { ContinueSignupButton, CouponAppliedContainer, EconomyResultContainer, EconomyResultFooter, EconomyResultTitleContainer, LeveBenefit, LeveBenefitsContainer, LeveBenefitsContent, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LoadingCircle, OneYearEconomyContainer, OneYearEconomyContent, OneYearEconomyData, OneYearEconomyHeader, PercentageIcon, SimpleArrowForward, SimpleCheckIcon, SimulationSlider, TodayCost, TodayEconomyContainer, TodayEconomyContent } from './styles'
+import { ArrowDownContainer, ArrowDownIcon, ContinueSignupButton, CouponAppliedContainer, EconomyResultContainer, EconomyResultFooter, EconomyResultTitleContainer, LeveBenefit, LeveBenefitsContainer, LeveBenefitsContent, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomyDisclaimer, LoadingCircle, OneYearEconomyContainer, OneYearEconomyContent, OneYearEconomyData, OneYearEconomyHeader, PercentageIcon, SimpleArrowForward, SimpleCheckIcon, SimulationSlider, TodayCost, TodayEconomyContainer, TodayEconomyContent } from './styles'
 
 export default function NewResultEconomy() {
 
@@ -78,6 +78,10 @@ export default function NewResultEconomy() {
                         max={USER_COST.MAX}
                         valueLabelDisplay="off"
                     />
+                    <ArrowDownContainer>
+                        <ArrowDownIcon className='icon' />
+                    </ArrowDownContainer>
+
                 </TodayEconomyContainer>
 
                 {userHasCoupon &&
@@ -99,7 +103,10 @@ export default function NewResultEconomy() {
                         <p className='discountPercentageValue'>{discount}%</p>
                     </LeveEconomyContent>
                 </LeveEconomyContainer>
-                <p className='leveEconomyDisclaimer'>* O desconto é aplicado sobre a parcela da conta de luz compensada com os créditos de energia da Leve</p>
+
+                <LeveEconomyDisclaimer className='leveEconomyDisclaimer'>
+                    <p>* O desconto é aplicado sobre a parcela da conta de luz compensada com os créditos de energia da Leve</p>
+                </LeveEconomyDisclaimer>
             </TodayEconomyContent>
 
             <OneYearEconomyContainer className='oneYearEconomyContainer'>
@@ -136,11 +143,10 @@ export default function NewResultEconomy() {
                             </LeveBenefit>
                         )
                     })}
-
                 </LeveBenefitsContent>
             </LeveBenefitsContainer>
 
-            <EconomyResultFooter>
+            <EconomyResultFooter className='economyResultFooter'>
                 <h2 className='economyResultSubtitle'>Gostou? Complete seu cadastro e se torne Leve</h2>
                 <ContinueSignupButton
                     onClick={() => handleSubmit()}

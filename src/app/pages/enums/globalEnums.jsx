@@ -28,42 +28,57 @@ export const CIDADE = {
     ARACAJU: {
         label: "Aracaju",
         cep: "49000-000",
+        state: "PE"
     },
     BELO_HORIZONTE: {
         label: "Belo Horizonte",
         cep: "30110-000",
+        state: "MG"
     },
     GOIANIA: {
         label: "Goiânia",
         cep: "74000-000",
+        state: "GO"
     },
     GUARUJA: {
         label: "Guarujá",
         cep: "11410-000",
+        state: "SP"
+    },
+    PAULISTA: {
+        label: "Paulista",
+        cep: "53433-480",
+        state: "PE"
     },
     PIRATININGA: {
         label: "Piratininga",
         cep: "17490-000",
+        state: "SP"
     },
     RECIFE: {
         label: "Recife",
         cep: "50010-000",
+        state: "PE"
     },
     RIO_DE_JANEIRO: {
         label: "Rio de Janeiro",
         cep: "20010-000",
+        state: "RJ"
     },
     SOCORRO: {
         label: "Socorro",
         cep: "13960-000",
+        state: "SP"
     },
     SAO_PAULO: {
         label: "São Paulo",
         cep: "01001-000",
+        state: "SP"
     },
     SAO_VICENTE: {
         label: "São Vicente",
         cep: "11310-000",
+        state: "SP"
     }
 };
 
