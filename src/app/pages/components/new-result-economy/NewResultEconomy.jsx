@@ -22,8 +22,6 @@ export default function NewResultEconomy() {
 
     const { cost, couponValue, discount, tusd, te, availabilityTax } = user?.user ?? (storeUser?.user || {})
 
-    const userHasCoupon = couponValue !== 0
-
     const todayCost = cost?.toFixed(2).toString().replace(".", ",")
     const formattedCost = cost.toLocaleString('pt-BR', {
         minimumFractionDigits: 2,
@@ -44,10 +42,6 @@ export default function NewResultEconomy() {
     const formattedTreeEquivalency = Math.ceil(treeEquivalency)
 
     var leveDiscountValue = parseFloat(leveDiscount)?.toFixed(2)?.replace(".", ",");
-
-    if (userHasCoupon) {
-        leveDiscountValue = parseFloat((leveDiscount) - couponValue)?.toFixed(2)?.replace(".", ",");
-    }
 
     const handleSubmit = () => {
         setIsLoading(true)
@@ -83,12 +77,6 @@ export default function NewResultEconomy() {
                     </ArrowDownContainer>
 
                 </TodayEconomyContainer>
-
-                {userHasCoupon &&
-                    <CouponAppliedContainer className='couponContainer'>
-                        <p>Parabéns! Cupom de <span className='couponValue'>R${couponValue}</span></p>
-                        <p>foi aplicado na sua <span className='firstMonthOnly'>primeira fatura Leve!</span></p>
-                    </CouponAppliedContainer>}
 
                 <LeveEconomyContainer className='leveEconomyContainer'>
                     <p className='leveEconomyTitle'>Valor potencial médio do seu desconto mensal*</p>
@@ -133,7 +121,7 @@ export default function NewResultEconomy() {
             </OneYearEconomyContainer>
 
             <LeveBenefitsContainer className='leveBenefitsContainer'>
-                <LeveBenefitsContent>
+                <LeveBenefitsContent className='leveBenefitsContent'>
                     <p className='leveBenefitsTitle'>Além disso, você conta com</p>
                     {benefits.map((benefit, index) => {
                         return (

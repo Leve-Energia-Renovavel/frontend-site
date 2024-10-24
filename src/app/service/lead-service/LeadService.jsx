@@ -116,7 +116,6 @@ export const getLeadData = async (uuid, store, storeAddress) => {
                 cost: instalacao?.valor_base_consumo,
                 cep: instalacao?.cep,
                 coupon: consumidor?.ref_origin,
-                couponValue: userResponse?.data?.desconto_bruto,
 
                 cpf: consumidor?.cpf !== "" ? consumidor.cpf : "",
                 rg: consumidor?.rg !== "" ? consumidor.rg : "",
@@ -130,15 +129,11 @@ export const getLeadData = async (uuid, store, storeAddress) => {
                 profession: consumidor?.profissao,
                 maritalStatus: consumidor?.estado_civil,
 
-                discount: instalacao?.desconto,
+                discount: descontosCarbono?.desconto,
                 clientId: instalacao?.clientes_id,
 
                 distributor: distribuidora?.nome,
                 distributorPhotoUrl: distribuidora?.foto_numero_instalacao,
-
-                carbonDiscount: descontosCarbono?.desconto,
-                carbonConsumption: descontosCarbono?.consumo,
-                carbonCompensableConsumption: descontosCarbono?.consumo_compensavel,
 
                 tusd: descontosCarbono?.tusd,
                 te: descontosCarbono?.te,

@@ -99,54 +99,6 @@ export const EconomyResultHeader = styled.div`
         flex-wrap: wrap;
     }
 `
-export const CouponAppliedContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    background-color: ${background.orange};
-    border-radius: 15px;
-    padding: 1rem;
-
-    position: absolute;
-    top: 155px;
-    left: 66%;
-
-    p {
-        font-family: "Graphie";
-        font-size: 14px;
-        line-height: 17px;
-        font-weight: 500;
-        text-align: center;
-        color: ${background.white};
-    }
-
-    .couponValue {
-        color: ${background.green};
-        font-size: 17px;
-        line-height: 20px;
-        padding: 2px;
-        border-radius: 4px;
-        font-weight: 700;
-        background-color: ${background.yellow};
-    }
-
-    .firstMonthOnly { 
-        font-size: 14px;
-        line-height: 17px;
-        font-weight: 500;
-        text-decoration: underline;
-    }
-
-    @media (max-width: 600px) {
-        top: 600px;
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-        width: auto;
-        margin: 0 60px;
-        left: 0%;
-        padding: 4px;
-    }
-`
 export const GoodNewsHeader = styled.div`
     display: flex;
     flex-direction: row;
@@ -564,7 +516,6 @@ export const LeveBenefit = styled.div`
         }
     }
 `
-
 
 export const EconomyResultFooter = styled.div`
     display: flex;
