@@ -551,7 +551,7 @@ export const LeveBenefit = styled.div`
 
     .benefit {
         font-family: "Graphie";
-        font-size: 16px;
+        font-size: 18px;
         font-style: normal;
         font-weight: 400;
         line-height: 120%;
