@@ -36,12 +36,19 @@ export const useStoreUser = create((set) => ({
 
         hasSignContract: false,
         hasSyncDistributorData: false,
-        
+
         memberGetMemberCode: "",
-        
+
         invoiceDate: 0,
-        
+
         hasConnectedByBackoffice: false,
+
+        tusd: 0,
+        te: 0,
+        annualDiscount: 0,
+        treeEquivalency: 0,
+        carbonReduction: 0,
+        availabilityTax: 0,
     },
     updateUser: (newUser) =>
         set((state) => ({
@@ -93,6 +100,13 @@ export const useStoreUser = create((set) => ({
                 invoiceDate: 0,
 
                 hasConnectedByBackoffice: false,
+
+                tusd: 0,
+                te: 0,
+                annualDiscount: 0,
+                treeEquivalency: 0,
+                carbonReduction: 0,
+                availabilityTax: 0,
             },
         }))
 }));

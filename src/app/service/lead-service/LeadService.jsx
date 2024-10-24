@@ -3,6 +3,7 @@ import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { requestSuccessful } from "../utils/Validations";
+import { USER_TYPE } from "@/app/pages/globalEnums";
 
 export const createSignupPayload = (name, email, phone, cep, value, type, coupon) => {
     return {
@@ -104,6 +105,7 @@ export const getLeadData = async (uuid, store, storeAddress) => {
 
             const { instalacao, distribuidora } = userResponse?.data
             const consumidor = userResponse?.data?.instalacao?.consumidor
+            const descontosCarbono = userResponse?.data?.descontos_carbono
 
             const cep = consumidor?.cep
 
@@ -114,25 +116,31 @@ export const getLeadData = async (uuid, store, storeAddress) => {
                 cost: instalacao?.valor_base_consumo,
                 cep: instalacao?.cep,
                 coupon: consumidor?.ref_origin,
-                couponValue: userResponse?.data?.desconto_bruto,
 
                 cpf: consumidor?.cpf !== "" ? consumidor.cpf : "",
                 rg: consumidor?.rg !== "" ? consumidor.rg : "",
                 birthDate: consumidor?.data_nascimento ? formatBasicBirthDate(consumidor?.data_nascimento) : "",
 
-                isCompany: consumidor?.type == "PJ" ? true : false,
-                cnpj: consumidor?.type == "PJ" ? instalacao?.cnpj : "",
-                companyName: consumidor?.type == "PJ" ? checkForCompanyName(instalacao?.razao_social, instalacao?.nome) : "",
+                isCompany: consumidor?.type == USER_TYPE.PJ ? true : false,
+                cnpj: consumidor?.type == USER_TYPE.PJ ? instalacao?.cnpj : "",
+                companyName: consumidor?.type == USER_TYPE.PJ ? checkForCompanyName(instalacao?.razao_social, instalacao?.nome) : "",
 
                 nationality: consumidor?.nacionalidade,
                 profession: consumidor?.profissao,
                 maritalStatus: consumidor?.estado_civil,
 
-                discount: instalacao?.desconto,
+                discount: descontosCarbono?.desconto,
                 clientId: instalacao?.clientes_id,
 
                 distributor: distribuidora?.nome,
-                distributorPhotoUrl: distribuidora?.foto_numero_instalacao
+                distributorPhotoUrl: distribuidora?.foto_numero_instalacao,
+
+                tusd: descontosCarbono?.tusd,
+                te: descontosCarbono?.te,
+                annualDiscount: descontosCarbono?.desconto_anual,
+                treeEquivalency: descontosCarbono?.equivalencia_arvores,
+                carbonReduction: descontosCarbono?.reducao_carbono,
+                availabilityTax: descontosCarbono?.taxa_disponibilidade,
             }
 
             store.updateUser(updatedUser);
