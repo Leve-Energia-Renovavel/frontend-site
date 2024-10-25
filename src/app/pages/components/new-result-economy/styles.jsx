@@ -221,14 +221,18 @@ export const ArrowDownContainer = styled.div`
 
     top: 166px;
     right: 185px;
-
+    
     border-radius: 30px;
-
+    
     width: 100%;
     max-width: 24px;
-
+    
     height: 100%;
     max-height: 24px;
+    
+    @media (max-width: 600px) {
+        right: 160px;
+    }
 `
 export const TodayCost = styled.div`
     display: flex;
