@@ -4,6 +4,7 @@ import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { requestSuccessful } from "../utils/Validations";
+import { USER_TYPE } from "@/app/pages/globalEnums";
 
 export const createSignupPayload = (name, email, phone, cep, value, type, coupon) => {
     return {

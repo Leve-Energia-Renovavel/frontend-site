@@ -17,7 +17,8 @@ export const EconomyResultContainer = styled.div`
     margin-top: 16px;
 
     width: 100%;
-    max-width: 1366px;
+    /* max-width: 1366px; */
+    max-width: 877px;
 
     min-height: 450px;
     height: 100%;
@@ -568,8 +569,8 @@ export const LoadingCircle = styled(CircularProgress)`
     color: ${background.yellow};
 `
 export const ContinueSignupButton = styled(Button)`
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
   background-color: ${background.green};
   color: ${background.white};
   border-radius: 30px;

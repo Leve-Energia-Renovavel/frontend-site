@@ -338,6 +338,7 @@ export const FormSubmitButton = styled(Button)`
 
   width: 100%;
   max-width: 250px;
+  max-width: 342px;
 
   padding: 8px 16px;
   
