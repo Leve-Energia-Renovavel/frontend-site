@@ -12,7 +12,6 @@ import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/a
 import { statesAcronymOptions } from '@/app/utils/form-options/statesIdOptions';
 import { costValidation } from '@/app/utils/formatters/costFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import InfoIcon from '@mui/icons-material/Info';
@@ -24,7 +23,7 @@ import { useEffect, useRef, useState } from 'react';
 import InputMask from "react-input-mask";
 import SignupFormHeader from './SignupFormHeader';
 import { companySchema, userSchema } from './schema';
-import { SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, FormTitleButton, FormTitleContainer, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupFormTitle, SignupLinearProgress, fileInputStyles } from './styles';
+import { SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupFormTitle, SignupLinearProgress, fileInputStyles } from './styles';
 
 import { signUp } from '@/app/service/user-service/UserService';
 import dynamic from 'next/dynamic';
@@ -639,7 +638,7 @@ export default function SignupForm() {
                 : <FormSubmitButton
                   type='submit'
                   form='signupForm'
-                  endIcon={<ArrowForwardIcon className='icon'/>}><span>Continuar</span></FormSubmitButton>}
+                  endIcon={<ArrowForwardIcon className='icon' />}><span>Continuar</span></FormSubmitButton>}
             </FormButtonContainer>
           </FormFooter>
 
