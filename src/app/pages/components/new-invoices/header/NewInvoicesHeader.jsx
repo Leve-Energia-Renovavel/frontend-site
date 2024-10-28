@@ -22,11 +22,10 @@ export default function NewInvoicesHeader({ setErrorMessage, setNotifications })
 
     const user = JSON.parse(localStorage.getItem('user'))
 
-    const { id, address, street } = storeMainInstallation?.mainInstallation || {}
     const { invoiceDate } = user?.user ?? (store?.user || {})
+    const { id, address, street } = storeMainInstallation?.mainInstallation || {}
 
     const allInstallations = storeInstallations?.installations || {}
-
     const filteredInstallations = allInstallations?.filter(installation => installation?.id !== id);
 
     const handleChangeSelectedInstallation = async (selectedInstallation) => {

@@ -23,19 +23,17 @@ export default function DashboardInvoices() {
 
   const mainInstallation = JSON.parse(localStorage?.getItem('mainInstallation'))
 
-  const [isLoading, setIsLoading] = useState(false)
+  const { hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
-  const { uuid, hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     const fetchInvoicesData = async () => {
       await getInvoicesData(storeNextBills, storeBilling, setIsLoading)
     }
 
-    if (!uuid) {
-      setIsLoading(true)
-      fetchInvoicesData();
-    }
+    fetchInvoicesData();
+    setIsLoading(true)
   }, []);
 
   const dontHaveBills = billings?.length === 0

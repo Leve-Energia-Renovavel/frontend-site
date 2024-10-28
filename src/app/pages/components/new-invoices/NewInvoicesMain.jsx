@@ -5,8 +5,8 @@ import { useState } from "react";
 import Messages from "../messages/Messages";
 import { NewInvoicesContainer as Container } from "./styles";
 
-const NewInvoicesTable = dynamic(() => import("./table/NewInvoicesTable"), { ssr: false });
 const NewInvoicesHeader = dynamic(() => import("./header/NewInvoicesHeader"), { ssr: false });
+const NewInvoicesTable = dynamic(() => import("./table/NewInvoicesTable"), { ssr: false });
 
 export default function NewInvoicesMain() {
 

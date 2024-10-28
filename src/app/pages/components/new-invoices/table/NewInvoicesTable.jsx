@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreBillingHistory, useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
+import { useStoreBillingHistory, useStoreMainInstallation } from '@/app/hooks/useStore';
 import { billHasExpired } from '@/app/utils/date/DateUtils';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import { formatDateClearYear, formatFullMonthAndYear } from '@/app/utils/formatters/dateFormatter';
@@ -11,15 +11,12 @@ import NewInstallationButton from '../../utils/buttons/NewInstallationButton';
 import NewInvoicesActionButtonContainer from '../action-button-container/NewInvoicesActionButton';
 import { InvoicesTableLeveBill, MobileActionButtonContainer, NewInvoicesSelectedInstallation, NewInvoicesTableContent, NewInvoicesTableHeader } from './styles';
 
-
 export default function NewInvoicesTable() {
 
-    const storeUser = useStoreUser()?.user
     const storeBilling = useStoreBillingHistory();
     const storeMainInstallation = useStoreMainInstallation()
     const { id, street, address } = storeMainInstallation?.mainInstallation || {}
 
-    const user = JSON.parse(localStorage.getItem('user'))?.user || storeUser
     const billings = storeBilling?.getFilteredBillings()
 
     const [quantityBillsShown, setQuantityBillsShown] = useState(-6)
@@ -92,9 +89,8 @@ export default function NewInvoicesTable() {
                         </NewInvoicesTableContent>
                     )
                 }
-
-
             })}
+
             {!loadedAllBills &&
                 <NewInstallationButton
                     text={"Carregar mais..."}
