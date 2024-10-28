@@ -5,7 +5,7 @@ export default function SignupFormHeader(props) {
 
     const title = {
         1: "Cadastro",
-        2: "Finalize a contratação",
+        2: "Contratação",
         3: "Insira o token",
         4: "Pronto!",
     }

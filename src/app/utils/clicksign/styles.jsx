@@ -72,6 +72,7 @@ export const ClicksignComponentContainer = styled.div`
   #clicksign-container {
     margin: 60px auto 0 auto;
 
+    width: 100%; 
     max-width: 900px; 
     height: 27rem;
 

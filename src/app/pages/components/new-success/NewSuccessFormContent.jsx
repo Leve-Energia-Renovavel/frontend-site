@@ -1,10 +1,6 @@
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import { Typography } from '@mui/material';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import checkIcon from "../../../../resources/icons/small/check-icon-yellow-small.svg";
-import { FormButton, NewSuccessFormContent } from './styles';
-
+import { FormButton, NewSuccessBoxContent, NewSuccessBoxInfo, NewSuccessFormContent, SimpleArrowForward } from './styles';
+import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
 export default function NewSuccessContent() {
 
     const router = useRouter()
@@ -14,20 +10,23 @@ export default function NewSuccessContent() {
 
     }
     return (
-        <NewSuccessFormContent >
-            <Image
-                className='checkIcon'
-                loading="lazy"
+        <NewSuccessFormContent className='newSuccessFormContent'>
+            <h1 className='title'>Parabéns!</h1>
+            <p className='subtitle'>Você acaba de contratar a Leve Energia</p>
+            <p className='description'>Agora, nosso time vai revisar seus dados e solicitar à sua distribuidora que cadastre seu imóvel como consumidor das nossas usinas. Esse processo pode levar até <span className='highlighted'>30 dias</span>, e sua conta de luz começará a ficar mais barata em até <span className='highlighted'>60 dias</span>.</p>
 
-                src={checkIcon}
-                alt="Assinaturas feitas com sucesso!"
-            />
-            <Typography variant='h1'>Assinaturas feitas com sucesso!</Typography>
-            <Typography className='info'><span className='bold'>Agora é só desfrutar da economia e dos benefícios de ser Leve.</span> Clique no botão abaixo e acesse a sua mais nova conta Leve.</Typography>
+            <NewSuccessBoxInfo className='newSuccessBoxInfo'>
+                <NewSuccessBoxContent>
+                    <ChatOutlinedIcon className='boxIcon' />
+                    <h6 className='boxTitle'>Enviaremos informações sobre o andamento por e-mail e Whatsapp. Fique de olho!</h6>
+                </NewSuccessBoxContent>
+                <p className='boxDescription'>Você também pode acessar o nosso portal de serviços e acompanhar tudo por lá. </p>
+            </NewSuccessBoxInfo>
+
             <FormButton
                 onClick={() => handleDashboard()}
-                startIcon={<PermIdentityIcon className="buttonIcon" />}>
-                <span>Acessar minha conta</span>
+                endIcon={<SimpleArrowForward className="icon" />}>
+                <span>Acessar área de clientes</span>
             </FormButton>
         </NewSuccessFormContent>
     )

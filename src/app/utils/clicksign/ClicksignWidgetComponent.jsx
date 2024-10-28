@@ -56,7 +56,7 @@ export default function ClicksignWidgetComponent({ uuid }) {
 
     return (
         <>
-            <Container>
+            <Container className="clicksignContainer">
                 <div id="clicksign-container" />
             </Container>
         </>

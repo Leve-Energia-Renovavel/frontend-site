@@ -10,7 +10,7 @@ export default function Footer() {
 
     const showMinimalist = footerBasedOn[pathname];
 
-    const hideFooter = pathname === "/signup/" || pathname === "/signup-form/";
+    const hideFooter = pathname === "/signup/" || pathname === "/signup-form/" || pathname === "/signup/success/" || pathname === "/signup/contract-signature/";
 
     if (hideFooter) {
         return null;

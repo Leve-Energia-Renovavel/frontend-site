@@ -1,28 +1,22 @@
 import styled from "@emotion/styled";
 import { Button, LinearProgress } from "@mui/material";
 import { background } from "../../styles";
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 export const NewSuccessContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(
-        to bottom,
-        ${background.yellow} 0%,
-        ${background.white} 50%,  
-        ${background.orange} 100%
-    );    
     
     margin: 74px auto 0 auto;   //margin-top for header
 
-    padding: 74px 85px;
+    padding: 0px 85px;
 
     width: 100%;
     max-width: 100vw;
     
     height: auto;
     min-height: 300px;
-
 `
 
 export const NewSuccessForm = styled.div`
@@ -30,6 +24,8 @@ export const NewSuccessForm = styled.div`
     flex-direction: column;
     background-color: ${background.white};
     border-radius: 20px;
+
+    margin-top: 4px;
 
     gap: 10px;
 
@@ -44,88 +40,181 @@ export const NewSuccessForm = styled.div`
         max-width: 100vw;
     }
 `
+
 export const NewSuccessFormContent = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
     background-color: ${background.white};
 
     min-height: 300px;
 
-    gap: 20px;
+    min-width: 380px;
+    width: 100%;
+    max-width: 388px;
 
-    .checkIcon {
-        /* margin-top: 124px; */
-        @media (max-width: 600px) {
-            margin-top: 54px;
-        }
-    }
+    margin: 0 auto;
 
-    h1 {
+    .title {
         font-family: "Graphie";
         font-size: 34px;
-        line-height: 34px;
+        line-height: 120%;
         font-weight: 600;
-        color: ${background.orange};
-
-        @media (max-width: 600px) {
-            text-align: center;
-        }
-    }
-    
-    .info{
-        font-family: "Graphie";
-        font-size: 21px;
-        line-height: 26px;
-        font-weight: 500;
+        font-style: normal;
         color: ${background.green};
 
-        max-width: 700px;
-        
-        @media (max-width: 600px) {
-            text-align: center;
-        }
+        text-align: center;
     }
     
-    .bold {
+    .subtitle {
+        font-family: "Graphie";
+        font-size: 18px;
+        line-height: 120%;
         font-weight: 600;
+        font-style: normal;
+        color: ${background.green};
+
+        max-width: 388px;
+
+        margin-top: 24px;
+    }
+    
+    .description {
+        font-family: "Graphie";
+        font-size: 16px;
+        line-height: 120%;
+        font-weight: 400;
+        font-style: normal;
+        color: ${background.black};
+        
+        max-width: 388px;
+
+        margin-top: 8px;
+    }
+    
+    .highlighted {
+        font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+        min-width: 340px;
+        max-width: 342px;
+
+        .description {
+            max-width: 342px;
+        }
+    }
+`
+
+
+export const NewSuccessBoxInfo = styled.div`
+    display: flex;
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    border: 1px solid ${background.green};
+    
+    gap: 16px;
+    
+    min-width: 380px;
+    width: 100%;
+    max-width: 388px;
+    
+    margin: 0 auto;
+    border-radius: 8px;
+
+    margin-top: 32px;
+
+    .boxDescription {
+        font-family: "Graphie";
+        font-size: 14px;
+        line-height: 120%;
+        font-weight: 400;
+        color: ${background.green};
+
+        max-width: 278px;
+
+        margin-left: 32px; //24px icon + 8px gap
+    }
+
+    @media (max-width: 600px) {
+        min-width: 340px;
+        max-width: 342px;
+    }
+
+`
+
+export const NewSuccessBoxContent = styled.div`
+    display: flex;
+    align-items: start;
+    gap: 8px;
+
+    .boxTitle {
+        font-family: "Graphie";
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 120%;
+        color: ${background.green};
+
+        max-width: 278px;
+    }
+
+    .boxIcon {
+        color: ${background.green};
     }
 `
 
 export const FormButton = styled(Button)`
-  background-color: ${background.orange};
-  color: ${background.yellow};
+  display: flex;
+  align-items: center;
+  background-color: ${background.green};
+  color: ${background.white};
   border-radius: 30px;
 
-  margin-top: 100px;
-  margin-bottom: 25px;
+  height: 54px;
 
-  padding: 8px 16px;
-
-  max-width: 290px;
-  max-height: 42px;
-
-    @media (max-width: 600px) {
-        margin-top: 54px;
-    }
+  width: 100%;
+  max-width: 388px;
   
-  span {
+  margin: 0 auto;
+  margin-top: 32px;
+  
+  padding: 8px 16px;
+  
+    span {
     font-family: "Graphie";
     font-size: 21px;
-    font-weight: 500;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; 
     text-transform: none;
-  }
-  
-  &:hover {
-    background-color: ${background.yellow};
-    color: ${background.orange};
-    cursor: pointer;
+    color: ${background.white};
+
+    white-space: nowrap;
   }
 
-  .buttonIcon {
-    width: 30px;
-    height: 30px;
+  &:hover {
+    cursor: pointer;
+    background-color: ${background.yellow};
+
+    span {
+      color: ${background.green};
+    }
+    
+    .icon {
+        color: ${background.green};
+    }
   }
+
+    @media (max-width: 600px) {
+        max-width: 342px;
+    }
+`
+
+export const SimpleArrowForward = styled(ArrowForwardIcon)`
+    width: 21px;
+    height: 21px;
+    color: ${background.yellow};
 `
 
 export const SignupLinearProgress = styled(LinearProgress)`

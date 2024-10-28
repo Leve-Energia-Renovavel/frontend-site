@@ -9,14 +9,14 @@ export const ContractSignatureContainer = styled.div`
     background-color: ${background.grey};
     margin: 74px auto 0 auto;   //margin-top for header
 
-    padding: 74px 85px;
+    padding: 0px 85px;
     
     width: 100%;
     max-width: 100vw;
     height: auto;
     
     @media (max-width: 600px) {
-        padding: 50px;
+        padding: 0px 50px;
     }
 `
 export const ContractSignatureForm = styled.div`
@@ -24,6 +24,8 @@ export const ContractSignatureForm = styled.div`
     flex-direction: column;
     background-color: ${background.white};
     border-radius: 20px;
+
+    margin-top: 4px;
 
     gap: 10px;
 
@@ -33,6 +35,7 @@ export const ContractSignatureForm = styled.div`
     min-height: 300px;
     
     padding: 1rem;  //change later !!!!
+    padding-bottom: 50px;
     
     @media (max-width: 600px) {
         border-radius: 0;

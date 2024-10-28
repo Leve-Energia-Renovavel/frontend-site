@@ -74,7 +74,7 @@ export default function NewContractSignature() {
 
     return (
         <>
-            <Container>
+            <Container className="contractSignatureContainer">
                 <ContractSignatureForm className="contractSignatureForm">
                     <SignupFormHeader step={step} />
                     <SignupLinearProgress variant="determinate" value={value} />
