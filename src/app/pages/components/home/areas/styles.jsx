@@ -1,6 +1,5 @@
 import { background } from "@/app/pages/styles"
 import styled from "@emotion/styled"
-import { CircleNotifications } from "@mui/icons-material"
 
 export const HomeAreasContainer = styled.div`
   display: flex;
@@ -32,56 +31,6 @@ export const HomeAreasContainer = styled.div`
     .map {
       width: 80%;
       height: auto;
-    }
-  }
-`
-export const LegendIcon = styled(CircleNotifications)`
-`
-
-export const MapLegendContainer = styled.div`
-`
-
-export const MapLegend = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 4px;
-
-  .legendIcon {
-    color: ${props => props.hasFactory ? background.orange : background.green};
-  }
-  
-  .legendDescription {
-    font-family: "Graphie";
-    font-size: 17px;
-    line-height: 21px;
-    font-weight: 500;
-    color: ${props => props.hasFactory ? background.orange : background.green};
-  }
-`
-export const AreaListContainer = styled.div`
-  margin-top: -1rem;
-
-  .areaList {
-    font-family: "Graphie";
-    font-size: 14px;
-    line-height: 21px;
-    font-weight: 500;
-    color: ${background.green};
-  }
-
-  .highlighted {
-    font-weight: 700;
-    text-decoration: underline;
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .areaList {
-      text-align: center;
-      max-width: 200px;
     }
   }
 `
