@@ -30,7 +30,8 @@ export const NewSuccessForm = styled.div`
     gap: 10px;
 
     width: 100%;
-    max-width: 1196px;
+    /* max-width: 1196px; */
+    max-width: 877px;
 
     padding: 1rem;  //change later !!!!
 

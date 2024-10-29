@@ -38,9 +38,7 @@ export default function NewDashboardMain(props) {
             await getDashboardMainData(router, storeUser, storeEconomy, setErrorMessage)
         };
 
-        if (!uuid) {
-            fetchDashboardData();
-        }
+        fetchDashboardData();
     }, []);
 
     return (
