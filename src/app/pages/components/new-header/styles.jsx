@@ -40,22 +40,6 @@ export const MobileNewHeaderContainer = styled.header`
         ${props => props.isLandingPage && "display:none"};
     }
 
-    .mobileMenu {
-        width: 45px;
-        height: 45px;
-
-        padding: 8px;
-
-        border-radius: 30px;
-
-        color: ${props => props.isOpen ? background.yellow : background.orange};
-        background-color: ${props => props.isOpen ? background.orange : background.yellow};
-        
-        cursor: pointer;
-        
-        display:none;
-    }
-
     .logoLeve {
         width: 200px; 
         height: 33px;
@@ -69,13 +53,6 @@ export const MobileNewHeaderContainer = styled.header`
         width: 100vw;
         max-width: 100vw;
         margin: 0;
-
-        .mobileMenu {
-            display: block;
-        }
-        .profile {
-            display: none;
-        }
 
         .logoLeve {
             width: 155px; 
