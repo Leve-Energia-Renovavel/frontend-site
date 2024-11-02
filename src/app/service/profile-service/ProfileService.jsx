@@ -31,8 +31,6 @@ export const updateProfileData = async (response, store) => {
         maritalStatus: consumidor?.estado_civil,
         memberGetMemberCode: consumidor?.ref_code,
 
-        hasFetchedData: true,
-
         invoiceDate: consumidor?.dia_fatura
     });
 

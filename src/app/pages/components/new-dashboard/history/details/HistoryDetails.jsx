@@ -8,6 +8,14 @@ export default function HistoryDetails() {
     const router = useRouter()
     const userEconomy = useStoreUserEconomy().userEconomy
 
+    const formattedUserEconomyCost = userEconomy.value.toLocaleString('pt-BR', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+
+    console.log(userEconomy)
+    console.log(formattedUserEconomyCost)
+
     return (
         <HistoryDetail className='historyDetailContainer'>
             <HistoryDetailHeader className='historyDetailHeader'>
@@ -20,7 +28,7 @@ export default function HistoryDetails() {
                     <p className='legend'>em créditos de energia limpa</p>
                 </HistoryDetailValue>
                 <HistoryDetailValue className='historyDetailValue'>
-                    <p className='valueHighlighted'>{`${userEconomy.value ? userEconomy.value.toString().replace('.', ',') : `R$ 0,00`}`}</p>
+                    <p className='valueHighlighted'>{`${formattedUserEconomyCost}`}</p>
                     <p className='legend'>a mais no seu bolso</p>
                 </HistoryDetailValue>
             </HistoryDetailContent>

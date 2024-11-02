@@ -74,7 +74,7 @@ export default function DashboardMain() {
                         maritalStatus: consumidor?.estado_civil,
                         memberGetMemberCode: consumidor?.ref_code,
 
-                        hasFetchedData: true,
+                        hasSyncDistributorData: true,
 
                         invoiceDate: consumidor?.dia_fatura
                     });
@@ -181,8 +181,6 @@ export default function DashboardMain() {
                         city: address?.cidade,
                         state: address?.uf,
                         cep: address?.cep,
-                        hasFetchedData: true,
-
                     })
                 } else {
                     console.error("Failed to fetch updated address data");
