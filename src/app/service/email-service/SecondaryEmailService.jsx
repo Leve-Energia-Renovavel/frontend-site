@@ -22,7 +22,6 @@ export const handleSecondaryEmail = async (secondaryEmail, setNotifications, set
             }
 
         } catch (error) {
-            console.log(error)
             setErrorMessage([error?.response?.data?.message])
             return false
 

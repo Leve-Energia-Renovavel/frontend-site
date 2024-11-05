@@ -8,6 +8,7 @@ export const CardParentContainer = styled.div`
 
     ${props => props.status === "inativo" && `background-color: ${background.greyDark}`};
     ${props => props.status === "ativo" && `background-color: ${background.green}`};
+    ${props => props.status === "em_cancelamento" && `background-color: ${background.white}`};
 
     border-radius: 15px;
     text-align: center;
@@ -33,6 +34,8 @@ export const CardParentContainer = styled.div`
         color: ${background.white};
 
         margin: 5px 0px;
+
+        ${props => props.status === "em_cancelamento" && `display: none`};
     }
 `
 export const CardContainer = styled.div`

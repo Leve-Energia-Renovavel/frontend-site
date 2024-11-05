@@ -50,7 +50,6 @@ export default function CompanyPartnerForm({ setErrorMessage, setNotifications }
         )
 
         const response = await companyPartnerSchemaValidation(submitData)
-        console.log("response ===>>", response)
         await requestValidation(response, setNotifications, setErrorMessage, router)
 
         setLoading(false)

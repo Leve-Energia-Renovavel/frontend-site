@@ -7,10 +7,8 @@ export const companyPartnerSchemaValidation = async (data) => {
     const response = await companyPartnerLeadSchema.validate(data, { abortEarly: false })
         .then(async () => {
             return await startSignUp(data)
-
         })
         .catch((error) => {
-            console.log(error);
             return error
         });
 

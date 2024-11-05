@@ -56,7 +56,6 @@ export const addNewInstallation = async (data, router, setErrorMessage, setIsLoa
 
     try {
         const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/add-uc`, data, { headers });
-        console.log("API Response:", response);
         const uuid = response?.data?.uuid
         if (requestSuccessful(response?.status) && uuid && uuid != "") {
             router.push(`/dashboard/installations/contract-signature/?uuid=${uuid}`)

@@ -13,8 +13,6 @@ export function usePost(url) {
         } catch (error) {
             console.error("Error: " + error)
         }
-        console.log(JSON.stringify(data))
-
     }, [])
 
     return { data }

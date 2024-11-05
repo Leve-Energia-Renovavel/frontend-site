@@ -53,7 +53,6 @@ export default function InstallationsMain() {
 
         try {
             const response = await axios.get(url);
-            console.log(response)
             if (requestSuccessful(response.status)) {
                 newInstallationRef.address.current.value = response?.data?.logradouro
                 newInstallationRef.neighborhood.current.value = response?.data?.bairro

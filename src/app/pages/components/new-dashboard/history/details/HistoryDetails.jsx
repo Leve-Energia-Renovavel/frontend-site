@@ -13,9 +13,6 @@ export default function HistoryDetails() {
         maximumFractionDigits: 2
     });
 
-    console.log(userEconomy)
-    console.log(formattedUserEconomyCost)
-
     return (
         <HistoryDetail className='historyDetailContainer'>
             <HistoryDetailHeader className='historyDetailHeader'>

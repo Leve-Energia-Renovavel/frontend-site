@@ -107,7 +107,6 @@ export default function RegisterForm() {
 
                 })
                 .catch((err) => {
-                    console.log(err.errors);
                     return err.errors
                 });
 
@@ -118,7 +117,6 @@ export default function RegisterForm() {
 
                 })
                 .catch((err) => {
-                    console.log(err.errors);
                     return err.errors
                 });
         }
@@ -216,7 +214,7 @@ export default function RegisterForm() {
     };
 
     const handleChangeFiles = (event, fileType) => {
-        console.log(event.target.files)
+        // console.log(event.target.files)
         const fileUploaded = event.target.files[0];
         if (fileType === 'socialContract') {
             setSocialContractFile(fileUploaded);

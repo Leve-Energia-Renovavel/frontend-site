@@ -17,7 +17,6 @@ import { AlertAuth, AuthBoxes, ButtonContainer, FormContainer, FormContent, Form
 
 const handleSubmit = (event) => {
     event.preventDefault()
-    console.log("submit")
 }
 
 export default function ContractAuthForm() {
@@ -61,7 +60,6 @@ export default function ContractAuthForm() {
 
     const resendToken = () => {
         //TODO: implement resend Token function
-        console.log("requesting new token...")
     }
 
     useEffect(() => {

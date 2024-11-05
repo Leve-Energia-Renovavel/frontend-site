@@ -48,14 +48,11 @@ export default function RecoverPasswordMain() {
 
         try {
             const response = await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/recovery-pass/${token}`, data, { headers });
-            console.log("response ==>", response);
             if (requestSuccessful(response?.status)) {
                 setNotifications(["Senha redefinida com sucesso!"])
             }
         } catch (error) {
-            console.log(error);
             if (error?.message) {
-                console.log(error.message);
                 setValidationErrors([error?.message])
             }
             // setValidationErrors(error)

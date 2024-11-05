@@ -15,14 +15,12 @@ export const handleChangePassword = async (oldPassword, newPassword, setNotifica
         }
         try {
             const response = await axios.put(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/change-pass`, data, { headers })
-            console.log(response)
             if (requestSuccessful(response.status)) {
                 setNotifications([response.data.message])
                 return true
             }
             
         } catch (error) {
-            console.log(error)
             setErrorMessage([error.response.data.message])
             return false
         }

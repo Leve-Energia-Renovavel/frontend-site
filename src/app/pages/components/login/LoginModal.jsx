@@ -58,7 +58,6 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
                 return response
             })
             .catch((err) => {
-                console.log(err.errors);
                 setValidationErrors(err.errors)
             });
     }
@@ -68,7 +67,6 @@ export default function LoginModal({ isOpen, openModal, closeModal }) {
                 return await recoverPassword(data)
             })
             .catch((err) => {
-                console.log(err.errors);
                 setValidationErrors(err.errors)
                 return (err.errors)
             });

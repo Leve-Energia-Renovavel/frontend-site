@@ -83,7 +83,7 @@ export default function SignupForm() {
       try {
         const response = await fetchCNPJ(cnpj)
         if (requestSuccessful(response?.status)) {
-          console.log(response?.data)
+          // console.log(response?.data)
         }
       } catch (error) {
         console.log("Error fetching CNPJ data: ", error)
@@ -100,7 +100,7 @@ export default function SignupForm() {
       try {
         const response = await fetchCEP(cep)
         if (requestSuccessful(response?.status)) {
-          console.log(response?.data)
+          // console.log(response?.data)
           setNotifications(["Endereço encontrado com sucesso!"])
         } else {
           setErrorMessage(["Erro ao buscar o CEP. Por favor, preencha os dados manualmente."])

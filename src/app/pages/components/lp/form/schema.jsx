@@ -10,7 +10,6 @@ export const partnerSchemaValidation = async (data) => {
 
         })
         .catch((error) => {
-            console.log(error);
             return error
         });
 
@@ -24,7 +23,6 @@ export const promoSchemaValidation = async (data) => {
 
         })
         .catch((error) => {
-            console.log(error);
             return error
         });
 

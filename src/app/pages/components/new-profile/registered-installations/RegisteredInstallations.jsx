@@ -12,8 +12,7 @@ export default function RegisteredInstallations() {
             <h2 className="title">Meus endereços cadastrados</h2>
 
             <RegisteredInstallationsContainer className="registeredInstallationsContainer">
-                {installations?.filter(installation => installation.status !== "em_cancelamento")
-                .slice(-2).map((installation, index) => {
+                {installations?.slice(-2).map((installation, index) => {
                     return (
                         <InstallationCard key={installation?.uuid} installation={installation} index={index + 1} />
                     )

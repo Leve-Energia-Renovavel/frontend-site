@@ -58,7 +58,6 @@ export default function SimulateEconomy() {
                 router.push(path)
             })
             .catch((err) => {
-                console.log(err.errors);
                 setValidationErrors(err.errors)
             });
 

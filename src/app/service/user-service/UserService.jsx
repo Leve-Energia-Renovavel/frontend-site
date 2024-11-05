@@ -3,7 +3,6 @@ import Cookies from "js-cookie";
 
 export const signUp = async (data) => {
     try {
-        console.log("saving data...")
         return await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up`, data);
 
     } catch (error) {
@@ -33,9 +32,7 @@ export const logIn = async (data) => {
             scope: ""
         }
 
-        console.log("logging in...")
         const response = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL_TOKEN_OAUTH}`, payload);
-        console.log("logIn response ===>>>", response)
         return response
 
     } catch (error) {
@@ -48,7 +45,6 @@ export const updateUserProfile = async (data) => {
         "Authorization": `Bearer ${Cookies.get('accessToken')}`
     };
     try {
-        console.log("updating user profile data...")
         return await axios.put(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/painel/`, data, { headers });
 
     } catch (error) {
