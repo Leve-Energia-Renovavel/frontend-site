@@ -1,4 +1,4 @@
-import { DashboardButtonStyle } from "./styles";
+import { DashboardButtonStyle } from "../styles";
 
 export default function DashboardButton(props) {
     return (

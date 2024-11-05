@@ -1,4 +1,4 @@
-import { TimelineButtonStyled as Button } from "./styles";
+import { TimelineButtonStyled as Button } from "../../styles";
 
 export default function TimelineButton({ onClick, isSubmit, ...props }) {
     return (

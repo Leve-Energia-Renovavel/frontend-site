@@ -7,7 +7,7 @@ import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOpti
 import { formatDateClearYear, formatFullMonthAndYear } from '@/app/utils/formatters/dateFormatter';
 import { getAddress } from '@/app/utils/helper/installations/installationsHelper';
 import { useState } from 'react';
-import NewInstallationButton from '../../utils/buttons/NewInstallationButton';
+import NewInstallationButton from '../../utils/buttons/dashboard/installations/NewInstallationButton';
 import NewInvoicesActionButtonContainer from '../action-button-container/NewInvoicesActionButton';
 import { InvoicesTableLeveBill, MobileActionButtonContainer, NewInvoicesSelectedInstallation, NewInvoicesTableContent, NewInvoicesTableHeader } from './styles';
 

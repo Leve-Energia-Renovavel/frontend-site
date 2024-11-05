@@ -2,8 +2,8 @@ import { headerHelper } from '@/app/utils/helper/pathHelper';
 import CloseIcon from '@mui/icons-material/Close';
 import { Modal } from '@mui/material';
 import { usePathname, useRouter } from 'next/navigation';
-import MobileHeaderButtonContained from '../utils/buttons/MobileHeaderButtonContained';
-import MobileHeaderButtonOutlined from '../utils/buttons/MobileHeaderButtonOutlined';
+import MobileHeaderButtonContained from '../utils/buttons/header/MobileHeaderButtonContained';
+import MobileHeaderButtonOutlined from '../utils/buttons/header/MobileHeaderButtonOutlined';
 import { MenuItemMobile, MobileButtonContainer, MobileMenu, NavContainer, NavMobile, UlMobile } from './styles';
 
 

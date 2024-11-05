@@ -5,7 +5,7 @@ import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOpti
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 import { Typography } from '@mui/material';
-import TimelineButton from '../utils/buttons/TimelineButton';
+import TimelineButton from '../utils/buttons/dashboard/timeline/TimelineButton';
 import { DueDate, DueDateContainer, TimelineConnectorStyled, TimelineContentButtonContainer, TimelineContentContainer, TimelineContentStyled, TimelineDiv, TimelineDotStyled, TimelineDueDateDiv, TimelineItemStyled, TimelineOppositeContentStyled, TimelineSeparatorStyled, TimelineStyled } from './styles';
 
 export default function TimelineMain() {

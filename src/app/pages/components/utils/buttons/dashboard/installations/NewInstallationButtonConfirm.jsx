@@ -1,4 +1,4 @@
-import { NewInstallationButtonConfirmStyle as NewInstallationButton } from "./styles";
+import { NewInstallationButtonConfirmStyle as NewInstallationButton } from "../../styles";
 
 export default function NewInstallationButtonConfirm(props) {
     return (

@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import soleProfile from "../../../../resources/icons/large/sole-icon-profile-large.png";
 import Messages from "../messages/Messages";
-import DashboardMemberGetMember from "../new-dashboard/side-bar/DashboardMemberGetMember";
+import DashboardMemberGetMember from "../new-dashboard/side-bar/member-get-member/DashboardMemberGetMember";
 import DashboardMenu from "../new-dashboard/side-bar/DashboardMenu";
 import { LoginBox, MenuContent, MenuHeaderContent } from "./styles";
 

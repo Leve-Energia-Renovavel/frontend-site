@@ -1,6 +1,6 @@
-import { MobileHeaderButtonOutlined as Button } from "./styles";
+import { MobileHeaderButtonContained as Button } from "../styles";
 
-export default function MobileHeaderButtonOutlined({ onClick, isSubmit, ...props }) {
+export default function MobileHeaderButtonContained({ onClick, isSubmit, ...props }) {
     return (
         <Button
             type={isSubmit ? 'submit' : 'button'}

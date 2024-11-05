@@ -1,4 +1,4 @@
-import { NewInstallationButtonStyle } from "./styles";
+import { NewInstallationButtonStyle } from "../../styles";
 
 export default function NewInstallationButton(props) {
     return (

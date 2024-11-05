@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import HistorySpendingChart from "../charts/HistorySpendingChart";
 import MemberGetMember from "../member-get-member/MemberGetMember";
-import DashboardButton from "../utils/buttons/DashboardButton";
+import DashboardButton from "../utils/buttons/dashboard/DashboardButton";
 import FormButton from "../utils/buttons/FormButton";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
 import { BillDetails, DashboardContainer as Container, HistoryBilling, HistoryBillingContainer, HistoryContainer, HistorySpendingContainer, HistorySpendingGrid, UserEconomyInfos as Info, MainInfoContainer as Main, MemberGetMemberContainer, NewInstallationButtonContainer, NextBill, NextBillContainer, NextBillGrid, NextBillInfo, NextBillNotFound, NextBillValue, PaymentButtonContainer, SkeletonDiv, TitleContainer, UserEconomyNotFound, WarningsContainer, YourInfo, YourInfoContainer } from "./styles";

@@ -25,6 +25,7 @@ export default function DashboardMenu({ isSideBar, menuSelected, setMenuSelectio
         storeMainInstallation.clearMainInstallation()
         storeNextBills.clearNextBills()
         storeUserEconomy.clearUser()
+        
         router.push(PATH_TO.HOME)
     }
 

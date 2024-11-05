@@ -2,7 +2,7 @@
 
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import { useState } from 'react';
-import MemberGetMemberModal from '../../utils/modals/member-get-member-modal/MemberGetMemberModal';
+import MemberGetMemberModal from '../../../utils/modals/member-get-member-modal/MemberGetMemberModal';
 import { MenuOption } from './styles';
 
 export default function DashboardMemberGetMember({ isSideBar, setErrorMessage, setNotifications }) {

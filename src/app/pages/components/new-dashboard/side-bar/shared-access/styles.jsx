@@ -17,6 +17,10 @@ export const DashboardAccordionContainer = styled(Accordion)`
 
     ${props => props.isMobileContent && "display:none;"}
 
+    .MuiAccordionSummary-root  {
+      ${props => props.defaultExpanded && "pointer-events: none;"}
+    }
+
     @media (max-width: 900px) {
         ${props => props.isMobileContent && "display:block;"}
     }

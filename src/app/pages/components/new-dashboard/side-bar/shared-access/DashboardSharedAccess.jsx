@@ -10,7 +10,7 @@ import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { useRef, useState } from 'react';
 import { CheckIcon, DashboardAccordionContainer, DashboardAccordionDetails, DashboardAccordionSummary, EditFormButton, ExpandIcon, FormButton, SharedAccessForm, SimpleArrowForward } from './styles';
 
-export default function DashboardSharedAccess({ isMobileContent, setErrorMessage, setNotifications }) {
+export default function DashboardSharedAccess({ expanded, isMobileContent, setErrorMessage, setNotifications }) {
 
     const store = useStoreUser()
 
@@ -55,6 +55,7 @@ export default function DashboardSharedAccess({ isMobileContent, setErrorMessage
 
     return (
         <DashboardAccordionContainer
+            defaultExpanded={expanded}
             isMobileContent={isMobileContent}
             hasSyncDistributorData={hasSyncDistributorData}
             disableGutters

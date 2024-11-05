@@ -15,7 +15,7 @@ import { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
 import { background } from "../../styles";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
-import NewInstallationButtonConfirm from "../utils/buttons/NewInstallationButtonConfirm";
+import NewInstallationButtonConfirm from "../utils/buttons/dashboard/installations/NewInstallationButtonConfirm";
 import { ButtonContainer, InstallationsMainContainer as Container, FormContentNewInstallation, HomeIconStyled, InstallationsMainContent, MainInstallationInfoContainer as MainInstallationInfo, MainTitleContainer, NewInstallationContent, SnackbarMessageAlert, SnackbarMessageNotification, TitleContainer, TitleIconsContainer } from "./styles";
 
 export default function InstallationsMain() {
