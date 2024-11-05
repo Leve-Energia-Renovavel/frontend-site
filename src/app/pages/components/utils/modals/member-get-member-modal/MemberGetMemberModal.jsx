@@ -18,7 +18,7 @@ export default function MemberGetMemberModal({ isOpen, closeModal, setErrorMessa
                     },
                 },
             }}>
-            <ModalBox>
+            <ModalBox className="memberGetMemberModalBox">
                 <NewMemberGetMember closeModal={closeModal}
                     setErrorMessage={setErrorMessage}
                     setNotifications={setNotifications} />
