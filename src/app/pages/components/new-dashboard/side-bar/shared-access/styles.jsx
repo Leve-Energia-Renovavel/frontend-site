@@ -13,7 +13,7 @@ export const DashboardAccordionContainer = styled(Accordion)`
     background-color: ${background.white};
     box-shadow: none;
     
-    border: ${props => props.hasSyncDistributorData ? `1px solid ${background.green};` : `none;`};
+    border: ${props => props.hasSyncDistributorData && props.isMobileContent ? `1px solid ${background.green};` : `none;`};
 
     ${props => props.isMobileContent && "display:none;"}
 
@@ -59,12 +59,14 @@ export const DashboardAccordionDetails = styled(AccordionDetails)`
     gap: 16px;
 
     .sharedAccessSubtitle {
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%; /* 16.8px */
-    color: ${background.greyMediumHigh};
-}
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 120%; /* 16.8px */
+        color: ${background.greyMediumHigh};
+
+        max-width: 310px;
+    }
 `
 export const SharedAccessForm = styled.form`
     display: flex;
@@ -111,6 +113,7 @@ export const SharedAccessForm = styled.form`
           & fieldset {
             height: 40px;
             border-radius: 5px;
+            border-color: ${background.orange}; /* Ensure border is orange by default */
           }
         } 
 

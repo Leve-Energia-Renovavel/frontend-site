@@ -79,14 +79,11 @@ export default function SignupForm() {
   const handleGetCNPJ = async (cnpj) => {
     if (cnpj !== "") {
       setIsLoadingCNPJ(true)
-      console.log("Getting CNPJ data....")
       try {
         const response = await fetchCNPJ(cnpj)
         if (requestSuccessful(response?.status)) {
-          // console.log(response?.data)
         }
       } catch (error) {
-        console.log("Error fetching CNPJ data: ", error)
       } finally {
         setIsLoadingCNPJ(false)
       }
@@ -100,13 +97,11 @@ export default function SignupForm() {
       try {
         const response = await fetchCEP(cep)
         if (requestSuccessful(response?.status)) {
-          // console.log(response?.data)
           setNotifications(["Endereço encontrado com sucesso!"])
         } else {
           setErrorMessage(["Erro ao buscar o CEP. Por favor, preencha os dados manualmente."])
         }
       } catch (error) {
-        // console.log("Error fetching CNPJ data: ", error)
       } finally {
         setIsLoadingCEP(false)
       }
@@ -229,7 +224,6 @@ export default function SignupForm() {
 
     const response = await schemaValidation(isCompany, submitData)
     if (requestSuccessful(response?.status) || hasToSignContract(response?.data?.message)) {
-      console.log("Data successfully saved!")
 
       store.updateUser({
         birthDate: submitData.data_nascimento,

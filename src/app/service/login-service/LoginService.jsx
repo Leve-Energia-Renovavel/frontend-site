@@ -35,7 +35,7 @@ export const forgotPasswordValidation = async (data, setNotifications, setErrorM
             }
         })
         .catch((err) => {
-            // console.log(err.errors);
+            console.error(err.errors);
             setErrorMessage(["Erro ao recuperar senha. Por favor, tente novamente"])
             return (err.errors)
         });

@@ -16,15 +16,14 @@ export default function DashboardSharedAccess({ expanded, isMobileContent, setEr
 
     const user = JSON.parse(localStorage.getItem('user')) || store.user
 
-    var { distributor, hasSyncDistributorData } = user?.user ?? (store?.user || {})
+    const { distributor } = user?.user ?? (store?.user || {})
+    var { hasSyncDistributorData } = user?.user ?? (store?.user || {})
 
     const [passwordVisibible, setPasswordVisibible] = useState("password")
 
     // hasSyncDistributorData = !hasSyncDistributorData
 
-    if (!distributor) {
-        distributor = "distribuidora"
-    }
+    const showExpandIcon = hasSyncDistributorData && isMobileContent
 
     const distributorLoginRef = {
         email: useRef(null),
@@ -69,14 +68,14 @@ export default function DashboardSharedAccess({ expanded, isMobileContent, setEr
                 hasSyncDistributorData={hasSyncDistributorData}
                 aria-controls="dashboard-shared-access-content"
                 id="dashboard-shared-access"
-                expandIcon={<ExpandIcon className='expandIcon' />}>
-                <p className='sharedAccessTitle'>Acesso compartilhado</p>{hasSyncDistributorData && <CheckIcon className='checkIcon' />}
+                expandIcon={showExpandIcon && <ExpandIcon className='expandIcon' />}>
+                <p className='sharedAccessTitle'>Acesso ao portal da {distributor ? distributor : "distribuidora"}</p>{hasSyncDistributorData && <CheckIcon className='checkIcon' />}
             </DashboardAccordionSummary>
             <DashboardAccordionDetails>
                 {hasSyncDistributorData &&
                     <p className='sharedAccessSubtitle'>Seus dados de acesso estão compartilhados com a Leve para a emissão de uma só fatura, com valores finais somados de consumo e distribuição</p>}
                 {!hasSyncDistributorData &&
-                    <p className='sharedAccessSubtitle'>Compartilhe seu acesso a plataforma da {distributor} para pagar uma só fatura de luz: </p>}
+                    <p className='sharedAccessSubtitle'>Para garantir o máximo de economia mensal, registre seus dados de acesso ao portal ou aplicativo da sua distribuidora. Assim, poderemos acessar as informações da sua fatura mensalmente e assegurar que os créditos de energia sejam aplicados corretamente para o seu consumo. </p>}
 
                 <SharedAccessForm>
                     <TextField

@@ -6,6 +6,7 @@ import { requestSuccessful } from "../utils/Validations";
 export const updateProfileData = async (response, store) => {
     const consumidor = response?.data?.consumidor
     const instalacao = response?.data?.instalacao
+    const distribuidoraInstalacao = response?.data?.distribuidora_instalacao
 
     store.updateUser({
         uuid: consumidor?.uuid,
@@ -26,12 +27,16 @@ export const updateProfileData = async (response, store) => {
         rg: consumidor?.rg,
         cost: instalacao?.valor_base_consumo,
 
+
         profession: consumidor?.profissao,
         nationality: consumidor?.nacionalidade,
         maritalStatus: consumidor?.estado_civil,
         memberGetMemberCode: consumidor?.ref_code,
 
-        invoiceDate: consumidor?.dia_fatura
+        invoiceDate: consumidor?.dia_fatura,
+
+        distributor: distribuidoraInstalacao?.nome?.split(" ")[0],
+        hasSyncDistributorData: instalacao?.distribuidora_login ? true : false,
     });
 
 }

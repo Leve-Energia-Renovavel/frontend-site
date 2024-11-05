@@ -2,14 +2,14 @@
 
 import { menuOptions } from "@/app/utils/helper/dashboard/dashboardHelper";
 import CloseIcon from '@mui/icons-material/Close';
-import { Backdrop, IconButton, Modal, Typography } from "@mui/material";
+import { Backdrop, IconButton, Modal } from "@mui/material";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import soleProfile from "../../../../resources/icons/large/sole-icon-profile-large.png";
 import Messages from "../messages/Messages";
-import DashboardMemberGetMember from "../new-dashboard/side-bar/member-get-member/DashboardMemberGetMember";
 import DashboardMenu from "../new-dashboard/side-bar/DashboardMenu";
+import DashboardMemberGetMember from "../new-dashboard/side-bar/member-get-member/DashboardMemberGetMember";
 import { LoginBox, MenuContent, MenuHeaderContent } from "./styles";
 
 export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
@@ -17,11 +17,8 @@ export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
     const path = usePathname()
 
     const user = JSON.parse(localStorage.getItem('user'))
-    var username = null
 
-    if (user) {
-        username = user?.user?.name
-    }
+    const { name } = user?.user ?? {}
 
     const filteredOption = menuOptions?.find(option => option?.link === path?.toString());
     const [menuSelected, setMenuSelection] = useState(filteredOption)
@@ -51,7 +48,7 @@ export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
                     <MenuContent>
                         <MenuHeaderContent>
                             <Image src={soleProfile} className="sole" alt="Imagem do Solem, mascote da Leve" />
-                            <Typography variant="subtitle1" className="helloUser">Olá, {username ? username : "Visitante"}</Typography>
+                            <p className="helloUser">Olá, {name ? name?.split(" ")[0] : "Visitante"}</p>
                         </MenuHeaderContent>
 
                         <DashboardMemberGetMember isSideBar={false} setErrorMessage={setErrorMessage} setNotifications={setNotifications} />

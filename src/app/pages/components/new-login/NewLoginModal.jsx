@@ -77,6 +77,8 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
             const data = { email: loginRef.email.current.value }
             await forgotPasswordValidation(data, setNotifications, setErrorMessage)
         }
+        await awaitSeconds(0.6)
+        closeModal()
         setIsLoading(false)
     }
 

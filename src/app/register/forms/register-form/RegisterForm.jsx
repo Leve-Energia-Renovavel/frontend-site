@@ -160,8 +160,6 @@ export default function RegisterForm() {
         const response = await schemaValidation(isCompany, submitData)
 
         if (requestSuccessful(response.status) || hasToSignContract(response?.data?.message)) {
-            console.log("Data successfully saved!")
-
             store.updateUser({
                 birthDate: submitData.data_nascimento,
                 rg: submitData.rg,

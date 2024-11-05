@@ -12,7 +12,6 @@ export const signUp = async (data) => {
 }
 export const getAccessToken = async (data) => {
     try {
-        console.log("getting access token...")
         const response = await axios.post(`${process.env.NEXT_PUBLIC_URL_LOGIN}`, data);
         return response
 

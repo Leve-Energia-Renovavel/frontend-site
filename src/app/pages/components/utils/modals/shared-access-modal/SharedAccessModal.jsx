@@ -14,7 +14,7 @@ export default function SharedAccessModal({ isOpen, closeModal, setErrorMessage,
             slotProps={{
                 backdrop: {
                     sx: {
-                        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                        backgroundColor: 'rgba(0, 89, 64, 0.4)',
                     },
                 },
             }}>
