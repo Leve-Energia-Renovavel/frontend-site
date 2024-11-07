@@ -9,6 +9,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { useRef, useState } from 'react';
 import { CheckIcon, DashboardAccordionContainer, DashboardAccordionDetails, DashboardAccordionSummary, EditFormButton, ExpandIcon, FormButton, SharedAccessForm, SimpleArrowForward } from './styles';
+import { emptyFields } from './validation';
 
 export default function DashboardSharedAccess({ expanded, isMobileContent, setErrorMessage, setNotifications }) {
 
@@ -32,17 +33,19 @@ export default function DashboardSharedAccess({ expanded, isMobileContent, setEr
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        if (!distributorLoginRef.email.current.value || !distributorLoginRef.password.current.value) {
+
+        if (emptyFields(distributorLoginRef.email.current.value, distributorLoginRef.password.current.value)) {
             setErrorMessage(["Preencha todos os campos para sincronizar os dados com a sua distribuidora"])
             return
+        } else {
+            const data = {
+                username: distributorLoginRef.email.current.value,
+                password: distributorLoginRef.password.current.value,
+            }
+    
+            const response = await syncDistributorData(data, store, setErrorMessage, setNotifications)
         }
 
-        const data = {
-            username: distributorLoginRef.email.current.value,
-            password: distributorLoginRef.password.current.value,
-        }
-
-        const response = await syncDistributorData(data, store, setErrorMessage, setNotifications)
     }
 
     const handleKeyPress = (event) => {
