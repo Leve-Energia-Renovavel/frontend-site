@@ -23,6 +23,8 @@ export const HomeAreasContainer = styled.div`
   }
 
   @media (max-width: 600px) {
+    margin-bottom: 2rem;
+
     .areasTitle {
       font-size: 26px;
       line-height: 26px;

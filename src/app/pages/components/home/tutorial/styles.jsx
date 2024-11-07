@@ -17,6 +17,7 @@ export const HomeFourthSectionContainer = styled.div`
     @media (max-width: 600px) {
       background-color: ${background.orange};
       margin: 0;
+      display: none;
     }
     `
 export const HomeFourthSectionTitleContainer = styled.div`

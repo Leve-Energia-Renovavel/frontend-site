@@ -590,6 +590,7 @@ export const SecondSectionContainer = styled.div`
       padding: 1rem;
 
       text-align: center;
+      height: fit-content;
     }
 
 `
@@ -709,6 +710,8 @@ export const ContactBannerContainer = styled.div`
      
      @media (max-width: 600px) {
       text-align: center;
+      
+      margin-top: 2rem;
       h4 {
         font-size: 21px;
         font-weight: 700;

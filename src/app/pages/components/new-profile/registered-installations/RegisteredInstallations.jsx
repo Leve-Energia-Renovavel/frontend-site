@@ -1,6 +1,6 @@
 import { useStoreInstallations } from "@/app/hooks/useStore";
 import InstallationCard from "../../utils/cards/InstallationCard";
-import { AddIcon, RegisteredInstallationsMainContainer as MainContainer, NewInstallationsContainer, RegisteredInstallationsContainer } from "./styles";
+import { RegisteredInstallationsMainContainer as MainContainer, RegisteredInstallationsContainer } from "./styles";
 
 export default function RegisteredInstallations() {
 
