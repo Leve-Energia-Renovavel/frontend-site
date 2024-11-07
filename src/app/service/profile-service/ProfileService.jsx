@@ -27,7 +27,6 @@ export const updateProfileData = async (response, store) => {
         rg: consumidor?.rg,
         cost: instalacao?.valor_base_consumo,
 
-
         profession: consumidor?.profissao,
         nationality: consumidor?.nacionalidade,
         maritalStatus: consumidor?.estado_civil,
@@ -35,11 +34,15 @@ export const updateProfileData = async (response, store) => {
 
         invoiceDate: consumidor?.dia_fatura,
 
-        distributor: distribuidoraInstalacao?.nome?.split(" ")[0],
+        distributor: distribuidoraInstalacao?.nome,
         hasSyncDistributorData: instalacao?.distribuidora_login ? true : false,
     });
+}
+
+export const updateSharedAccess = (response, store) => {
 
 }
+
 export const getProfileData = async (store, setIsLoading) => {
     try {
         const headers = {

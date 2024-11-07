@@ -13,6 +13,7 @@ import { menuOptions } from '@/app/utils/helper/dashboard/dashboardHelper';
 import Messages from '../messages/Messages';
 import DashboardMenu from './side-bar/DashboardMenu';
 import DashboardSideBar from './side-bar/DashboardSideBar';
+import DashboardSharedAccess from './side-bar/shared-access/DashboardSharedAccess';
 
 const StatusStepper = dynamic(() => import('./status-stepper/StatusStepper'), { ssr: false });
 
@@ -53,7 +54,11 @@ export default function NewDashboardMain(props) {
                         setMenuSelection={setMenuSelection} />
                 </DashboardSideBar>
                 <Content className='dashboardContent'>
-                    {mainInstallationExists && !hasStartedBilling && <StatusStepper />}
+                    {mainInstallationExists && !hasStartedBilling && <StatusStepper /> && <DashboardSharedAccess
+                        isMobileContent={false}
+                        setErrorMessage={setErrorMessage}
+                        setNotifications={setNotifications}
+                    />}
                     {menuSelected?.content}
                 </Content>
             </Container>

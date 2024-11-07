@@ -1,6 +1,7 @@
 "use client"
 
-import { useStoreUser } from '@/app/hooks/useStore';
+import { useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
+import { DISTRIBUTOR } from '@/app/pages/enums/globalEnums';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
@@ -8,41 +9,68 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { useRef, useState } from 'react';
-import { CheckIcon, DashboardAccordionContainer, DashboardAccordionDetails, DashboardAccordionSummary, EditFormButton, ExpandIcon, FormButton, SharedAccessForm, SimpleArrowForward } from './styles';
+import { CheckIcon, DashboardAccordionContainer, DashboardAccordionDetails, DashboardAccordionSummary, EditFormButton, ExpandIcon, FormButton, LoadingIcon, SharedAccessForm, SimpleArrowForward } from './styles';
+import { cpfLoginSchema, emailLoginSchema, emptyFields } from './validation';
 
 export default function DashboardSharedAccess({ expanded, isMobileContent, setErrorMessage, setNotifications }) {
 
-    const store = useStoreUser()
+    const storeUser = useStoreUser()
+    const storeMainInstallation = useStoreMainInstallation()
 
-    const user = JSON.parse(localStorage.getItem('user')) || store.user
+    const user = JSON.parse(localStorage.getItem('user')) || storeUser.user
+    const installation = JSON.parse(localStorage.getItem('installation')) || storeMainInstallation.mainInstallation
 
-    const { distributor } = user?.user ?? (store?.user || {})
-    var { hasSyncDistributorData } = user?.user ?? (store?.user || {})
+    const { distributor, hasSyncDistributorData } = user?.user ?? (storeUser?.user || {})
+    const { uuid } = installation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
     const [passwordVisibible, setPasswordVisibible] = useState("password")
+    const [isLoading, setIsLoading] = useState(false)
 
     // hasSyncDistributorData = !hasSyncDistributorData
 
-    const showExpandIcon = hasSyncDistributorData && isMobileContent
+    const isCPFL = distributor === DISTRIBUTOR.CPFL_PAULISTA
+    const isCEMIG = distributor === DISTRIBUTOR.CEMIG
+    const isCOPEL = distributor === DISTRIBUTOR.COPEL
+
+    const showExpandIcon = isMobileContent
+
+    const schemaValidation = async (data) => {
+        try {
+            const validatedData = isCPFL
+                ? await emailLoginSchema.validate(data, { abortEarly: false })
+                : await cpfLoginSchema.validate(data, { abortEarly: false });
+
+            await syncDistributorData(uuid, validatedData, storeUser, setErrorMessage, setNotifications, setIsLoading)
+
+        } catch (error) {
+            console.error(error)
+            setErrorMessage(error.errors)
+            setIsLoading(false)
+            return;
+        }
+    };
 
     const distributorLoginRef = {
-        email: useRef(null),
+        login: useRef(null),
         password: useRef(null)
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        if (!distributorLoginRef.email.current.value || !distributorLoginRef.password.current.value) {
+
+        if (emptyFields(distributorLoginRef.login.current.value, distributorLoginRef.password.current.value)) {
             setErrorMessage(["Preencha todos os campos para sincronizar os dados com a sua distribuidora"])
             return
+        } else {
+            setIsLoading(true)
+
+            const data = {
+                login: distributorLoginRef.login.current.value,
+                pass: distributorLoginRef.password.current.value,
+            }
+            await schemaValidation(data)
         }
 
-        const data = {
-            username: distributorLoginRef.email.current.value,
-            password: distributorLoginRef.password.current.value,
-        }
-
-        const response = await syncDistributorData(data, store, setErrorMessage, setNotifications)
     }
 
     const handleKeyPress = (event) => {
@@ -69,7 +97,7 @@ export default function DashboardSharedAccess({ expanded, isMobileContent, setEr
                 aria-controls="dashboard-shared-access-content"
                 id="dashboard-shared-access"
                 expandIcon={showExpandIcon && <ExpandIcon className='expandIcon' />}>
-                <p className='sharedAccessTitle'>Acesso ao portal da {distributor ? distributor : "distribuidora"}</p>{hasSyncDistributorData && <CheckIcon className='checkIcon' />}
+                <p className='sharedAccessTitle'>Acesso ao portal da {distributor ? distributor?.split(" ")[0] : "distribuidora"}</p>{hasSyncDistributorData && <CheckIcon className='checkIcon' />}
             </DashboardAccordionSummary>
             <DashboardAccordionDetails>
                 {hasSyncDistributorData &&
@@ -80,11 +108,12 @@ export default function DashboardSharedAccess({ expanded, isMobileContent, setEr
                 <SharedAccessForm>
                     <TextField
                         className="formInputField"
-                        inputRef={distributorLoginRef.email}
-                        label="E-mail"
+                        inputRef={distributorLoginRef.login}
+                        label={isCPFL ? "E-mail" : "CPF"}
                         variant="outlined"
-                        placeholder="E-mail"
+                        placeholder={isCPFL ? "E-mail" : "CPF"}
                         type="text"
+                        inputProps={isCPFL ? {} : { inputMode: 'numeric' }}
                         disabled={hasSyncDistributorData}
                         InputProps={{
                             startAdornment:
@@ -119,15 +148,15 @@ export default function DashboardSharedAccess({ expanded, isMobileContent, setEr
 
                     {hasSyncDistributorData ?
                         <EditFormButton
-                            onClick={() => store.updateUser({ hasSyncDistributorData: false })}
+                            onClick={() => storeUser.updateUser({ hasSyncDistributorData: false })}
                             endIcon={<EditOutlinedIcon className="icon" />}>
                             <span>{"Editar dados"} </span>
                         </EditFormButton>
                         :
                         <FormButton
                             onClick={handleSubmit}
-                            endIcon={<SimpleArrowForward className="icon" />}>
-                            <span>{"Enviar"} </span>
+                            endIcon={isLoading ? "" : <SimpleArrowForward className="icon" />}>
+                            <span>{isLoading ? <LoadingIcon className='loading' size={"21px"} /> : "Enviar"} </span>
                         </FormButton>}
 
 
