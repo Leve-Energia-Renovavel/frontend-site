@@ -17,7 +17,7 @@ export default function LandingPageContactBanner() {
 
     return (
 
-        <ContactBannerContainer>
+        <ContactBannerContainer className="contactBannerContainer">
             <Typography variant='h4'>{lpTexts.anyDoubt}</Typography>
             <Typography variant='h5'>{lpTexts.contactOutTeam}</Typography>
             <Typography className='contactButton' onClick={() => handleWhatsapp()}><WhatsAppIcon />{lpTexts.whatsappLeve}</Typography>

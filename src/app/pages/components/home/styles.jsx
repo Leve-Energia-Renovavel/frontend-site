@@ -968,7 +968,7 @@ export const HomeSixthSectionContainer = styled.section`
     }
     
     @media (max-width: 600px) {
-      padding: 1rem;
+      padding: .5rem;
       background-color: ${background.grey};
       
       .sectionTitle {

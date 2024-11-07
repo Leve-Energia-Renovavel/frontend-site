@@ -43,8 +43,8 @@ export const timQuestions = [
         description: "Nesse caso, precisamos que o cadastro seja feito no nome da pessoa que é titular (seja pai, mãe, amigo ou companheiro). Essa pessoa precisa assinar os contratos com a Leve, mas, para garantir que estamos oferecendo um benefício ao colaborador, o e-mail de cadastro deverá ser o seu."
     },
     {
-        title: "O desconto é o mesmo no Brasil todo?",
-        description: "nfelizmente não. Esse desconto varia conforme o preço cobrado em cada distribuidora."
+        title: "A economia é a mesma no Brasil todo?",
+        description: "Infelizmente não. Essa economia varia conforme o preço cobrado em cada distribuidora."
     },
     {
         title: "De onde vem a minha energia?",
@@ -55,8 +55,8 @@ export const timQuestions = [
         description: "No final de cada mês, você receberá duas faturas: uma fatura da sua distribuidora de energia com valor reduzido, e a fatura da Leve, referente à locação de uma parte da usina. Nosso compromisso é fazer com que a somatória das duas novas contas seja menor do que a sua conta de luz atual!"
     },
     {
-        title: "Quanto tempo pra eu começar a ter meu desconto?",
-        description: "Vamos fazer de tudo para que você comece a receber descontos o mais rápido o possível, mas infelizmente nem tudo depende da gente: com a usina disponível, a ANEEL (a Agência que regula o setor elétrico) concede até 60 dias para que a distribuidora comece a te entregar os créditos de energia, ok?"
+        title: "Quanto tempo pra eu começar a ter minha economia?",
+        description: "Vamos fazer de tudo para que você comece a receber sua economia o mais rápido o possível, mas infelizmente nem tudo depende da gente: com a usina disponível, a ANEEL (a Agência que regula o setor elétrico) concede até 60 dias para que a distribuidora comece a te entregar os créditos de energia, ok?"
     },
     {
         title: "O que preciso fazer para me cadastrar?",
@@ -76,7 +76,7 @@ export const timQuestions = [
     },
     {
         title: "Quem pode contratar?",
-        description: "Qualquer pessoa física ou jurídica classificada e atendida em baixa tensão, com uma conta de luz de valor acima de R$150,00 por mês. Vale ressaltar que moradores de residências, apartamentos ou até imóveis alugados também podem ter estes benefícios."
+        description: "Qualquer pessoa física ou jurídica classificada e atendida em baixa tensão, com uma conta de luz de valor acima de R$200,00 por mês. Vale ressaltar que moradores de residências, apartamentos ou até imóveis alugados também podem ter estes benefícios."
     },
     {
         title: "Em quais estados a solução está disponível?",
