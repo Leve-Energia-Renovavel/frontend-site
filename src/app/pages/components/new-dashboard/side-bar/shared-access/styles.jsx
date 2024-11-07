@@ -7,6 +7,7 @@ import { Button } from "@mui/material";
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const DashboardAccordionContainer = styled(Accordion)`
     border-radius: 8px;
@@ -32,6 +33,7 @@ export const CheckIcon = styled(CheckCircleOutlineOutlinedIcon)`
     width: 16px;
     height: 16px;
 `
+
 export const DashboardAccordionSummary = styled(AccordionSummary)`
     display: flex;
     flex-direction: row;
@@ -186,6 +188,10 @@ export const FormButton = styled(Button)`
     white-space: nowrap;
   }
 
+  .loading {
+    color: ${background.yellow};
+  }
+
   &:hover {
     cursor: pointer;
     background-color: ${background.yellow};
@@ -253,5 +259,8 @@ export const SimpleArrowForward = styled(ArrowForwardIcon)`
     width: 21px;
     height: 21px;
     color: ${background.yellow};
+`
+
+export const LoadingIcon = styled(CircularProgress)`
 `
 

@@ -82,3 +82,10 @@ export const CIDADE = {
     }
 };
 
+export const DISTRIBUTOR = {
+    CEMIG: "CEMIG",
+    COPEL: "COPEL",
+    CPFL_PAULISTA: "CPFL PAULISTA",
+}
+
+

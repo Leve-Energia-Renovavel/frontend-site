@@ -8,9 +8,13 @@ export const emptyFields = (email, password) => {
     return false
 }
 
-export const sharedAccessSchema = yup.object({
-    email: yup.string().email('O formato do E-mail é inválido').required('O campo E-mail é obrigatório'),
-    password: yup.string().required('O campo Senha é obrigatório'),
+export const emailLoginSchema = yup.object({
+    login: yup.string().email('O formato do E-mail é inválido').required('O campo E-mail é obrigatório'),
+    pass: yup.string().required('O campo Senha é obrigatório'),
 })
 
+export const cpfLoginSchema = yup.object({
+    login: yup.string().matches(/^\d{11}$/, 'O CPF deve conter apenas números e ter 11 dígitos').required('O campo CPF é obrigatório'),
+    pass: yup.string().required('O campo Senha é obrigatório'),
+});
 

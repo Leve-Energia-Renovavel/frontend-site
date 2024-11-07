@@ -9,7 +9,7 @@ export const ModalBox = styled(Box)`
 
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 48%;
     transform: translate(-50%, -50%);
     background-color: ${background.white};
     
