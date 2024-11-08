@@ -2,6 +2,7 @@
 
 import { useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
 import { DISTRIBUTOR } from '@/app/pages/enums/globalEnums';
+import { syncDistributorData } from '@/app/service/shared-access-service/SharedAccessService';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
@@ -97,7 +98,8 @@ export default function DashboardSharedAccess({ expanded, isMobileContent, setEr
                 aria-controls="dashboard-shared-access-content"
                 id="dashboard-shared-access"
                 expandIcon={showExpandIcon && <ExpandIcon className='expandIcon' />}>
-                <p className='sharedAccessTitle'>Acesso ao portal da {distributor ? distributor?.split(" ")[0] : "distribuidora"}</p>{hasSyncDistributorData && <CheckIcon className='checkIcon' />}
+                <p className='sharedAccessTitle'>Acesso ao portal da {distributor ? distributor?.split(" ")[0] : "distribuidora"}</p>
+                {hasSyncDistributorData && <CheckIcon className='checkIcon' />}
             </DashboardAccordionSummary>
             <DashboardAccordionDetails>
                 {hasSyncDistributorData &&
