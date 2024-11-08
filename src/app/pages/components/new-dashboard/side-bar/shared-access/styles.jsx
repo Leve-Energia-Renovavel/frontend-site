@@ -9,21 +9,32 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import CircularProgress from '@mui/material/CircularProgress';
 
-export const DashboardAccordionContainer = styled(Accordion)`
+
+const DashboardAccordionContainerBase = styled(Accordion, {
+  shouldForwardProp: (prop) => prop !== "hasSyncDistributorData" && prop !== "isMobileContent",
+})``;
+const DashboardAccordionSummaryBase = styled(Accordion, {
+  shouldForwardProp: (prop) => prop !== "hasSyncDistributorData" && prop !== "isMobileContent",
+})``;
+
+export const DashboardAccordionContainer = styled(DashboardAccordionContainerBase)`
     border-radius: 8px;
     background-color: ${background.white};
     box-shadow: none;
-    
-    border: ${props => props.hasSyncDistributorData && props.isMobileContent ? `1px solid ${background.green};` : `none;`};
 
-    ${props => props.isMobileContent && "display:none;"}
+    ${({ $hasSyncDistributorData }) => $hasSyncDistributorData ? `border: 1px solid ${background.green};` : `border:none;`};
+
+    
+    /* border: ${(props) => props.hasSyncDistributorData && props.isMobileContent ? `1px solid ${background.green};` : `none;`}; */
+
+    ${(props) => props.isMobileContent && "display:none;"}
 
     .MuiAccordionSummary-root  {
-      ${props => props.defaultExpanded && "pointer-events: none;"}
+      ${(props) => props.defaultExpanded && "pointer-events: none;"}
     }
 
     @media (max-width: 900px) {
-        ${props => props.isMobileContent && "display:block;"}
+        ${(props) => props.isMobileContent && "display:block;"}
     }
 `
 export const ExpandIcon = styled(ExpandMoreIcon)`
@@ -33,24 +44,28 @@ export const CheckIcon = styled(CheckCircleOutlineOutlinedIcon)`
     width: 16px;
     height: 16px;
 `
-
-export const DashboardAccordionSummary = styled(AccordionSummary)`
+//solution to transient errors
+//https://stackoverflow.com/questions/71128841/mui-system-how-to-pass-transient-props-to-styled
+export const DashboardAccordionSummary = styled(AccordionSummary, {
+  shouldForwardProp: (prop) => prop !== "hasSyncDistributorData" && prop !== "isMobileContent",
+})`
     display: flex;
     flex-direction: row;
     align-items: center;    
+    
+    color: ${(props) => props.hasSyncDistributorData ? background.green : background.orange};
 
     .sharedAccessTitle {
         font-size: 18px;
         font-style: normal;
         font-weight: 600;
         line-height: 120%; /* 21.6px */
-        color: ${props => props.hasSyncDistributorData ? background.green : background.orange};
     }
     
     .expandIcon, .checkIcon {
         margin-top: 2px;
         margin-left: 4px;
-        color: ${props => props.hasSyncDistributorData ? background.green : background.orange};
+        color: ${(props) => props.hasSyncDistributorData ? background.green : background.orange};
     }
 
 `
@@ -60,12 +75,13 @@ export const DashboardAccordionDetails = styled(AccordionDetails)`
 
     gap: 16px;
 
+    color: ${background.greyMediumHigh};
+
     .sharedAccessSubtitle {
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
         line-height: 120%; /* 16.8px */
-        color: ${background.greyMediumHigh};
 
         max-width: 310px;
     }

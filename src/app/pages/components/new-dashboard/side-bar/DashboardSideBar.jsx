@@ -4,7 +4,6 @@ import DashboardSharedAccessButton from '../../utils/buttons/dashboard/shared-ac
 
 const DashboardProfile = dynamic(() => import('./DashboardProfile'), { ssr: false });
 const DashboardInstallation = dynamic(() => import('./DashboardInstallation'), { ssr: false });
-const DashboardMemberGetMember = dynamic(() => import('./member-get-member/DashboardMemberGetMember'), { ssr: false });
 const DashboardSharedAccess = dynamic(() => import('./shared-access/DashboardSharedAccess'), { ssr: false });
 
 export default function DashboardSideBar({ children, setErrorMessage, setNotifications }) {
@@ -24,10 +23,6 @@ export default function DashboardSideBar({ children, setErrorMessage, setNotific
                     isMobileContent={true}
                     setErrorMessage={setErrorMessage}
                     setNotifications={setNotifications} />
-
-                {/* <DashboardMemberGetMember isSideBar={true}
-                    setErrorMessage={setErrorMessage}
-                    setNotifications={setNotifications} /> */}
                 {children}
             </SideBar>
         </>

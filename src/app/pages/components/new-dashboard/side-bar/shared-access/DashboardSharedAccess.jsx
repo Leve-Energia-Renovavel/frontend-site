@@ -98,7 +98,8 @@ export default function DashboardSharedAccess({ expanded, isMobileContent, setEr
                 aria-controls="dashboard-shared-access-content"
                 id="dashboard-shared-access"
                 expandIcon={showExpandIcon && <ExpandIcon className='expandIcon' />}>
-                <p className='sharedAccessTitle'>Acesso ao portal da {distributor ? distributor?.split(" ")[0] : "distribuidora"}</p>{hasSyncDistributorData && <CheckIcon className='checkIcon' />}
+                <p className='sharedAccessTitle'>Acesso ao portal da {distributor ? distributor?.split(" ")[0] : "distribuidora"}</p>
+                {hasSyncDistributorData && <CheckIcon className='checkIcon' />}
             </DashboardAccordionSummary>
             <DashboardAccordionDetails>
                 {hasSyncDistributorData &&

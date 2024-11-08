@@ -1,6 +1,8 @@
-import { Backdrop, Modal } from '@mui/material';
-import DashboardSharedAccess from '../../../new-dashboard/side-bar/shared-access/DashboardSharedAccess';
+import dynamic from 'next/dynamic';
 import { ModalBox } from './styles';
+import { Backdrop, Modal } from '@mui/material';
+
+const DashboardSharedAccess = dynamic(() => import('../../../new-dashboard/side-bar/shared-access/DashboardSharedAccess'), { ssr: false });
 
 export default function SharedAccessModal({ isOpen, closeModal, setErrorMessage, setNotifications }) {
 

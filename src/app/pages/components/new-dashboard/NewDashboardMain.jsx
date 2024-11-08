@@ -13,9 +13,9 @@ import { menuOptions } from '@/app/utils/helper/dashboard/dashboardHelper';
 import Messages from '../messages/Messages';
 import DashboardMenu from './side-bar/DashboardMenu';
 import DashboardSideBar from './side-bar/DashboardSideBar';
-import DashboardSharedAccess from './side-bar/shared-access/DashboardSharedAccess';
 
 const StatusStepper = dynamic(() => import('./status-stepper/StatusStepper'), { ssr: false });
+const DashboardSharedAccess = dynamic(() => import('./side-bar/shared-access/DashboardSharedAccess'), { ssr: false });
 
 export default function NewDashboardMain(props) {
 
