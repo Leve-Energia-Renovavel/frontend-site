@@ -2,6 +2,7 @@
 
 import { useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
 import { DISTRIBUTOR } from '@/app/pages/enums/globalEnums';
+import { syncDistributorData } from '@/app/service/shared-access-service/SharedAccessService';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
