@@ -37,7 +37,8 @@ export const MobileNewHeaderContainer = styled.header`
         background-color: ${props => props.isOpen ? background.orange : background.yellow};
         
         cursor: pointer;
-        ${props => props.isLandingPage && "display:none"};
+
+        margin-left: auto;
     }
 
     .logoLeve {
