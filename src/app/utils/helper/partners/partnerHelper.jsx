@@ -17,6 +17,7 @@ import martinsLogo from '@/resources/img/partners/martins/martins-logo-large.png
 import timLogo from '@/resources/img/partners/tim/tim-logo-large.png';
 import tribancoLogo from '@/resources/img/partners/tribanco/logo-tribanco-large.png';
 import yduqsLogo from '@/resources/img/partners/yduqs/yduqs-logo-large.png';
+import allyaLogo from '@/resources/img/partners/allya/allya-logo.png';
 
 export const clearPartnerName = (str) => {
     return str.replace(/\/|lp/g, '');
@@ -66,7 +67,7 @@ export const partners = {
     "allya": {
         mainBanner: <AllyaMainBanner />,
         section: <AllyaSectionBanner />,
-        logo: <Image src={yduqsLogo} className='partnerLogo' alt={"Logo Yduqs"} priority={false} />
+        logo: <Image src={allyaLogo} className='partnerLogo' alt={"Logo Yduqs"} priority={false} />
     },
 }
 
