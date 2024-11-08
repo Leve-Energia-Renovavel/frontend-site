@@ -81,11 +81,12 @@ export const helperToPath = {
 }
 
 export const partnersPath = {
-    '/lp/tribanco/': true,
-    '/lp/tim/': true,
-    '/lp/martins/': true,
-    '/lp/yduqs/': true,
+    '/lp/allya/': true,
     '/lp/localiza/': true,
+    '/lp/martins/': true,
+    '/lp/tim/': true,
+    '/lp/tribanco/': true,
+    '/lp/yduqs/': true,
 }
 
 export const handleWhatsapp = (location) => {
