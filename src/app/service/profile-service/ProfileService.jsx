@@ -1,3 +1,4 @@
+import { USER_TYPE } from "@/app/pages/enums/globalEnums";
 import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -19,7 +20,7 @@ export const updateProfileData = async (response, store) => {
         discount: instalacao?.desconto,
         birthDate: consumidor?.data_nascimento ? formatBasicBirthDate(consumidor?.data_nascimento) : "",
 
-        isCompany: consumidor?.type === "PJ" ? true : false,
+        isCompany: consumidor?.type === USER_TYPE.PJ ? true : false,
         companyName: instalacao?.razao_social,
         cnpj: instalacao?.cnpj,
 
@@ -36,11 +37,17 @@ export const updateProfileData = async (response, store) => {
 
         distributor: distribuidoraInstalacao?.nome,
         hasSyncDistributorData: instalacao?.distribuidora_login ? true : false,
+        distributorLogin: instalacao?.distribuidora_login ? instalacao?.distribuidora_login : "",
+        distributorPassword: instalacao?.distribuidora_pass ? instalacao?.distribuidora_pass : "",
     });
 }
 
-export const updateSharedAccess = (response, store) => {
-
+export const updateSharedAccess = (data, store) => {
+    store.updateUser({
+        hasSyncDistributorData: true,
+        distributorLogin: data?.login,
+        distributorPassword: data?.pass
+    })
 }
 
 export const getProfileData = async (store, setIsLoading) => {

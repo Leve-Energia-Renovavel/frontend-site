@@ -2,7 +2,6 @@
 
 import { useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
 import { DISTRIBUTOR } from '@/app/pages/enums/globalEnums';
-import { syncDistributorData } from '@/app/service/shared-access-service/SharedAccessService';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
@@ -11,17 +10,19 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { useRef, useState } from 'react';
 import { CheckIcon, DashboardAccordionContainer, DashboardAccordionDetails, DashboardAccordionSummary, EditFormButton, ExpandIcon, FormButton, LoadingIcon, SharedAccessForm, SimpleArrowForward } from './styles';
-import { cpfLoginSchema, emailLoginSchema, emptyFields } from './validation';
+import { emptyFields, schemaValidation } from './validation';
+import { useRouter } from 'next/navigation';
 
-export default function DashboardSharedAccess({ expanded, isMobileContent, setErrorMessage, setNotifications }) {
+export default function DashboardSharedAccess({ expanded, closeModal, isMobileContent, setErrorMessage, setNotifications }) {
 
+    const router = useRouter()
     const storeUser = useStoreUser()
     const storeMainInstallation = useStoreMainInstallation()
 
     const user = JSON.parse(localStorage.getItem('user')) || storeUser.user
     const installation = JSON.parse(localStorage.getItem('installation')) || storeMainInstallation.mainInstallation
 
-    const { distributor, hasSyncDistributorData } = user?.user ?? (storeUser?.user || {})
+    const { distributor, hasSyncDistributorData, distributorLogin, distributorPassword } = user?.user ?? (storeUser?.user || {})
     const { uuid } = installation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
     const [passwordVisibible, setPasswordVisibible] = useState("password")
@@ -34,22 +35,6 @@ export default function DashboardSharedAccess({ expanded, isMobileContent, setEr
     const isCOPEL = distributor === DISTRIBUTOR.COPEL
 
     const showExpandIcon = isMobileContent
-
-    const schemaValidation = async (data) => {
-        try {
-            const validatedData = isCPFL
-                ? await emailLoginSchema.validate(data, { abortEarly: false })
-                : await cpfLoginSchema.validate(data, { abortEarly: false });
-
-            await syncDistributorData(uuid, validatedData, storeUser, setErrorMessage, setNotifications, setIsLoading)
-
-        } catch (error) {
-            console.error(error)
-            setErrorMessage(error.errors)
-            setIsLoading(false)
-            return;
-        }
-    };
 
     const distributorLoginRef = {
         login: useRef(null),
@@ -69,7 +54,7 @@ export default function DashboardSharedAccess({ expanded, isMobileContent, setEr
                 login: distributorLoginRef.login.current.value,
                 pass: distributorLoginRef.password.current.value,
             }
-            await schemaValidation(data)
+            await schemaValidation(data, uuid, storeUser, isCPFL, router, setIsLoading, setErrorMessage, setNotifications, closeModal)
         }
 
     }
@@ -102,17 +87,14 @@ export default function DashboardSharedAccess({ expanded, isMobileContent, setEr
                 {hasSyncDistributorData && <CheckIcon className='checkIcon' />}
             </DashboardAccordionSummary>
             <DashboardAccordionDetails>
-                {hasSyncDistributorData &&
-                    <p className='sharedAccessSubtitle'>Seus dados de acesso estão compartilhados com a Leve para a emissão de uma só fatura, com valores finais somados de consumo e distribuição</p>}
-                {!hasSyncDistributorData &&
-                    <p className='sharedAccessSubtitle'>Para garantir o máximo de economia mensal, registre seus dados de acesso ao portal ou aplicativo da sua distribuidora. Assim, poderemos acessar as informações da sua fatura mensalmente e assegurar que os créditos de energia sejam aplicados corretamente para o seu consumo. </p>}
-
-                <SharedAccessForm>
+                <p className='sharedAccessSubtitle'>Para garantir o máximo de economia mensal, registre seus dados de acesso ao portal ou aplicativo da sua distribuidora. Assim, poderemos acessar as informações da sua fatura mensalmente e assegurar que os créditos de energia sejam aplicados corretamente para o seu consumo. </p>
+                <SharedAccessForm hasSyncDistributorData={hasSyncDistributorData}>
                     <TextField
                         className="formInputField"
                         inputRef={distributorLoginRef.login}
                         label={isCPFL ? "E-mail" : "CPF"}
                         variant="outlined"
+                        defaultValue={distributorLogin ? distributorLogin : ""}
                         placeholder={isCPFL ? "E-mail" : "CPF"}
                         type="text"
                         inputProps={isCPFL ? {} : { inputMode: 'numeric' }}
@@ -130,6 +112,7 @@ export default function DashboardSharedAccess({ expanded, isMobileContent, setEr
                         label="Senha"
                         variant="outlined"
                         placeholder="Senha"
+                        // defaultValue={distributorPassword ? distributorPassword : ""}
                         type={passwordVisibible}
                         disabled={hasSyncDistributorData}
                         required

@@ -131,7 +131,7 @@ export const SharedAccessForm = styled.form`
           & fieldset {
             height: 40px;
             border-radius: 5px;
-            border-color: ${background.orange}; /* Ensure border is orange by default */
+            border-color:  ${props => props.hasSyncDistributorData ? background.green : background.orange}; /* Ensure border is green or orange depending if user has sync data */
           }
         } 
 
@@ -152,17 +152,21 @@ export const SharedAccessForm = styled.form`
 
         .MuiInputLabel-root {
             color: ${background.orange};
+
         }
 
         &:hover .MuiOutlinedInput-notchedOutline, .MuiOutlinedInput-notchedOutline {
             border-color: ${background.orange};
+
         }
 
         &.MuiOutlinedInput-notchedOutline {
             border-color: ${background.orange}; //to avoid changing the color of the input when the hover is removed
+
         }
         & .MuiSelect-select:focus {
             background-color: ${background.orange};
+
         }
 
         .emailIcon, .passwordIcon {

@@ -23,6 +23,12 @@ export const NewDashboardProfile = styled.div`
         margin-top: 8px;
     }
 
+    .loadingCpf {
+        display: inline-block;
+        font-size: 21px;
+        width: 90px;
+    }
+
     @media (max-width: 900px) {
         ${props => props.isMobileContent && "display:block;"}
     }
@@ -45,9 +51,16 @@ export const ProfileHeader = styled.div`
         font-weight: 600;
         color: ${background.green};
         margin-right: auto;
-
+        
         white-space: nowrap;
     }
+
+    .loadingUsername {
+        display: inline-block;
+        font-size: 21px;
+        width: 100px;
+    }
+
     
     .goToProfile {
         font-family: "Graphie";
@@ -107,6 +120,11 @@ export const InstallationDetails = styled.div`
         color: ${background.greyDark};  
         
         margin-left: 34px;
+    }
+
+    .loadingAddress {
+        width: 220px;
+        margin-left: 35px;
     }
     
     `
