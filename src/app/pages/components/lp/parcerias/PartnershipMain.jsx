@@ -11,7 +11,6 @@ const PartnerForm = dynamic(() => import("../form/PartnerForm"), { ssr: false })
 const LandingPageSecondaryBanner = dynamic(() => import("../novos-clientes/LandingPageSecondaryBanner"), { ssr: false });
 const TutorialContainer = dynamic(() => import("../../home/tutorial/HomeTutorial"), { ssr: false });
 const HomeAreas = dynamic(() => import("../../home/areas/HomeAreas"), { ssr: false });
-const BrandsContainer = dynamic(() => import("../../home/brands/HomeBrands"), { ssr: false });
 const LandingPageContactBanner = dynamic(() => import("../novos-clientes/LandingPageContactBanner"), { ssr: false });
 const LandingPageFaqBanner = dynamic(() => import("../novos-clientes/LandingPageFaqBanner"), { ssr: false });
 const Messages = dynamic(() => import("../../messages/Messages"), { ssr: false });
@@ -43,9 +42,7 @@ export default function PartnershipMain() {
                     <TutorialContainer />
                 </TutorialBannerContainer>
 
-                <HomeAreas />
-
-                <BrandsContainer />
+                <HomeAreas partner={clearPartnerName(pathname)} />
 
                 <LandingPageContactBanner />
 

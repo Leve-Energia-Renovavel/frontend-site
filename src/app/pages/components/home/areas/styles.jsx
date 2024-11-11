@@ -8,6 +8,8 @@ export const HomeAreasContainer = styled.div`
   background-color: ${background.white};
   gap: 2rem;
 
+  margin-bottom: 4rem;
+
   .map {
       width: 100%;
       max-width: 572px;
