@@ -8,7 +8,8 @@ export const billingStatusOptions = {
 export const billHasToBePaid = {
     due: true,
     paid: false,
-    pending: true
+    pending: true,
+    canceled: false,
 }
 
 export const billWasSend = (sendStatus) => {
