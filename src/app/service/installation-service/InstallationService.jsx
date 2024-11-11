@@ -172,5 +172,36 @@ export const updateInstallationsStoreData = async (response, storeMainInstallati
         })
     }
 
-
 }
+
+
+export const createInstallationData = (instalacao, hasStartedBilling) => ({
+    id: instalacao?.id,
+    uuid: instalacao?.uuid,
+    address: instalacao?.endereco,
+    street: instalacao?.nome,
+    number: instalacao?.numero,
+    cityId: instalacao?.cidade_id,
+    stateId: instalacao?.estado_id,
+    neighborhood: instalacao?.bairro,
+    complement: instalacao?.complemento,
+    zipCode: instalacao?.cep,
+    amount: instalacao?.valor_base_consumo,
+    status: instalacao?.situacao,
+    installationNumber: instalacao?.numero_instalacao,
+    documentKey: instalacao?.document_key,
+    percentageAllocatedEnergy: instalacao?.porcentagem_energia_alocada,
+    kwhContracted: instalacao?.kwh_contratado,
+    discount: instalacao?.desconto,
+    clientId: instalacao?.clientes_id,
+    isSelected: instalacao?.selecionada,
+    hasStartedBilling,
+});
+
+export const updateOtherInstallationsData = (outrasInstalacoes, storeInstallations, mainInstallationData) => {
+    storeInstallations?.addInstallation(mainInstallationData);
+    outrasInstalacoes?.forEach(installation => {
+        const otherInstallation = createInstallationData(installation);
+        storeInstallations.addInstallation(otherInstallation);
+    });
+};

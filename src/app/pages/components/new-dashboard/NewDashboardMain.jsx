@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreMainInstallation, useStoreUser, useStoreUserEconomy } from '@/app/hooks/useStore';
+import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser, useStoreUserEconomy } from '@/app/hooks/useStore';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { NewDashboardContainer as Container, NewDashboardContent as Content } from './styles';
 
-import { getDashboardMainData } from '@/app/service/dashboard-service/DashboardService';
+import { getGeneralDashboardData } from '@/app/service/dashboard-service/DashboardService';
 import { clearStorageData } from '@/app/utils/browser/BrowserUtils';
 import { menuOptions } from '@/app/utils/helper/dashboard/dashboardHelper';
 import Messages from '../messages/Messages';
@@ -22,8 +22,11 @@ export default function NewDashboardMain(props) {
     const router = useRouter()
     const storeUser = useStoreUser()
     const storeEconomy = useStoreUserEconomy()
-
+    const storeNextBills = useStoreNextBills()
+    const storeBilling = useStoreBillingHistory()
+    const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
+
     const { uuid, hasStartedBilling } = storeMainInstallation?.mainInstallation || {}
 
     const mainInstallationExists = storeMainInstallation?.mainInstallation?.uuid !== ""
@@ -36,7 +39,7 @@ export default function NewDashboardMain(props) {
     useEffect(() => {
         clearStorageData()
         const fetchDashboardData = async () => {
-            await getDashboardMainData(router, storeUser, storeEconomy, setErrorMessage)
+            await getGeneralDashboardData(router, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations, setErrorMessage)
         };
 
         fetchDashboardData();

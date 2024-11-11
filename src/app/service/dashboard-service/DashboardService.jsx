@@ -1,7 +1,12 @@
-import { awaitSeconds, clearBrowserData, reloadPage } from "@/app/utils/browser/BrowserUtils";
+import { ERROR_MESSAGE } from "@/app/pages/enums/globalEnums";
+import { awaitSeconds, clearBrowserData } from "@/app/utils/browser/BrowserUtils";
 import { formatBrazillianDate } from "@/app/utils/formatters/dateFormatter";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { updateBillingData } from "../billing-service/BillingService";
+import { updateEconomyData } from "../economy-service/EconomyService";
+import { createInstallationData, updateOtherInstallationsData } from "../installation-service/InstallationService";
+import { updateUserData } from "../user-service/UserService";
 import { requestSuccessful, requestUnauthorized } from "../utils/Validations";
 
 export const handleSendInvite = async (invitedEmail, closeModal, setErrorMessage, setNotifications) => {
@@ -72,3 +77,69 @@ export const getDashboardMainData = async (router, storeUser, storeEconomy, setE
         }
     }
 }
+export const getGeneralDashboardData = async (router, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations, setErrorMessage) => {
+    try {
+        const token = Cookies.get('accessToken') || storeUser.accessToken
+        const headers = {
+            "Authorization": `Bearer ${token}`,
+        };
+
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
+        if (requestSuccessful(response?.status)) {
+            const data = response?.data
+            await updateGeneralDashboardData(data, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations)
+
+        } else if (requestUnauthorized(response?.status)) {
+            setErrorMessage(["Erro ao autenticar. Por favor, faça o login e tente novamente"])
+            await awaitSeconds(3)
+            router.push(`/login`)
+        } else {
+            setErrorMessage(["Erro ao validar as informações. Por favor, tente novamente"])
+            await awaitSeconds(3)
+            router.push(`/login`)
+        }
+    } catch (error) {
+        console.error("Error fetching dashboard data:", error);
+        if (error?.response?.data?.message === ERROR_MESSAGE.UNAUTHENTICATED) {
+            setErrorMessage(["Erro de autenticação. Por favor, faça o login e tente novamente"])
+            await clearBrowserData()
+            await awaitSeconds(3)
+            router.push("/login")
+        }
+        if (error?.response?.data?.error === ERROR_MESSAGE.CONSUMER_NOT_FOUND) {
+            setErrorMessage(["Erro ao logar. Por favor, faça o login e tente novamente"])
+            await clearBrowserData()
+            await awaitSeconds(3)
+            router.push("/login")
+        }
+    }
+}
+
+export const updateGeneralDashboardData = async (data, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations) => {
+    const { consumidor, economia, ciclosConsumo, instalacao } = data;
+    const distribuidoraInstalacao = data?.distribuidora_instalacao;
+    const descontosCarbono = data?.descontos_carbono
+    const outrasInstalacoes = data?.outras_instalacoes;
+
+    const hasStartedBilling = ciclosConsumo?.length > 0;
+    const carbonCredits = data?.co_dois
+    const receivedCredits = data?.creditos_recebidos
+
+    updateUserData(consumidor, instalacao, distribuidoraInstalacao, descontosCarbono, storeUser);
+
+    updateEconomyData(consumidor, economia, carbonCredits, receivedCredits, storeEconomy);
+
+    updateBillingData(ciclosConsumo, storeBilling, storeNextBills);
+
+    const mainInstallationData = createInstallationData(instalacao, hasStartedBilling);
+    storeMainInstallation?.updateMainInstallation(mainInstallationData);
+
+    updateOtherInstallationsData(outrasInstalacoes, storeInstallations, mainInstallationData);
+};
+
+
+
+
+
+
+

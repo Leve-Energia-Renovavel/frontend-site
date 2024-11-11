@@ -1,3 +1,4 @@
+import { BILL_STATUS } from '@/app/pages/components/new-dashboard/invoices/invoicesEnums';
 import { format } from 'date-fns';
 
 export const getCurrentDate = () => {
@@ -71,12 +72,15 @@ export const isValidDate = (dateString) => {
 };
 
 export const billHasExpired = (status, dueDate) => {
-    if (status === "paid") {
+    if (status === BILL_STATUS.PAID) {
+        return status
+    }
+    if (status === BILL_STATUS.CANCELED) {
         return status
     }
 
-    const expired = "pending"
-    const open = "due"
+    const expired = BILL_STATUS.PENDING
+    const open = BILL_STATUS.DUE
 
     const [day, month, year] = dueDate.split('/').map(Number);
 

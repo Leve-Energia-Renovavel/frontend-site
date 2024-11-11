@@ -3,9 +3,9 @@
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import Messages from '../../messages/Messages';
+import DashboardProfile from '../side-bar/DashboardProfile';
 import { NewDashboardMainContent as MainContent } from '../styles';
 
-const DashboardProfile = dynamic(() => import('../side-bar/DashboardProfile'), { ssr: false });
 const DashboardInstallation = dynamic(() => import('../side-bar/DashboardInstallation'), { ssr: false });
 const DashboardSharedAccess = dynamic(() => import('../side-bar/shared-access/DashboardSharedAccess'), { ssr: false });
 

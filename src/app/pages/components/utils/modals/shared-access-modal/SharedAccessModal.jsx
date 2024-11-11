@@ -23,6 +23,7 @@ export default function SharedAccessModal({ isOpen, closeModal, setErrorMessage,
             <ModalBox className="sharedAccessModalBox">
                 <DashboardSharedAccess
                     expanded={true}
+                    closeModal={closeModal}
                     isMobileContent={false}
                     setErrorMessage={setErrorMessage}
                     setNotifications={setNotifications} />

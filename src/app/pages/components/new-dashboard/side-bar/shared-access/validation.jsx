@@ -1,4 +1,5 @@
 
+import { syncDistributorData } from '@/app/service/shared-access-service/SharedAccessService';
 import * as yup from 'yup';
 
 export const emptyFields = (email, password) => {
@@ -18,3 +19,19 @@ export const cpfLoginSchema = yup.object({
     pass: yup.string().required('O campo Senha é obrigatório'),
 });
 
+
+export const schemaValidation = async (data, uuid, storeUser, isCPFL, router, setIsLoading, setErrorMessage, setNotifications, closeModal) => {
+    try {
+        const validatedData = isCPFL
+            ? await emailLoginSchema.validate(data, { abortEarly: false })
+            : await cpfLoginSchema.validate(data, { abortEarly: false });
+
+        await syncDistributorData(uuid, validatedData, router, storeUser, setErrorMessage, setNotifications, setIsLoading, closeModal)
+
+    } catch (error) {
+        console.error(error)
+        setErrorMessage(error.errors)
+        setIsLoading(false)
+        return;
+    }
+};

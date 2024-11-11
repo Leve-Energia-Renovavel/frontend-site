@@ -22,6 +22,7 @@ export const PATH_TO = {
     LOGIN: "/login/",
     OUT_OF_RANGE: "/fail/out-of-range",
     LOW_COST: "/fail/low-cost",
+    DASHBOARD: "/dashboard/",
 };
 
 export const CIDADE = {
@@ -86,6 +87,12 @@ export const DISTRIBUTOR = {
     CEMIG: "CEMIG",
     COPEL: "COPEL",
     CPFL_PAULISTA: "CPFL PAULISTA",
+}
+
+
+export const ERROR_MESSAGE = {
+    UNAUTHENTICATED: "Unauthenticated.",
+    CONSUMER_NOT_FOUND: "Consumidor não encontrado",
 }
 
 

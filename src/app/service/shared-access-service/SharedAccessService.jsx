@@ -1,13 +1,17 @@
 import axios from "axios";
+import { updateSharedAccess } from "../profile-service/ProfileService";
 import { requestSuccessful } from "../utils/Validations";
 
-export const syncDistributorData = async (uuid, data, store, setErrorMessage, setNotifications, setIsLoading) => {
+export const syncDistributorData = async (uuid, data, router, storeUser, setErrorMessage, setNotifications, setIsLoading, closeModal) => {
     try {
         const response = await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/distribuidora-login/${uuid}`, data);
-        console.log("response ===>>>>", response)
         if (requestSuccessful(response?.status)) {
             setNotifications(["Dados de acesso salvos com sucesso!"])
-            // await updateSharedAccess(response, store)
+            await updateSharedAccess(data, storeUser)
+
+            if (closeModal) {
+                closeModal()
+            }
 
         } else {
             console.error("Failed to sync user access");

@@ -1,11 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useStoreBillingHistory, useStoreMainInstallation, useStoreNextBills } from '@/app/hooks/useStore';
-import { getInvoicesData } from '@/app/service/invoices-service/InvoicesService';
 import { billHasExpired } from '@/app/utils/date/DateUtils';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import { handlePayButtonText } from '@/app/utils/helper/invoices/invoicesHelper';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import NewDefaultButton from '../../utils/buttons/NewDefaultButton';
 import DashboardInvoicesDummy from './DashboardInvoicesDummy';
 import { AllBillsPaidContainer, DashboardInvoicesContainer as Container, DashboardInvoicesContent as Content, NextBill, NextBillDivider, NextBillInfo, NextBillsContainer, NextBillsFooter, NoBillsContainer, PayBillButtonContainer } from './styles';
@@ -26,15 +25,6 @@ export default function DashboardInvoices() {
   const { hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
   const [isLoading, setIsLoading] = useState(false)
-
-  useEffect(() => {
-    const fetchInvoicesData = async () => {
-      await getInvoicesData(storeNextBills, storeBilling, setIsLoading)
-    }
-
-    fetchInvoicesData();
-    setIsLoading(true)
-  }, []);
 
   const dontHaveBills = billings?.length === 0
   const dontHaveNextBills = nextBills?.length === 0

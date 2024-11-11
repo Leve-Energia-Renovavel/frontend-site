@@ -2,7 +2,7 @@
 "use client"
 
 import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser } from "@/app/hooks/useStore";
-import { getInstallationByUUIDandUpdateStore, getMainInstallationData } from "@/app/service/installation-service/InstallationService";
+import { getInstallationByUUIDandUpdateStore } from "@/app/service/installation-service/InstallationService";
 import { getCityNameByStateIdAndCityId } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { formatCep } from "@/app/utils/formatters/documentFormatter";
@@ -12,7 +12,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Skeleton } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AddInstallationModal from "../../utils/modals/installations-modal/new-installation-modal/AddInstallationModal";
 import { BoxInstallation, InstallationDetails, InstallationFooter, InstallationHeader, InstallationItem, NewDashboardInstallation, SelectInstallation } from "./styles";
 
@@ -20,8 +20,6 @@ export default function DashboardInstallation({ isMobileContent }) {
 
     const [openNewInstallationModal, setOpenNewInstallationModal] = useState(false)
     const [openPendingInstallationModal, setOpenPendingInstallationModal] = useState(true)
-
-    const [isLoading, setIsLoading] = useState(false)
 
     const store = useStoreUser()
     const storeBilling = useStoreBillingHistory()
@@ -44,16 +42,6 @@ export default function DashboardInstallation({ isMobileContent }) {
     const pendingInstallations = filteredInstallations?.filter(installation => isPending(installation?.status));
 
     const hasPendingContracts = pendingInstallations?.length > 0
-
-    useEffect(() => {
-        const fetchUserData = async () => {
-            await getMainInstallationData(storeMainInstallation, storeInstallations, storeNextBills, storeBilling, setIsLoading);
-        };
-        if (!uuid) {
-            setIsLoading(true)
-            fetchUserData();
-        }
-    }, []);
 
     const handleChangeSelectedInstallation = async (selectedInstallation) => {
         setIsLoading(true)
@@ -96,13 +84,14 @@ export default function DashboardInstallation({ isMobileContent }) {
                     </BoxInstallation>
                 </InstallationHeader>
                 <InstallationDetails>
-                    {isLoading ?
-                        (<>
-                            <Skeleton className="installationDetails" variant="text" width={230} />
-                            <Skeleton className="installationDetails" variant="text" width={230} />
-                        </>)
-                        :
+                    {address ?
                         <p className="installationDetails">{getAddress(address, street)}, {getNumber(number)}  - {neighborhood ? neighborhood : "Bairro"}, {city ? "Cidade" : pascalCaseWord(getCityNameByStateIdAndCityId(stateId, cityId))} - {state ? "Estado" : stateOptions[stateId]?.sigla}, CEP: {formatCep(zipCode)}</p>
+                        :
+                        (<>
+                            <Skeleton variant="text" className="loadingAddress" />
+                            <Skeleton variant="text" className="loadingAddress" />
+                        </>
+                        )
                     }
                 </InstallationDetails>
                 {hasStartedBilling && hasConnectedByBackoffice && <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>

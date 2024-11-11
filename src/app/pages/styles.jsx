@@ -22,12 +22,14 @@ export const statusColors = {
 export const newStatusColors = {
     due: "#FDDCCB",
     paid: "#005940",
-    pending: "#FF7133"
+    pending: "#FF7133",
+    canceled: "#ff4b33"
 }
 export const newFontStatusColors = {
     due: "#FF7133",
     paid: "#FFF",
-    pending: "#FFF"
+    pending: "#FFF",
+    canceled: "#FFF"
 }
 
 

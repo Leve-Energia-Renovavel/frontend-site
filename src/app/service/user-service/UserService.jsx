@@ -1,3 +1,5 @@
+import { USER_TYPE } from "@/app/pages/enums/globalEnums";
+import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -51,3 +53,31 @@ export const updateUserProfile = async (data) => {
         return error
     }
 }
+
+export const updateUserData = (consumidor, instalacao, distribuidoraInstalacao, descontosCarbono, storeUser) => {
+    storeUser.updateUser({
+        uuid: consumidor?.uuid,
+        name: `${consumidor?.nome} ${consumidor?.sobrenome}`,
+        phone: consumidor?.telefone,
+        email: consumidor?.email,
+        secondaryEmail: consumidor?.email_secondary,
+        cost: instalacao?.valor_base_consumo,
+        cep: consumidor?.cep,
+        discount: descontosCarbono?.desconto,
+        birthDate: consumidor?.data_nascimento ? formatBasicBirthDate(consumidor.data_nascimento) : "",
+        isCompany: consumidor?.type === USER_TYPE.PJ,
+        companyName: instalacao?.razao_social,
+        cnpj: instalacao?.cnpj,
+        cpf: consumidor?.cpf,
+        rg: consumidor?.rg,
+        profession: consumidor?.profissao,
+        nationality: consumidor?.nacionalidade,
+        maritalStatus: consumidor?.estado_civil,
+        memberGetMemberCode: consumidor?.ref_code,
+        invoiceDate: consumidor?.dia_fatura,
+        distributor: distribuidoraInstalacao?.nome,
+        hasSyncDistributorData: Boolean(instalacao?.distribuidora_login),
+        distributorLogin: instalacao?.distribuidora_login ? instalacao?.distribuidora_login : "",
+        distributorPassword: instalacao?.distribuidora_pass ? instalacao?.distribuidora_pass : "",
+    });
+};

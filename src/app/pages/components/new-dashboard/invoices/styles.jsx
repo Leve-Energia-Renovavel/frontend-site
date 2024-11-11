@@ -122,7 +122,6 @@ export const NextBillInfo = styled.div`
         padding: 4px 5px;
         ${props => props.status ? `background-color:${newStatusColors[props.status]};` : ""};
         ${props => props.status ? `color:${newFontStatusColors[props.status]};` : ""};
-
     }
 
     .label {
