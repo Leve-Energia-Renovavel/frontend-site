@@ -8,23 +8,27 @@ import { HomeSixthSectionCard as Card, HomeSixthSectionContainer as Container, H
 
 const texts = infoJson.home
 
-export default function BrandsContainer() {
+export default function BrandsContainer({ partner }) {
+
+    const isTim = partner === "tim"
+
     return (
-        <Container className='brandsContainer'>
-            <TitleContainer className='titleContainer'>
-                <Typography variant="subtitle1" className='sectionTitle'>{texts.brandsThatTrust}</Typography>
-            </TitleContainer>
+        isTim ? <> </> :
+            (<Container className='brandsContainer'>
+                <TitleContainer className='titleContainer'>
+                    <Typography variant="subtitle1" className='sectionTitle'>{texts.brandsThatTrust}</Typography>
+                </TitleContainer>
 
-            <ContentContainer className='brandsContentContainer'>
-                {brands.map((brand, index) => {
-                    return (
-                        <Card key={brand.company} className={`brandCard-${index}`}>
-                            <Image src={brand.logo} alt={brand.company} className={`brandLogo`} loading="lazy" id={`${brand.label}`} />
-                        </Card>
-                    )
-                })}
+                <ContentContainer className='brandsContentContainer'>
+                    {brands.map((brand, index) => {
+                        return (
+                            <Card key={brand.company} className={`brandCard-${index}`}>
+                                <Image src={brand.logo} alt={brand.company} className={`brandLogo`} loading="lazy" id={`${brand.label}`} />
+                            </Card>
+                        )
+                    })}
 
-            </ContentContainer>
-        </Container>
+                </ContentContainer>
+            </Container>)
     )
 }
