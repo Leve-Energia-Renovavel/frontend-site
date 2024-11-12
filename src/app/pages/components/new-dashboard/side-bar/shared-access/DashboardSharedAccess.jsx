@@ -2,17 +2,15 @@
 
 import { useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
 import { DISTRIBUTOR } from '@/app/pages/enums/globalEnums';
+import CloseIcon from '@mui/icons-material/Close';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { IconButton, InputAdornment, TextField } from '@mui/material';
-import { useRef, useState } from 'react';
-import { CheckIcon, DashboardAccordionContainer, DashboardAccordionDetails, DashboardAccordionSummary, EditFormButton, ExpandIcon, FormButton, LoadingIcon, SharedAccessForm, SimpleArrowForward } from './styles';
-import { emptyFields, schemaValidation } from './validation';
+import { InputAdornment, TextField } from '@mui/material';
 import { useRouter } from 'next/navigation';
-
+import { useRef, useState } from 'react';
+import { CheckIcon, CloseButton, DashboardAccordionContainer, DashboardAccordionDetails, DashboardAccordionSummary, EditFormButton, ExpandIcon, FormButton, LoadingIcon, SharedAccessForm, SimpleArrowForward } from './styles';
+import { emptyFields, schemaValidation } from './validation';
 export default function DashboardSharedAccess({ expanded, closeModal, isMobileContent, setErrorMessage, setNotifications }) {
 
     const router = useRouter()
@@ -27,6 +25,7 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
 
     const [passwordVisibible, setPasswordVisibible] = useState("password")
     const [isLoading, setIsLoading] = useState(false)
+    const [isEdition, setIsEdition] = useState(false)
 
     // hasSyncDistributorData = !hasSyncDistributorData
 
@@ -78,6 +77,10 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                     display: 'none',
                 }
             }}>
+            {!showExpandIcon &&
+                <CloseButton onClick={closeModal}>
+                    <CloseIcon className='closeIcon' />
+                </CloseButton>}
             <DashboardAccordionSummary
                 hasSyncDistributorData={hasSyncDistributorData}
                 aria-controls="dashboard-shared-access-content"
@@ -88,7 +91,7 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
             </DashboardAccordionSummary>
             <DashboardAccordionDetails>
                 <p className='sharedAccessSubtitle'>Para garantir o máximo de economia mensal, registre seus dados de acesso ao portal ou aplicativo da sua distribuidora. Assim, poderemos acessar as informações da sua fatura mensalmente e assegurar que os créditos de energia sejam aplicados corretamente para o seu consumo. </p>
-                <SharedAccessForm hasSyncDistributorData={hasSyncDistributorData}>
+                <SharedAccessForm isEdition={isEdition}>
                     <TextField
                         className="formInputField"
                         inputRef={distributorLoginRef.login}
@@ -98,7 +101,7 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                         placeholder={isCPFL ? "E-mail" : "CPF"}
                         type="text"
                         inputProps={isCPFL ? {} : { inputMode: 'numeric' }}
-                        disabled={hasSyncDistributorData}
+                        disabled={!isEdition}
                         InputProps={{
                             startAdornment:
                                 <InputAdornment position="start">
@@ -112,9 +115,9 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                         label="Senha"
                         variant="outlined"
                         placeholder="Senha"
-                        // defaultValue={distributorPassword ? distributorPassword : ""}
+                        defaultValue={distributorPassword ? distributorPassword : ""}
                         type={passwordVisibible}
-                        disabled={hasSyncDistributorData}
+                        disabled={!isEdition}
                         required
                         onKeyDown={(event) => handleKeyPress(event)}
                         InputProps={{
@@ -122,27 +125,27 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                                 <InputAdornment position="start">
                                     <LockOutlinedIcon className='passwordIcon' />
                                 </InputAdornment>,
-                            endAdornment:
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        onClick={() => setPasswordVisibible(passwordVisibible === "password" ? "text" : "password")}>
-                                        {passwordVisibible === "password" ? <VisibilityIcon className='visibilityIcon' /> : <VisibilityOffIcon className='visibilityIcon' />}
-                                    </IconButton>
-                                </InputAdornment>
+                            // endAdornment:
+                            //     <InputAdornment position="end">
+                            //         {!isEdition && <IconButton
+                            //             onClick={() => setPasswordVisibible(passwordVisibible === "password" ? "text" : "password")}>
+                            //             {passwordVisibible === "password" ? <VisibilityIcon className='visibilityIcon' /> : <VisibilityOffIcon className='visibilityIcon' />}
+                            //         </IconButton>}
+                            //     </InputAdornment>
                         }} />
 
-                    {hasSyncDistributorData ?
-                        <EditFormButton
-                            onClick={() => storeUser.updateUser({ hasSyncDistributorData: false })}
-                            endIcon={<EditOutlinedIcon className="icon" />}>
-                            <span>{"Editar dados"} </span>
-                        </EditFormButton>
-                        :
+                    {isEdition ?
                         <FormButton
                             onClick={handleSubmit}
                             endIcon={isLoading ? "" : <SimpleArrowForward className="icon" />}>
                             <span>{isLoading ? <LoadingIcon className='loading' size={"21px"} /> : "Enviar"} </span>
-                        </FormButton>}
+                        </FormButton>
+                        :
+                        <EditFormButton
+                            onClick={() => setIsEdition(true)}
+                            endIcon={<EditOutlinedIcon className="icon" />}>
+                            <span>{"Editar dados"} </span>
+                        </EditFormButton>}
 
 
                 </SharedAccessForm>

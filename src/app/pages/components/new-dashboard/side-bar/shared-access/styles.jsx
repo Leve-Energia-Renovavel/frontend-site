@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -51,10 +51,12 @@ export const DashboardAccordionSummary = styled(AccordionSummary, {
 })`
     display: flex;
     flex-direction: row;
-    align-items: center;    
+    align-items: center;  
+    
+     position: relative;
     
     color: ${(props) => props.hasSyncDistributorData ? background.green : background.orange};
-
+    
     .sharedAccessTitle {
         font-size: 18px;
         font-style: normal;
@@ -67,7 +69,18 @@ export const DashboardAccordionSummary = styled(AccordionSummary, {
         margin-left: 4px;
         color: ${(props) => props.hasSyncDistributorData ? background.green : background.orange};
     }
+`
 
+export const CloseButton = styled(IconButton)`
+  position: absolute;
+  right: 0%;
+  top: 0%;
+
+  .closeIcon {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `
 export const DashboardAccordionDetails = styled(AccordionDetails)`
     display: flex;
@@ -131,7 +144,7 @@ export const SharedAccessForm = styled.form`
           & fieldset {
             height: 40px;
             border-radius: 5px;
-            border-color:  ${props => props.hasSyncDistributorData ? background.green : background.orange}; /* Ensure border is green or orange depending if user has sync data */
+            border-color:  ${props => props.isEdition ? background.orange : background.green}; /* Ensure border is green or orange depending if user has sync data */
           }
         } 
 
