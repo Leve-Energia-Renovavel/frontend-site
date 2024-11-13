@@ -13,18 +13,16 @@ import CircularProgress from '@mui/material/CircularProgress';
 const DashboardAccordionContainerBase = styled(Accordion, {
   shouldForwardProp: (prop) => prop !== "hasSyncDistributorData" && prop !== "isMobileContent",
 })``;
-const DashboardAccordionSummaryBase = styled(Accordion, {
-  shouldForwardProp: (prop) => prop !== "hasSyncDistributorData" && prop !== "isMobileContent",
-})``;
 
 export const DashboardAccordionContainer = styled(DashboardAccordionContainerBase)`
     border-radius: 8px;
     background-color: ${background.white};
     box-shadow: none;
+    max-width: 342px;
+    margin: 0 auto;
 
     ${({ $hasSyncDistributorData }) => $hasSyncDistributorData ? `border: 1px solid ${background.green};` : `border:none;`};
 
-    
     /* border: ${(props) => props.hasSyncDistributorData && props.isMobileContent ? `1px solid ${background.green};` : `none;`}; */
 
     ${(props) => props.isMobileContent && "display:none;"}
@@ -81,6 +79,10 @@ export const CloseButton = styled(IconButton)`
       cursor: pointer;
     }
   }
+
+  @media (max-width: 600px) {
+        ${(props) => props.isMobileContent && "display:none;"}
+    }
 `
 export const DashboardAccordionDetails = styled(AccordionDetails)`
     display: flex;

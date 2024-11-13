@@ -19,7 +19,11 @@ export default function NewHeader({ isLoggedUser, isOpen, openModal, closeModal,
     }
 
     return (
-        <MobileNewHeaderContainer isLandingPage={isLandingPage} isPartner={isPartner} isOpen={isOpen} className="leveHeader">
+        <MobileNewHeaderContainer
+            isLandingPage={isLandingPage}
+            isPartner={isPartner}
+            isOpen={isOpen}
+            className="leveHeader">
             <Image src={logoLeve} onClick={() => handleRoute()} className='logoLeve' alt={"Logo da Leve na cor laranja"} priority={true} />
             {isPartner && (
                 <PartnerContainer>

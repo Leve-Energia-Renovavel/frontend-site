@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { CheckIcon, CloseButton, DashboardAccordionContainer, DashboardAccordionDetails, DashboardAccordionSummary, EditFormButton, ExpandIcon, FormButton, LoadingIcon, SharedAccessForm, SimpleArrowForward } from './styles';
 import { emptyFields, schemaValidation } from './validation';
+
 export default function DashboardSharedAccess({ expanded, closeModal, isMobileContent, setErrorMessage, setNotifications }) {
 
     const router = useRouter()
@@ -27,13 +28,13 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
     const [isLoading, setIsLoading] = useState(false)
     const [isEdition, setIsEdition] = useState(false)
 
-    // hasSyncDistributorData = !hasSyncDistributorData
-
     const isCPFL = distributor === DISTRIBUTOR.CPFL_PAULISTA
     const isCEMIG = distributor === DISTRIBUTOR.CEMIG
     const isCOPEL = distributor === DISTRIBUTOR.COPEL
 
     const showExpandIcon = isMobileContent
+    const hideCloseIcon = !isMobileContent && expanded && !closeModal
+    const userWantsToUpdateData = hasSyncDistributorData && !isEdition
 
     const distributorLoginRef = {
         login: useRef(null),
@@ -55,6 +56,7 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
             }
             await schemaValidation(data, uuid, storeUser, isCPFL, router, setIsLoading, setErrorMessage, setNotifications, closeModal)
         }
+        setIsEdition(false)
 
     }
 
@@ -77,8 +79,8 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                     display: 'none',
                 }
             }}>
-            {!showExpandIcon &&
-                <CloseButton onClick={closeModal}>
+            {!hideCloseIcon &&
+                <CloseButton onClick={closeModal} isMobileContent={isMobileContent}>
                     <CloseIcon className='closeIcon' />
                 </CloseButton>}
             <DashboardAccordionSummary
@@ -101,7 +103,7 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                         placeholder={isCPFL ? "E-mail" : "CPF"}
                         type="text"
                         inputProps={isCPFL ? {} : { inputMode: 'numeric' }}
-                        disabled={!isEdition}
+                        disabled={userWantsToUpdateData}
                         InputProps={{
                             startAdornment:
                                 <InputAdornment position="start">
@@ -117,7 +119,7 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                         placeholder="Senha"
                         defaultValue={distributorPassword ? distributorPassword : ""}
                         type={passwordVisibible}
-                        disabled={!isEdition}
+                        disabled={userWantsToUpdateData}
                         required
                         onKeyDown={(event) => handleKeyPress(event)}
                         InputProps={{
@@ -134,22 +136,19 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                             //     </InputAdornment>
                         }} />
 
-                    {isEdition ?
-                        <FormButton
-                            onClick={handleSubmit}
-                            endIcon={isLoading ? "" : <SimpleArrowForward className="icon" />}>
-                            <span>{isLoading ? <LoadingIcon className='loading' size={"21px"} /> : "Enviar"} </span>
-                        </FormButton>
-                        :
+                    {userWantsToUpdateData ?
                         <EditFormButton
                             onClick={() => setIsEdition(true)}
                             endIcon={<EditOutlinedIcon className="icon" />}>
                             <span>{"Editar dados"} </span>
-                        </EditFormButton>}
-
-
+                        </EditFormButton>
+                        :
+                        <FormButton
+                            onClick={handleSubmit}
+                            endIcon={isLoading ? "" : <SimpleArrowForward className="icon" />}>
+                            <span>{isLoading ? <LoadingIcon className='loading' size={"21px"} /> : "Enviar"} </span>
+                        </FormButton>}
                 </SharedAccessForm>
-
 
             </DashboardAccordionDetails>
         </DashboardAccordionContainer>

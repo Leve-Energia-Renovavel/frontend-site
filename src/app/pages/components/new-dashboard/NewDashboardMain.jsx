@@ -3,7 +3,7 @@
 
 import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser, useStoreUserEconomy } from '@/app/hooks/useStore';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { NewDashboardContainer as Container, NewDashboardContent as Content } from './styles';
 
@@ -20,6 +20,7 @@ const DashboardSharedAccess = dynamic(() => import('./side-bar/shared-access/Das
 export default function NewDashboardMain(props) {
 
     const router = useRouter()
+    const pathname = usePathname()
     const storeUser = useStoreUser()
     const storeEconomy = useStoreUserEconomy()
     const storeNextBills = useStoreNextBills()
@@ -27,7 +28,7 @@ export default function NewDashboardMain(props) {
     const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
 
-    const { uuid, hasStartedBilling } = storeMainInstallation?.mainInstallation || {}
+    const { hasStartedBilling } = storeMainInstallation?.mainInstallation || {}
 
     const mainInstallationExists = storeMainInstallation?.mainInstallation?.uuid !== ""
 
@@ -35,6 +36,9 @@ export default function NewDashboardMain(props) {
 
     const [notifications, setNotifications] = useState([])
     const [errors, setErrorMessage] = useState([])
+
+    const isHome = pathname === "/dashboard/"
+    const isHomeOrInstallations = pathname === "/dashboard/" || pathname === "/dashboard/installations/";
 
     useEffect(() => {
         clearStorageData()
@@ -57,11 +61,15 @@ export default function NewDashboardMain(props) {
                         setMenuSelection={setMenuSelection} />
                 </DashboardSideBar>
                 <Content className='dashboardContent'>
-                    {mainInstallationExists && !hasStartedBilling && <StatusStepper /> && <DashboardSharedAccess
-                        isMobileContent={false}
-                        setErrorMessage={setErrorMessage}
-                        setNotifications={setNotifications}
-                    />}
+                    {mainInstallationExists && !hasStartedBilling && isHomeOrInstallations && <StatusStepper />}
+                    {mainInstallationExists && !hasStartedBilling && isHome &&
+                        <DashboardSharedAccess
+                            expanded={true}
+                            isMobileContent={false}
+                            setErrorMessage={setErrorMessage}
+                            setNotifications={setNotifications}
+                        />}
+
                     {menuSelected?.content}
                 </Content>
             </Container>

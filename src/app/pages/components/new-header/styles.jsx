@@ -55,10 +55,6 @@ export const MobileNewHeaderContainer = styled.header`
         max-width: 100vw;
         margin: 0;
 
-        .profile {
-            display: none;
-        }
-
         .logoLeve {
             width: 155px; 
             height: 33px;

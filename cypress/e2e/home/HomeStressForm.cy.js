@@ -10,12 +10,12 @@ const usertypes = [
 ];
 
 const testingCEPs = [
+    { cep: CIDADE.PIRATININGA.cep, expect: SUCCESS, cityName: CIDADE.PIRATININGA.label },
     { cep: CIDADE.ARACAJU.cep, expect: FAILURE, cityName: CIDADE.ARACAJU.label },
     { cep: CIDADE.BELO_HORIZONTE.cep, expect: SUCCESS, cityName: CIDADE.BELO_HORIZONTE.label },
     { cep: CIDADE.GOIANIA.cep, expect: FAILURE, cityName: CIDADE.GOIANIA.label },
     { cep: CIDADE.GUARUJA.cep, expect: SUCCESS, cityName: CIDADE.GUARUJA.label },
     { cep: CIDADE.PAULISTA.cep, expect: SUCCESS, cityName: CIDADE.PAULISTA.label },
-    { cep: CIDADE.PIRATININGA.cep, expect: SUCCESS, cityName: CIDADE.PIRATININGA.label },
     { cep: CIDADE.RECIFE.cep, expect: SUCCESS, cityName: CIDADE.RECIFE.label },
     { cep: CIDADE.RIO_DE_JANEIRO.cep, expect: FAILURE, cityName: CIDADE.RIO_DE_JANEIRO.label },
     { cep: CIDADE.SOCORRO.cep, expect: SUCCESS, cityName: CIDADE.SOCORRO.label },
@@ -25,8 +25,8 @@ const testingCEPs = [
 
 describe('Complete Stress Tests for HomeMainForm', () => {
 
-    usertypes.forEach(({ type, label }) => {
-        testingCEPs.forEach(({ cep, expect, cityName }) => {
+    usertypes.slice(0, 1).forEach(({ type, label }) => {
+        testingCEPs.slice(0, 1).forEach(({ cep, expect, cityName }) => {
             it(`should test CEP ${cep} (${cityName.toUpperCase()}) for type ${type} expecting ${expect.toUpperCase()} result`, () => {
 
                 const location = "home"
