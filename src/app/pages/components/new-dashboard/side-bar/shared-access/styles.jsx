@@ -68,8 +68,9 @@ export const DashboardAccordionSummary = styled(AccordionSummary, {
         color: ${(props) => props.hasSyncDistributorData ? background.green : background.orange};
     }
 `
-
-export const CloseButton = styled(IconButton)`
+export const CloseButton = styled(IconButton, {
+  shouldForwardProp: (prop) => prop !== "isMobileContent",
+})`
   position: absolute;
   right: 0%;
   top: 0%;

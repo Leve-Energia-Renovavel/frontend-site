@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
 import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser } from "@/app/hooks/useStore";
@@ -33,7 +32,7 @@ export default function DashboardInstallation({ isMobileContent }) {
 
     const { uuid, hasConnectedByBackoffice } = user?.user ?? (store?.user || {})
 
-    const { address, street, number, neighborhood, city, state, stateId, cityId, zipCode, installationNumber, id, hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+    const { address, street, number, neighborhood, city, state, stateId, cityId, zipCode, id, hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
     const allInstallations = installations?.installations ?? (storeInstallations?.installations || {})
 

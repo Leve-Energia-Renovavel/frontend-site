@@ -25,8 +25,8 @@ const testingCEPs = [
 
 describe('Complete Stress Tests for HomeMainForm', () => {
 
-    usertypes.slice(0, 1).forEach(({ type, label }) => {
-        testingCEPs.slice(0, 1).forEach(({ cep, expect, cityName }) => {
+    usertypes.forEach(({ type, label }) => {
+        testingCEPs.forEach(({ cep, expect, cityName }) => {
             it(`should test CEP ${cep} (${cityName.toUpperCase()}) for type ${type} expecting ${expect.toUpperCase()} result`, () => {
 
                 const location = "home"

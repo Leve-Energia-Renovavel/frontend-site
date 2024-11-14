@@ -31,4 +31,12 @@ export const ModalBox = styled(Box)`
         padding: 1.5rem;
         transform: translate(-50%, -60%);
     }
+    @media (max-width: 600px) {
+        padding: 1.5rem;
+        transform: translate(-48%, -50%);
+
+        min-width: 340px;
+        width: 342px;
+        max-width: 342px;
+    }
 `

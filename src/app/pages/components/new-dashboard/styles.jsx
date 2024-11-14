@@ -55,6 +55,10 @@ export const NewDashboardContent = styled.div`
         margin: 0 auto;
         gap: 25px;
     }
+    @media (max-width: 600px) {
+        margin: 0 auto;
+        gap: 16px;
+    }
 `
 export const NewDashboardMainContent = styled.div`
     display: flex;

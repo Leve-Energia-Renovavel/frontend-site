@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
-import { NewDashboardSideBar as SideBar } from '../styles';
 import DashboardSharedAccessButton from '../../utils/buttons/dashboard/shared-access/DashboardSharedAccessButton';
+import { NewDashboardSideBar as SideBar } from '../styles';
 
 const DashboardProfile = dynamic(() => import('./DashboardProfile'), { ssr: false });
 const DashboardInstallation = dynamic(() => import('./DashboardInstallation'), { ssr: false });
@@ -15,6 +15,7 @@ export default function DashboardSideBar({ children, setErrorMessage, setNotific
                 <DashboardInstallation isMobileContent={false} />
 
                 <DashboardSharedAccessButton
+                    isMobileContent={false}
                     setErrorMessage={setErrorMessage}
                     setNotifications={setNotifications} />
 

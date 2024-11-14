@@ -74,8 +74,6 @@ export default function DashboardMain() {
                         maritalStatus: consumidor?.estado_civil,
                         memberGetMemberCode: consumidor?.ref_code,
 
-                        hasSyncDistributorData: true,
-
                         invoiceDate: consumidor?.dia_fatura
                     });
 

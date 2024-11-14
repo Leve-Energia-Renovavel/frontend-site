@@ -37,7 +37,7 @@ export const useStoreUser = create((set) => ({
         distributorPassword: "",
 
         hasSignContract: false,
-        hasSyncDistributorData: false,
+        hasSyncDistributorData: null,
 
         memberGetMemberCode: "",
 
@@ -97,7 +97,7 @@ export const useStoreUser = create((set) => ({
                 distributorPassword: "",
 
                 hasSignContract: false,
-                hasSyncDistributorData: false,
+                hasSyncDistributorData: null,
 
                 memberGetMemberCode: "",
 

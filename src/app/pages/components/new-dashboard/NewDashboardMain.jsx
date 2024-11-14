@@ -15,7 +15,6 @@ import DashboardMenu from './side-bar/DashboardMenu';
 import DashboardSideBar from './side-bar/DashboardSideBar';
 
 const StatusStepper = dynamic(() => import('./status-stepper/StatusStepper'), { ssr: false });
-const DashboardSharedAccess = dynamic(() => import('./side-bar/shared-access/DashboardSharedAccess'), { ssr: false });
 
 export default function NewDashboardMain(props) {
 
@@ -37,7 +36,6 @@ export default function NewDashboardMain(props) {
     const [notifications, setNotifications] = useState([])
     const [errors, setErrorMessage] = useState([])
 
-    const isHome = pathname === "/dashboard/"
     const isHomeOrInstallations = pathname === "/dashboard/" || pathname === "/dashboard/installations/";
 
     useEffect(() => {
@@ -62,14 +60,6 @@ export default function NewDashboardMain(props) {
                 </DashboardSideBar>
                 <Content className='dashboardContent'>
                     {mainInstallationExists && !hasStartedBilling && isHomeOrInstallations && <StatusStepper />}
-                    {mainInstallationExists && !hasStartedBilling && isHome &&
-                        <DashboardSharedAccess
-                            expanded={true}
-                            isMobileContent={false}
-                            setErrorMessage={setErrorMessage}
-                            setNotifications={setNotifications}
-                        />}
-
                     {menuSelected?.content}
                 </Content>
             </Container>

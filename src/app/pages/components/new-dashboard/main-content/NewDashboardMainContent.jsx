@@ -7,7 +7,7 @@ import DashboardProfile from '../side-bar/DashboardProfile';
 import { NewDashboardMainContent as MainContent } from '../styles';
 
 const DashboardInstallation = dynamic(() => import('../side-bar/DashboardInstallation'), { ssr: false });
-const DashboardSharedAccess = dynamic(() => import('../side-bar/shared-access/DashboardSharedAccess'), { ssr: false });
+const DashboardSharedAccessButton = dynamic(() => import('../../utils/buttons/dashboard/shared-access/DashboardSharedAccessButton'), { ssr: false });
 
 const FactoryContent = dynamic(() => import('../factory/FactoryContent'), { ssr: false });
 const DashboardHistory = dynamic(() => import('../history/DashboardHistory'), { ssr: false });
@@ -22,10 +22,11 @@ export default function NewDashboardMainContent() {
         <>
             <DashboardProfile isMobileContent={true} />
             <DashboardInstallation isMobileContent={true} />
-            <DashboardSharedAccess
+            <DashboardSharedAccessButton
                 isMobileContent={true}
                 setErrorMessage={setErrorMessage}
                 setNotifications={setNotifications} />
+
             <MainContent className='dashboardMainContent'>
                 <DashboardInvoices />
                 <DashboardHistory />

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
 import { useStoreUser } from "@/app/hooks/useStore";
@@ -12,8 +11,6 @@ export default function DashboardProfile({ isMobileContent }) {
 
     const router = useRouter()
     const store = useStoreUser()
-    // const user = JSON.parse(localStorage.getItem('user'))
-    // const { name, cpf } = user?.user ?? (store?.user || {})
 
     const { name, cpf } = store?.user || {}
 

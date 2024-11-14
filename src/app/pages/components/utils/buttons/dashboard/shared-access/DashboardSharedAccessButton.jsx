@@ -1,40 +1,52 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
 import { useStoreUser } from "@/app/hooks/useStore"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import SharedAccessModal from "../../../modals/shared-access-modal/SharedAccessModal"
 import { ArrowRightIcon, LockIcon, SharedAccessButtonContainer } from "./styles"
 
-export default function DashboardSharedAccessButton({ setErrorMessage, setNotifications }) {
+export default function DashboardSharedAccessButton({ isMobileContent, setErrorMessage, setNotifications }) {
+
+    const storeUser = useStoreUser()
+    const { distributor, hasSyncDistributorData } = storeUser?.user || {}
 
     const [openModal, setOpenModal] = useState(false)
 
-    const storeUser = useStoreUser()
-
-    const { distributor } = storeUser?.user || {}
-
     const handleOpenModal = () => {
-        setOpenModal(current => !current)
+        setOpenModal(true)
     }
     const handleCloseModal = () => {
         setOpenModal(false)
     }
 
+    useEffect(() => {
+        if (hasSyncDistributorData === false && isMobileContent) {
+            handleOpenModal()
+        }
+    }, [hasSyncDistributorData])
+
     return (
         <>
-            {distributor ?
+            {distributor &&
                 (<>
-                    <SharedAccessButtonContainer onClick={handleOpenModal} className="sharedAccessButtonContainer">
+                    <SharedAccessButtonContainer
+                        className={`sharedAccessButtonContainer${isMobileContent && "Mobile"}`}
+                        isMobileContent={isMobileContent}
+                        onClick={handleOpenModal} >
                         <LockIcon className="lockIcon" />
                         <p className="sharedAccessButtonText">Informe os dados de acesso ao portal da sua distribuidora e garanta sua economia mensal</p>
                         <ArrowRightIcon className="arrowRightIcon" />
                     </SharedAccessButtonContainer>
+
                     <SharedAccessModal
+                        isMobileContent={isMobileContent}
                         isOpen={openModal}
+                        openModal={handleOpenModal}
                         closeModal={handleCloseModal}
                         setErrorMessage={setErrorMessage}
                         setNotifications={setNotifications} />
-                </>) : <></>}
+                </>)}
         </>
     )
 }

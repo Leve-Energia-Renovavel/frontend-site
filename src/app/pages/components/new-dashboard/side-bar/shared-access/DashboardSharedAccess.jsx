@@ -99,6 +99,7 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                         inputRef={distributorLoginRef.login}
                         label={isCPFL ? "E-mail" : "CPF"}
                         variant="outlined"
+                        autoComplete="off"
                         defaultValue={distributorLogin ? distributorLogin : ""}
                         placeholder={isCPFL ? "E-mail" : "CPF"}
                         type="text"
@@ -117,6 +118,7 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                         label="Senha"
                         variant="outlined"
                         placeholder="Senha"
+                        autoComplete="off"
                         defaultValue={distributorPassword ? distributorPassword : ""}
                         type={passwordVisibible}
                         disabled={userWantsToUpdateData}

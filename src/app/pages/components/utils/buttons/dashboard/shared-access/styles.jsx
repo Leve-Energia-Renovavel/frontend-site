@@ -4,12 +4,15 @@ import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Button } from "@mui/material";
 
-export const SharedAccessButtonContainer = styled(Button)`
+export const SharedAccessButtonContainer = styled(Button, {
+    shouldForwardProp: (prop) => prop !== "isMobileContent",
+})`
     display: flex;
     flex-direction: row;
     align-items: center;
     background-color: ${background.orangeTranslucent};
-
+    ${(props) => props.isMobileContent && `display:none;`}
+    
     border-radius: 15px;
     
     gap: 10px;
@@ -32,11 +35,14 @@ export const SharedAccessButtonContainer = styled(Button)`
         width: 32px;
         height: 32px;
     }
-`
+    @media (max-width: 600px) {
+        ${(props) => props.isMobileContent && `display:flex;`}
+    }
+    `
 
 export const LockIcon = styled(LockOutlinedIcon)`
     color: ${background.orange};
-`
+    `
 export const ArrowRightIcon = styled(ArrowForwardOutlinedIcon)`
     color: ${background.orange};
-`
+    `
