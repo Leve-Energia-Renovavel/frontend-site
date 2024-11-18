@@ -24,14 +24,14 @@ export const newStatusColors = {
     paid: "#005940",
     pending: "#FF7133",
     canceled: "#ff4b33",
-    scheduled: "#ffae00",
+    scheduled: "#FDDCCB",
 }
 export const newFontStatusColors = {
     due: "#FF7133",
     paid: "#FFF",
     pending: "#FFF",
     canceled: "#FFF",
-    scheduled: "#FFF",
+    scheduled: "#FF7133",
 }
 
 
