@@ -100,6 +100,7 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                         label={isCPFL ? "E-mail" : "CPF"}
                         variant="outlined"
                         autoComplete="off"
+                        aria-autocomplete='none'
                         defaultValue={distributorLogin ? distributorLogin : ""}
                         placeholder={isCPFL ? "E-mail" : "CPF"}
                         type="text"
@@ -116,9 +117,10 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                         className="formInputField"
                         inputRef={distributorLoginRef.password}
                         label="Senha"
+                        aria-autocomplete='none'
                         variant="outlined"
                         placeholder="Senha"
-                        autoComplete="off"
+                        autoComplete="new-password"
                         defaultValue={distributorPassword ? distributorPassword : ""}
                         type={passwordVisibible}
                         disabled={userWantsToUpdateData}

@@ -53,7 +53,7 @@ export const CIDADE = {
     },
     PIRATININGA: {
         label: "Piratininga",
-        cep: "17490-000",
+        cep: "17490-011",
         state: "SP"
     },
     RECIFE: {
