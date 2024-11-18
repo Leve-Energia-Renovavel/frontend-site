@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import Messages from '../../messages/Messages';
+import DashboardInvoices from '../invoices/DashboardInvoices';
 import DashboardProfile from '../side-bar/DashboardProfile';
 import { NewDashboardMainContent as MainContent } from '../styles';
 
@@ -11,7 +12,7 @@ const DashboardSharedAccessButton = dynamic(() => import('../../utils/buttons/da
 
 const FactoryContent = dynamic(() => import('../factory/FactoryContent'), { ssr: false });
 const DashboardHistory = dynamic(() => import('../history/DashboardHistory'), { ssr: false });
-const DashboardInvoices = dynamic(() => import('../invoices/DashboardInvoices'), { ssr: false });
+// const DashboardInvoices = dynamic(() => import('../invoices/DashboardInvoices'), { ssr: false });
 
 export default function NewDashboardMainContent() {
 

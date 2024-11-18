@@ -26,15 +26,11 @@ export default function DashboardInstallation({ isMobileContent }) {
     const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
 
-    const user = JSON.parse(localStorage.getItem('user'))
-    const mainInstallation = JSON.parse(localStorage?.getItem('mainInstallation'))
-    const installations = JSON.parse(localStorage?.getItem('installations'))
+    const { uuid, hasConnectedByBackoffice } = store?.user || {}
 
-    const { uuid, hasConnectedByBackoffice } = user?.user ?? (store?.user || {})
+    const { address, street, number, neighborhood, city, state, stateId, cityId, zipCode, id, hasStartedBilling } = storeMainInstallation?.mainInstallation || {}
 
-    const { address, street, number, neighborhood, city, state, stateId, cityId, zipCode, id, hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
-
-    const allInstallations = installations?.installations ?? (storeInstallations?.installations || {})
+    const allInstallations = storeInstallations?.installations || {}
 
     const filteredInstallations = allInstallations?.filter(installation => installation?.id !== id);
 

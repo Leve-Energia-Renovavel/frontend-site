@@ -5,6 +5,7 @@ import { billHasExpired } from '@/app/utils/date/DateUtils';
 import { formatMonthAndYearInFull } from '@/app/utils/formatters/dateFormatter';
 import ReactApexChart from 'react-apexcharts';
 import { background } from '../../styles';
+import { BILL_STATUS } from '../new-dashboard/invoices/invoicesEnums';
 import { BarChartWrapper } from './styles';
 
 export default function NewHistoryEnergyChart() {
@@ -118,9 +119,9 @@ export default function NewHistoryEnergyChart() {
 
             const status = billHasExpired(bill.status, bill.dueDate)
 
-            if (status === "paid") return background.green;
-            if (status === "due") return background.orangeFocused;
-            if (status === "pending") return background.orange;
+            if (status === BILL_STATUS.PAID) return background.green;
+            if (status === BILL_STATUS.DUE || status === BILL_STATUS.SCHEDULED) return background.orangeFocused;
+            if (status === BILL_STATUS.PENDING) return background.orange;
             return background.green;
         }],
         yaxis: {

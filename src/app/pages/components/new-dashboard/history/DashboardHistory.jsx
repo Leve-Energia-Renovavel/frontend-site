@@ -4,6 +4,7 @@ import { useStoreMainInstallation } from '@/app/hooks/useStore';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import HistoryDetails from './details/HistoryDetails';
+import { DATA_TYPE } from './historyEnums';
 import { AntSwitch, DashboardHistoryContainer as Container, DashboardHistoryContent as Content, DashboardHistoryTitleContainer as Header, HistoryChartLegend, HistoryDivider, LegendCarrier, LegendDue, LegendExpired, LegendPaid, DashboardHistorySwitchContainer as SwitchContainer } from './styles';
 
 const NewHistoryEnergyChart = dynamic(() => import('../../charts/NewHistoryEnergyChart'), { ssr: false });
@@ -16,11 +17,13 @@ export default function DashboardHistory() {
 
   const { hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
 
-  const [dataType, setDataType] = useState("money")
+  const [dataType, setDataType] = useState(DATA_TYPE.MONEY)
 
   const handleDataType = () => {
-    dataType === "money" ? setDataType("energy") : setDataType("money")
+    dataType === DATA_TYPE.MONEY ? setDataType(DATA_TYPE.ENERGY) : setDataType(DATA_TYPE.MONEY)
   }
+
+  const isMoneyChart = dataType === DATA_TYPE.MONEY
 
   return (
     <>
@@ -37,7 +40,7 @@ export default function DashboardHistory() {
 
           <Content className='dashboardHistoryContent'>
 
-            {dataType === "money" ? <NewHistoryMoneyChart /> : <NewHistoryEnergyChart />}
+            {isMoneyChart ? <NewHistoryMoneyChart /> : <NewHistoryEnergyChart />}
 
             <HistoryDivider />
 

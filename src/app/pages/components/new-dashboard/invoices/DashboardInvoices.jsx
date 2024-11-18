@@ -20,9 +20,7 @@ export default function DashboardInvoices() {
   const billings = storeBilling?.getFilteredBillings()
   const nextBills = storeNextBills?.getFilteredNextBills()
 
-  const mainInstallation = JSON.parse(localStorage?.getItem('mainInstallation'))
-
-  const { hasStartedBilling } = mainInstallation?.mainInstallation ?? (storeMainInstallation?.mainInstallation || {})
+  const { hasStartedBilling } = storeMainInstallation?.mainInstallation || {}
 
   const [isLoading, setIsLoading] = useState(false)
 
