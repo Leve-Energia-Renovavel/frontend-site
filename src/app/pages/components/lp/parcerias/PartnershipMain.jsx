@@ -4,10 +4,10 @@ import { clearPartnerName, partners } from "@/app/utils/helper/partners/partnerH
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import PartnerForm from "../form/PartnerForm";
 import { TutorialBannerContainer } from "../novos-clientes/styles";
 import { PartnershipMainContainer as Container, MainContentContainer } from "./styles";
 
-const PartnerForm = dynamic(() => import("../form/PartnerForm"), { ssr: false });
 const LandingPageSecondaryBanner = dynamic(() => import("../novos-clientes/LandingPageSecondaryBanner"), { ssr: false });
 const TutorialContainer = dynamic(() => import("../../home/tutorial/HomeTutorial"), { ssr: false });
 const HomeAreas = dynamic(() => import("../../home/areas/HomeAreas"), { ssr: false });
