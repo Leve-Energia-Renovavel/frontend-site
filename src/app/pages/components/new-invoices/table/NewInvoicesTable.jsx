@@ -38,7 +38,7 @@ export default function NewInvoicesTable() {
                 <p className='tableHeader'>Mês e Ano</p>
                 <p className='tableHeader'>Valor</p>
                 <p className='tableHeader'>Vencimento</p>
-                <p className='tableHeaderStatus'>Status</p>
+                <p className='tableHeaderStatus'>Pagamento</p>
             </NewInvoicesTableHeader>
 
             {dontHaveAnyBillsYet && (
@@ -60,7 +60,7 @@ export default function NewInvoicesTable() {
                                 aria-controls="panel1-content"
                                 id="panel1-header">
                                 <p className='leveBillValue'>{formatFullMonthAndYear(billing?.billDate)}</p>
-                                <p className='leveBillValue'>{`R$ ${billing?.value}`}</p>
+                                <p className='leveBillValue'>{`${billing?.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`}</p>
                                 <p className='leveBillValue'>{formatDateClearYear(billing?.dueDate)}</p>
                                 <p className='leveBillStatus'>{billingStatusOptions[billHasExpired(billing?.status, billing?.dueDate)]}</p>
 

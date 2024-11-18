@@ -3,10 +3,12 @@ export const BILL_STATUS = {
     PAID: "paid",
     PENDING: "pending",
     CANCELED: "canceled",
+    SCHEDULED: "scheduled",
 };
 export const BILLING_STATUS = {
     DUE: "Em aberto",
     PAID: "Pago",
-    PENDING: "Vencida",
-    CANCELED: "Cancelada",
+    PENDING: "Vencido",
+    CANCELED: "Cancelado",
+    SCHEDULED: "Agendado",
 };

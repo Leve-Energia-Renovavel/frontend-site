@@ -1,8 +1,9 @@
 export const billingStatusOptions = {
     due: "Em aberto",
     paid: "Pago",
-    pending: "Vencida",
-    canceled: "Cancelada",
+    pending: "Vencido",
+    canceled: "Cancelado",
+    scheduled: "Agendado",
 }
 
 export const billHasToBePaid = {
@@ -10,6 +11,7 @@ export const billHasToBePaid = {
     paid: false,
     pending: true,
     canceled: false,
+    scheduled: false,
 }
 
 export const billWasSend = (sendStatus) => {

@@ -2,10 +2,13 @@
 import { downloadBillByUrl } from '@/app/utils/downloader/invoicesDownloader';
 import { useRouter } from 'next/navigation';
 import { DownloadIcon, DueButton, GraphIcon, IconButton, InvoicesTableActionButtonContainer, LinkIcon, PendingButton } from './styles';
+import { BILL_STATUS } from '../../new-dashboard/invoices/invoicesEnums';
 
 export default function NewInvoicesActionButtonContainer({ status, urlBill, uuid, referenceDate }) {
 
     const router = useRouter()
+
+    const billNeedsToBePaid = status === BILL_STATUS.DUE || status === BILL_STATUS.PENDING
 
     const handleOpenLink = () => {
         window.open(urlBill, '_blank', 'noopener noreferrer');
@@ -20,7 +23,7 @@ export default function NewInvoicesActionButtonContainer({ status, urlBill, uuid
     return (
         <InvoicesTableActionButtonContainer>
             <>
-                {status === "due" || status === "pending" ? (
+                {billNeedsToBePaid ? (
                     <PendingButton status={status}>
                         <span>Pagar</span>
                     </PendingButton>)

@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import BarChartIcon from '@mui/icons-material/BarChart';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import InsertLinkIcon from '@mui/icons-material/InsertLink';
+import { BILL_STATUS } from "../../new-dashboard/invoices/invoicesEnums";
 
 export const InvoicesTableActionButtonContainer = styled.div`
     display: flex;
@@ -37,25 +38,25 @@ export const DueButton = styled.button`
     background-color: ${background.white};
     border-radius: 10px;
 
-    border: 2px solid ${props => props.status === "paid" ? background.green : background.orange};
+    border: 2px solid ${props => props.status === BILL_STATUS.PAID ? background.green : background.orange};
 
     span {
         font-family: "Graphie";
         font-size: 14px;
         line-height: 17px;
         font-weight: 600;
-        color: ${props => props.status === "paid" ? background.green : background.orange};
+        color: ${props => props.status === BILL_STATUS.PAID ? background.green : background.orange};
 
         white-space: nowrap;
     }
 
     .icon {
-        color: ${props => props.status === "paid" ? background.green : background.orange};
+        color: ${props => props.status === BILL_STATUS.PAID ? background.green : background.orange};
     }
 
     &:hover {
         cursor: pointer;
-        background-color: ${props => props.status === "paid" ? background.greenLight : background.orangeFocused}
+        background-color: ${props => props.status === BILL_STATUS.PAID ? background.greenLight : background.orangeFocused}
     }
 `
 
@@ -92,7 +93,7 @@ export const PendingButton = styled.button`
     height: 35px;
 
     padding: 6px 10px;
-    background-color: ${background.orangeLeve};
+    background-color: ${background.orange};
     border-radius: 10px;
 
     span {

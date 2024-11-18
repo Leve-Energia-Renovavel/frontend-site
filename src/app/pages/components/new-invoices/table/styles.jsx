@@ -1,6 +1,7 @@
-import { background, newStatusColors } from "@/app/pages/styles";
+import { background, newFontStatusColors, newStatusColors } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import { BILL_STATUS } from "../../new-dashboard/invoices/invoicesEnums";
 
 export const NewInvoicesSelectedInstallation = styled.div`
     .mainInstallation {
@@ -25,11 +26,11 @@ export const NewInvoicesTableHeader = styled.div`
         font-weight: 600;
         color: ${background.green};
 
-        margin-left: 70px;
+        margin-left: 71px;
     }
     
     .tableHeaderStatus {
-        margin-left: 90px;
+        margin-left: 60px;
     }
     
     @media (max-width: 900px) {
@@ -100,7 +101,7 @@ export const InvoicesTableLeveBill = styled(AccordionSummary)`
         height: fit-content;
 
         background-color: ${props => newStatusColors[props.status]};
-        color: ${props => props.status === "due" ? background.orange : background.white};
+        color: ${props => newFontStatusColors[props.status]};
         padding: 4px 8px;
         border-radius: 10px;
     }

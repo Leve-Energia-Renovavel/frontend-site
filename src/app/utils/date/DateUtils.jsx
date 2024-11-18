@@ -72,10 +72,7 @@ export const isValidDate = (dateString) => {
 };
 
 export const billHasExpired = (status, dueDate) => {
-    if (status === BILL_STATUS.PAID) {
-        return status
-    }
-    if (status === BILL_STATUS.CANCELED) {
+    if (status === BILL_STATUS.PAID || status === BILL_STATUS.CANCELED || status === BILL_STATUS.SCHEDULED) {
         return status
     }
 
