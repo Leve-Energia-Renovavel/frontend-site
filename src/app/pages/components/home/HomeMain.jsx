@@ -4,13 +4,13 @@ import { Divider } from "@mui/material";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import NewHomeMainBanner from "./banners/main/new-home/NewHomeMainBanner";
+import NewHomeBoxes from "./boxes/new-home/NewHomeBoxes";
 import HomeMainForm from './form/HomeMainForm';
 import NewHomeForm from "./form/new-home/NewHomeForm";
 import { HomeContainer as Container, HomeContentContainer as HomeBanner } from "./styles";
 import NewHomeTutorial from "./tutorial/new-home/NewHomeTutorial";
 import NewHomeVideo from "./video/NewHomeVideo";
 
-const NewHomeBoxes = dynamic(() => import("./boxes/new-home/NewHomeBoxes"), { ssr: false });
 const BrandsContainer = dynamic(() => import('./brands/HomeBrands'), { ssr: false });
 const Messages = dynamic(() => import('../messages/Messages'), { ssr: false });
 
