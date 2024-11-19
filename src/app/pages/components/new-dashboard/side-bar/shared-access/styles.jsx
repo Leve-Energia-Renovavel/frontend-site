@@ -1,3 +1,4 @@
+import { fadeInUp } from '@/app/pages/animations';
 import { background } from '@/app/pages/styles';
 import styled from '@emotion/styled';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -60,6 +61,9 @@ export const DashboardAccordionSummary = styled(AccordionSummary, {
         font-style: normal;
         font-weight: 600;
         line-height: 120%; /* 21.6px */
+        
+        animation: ${fadeInUp} 0.5s ease-out;
+
     }
     
     .expandIcon, .checkIcon {
@@ -100,6 +104,9 @@ export const DashboardAccordionDetails = styled(AccordionDetails)`
         line-height: 120%; /* 16.8px */
 
         max-width: 310px;
+
+        animation: ${fadeInUp} 0.3s ease-out;
+
     }
 `
 export const SharedAccessForm = styled.form`

@@ -2,9 +2,9 @@
 "use client"
 
 import { useStoreUser } from "@/app/hooks/useStore"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import SharedAccessModal from "../../../modals/shared-access-modal/SharedAccessModal"
-import { ArrowRightIcon, LockIcon, SharedAccessButtonContainer } from "./styles"
+import { ArrowRightIcon, LockIcon, SharedAccessButtonContainer, SharedAccessButtonContent, SharedAccessButtonTitle } from "./styles"
 
 export default function DashboardSharedAccessButton({ isMobileContent, setErrorMessage, setNotifications }) {
 
@@ -20,23 +20,29 @@ export default function DashboardSharedAccessButton({ isMobileContent, setErrorM
         setOpenModal(false)
     }
 
-    useEffect(() => {
-        if (hasSyncDistributorData === false && isMobileContent) {
-            handleOpenModal()
-        }
-    }, [hasSyncDistributorData])
-
     return (
         <>
             {distributor &&
                 (<>
                     <SharedAccessButtonContainer
-                        className={`sharedAccessButtonContainer${isMobileContent && "Mobile"}`}
+                        className={`sharedAccessButtonContainer${isMobileContent ? "Mobile" : ""}`}
                         isMobileContent={isMobileContent}
+                        hasSyncDistributorData={hasSyncDistributorData}
                         onClick={handleOpenModal} >
-                        <LockIcon className="lockIcon" />
-                        <p className="sharedAccessButtonText">Informe os dados de acesso ao portal da sua distribuidora e garanta sua economia mensal</p>
-                        <ArrowRightIcon className="arrowRightIcon" />
+                        <SharedAccessButtonTitle
+                            className={`sharedAccessButtonTitle${isMobileContent ? "Mobile" : ""}`}
+                            hasSyncDistributorData={hasSyncDistributorData}>
+                            <LockIcon className="lockIcon" />
+                            <p className="sharedAccessButtonTitle">Acesso à Distribuidora</p>
+                            <ArrowRightIcon className="arrowRightIcon" />
+                        </SharedAccessButtonTitle>
+
+                        <SharedAccessButtonContent
+                            className={`sharedAccessButtonContent${isMobileContent ? "Mobile" : ""}`}
+                            hasSyncDistributorData={hasSyncDistributorData}>
+                            <p className="sharedAccessButtonText">Informe os dados de acesso ao portal da sua distribuidora e garanta sua economia mensal</p>
+                        </SharedAccessButtonContent>
+
                     </SharedAccessButtonContainer>
 
                     <SharedAccessModal

@@ -43,7 +43,7 @@ export default function DashboardInvoices() {
                         <NextBill key={bill.uuid} className='nextBill'>
                           <h6 className='billDate'>{bill.billDate}</h6>
                           <NextBillInfo status={billHasExpired(bill.status, bill.dueDate)}>
-                            <h6 className='value'>R$ {bill.value}</h6>
+                            <h6 className='value'>{bill.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</h6>
                             <p className='status'>{billingStatusOptions[billHasExpired(bill.status, bill.dueDate)]}</p>
                           </NextBillInfo>
                           <NextBillInfo>

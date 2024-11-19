@@ -11,9 +11,9 @@ import dynamic from "next/dynamic";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PATH_TO } from "../../enums/globalEnums";
+import SignupFormHeader from "../signup/forms/SignupFormHeader";
 import { ContractSignatureContainer as Container, ContractSignatureForm, SignupLinearProgress } from "./styles";
 
-const SignupFormHeader = dynamic(() => import("../signup/forms/SignupFormHeader"), { ssr: false });
 const ClicksignWidgetComponent = dynamic(() => import("@/app/utils/clicksign/ClicksignWidgetComponent"), { ssr: false });
 
 export default function NewContractSignature() {

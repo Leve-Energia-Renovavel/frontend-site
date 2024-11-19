@@ -3,6 +3,7 @@ import DashboardSharedAccessButton from '../../utils/buttons/dashboard/shared-ac
 import { NewDashboardSideBar as SideBar } from '../styles';
 import DashboardInstallation from './DashboardInstallation';
 import DashboardProfile from './DashboardProfile';
+import DashboardWelcomeAndShareAccess from '../../utils/buttons/dashboard/welcome/DashboardWelcomeAndShareAccess';
 
 const DashboardSharedAccess = dynamic(() => import('./shared-access/DashboardSharedAccess'), { ssr: false });
 
@@ -13,15 +14,18 @@ export default function DashboardSideBar({ children, setErrorMessage, setNotific
             <SideBar className='dashboardSideBar'>
                 <DashboardProfile isMobileContent={false} />
                 <DashboardInstallation isMobileContent={false} />
+                <DashboardSharedAccessButton isMobileContent={false}
+                    setErrorMessage={setErrorMessage}
+                    setNotifications={setNotifications} />
 
-                <DashboardSharedAccessButton
+                <DashboardWelcomeAndShareAccess
                     isMobileContent={false}
                     setErrorMessage={setErrorMessage}
                     setNotifications={setNotifications} />
 
                 <DashboardSharedAccess
-                    expanded={false}
                     isMobileContent={true}
+                    expanded={false}
                     setErrorMessage={setErrorMessage}
                     setNotifications={setNotifications} />
                 {children}

@@ -1,4 +1,3 @@
-import { Typography } from '@mui/material'
 import { HelpIcon, SignupFormHeaderContainer, SignupFormHeaderHelpContainer, SignupFormHeaderHelpContentContainer } from './styles'
 
 export default function SignupFormHeader(props) {
@@ -6,8 +5,7 @@ export default function SignupFormHeader(props) {
     const title = {
         1: "Cadastro",
         2: "Contratação",
-        3: "Insira o token",
-        4: "Pronto!",
+        3: "Confirme o token",
     }
     return (
         <SignupFormHeaderContainer className='signupFormHeaderContainer'>
@@ -15,9 +13,9 @@ export default function SignupFormHeader(props) {
                 <h2 className='formHeaderTitle'>{props.step}. {title[props.step]}</h2>
             </div>
             <SignupFormHeaderHelpContainer>
-                <Typography variant='subtitle1' className='formHeaderSubtitle'>{props.step} de 4</Typography>
+                <p className='formHeaderSubtitle'>{props.step} de 3</p>
                 <SignupFormHeaderHelpContentContainer>
-                    <Typography variant='subtitle1'>Ajuda</Typography>
+                    <p>Ajuda</p>
                     <HelpIcon className='helpIcon' />
                 </SignupFormHeaderHelpContentContainer>
             </SignupFormHeaderHelpContainer>

@@ -2,6 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { getInstallationByUUID } from "../installation-service/InstallationService";
 import { requestSuccessful } from "../utils/Validations";
+import { PATH_TO } from "@/app/pages/enums/globalEnums";
 
 export const getClicksignKey = async (uuid) => {
     const response = await getInstallationByUUID(uuid)
@@ -18,7 +19,7 @@ export const finishSignup = async (router, uuid) => {
         if (requestSuccessful(response?.status)) {
             const accessToken = response.data.access_token
             Cookies.set('accessToken', accessToken)
-            router.push(`/signup/success`)
+            router.push(PATH_TO.DASHBOARD)
         }
 
     } catch (error) {

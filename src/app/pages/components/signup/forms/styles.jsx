@@ -126,7 +126,7 @@ export const SignupFormHeaderHelpContentContainer = styled.div`
             }
         }
 
-    h6 {
+    p {
         font-family: "Graphie";
         font-size: 12px;
         font-weight: 700;
