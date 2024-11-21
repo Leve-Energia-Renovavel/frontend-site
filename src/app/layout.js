@@ -52,7 +52,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
 
-  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
+  const gtmId = process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_GTM_ID : "";
 
   return (
     <html lang="pt-BR" suppressHydrationWarning={true} >
