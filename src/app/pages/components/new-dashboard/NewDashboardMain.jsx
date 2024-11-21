@@ -42,7 +42,6 @@ export default function NewDashboardMain(props) {
         };
 
         fetchAllDashboardData();
-        // }, []);
     }, [router, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations]);
 
     return (

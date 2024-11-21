@@ -79,5 +79,6 @@ export const updateUserData = (consumidor, instalacao, distribuidoraInstalacao, 
         hasSyncDistributorData: Boolean(instalacao?.distribuidora_login),
         distributorLogin: instalacao?.distribuidora_login ? instalacao?.distribuidora_login : "",
         distributorPassword: instalacao?.distribuidora_pass ? instalacao?.distribuidora_pass : "",
+        hasOpenedSharedAccessModal: false
     });
 };

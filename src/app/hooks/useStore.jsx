@@ -44,6 +44,7 @@ export const useStoreUser = create((set) => ({
         invoiceDate: 0,
 
         isFirstAccess: null,
+        hasOpenedSharedAccessModal: null, 
         hasConnectedByBackoffice: false,
 
         tusd: 0,
@@ -105,6 +106,7 @@ export const useStoreUser = create((set) => ({
                 invoiceDate: 0,
 
                 isFirstAccess: null,
+                hasOpenedSharedAccessModal: null, 
                 hasConnectedByBackoffice: false,
 
                 tusd: 0,

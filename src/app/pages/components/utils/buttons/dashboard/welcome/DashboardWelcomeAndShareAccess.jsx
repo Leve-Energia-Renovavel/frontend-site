@@ -8,25 +8,26 @@ import WelcomeAndShareAccessModal from '../../../modals/welcome-modal/WelcomeAnd
 export default function DashboardWelcomeAndShareAccess({ isMobileContent, setErrorMessage, setNotifications }) {
 
     const storeUser = useStoreUser()
-    const { isFirstAccess, hasSyncDistributorData } = storeUser?.user || {}
+    const { isFirstAccess, hasSyncDistributorData, hasOpenedSharedAccessModal } = storeUser?.user || {}
 
     const [openModal, setOpenModal] = useState(false)
 
-    const hasToOpenShareAccess = !isFirstAccess && !hasSyncDistributorData && openModal
+    const hasToOpenShareAccess = !isFirstAccess && !hasSyncDistributorData && !hasOpenedSharedAccessModal && openModal
 
     const handleCloseWelcomeModal = () => {
         storeUser.updateUser({ isFirstAccess: false })
     }
 
     const handleClose = () => {
+        storeUser.updateUser({ hasOpenedSharedAccessModal: true })
         setOpenModal(false)
     }
 
     useEffect(() => {
-        if (hasSyncDistributorData === false) {
+        if (hasSyncDistributorData === false && hasOpenedSharedAccessModal === false) {
             setOpenModal(true)
         }
-    }, [hasSyncDistributorData])
+    }, [hasSyncDistributorData, hasOpenedSharedAccessModal])
 
     return (
         <>

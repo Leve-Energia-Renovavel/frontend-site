@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
 import { useStoreUser } from "@/app/hooks/useStore"
@@ -17,16 +16,9 @@ export default function DashboardSharedAccessButton({ isMobileContent, setErrorM
         setOpenModal(true)
     }
     const handleCloseModal = () => {
+        storeUser.updateUser({ hasOpenedSharedAccessModal: true })
         setOpenModal(false)
     }
-
-    // console.log("hasSyncDistributorData ==>>", hasSyncDistributorData, " openModal ===>>", openModal, " isMobileContent ===>>", isMobileContent)
-
-    // useEffect(() => {
-    //     if (hasSyncDistributorData === false && isMobileContent) {
-    //         handleOpenModal()
-    //     }
-    // }, [hasSyncDistributorData])
 
     return (
         <>
@@ -55,9 +47,9 @@ export default function DashboardSharedAccessButton({ isMobileContent, setErrorM
 
                     <SharedAccessModal
                         isMobileContent={isMobileContent}
-                        isOpen={openModal && hasSyncDistributorData === false}
+                        isOpen={openModal}
                         openModal={handleOpenModal}
-                        closeModal={handleCloseModal}
+                        closeModal={() => handleCloseModal()}
                         setErrorMessage={setErrorMessage}
                         setNotifications={setNotifications} />
                 </>)}
