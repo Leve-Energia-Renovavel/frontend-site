@@ -40,11 +40,11 @@ export default function NewDashboardMain(props) {
 
     useEffect(() => {
         clearStorageData()
-        const fetchDashboardData = async () => {
+        const fetchAllDashboardData = async () => {
             await getGeneralDashboardData(router, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations, setErrorMessage)
         };
 
-        fetchDashboardData();
+        fetchAllDashboardData();
     }, []);
 
     return (

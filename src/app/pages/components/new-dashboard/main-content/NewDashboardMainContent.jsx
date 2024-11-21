@@ -12,7 +12,6 @@ const DashboardSharedAccessButton = dynamic(() => import('../../utils/buttons/da
 
 const FactoryContent = dynamic(() => import('../factory/FactoryContent'), { ssr: false });
 const DashboardHistory = dynamic(() => import('../history/DashboardHistory'), { ssr: false });
-// const DashboardInvoices = dynamic(() => import('../invoices/DashboardInvoices'), { ssr: false });
 
 export default function NewDashboardMainContent() {
 
