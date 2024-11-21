@@ -77,6 +77,16 @@ export const getDashboardMainData = async (router, storeUser, storeEconomy, setE
         }
     }
 }
+
+const shouldUpdateDashboardData = (response, storeBilling, storeMainInstallation) => {
+    const hasDifferentBillings =
+        response.data.ciclosConsumo.length !== storeBilling.billings.length;
+    const hasDifferentInstallation =
+        response.data.instalacao.uuid !== storeMainInstallation.mainInstallation.uuid;
+
+    return hasDifferentBillings || hasDifferentInstallation;
+}
+
 export const getGeneralDashboardData = async (router, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations, setErrorMessage) => {
     try {
         const token = Cookies.get('accessToken') || storeUser.accessToken
@@ -86,8 +96,10 @@ export const getGeneralDashboardData = async (router, storeUser, storeEconomy, s
 
         const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
         if (requestSuccessful(response?.status)) {
-            const data = response?.data
-            await updateGeneralDashboardData(data, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations)
+            if (shouldUpdateDashboardData(response, storeBilling, storeMainInstallation)) {
+                const data = response?.data
+                await updateGeneralDashboardData(data, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations)
+            }
 
         } else if (requestUnauthorized(response?.status)) {
             setErrorMessage(["Erro ao autenticar. Por favor, faça o login e tente novamente"])

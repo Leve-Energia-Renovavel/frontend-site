@@ -142,7 +142,7 @@ export const LoginForm = styled.form`
     
 `
 
-export const LoginButtonContainer = styled.form`
+export const LoginButtonContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;

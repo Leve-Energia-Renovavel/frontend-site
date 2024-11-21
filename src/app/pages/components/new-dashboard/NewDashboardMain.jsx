@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
 import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser, useStoreUserEconomy } from '@/app/hooks/useStore';
@@ -8,7 +7,6 @@ import { useEffect, useState } from 'react';
 import { NewDashboardContainer as Container, NewDashboardContent as Content } from './styles';
 
 import { getGeneralDashboardData } from '@/app/service/dashboard-service/DashboardService';
-import { clearStorageData } from '@/app/utils/browser/BrowserUtils';
 import { menuOptions } from '@/app/utils/helper/dashboard/dashboardHelper';
 import Messages from '../messages/Messages';
 import DashboardMenu from './side-bar/DashboardMenu';
@@ -39,13 +37,13 @@ export default function NewDashboardMain(props) {
     const isHomeOrInstallations = pathname === "/dashboard/" || pathname === "/dashboard/installations/";
 
     useEffect(() => {
-        clearStorageData()
         const fetchAllDashboardData = async () => {
             await getGeneralDashboardData(router, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations, setErrorMessage)
         };
 
         fetchAllDashboardData();
-    }, []);
+        // }, []);
+    }, [router, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations]);
 
     return (
         <>

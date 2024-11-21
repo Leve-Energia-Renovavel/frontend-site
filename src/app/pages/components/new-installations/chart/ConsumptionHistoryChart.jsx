@@ -153,13 +153,13 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
             <ChartLegendContainer className='chartLegendContainer'>
                 {billDateData?.map((billDate, index) => {
                     return (
-                        <>
-                            <LegendDetail key={billDate} className={`legendDetail-${billDate}`}>
+                        <div key={billDate}>
+                            <LegendDetail className={`legendDetail-${billDate}`}>
                                 <span className='withoutLeve'>{billDate ? "Sem Leve" : ""}</span>
                                 <span className='withLeve'>{billDate ? "Com Leve" : ""}</span>
                             </LegendDetail>
                             {billDate && <span className={`chartLegend-${index}`}>{billDate}</span>}
-                        </>
+                        </div>
                     )
                 })}
             </ChartLegendContainer>

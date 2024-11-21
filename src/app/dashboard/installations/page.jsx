@@ -5,8 +5,6 @@ export default function Installations() {
     const installationsInitialPageIndex = 3
 
     return (
-        <>
-            <NewDashboardMain page={installationsInitialPageIndex} />
-        </>
+        <NewDashboardMain page={installationsInitialPageIndex} />
     );
 }
