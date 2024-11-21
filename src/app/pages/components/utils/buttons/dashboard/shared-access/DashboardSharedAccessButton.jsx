@@ -55,7 +55,7 @@ export default function DashboardSharedAccessButton({ isMobileContent, setErrorM
 
                     <SharedAccessModal
                         isMobileContent={isMobileContent}
-                        isOpen={openModal && hasSyncDistributorData === false && isMobileContent}
+                        isOpen={openModal && hasSyncDistributorData === false}
                         openModal={handleOpenModal}
                         closeModal={handleCloseModal}
                         setErrorMessage={setErrorMessage}
