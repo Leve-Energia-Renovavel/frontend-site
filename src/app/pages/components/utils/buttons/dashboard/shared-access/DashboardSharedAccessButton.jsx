@@ -2,7 +2,7 @@
 "use client"
 
 import { useStoreUser } from "@/app/hooks/useStore"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import SharedAccessModal from "../../../modals/shared-access-modal/SharedAccessModal"
 import { ArrowRightIcon, LockIcon, SharedAccessButtonContainer, SharedAccessButtonContent, SharedAccessButtonTitle } from "./styles"
 
@@ -19,6 +19,12 @@ export default function DashboardSharedAccessButton({ isMobileContent, setErrorM
     const handleCloseModal = () => {
         setOpenModal(false)
     }
+
+    useEffect(() => {
+        if (hasSyncDistributorData === false && isMobileContent) {
+            handleOpenModal()
+        }
+    }, [hasSyncDistributorData])
 
     return (
         <>
