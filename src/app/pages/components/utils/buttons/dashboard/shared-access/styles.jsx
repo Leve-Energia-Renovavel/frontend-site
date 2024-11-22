@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Button } from "@mui/material";
-import { purple } from "@mui/material/colors";
 
 export const SharedAccessButtonContainer = styled(Button, {
     shouldForwardProp: (prop) => prop !== "isMobileContent" && prop !== "hasSyncDistributorData",
