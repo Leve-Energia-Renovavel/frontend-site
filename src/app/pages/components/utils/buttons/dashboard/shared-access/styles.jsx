@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Button } from "@mui/material";
+import { purple } from "@mui/material/colors";
 
 export const SharedAccessButtonContainer = styled(Button, {
     shouldForwardProp: (prop) => prop !== "isMobileContent" && prop !== "hasSyncDistributorData",
@@ -17,16 +18,20 @@ export const SharedAccessButtonContainer = styled(Button, {
     border-radius: 8px;
     
     gap: 8px;
-
-    padding: 12px 8px;
     
+    padding: 12px 8px;
 
-        
-        .lockIcon, .arrowRightIcon {
+    &:hover {
+        cursor: pointer;
+        background-color: ${(props) => props.hasSyncDistributorData ? background.greenTranslucent : background.orangeLight};
+    }
+    
+    .lockIcon, .arrowRightIcon {
             width: 24px;
             height: 24px;
             color: ${(props) => props.hasSyncDistributorData ? background.green : background.white};
     }
+
     @media (max-width: 600px) {
         ${(props) => props.isMobileContent && `display:flex;`}
     }
