@@ -6,6 +6,8 @@ import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutli
 import EditIcon from '@mui/icons-material/Edit';
 import { Button, CircularProgress, Slider, TextField } from "@mui/material";
 import { background } from "../../styles";
+import CloseIcon from '@mui/icons-material/Close';
+
 export const EconomyResultContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -663,6 +665,11 @@ export const RoundCheckIcon = styled(CheckIcon)`
     color: ${background.green};
 `
 export const SimpleCheckIcon = styled(CheckIcon)`
+    width: 16px;
+    height: 16px;
+    color: ${background.orange};
+`
+export const SimpleCloseIcon = styled(CloseIcon)`
     width: 16px;
     height: 16px;
     color: ${background.orange};

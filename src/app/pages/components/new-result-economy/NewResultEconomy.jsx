@@ -8,7 +8,7 @@ import logoLeveGreen from '@/resources/img/small/leve-logo-button-green-small.pn
 import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
-import { ArrowDownContainer, ArrowDownIcon, ContinueSignupButton, EconomyResultContainer, EconomyResultFooter, EconomyResultTitleContainer, EditTodayCostIcon, LeveBenefit, LeveBenefitsContainer, LeveBenefitsContent, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomyDisclaimer, LoadingCircle, OneYearEconomyContainer, OneYearEconomyContent, OneYearEconomyData, OneYearEconomyHeader, PercentageIcon, RoundCheckIcon, SimpleArrowForward, SimpleCheckIcon, SimulationSlider, TodayCostContainer, TodayCostValue, TodayEconomyContainer, TodayEconomyContent } from './styles'
+import { ArrowDownContainer, ArrowDownIcon, ContinueSignupButton, EconomyResultContainer, EconomyResultFooter, EconomyResultTitleContainer, EditTodayCostIcon, LeveBenefit, LeveBenefitsContainer, LeveBenefitsContent, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomyDisclaimer, LoadingCircle, OneYearEconomyContainer, OneYearEconomyContent, OneYearEconomyData, OneYearEconomyHeader, PercentageIcon, RoundCheckIcon, SimpleArrowForward, SimpleCheckIcon, SimpleCloseIcon, SimulationSlider, TodayCostContainer, TodayCostValue, TodayEconomyContainer, TodayEconomyContent } from './styles'
 
 export default function NewResultEconomy({ setErrorMessage, setNotifications }) {
 
@@ -98,8 +98,20 @@ export default function NewResultEconomy({ setErrorMessage, setNotifications }) 
                             onClick={() => handleEditCost()}
                             required>
                         </TodayCostValue>
-                        {isEdition ? <SimpleCheckIcon className="editConfirmTodayCostIcon" onClick={() => handleConfimEdition()} />
-                            : <EditTodayCostIcon className='editTodayCostIcon' onClick={() => handleEditCost()} />}
+                        {isEdition ? (
+                            cost < 200 ? (
+                                <SimpleCloseIcon
+                                    className="editErrorTodayCostIcon"
+                                />) : (
+                                <SimpleCheckIcon
+                                    className="editOkTodayCostIcon"
+                                    onClick={handleConfimEdition}
+                                />)) : (
+                            <EditTodayCostIcon
+                                className="editTodayCostIcon"
+                                onClick={handleEditCost}
+                            />
+                        )}
                     </TodayCostContainer>
                     <p className='sliderTitle'>Ajuste o valor para recalcular sua economia:</p>
                     <SimulationSlider
