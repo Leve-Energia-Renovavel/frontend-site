@@ -99,8 +99,11 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                         inputRef={distributorLoginRef.login}
                         label={isCPFL ? "E-mail" : "CPF"}
                         variant="outlined"
-                        autoComplete="none"
                         aria-autocomplete='none'
+                        autoComplete="off"
+                        autoCorrect="off"
+                        autoCapitalize="off"
+                        spellCheck="false"
                         defaultValue={distributorLogin ? distributorLogin : ""}
                         placeholder={isCPFL ? "E-mail" : "CPF"}
                         type="text"
@@ -117,16 +120,23 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                         className="formInputField"
                         inputRef={distributorLoginRef.password}
                         label="Senha"
-                        aria-autocomplete='none'
                         variant="outlined"
                         placeholder="Senha"
-                        autoComplete="none"
+                        aria-autocomplete='none'
+                        autoComplete="off"
+                        autoCorrect="off"
+                        autoCapitalize="off"
+                        spellCheck="false"
                         defaultValue={distributorPassword ? distributorPassword : ""}
                         type={passwordVisibible}
                         disabled={userWantsToUpdateData}
                         required
                         onKeyDown={(event) => handleKeyPress(event)}
                         InputProps={{
+                            autoComplete: 'new-password',
+                            form: {
+                                autoComplete: 'off'
+                            },
                             startAdornment:
                                 <InputAdornment position="start">
                                     <LockOutlinedIcon className='passwordIcon' />
