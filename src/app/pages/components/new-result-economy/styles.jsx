@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CheckIcon from '@mui/icons-material/Check';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
-import { Button, Slider, CircularProgress } from "@mui/material";
+import EditIcon from '@mui/icons-material/Edit';
+import { Button, CircularProgress, Slider, TextField } from "@mui/material";
 import { background } from "../../styles";
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-
 export const EconomyResultContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -235,13 +235,18 @@ export const ArrowDownContainer = styled.div`
         right: 160px;
     }
 `
-export const TodayCost = styled.div`
+export const TodayCostContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 4px;
-
+    border-bottom: 1px solid ${background.orange};
+    /* border-bottom: ${props => props.isEdition ? "3px " : "1px"} solid ${background.orange}; */
+    
     margin: 0 auto;
+
+    width: fit-content;
+    max-width: 388px;
 
     .monetary {
         font-family: "Graphie";
@@ -250,14 +255,48 @@ export const TodayCost = styled.div`
         font-weight: 600;
         color: ${background.orange};
     }
-    .todayCost {
-        font-family: "Graphie";
-        font-size: 34px;
-        line-height: 34px;
-        font-weight: 600;
-        color: ${background.orange};
-        text-align: center;
+
+    .editTodayCostIcon {
+        cursor: pointer;
     }
+`
+
+export const TodayCostValue = styled(TextField)`
+
+    ${props => props.isEdition && `background-color: ${background.white}`};
+
+    & fieldset {
+        border: none;
+    }     
+
+  & .MuiOutlinedInput-root {
+    border: none; /* Remove the default border */
+    border-radius: 0; /* Remove border radius */
+  }
+
+  & input {
+    font-family: "Graphie";
+    font-size: 34px;
+    line-height: 120%; 
+    font-weight: 600;
+    color: ${background.orange};
+    text-align: center;
+
+    padding: 0;
+
+    min-width: 50px;
+    width: calc(${props => (props.value?.length || 1)}ch + 20px);
+    max-width: 300px;
+
+    &.todayCost {
+      text-align: center;
+    }
+
+    & .MuiOutlinedInput-root.Mui-focused {
+    border-bottom: 5px solid purple; /* Change border on focus */
+  }
+
+  }
 `
 
 export const LeveEconomyContainer = styled.div`
@@ -618,10 +657,20 @@ export const SimpleArrowForward = styled(ArrowForwardIcon)`
     height: 21px;
     color: ${background.yellow};
 `
-export const SimpleCheckIcon = styled(CheckIcon)`
+export const RoundCheckIcon = styled(CheckIcon)`
     width: 16px;
     height: 16px;
     color: ${background.green};
+`
+export const SimpleCheckIcon = styled(CheckIcon)`
+    width: 16px;
+    height: 16px;
+    color: ${background.orange};
+`
+export const EditTodayCostIcon = styled(EditIcon)`
+    width: 16px;
+    height: 16px;
+    color: ${background.orange};
 `
 export const ArrowDownIcon = styled(ArrowDownwardIcon)`
     color: ${background.white};

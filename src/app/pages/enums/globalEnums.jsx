@@ -1,6 +1,8 @@
 export const LEVE_WHATSAPP_NUMBER = "551131818210";
 
 export const USER_COST = {
+    DEFAULT_VALUE: 200,
+    STEP: 10,
     MIN: 200,
     MAX: 3000,
 };

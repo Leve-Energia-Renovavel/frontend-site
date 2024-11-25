@@ -10,7 +10,7 @@ import { findCityIdByName } from '@/app/service/utils/addressUtilsService';
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
 import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
 import { statesAcronymOptions } from '@/app/utils/form-options/statesIdOptions';
-import { costValidation } from '@/app/utils/formatters/costFormatter';
+import { formatBrazillianCurrency } from '@/app/utils/formatters/costFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
@@ -26,6 +26,7 @@ import { companySchema, userSchema } from './schema';
 import { SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupFormTitle, SignupLinearProgress, fileInputStyles } from './styles';
 
 import { signUp } from '@/app/service/user-service/UserService';
+import { costValidation, newCostValidation } from '@/app/utils/helper/signup/signupHelper';
 import dynamic from 'next/dynamic';
 import { handleRequestsErrors } from './validation';
 
@@ -65,16 +66,19 @@ export default function SignupForm() {
   const fetchCNPJ = useGetCNPJ();
 
   const handleChangeUserCost = (event) => {
-    var newCost = event.target.value
+    let newCost = event.target.value;
 
     newCost = newCost.replace(/\D/g, '');
 
-    const integerPart = newCost.slice(0, -2);
-    const decimalPart = newCost.slice(-2);
-    newCost = integerPart + ',' + decimalPart;
+    const validatedCost = newCostValidation(parseInt(newCost, 10) / 100);
 
-    setUserCost(newCost)
-  }
+    const integerPart = Math.floor(validatedCost).toString();
+    const decimalPart = (validatedCost % 1).toFixed(2).split('.')[1];
+
+    newCost = `${integerPart},${decimalPart}`;
+
+    setUserCost(newCost);
+  };
 
   const handleGetCNPJ = async (cnpj) => {
     if (cnpj !== "") {
@@ -458,7 +462,7 @@ export default function SignupForm() {
               <FormInput
                 className="inputForm"
                 inputRef={userRefs.cost}
-                value={userCost || cost || ""}
+                value={formatBrazillianCurrency(userCost) || formatBrazillianCurrency(cost) || ""}
                 onChange={(event) => handleChangeUserCost(event)}
                 label="Custo Mensal em R$"
                 variant="outlined"

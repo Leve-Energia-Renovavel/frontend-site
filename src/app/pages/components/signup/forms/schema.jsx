@@ -6,7 +6,7 @@ import * as yup from 'yup';
 const hasMoreThanFourNumbers = (value) => {
     const numberCount = (value.match(/\d/g) || []).length;
     return numberCount > 4;
-  };
+};
 
 export const userSchema = yup.object({
     uuid: yup.string().required(),
@@ -28,7 +28,10 @@ export const userSchema = yup.object({
     bairro: yup.string().required('O campo Bairro é obrigatório'),
     estado_id: yup.number().required(),
     cidade_id: yup.number().required(),
-    valor: yup.number().required(),
+    valor: yup.number()
+        .required('O campo Custo Mensal é obrigatório')
+        .min(200, 'O custo mensal não pode ser menor que R$ 200')
+        .max(20000, 'O custo mensal não pode ser maior que R$ 20.000'),
     rg: yup.string()
         .required('O campo RG/RNE é obrigatório')
         .test('more-than-four-numbers', 'O campo RG/RNE deve conter mais de 4 números', hasMoreThanFourNumbers),

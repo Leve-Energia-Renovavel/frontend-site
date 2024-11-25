@@ -5,3 +5,7 @@ export const costValidation = (cost) => {
         return parseInt(cost, 10);
     }
 }
+
+export const formatBrazillianCurrency = (value) => {
+    return value.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+}

@@ -1,7 +1,7 @@
 import { background, notification } from "@/app/pages/styles";
 import styled from "@emotion/styled";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import { Alert, Button, Checkbox, FormControlLabel, FormGroup, TextField, keyframes } from "@mui/material";
+import { Alert, Button, TextField, keyframes } from "@mui/material";
 import Divider from '@mui/material/Divider';
 import LinearProgress from '@mui/material/LinearProgress';
 

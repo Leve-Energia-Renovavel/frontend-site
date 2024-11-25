@@ -1,15 +1,16 @@
 "use client"
 
 import { useStoreUser } from '@/app/hooks/useStore'
+import { checkForZero, checkForZeroCurrency, checkForZeroDiscount, newCostValidation, updateSliderConfig } from '@/app/utils/helper/result-economy/resultEconomyHelper'
 import { benefits } from '@/app/utils/helper/signup/signupHelper'
 import { ENVIRONMENTAL_IMPACT, PATH_TO, USER_COST } from '@/enums/globalEnums'
 import logoLeveGreen from '@/resources/img/small/leve-logo-button-green-small.png'
 import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
-import { ArrowDownContainer, ArrowDownIcon, ContinueSignupButton, CouponAppliedContainer, EconomyResultContainer, EconomyResultFooter, EconomyResultTitleContainer, LeveBenefit, LeveBenefitsContainer, LeveBenefitsContent, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomyDisclaimer, LoadingCircle, OneYearEconomyContainer, OneYearEconomyContent, OneYearEconomyData, OneYearEconomyHeader, PercentageIcon, SimpleArrowForward, SimpleCheckIcon, SimulationSlider, TodayCost, TodayEconomyContainer, TodayEconomyContent } from './styles'
+import { ArrowDownContainer, ArrowDownIcon, ContinueSignupButton, EconomyResultContainer, EconomyResultFooter, EconomyResultTitleContainer, EditTodayCostIcon, LeveBenefit, LeveBenefitsContainer, LeveBenefitsContent, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomyDisclaimer, LoadingCircle, OneYearEconomyContainer, OneYearEconomyContent, OneYearEconomyData, OneYearEconomyHeader, PercentageIcon, RoundCheckIcon, SimpleArrowForward, SimpleCheckIcon, SimulationSlider, TodayCostContainer, TodayCostValue, TodayEconomyContainer, TodayEconomyContent } from './styles'
 
-export default function NewResultEconomy() {
+export default function NewResultEconomy({ setErrorMessage, setNotifications }) {
 
     const router = useRouter()
     const search = useSearchParams()
@@ -18,39 +19,64 @@ export default function NewResultEconomy() {
     const uuid = search.get("uuid")
     const user = JSON.parse(localStorage.getItem('user'))
 
-    const [isLoading, setIsLoading] = useState(false)
-
     const { cost, couponValue, discount, tusd, te, availabilityTax } = user?.user ?? (storeUser?.user || {})
 
-    const todayCost = cost?.toFixed(2).toString().replace(".", ",")
-    const formattedCost = cost.toLocaleString('pt-BR', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
+    const [isLoading, setIsLoading] = useState(false)
+    const [isEdition, setIsEdition] = useState(false)
+
+    const [sliderConfig, setSliderConfig] = useState({
+        defaultValue: USER_COST.DEFAULT_VALUE,
+        min: USER_COST.MIN,
+        max: USER_COST.MAX,
+        step: USER_COST.STEP,
     });
 
     const regularConsumption = cost / (tusd + te)
     const compensableConsumption = regularConsumption - availabilityTax
 
-    const leveDiscount = compensableConsumption * (discount / 100)
-    const leveYearTotalDiscount = parseFloat(((compensableConsumption * (discount / 100)) * 12));
+    const leveDiscount = checkForZeroDiscount(compensableConsumption * (discount / 100))
+    const leveYearTotalDiscount = checkForZeroCurrency(parseFloat(((compensableConsumption * (discount / 100)) * 12)));
     const formattedLeveYearDiscount = leveYearTotalDiscount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
     const reducedCarbon = compensableConsumption * 12 * ENVIRONMENTAL_IMPACT.REDUCED_CARBON
-    const formattedReducedCarbon = parseInt(reducedCarbon).toLocaleString('pt-BR')
+    const formattedReducedCarbon = checkForZero(parseInt(reducedCarbon).toLocaleString('pt-BR'))
 
     const treeEquivalency = reducedCarbon / ENVIRONMENTAL_IMPACT.TREE_EQUIVALENCY
-    const formattedTreeEquivalency = Math.ceil(treeEquivalency)
+    const formattedTreeEquivalency = checkForZero(Math.ceil(treeEquivalency))
 
-    var leveDiscountValue = parseFloat(leveDiscount)?.toFixed(2)?.replace(".", ",");
+    var formattedLeveDiscount = leveDiscount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 
     const handleSubmit = () => {
-        setIsLoading(true)
-        router.push(`${PATH_TO.SIGNUP_FORM}?uuid=${uuid}`)
-        setIsLoading(false)
+        if (cost <= 0 || cost < 200) {
+            setErrorMessage(["O valor da sua conta de luz deve ser superior a R$ 200"])
+        } else {
+            setIsLoading(true)
+            router.push(`${PATH_TO.SIGNUP_FORM}?uuid=${uuid}`)
+            setIsLoading(false)
+        }
+    }
+
+    const handleUpdateCostByTyping = (event) => {
+        let newCost = event.target.value.replace(/\D/g, '') / 100;
+        storeUser.updateUser({ cost: newCostValidation(newCost) });
+        updateSliderConfig(newCost, setSliderConfig);
+    };
+
+    const handleUpdateCostBySlider = (event) => {
+        const newCost = event.target.value;
+        storeUser.updateUser({ cost: newCost });
+        updateSliderConfig(newCost, setSliderConfig);
+    };
+
+    const handleEditCost = () => {
+        setIsEdition(true)
+    }
+    const handleConfimEdition = () => {
+        setIsEdition(false)
     }
 
     return (
-        <EconomyResultContainer className='economyResultContainer'>
+        <EconomyResultContainer className='economyResultContainer' >
             <EconomyResultTitleContainer className='economyResultTitleContainer'>
                 <h1 className='economyResultTitle'>Seu potencial de economia e impacto</h1>
             </EconomyResultTitleContainer>
@@ -58,18 +84,31 @@ export default function NewResultEconomy() {
             <TodayEconomyContent className='economyResultContent'>
                 <TodayEconomyContainer className='todayEconomyContainer'>
                     <p className='todayEconomyTitle'>Valor médio da sua conta de luz atual</p>
-                    <TodayCost>
+                    <TodayCostContainer
+                        className='todayCostContainer'
+                        isEdition={isEdition}>
                         <p className='monetary'>R$</p>
-                        <p className='todayCost'>{formattedCost}{cost === USER_COST.MAX && "+"}</p>
-                    </TodayCost>
+                        <TodayCostValue
+                            className='todayCost'
+                            type='text'
+                            inputProps={{ inputMode: 'numeric' }}
+                            InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
+                            value={cost === "" ? "" : cost.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                            onChange={(event) => handleUpdateCostByTyping(event)}
+                            onClick={() => handleEditCost()}
+                            required>
+                        </TodayCostValue>
+                        {isEdition ? <SimpleCheckIcon className="editConfirmTodayCostIcon" onClick={() => handleConfimEdition()} />
+                            : <EditTodayCostIcon className='editTodayCostIcon' onClick={() => handleEditCost()} />}
+                    </TodayCostContainer>
                     <p className='sliderTitle'>Ajuste o valor para recalcular sua economia:</p>
                     <SimulationSlider
-                        onChange={(event) => storeUser.updateUser({ cost: event.target.value })}
+                        onChange={(event) => handleUpdateCostBySlider(event)}
                         value={cost}
-                        step={10}
-                        defaultValue={200}
-                        min={USER_COST.MIN}
-                        max={USER_COST.MAX}
+                        step={sliderConfig.step}
+                        defaultValue={sliderConfig.defaultValue}
+                        min={sliderConfig.min}
+                        max={sliderConfig.max}
                         valueLabelDisplay="off"
                     />
                     <ArrowDownContainer>
@@ -82,7 +121,7 @@ export default function NewResultEconomy() {
                     <p className='leveEconomyTitle'>Valor potencial médio do seu desconto mensal*</p>
                     <LeveEconomy>
                         <p className='monetary'>R$</p>
-                        <p className='leveEconomyValue'>{leveDiscountValue}</p>
+                        <p className='leveEconomyValue'>{formattedLeveDiscount}</p>
                     </LeveEconomy>
 
                     <LeveEconomyContent className='leveEconomyContent'>
@@ -126,7 +165,7 @@ export default function NewResultEconomy() {
                     {benefits.map((benefit, index) => {
                         return (
                             <LeveBenefit key={benefit + index} className={`leveBenefit-${index + 1}`}>
-                                <SimpleCheckIcon />
+                                <RoundCheckIcon />
                                 <p className='benefit'>{benefit}</p>
                             </LeveBenefit>
                         )
