@@ -93,14 +93,14 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
             </DashboardAccordionSummary>
             <DashboardAccordionDetails>
                 <p className='sharedAccessSubtitle'>Para garantir o máximo de economia mensal, registre seus dados de acesso ao portal ou aplicativo da sua distribuidora. Assim, poderemos acessar as informações da sua fatura mensalmente e assegurar que os créditos de energia sejam aplicados corretamente para o seu consumo. </p>
-                <SharedAccessForm isEdition={isEdition} autoComplete='off'>
+                <SharedAccessForm isEdition={isEdition} autocomplete='off'>
                     <TextField
                         className="formInputField"
                         inputRef={distributorLoginRef.login}
                         label={isCPFL ? "E-mail" : "CPF"}
                         variant="outlined"
                         aria-autocomplete='none'
-                        autoComplete="off"
+                        autocomplete="off"
                         autoCorrect="off"
                         autoCapitalize="off"
                         spellCheck="false"
@@ -123,7 +123,7 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                         variant="outlined"
                         placeholder="Senha"
                         aria-autocomplete='none'
-                        autoComplete="off"
+                        autocomplete="new-password"
                         autoCorrect="off"
                         autoCapitalize="off"
                         spellCheck="false"
