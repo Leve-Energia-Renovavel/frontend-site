@@ -258,7 +258,7 @@ export const TodayCostContainer = styled.div`
         color: ${background.orange};
     }
 
-    .editTodayCostIcon {
+    .editErrorTodayCostIcon,.editOkTodayCostIcon, .editTodayCostIcon {
         cursor: pointer;
     }
 `
