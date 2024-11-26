@@ -3,6 +3,7 @@ export const benefits = [
     "Sem custos adicionais",
     "Sem instalações ou obras",
     "Serviço regulado pela ANEEL",
+    "Não cobramos bandeira tarifária",
     "Cancele quando quiser",
 ]
 

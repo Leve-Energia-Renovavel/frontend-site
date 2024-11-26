@@ -65,6 +65,7 @@ export default function NewResultEconomy({ setErrorMessage, setNotifications }) 
     };
 
     const handleUpdateCostBySlider = (event) => {
+        setIsEdition(false)
         const newCost = event.target.value;
         storeUser.updateUser({ cost: newCost });
         updateSliderConfig(newCost, setSliderConfig);
