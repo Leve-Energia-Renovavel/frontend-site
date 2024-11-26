@@ -5,7 +5,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 import { Button, CircularProgress, Slider, TextField } from "@mui/material";
-import { background } from "../../styles";
+import { background, notification } from "../../styles";
 import CloseIcon from '@mui/icons-material/Close';
 
 export const EconomyResultContainer = styled.div`
@@ -203,7 +203,15 @@ export const TodayEconomyContainer = styled.div`
         color: ${background.orange};
         text-align: center;
 
-        margin-top: 16px;
+        /* margin-top: 16px; */
+    }
+
+    .lowCostDisclaimer {
+        font-family: "Graphie";
+        font-size: 13px;
+        font-weight: 500;
+        color: ${notification.alert};
+        text-align: center;
     }
 
     @media (max-width: 600px) {

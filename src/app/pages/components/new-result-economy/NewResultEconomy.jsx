@@ -123,6 +123,7 @@ export default function NewResultEconomy({ setErrorMessage, setNotifications }) 
                             />
                         )}
                     </TodayCostContainer>
+                    {cost < USER_COST.MIN && <p className='lowCostDisclaimer'>O valor mínimo é de R$200</p>}
                     <p className='sliderTitle'>Ajuste o valor para recalcular sua economia:</p>
                     <SimulationSlider
                         onChange={(event) => handleUpdateCostBySlider(event)}
