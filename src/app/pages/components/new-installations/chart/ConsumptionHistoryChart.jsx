@@ -40,7 +40,7 @@ export default function ConsumptionHistoryChart({ dataType, selectedBillings }) 
             height: 350,
             stacked: true,
             toolbar: {
-                show: true, //hidden toolbar
+                show: false, //hidden toolbar
                 tools: {
                     download: true,
                     selection: true,

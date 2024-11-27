@@ -100,7 +100,7 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                         label={isCPFL ? "E-mail" : "CPF"}
                         variant="outlined"
                         aria-autocomplete='none'
-                        autocomplete="off"
+                        autoComplete="off"
                         autoCorrect="off"
                         autoCapitalize="off"
                         spellCheck="false"
@@ -123,7 +123,7 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                         variant="outlined"
                         placeholder="Senha"
                         aria-autocomplete='none'
-                        autocomplete="new-password"
+                        autoComplete="new-password"
                         autoCorrect="off"
                         autoCapitalize="off"
                         spellCheck="false"
@@ -133,10 +133,6 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                         required
                         onKeyDown={(event) => handleKeyPress(event)}
                         InputProps={{
-                            autoComplete: 'new-password',
-                            form: {
-                                autoComplete: 'off'
-                            },
                             startAdornment:
                                 <InputAdornment position="start">
                                     <LockOutlinedIcon className='passwordIcon' />

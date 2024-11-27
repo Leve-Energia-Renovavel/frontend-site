@@ -1,6 +1,7 @@
 import { USER_TYPE } from "@/app/pages/enums/globalEnums";
 import { checkForCompanyName } from "@/app/utils/company/CompanyUtils";
 import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
+import { capitalizeEachWord } from "@/app/utils/formatters/textFormatter";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { requestSuccessful } from "../utils/Validations";
@@ -110,7 +111,7 @@ export const getLeadData = async (uuid, store, storeAddress) => {
             const cep = consumidor?.cep
 
             const updatedUser = {
-                name: consumidor?.nome + " " + consumidor?.sobrenome,
+                name: capitalizeEachWord(consumidor?.nome) + " " + capitalizeEachWord(consumidor?.sobrenome),
                 phone: consumidor?.telefone,
                 email: consumidor?.email,
                 cost: instalacao?.valor_base_consumo,

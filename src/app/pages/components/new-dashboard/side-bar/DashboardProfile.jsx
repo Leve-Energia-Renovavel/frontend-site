@@ -14,7 +14,7 @@ export default function DashboardProfile({ isMobileContent }) {
 
     const { name, cpf } = store?.user || {}
 
-    const username = name.split(" ")[0] !== "" ? name.split(" ")[0] : null
+    const username = name?.split(" ")[0] !== "" ? name.split(" ")[0] : null
 
     return (
         <NewDashboardProfile isMobileContent={isMobileContent} className="dashboardProfile">
