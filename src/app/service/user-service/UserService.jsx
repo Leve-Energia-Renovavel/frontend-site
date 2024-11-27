@@ -1,5 +1,6 @@
 import { USER_TYPE } from "@/app/pages/enums/globalEnums";
 import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
+import { capitalizeEachWord } from "@/app/utils/formatters/textFormatter";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -57,7 +58,7 @@ export const updateUserProfile = async (data) => {
 export const updateUserData = (consumidor, instalacao, distribuidoraInstalacao, descontosCarbono, storeUser) => {
     storeUser.updateUser({
         uuid: consumidor?.uuid,
-        name: `${consumidor?.nome} ${consumidor?.sobrenome}`,
+        name: `${capitalizeEachWord(consumidor?.nome)} ${capitalizeEachWord(consumidor?.sobrenome)}`,
         phone: consumidor?.telefone,
         email: consumidor?.email,
         secondaryEmail: consumidor?.email_secondary,
