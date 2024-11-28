@@ -58,7 +58,7 @@ export const updateUserProfile = async (data) => {
 export const updateUserData = (consumidor, instalacao, distribuidoraInstalacao, descontosCarbono, storeUser) => {
     storeUser.updateUser({
         uuid: consumidor?.uuid,
-        name: `${capitalizeEachWord(consumidor?.nome)} ${capitalizeEachWord(consumidor?.sobrenome)}`,
+        name: `${capitalizeEachWord(consumidor?.nome_completo)}`,
         phone: consumidor?.telefone,
         email: consumidor?.email,
         secondaryEmail: consumidor?.email_secondary,
