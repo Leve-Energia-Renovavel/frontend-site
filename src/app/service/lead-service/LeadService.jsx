@@ -20,7 +20,7 @@ export const createSignupPayload = (name, email, phone, cep, value, type, coupon
 
 export const createCompanyPartnerPayload = (name, corporateName, email, phone, cep, value, type) => {
     return {
-        nome: name,
+        nome_completo: name,
         nome_empresa: corporateName,
         email: email.toLowerCase(),
         telefone: phone,
