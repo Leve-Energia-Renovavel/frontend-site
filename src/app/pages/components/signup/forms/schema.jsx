@@ -10,7 +10,7 @@ const hasMoreThanFourNumbers = (value) => {
 
 export const userSchema = yup.object({
     uuid: yup.string().required(),
-    nome: yup.string()
+    nome_completo: yup.string()
         .required('O campo Nome Completo é obrigatório')
         .test('has-two-words', 'Nome e sobrenome são obrigatórios', (value) => {
             if (!value) return false;

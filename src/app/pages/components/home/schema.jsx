@@ -16,7 +16,7 @@ export const schemaValidation = async (data) => {
 }
 
 export const leadSchema = yup.object({
-    nome: yup.string()
+    nome_completo: yup.string()
         .required('O campo Nome Completo é obrigatório')
         .matches(nameRegex, 'O nome deve conter apenas letras e espaços')
         .test('has-two-words', 'Nome e sobrenome são obrigatórios', (value) => {
