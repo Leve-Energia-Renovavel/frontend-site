@@ -8,7 +8,7 @@ import { requestSuccessful } from "../utils/Validations";
 
 export const createSignupPayload = (name, email, phone, cep, value, type, coupon) => {
     return {
-        nome: name,
+        nome_completo: name,
         email: email.toLowerCase(),
         telefone: phone,
         cep: cep,

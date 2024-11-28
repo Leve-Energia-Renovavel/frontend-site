@@ -202,7 +202,7 @@ export default function SignupForm() {
 
     var submitData = {
       uuid: uuid,
-      nome: userRefs.name.current.value?.trimLeft(),
+      nome_completo: userRefs.name.current.value?.trimLeft(),
       email: userRefs.email.current.value,
       rg: userRefs.rg.current.value?.replace(/[-_]/g, ""),
       cpf: userRefs.cpf.current.value,
