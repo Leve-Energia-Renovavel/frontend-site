@@ -30,6 +30,7 @@ const signupValidationCodes = {
 
 export const requestValidation = async (response, setNotifications, setErrorMessage, router) => {
     const status = response?.status
+    const message = response?.message
     const responseCode = response?.data?.code
     const uuid = response?.data?.uuid
 
@@ -63,7 +64,7 @@ export const requestValidation = async (response, setNotifications, setErrorMess
     else if (responseCode === "SCJEL") {
         router.push(PATH_TO.LOW_COST)
     }
-    else if (responseCode === "ALANCASR") {
+    else if (responseCode === "ALANCASR" || message === "A leve ainda não chegou a sua região") {
         router.push(PATH_TO.OUT_OF_RANGE)
     }
     else if (responseCode === "CI") {
@@ -75,12 +76,12 @@ export const requestValidation = async (response, setNotifications, setErrorMess
     else if (responseCode === "CPI") {
         setErrorMessage(["Cupom inválido. Por favor, verifique e tente novamente"])
     }
-    else if (response?.message === "Não foi possível achar esse usuário") {
+    else if (message === "Não foi possível achar esse usuário") {
         setErrorMessage(["E-mail não encontrado. Verifique se foi digitado corretamente ou se tiver, busque pelo e-mail secundário."])
     }
 
-    else if (response?.message === "N\u00e3o h\u00e1 geradora" ||
-        response?.message === "Não há geradora") {
+    else if (message === "N\u00e3o h\u00e1 geradora" ||
+        message === "Não há geradora") {
         const errorCode = "BDM001"
         setErrorMessage([`Erro de servidor. Por favor, tente novamente mais tarde (cod. ${errorCode})`])
     }
@@ -89,7 +90,6 @@ export const requestValidation = async (response, setNotifications, setErrorMess
     }
     else {
         setErrorMessage(["Erro de servidor. Por favor, tente novamente mais tarde"])
-        // setErrorMessage([response?.message])
     }
 
 }

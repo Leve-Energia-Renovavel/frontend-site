@@ -34,10 +34,8 @@ export default function SignupMain() {
             await getLeadData(uuid, store, storeAddress)
             setIsLoading(true)
         };
-
         fetchData();
     }, []);
-
 
     return (
         <>
