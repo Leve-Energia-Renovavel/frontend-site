@@ -29,6 +29,7 @@ import { signUp } from '@/app/service/user-service/UserService';
 import { costValidation, newCostValidation } from '@/app/utils/helper/signup/signupHelper';
 import dynamic from 'next/dynamic';
 import { handleRequestsErrors } from './validation';
+import { DISTRIBUTOR } from '@/app/pages/enums/globalEnums';
 
 const Messages = dynamic(() => import('../../messages/Messages'), { ssr: false });
 
@@ -61,6 +62,8 @@ export default function SignupForm() {
 
   const [socialContractFile, setSocialContractFile] = useState(null);
   const [energyExtractFile, setEnergyExtractFile] = useState(null);
+
+  const showDisclaimer = distributor?.toUpperCase() === DISTRIBUTOR.CEMIG || distributor === DISTRIBUTOR.CPFL_PAULISTA
 
   const fetchCEP = useGetCEP();
   const fetchCNPJ = useGetCNPJ();
@@ -573,10 +576,10 @@ export default function SignupForm() {
                 placeholder={`Número de Instalação`}
                 type="text"
               />
-              <InstallationNumberDisclaimer onClick={() => setIsModalOpen(true)}>
+              {showDisclaimer && <InstallationNumberDisclaimer onClick={() => setIsModalOpen(true)}>
                 <InfoIcon className='infoIcon' />
                 <Typography className='installationNumberDisclaimer'><span className='underlined'>Encontre este número</span> no canto superior direito de sua fatura atual.</Typography>
-              </InstallationNumberDisclaimer>
+              </InstallationNumberDisclaimer>}
             </FormLastRow>
 
             {isCompany ? (
