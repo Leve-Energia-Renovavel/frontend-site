@@ -1,3 +1,5 @@
+import { DISTRIBUTOR } from "@/app/pages/enums/globalEnums";
+
 export const benefits = [
     "Adesão gratuita",
     "Sem custos adicionais",
@@ -19,3 +21,9 @@ export const newCostValidation = (newCost) => {
     if (isNaN(newCost)) return 0;
     return Math.min(Math.max(newCost, 0), 20000);
 };
+
+export const activeDistributorsForDisclaimer = (distributor) => {
+    return distributor === DISTRIBUTOR.CEMIG
+        || distributor === DISTRIBUTOR.CPFL_PAULISTA
+        || distributor === DISTRIBUTOR.CPFL_PIRATININGA
+}

@@ -26,10 +26,9 @@ import { companySchema, userSchema } from './schema';
 import { SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupFormTitle, SignupLinearProgress, fileInputStyles } from './styles';
 
 import { signUp } from '@/app/service/user-service/UserService';
-import { costValidation, newCostValidation } from '@/app/utils/helper/signup/signupHelper';
+import { activeDistributorsForDisclaimer, costValidation, newCostValidation } from '@/app/utils/helper/signup/signupHelper';
 import dynamic from 'next/dynamic';
 import { handleRequestsErrors } from './validation';
-import { DISTRIBUTOR } from '@/app/pages/enums/globalEnums';
 
 const Messages = dynamic(() => import('../../messages/Messages'), { ssr: false });
 
@@ -63,7 +62,7 @@ export default function SignupForm() {
   const [socialContractFile, setSocialContractFile] = useState(null);
   const [energyExtractFile, setEnergyExtractFile] = useState(null);
 
-  const showDisclaimer = distributor?.toUpperCase() === DISTRIBUTOR.CEMIG || distributor === DISTRIBUTOR.CPFL_PAULISTA
+  const showDisclaimer = activeDistributorsForDisclaimer(distributor?.toUpperCase())
 
   const fetchCEP = useGetCEP();
   const fetchCNPJ = useGetCNPJ();
