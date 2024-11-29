@@ -1,47 +1,116 @@
+import { float } from "@/app/pages/animations"
 import { background } from "@/app/pages/styles"
 import styled from "@emotion/styled"
 import { Button } from "@mui/material"
 
 export const HomeSecondaryBoxesContainerMobile = styled.div`
     display: none;
+    position: relative;
+
     background-color: ${background.grey};
     
     @media (max-width: 600px) {
         display: block;
     }
 `
+
+export const HomeBoxesBaloon = styled.div`
+    position: absolute;
+    border-radius: 0px 10px;
+    border: 1px solid ${background.orange};
+    background-color: ${background.white};
+
+    animation: ${float} 4s ease-in-out infinite;
+
+    padding: 10px;
+    
+    right: 155px; 
+    top: 630px;
+
+    right: 36%;
+    top: 12%;
+
+    min-width: 240px;
+    width: 100%;
+    max-width: 245px;
+
+    height: fit-content;
+    
+    p, span {
+        font-family: "Graphie";
+        font-size: 13px;
+        line-height: 120%;
+        font-weight: 500;
+        color: ${background.green};
+    }
+    
+    .hihglighted {
+        font-weight: 600;
+        color: ${background.orange};
+    }
+    .hihglighted-final {
+        display: block;
+        font-weight: 600;
+        color: ${background.orange};
+    }
+
+   @media (max-width: 768px) {
+        right: 15%; /* Align more centrally for smaller devices */
+        top: 20%; /* Lower to fit smaller viewports */
+    }
+
+    @media (max-width: 480px) {
+        right: 38%;
+        top: 12%;
+    }
+
+    @media (max-width: 412px) {
+        right: 37%;
+        top: 12%;
+    }
+    @media (max-width: 400px) {
+        right: 30%;
+        top: 13%;
+    }
+    @media (max-width: 380px) {
+        right: 30%;
+        top: 13%;
+    }
+    @media (max-width: 362px) {
+        right: 29%;
+        top: 13%;
+    }
+`
 export const HomeSecondaryBannerContainerMobile = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: end;
 
     min-width: 100vw;
     
     height: 100%;
     width: 100%;
     
-    min-height: 290px;
-    max-height: 299px;
+    min-height: 360px;
+    max-height: 360px;
 
-    padding: 79px 19px;
+    padding: 50px 16px;
 
     background-image: url(${props => props.image.src});
     background-repeat: no-repeat;
     background-size: cover; 
-    background-position: 20% 20%;
-    background-size: 130%; /* Zoom in the background image */
+    background-position: 100% 30%;
+    background-size: 110%; /* Zoom in the background image */
     z-index: 9; 
     
     .homeBoxesSecondarySectionTitle {
         font-family: "Graphie";
-        font-size: 28px;
-        line-height: 23px;
+        font-size: 24px;
+        line-height: 120%;
         font-weight: 600;
-        color: ${background.white};
+        color: ${background.green};
         
-        max-width: 260px;
-        margin-top: 100px;
-        margin-bottom: 32px;
+        max-width: 180px;
     }
     `
 export const MobileBoxesContainer = styled.div`
@@ -53,7 +122,7 @@ export const MobileBoxesContainer = styled.div`
     justify-content: center;
     flex-wrap: wrap;
 
-    top: -36px;
+    top: -45px;
 
     gap: 7px;
 `
@@ -113,7 +182,7 @@ export const MobileBox = styled.div`
             font-size: 16.5px;
             line-height: 18px;
 
-            max-width: 120px;
+            max-width: 130px;
         }
 
         .subtitle {

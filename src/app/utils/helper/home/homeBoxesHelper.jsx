@@ -9,14 +9,11 @@ import signIcon from "../../../../resources/icons/small/leve-energia-clique-icon
 import solarPanelIcon from "../../../../resources/icons/small/leve-painel-solar-icone-small.png"
 import batteryIcon from "../../../../resources/icons/small/leve-recarregar-energia-icone-small.png"
 
-import touchpadIcon from "../../../../resources/icons/large/touchpad.png"
-import solarEnegyIcon from "../../../../resources/icons/large/solar_energy.png"
 import getRevenueIcon from "../../../../resources/icons/large/get_revenue.png"
 import guaranteeIcon from "../../../../resources/icons/large/guarantee.png"
+import solarEnegyIcon from "../../../../resources/icons/large/solar_energy.png"
+import touchpadIcon from "../../../../resources/icons/large/touchpad.png"
 
-import solarPanelConnectedPollIcon from "../../../../resources/icons/large/leve-solar-panel-connected-to-poll.svg"
-import flowerLightIcon from "../../../../resources/icons/large/leve-flower-light-large.svg"
-import economyRenewalIcon from "../../../../resources/icons/large/leve-economy-renewal.svg"
 
 import localizaLogo from "../../../../resources/img/small/logo-localiza-small.png"
 import lorealLogo from "../../../../resources/img/small/logo-loreal-small.png"
@@ -67,20 +64,28 @@ export const homeBoxes = [
 
 export const newHomeBoxes = [
     {
-        title: "Economia mensal",
-        subtitle: <p className="subtitle"><span className="highlighted">Desconto de até 20%</span> na conta de luz todo mês</p>
+        title: "Economia mensal garantida",
+        subtitle: <p className="subtitle">Economia de até 20% na conta de luz todo mês</p>
     },
     {
-        title: "Energia limpa",
-        subtitle: <p className="subtitle">Nossa energia é produzida a partir de <span className="highlighted">fontes solares</span></p>
+        title: "Energia limpa e renovável",
+        subtitle: <p className="subtitle">Promova a redução na emissão de poluentes</p>
     },
     {
-        title: "Simples e rápido",
-        subtitle: <p className="subtitle">Sem obras, sem instalação e <span className="highlighted">sem custos adicionais</span></p>
+        title: "Sem taxas e custos extras",
+        subtitle: <p className="subtitle">Adesão gratuita, sem investimentos e custos extras</p>
+    },
+    {
+        title: "Sem bandeira tarifária",
+        subtitle: <p className="subtitle">Serviço isento do adicional de bandeira tarifária</p>
+    },
+    {
+        title: "Segurança e legalidade",
+        subtitle: <p className="subtitle">Serviço aprovado e regulamentado pela ANEEL</p>
     },
     {
         title: "Cancele quando quiser",
-        subtitle: <p className="subtitle">O cancelamento também é <span className="highlighted">100% digital</span> e simples</p>
+        subtitle: <p className="subtitle">Cancele a qualquer momento em nossos canais digitais</p>
     },
 ]
 

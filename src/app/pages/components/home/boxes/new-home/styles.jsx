@@ -38,6 +38,8 @@ export const NewHomeBoxesContainer = styled.section`
 export const BoxesContainer = styled.div`
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 
     gap: 1rem;
 `
@@ -49,9 +51,10 @@ export const BoxCard = styled.div`
     padding: 27px 21px 52px 21px;
     background-color: ${background.white};
 
-    min-width: 250px;
+    aspect-ratio: 2 / 1; /* Maintain a consistent aspect ratio */
+    min-width: 330px;
     width: 100%;
-    /* max-width: 297px; */
+    max-width: calc((100% - 2rem) / 3); /* 3 boxes per row with a gap */
 
     min-height: 200px;
     max-height: 218px;
@@ -64,8 +67,6 @@ export const BoxCard = styled.div`
         color: ${background.orange};
 
         white-space: nowrap;
-
-        /* max-width: 90px; */
     }
 
     .boxSubtitle {
@@ -80,7 +81,9 @@ export const BoxCard = styled.div`
         margin-bottom: 50px;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 800px) {
+        min-width: 270px;
+        max-width: calc((100% - 1rem) / 2);
     }
 `
 
