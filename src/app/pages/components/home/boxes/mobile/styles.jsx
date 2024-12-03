@@ -94,7 +94,7 @@ export const HomeSecondaryBannerContainerMobile = styled.div`
     min-height: 360px;
     max-height: 360px;
 
-    padding: 50px 16px;
+    padding: 55px 16px;
 
     background-image: url(${props => props.image.src});
     background-repeat: no-repeat;
@@ -107,7 +107,7 @@ export const HomeSecondaryBannerContainerMobile = styled.div`
         font-family: "Graphie";
         font-size: 24px;
         line-height: 120%;
-        font-weight: 600;
+        font-weight: 700;
         color: ${background.green};
         
         max-width: 180px;

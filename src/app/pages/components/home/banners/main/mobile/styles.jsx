@@ -7,7 +7,7 @@ export const HomeMobileMainContent = styled.div`
   
   display: none;
 
-  padding: 24px 24px;
+  padding: 24px 24px 10px 24px;
   max-width: 100vw;
 
   .homeMainTitleMobile {
@@ -35,8 +35,8 @@ export const HomeMobileMainContent = styled.div`
   }
   .homeMainSubtitleMobile {
     font-family: "Graphie";
-    font-size: 21px;
-    line-height: 22px;
+    font-size: 18px;
+    line-height: 120%;
     font-weight: 400;
     color: ${background.greyHigh};
     
@@ -48,7 +48,7 @@ export const HomeMobileMainContent = styled.div`
   
   .homeMainDescriptionMobile {
     font-family: "Graphie";
-    font-size: 23px;
+    font-size: 20px;
     line-height: 22px;
     font-weight: 600;
     color: ${background.green};

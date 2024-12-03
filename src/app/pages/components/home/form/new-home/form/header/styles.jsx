@@ -18,10 +18,12 @@ export const FormTitleContainer = styled.div`
   
   .formTitle {
     font-family: "Graphie";
-    font-size: 27px;
+    font-size: 24px;
+    line-height: 120%;
     font-weight: 500;
     color: ${background.yellow};
-    white-space: nowrap;
+    max-width: 395px;
+
   } 
   
   .homeFormLogoLeve {
@@ -31,7 +33,9 @@ export const FormTitleContainer = styled.div`
   
   @media (max-width: 600px) {
     .formTitle {
-      font-size: 20px;
+      font-size: 18px;
+      white-space: normal;
+      max-width: 313px;
     }
     .homeFormLogoLeve {
       width: 100%;

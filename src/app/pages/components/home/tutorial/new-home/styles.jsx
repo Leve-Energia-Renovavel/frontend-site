@@ -11,9 +11,11 @@ export const HomeTutorialContainer = styled.section`
     margin: 0 auto;
 
     @media (max-width: 600px) {
+      max-width: 100vw;
       padding: 0px;
     }
 `
+
 export const HomeTutorialContent = styled.div`
     display: flex;
     flex-direction: column;
@@ -26,23 +28,8 @@ export const HomeTutorialContent = styled.div`
     border-radius: 20px;
 
     padding: 50px 37px;
-
-    .leveTutorialTitle {
-      font-family: "Graphie";
-      font-size: 34px;
-      line-height: 120%;
-      font-weight: 600;
-      color: ${background.green};
-      
-      text-align: center;
-    }
     
     @media (max-width: 600px) {
-      .leveTutorialTitle {
-        font-size: 24px;
-        max-width: 300px;
-      }
-
       border-radius: 0px;
       padding: 20px 20px;
     }
@@ -51,15 +38,34 @@ export const HomeTutorialContent = styled.div`
       padding: 30px 10px;
     }
 `
+
+export const HomeTutorialTitleContainer = styled.div`
+
+    margin: 0 auto;
+
+    .leveTutorialTitle {
+      font-family: "Graphie";
+      font-size: 34px;
+      line-height: 120%;
+      font-weight: 600;
+      color: ${background.green};
+
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .leveTutorialTitle {
+        font-size: 24px;
+        max-width: 300px;
+      }
+    }
+`
 export const HomeTutorialCardContainer = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
 
     gap: 1rem;
-
-    flex-wrap: wrap;
 `
 
 export const HomeTutorialCard = styled.div`
@@ -94,7 +100,7 @@ export const HomeTutorialCard = styled.div`
     .cardDescription {
       font-family: "Graphie";
       font-size: 22px;
-      line-height: 28px;
+      line-height: 120%;
       font-weight: 500;
       color: ${background.greyHigh};
     }
@@ -165,10 +171,69 @@ export const HomeTutorialCard = styled.div`
     }
 `
 
+export const HomeTutorialAneelCard = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: ${background.white};
+
+    gap: 14px;
+
+    width: 100%;
+    max-width: 550px;
+
+    padding: 36px 35px;
+
+    .aneelIcon {
+      width: 104px;
+      height: 51px;
+
+      margin: 0 auto;
+      margin-bottom: 28px;
+    }
+
+    .title {
+      margin: 0 auto;
+      font-family: "Graphie";
+      font-size: 25px;
+      line-height: 120%;
+      font-weight: 600;
+      color: ${background.green};
+    }
+    .description {
+      margin: 0 auto;
+      font-family: "Graphie";
+      font-size: 18px;
+      line-height: 28px;
+      font-weight: 500;
+      color: ${background.greyHigh};
+
+      max-width: 250px;
+    }
+    
+    @media (max-width: 600px) {
+      padding: 36px 35px;
+
+      min-width: 300px;
+      width: 380px;
+      max-width: 380px;
+    }
+    @media (max-width: 400px) {
+      padding: 36px 35px;
+
+      min-width: 300px;
+      width: 380px;
+      max-width: 350px;
+    }
+
+`
+
 export const CTAButton = styled(Button)`
-  background-color: ${background.green};
+  background-color: ${background.orange};
   color: ${background.white};
   border-radius: 30px;
+  margin: 0 auto;
 
   height: 52px;
 
@@ -197,4 +262,9 @@ export const CTAButton = styled(Button)`
 
 export const ButtonContainer = styled.div`
     text-align: center;
+    
+    @media (max-width: 600px) {
+      margin: 0 auto;
+      margin-left: -10px;
+    }
 `

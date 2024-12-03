@@ -13,12 +13,10 @@ export const NewHomeMainFormContainer = styled.section`
 
     padding: 77px;
     
-    /* gap: 105px; */
-    
     max-width: 1920px;
     
     @media (max-width: 600px) {
-        padding: 20px;
+        padding: 0px;
     }
 `
 export const NewHomeMainFormContent = styled.div`
