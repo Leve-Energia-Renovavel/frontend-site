@@ -1,11 +1,11 @@
 import { DISTRIBUTOR } from "@/app/pages/enums/globalEnums";
 
 export const benefits = [
+    "Não cobramos bandeira tarifária",
     "Adesão gratuita",
     "Sem custos adicionais",
     "Sem instalações ou obras",
     "Serviço regulado pela ANEEL",
-    "Não cobramos bandeira tarifária",
     "Cancele quando quiser",
 ]
 

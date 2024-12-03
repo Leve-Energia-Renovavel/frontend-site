@@ -10,16 +10,14 @@ export const ModalBox = styled(Box)`
     left: 50vw;
     transform: translate(-50%, -50%);
     background-color: ${background.white};
-    border: 1px solid ${background.lightBorder} ;
     border-radius: 10px;
-    box-shadow: 12;
-    padding: 20px;
+    box-shadow: 24px;
+    padding: 40px;
 
     outline: none;
     
     @media (max-width: 600px) {
         padding: 20px;
-
     }
 
     .modal-title {

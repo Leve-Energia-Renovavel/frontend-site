@@ -13,7 +13,7 @@ export const ModalBox = styled(Box)`
     transform: translate(-50%, -50%);
     background-color: ${background.white};
     
-    border-radius: 8px;
+    border-radius: 10px;
 
     width: 100%;
     height: auto;

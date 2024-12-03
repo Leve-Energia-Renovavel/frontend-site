@@ -20,7 +20,7 @@ export default function InstallationNumberModal(props) {
                 aria-describedby="modal-modal-description"
             >
                 <ModalBox>
-                    <Typography variant="h5" className="modal-title" >Saiba onde encontrar o Número de Instalação 😉</Typography>
+                    <Typography variant="h5" className="modal-title" >Saiba onde encontrar o Número de Instalação</Typography>
                     <Typography className="modal-description">Para a {distribuitor?.toUpperCase()}, normalmente ele fica no canto superior direito do boleto: </Typography>
                     <Image src={distribuitorImage} alt='exemplo numero instalacao' className="modal-image" loading="lazy" />
                     <ModalButton onClick={closeModal}><span>Entendi</span></ModalButton>
