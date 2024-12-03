@@ -19,9 +19,9 @@ export const HomeTutorialContent = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: ${background.orange};
+    background-color: ${background.grey};
 
-    gap: 36px;
+    gap: 30px;
 
     border-radius: 20px;
 
@@ -30,9 +30,9 @@ export const HomeTutorialContent = styled.div`
     .leveTutorialTitle {
       font-family: "Graphie";
       font-size: 34px;
-      line-height: 30px;
+      line-height: 120%;
       font-weight: 600;
-      color: ${background.white};
+      color: ${background.green};
       
       text-align: center;
     }
@@ -40,10 +40,11 @@ export const HomeTutorialContent = styled.div`
     @media (max-width: 600px) {
       .leveTutorialTitle {
         font-size: 24px;
+        max-width: 300px;
       }
 
       border-radius: 0px;
-      padding: 50px 20px;
+      padding: 20px 20px;
     }
     @media (max-width: 400px) {
       border-radius: 0px;

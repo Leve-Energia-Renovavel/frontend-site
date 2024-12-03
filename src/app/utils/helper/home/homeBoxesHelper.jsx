@@ -9,11 +9,9 @@ import signIcon from "../../../../resources/icons/small/leve-energia-clique-icon
 import solarPanelIcon from "../../../../resources/icons/small/leve-painel-solar-icone-small.png"
 import batteryIcon from "../../../../resources/icons/small/leve-recarregar-energia-icone-small.png"
 
-import getRevenueIcon from "../../../../resources/icons/large/get_revenue.png"
-import guaranteeIcon from "../../../../resources/icons/large/guarantee.png"
-import solarEnegyIcon from "../../../../resources/icons/large/solar_energy.png"
-import touchpadIcon from "../../../../resources/icons/large/touchpad.png"
-
+import touchpadIcon from "../../../../resources/icons/icon-click-orange-gradient.svg"
+import solarEnegyIcon from "../../../../resources/icons/icon-panel-orange-gradient.svg"
+import getRevenueIcon from "../../../../resources/icons/icon-renew-orange-gradient.svg"
 
 import localizaLogo from "../../../../resources/img/small/logo-localiza-small.png"
 import lorealLogo from "../../../../resources/img/small/logo-loreal-small.png"
@@ -123,11 +121,6 @@ export const homeTutorialCardsMobile = [
         icon: getRevenueIcon,
         title: "Créditos de energia",
         description: "Essa energia se transforma em créditos que abatem parte do seu consumo e deixa sua conta de luz mais barata todo mês",
-    },
-    {
-        icon: guaranteeIcon,
-        title: "Aprovado pela ANEEL",
-        description: "Isso é possível porque fazemos parte do sistema de Geração Distribuída regulado pela ANEEL com base na lei 14.300/22",
     },
 ]
 
