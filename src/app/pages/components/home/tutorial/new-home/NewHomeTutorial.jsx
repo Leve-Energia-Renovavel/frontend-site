@@ -9,7 +9,7 @@ export default function NewHomeTutorial({isMobile}) {
         <>
             <Container className='leveTutorialContainer'>
                 <Content className='leveTutorialContent'>
-                    <h6 className='leveTutorialTitle'>Como funciona a Leve Energia</h6>
+                    <h6 className='leveTutorialTitle'>Como a nossa economia chega até você</h6>
                     <CardContainer className='cardContainer'>
                         {homeTutorialCardsMobile.map((card, index) => {
                             return (
