@@ -101,7 +101,7 @@ export const HomeTutorialCard = styled.div`
       font-family: "Graphie";
       font-size: 22px;
       line-height: 120%;
-      font-weight: 500;
+      font-weight: 400;
       color: ${background.greyHigh};
     }
 
@@ -206,7 +206,7 @@ export const HomeTutorialAneelCard = styled.div`
       font-family: "Graphie";
       font-size: 18px;
       line-height: 28px;
-      font-weight: 500;
+      font-weight: 400;
       color: ${background.greyHigh};
 
       max-width: 250px;
