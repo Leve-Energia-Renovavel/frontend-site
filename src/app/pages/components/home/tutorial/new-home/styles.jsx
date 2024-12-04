@@ -66,6 +66,10 @@ export const HomeTutorialCardContainer = styled.div`
     flex-wrap: wrap;
 
     gap: 1rem;
+
+    @media (max-width: 600px) {
+      justify-content: center;
+    }
 `
 
 export const HomeTutorialCard = styled.div`
@@ -266,5 +270,9 @@ export const ButtonContainer = styled.div`
     @media (max-width: 600px) {
       margin: 0 auto;
       margin-left: -10px;
+    }
+    @media (max-width: 400px) {
+      margin: 0 auto;
+      margin-left: -25px;
     }
 `

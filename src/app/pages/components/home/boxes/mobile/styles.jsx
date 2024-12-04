@@ -189,7 +189,7 @@ export const MobileBox = styled.div`
             font-size: 15.5px;
             line-height: 16px;
 
-            max-width: 130px;
+            max-width: 142px;
 
             margin-top: auto;
             margin-bottom: 16px;
