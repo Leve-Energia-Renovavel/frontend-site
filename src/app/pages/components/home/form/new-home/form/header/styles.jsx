@@ -23,24 +23,16 @@ export const FormTitleContainer = styled.div`
     font-weight: 500;
     color: ${background.yellow};
     max-width: 395px;
-
   } 
   
-  .homeFormLogoLeve {
-    width: 120px;
-    height: auto;
-  }
-  
   @media (max-width: 600px) {
+    padding: 0 0 1rem 0;
+
     .formTitle {
-      font-size: 18px;
+      font-size: 20px;
       white-space: normal;
-      max-width: 313px;
     }
-    .homeFormLogoLeve {
-      width: 100%;
-      max-width: 80px;
-    }
+
   }
 
 

@@ -41,22 +41,17 @@ export const HomeTutorialContent = styled.div`
 
 export const HomeTutorialTitleContainer = styled.div`
 
-    margin: 0 auto;
-
     .leveTutorialTitle {
       font-family: "Graphie";
       font-size: 34px;
-      line-height: 120%;
+      line-height: 100%;
       font-weight: 600;
       color: ${background.green};
-
-      text-align: center;
     }
 
     @media (max-width: 600px) {
       .leveTutorialTitle {
         font-size: 24px;
-        max-width: 300px;
       }
     }
 `
@@ -190,8 +185,8 @@ export const HomeTutorialAneelCard = styled.div`
     padding: 36px 35px;
 
     .aneelIcon {
-      width: 104px;
-      height: 51px;
+      width: 79px;
+      height: 39px;
 
       margin: 0 auto;
       margin-bottom: 28px;
@@ -209,15 +204,16 @@ export const HomeTutorialAneelCard = styled.div`
       margin: 0 auto;
       font-family: "Graphie";
       font-size: 18px;
-      line-height: 28px;
+      line-height: 120%;
       font-weight: 400;
       color: ${background.greyHigh};
+      text-align: center;
 
-      max-width: 250px;
+      max-width: 318px;
     }
     
     @media (max-width: 600px) {
-      padding: 36px 35px;
+      padding: 36px 35px 16px 35px;
 
       min-width: 300px;
       width: 380px;

@@ -67,7 +67,7 @@ export const newHomeBoxes = [
     },
     {
         title: "Energia limpa e renovável",
-        subtitle: <p className="subtitle">Promova a redução na emissão de poluentes</p>
+        subtitle: <p className="subtitle">Ajude a reduzir a emissão de CO₂ na atmosfera</p>
     },
     {
         title: "Sem taxas e custos extras",
@@ -115,12 +115,12 @@ export const homeTutorialCardsMobile = [
     {
         icon: solarEnegyIcon,
         title: "Produção de energia",
-        description: "A energia limpa que produzimos é inserida na rede da sua distribuidora que continua responsável pelo seu serviço de energia",
+        description: "Geramos energia limpa e inserimos na rede da sua distribuidora que continua responsável pelo seu serviço de energia",
     },
     {
         icon: getRevenueIcon,
         title: "Créditos de energia",
-        description: "Essa energia se transforma em créditos que abatem parte do seu consumo e deixa sua conta de luz mais barata todo mês",
+        description: "Essa energia gera créditos que abatem parte do seu consumo e deixam sua conta de luz mais barata",
     },
 ]
 

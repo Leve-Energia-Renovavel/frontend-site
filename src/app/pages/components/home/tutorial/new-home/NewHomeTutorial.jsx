@@ -28,7 +28,7 @@ export default function NewHomeTutorial() {
                     <AneelCard className='leveTutorialAneelCard'>
                         <Image src={aneelIcon} className="aneelIcon" alt={`Logo da Aneel`} loading="lazy" />
                         <p className='title'>Aprovado pela ANEEL</p>
-                        <p className='description'>Fazemos parte do sistema de Geração Distribuída regulado pela ANEEL com base na lei 14.300/22.</p>
+                        <p className='description'>Fazemos parte do sistema de Geração Distribuída regulado pela ANEEL com base na lei 14.300/22</p>
 
                         <ButtonContainer className='leveTutorialButtonContainer'>
                             <CTAButton onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular minha economia</span></CTAButton>

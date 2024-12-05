@@ -55,30 +55,30 @@ export const HomeBoxesBaloon = styled.div`
     }
 
    @media (max-width: 768px) {
-        right: 15%; /* Align more centrally for smaller devices */
-        top: 20%; /* Lower to fit smaller viewports */
+        right: 50%; /* Align more centrally for smaller devices */
+        top: 10%; /* Lower to fit smaller viewports */
     }
 
     @media (max-width: 480px) {
         right: 38%;
-        top: 12%;
+        top: 7%;
     }
 
     @media (max-width: 412px) {
         right: 37%;
-        top: 12%;
+        top: 7%;
     }
     @media (max-width: 400px) {
         right: 30%;
-        top: 13%;
+        top: 7%;
     }
     @media (max-width: 380px) {
         right: 30%;
-        top: 13%;
+        top: 7%;
     }
     @media (max-width: 362px) {
         right: 29%;
-        top: 13%;
+        top: 7%;
     }
 `
 export const HomeSecondaryBannerContainerMobile = styled.div`
@@ -106,8 +106,8 @@ export const HomeSecondaryBannerContainerMobile = styled.div`
     .homeBoxesSecondarySectionTitle {
         font-family: "Graphie";
         font-size: 24px;
-        line-height: 120%;
-        font-weight: 700;
+        line-height: 100%;
+        font-weight: 600;
         color: ${background.green};
         
         max-width: 180px;
@@ -132,7 +132,7 @@ export const MobileBox = styled.div`
     background-color: ${background.white};
     border-radius: 5px;
 
-    gap: 9px;
+    gap: 12px;
 
     padding: 14px;
     
@@ -146,14 +146,14 @@ export const MobileBox = styled.div`
         font-family: "Graphie";
         font-size: 20px;
         line-height: 18px;
-        font-weight: 700;
+        font-weight: 600;
         color: ${background.orange};
     }
 
     .subtitle {
         font-family: "Graphie";
-        font-size: 18px;
-        line-height: 18px;
+        font-size: 17px;
+        line-height: 100%;
         font-weight: 400;
         color: ${background.greyHigh};
 
@@ -194,6 +194,63 @@ export const MobileBox = styled.div`
             margin-top: auto;
             margin-bottom: 16px;
         }
+    }
+`
+
+export const HomeBoxesMobileBenefitsContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    padding: 12px;
+    margin-bottom: 18px;
+
+    gap: 10px;
+
+    .homeBoxesBenefitsTitle {
+        display: block;
+        margin: 0 auto 16px 0;
+
+        font-family: "Graphie";
+        font-size: 34px;
+        line-height: 100%;
+        font-weight: 600;
+        color: ${background.orange};
+    }
+
+    @media (max-width: 600px) {
+      .homeBoxesBenefitsTitle {
+        font-size: 24px;
+      }
+    }
+`
+export const HomeBenefitBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: ${background.white};
+    border-radius: 5px;
+    
+    gap: 10px;
+
+    padding: 22px 10px;
+    margin: 0 auto;
+
+    width: 100%;
+
+
+    .title{
+        font-family: "Graphie";
+        font-size: 18px;
+        line-height: 100%;
+        font-weight: 600;
+        color: ${background.green};
+    }
+    .subtitle{
+        font-family: "Graphie";
+        font-size: 16px;
+        line-height: 100%;
+        font-weight: 500;
+        color: ${background.greyHigh};
     }
 `
 export const ButtonContainer = styled.div`
