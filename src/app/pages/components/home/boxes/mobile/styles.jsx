@@ -94,7 +94,7 @@ export const HomeSecondaryBannerContainerMobile = styled.div`
     min-height: 360px;
     max-height: 360px;
 
-    padding: 55px 16px;
+    padding: 35px 16px 0px 16px;
 
     background-image: url(${props => props.image.src});
     background-repeat: no-repeat;
@@ -111,6 +111,8 @@ export const HomeSecondaryBannerContainerMobile = styled.div`
         color: ${background.green};
         
         max-width: 180px;
+
+        margin-bottom: 80px;
     }
     `
 export const MobileBoxesContainer = styled.div`
@@ -122,7 +124,7 @@ export const MobileBoxesContainer = styled.div`
     justify-content: center;
     flex-wrap: wrap;
 
-    top: -45px;
+    top: -70px;
 
     gap: 7px;
 `
@@ -202,7 +204,7 @@ export const HomeBoxesMobileBenefitsContainer = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
 
-    padding: 12px;
+    padding: 0 12px;
     margin-bottom: 18px;
 
     gap: 10px;

@@ -1,7 +1,6 @@
 "use client"
 
 import { brands } from '@/app/utils/helper/home/homeBoxesHelper';
-import { Typography } from '@mui/material';
 import Image from 'next/image';
 import infoJson from '../../../../../../public/info.json';
 import { HomeSixthSectionCard as Card, HomeSixthSectionContainer as Container, HomeSixthSectionCardContainer as ContentContainer, HomeSixthSectionTitleContainer as TitleContainer } from '../styles';
@@ -16,7 +15,7 @@ export default function BrandsContainer({ partner }) {
         isTim ? <> </> :
             (<Container className='brandsContainer'>
                 <TitleContainer className='titleContainer'>
-                    <Typography variant="subtitle1" className='sectionTitle'>{texts.brandsThatTrust}</Typography>
+                    <p className='sectionTitle'>{texts.brandsThatTrust}</p>
                 </TitleContainer>
 
                 <ContentContainer className='brandsContentContainer'>

@@ -34,6 +34,11 @@ export const FormTitleContainer = styled.div`
     }
 
   }
-
+  @media (max-width: 400px) {
+    .formTitle {
+      font-size: 18px;
+      white-space: normal;
+    }
+  }
 
 `

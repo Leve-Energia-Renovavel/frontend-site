@@ -974,13 +974,12 @@ export const HomeSixthSectionContainer = styled.section`
       .sectionTitle {
         font-size: 21px;
         line-height: 21px;
+        max-width: 290px;
       }
     }
 `
 export const HomeSixthSectionTitleContainer = styled.div`
   text-align: center;
-
-
 `
 export const HomeSixthSectionCardContainer = styled.div`
     display: flex;

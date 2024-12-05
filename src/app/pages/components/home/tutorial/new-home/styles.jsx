@@ -35,7 +35,7 @@ export const HomeTutorialContent = styled.div`
     }
     @media (max-width: 400px) {
       border-radius: 0px;
-      padding: 30px 10px;
+      padding: 20px 20px;
     }
 `
 
@@ -61,8 +61,9 @@ export const HomeTutorialCardContainer = styled.div`
     flex-wrap: wrap;
 
     gap: 1rem;
-
+    
     @media (max-width: 600px) {
+      gap: 7px;
       justify-content: center;
     }
 `
