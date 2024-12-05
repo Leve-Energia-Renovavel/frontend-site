@@ -1,38 +1,35 @@
 
 import styled from "@emotion/styled";
+import { fadeInUp } from "../../animations";
 
 export const FABContainer = styled.div`
   position: fixed;
-  bottom: 20px;
-  right: 180px;
   z-index: 1000;
-  cursor: pointer;
   background-color: #25d366;
+  cursor: pointer;
 
   border-radius: 50%;
   padding: 4px;
   
-  transition: background-color 0.3s ease;
+  animation: ${fadeInUp} 0.5s ease-out;
+  transition: background-color .5s ease-out;
+  
+  &:hover {
+    background-color: #00fd5d;
+  }
+  
+   /* Consistently place it at the bottom-right corner */
+  bottom: 30px;
+  right: 20px;
+  
   &:hover {
     background-color: #00fd5d;
   }
   
   @media (max-width: 600px) {
     padding: 12px;
-    bottom: 34%;
-    right: 5%;
   }
-  @media (max-width: 395px) {
-    padding: 12px;
-    bottom: 240px;
-    right: 20px;
-  }
-  @media (max-width: 380px) {
-    padding: 12px;
-    bottom: 8%;
-    right: 5%;
-  }
-`
+  `
 
 export const WhatsappLink = styled.a`
   display: flex;
