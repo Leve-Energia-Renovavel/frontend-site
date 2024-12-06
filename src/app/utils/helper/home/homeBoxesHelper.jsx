@@ -67,7 +67,7 @@ export const newHomeBoxes = [
     },
     {
         title: "Energia limpa e renovável",
-        subtitle: <p className="subtitle">Ajude a reduzir a emissão de CO₂ na atmosfera</p>
+        subtitle: <p className="subtitle">Reduza a emissão de poluentes na atmosfera</p>
     },
     {
         title: "Sem custos extras",

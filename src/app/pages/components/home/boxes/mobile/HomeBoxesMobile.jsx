@@ -34,7 +34,7 @@ export default function HomeBoxesMobile() {
                 </HomeBenefitBox>
                 <HomeBenefitBox className='homeSecondaryBenefitBox'>
                     <p className='title'>Benefício empresarial</p>
-                    <p className='subtitle'>Desconto especial e mais benefícios para colaboradores de empresas clientes do nosso plano de benefícios empresarial</p>
+                    <p className='subtitle'>Descontos especiais e benefícios únicos para colaboradores de empresas que possuem nosso plano empresarial</p>
                 </HomeBenefitBox>
             </HomeBoxesMobileBenefitsContainer>
 
