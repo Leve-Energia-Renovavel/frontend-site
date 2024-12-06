@@ -7,19 +7,14 @@ export const HomeContainer = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${background.white};
-    background-color: transparent;
     
-    max-width: 1920px;
-    /* max-width: 1366px; */
+    /* max-width: 1920px; */
+    max-width: 1366px;
     margin: 0 auto;
-    padding: 0 3rem;
+    padding: 0;
+    border: 0;
     
     overflow-x: hidden; /* Disables horizontal scrolling */
-    
-    @media (max-width: 600px)  {
-      padding: 0;
-      border: 0;
-    }
 `
 
 export const FormTitleContainer = styled.div`

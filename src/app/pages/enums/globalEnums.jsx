@@ -98,4 +98,6 @@ export const ERROR_MESSAGE = {
     CONSUMER_NOT_FOUND: "Consumidor não encontrado",
 }
 
+export const HOME_FORM_ID = "calculateYourEconomy"
+
 
