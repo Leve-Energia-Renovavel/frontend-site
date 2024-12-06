@@ -55,7 +55,6 @@ export const NewHomeMainContainer = styled.div`
         max-width: 475px;
 
         animation: ${fadeInUp} 0.5s ease-out;
-        
     }
     .highlighted {
         color: ${background.orange};
@@ -63,18 +62,19 @@ export const NewHomeMainContainer = styled.div`
     }
     .homeMainSubtitle {
         font-family: "Graphie";
-        font-size: 24px;
+        font-size: 22px;
         line-height: 30px;
-        font-weight: 500;
+        font-weight: 400;
         color: ${background.greyHigh};
 
         animation: ${fadeInUp} 0.5s ease-out;
 
-        text-align: justify;
+        text-align: normal;
 
         margin-top: 17px;
         
-        max-width: 475px;
+        /* max-width: 475px; */
+        max-width: 440px;
     }
 `
 
@@ -83,10 +83,9 @@ export const NewHomeMainDescriptionContainer = styled.div`
     flex-direction: row;
     align-items: center;
 
-    gap: 8px;
+    gap: 12px;
 
-    margin-top: 48px;
-
+    margin-top: 43px;
 
     .checkIcon {
         display: block;
@@ -99,7 +98,7 @@ export const NewHomeMainDescriptionContainer = styled.div`
 
         font-family: "Graphie";
         font-size: 24px;
-        line-height: 30px;
+        line-height: 100%;
         font-weight: 600;
         color: ${background.green};
 
@@ -148,7 +147,8 @@ export const NewHomeBannerImageContainer = styled.div`
 
     /* min-width: 550px; */
     width: 100%;
-    max-width: 718px;
+    /* max-width: 718px; */
+    max-width: 765px;
     
     min-height: 360px;
     height: 453px;

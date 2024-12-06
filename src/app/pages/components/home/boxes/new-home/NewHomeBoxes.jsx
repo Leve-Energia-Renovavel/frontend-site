@@ -1,8 +1,8 @@
 import { HOME_FORM_ID } from '@/app/pages/enums/globalEnums'
 import { handleScrollToId } from '@/app/utils/browser/BrowserUtils'
 import { newHomeBoxes } from '@/app/utils/helper/home/homeBoxesHelper'
-import companyBannerImage from '../../../../../../resources/img/large/leve-confraternizacao-image-large-compressed.webp'
-import homeBannerImage from '../../../../../../resources/img/large/leve-familia-brincando-image-large-compressed.webp'
+import companyBannerImage from '../../../../../../resources/img/large/leve-company-image-large.jpg'
+import homeBannerImage from '../../../../../../resources/img/large/leve-family-playing-image-large.png'
 import HomeBoxesMobile from '../mobile/HomeBoxesMobile'
 import { BoxCard, BoxesContainer, ButtonContainer, NewHomeBoxesContainer as Container, NewHomeBoxesContent as Content, CTAButton, HomeBoxCompany, HomeBoxesCTAButton, HomeBoxHome, HomeBoxesUserTypeContainer as UserTypeContainer } from './styles'
 export default function NewHomeBoxes() {
@@ -28,7 +28,7 @@ export default function NewHomeBoxes() {
                             return (
                                 <BoxCard key={index} className={`boxCard-${index}`}>
                                     <p className='boxTitle'>{box.title}</p>
-                                    <span className='boxSubtitle'>{box.subtitle}</span>
+                                    {box.subtitle}
                                 </BoxCard>
                             )
                         })}

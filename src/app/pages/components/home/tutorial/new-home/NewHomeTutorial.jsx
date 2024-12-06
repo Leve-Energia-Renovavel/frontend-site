@@ -2,40 +2,47 @@
 import { handleScrollToId } from '@/app/utils/browser/BrowserUtils';
 import { homeTutorialCardsMobile } from '@/app/utils/helper/home/homeBoxesHelper';
 import Image from 'next/image';
-import { ButtonContainer, HomeTutorialCard as Card, HomeTutorialCardContainer as CardContainer, HomeTutorialContainer as Container, HomeTutorialContent as Content, CTAButton, HomeTutorialAneelCard as AneelCard, HomeTutorialTitleContainer } from './styles';
-import aneelIcon from '../../../../../../resources/icons/icon-aneel-orange-gradient.svg'
+import aneelIcon from '../../../../../../resources/icons/icon-aneel-orange-gradient.svg';
+import { HomeTutorialAneelCard as AneelCard, HomeTutorialAneelCardContent as AneelCardContent, ButtonContainer, ButtonContainerDesktop, HomeTutorialCard as Card, HomeTutorialCardContainer as CardContainer, HomeTutorialContainer as Container, CTAButton, HomeTutorialCTAButtonDesktop, HomeTutorialTitleContainer } from './styles';
 
 export default function NewHomeTutorial() {
     return (
         <>
             <Container className='leveTutorialContainer'>
-                <Content className='leveTutorialContent'>
-                    <HomeTutorialTitleContainer className='leveTutorialTitleContainer'>
-                        <h6 className='leveTutorialTitle'>Como a nossa economia chega até você</h6>
-                    </HomeTutorialTitleContainer>
-                    <CardContainer className='cardContainer'>
-                        {homeTutorialCardsMobile.map((card, index) => {
-                            return (
-                                <Card key={index} className={`cardMobile-${index}`}>
-                                    <Image src={card.icon} className="cardIcon" alt={card.description} loading="lazy" />
-                                    <p className='cardTitle'>{`${card.title}`}</p>
-                                    <p className='cardDescription'>{card.description}</p>
-                                </Card>
-                            )
-                        })}
-                    </CardContainer>
+                <HomeTutorialTitleContainer className='leveTutorialTitleContainer'>
+                    <h5 className='leveTutorialTitle'>Como a nossa economia chega até você</h5>
+                    <h6 className='leveTutorialSubtitle'>Entregamos economia e sustentabilidade com segurança</h6>
+                </HomeTutorialTitleContainer>
 
-                    <AneelCard className='leveTutorialAneelCard'>
-                        <Image src={aneelIcon} className="aneelIcon" alt={`Logo da Aneel`} loading="lazy" />
+                <CardContainer className='cardContainer'>
+                    {homeTutorialCardsMobile.map((card, index) => {
+                        return (
+                            <Card key={index} className={`cardMobile-${index}`}>
+                                <Image src={card.icon} className="cardIcon" alt={card.description} loading="lazy" />
+                                <p className='cardTitle'>{`${card.title}`}</p>
+                                <p className='cardDescription'>{card.description}</p>
+                            </Card>
+                        )
+                    })}
+                </CardContainer>
+
+                <ButtonContainerDesktop className='leveTutorialButtonContainerDesktop'>
+                    <HomeTutorialCTAButtonDesktop onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular minha economia</span></HomeTutorialCTAButtonDesktop>
+                </ButtonContainerDesktop>
+
+                <AneelCard className='leveTutorialAneelCard'>
+                    <Image src={aneelIcon} className="aneelIcon" alt={`Logo da Aneel`} loading="lazy" />
+
+                    <AneelCardContent className='leveTutorialAneelCardContent'>
                         <p className='title'>Aprovado pela ANEEL</p>
-                        <p className='description'>Fazemos parte do sistema de Geração Distribuída regulado pela ANEEL com base na lei 14.300/22</p>
+                        <p className='description'>Fazemos parte do sistema de Geração Distribuída que é aprovado e regulado pela ANEEL com base na lei 14.300/22</p>
+                    </AneelCardContent>
 
-                        <ButtonContainer className='leveTutorialButtonContainer'>
-                            <CTAButton onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular minha economia</span></CTAButton>
-                        </ButtonContainer>
-                    </AneelCard>
+                    <ButtonContainer className='leveTutorialButtonContainer'>
+                        <CTAButton onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular minha economia</span></CTAButton>
+                    </ButtonContainer>
+                </AneelCard>
 
-                </Content>
             </Container>
         </>
     )

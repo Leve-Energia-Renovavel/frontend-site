@@ -75,6 +75,7 @@ export const background = {
     greenSoft: "#81AD9F",
     grey: "#EFEFEC",
     black: "#313131",
+    blackLight: "##4B4747",
     greyMedium: "#BBB",
     greyMediumHigh: "#727272",
     greyHigh: "#787878",

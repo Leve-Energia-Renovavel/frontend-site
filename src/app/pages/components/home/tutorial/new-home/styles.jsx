@@ -5,10 +5,10 @@ import { Button } from "@mui/material"
 export const HomeTutorialContainer = styled.section`
     background-color: ${background.white};
 
-    padding: 57px 79px;
+    padding: 42px 0;
 
+    width: 100%;
     max-width: 1366px;
-    margin: 0 auto;
 
     @media (max-width: 600px) {
       max-width: 100vw;
@@ -16,30 +16,10 @@ export const HomeTutorialContainer = styled.section`
     }
 `
 
-export const HomeTutorialContent = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: ${background.grey};
-
-    gap: 30px;
-
-    border-radius: 20px;
-
-    padding: 50px 37px;
-    
-    @media (max-width: 600px) {
-      border-radius: 0px;
-      padding: 20px 20px;
-    }
-    @media (max-width: 400px) {
-      border-radius: 0px;
-      padding: 20px 20px;
-    }
-`
-
 export const HomeTutorialTitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
 
     .leveTutorialTitle {
       font-family: "Graphie";
@@ -48,23 +28,44 @@ export const HomeTutorialTitleContainer = styled.div`
       font-weight: 600;
       color: ${background.green};
     }
+    
+    .leveTutorialSubtitle {
+      font-family: "Graphie";
+      font-size: 20px;
+      line-height: 120%;
+      font-weight: 500;
+      color: ${background.greyHigh};
+    }
 
     @media (max-width: 600px) {
+
+      padding: 12px;
+      padding-bottom: 0;
+
       .leveTutorialTitle {
         font-size: 24px;
+        text-align: center;
+        max-width: 350px;
+      }
+      .leveTutorialSubtitle {
+        display: none;
       }
     }
 `
 export const HomeTutorialCardContainer = styled.div`
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    
+    margin-top: 32px;
+    
     gap: 1rem;
     
     @media (max-width: 600px) {
-      gap: 7px;
+      flex-wrap: wrap;
       justify-content: center;
+      gap: 7px;
     }
 `
 
@@ -72,22 +73,23 @@ export const HomeTutorialCard = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: start;
-    border-radius: 5px;
+    border-radius: 10px;
+    border: 2px solid ${background.grey};
     background-color: ${background.white};
 
     gap: 15px;
 
-    min-height: 280px;
-    height: 282px;
-    max-height: 282px;
+    min-height: 300px;
+    height: 343px;
+    max-height: 343px;
     
-    min-width: 360px;
-    width: 500px;
-    max-width: 500px;
+    min-width: 350px;
+    width: 100%;
+    max-width: 355px;
 
     margin-top: 7px;
     
-    padding: 18px 32px;
+    padding: 23px 32px;
 
     .cardTitle {
       font-family: "Graphie";
@@ -103,6 +105,8 @@ export const HomeTutorialCard = styled.div`
       line-height: 120%;
       font-weight: 400;
       color: ${background.greyHigh};
+
+      max-width: 300px;
     }
 
     .cardIcon {
@@ -171,54 +175,57 @@ export const HomeTutorialCard = styled.div`
     }
 `
 
+
 export const HomeTutorialAneelCard = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     justify-content: center;
     border-radius: 10px;
     background-color: ${background.white};
 
-    gap: 14px;
+    border: 1px solid ${background.orange};
+
+    margin: 90px auto 0 auto;
+
+    gap: 87px;
 
     width: 100%;
-    max-width: 550px;
+    max-width: 1006px;
+
+    height: 100%;
+    max-height: 220px;
 
     padding: 36px 35px;
 
     .aneelIcon {
-      width: 79px;
-      height: 39px;
-
-      margin: 0 auto;
-      margin-bottom: 28px;
-    }
-
-    .title {
-      margin: 0 auto;
-      font-family: "Graphie";
-      font-size: 25px;
-      line-height: 120%;
-      font-weight: 600;
-      color: ${background.green};
-    }
-    .description {
-      margin: 0 auto;
-      font-family: "Graphie";
-      font-size: 18px;
-      line-height: 120%;
-      font-weight: 400;
-      color: ${background.greyHigh};
-      text-align: center;
-
-      max-width: 318px;
+      width: 134px;
+      height: 66px;
     }
     
     @media (max-width: 600px) {
-      padding: 36px 35px 16px 35px;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+      margin: 0 auto;
+      
+      max-height: fit-content;
 
+      border: 0;
+      
+      padding: 36px 35px 16px 35px;
+      
       min-width: 300px;
       width: 380px;
       max-width: 380px;
+
+      .aneelIcon {
+        width: 79px;
+        height: 39px;
+
+        margin: 0 auto;
+        margin-bottom: 28px;
+      }
     }
     @media (max-width: 400px) {
       padding: 36px 35px;
@@ -228,6 +235,44 @@ export const HomeTutorialAneelCard = styled.div`
       max-width: 350px;
     }
 
+`
+
+export const HomeTutorialAneelCardContent = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 649px;
+
+  gap: 12px;
+
+  .title {
+      font-family: "Graphie";
+      font-size: 25px;
+      line-height: 120%;
+      font-weight: 600;
+      color: ${background.green};
+    }
+    .description {
+      font-family: "Graphie";
+      font-size: 22px;
+      line-height: 120%;
+      font-weight: 500;
+      color: ${background.greyHigh};
+
+      max-width: 620px;
+    }
+    
+    
+    @media (max-width: 600px) {
+      .title {
+        margin: 0 auto;
+      }
+      .description {
+        margin: 0 auto;
+        max-width: 318px;
+      }
+    }
 `
 
 export const CTAButton = styled(Button)`
@@ -262,14 +307,62 @@ export const CTAButton = styled(Button)`
 `
 
 export const ButtonContainer = styled.div`
+    display: none;
     text-align: center;
     
     @media (max-width: 600px) {
+      display: block;
       margin: 0 auto;
       margin-left: -10px;
     }
     @media (max-width: 400px) {
+      display: block;
       margin: 0 auto;
       margin-left: -25px;
+    }
+`
+
+export const ButtonContainerDesktop = styled.div`
+    text-align: center;
+
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: 30px;
+
+    width: fit-content;
+
+    @media (max-width: 600px) {
+      display: none;
+    }
+`
+
+export const HomeTutorialCTAButtonDesktop = styled(Button)`
+  background-color: ${background.green};
+  color: ${background.yellow};
+  border-radius: 30px;
+
+  height: 52px;
+
+  padding: 15px 53px;
+
+  max-width: 330px;
+
+  span {
+    font-family: "Graphie";
+    font-size: 20px;
+    line-height: 22px;
+    font-weight: 500;
+    text-transform: none;
+    white-space: nowrap;
+  }
+
+  &:hover {
+      background-color: ${background.orange};
+      color: ${background.white};
+      cursor: pointer;
+  }
+
+  @media (max-width: 600px) {
+      display: none;
     }
 `

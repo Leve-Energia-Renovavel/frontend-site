@@ -8,13 +8,12 @@ export const NewHomeBoxesContainer = styled.section`
     background-color: ${background.white};
 
     border-top: 2px solid ${background.grey};
-    border-bottom: 2px solid ${background.grey};
 
     width: 100%;
     max-width: 1366px;
     margin: 0 auto;
     
-    padding: 47px 25px;
+    padding: 47px 0;
 
     .homeBoxesTitle{
         font-family: "Graphie";
@@ -28,7 +27,7 @@ export const NewHomeBoxesContainer = styled.section`
         font-family: "Graphie";
         font-size: 20px;
         line-height: 120%;
-        font-weight: 600;
+        font-weight: 500;
         color: ${background.greyHigh};
 
         margin-top: 10px;
@@ -105,7 +104,7 @@ export const HomeBoxHome = styled(BaseHomeBox)`
         font-size: 27px;
         line-height: 100%;
         font-weight: 600;
-        color: ${background.greyDark};
+        color: ${background.blackLight};
 
         margin: 23px 0 0 17px;
     }
@@ -158,11 +157,11 @@ export const BoxCard = styled.div`
         white-space: nowrap;
     }
 
-    .boxSubtitle {
+    .subtitle {
         font-family: "Graphie";
         font-size: 22px;
         line-height: 24px;
-        font-weight: 800;
+        font-weight: 500;
         color: ${background.greyHigh};
     }
 

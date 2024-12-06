@@ -15,7 +15,7 @@ export default function NewHomeMainBanner() {
 
           <DescriptionContainer className='leveHomeMainBannerDescriptionContainer'>
             <Image src={checkIcon} alt='checkIcon' className='checkIcon' />
-            <h3 className='homeMainDescription'>Sem custos adicionais, sem obras ou instalações e sem fidelidade</h3>
+            <h3 className='homeMainDescription'>Tenha acesso rápido a energia limpa sem investimentos, instalações e sem custos adionais</h3>
           </DescriptionContainer>
 
           <CTAButton className='homeMainBannerButton' onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular meu desconto</span></CTAButton>

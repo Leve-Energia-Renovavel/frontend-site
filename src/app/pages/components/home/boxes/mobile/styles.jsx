@@ -114,7 +114,12 @@ export const HomeSecondaryBannerContainerMobile = styled.div`
 
         margin-bottom: 80px;
     }
-    `
+
+    @media (max-width: 600px) {
+        border-radius: 0;
+        background-position: 80% 0%;
+    }
+`
 export const MobileBoxesContainer = styled.div`
     position: relative;
     z-index: 10; 

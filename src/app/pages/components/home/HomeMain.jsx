@@ -10,6 +10,7 @@ import NewHomeForm from "./form/new-home/NewHomeForm";
 import { HomeContainer as Container, HomeContentContainer as HomeBanner } from "./styles";
 import NewHomeTutorial from "./tutorial/new-home/NewHomeTutorial";
 import NewHomeVideo from "./video/NewHomeVideo";
+import NewHomeBenefits from "./benefits/NewHomeBenefits";
 
 const BrandsContainer = dynamic(() => import('./brands/HomeBrands'), { ssr: false });
 const Messages = dynamic(() => import('../messages/Messages'), { ssr: false });
@@ -31,6 +32,8 @@ export default function HomeMain() {
                 </HomeBanner>
 
                 <NewHomeBoxes />
+
+                <NewHomeBenefits/>
 
                 <NewHomeTutorial />
 

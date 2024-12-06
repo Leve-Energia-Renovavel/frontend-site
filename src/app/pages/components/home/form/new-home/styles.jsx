@@ -3,20 +3,51 @@ import styled from "@emotion/styled";
 
 export const NewHomeMainFormContainer = styled.section`
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    background-color: ${background.grey};
+    flex-direction: row;
+    align-items: stretch;
+
+    gap: 0;
+
+    border-top: 2px solid ${background.grey};
 
     max-width: 1366px;
-    margin: 0 auto;
 
     padding: 77px;
     
-    max-width: 1920px;
-    
     @media (max-width: 600px) {
         padding: 0px;
+    }
+`
+export const NewHomeMainBannerImage = styled.div`
+    background-image: url(${props => props.bannerImage.src});
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: 20% 50%;
+    background-size: 100%;
+
+    border-radius: 20px 0px 0px 20px;
+
+    width: 646px;
+    max-width: 646px;
+    
+    height: auto;
+    max-height: 940px;
+
+    .leveHomeFormBannerTitle {
+        font-family: "Graphie";
+        font-size: 50px;
+        line-height: 100%;
+        font-weight: 600;
+        color: ${background.white};
+
+        margin-top: 58px;
+        margin-left: 32px;
+
+        max-width: 425px;
+    }
+
+    @media (max-width: 600px) {
+        display: none;
     }
 `
 export const NewHomeMainFormContent = styled.div`

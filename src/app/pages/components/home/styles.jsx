@@ -7,14 +7,18 @@ export const HomeContainer = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${background.white};
-    
+
     /* max-width: 1920px; */
     max-width: 1366px;
     margin: 0 auto;
-    padding: 0;
+    padding: 0 54px;
     border: 0;
     
     overflow-x: hidden; /* Disables horizontal scrolling */
+
+    @media (max-width: 600px) {
+      padding: 0;
+    }
 `
 
 export const FormTitleContainer = styled.div`
@@ -50,7 +54,7 @@ export const FormTitleContainer = styled.div`
 export const HomeContentContainer = styled.section`
     display: flex;
     flex-direction: column;
-    
+
     height: auto;
     margin-top: 74px;
     
@@ -58,14 +62,13 @@ export const HomeContentContainer = styled.section`
 
     .dividerBar {
       display: block;
-      width: 100vw; 
-      width: 1366px; 
+      width: calc(100vw + 108px); /* Compensate 54px of parents padding in both sides */
       position: absolute;
-      left: 0;
-      right: 0; 
+      left: -54px; 
+      right: -54px; 
       border: 4px solid ${background.grey};
-      margin-left: calc(-50vw + 50%); /*Centers the bar by compensating for parent's padding */
-      margin: 0 auto;
+      margin-left: calc(-50vw + 50%); 
+      margin-right: calc(-50vw + 50%); 
     }
     
     @media (max-width: 600px) {
@@ -80,6 +83,9 @@ export const HomeContentContainer = styled.section`
           display: block;
           width: 100%;
           position: absolute;
+          margin: 0;
+          right: 0;
+          left: 0;
   
           border: 12px solid ${background.grey};
         }
@@ -945,6 +951,8 @@ export const HomeSixthSectionContainer = styled.section`
     justify-content: center;
     align-items: center;
     background-color: ${background.white};
+
+    border-top: 2px solid ${background.grey};
     
     min-height: 670px;
 

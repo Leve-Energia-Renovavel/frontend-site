@@ -202,10 +202,14 @@ export const HomeFormContainer = styled.div`
   ${props => props.isMobile && `display:none;`}
 
   min-width: 450px;
-  width: 454px;
-  max-width: 454px;  
+  width: 596px;
+  max-width: 596px;  
   
   @media (max-width: 600px) {
+    min-width: 450px;
+    width: 454px;
+    max-width: 454px;  
+
     ${props => props.isMobile ? `display:block;` : `display:none;`};
     max-width: 100vw;
 
@@ -326,9 +330,9 @@ export const HomeMainForm = styled.form`
     flex-direction: column;
     background-color: ${background.green};
     
-    border-radius: 5px;
+    border-radius: 0px 20px 20px 0px;
     
-    padding: 1.5rem 1rem ;
+    padding: 1.5rem 53px;
     
     height: auto;
     max-height: 756px;

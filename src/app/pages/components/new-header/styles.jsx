@@ -18,7 +18,7 @@ export const MobileNewHeaderContainer = styled.header`
     margin: 0 auto;
 
     height: 74px;
-    padding: 0 2rem;
+    padding: 0 54px;
     
     position: fixed;
     top: 0;
