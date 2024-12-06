@@ -62,7 +62,7 @@ export const homeBoxes = [
 
 export const newHomeBoxes = [
     {
-        title: "Economia mensal garantida",
+        title: "Desconto mensal garantido",
         subtitle: <p className="subtitle">Economia de até 20% na conta de luz todo mês</p>
     },
     {
@@ -70,16 +70,8 @@ export const newHomeBoxes = [
         subtitle: <p className="subtitle">Ajude a reduzir a emissão de CO₂ na atmosfera</p>
     },
     {
-        title: "Sem taxas e custos extras",
+        title: "Sem custos extras",
         subtitle: <p className="subtitle">Adesão gratuita, sem investimentos e custos extras</p>
-    },
-    {
-        title: "Sem bandeira tarifária",
-        subtitle: <p className="subtitle">Serviço isento do adicional de bandeira tarifária</p>
-    },
-    {
-        title: "Segurança e legalidade",
-        subtitle: <p className="subtitle">Serviço aprovado e regulamentado pela ANEEL</p>
     },
     {
         title: "Cancele quando quiser",

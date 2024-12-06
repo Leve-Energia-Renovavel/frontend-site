@@ -28,11 +28,11 @@ export default function HomeBoxesMobile() {
             <HomeBoxesMobileBenefitsContainer className='homeSecondaryBoxesBenefitsContainer'>
 
                 <h6 className='homeBoxesBenefitsTitle'>Sua conta de luz mais Leve</h6>
-                <HomeBenefitBox>
+                <HomeBenefitBox className='homeSecondaryBenefitBox'>
                     <p className='title'>Isenção da bandeira tarifária</p>
                     <p className='subtitle'>Só com a Leve Energia você não paga pelo adicional de bandeira tarifária em períodos de seca ou crises</p>
                 </HomeBenefitBox>
-                <HomeBenefitBox>
+                <HomeBenefitBox className='homeSecondaryBenefitBox'>
                     <p className='title'>Benefício empresarial</p>
                     <p className='subtitle'>Desconto especial e mais benefícios para colaboradores de empresas clientes do nosso plano de benefícios empresarial</p>
                 </HomeBenefitBox>

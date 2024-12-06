@@ -183,6 +183,7 @@ export const MobileBox = styled.div`
         .title {
             font-size: 16.5px;
             line-height: 18px;
+            font-weight: 500;
 
             max-width: 130px;
         }
@@ -239,7 +240,6 @@ export const HomeBenefitBox = styled.div`
 
     width: 100%;
 
-
     .title{
         font-family: "Graphie";
         font-size: 18px;
@@ -251,7 +251,7 @@ export const HomeBenefitBox = styled.div`
         font-family: "Graphie";
         font-size: 16px;
         line-height: 100%;
-        font-weight: 500;
+        font-weight: 400;
         color: ${background.greyHigh};
     }
 `
