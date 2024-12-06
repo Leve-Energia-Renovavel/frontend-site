@@ -26,7 +26,7 @@ import { companySchema, userSchema } from './schema';
 import { SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupFormTitle, SignupLinearProgress, fileInputStyles } from './styles';
 
 import { signUp } from '@/app/service/user-service/UserService';
-import { costValidation, newCostValidation } from '@/app/utils/helper/signup/signupHelper';
+import { activeDistributorsForDisclaimer, costValidation, newCostValidation } from '@/app/utils/helper/signup/signupHelper';
 import dynamic from 'next/dynamic';
 import { handleRequestsErrors } from './validation';
 
@@ -61,6 +61,8 @@ export default function SignupForm() {
 
   const [socialContractFile, setSocialContractFile] = useState(null);
   const [energyExtractFile, setEnergyExtractFile] = useState(null);
+
+  const showDisclaimer = activeDistributorsForDisclaimer(distributor?.toUpperCase())
 
   const fetchCEP = useGetCEP();
   const fetchCNPJ = useGetCNPJ();
@@ -573,10 +575,10 @@ export default function SignupForm() {
                 placeholder={`Número de Instalação`}
                 type="text"
               />
-              <InstallationNumberDisclaimer onClick={() => setIsModalOpen(true)}>
+              {showDisclaimer && <InstallationNumberDisclaimer onClick={() => setIsModalOpen(true)}>
                 <InfoIcon className='infoIcon' />
                 <Typography className='installationNumberDisclaimer'><span className='underlined'>Encontre este número</span> no canto superior direito de sua fatura atual.</Typography>
-              </InstallationNumberDisclaimer>
+              </InstallationNumberDisclaimer>}
             </FormLastRow>
 
             {isCompany ? (
