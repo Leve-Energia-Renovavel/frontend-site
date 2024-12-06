@@ -6,9 +6,11 @@ export const BannerContainer = styled.div`
     border-radius: 0px 0px 15px 15px;
 
     width: 100%;
-    height: auto;
     max-width: 1366px;
+
     min-height: 600px;
+    height: 100vh;
+    max-height: 100vh;
     
     margin: 74px auto;
 

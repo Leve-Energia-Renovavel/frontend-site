@@ -1,4 +1,4 @@
-import { Button, Typography } from '@mui/material';
+import { Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import { BannerContainer, ButtonContainer, ContentContainer } from './styles';
 
@@ -9,8 +9,8 @@ export default function NotFoundBanner() {
     return (
         <BannerContainer>
             <ContentContainer>
-                <Typography variant="body1" component="h1">Página não encontrada... 😥</Typography>
-                <Typography variant="subtitle1" className="subtitle">Não gaste energia à toa, clique no botão abaixo para voltar para a tela inicial. </Typography>
+                <h1>Página não encontrada... 😥</h1>
+                <h6>Não gaste energia à toa, clique no botão abaixo para voltar para a tela inicial.</h6>
             </ContentContainer>
             <ButtonContainer>
                 <Button
