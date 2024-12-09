@@ -1,14 +1,14 @@
 import { USER_TYPE } from "@/app/pages/enums/globalEnums";
 import { checkForCompanyName } from "@/app/utils/company/CompanyUtils";
 import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
-import { capitalizeEachWord } from "@/app/utils/formatters/textFormatter";
+import { capitalizeEachWord, sanitizeAndCapitalizeWords } from "@/app/utils/formatters/textFormatter";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { requestSuccessful } from "../utils/Validations";
 
 export const createSignupPayload = (name, email, phone, cep, value, type, coupon) => {
     return {
-        nome_completo: name,
+        nome_completo: sanitizeAndCapitalizeWords(name),
         email: email.toLowerCase(),
         telefone: phone,
         cep: cep,

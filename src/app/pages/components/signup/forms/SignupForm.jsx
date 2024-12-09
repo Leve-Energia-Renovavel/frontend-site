@@ -26,6 +26,7 @@ import { companySchema, userSchema } from './schema';
 import { SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupFormTitle, SignupLinearProgress, fileInputStyles } from './styles';
 
 import { signUp } from '@/app/service/user-service/UserService';
+import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
 import { activeDistributorsForDisclaimer, costValidation, newCostValidation } from '@/app/utils/helper/signup/signupHelper';
 import dynamic from 'next/dynamic';
 import { handleRequestsErrors } from './validation';
@@ -204,7 +205,7 @@ export default function SignupForm() {
 
     var submitData = {
       uuid: uuid,
-      nome_completo: userRefs.name.current.value?.trimLeft(),
+      nome_completo: sanitizeAndCapitalizeWords(userRefs.name.current.value),
       email: userRefs.email.current.value,
       rg: userRefs.rg.current.value?.replace(/[-_]/g, ""),
       cpf: userRefs.cpf.current.value,

@@ -10,6 +10,7 @@ const signupValidationCodes = {
     CNV: "CNPJ não validado",
     CNE: "Consumidor não encontrado",
     CPI: "Cupom inválido",
+    CNENN: "Caracteres não esperado no nome",
     IJC: "Instalação já cadastrada",
     INE: "Instalação não encontrada",
     IOS: "Informe o sobrenome",
@@ -75,6 +76,9 @@ export const requestValidation = async (response, setNotifications, setErrorMess
     }
     else if (responseCode === "CPI") {
         setErrorMessage(["Cupom inválido. Por favor, verifique e tente novamente"])
+    }
+    else if (responseCode === "CNENN") {
+        setErrorMessage(["Campo de nome inválido. Por favor, verifique e tente novamente"])
     }
     else if (message === "Não foi possível achar esse usuário") {
         setErrorMessage(["E-mail não encontrado. Verifique se foi digitado corretamente ou se tiver, busque pelo e-mail secundário."])

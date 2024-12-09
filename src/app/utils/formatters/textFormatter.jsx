@@ -15,3 +15,15 @@ export const capitalizeEachWord = (string) => {
         ?.map(word => word.charAt(0).toUpperCase() + word.slice(1))
         ?.join(' ');
 };
+
+export const sanitizeAndCapitalizeWords = (string) => {
+    if (!string) return '';
+
+    const sanitizedString = string.replace(/[^a-zA-Z\s]/g, '');
+
+    return sanitizedString
+        ?.trim()
+        ?.split(/\s+/)
+        ?.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        ?.join(' ');
+};
