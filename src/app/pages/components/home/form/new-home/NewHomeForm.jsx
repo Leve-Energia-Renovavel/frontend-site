@@ -1,7 +1,7 @@
-import NewHomeMainForm from './form/NewHomeMainForm'
-import { NewHomeMainFormContainer as Container, NewHomeMainFormContent as Content, NewHomeMainBannerImage } from './styles'
 import bannerImage from '../../../../../../resources/img/large/leve-economy-image-child-outside.jpg'
-export default function NewHomeForm({ setErrorMessage, setNotifications }) {
+import NewHomeMainForm from './form/NewHomeMainForm'
+import { NewHomeMainFormContainer as Container, NewHomeMainBannerImage } from './styles'
+export default function NewHomeForm({ setErrorMessage, setNotifications, selectedUserType, setSelectedUserType }) {
     return (
         <Container className='leveHomeMainFormContainer' id='calculateYourEconomy'>
             <NewHomeMainBannerImage bannerImage={bannerImage} className='leveHomeFormBannerImage'>
@@ -10,7 +10,9 @@ export default function NewHomeForm({ setErrorMessage, setNotifications }) {
 
             <NewHomeMainForm
                 setErrorMessage={setErrorMessage}
-                setNotifications={setNotifications} />
+                setNotifications={setNotifications}
+                selectedUserType={selectedUserType}
+                setSelectedUserType={setSelectedUserType} />
 
         </Container>
     )

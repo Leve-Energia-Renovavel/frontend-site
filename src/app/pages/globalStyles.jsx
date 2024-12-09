@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
 import { Alert } from "@mui/material";
-import { fadeInUp } from "./animations";
+import { fadeInUp } from "./globalAnimations";
+
+export const containerWidth = "1280px"
+export const containerPadding = "54px"
 
 export const notification = {
     success: "#3adb76",

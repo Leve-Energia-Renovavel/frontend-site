@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import { Button, TextField } from "@mui/material";
-import { background } from "../../styles";
+import { background } from "../../globalStyles";
 
 
 export const SecondaryEmailContainer = styled.div`

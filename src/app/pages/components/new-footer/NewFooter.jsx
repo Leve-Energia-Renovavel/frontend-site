@@ -76,8 +76,8 @@ export default function NewFooter() {
             )}
           </VideoContainer>
 
-          <ButtonContainer className='leveFooterYouTubeVideoButton'>
-            <p className='checkOurYouTubeChannel'>Conheça nosso canal no YouTube</p>
+          <ButtonContainer className='leveFooterYouTubeVideoButton' onClick={() => handleOpenYouTube()}>
+            <p className='checkOurYouTubeChannel' onClick={() => handleOpenYouTube()}>Conheça nosso canal no YouTube</p>
           </ButtonContainer>
         </FooterMobile>
 

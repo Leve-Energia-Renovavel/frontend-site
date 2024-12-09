@@ -1,5 +1,5 @@
-import { fadeInUpAnimation } from "@/app/pages/animations"
-import { background } from "@/app/pages/styles"
+import { fadeInUpAnimation } from "@/app/pages/globalAnimations"
+import { background } from "@/app/pages/globalStyles"
 import styled from "@emotion/styled"
 
 export const HomeThirdSectionContainer = styled.div`

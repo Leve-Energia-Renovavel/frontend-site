@@ -1,11 +1,11 @@
-import { background } from "@/app/pages/styles"
+import { background, containerPadding } from "@/app/pages/globalStyles"
 import styled from "@emotion/styled"
 import { Button } from "@mui/material"
 
 export const HomeTutorialContainer = styled.section`
     background-color: ${background.white};
 
-    padding: 42px 0;
+    padding: 42px 0px;
 
     width: 100%;
     max-width: 1366px;
@@ -74,8 +74,9 @@ export const HomeTutorialCard = styled.div`
     flex-direction: column;
     justify-content: start;
     border-radius: 10px;
-    border: 2px solid ${background.grey};
     background-color: ${background.white};
+
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 
     gap: 15px;
 

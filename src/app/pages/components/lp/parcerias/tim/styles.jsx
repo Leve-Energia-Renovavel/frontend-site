@@ -1,4 +1,4 @@
-import { background, partners } from "@/app/pages/styles";
+import { background, partners } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 
 export const TimMain = styled.div`

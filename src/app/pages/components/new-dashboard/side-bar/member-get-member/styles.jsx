@@ -1,4 +1,4 @@
-import { background } from '@/app/pages/styles';
+import { background } from '@/app/pages/globalStyles';
 import styled from '@emotion/styled';
 
 export const MenuOption = styled.div`

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Box, Button } from "@mui/material";
-import { background } from "../../styles";
+import { background, containerPadding, containerWidth } from "../../globalStyles";
 
 export const MobileNewHeaderContainer = styled.header`
     display: flex;
@@ -13,12 +13,12 @@ export const MobileNewHeaderContainer = styled.header`
 
     border-radius: 0 0 10px 10px;
 
-    width: 1366px;
+    width: ${containerWidth};
     max-width: 100vw;
     margin: 0 auto;
 
     height: 74px;
-    padding: 0 54px;
+    padding: 0 ${containerPadding};
     
     position: fixed;
     top: 0;

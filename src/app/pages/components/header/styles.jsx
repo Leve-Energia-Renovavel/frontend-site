@@ -1,7 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import MenuIcon from '@mui/icons-material/Menu';
-import { background } from "../../styles";
+import { background } from "../../globalStyles";
 import { Button } from "@mui/material";
 
 const fadeInUp = keyframes`

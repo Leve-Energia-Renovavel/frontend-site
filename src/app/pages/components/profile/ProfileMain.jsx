@@ -14,7 +14,7 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
-import { background } from "../../styles";
+import { background } from "../../globalStyles";
 import FormButton from "../utils/buttons/FormButton";
 import { ProfileChangePasswordContent, ProfileContainer, ProfileMainContent, ProfileSecondaryContent, ProfileSecondaryEmailContent, SnackbarMessageAlert, SnackbarMessageNotification } from "./styles";
 

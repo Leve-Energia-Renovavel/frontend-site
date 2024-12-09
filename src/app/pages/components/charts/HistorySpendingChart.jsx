@@ -1,7 +1,7 @@
 import { useStoreBillingHistory } from '@/app/hooks/useStore';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { useEffect, useState } from 'react';
-import { background } from '../../styles';
+import { background } from '../../globalStyles';
 
 export default function HistorySpendingChart() {
 

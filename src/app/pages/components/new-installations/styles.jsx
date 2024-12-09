@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Switch } from "@mui/material";
-import { background } from "../../styles";
+import { background } from "../../globalStyles";
 
 export const NewInstallationsContainer = styled.div`
     display: flex;

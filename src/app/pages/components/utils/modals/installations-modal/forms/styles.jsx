@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/styles";
+import { background } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import { Button, TextField } from "@mui/material";
 

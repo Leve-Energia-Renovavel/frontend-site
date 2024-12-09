@@ -1,7 +1,7 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/material";
-import { background, notification } from "../../../styles";
+import { background, notification } from "../../../globalStyles";
 
 const fadeInUp = keyframes`
   from {

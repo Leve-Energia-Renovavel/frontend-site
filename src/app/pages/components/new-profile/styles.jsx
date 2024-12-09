@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import CloseIcon from '@mui/icons-material/Close';
-import { background } from "../../styles";
+import { background } from "../../globalStyles";
 
 export const NewProfileContainer = styled.div`
     display: flex;

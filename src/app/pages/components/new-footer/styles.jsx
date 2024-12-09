@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";
-import { background } from "../../styles";
+import { background, containerWidth } from "../../globalStyles";
 
 export const FooterContainer = styled.footer`
     display: flex;
@@ -8,11 +8,10 @@ export const FooterContainer = styled.footer`
 
     overflow: hidden;
 
-    /* max-width: 1920px; */
-    max-width: 1366px;
+    max-width: ${containerWidth};
     margin: 0 auto;
 
-    background: linear-gradient(to top,${background.orange}, ${background.orange} 10%, ${background.grey} 100%);
+    background: linear-gradient(to top,${background.orange}, ${background.orange} 10%, ${background.white} 100%);
 
     gap: 10rem; //change later...
     

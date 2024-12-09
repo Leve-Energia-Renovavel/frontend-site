@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { background } from "@/app/pages/styles"
+import { background } from "@/app/pages/globalStyles"
 import { keyframes } from "@emotion/react";
 import ConfettiExplosion from "react-confetti-explosion";
 

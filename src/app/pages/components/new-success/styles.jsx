@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Button, LinearProgress } from "@mui/material";
-import { background } from "../../styles";
+import { background } from "../../globalStyles";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 export const NewSuccessContainer = styled.div`

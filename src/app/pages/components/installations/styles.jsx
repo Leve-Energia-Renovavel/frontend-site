@@ -2,7 +2,7 @@ import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import HomeIcon from '@mui/icons-material/Home';
 import { Alert } from "@mui/material";
-import { background, notification } from "../../styles";
+import { background, notification } from "../../globalStyles";
 
 const fadeInUp = keyframes`
   from {

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { background } from "@/app/pages/styles"
+import { background } from "@/app/pages/globalStyles"
 
 import DownloadIcon from '@mui/icons-material/Download';
 import PeopleIcon from '@mui/icons-material/People';

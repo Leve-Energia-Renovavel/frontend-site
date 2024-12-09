@@ -3,7 +3,7 @@ import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import { Alert } from "@mui/material";
-import { background } from "../../styles";
+import { background } from "../../globalStyles";
 
 const fadeInUp = keyframes`
   from {

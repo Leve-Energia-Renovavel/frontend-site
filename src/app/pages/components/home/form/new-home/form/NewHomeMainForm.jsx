@@ -13,13 +13,14 @@ import infoJson from '../../../../../../../../public/info.json';
 import { requestValidation } from '../../../validation';
 import { HomeMainForm as Form, HomeFormContainer, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 
+import { USER_TYPE } from '@/app/pages/enums/globalEnums';
 import { schemaValidation } from '../../../schema';
 import NewHomeMainFormHeader from './header/NewHomeMainFormHeader';
 
 const HomeFormButton = dynamic(() => import('../../../../utils/buttons/home/form/HomeFormButton'), { ssr: false });
 const HomeMainFormSimulator = dynamic(() => import('../../simulator/HomeMainFormSimulator'), { ssr: false });
 
-export default function NewHomeMainForm({ setErrorMessage, setNotifications, isMobile }) {
+export default function NewHomeMainForm({ setErrorMessage, setNotifications, isMobile, selectedUserType, setSelectedUserType }) {
 
     const router = useRouter()
 
@@ -29,8 +30,6 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
 
     const [isLoading, setLoading] = useState(false)
     const [simulationCost, setSimulationCost] = useState(200)
-
-    const [selectedUserType, setSelectedUserType] = useState("Residencia")
 
     const nameRef = useRef()
     const emailRef = useRef()
@@ -56,7 +55,7 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
             phoneRef.current.value,
             cepRef.current.value,
             simulationCost,
-            selectedUserType === "Residencia" ? "PF" : "PJ",
+            selectedUserType === USER_TYPE.RESIDENCIA ? USER_TYPE.PF : USER_TYPE.PJ,
             couponRef.current.value,
         )
 
@@ -73,8 +72,8 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
                 <TextField
                     inputRef={nameRef}
                     className="homeFormInput"
-                    label={`Nome completo ${selectedUserType === 'Empresa' ? "do responsável" : ""}`}
-                    placeholder={`Nome completo ${selectedUserType === 'Empresa' ? "do responsável" : ""}`}
+                    label={`Nome completo ${selectedUserType === USER_TYPE.EMPRESA ? "do responsável" : ""}`}
+                    placeholder={`Nome completo ${selectedUserType === USER_TYPE.EMPRESA ? "do responsável" : ""}`}
                     variant="outlined"
                     type="text"
                     disabled={isLoading}
@@ -108,8 +107,8 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
                 <TextField
                     className="homeFormInput"
                     inputRef={emailRef}
-                    label={`E-mail ${selectedUserType === 'Empresa' ? "do responsável" : ""}`}
-                    placeholder={`E-mail ${selectedUserType === 'Empresa' ? "do responsável" : ""}`}
+                    label={`E-mail ${selectedUserType === USER_TYPE.EMPRESA ? "do responsável" : ""}`}
+                    placeholder={`E-mail ${selectedUserType === USER_TYPE.EMPRESA ? "do responsável" : ""}`}
                     variant="outlined"
                     type="text"
                     disabled={isLoading}
@@ -163,14 +162,14 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
                             className='homeFormHouseSelect'
                             startIcon={<HomeIcon />}
                             onClick={() => handleSelect('Residencia')}
-                            selected={selectedUserType === 'Residencia'}>
+                            selected={selectedUserType === USER_TYPE.RESIDENCIA}>
                             {texts.house}
                         </Select>
                         <Select
                             className='homeFormCompanySelect'
                             startIcon={<StoreIcon />}
                             onClick={() => handleSelect('Empresa')}
-                            selected={selectedUserType === 'Empresa'} >
+                            selected={selectedUserType === USER_TYPE.EMPRESA} >
                             {texts.company}
                         </Select>
                     </UserTypeFormButtonContainer>

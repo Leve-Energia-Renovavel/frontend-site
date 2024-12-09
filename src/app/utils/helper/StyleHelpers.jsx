@@ -1,4 +1,4 @@
-import { statusColors } from "@/app/pages/styles"
+import { statusColors } from "@/app/pages/globalStyles"
 
 export const statusHelper = {
     pago: statusColors["paid"],

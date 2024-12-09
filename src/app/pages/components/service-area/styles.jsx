@@ -1,6 +1,6 @@
 
 import styled from "@emotion/styled";
-import { background } from "../../styles";
+import { background } from "../../globalStyles";
 
 export const ServiceAreaContainer = styled.div`
     display: flex;

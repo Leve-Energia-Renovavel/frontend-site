@@ -10,7 +10,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import dynamic from 'next/dynamic';
 import { useEffect, useRef, useState } from 'react';
-import { background } from '../../styles';
+import { background } from '../../globalStyles';
 import Messages from '../messages/Messages';
 import FormButton from '../utils/buttons/FormButton';
 import { InvoiceContainer as Container, InvoicesMainCardChangeDate, InvoicesMainCardContainer, InvoicesMainContainer, InvoicesTimelineContainer, NextBillButtonContainer, NextBillDetail, NextBillTitleContainer, PreviousInvoicesContainer, WarningBox } from './styles';

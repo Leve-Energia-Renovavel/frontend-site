@@ -1,17 +1,16 @@
 import styled from "@emotion/styled";
 import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/material";
-import { fadeInUp, fadeInUpAnimation, slideAndDisappear } from "../../animations";
-import { background, notification } from "../../styles";
+import { fadeInUp, fadeInUpAnimation, slideAndDisappear } from "../../globalAnimations";
+import { background, containerPadding, containerWidth, notification } from "../../globalStyles";
 
 export const HomeContainer = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${background.white};
 
-    /* max-width: 1920px; */
-    max-width: 1366px;
+    max-width: ${containerWidth};
     margin: 0 auto;
-    padding: 0 54px;
+    padding: 0 ${containerPadding};
     border: 0;
     
     overflow-x: hidden; /* Disables horizontal scrolling */
@@ -57,6 +56,7 @@ export const HomeContentContainer = styled.section`
 
     height: auto;
     margin-top: 74px;
+    padding: 0px;
     
     position: relative; /* Ensure it's positioned correctly for absolute child */
 
@@ -1007,8 +1007,9 @@ export const HomeSixthSectionCard = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid ${background.green};
     background-color: ${background.white};
+
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     
     border-radius: 5px;
     

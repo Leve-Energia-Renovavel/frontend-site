@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/styles";
+import { background, containerPadding } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 
 export const NewHomeVideoContainer = styled.section`
@@ -6,13 +6,15 @@ export const NewHomeVideoContainer = styled.section`
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: ${background.grey};
+    background-color: ${background.white};
+
+    border-top: 2px solid ${background.grey};
 
     width: 100%;
     max-width: 1366px;
     margin: 0 auto;
 
-    padding: 45px 65px;
+    padding: 47px 0px;
 
     .title {
         font-family: "Graphie";

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { background, notification } from "@/app/pages/styles"
+import { background, notification } from "@/app/pages/globalStyles"
 import { Alert } from "@mui/material";
 import { keyframes } from "@emotion/react";
 

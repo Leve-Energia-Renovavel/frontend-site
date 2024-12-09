@@ -1,5 +1,5 @@
-import { slideAndDisappear } from "@/app/pages/animations";
-import { background } from "@/app/pages/styles";
+import { slideAndDisappear } from "@/app/pages/globalAnimations";
+import { background } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import { Slider } from "@mui/material";
 

@@ -1,5 +1,5 @@
-import { fadeInUp } from "@/app/pages/animations";
-import { background } from "@/app/pages/styles";
+import { fadeInUp } from "@/app/pages/globalAnimations";
+import { background } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Box, Button } from "@mui/material";

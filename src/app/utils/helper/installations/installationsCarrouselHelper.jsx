@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/styles";
+import { background } from "@/app/pages/globalStyles";
 
 export function formatBillingArray(array, maxSize) {
     if (array.length < maxSize || array.length < 1) {

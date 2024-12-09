@@ -1,9 +1,7 @@
-import { fadeInUp, float } from "@/app/pages/animations";
-import { background } from "@/app/pages/styles";
+import { fadeInUp, float } from "@/app/pages/globalAnimations";
+import { background, containerWidth } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";
-
-const maxWidth = "1366px"
 
 export const NewHomeMainBannerContainer = styled.section`
     display: flex;
@@ -23,7 +21,7 @@ export const NewHomeMainBannerContainer = styled.section`
     max-height: 567px;
     
     width: 100%;
-    max-width: ${maxWidth};
+    max-width: ${containerWidth};
 
     position: relative;  // Added this line to make the balloon relative to the container
 
@@ -142,13 +140,11 @@ export const NewHomeMainBaloon = styled.div`
 export const NewHomeBannerImageContainer = styled.div`
     background-image: url(${props => props.image.src});
     background-repeat: no-repeat;
-    background-size: cover; 
+    background-size: 100%; 
     background-position: 90% 10%;
 
-    /* min-width: 550px; */
     width: 100%;
-    /* max-width: 718px; */
-    max-width: 765px;
+    max-width: 668px;
     
     min-height: 360px;
     height: 453px;
@@ -168,8 +164,7 @@ export const CTAButton = styled(Button)`
   width: 100%;
   max-width: 340px;
 
-  margin-top: 54px;
-  /* margin-bottom: 40px; */
+  margin-top: 32px;
   
   span {
     font-family: "Graphie";

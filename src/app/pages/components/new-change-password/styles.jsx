@@ -3,7 +3,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Button, TextField } from "@mui/material";
-import { background } from "../../styles";
+import { background } from "../../globalStyles";
 
 
 export const ChangePasswordContainer = styled.div`

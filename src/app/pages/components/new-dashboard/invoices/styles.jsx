@@ -1,4 +1,4 @@
-import { background, newFontStatusColors, newStatusColors, statusColors } from "@/app/pages/styles"
+import { background, newFontStatusColors, newStatusColors, statusColors } from "@/app/pages/globalStyles"
 import styled from "@emotion/styled"
 import Divider from '@mui/material/Divider'
 

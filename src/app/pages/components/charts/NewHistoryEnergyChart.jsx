@@ -4,7 +4,7 @@ import { useStoreBillingHistory } from '@/app/hooks/useStore';
 import { billHasExpired } from '@/app/utils/date/DateUtils';
 import { formatMonthAndYearInFull } from '@/app/utils/formatters/dateFormatter';
 import ReactApexChart from 'react-apexcharts';
-import { background } from '../../styles';
+import { background } from '../../globalStyles';
 import { BILL_STATUS } from '../new-dashboard/invoices/invoicesEnums';
 import { BarChartWrapper } from './styles';
 

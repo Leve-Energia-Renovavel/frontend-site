@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/styles";
+import { background, containerPadding } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import { Button } from "@mui/material"
 
@@ -14,7 +14,7 @@ export const NewHomeBenefitsContainer = styled.section`
     max-width: 1366px;
     margin: 0 auto;
     
-    padding: 47px 0;
+    padding: 47px 0px;
 
     .leveHomeBenefitsTitle {
         font-family: "Graphie";

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { background } from "../../../styles"
+import { background } from "../../../globalStyles"
 
 export const BannerContainer = styled.div`
     display: flex;

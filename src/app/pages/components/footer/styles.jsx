@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { background } from "../../styles"
+import { background } from "../../globalStyles"
 
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';

@@ -1,5 +1,5 @@
-import { fadeInUp, fadeInUpAnimation, slideAndDisappear } from "@/app/pages/animations";
-import { background, notification } from "@/app/pages/styles";
+import { fadeInUp, fadeInUpAnimation, slideAndDisappear } from "@/app/pages/globalAnimations";
+import { background, notification } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/material";
 

@@ -1,4 +1,4 @@
-import { background, newFontStatusColors, newStatusColors } from "@/app/pages/styles";
+import { background, newFontStatusColors, newStatusColors } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { BILL_STATUS } from "../../new-dashboard/invoices/invoicesEnums";

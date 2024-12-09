@@ -1,5 +1,5 @@
-import { float } from "@/app/pages/animations"
-import { background } from "@/app/pages/styles"
+import { float } from "@/app/pages/globalAnimations"
+import { background } from "@/app/pages/globalStyles"
 import styled from "@emotion/styled"
 import { Button } from "@mui/material"
 

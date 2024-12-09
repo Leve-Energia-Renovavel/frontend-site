@@ -5,7 +5,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 import { Button, CircularProgress, Slider, TextField } from "@mui/material";
-import { background, notification } from "../../styles";
+import { background, notification } from "../../globalStyles";
 import CloseIcon from '@mui/icons-material/Close';
 
 export const EconomyResultContainer = styled.div`

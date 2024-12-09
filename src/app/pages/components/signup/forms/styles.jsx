@@ -1,4 +1,4 @@
-import { background, notification } from "@/app/pages/styles";
+import { background, notification } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { Alert, Button, TextField, keyframes } from "@mui/material";

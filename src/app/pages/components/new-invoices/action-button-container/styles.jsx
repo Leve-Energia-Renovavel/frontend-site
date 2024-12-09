@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/styles";
+import { background } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import BarChartIcon from '@mui/icons-material/BarChart';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';

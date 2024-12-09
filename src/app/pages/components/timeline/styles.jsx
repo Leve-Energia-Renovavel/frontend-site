@@ -3,7 +3,7 @@ import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineOppositeContent, TimelineSeparator } from "@mui/lab";
 import { Typography } from "@mui/material";
-import { background, statusColors } from "../../styles";
+import { background, statusColors } from "../../globalStyles";
 
 const fadeInUp = keyframes`
   from {

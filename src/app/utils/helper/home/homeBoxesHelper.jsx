@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/styles"
+import { background } from "@/app/pages/globalStyles"
 import simpleIcon from "../../../../resources/icons/small/leve-carregando-orange-icone-small.svg"
 import sustainableIcon from "../../../../resources/icons/small/leve-folha-icone-small.svg"
 import safeIcon from "../../../../resources/icons/small/leve-protecao-white-icone-small.svg"

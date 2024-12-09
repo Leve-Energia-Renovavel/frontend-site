@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/styles";
+import { background } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import InventoryIcon from '@mui/icons-material/Inventory';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';

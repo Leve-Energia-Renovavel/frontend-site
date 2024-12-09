@@ -13,7 +13,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect, useRef, useState } from "react";
 import InputMask from "react-input-mask";
-import { background } from "../../styles";
+import { background } from "../../globalStyles";
 import NewInstallationButton from "../utils/buttons/NewInstallationButton";
 import NewInstallationButtonConfirm from "../utils/buttons/dashboard/installations/NewInstallationButtonConfirm";
 import { ButtonContainer, InstallationsMainContainer as Container, FormContentNewInstallation, HomeIconStyled, InstallationsMainContent, MainInstallationInfoContainer as MainInstallationInfo, MainTitleContainer, NewInstallationContent, SnackbarMessageAlert, SnackbarMessageNotification, TitleContainer, TitleIconsContainer } from "./styles";

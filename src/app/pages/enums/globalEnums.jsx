@@ -10,6 +10,8 @@ export const USER_COST = {
 export const USER_TYPE = {
     PJ: "PJ",
     PF: "PF",
+    RESIDENCIA: "RESIDENCIA",
+    EMPRESA: "EMPRESA",
 };
 
 export const ENVIRONMENTAL_IMPACT = {

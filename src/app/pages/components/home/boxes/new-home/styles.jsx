@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/styles"
+import { background, containerPadding } from "@/app/pages/globalStyles"
 import styled from "@emotion/styled"
 import { Button } from "@mui/material"
 
@@ -13,7 +13,7 @@ export const NewHomeBoxesContainer = styled.section`
     max-width: 1366px;
     margin: 0 auto;
     
-    padding: 47px 0;
+    padding: 47px 0px;
 
     .homeBoxesTitle{
         font-family: "Graphie";
@@ -55,7 +55,10 @@ export const HomeBoxesUserTypeContainer = styled.div`
 
 export const BaseHomeBox = styled.div`
     position: relative;
-    background-image: url(${props => props.bannerImage.src});
+    background-image: 
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 5%, rgba(0, 0, 0, 0) 100%), 
+        url(${props => props.bannerImage.src});
+
     background-repeat: no-repeat;
     background-size: cover; 
     background-position: 80% 20%;
@@ -104,7 +107,7 @@ export const HomeBoxHome = styled(BaseHomeBox)`
         font-size: 27px;
         line-height: 100%;
         font-weight: 600;
-        color: ${background.blackLight};
+        color: ${background.yellow};
 
         margin: 23px 0 0 17px;
     }
@@ -119,7 +122,7 @@ export const HomeBoxCompany = styled(BaseHomeBox)`
         font-size: 27px;
         line-height: 100%;
         font-weight: 600;
-        color: ${background.white};
+        color: ${background.yellow};
 
         margin: 23px 17px 0 auto;
     }
@@ -135,7 +138,8 @@ export const BoxCard = styled.div`
     flex-direction: column;
     border-radius: 10px;
     background-color: ${background.white};
-    border: 2px solid ${background.orange};
+
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 
     padding: 22px 29px 35px 29px;
 

@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/styles";
+import { background } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';

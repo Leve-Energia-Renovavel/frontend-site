@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Skeleton } from "@mui/material";
-import { background, statusColors } from "../../styles";
+import { background, statusColors } from "../../globalStyles";
 import { statusHelper } from "@/app/utils/helper/StyleHelpers";
 import { keyframes } from "@emotion/react";
 

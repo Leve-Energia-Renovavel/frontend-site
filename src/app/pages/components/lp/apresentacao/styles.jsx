@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/styles";
+import { background } from "@/app/pages/globalStyles";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";

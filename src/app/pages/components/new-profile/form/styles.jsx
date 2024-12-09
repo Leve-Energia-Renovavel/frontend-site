@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/styles";
+import { background } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import AutorenewOutlinedIcon from '@mui/icons-material/AutorenewOutlined';
 import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';

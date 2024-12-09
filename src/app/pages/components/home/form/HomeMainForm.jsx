@@ -15,6 +15,7 @@ import { HomeMainForm as Form, HomeMainFormContainer as FormContainer, HomeFormC
 import { requestValidation } from '../validation';
 
 import NewHomeMainFormHeader from './new-home/form/header/NewHomeMainFormHeader';
+import { USER_TYPE } from '@/app/pages/enums/globalEnums';
 
 const HomeFormButton = dynamic(() => import('../../utils/buttons/home/form/HomeFormButton'), { ssr: false });
 const HomeMainFormSimulator = dynamic(() => import('./simulator/HomeMainFormSimulator'), { ssr: false });
@@ -53,7 +54,7 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
             phoneRef.current.value,
             cepRef.current.value,
             simulationCost,
-            selectedUserType === "Residencia" ? "PF" : "PJ",
+            selectedUserType === USER_TYPE.RESIDENCIA ? USER_TYPE.PF : USER_TYPE.PJ,
             couponRef.current.value,
         )
 
@@ -71,8 +72,8 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                     <TextField
                         inputRef={nameRef}
                         className="homeFormInput"
-                        label={`Nome completo ${selectedUserType === 'Empresa' ? "do responsável" : ""}`}
-                        placeholder={`Nome completo ${selectedUserType === 'Empresa' ? "do responsável" : ""}`}
+                        label={`Nome completo ${selectedUserType === USER_TYPE.EMPRESA ? "do responsável" : ""}`}
+                        placeholder={`Nome completo ${selectedUserType === USER_TYPE.EMPRESA ? "do responsável" : ""}`}
                         variant="outlined"
                         type="text"
                         FormHelperTextProps={{
@@ -111,8 +112,8 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                     <TextField
                         className="homeFormInput"
                         inputRef={emailRef}
-                        label={`E-mail ${selectedUserType === 'Empresa' ? "do responsável" : ""}`}
-                        placeholder={`E-mail ${selectedUserType === 'Empresa' ? "do responsável" : ""}`}
+                        label={`E-mail ${selectedUserType === USER_TYPE.EMPRESA ? "do responsável" : ""}`}
+                        placeholder={`E-mail ${selectedUserType === USER_TYPE.EMPRESA ? "do responsável" : ""}`}
                         variant="outlined"
                         type="text"
                         InputProps={{
@@ -164,15 +165,15 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
                             <Select
                                 className='homeFormCompanySelect'
                                 startIcon={<StoreIcon />}
-                                onClick={() => handleSelect('Empresa')}
-                                selected={selectedUserType === 'Empresa'} >
+                                onClick={() => handleSelect(USER_TYPE.EMPRESA)}
+                                selected={selectedUserType === USER_TYPE.EMPRESA} >
                                 {texts.company}
                             </Select>
                             <Select
                                 className='homeFormHouseSelect'
                                 startIcon={<HomeIcon />}
-                                onClick={() => handleSelect('Residencia')}
-                                selected={selectedUserType === 'Residencia'}>
+                                onClick={() => handleSelect(USER_TYPE.RESIDENCIA)}
+                                selected={selectedUserType === USER_TYPE.RESIDENCIA}>
                                 {texts.house}
                             </Select>
                         </UserTypeFormButtonContainer>

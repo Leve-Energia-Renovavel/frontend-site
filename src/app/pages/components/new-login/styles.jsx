@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Box, Button } from "@mui/material";
-import { background } from "../../styles";
+import { background } from "../../globalStyles";
 
 export const LoginBox = styled(Box)`
     position: absolute;

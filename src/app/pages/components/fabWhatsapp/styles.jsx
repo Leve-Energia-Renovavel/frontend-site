@@ -1,6 +1,6 @@
 
 import styled from "@emotion/styled";
-import { fadeInUp } from "../../animations";
+import { fadeInUp } from "../../globalAnimations";
 
 export const FABContainer = styled.div`
   position: fixed;

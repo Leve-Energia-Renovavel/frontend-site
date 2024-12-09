@@ -1,6 +1,6 @@
 import { Alert } from "@mui/material"
-import { notification } from "../../styles"
-import { fadeInUp } from "../../animations"
+import { notification } from "../../globalStyles"
+import { fadeInUp } from "../../globalAnimations"
 import styled from "@emotion/styled"
 
 export const SnackbarMessageAlert = styled(Alert)`

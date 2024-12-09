@@ -1,4 +1,4 @@
-import { background, notification } from "../../styles";
+import { background, notification } from "../../globalStyles";
 import styled from "@emotion/styled";
 import { Alert, Box, Button } from "@mui/material";
 import { keyframes } from "@emotion/react";

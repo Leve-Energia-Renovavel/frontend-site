@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/styles";
+import { background } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 
 export const NewHomeMainFormContainer = styled.section`
@@ -19,11 +19,14 @@ export const NewHomeMainFormContainer = styled.section`
     }
 `
 export const NewHomeMainBannerImage = styled.div`
-    background-image: url(${props => props.bannerImage.src});
     background-repeat: no-repeat;
     background-size: cover; 
     background-position: 20% 50%;
     background-size: 100%;
+
+    background-image: 
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 5%, rgba(0, 0, 0, 0) 100%), 
+        url(${props => props.bannerImage.src});
 
     border-radius: 20px 0px 0px 20px;
 

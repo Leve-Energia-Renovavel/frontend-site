@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EmailIcon from '@mui/icons-material/Email';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import { background } from "../../styles";
+import { background } from "../../globalStyles";
 
 export const MemberGetMemberContainer = styled.div`
     display: flex;

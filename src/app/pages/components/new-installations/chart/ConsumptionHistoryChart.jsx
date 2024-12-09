@@ -1,6 +1,6 @@
 "use client"
 
-import { background } from '@/app/pages/styles'
+import { background } from '@/app/pages/globalStyles'
 import { formatFullMonthAndYear } from '@/app/utils/formatters/dateFormatter'
 import ReactApexChart from 'react-apexcharts'
 import { BarChartWrapper, ChartLegendContainer, LegendDetail } from './styles'
