@@ -51,7 +51,7 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
 
         const submitData = createSignupPayload(
             nameRef.current.value,
-            emailRef.current.value?.toLowerCase(),
+            emailRef.current.value,
             phoneRef.current.value,
             cepRef.current.value,
             simulationCost,

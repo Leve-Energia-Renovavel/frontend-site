@@ -9,7 +9,7 @@ import { requestSuccessful } from "../utils/Validations";
 export const createSignupPayload = (name, email, phone, cep, value, type, coupon) => {
     return {
         nome_completo: sanitizeAndCapitalizeWords(name),
-        email: email.toLowerCase().trim(),
+        email: email?.toLowerCase()?.trim(),
         telefone: phone,
         cep: cep,
         valor: value,
