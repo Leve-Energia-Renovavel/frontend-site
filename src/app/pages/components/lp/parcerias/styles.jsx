@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/globalStyles";
+import { background, containerWidth } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 
 export const PartnershipMainContainer = styled.div`
@@ -6,8 +6,8 @@ export const PartnershipMainContainer = styled.div`
     flex-direction: column;
     background-color: ${background.white};
     
-    max-width: 1366px;
-    margin: 74px auto;
+    max-width: ${containerWidth};
+    margin: 80px auto;
     padding: 0 3rem;
 
     position: relative;
@@ -24,6 +24,7 @@ export const MainContentContainer = styled.div`
     flex-direction: row;
     align-items: stretch;
 
+    padding-top: 1rem;
     padding-bottom: 8px;
     gap: 1rem;
     
