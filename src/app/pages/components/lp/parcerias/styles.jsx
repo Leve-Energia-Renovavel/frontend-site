@@ -7,7 +7,7 @@ export const PartnershipMainContainer = styled.div`
     background-color: ${background.white};
     
     max-width: ${containerWidth};
-    margin: 80px auto;
+    margin: 80px auto 0 auto;
     padding: 0 3rem;
 
     position: relative;
