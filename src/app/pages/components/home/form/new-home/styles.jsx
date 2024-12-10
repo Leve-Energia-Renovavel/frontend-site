@@ -38,10 +38,10 @@ export const NewHomeMainBannerImage = styled.div`
 
     .leveHomeFormBannerTitle {
         font-family: "Graphie";
-        font-size: 50px;
+        font-size: 40px;
         line-height: 100%;
-        font-weight: 600;
-        color: ${background.white};
+        font-weight: 500;
+        color: ${background.yellow};
 
         margin-top: 58px;
         margin-left: 32px;

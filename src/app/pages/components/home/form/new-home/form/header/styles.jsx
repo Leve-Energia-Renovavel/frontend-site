@@ -10,7 +10,7 @@ export const FormTitleContainer = styled.div`
   
   animation: ${fadeInUp} 0.5s ease-out; 
 
-  padding: 0px 1rem 1rem 1rem;
+  padding: 0px;
 
   margin: 1rem 0;
 
@@ -23,6 +23,8 @@ export const FormTitleContainer = styled.div`
     font-weight: 500;
     color: ${background.yellow};
     max-width: 395px;
+
+    text-align: center;
   } 
   
   @media (max-width: 600px) {

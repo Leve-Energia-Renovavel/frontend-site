@@ -185,7 +185,7 @@ export const HomeTutorialAneelCard = styled.div`
     border-radius: 10px;
     background-color: ${background.white};
 
-    border: 1px solid ${background.orange};
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 
     margin: 90px auto 0 auto;
 
@@ -270,8 +270,11 @@ export const HomeTutorialAneelCardContent = styled.div`
         margin: 0 auto;
       }
       .description {
+        font-size: 18px;
         margin: 0 auto;
         max-width: 318px;
+
+        text-align: center;
       }
     }
 `
@@ -326,7 +329,7 @@ export const ButtonContainer = styled.div`
 export const ButtonContainerDesktop = styled.div`
     text-align: center;
 
-    margin-top: 20px;
+    margin-top: 40px;
     margin-left: auto;
     margin-right: 30px;
 

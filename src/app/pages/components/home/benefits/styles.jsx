@@ -50,7 +50,7 @@ export const BenefitsBox = styled.div`
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    border: 2px solid ${background.green};
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 
     gap: 22px;
 

@@ -35,7 +35,7 @@ export default function NewHomeTutorial() {
 
                     <AneelCardContent className='leveTutorialAneelCardContent'>
                         <p className='title'>Aprovado pela ANEEL</p>
-                        <p className='description'>Fazemos parte do sistema de Geração Distribuída que é aprovado e regulado pela ANEEL com base na lei 14.300/22</p>
+                        <p className='description'>Fazemos parte do sistema de Geração Distribuída regulado pela ANEEL com base na lei 14.300/22</p>
                     </AneelCardContent>
 
                     <ButtonContainer className='leveTutorialButtonContainer'>
