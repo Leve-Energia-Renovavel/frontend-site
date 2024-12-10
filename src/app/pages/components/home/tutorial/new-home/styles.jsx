@@ -12,7 +12,6 @@ export const HomeTutorialContainer = styled.section`
 
     @media (max-width: 600px) {
       max-width: 100vw;
-      padding: 0px;
     }
 `
 
@@ -264,7 +263,6 @@ export const HomeTutorialAneelCardContent = styled.div`
       max-width: 620px;
     }
     
-    
     @media (max-width: 600px) {
       .title {
         margin: 0 auto;
@@ -311,62 +309,21 @@ export const CTAButton = styled(Button)`
 `
 
 export const ButtonContainer = styled.div`
-    display: none;
     text-align: center;
+
+    width: fit-content;
+    margin-left: auto;
+    margin-top: 40px;
+    margin-right: 20px;
     
     @media (max-width: 600px) {
+      width: 100%;
       display: block;
       margin: 0 auto;
-      margin-left: -10px;
     }
     @media (max-width: 400px) {
       display: block;
       margin: 0 auto;
       margin-left: -25px;
-    }
-`
-
-export const ButtonContainerDesktop = styled.div`
-    text-align: center;
-
-    margin-top: 40px;
-    margin-left: auto;
-    margin-right: 30px;
-
-    width: fit-content;
-
-    @media (max-width: 600px) {
-      display: none;
-    }
-`
-
-export const HomeTutorialCTAButtonDesktop = styled(Button)`
-  background-color: ${background.green};
-  color: ${background.yellow};
-  border-radius: 30px;
-
-  height: 52px;
-
-  padding: 15px 53px;
-
-  max-width: 330px;
-
-  span {
-    font-family: "Graphie";
-    font-size: 20px;
-    line-height: 22px;
-    font-weight: 500;
-    text-transform: none;
-    white-space: nowrap;
-  }
-
-  &:hover {
-      background-color: ${background.orange};
-      color: ${background.white};
-      cursor: pointer;
-  }
-
-  @media (max-width: 600px) {
-      display: none;
     }
 `

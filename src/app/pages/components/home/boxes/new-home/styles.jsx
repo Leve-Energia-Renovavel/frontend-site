@@ -31,6 +31,7 @@ export const NewHomeBoxesContainer = styled.section`
         color: ${background.greyHigh};
 
         margin-top: 10px;
+        margin-left: 6px;
     }
     
     @media (max-width: 600px) {

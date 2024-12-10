@@ -130,6 +130,7 @@ export const MobileBoxesContainer = styled.div`
     flex-wrap: wrap;
 
     top: -70px;
+    margin-bottom: -40px;
 
     gap: 7px;
 `
@@ -260,13 +261,48 @@ export const HomeBenefitBox = styled.div`
         color: ${background.greyHigh};
     }
 `
-export const ButtonContainer = styled.div`
+export const EconomyButtonContainer = styled.div`
+    text-align: center;
+
+    margin-bottom: 40px;
+`
+
+export const CTAButtonEconomy = styled(Button)`
+  background-color: ${background.green};
+  color: ${background.yellow};
+  border-radius: 30px;
+
+  height: 52px;
+
+  margin-bottom: 30px;
+
+  padding: 15px 53px;
+
+  max-width: 330px;
+  
+  span {
+    font-family: "Graphie";
+    font-size: 20px;
+    line-height: 22px;
+    font-weight: 500;
+    text-transform: none;
+    white-space: nowrap;
+  }
+
+  &:hover {
+      background-color: ${background.yellow};
+      color: ${background.green};
+      cursor: pointer;
+  }
+`
+
+export const DiscountButtonContainer = styled.div`
     text-align: center;
 `
 
-export const CTAButton = styled(Button)`
-  background-color: ${background.green};
-  color: ${background.yellow};
+export const CTAButtonDiscount = styled(Button)`
+  background-color: ${background.orange};
+  color: ${background.white};
   border-radius: 30px;
 
   height: 52px;

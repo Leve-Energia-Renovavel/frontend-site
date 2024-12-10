@@ -1,7 +1,7 @@
 import { handleScrollToId } from '@/app/utils/browser/BrowserUtils';
 import { newHomeBoxes } from '@/app/utils/helper/home/homeBoxesHelper';
 import bannerImage from "../../../../../../resources/img/new-home-image.png";
-import { HomeSecondaryBannerContainerMobile as BannerImageMobile, MobileBoxesContainer as BoxesContainer, ButtonContainer, CTAButton, HomeBenefitBox, HomeBoxesBaloon, HomeBoxesMobileBenefitsContainer, HomeSecondaryBoxesContainerMobile, MobileBox } from './styles';
+import { HomeSecondaryBannerContainerMobile as BannerImageMobile, MobileBoxesContainer as BoxesContainer, CTAButtonDiscount, CTAButtonEconomy, DiscountButtonContainer, EconomyButtonContainer, HomeBenefitBox, HomeBoxesBaloon, HomeBoxesMobileBenefitsContainer, HomeSecondaryBoxesContainerMobile, MobileBox } from './styles';
 
 export default function HomeBoxesMobile() {
     return (
@@ -25,8 +25,11 @@ export default function HomeBoxesMobile() {
                 })}
             </BoxesContainer>
 
-            <HomeBoxesMobileBenefitsContainer className='homeSecondaryBoxesBenefitsContainer'>
+            <EconomyButtonContainer className='homeSecondaryMobileButtonContainer'>
+                <CTAButtonEconomy onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular minha economia</span></CTAButtonEconomy>
+            </EconomyButtonContainer>
 
+            <HomeBoxesMobileBenefitsContainer className='homeSecondaryBoxesBenefitsContainer'>
                 <h6 className='homeBoxesBenefitsTitle'>Sua conta de luz mais Leve</h6>
                 <HomeBenefitBox className='homeSecondaryBenefitBox'>
                     <p className='title'>Isenção da bandeira tarifária</p>
@@ -38,9 +41,9 @@ export default function HomeBoxesMobile() {
                 </HomeBenefitBox>
             </HomeBoxesMobileBenefitsContainer>
 
-            <ButtonContainer className='homeSecondaryMobileButtonContainer'>
-                <CTAButton onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular minha economia</span></CTAButton>
-            </ButtonContainer>
+            <DiscountButtonContainer className='homeSecondaryMobileButtonContainer'>
+                <CTAButtonDiscount onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular meu desconto</span></CTAButtonDiscount>
+            </DiscountButtonContainer>
 
         </HomeSecondaryBoxesContainerMobile>
     )
