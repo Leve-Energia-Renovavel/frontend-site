@@ -41,12 +41,12 @@ export const NewHomeMainBannerImage = styled.div`
         font-size: 40px;
         line-height: 100%;
         font-weight: 500;
-        color: ${background.yellow};
+        color: ${background.white};
 
         margin-top: 58px;
         margin-left: 32px;
 
-        max-width: 425px;
+        max-width: 385px;
     }
 
     @media (max-width: 600px) {
