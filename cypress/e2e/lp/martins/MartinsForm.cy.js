@@ -29,7 +29,7 @@ describe(`Complete LP Form ${partnerName}`, () => {
             cy.wrap($slider).click(centerX, centerY);
         });
 
-        cy.get('button[type="submit"]').contains('Calcular desconto').click();
+        cy.get('button[type="submit"]').contains('Calcular economia').click();
 
         cy.intercept('POST', `${requestUrl}`).as('postRequest');
         cy.wait('@postRequest').then((interception) => {
@@ -66,7 +66,7 @@ describe(`Complete LP Form ${partnerName}`, () => {
             cy.wrap($slider).click(centerX, centerY);
         });
 
-        cy.get('button[type="submit"]').contains('Calcular desconto').click();
+        cy.get('button[type="submit"]').contains('Calcular economia').click();
 
         cy.intercept('POST', `${requestUrl}`).as('postRequest');
         cy.wait('@postRequest').then((interception) => {
