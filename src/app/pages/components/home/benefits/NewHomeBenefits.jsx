@@ -1,28 +1,24 @@
-import { HOME_FORM_ID } from "@/app/pages/enums/globalEnums";
-import { handleScrollToId } from "@/app/utils/browser/BrowserUtils";
-import { BenefitsBox, BenefitsContainer, ButtonContainer, NewHomeBenefitsContainer as Container, HomeBenefitsCTAButton } from "./styles";
-
+import { HOME_FORM_ID } from '@/app/pages/enums/globalEnums';
+import { handleScrollToId } from '@/app/utils/browser/BrowserUtils';
+import NotInterestedIcon from '@mui/icons-material/NotInterested';
+import { BenefitsBox, BenefitsBoxButton, BenefitsBoxButtonIcon, BenefitsContainer, NewHomeBenefitsContainer as Container } from "./styles";
 export default function NewHomeBenefits() {
     return (
         <Container className="leveHomeBenefitsContainer">
-            <h2 className="leveHomeBenefitsTitle">Sua conta de luz mais Leve</h2>
-            <h3 className="leveHomeBenefitsSubtitle">Benefícios que você só encontra aqui</h3>
-
             <BenefitsContainer>
+                <NotInterestedIcon className="icon" />
                 <BenefitsBox>
-                    <p className="benefitTitle">Isenção da bandeira tarifária</p>
-                    <p className="benefitSubtitle">Só com a Leve Energia você não paga pelo adicional de bandeira tarifária em períodos de seca ou crises</p>
-                </BenefitsBox>
-                <BenefitsBox>
-                    <p className="benefitTitle">Benefício empresarial</p>
-                    <p className="benefitSubtitle">Desconto especial e mais benefícios para colaboradores de empresas que possuem nosso plano de benefícios empresarial</p>
-                </BenefitsBox>
+                    <p className="benefitTitle">Isenção da Bandeira Tarifária</p>
+                    <p className="benefitSubtitle">Você não precisa pagar pelos custos extras das temidas bandeiras tarifárias amarela, vermelha e de escassez hídrica nos períodos que elas estiverem ativas.</p>
 
+                    <BenefitsBoxButton onClick={() => handleScrollToId(HOME_FORM_ID)}>
+                        <p className="benefitButtonTitle">Quero economizar</p>
+                        <BenefitsBoxButtonIcon />
+                    </BenefitsBoxButton>
+
+                </BenefitsBox>
             </BenefitsContainer>
 
-            <ButtonContainer className="homeBenefitsButtonContainer">
-                <HomeBenefitsCTAButton onClick={() => handleScrollToId(HOME_FORM_ID)}><span>Calcular meu desconto</span></HomeBenefitsCTAButton>
-            </ButtonContainer>
         </Container>
     )
 }

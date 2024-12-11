@@ -1,117 +1,148 @@
-import { background, containerPadding } from "@/app/pages/globalStyles";
+import { background, containerWidth } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
-import { Button } from "@mui/material"
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 export const NewHomeBenefitsContainer = styled.section`
     display: flex;
     flex-direction: column;
     background-color: ${background.white};
-
+    
     border-top: 2px solid ${background.grey};
     border-bottom: 2px solid ${background.grey};
-
+    
     width: 100%;
-    max-width: 1366px;
+    max-width: ${containerWidth};
     margin: 0 auto;
     
-    padding: 47px 0px;
-
-    .leveHomeBenefitsTitle {
-        font-family: "Graphie";
-        font-size: 34px;
-        line-height: 100%;
-        font-weight: 600;
-        color: ${background.orange};
-    }
-    .leveHomeBenefitsSubtitle {
-        font-family: "Graphie";
-        font-size: 20px;
-        line-height: 100%;
-        font-weight: 500;
-        color: ${background.greyHigh};
-
-        margin-top: 8px;
-    }
-
+    padding: 62px 0px 110px 0px;
+    
     @media (max-width: 600px) {
-      display: none;
+        padding: 0px 15px;
+        background-color: ${background.grey};
     }
 `
 export const BenefitsContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: ${background.green};
 
-    margin-top: 47px;
+    gap: 59px;
+    
+    padding: 40px 60px 30px 60px;
 
-    gap: 48px;
+    margin: 0 auto;
+
+    width: 100%;
+    max-width: 833px;
+    
+    .icon {
+        width: 96px;
+        height: auto;
+        color: ${background.orange};
+    }
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+        
+        gap: 6px;
+        padding: 20px 14px 22px 14px;
+
+        .icon {
+            width: 59px;
+            height: auto;
+        }
+    }
 `
+
 export const BenefitsBox = styled.div`
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
-    border: 2px solid ${background.green};
 
-    gap: 22px;
-
-    padding: 33px 23px 36px 23px;
+    gap: 1rem;
 
     width: 100%;
     max-width: 550px;
 
     .benefitTitle {
         font-family: "Graphie";
-        font-size: 24px;
+        font-size: 34px;
         line-height: 100%;
         font-weight: 600;
-        color: ${background.green};
+        color: ${background.white};
     }
     .benefitSubtitle {
         font-family: "Graphie";
         font-size: 22px;
-        line-height: 120%;
-        font-weight: 400;
-        color: ${background.greyHigh};
+        line-height: 28px;
+        font-weight: 100;
+        color: ${background.white};
 
-        max-width: 455px;
+        max-width: 557px;
+    }
+
+    @media (max-width: 600px) {
+        align-items: center;
+
+        gap: 0px;
+
+        .benefitTitle {
+            font-size: 24px;
+            text-align: center;
+            max-width: 211px;
+        }
+        
+        .benefitSubtitle {
+            font-size: 18px;
+            line-height: 120%;
+            text-align: center;
+
+            max-width: 309px;
+
+            margin-top: 13px;
+        }
     }
 
 `
 
-export const ButtonContainer = styled.div`
+export const BenefitsBoxButtonIcon = styled(ArrowForwardIcon)`
+    width: 33px;
+    height: auto;
+    color: ${background.yellow};
+    
+    @media (max-width: 600px) {
+        width: 22px;
+    }
+`
+export const BenefitsBoxButton = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
     width: 100%;
     max-width: fit-content;
 
-    margin-top: 61px;
+    gap: 8px;
+
+    border-bottom: 1px solid ${background.green};
+
+    .benefitButtonTitle {
+        font-family: "Graphie";
+        font-size: 22px;
+        line-height: 100%;
+        font-weight: 500;
+        color: ${background.yellow};
+    }
+    
+    &:hover {
+        cursor: pointer;
+        border-bottom: 1px solid ${background.yellow};
+        color: ${background.yellow};
+    }
 
     @media (max-width: 600px) {
-      display: none;
-  }
-`
-
-export const HomeBenefitsCTAButton = styled(Button)`
-  background-color: ${background.orange};
-  color: ${background.white};
-  border-radius: 30px;
-
-  height: 52px;
-
-  padding: 15px 53px;
-
-  max-width: 330px;
-
-  span {
-    font-family: "Graphie";
-    font-size: 20px;
-    line-height: 22px;
-    font-weight: 500;
-    text-transform: none;
-    white-space: nowrap;
-  }
-
-  &:hover {
-      background-color: ${background.green};
-      color: ${background.white};
-      cursor: pointer;
-  }
+        margin-top: 20px;
+    }
 `
