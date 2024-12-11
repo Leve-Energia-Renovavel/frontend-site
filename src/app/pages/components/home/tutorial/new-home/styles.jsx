@@ -4,13 +4,14 @@ import { Button } from "@mui/material"
 
 export const HomeTutorialContainer = styled.section`
     background-color: ${background.white};
-
+    
     padding: 42px 0px;
-
+    
     width: 100%;
     max-width: 1366px;
-
+    
     @media (max-width: 600px) {
+      background-color: ${background.grey};
       max-width: 100vw;
     }
 `
@@ -34,6 +35,8 @@ export const HomeTutorialTitleContainer = styled.div`
       line-height: 120%;
       font-weight: 500;
       color: ${background.greyHigh};
+
+      margin-left: 6px;
     }
 
     @media (max-width: 600px) {
@@ -43,7 +46,7 @@ export const HomeTutorialTitleContainer = styled.div`
 
       .leveTutorialTitle {
         font-size: 24px;
-        text-align: center;
+        text-align: left;
         max-width: 350px;
       }
       .leveTutorialSubtitle {

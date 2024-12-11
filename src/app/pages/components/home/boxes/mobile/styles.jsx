@@ -237,6 +237,8 @@ export const HomeBenefitBox = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${background.white};
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+
     border-radius: 5px;
     
     gap: 10px;

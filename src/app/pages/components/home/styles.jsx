@@ -971,13 +971,17 @@ export const HomeSixthSectionContainer = styled.section`
     }
     
     @media (max-width: 600px) {
-      padding: .5rem;
+      padding: 0px 12px;
+      align-items: start;
       background-color: ${background.grey};
       
       .sectionTitle {
-        font-size: 21px;
-        line-height: 21px;
-        max-width: 290px;
+        display: block;
+        font-size: 24px;
+        line-height: 100%;
+        max-width: 315px;
+        margin-left: 6px;
+        text-align: left;
       }
     }
 `
@@ -999,6 +1003,8 @@ export const HomeSixthSectionCardContainer = styled.div`
     margin-bottom: 2rem;
     
     @media (max-width: 600px) {
+      width: 100%;
+      justify-content: space-around;
       max-width: 100vw;
       flex-wrap: wrap;
     }
@@ -1024,15 +1030,15 @@ export const HomeSixthSectionCard = styled.div`
       border-radius: 5px;
 
       min-width: 160px;
-      width: 161px;
-      max-width: 161px;
+      width: 100%;
+      max-width: 175px;
       
       min-height: 92px;
       height: 94px;
       max-height: 94px;
 
       .brandLogo { 
-          width: 90px;
+          width: 110px;
           height: auto;
         }
         
