@@ -26,7 +26,7 @@ export const BenefitsContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: ${background.green};
 
     gap: 59px;
@@ -46,9 +46,10 @@ export const BenefitsContainer = styled.div`
 
     @media (max-width: 600px) {
         flex-direction: column;
+        border-radius: 5px;
         
         gap: 6px;
-        padding: 20px 14px 22px 14px;
+        padding: 20px 14px 30px 14px;
 
         .icon {
             width: 59px;
@@ -90,16 +91,17 @@ export const BenefitsBox = styled.div`
 
         .benefitTitle {
             font-size: 24px;
+            line-height: 120%;
             text-align: center;
             max-width: 211px;
         }
         
         .benefitSubtitle {
-            font-size: 18px;
+            font-size: 16px;
             line-height: 120%;
             text-align: center;
 
-            max-width: 309px;
+            max-width: 325px;
 
             margin-top: 13px;
         }
@@ -144,5 +146,9 @@ export const BenefitsBoxButton = styled.div`
 
     @media (max-width: 600px) {
         margin-top: 20px;
+
+        .benefitButtonTitle {
+            font-size: 20px;
+        }
     }
 `
