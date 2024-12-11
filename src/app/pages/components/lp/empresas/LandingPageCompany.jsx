@@ -21,8 +21,8 @@ export default function LandingPageCompany() {
 
     return (
         <>
-            <Container>
-                <MainContentContainer className="mainContentContainer">
+            <Container className='landingPageCompanyContainer'>
+                <MainContentContainer className="landingPageCompanyContent">
                     <LandingPageCompanyMainBanner />
                     <CompanyPartnerForm setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
                 </MainContentContainer>

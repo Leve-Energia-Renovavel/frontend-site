@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/globalStyles";
+import { background, containerWidth } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 
 export const FooterContainer = styled.div`
@@ -11,7 +11,7 @@ export const FooterContainer = styled.div`
     min-height: 170px;
 
     width: 100%;
-    max-width: 1500px;
+    max-width: ${containerWidth};
 
     margin: 0 auto;
 `

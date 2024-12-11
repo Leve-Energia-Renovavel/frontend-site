@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/globalStyles";
+import { background, containerWidth } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 
 export const LandingPageContainer = styled.div`
@@ -7,9 +7,9 @@ export const LandingPageContainer = styled.div`
     
     background-color: ${background.white};
     
-    max-width: 1920px;
-    /* max-width: 1366px; */
-    margin: 74px auto 0 auto;   //margin-top for header
+    max-width: ${containerWidth};
+    margin: 80px auto 0 auto;   //margin-top for header
+    padding: 1rem 0 0 0;
     
     @media (max-width: 600px) {
       padding: 0;
