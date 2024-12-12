@@ -330,6 +330,5 @@ export const ButtonContainer = styled.div`
     @media (max-width: 400px) {
       display: block;
       margin: 0 auto;
-      margin-left: -25px;
     }
 `

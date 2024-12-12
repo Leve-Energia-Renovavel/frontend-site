@@ -97,7 +97,7 @@ export const BenefitsBox = styled.div`
         }
         
         .benefitSubtitle {
-            font-size: 16px;
+            font-size: 18px;
             line-height: 24px;
             font-weight: 500;
             text-align: center;
