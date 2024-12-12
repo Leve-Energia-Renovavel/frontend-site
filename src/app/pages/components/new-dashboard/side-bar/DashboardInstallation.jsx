@@ -20,6 +20,8 @@ export default function DashboardInstallation({ isMobileContent }) {
     const [openNewInstallationModal, setOpenNewInstallationModal] = useState(false)
     const [openPendingInstallationModal, setOpenPendingInstallationModal] = useState(true)
 
+    const [isLoading, setIsLoading] = useState(false)
+
     const store = useStoreUser()
     const storeBilling = useStoreBillingHistory()
     const storeNextBills = useStoreNextBills()
@@ -71,7 +73,9 @@ export default function DashboardInstallation({ isMobileContent }) {
                                 const number = getNumber(otherInstallation.number)
                                 return (
                                     <InstallationItem key={otherInstallation?.id} value={index + 1}>
-                                        <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>{getAddress(address, street)}{number !== "Nº" ? `, ${number}` : ""}</span>
+                                        <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>
+                                            {getAddress(address, street)}{number !== "Nº" ? `, ${number}` : ""}
+                                        </span>
                                     </InstallationItem>
                                 )
                             })}
@@ -79,15 +83,27 @@ export default function DashboardInstallation({ isMobileContent }) {
                     </BoxInstallation>
                 </InstallationHeader>
                 <InstallationDetails>
-                    {address ?
-                        <p className="installationDetails">{getAddress(address, street)}, {getNumber(number)}  - {neighborhood ? neighborhood : "Bairro"}, {city ? "Cidade" : pascalCaseWord(getCityNameByStateIdAndCityId(stateId, cityId))} - {state ? "Estado" : stateOptions[stateId]?.sigla}, CEP: {formatCep(zipCode)}</p>
-                        :
-                        (<>
-                            <Skeleton variant="text" className="loadingAddress" />
-                            <Skeleton variant="text" className="loadingAddress" />
-                        </>
-                        )
-                    }
+                    <InstallationDetails>
+                        {address ? (
+                            isLoading ? (
+                                <>
+                                    <Skeleton variant="text" className="loadingAddress" />
+                                    <Skeleton variant="text" className="loadingAddress" />
+                                </>
+                            ) : (
+                                <p className="installationDetails">
+                                    {getAddress(address, street)}, {getNumber(number)} -{" "}
+                                    {neighborhood || "Bairro"}, {city || pascalCaseWord(getCityNameByStateIdAndCityId(stateId, cityId))} -{" "}
+                                    {state || stateOptions[stateId]?.sigla}, CEP: {formatCep(zipCode)}
+                                </p>
+                            )
+                        ) : (
+                            <>
+                                <Skeleton variant="text" className="loadingAddress" />
+                                <Skeleton variant="text" className="loadingAddress" />
+                            </>
+                        )}
+                    </InstallationDetails>
                 </InstallationDetails>
                 {hasStartedBilling && hasConnectedByBackoffice && <InstallationFooter onClick={() => setOpenNewInstallationModal(true)}>
                     <AddCircleIcon className="addInstallationIcon" />

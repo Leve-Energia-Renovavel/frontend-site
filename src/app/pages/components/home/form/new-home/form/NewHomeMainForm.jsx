@@ -65,7 +65,7 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
     }
 
     return (
-        <HomeFormContainer isMobile={isMobile} className={`leveHomeMainFormContainer${isMobile ? "Mobile" : ""}`}>
+        <HomeFormContainer isMobile={isMobile} className={`${isMobile ? "leveHomeMainFormContainerMobile" : "leveHomeMainFormContainerDesktop"}`}>
             <Form id={`leadForm`} onSubmit={handleSubmit}>
                 <NewHomeMainFormHeader />
 
@@ -161,14 +161,14 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
                         <Select
                             className='homeFormHouseSelect'
                             startIcon={<HomeIcon />}
-                            onClick={() => handleSelect('Residencia')}
+                            onClick={() => handleSelect(USER_TYPE.RESIDENCIA)}
                             selected={selectedUserType === USER_TYPE.RESIDENCIA}>
                             {texts.house}
                         </Select>
                         <Select
                             className='homeFormCompanySelect'
                             startIcon={<StoreIcon />}
-                            onClick={() => handleSelect('Empresa')}
+                            onClick={() => handleSelect(USER_TYPE.EMPRESA)}
                             selected={selectedUserType === USER_TYPE.EMPRESA} >
                             {texts.company}
                         </Select>
