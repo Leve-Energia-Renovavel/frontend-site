@@ -78,7 +78,7 @@ export const BenefitsBox = styled.div`
         font-family: "Graphie";
         font-size: 22px;
         line-height: 28px;
-        font-weight: 100;
+        font-weight: 400;
         color: ${background.white};
 
         max-width: 557px;

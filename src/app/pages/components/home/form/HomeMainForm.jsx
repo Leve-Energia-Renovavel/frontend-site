@@ -14,9 +14,8 @@ import { schemaValidation } from '../schema';
 import { HomeMainForm as Form, HomeMainFormContainer as FormContainer, HomeFormContainer, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "../styles";
 import { requestValidation } from '../validation';
 
-import NewHomeMainFormHeader from './new-home/form/header/NewHomeMainFormHeader';
 import { USER_TYPE } from '@/app/pages/enums/globalEnums';
-import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
+import NewHomeMainFormHeader from './new-home/form/header/NewHomeMainFormHeader';
 
 const HomeFormButton = dynamic(() => import('../../utils/buttons/home/form/HomeFormButton'), { ssr: false });
 const HomeMainFormSimulator = dynamic(() => import('./simulator/HomeMainFormSimulator'), { ssr: false });

@@ -3,7 +3,7 @@ import { handleScrollToId } from '@/app/utils/browser/BrowserUtils';
 import { homeTutorialCardsMobile } from '@/app/utils/helper/home/homeBoxesHelper';
 import Image from 'next/image';
 import aneelIcon from '../../../../../../resources/icons/icon-aneel-orange-gradient.svg';
-import { HomeTutorialAneelCard as AneelCard, HomeTutorialAneelCardContent as AneelCardContent, ButtonContainer, ButtonContainerDesktop, HomeTutorialCard as Card, HomeTutorialCardContainer as CardContainer, HomeTutorialContainer as Container, CTAButton, HomeTutorialCTAButtonDesktop, HomeTutorialTitleContainer } from './styles';
+import { HomeTutorialAneelCard as AneelCard, HomeTutorialAneelCardContent as AneelCardContent, ButtonContainer, ButtonContainerDesktop, HomeTutorialCard as Card, HomeTutorialCardContainer as CardContainer, HomeTutorialContainer as Container, CTAButton, Divider, HomeTutorialCTAButtonDesktop, HomeTutorialTitleContainer } from './styles';
 
 export default function NewHomeTutorial() {
     return (
@@ -30,15 +30,17 @@ export default function NewHomeTutorial() {
                     <CTAButton onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular minha economia</span></CTAButton>
                 </ButtonContainer>
 
-                <AneelCard className='leveTutorialAneelCard'>
-                    <Image src={aneelIcon} className="aneelIcon" alt={`Logo da Aneel`} loading="lazy" />
+                <Divider>
+                    <AneelCard className='leveTutorialAneelCard'>
+                        <Image src={aneelIcon} className="aneelIcon" alt={`Logo da Aneel`} loading="lazy" />
 
-                    <AneelCardContent className='leveTutorialAneelCardContent'>
-                        <p className='title'>Aprovado pela ANEEL</p>
-                        <p className='description'>Fazemos parte do sistema de Geração Distribuída regulado pela ANEEL com base na lei 14.300/22</p>
-                    </AneelCardContent>
-                </AneelCard>
+                        <AneelCardContent className='leveTutorialAneelCardContent'>
+                            <p className='title'>Aprovado pela ANEEL</p>
+                            <p className='description'>Fazemos parte do sistema de Geração Distribuída regulado pela ANEEL com base na lei 14.300/22</p>
+                        </AneelCardContent>
+                    </AneelCard>
 
+                </Divider>
             </Container>
         </>
     )

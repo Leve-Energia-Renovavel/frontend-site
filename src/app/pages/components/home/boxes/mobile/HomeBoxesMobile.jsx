@@ -29,22 +29,6 @@ export default function HomeBoxesMobile() {
                 <CTAButtonEconomy onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular minha economia</span></CTAButtonEconomy>
             </EconomyButtonContainer>
 
-            <HomeBoxesMobileBenefitsContainer className='homeSecondaryBoxesBenefitsContainer'>
-                <h6 className='homeBoxesBenefitsTitle'>Sua conta de luz mais Leve</h6>
-                <HomeBenefitBox className='homeSecondaryBenefitBox'>
-                    <p className='title'>Isenção da bandeira tarifária</p>
-                    <p className='subtitle'>Só com a Leve Energia você não paga pelo adicional de bandeira tarifária em períodos de seca ou crises</p>
-                </HomeBenefitBox>
-                <HomeBenefitBox className='homeSecondaryBenefitBox'>
-                    <p className='title'>Benefício empresarial</p>
-                    <p className='subtitle'>Descontos especiais e benefícios únicos para colaboradores de empresas que possuem nosso plano empresarial</p>
-                </HomeBenefitBox>
-            </HomeBoxesMobileBenefitsContainer>
-
-            <DiscountButtonContainer className='homeSecondaryMobileButtonContainer'>
-                <CTAButtonDiscount onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular meu desconto</span></CTAButtonDiscount>
-            </DiscountButtonContainer>
-
         </HomeSecondaryBoxesContainerMobile>
     )
 }

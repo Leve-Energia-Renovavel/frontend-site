@@ -206,63 +206,6 @@ export const MobileBox = styled.div`
     }
 `
 
-export const HomeBoxesMobileBenefitsContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-
-    padding: 0 12px;
-    margin-bottom: 18px;
-
-    gap: 10px;
-
-    .homeBoxesBenefitsTitle {
-        display: block;
-        margin: 0 auto 16px 0;
-
-        font-family: "Graphie";
-        font-size: 34px;
-        line-height: 100%;
-        font-weight: 600;
-        color: ${background.orange};
-    }
-
-    @media (max-width: 600px) {
-      .homeBoxesBenefitsTitle {
-        font-size: 24px;
-      }
-    }
-`
-export const HomeBenefitBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    background-color: ${background.white};
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-
-    border-radius: 5px;
-    
-    gap: 10px;
-
-    padding: 22px 10px;
-    margin: 0 auto;
-
-    width: 100%;
-
-    .title{
-        font-family: "Graphie";
-        font-size: 18px;
-        line-height: 100%;
-        font-weight: 600;
-        color: ${background.green};
-    }
-    .subtitle{
-        font-family: "Graphie";
-        font-size: 16px;
-        line-height: 100%;
-        font-weight: 400;
-        color: ${background.greyHigh};
-    }
-`
 export const EconomyButtonContainer = styled.div`
     text-align: center;
 
@@ -272,39 +215,6 @@ export const EconomyButtonContainer = styled.div`
 export const CTAButtonEconomy = styled(Button)`
   background-color: ${background.green};
   color: ${background.yellow};
-  border-radius: 30px;
-
-  height: 52px;
-
-  margin-bottom: 30px;
-
-  padding: 15px 53px;
-
-  max-width: 330px;
-  
-  span {
-    font-family: "Graphie";
-    font-size: 20px;
-    line-height: 22px;
-    font-weight: 500;
-    text-transform: none;
-    white-space: nowrap;
-  }
-
-  &:hover {
-      background-color: ${background.yellow};
-      color: ${background.green};
-      cursor: pointer;
-  }
-`
-
-export const DiscountButtonContainer = styled.div`
-    text-align: center;
-`
-
-export const CTAButtonDiscount = styled(Button)`
-  background-color: ${background.orange};
-  color: ${background.white};
   border-radius: 30px;
 
   height: 52px;

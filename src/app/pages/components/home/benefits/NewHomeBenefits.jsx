@@ -9,11 +9,11 @@ export default function NewHomeBenefits() {
         <Container className="leveHomeBenefitsContainer">
             <BenefitsContainer>
                 <Image alt="Ícone de Isenção da Bandeira Tarifária" src={iconFlag} className='icon' />
-                <BenefitsBox>
+                <BenefitsBox className='leveHomeBenefitTaxFlagBanner'>
                     <p className="benefitTitle">Isenção da Bandeira Tarifária</p>
                     <p className="benefitSubtitle">Você não precisa pagar pelos custos extras das temidas bandeiras tarifárias amarela, vermelha e de escassez hídrica nos períodos que elas estiverem ativas.</p>
 
-                    <BenefitsBoxButton onClick={() => handleScrollToId(HOME_FORM_ID)}>
+                    <BenefitsBoxButton className='leveHomeBenefitBoxButton' onClick={() => handleScrollToId(HOME_FORM_ID)}>
                         <p className="benefitButtonTitle">Quero economizar</p>
                         <BenefitsBoxButtonIcon />
                     </BenefitsBoxButton>

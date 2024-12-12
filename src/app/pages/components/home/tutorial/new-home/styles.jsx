@@ -179,6 +179,9 @@ export const HomeTutorialCard = styled.div`
 `
 
 
+export const Divider = styled.div`
+  border-top: 2px solid ${background.grey};
+`
 export const HomeTutorialAneelCard = styled.div`
     display: flex;
     flex-direction: row;
@@ -189,7 +192,7 @@ export const HomeTutorialAneelCard = styled.div`
 
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 
-    margin: 90px auto 0 auto;
+    margin: 90px auto 60px auto;
 
     gap: 87px;
 

@@ -8,7 +8,6 @@ export const HomeMainFormSimulationContainer = styled.div`
     flex-direction: column;
     justify-content: center;
 
-    /* margin: 0 2rem; */
     margin: 0 43px;
 
     ${props => props.isMobile && `display: none;`}
@@ -20,6 +19,7 @@ export const HomeMainFormSimulationContainer = styled.div`
         font-size: 18px;
         font-weight: 500;
         color:${background.white};
+        white-space: nowrap;
 
         min-width: 340px;
 
