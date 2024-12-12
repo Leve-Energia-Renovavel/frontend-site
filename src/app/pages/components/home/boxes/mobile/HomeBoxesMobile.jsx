@@ -8,7 +8,8 @@ export default function HomeBoxesMobile() {
         <HomeSecondaryBoxesContainerMobile className='homeSecondaryBoxesContainerMobile'>
 
             <HomeBoxesBaloon className='homeBoxesBaloonMobile'>
-                <p>Você economizou <span className='hihglighted'>R$42,50</span> nesse mês e já ajudou a reduzir 1.450kg da emissão de CO2 que equivale a <span className='hihglighted-final'>4 árvores plantadas.</span></p>
+                <p>Você economizou <span className='hihglighted'>R$42,50</span> nesse mês!</p>
+                <p>Sua ajuda ao meio ambiente equivale a <span className='hihglighted'>4 árvores plantadas.</span></p>
             </HomeBoxesBaloon>
 
             <BannerImageMobile image={bannerImage} className='homeSecondaryBannerImage'>

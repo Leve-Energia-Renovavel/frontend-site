@@ -79,7 +79,7 @@ export const BenefitsBox = styled.div`
         font-size: 22px;
         line-height: 28px;
         font-weight: 400;
-        color: ${background.white};
+        color: ${background.greyTranslucent};
 
         max-width: 557px;
     }
@@ -98,7 +98,8 @@ export const BenefitsBox = styled.div`
         
         .benefitSubtitle {
             font-size: 16px;
-            line-height: 120%;
+            line-height: 24px;
+            font-weight: 500;
             text-align: center;
 
             max-width: 325px;

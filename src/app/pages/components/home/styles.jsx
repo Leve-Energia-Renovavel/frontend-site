@@ -979,7 +979,7 @@ export const HomeSixthSectionContainer = styled.section`
         display: block;
         font-size: 24px;
         line-height: 100%;
-        max-width: 315px;
+        max-width: 355px;
         margin-left: 6px;
         text-align: left;
       }

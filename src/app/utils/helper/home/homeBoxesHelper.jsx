@@ -63,19 +63,19 @@ export const homeBoxes = [
 export const newHomeBoxes = [
     {
         title: "Desconto mensal garantido",
-        subtitle: <p className="subtitle">Economia de até 20% na conta de luz todo mês</p>
+        subtitle: <p className="subtitle">Economia de até 20% na conta de luz todo mês.</p>
     },
     {
         title: "Energia limpa e renovável",
-        subtitle: <p className="subtitle">Reduza a emissão de poluentes na atmosfera</p>
+        subtitle: <p className="subtitle">Reduza a emissão de poluentes na atmosfera.</p>
     },
     {
         title: "Sem custos extras",
-        subtitle: <p className="subtitle">Adesão gratuita, sem investimentos e custos extras</p>
+        subtitle: <p className="subtitle">Adesão gratuita, sem investimentos e custos extras.</p>
     },
     {
         title: "Cancele quando quiser",
-        subtitle: <p className="subtitle">Cancele a qualquer momento em nossos canais digitais</p>
+        subtitle: <p className="subtitle">Cancele a qualquer momento em nossos canais digitais.</p>
     },
 ]
 
@@ -102,17 +102,17 @@ export const homeTutorialCardsMobile = [
     {
         icon: touchpadIcon,
         title: "Cadastro digital",
-        description: "Você preenche o nosso cadastro de adesão digital, rápido e seguro para se tornar cliente Leve",
+        description: "Você preenche o nosso cadastro de adesão digital, rápido e seguro para se tornar cliente Leve.",
     },
     {
         icon: solarEnegyIcon,
         title: "Produção de energia",
-        description: "Geramos energia limpa e inserimos na rede da sua distribuidora que continua responsável pelo seu serviço de energia",
+        description: "Geramos energia limpa e inserimos na rede da sua distribuidora que continua responsável pelo seu serviço de energia.",
     },
     {
         icon: getRevenueIcon,
         title: "Créditos de energia",
-        description: "Essa energia gera créditos que abatem parte do seu consumo e deixam sua conta de luz mais barata",
+        description: "Essa energia gera créditos que abatem parte do seu consumo e deixam sua conta de luz mais barata.",
     },
 ]
 
