@@ -8,6 +8,8 @@ import { NewDashboardContainer as Container, NewDashboardContent as Content } fr
 
 import { getGeneralDashboardData } from '@/app/service/dashboard-service/DashboardService';
 import { menuOptions } from '@/app/utils/helper/dashboard/dashboardHelper';
+import { isTrue } from '@/app/utils/helper/generalHelper';
+import { PATH_TO } from '../../enums/globalEnums';
 import Messages from '../messages/Messages';
 import DashboardMenu from './side-bar/DashboardMenu';
 import DashboardSideBar from './side-bar/DashboardSideBar';
@@ -25,17 +27,18 @@ export default function NewDashboardMain(props) {
     const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
 
+    const { distributorStatus } = storeUser?.user || {}
     const { hasStartedBilling } = storeMainInstallation?.mainInstallation || {}
-
-    const mainInstallationExists = storeMainInstallation?.mainInstallation?.uuid !== ""
 
     const [menuSelected, setMenuSelection] = useState(menuOptions[props.page])
 
     const [notifications, setNotifications] = useState([])
     const [errors, setErrorMessage] = useState([])
 
-    const isHomeOrInstallations = pathname === "/dashboard/" || pathname === "/dashboard/installations/";
-
+    const mainInstallationExists = storeMainInstallation?.mainInstallation?.uuid !== ""
+    const isHomeOrInstallations = pathname === PATH_TO.DASHBOARD || pathname === PATH_TO.INSTALLATIONS;
+    const activeDistributor = isTrue(distributorStatus)
+    
     useEffect(() => {
         const fetchAllDashboardData = async () => {
             await getGeneralDashboardData(router, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations, setErrorMessage)
@@ -56,7 +59,7 @@ export default function NewDashboardMain(props) {
                         setMenuSelection={setMenuSelection} />
                 </DashboardSideBar>
                 <Content className='dashboardContent'>
-                    {mainInstallationExists && !hasStartedBilling && isHomeOrInstallations && <StatusStepper />}
+                    {mainInstallationExists && !hasStartedBilling && isHomeOrInstallations && activeDistributor && <StatusStepper />}
                     {menuSelected?.content}
                 </Content>
             </Container>

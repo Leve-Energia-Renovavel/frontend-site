@@ -7,6 +7,11 @@ export const USER_COST = {
     MAX: 3000,
 };
 
+export const DISTRIBUTOR_STATUS = {
+    ACTIVE: "ATIVO",
+    INACTIVE: "INATIVO",
+};
+
 export const USER_TYPE = {
     PJ: "PJ",
     PF: "PF",
@@ -27,6 +32,7 @@ export const PATH_TO = {
     OUT_OF_RANGE: "/fail/out-of-range",
     LOW_COST: "/fail/low-cost",
     DASHBOARD: "/dashboard/",
+    INSTALLATIONS: "/dashboard/installations",
 };
 
 export const CIDADE = {

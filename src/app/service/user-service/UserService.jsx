@@ -1,4 +1,4 @@
-import { USER_TYPE } from "@/app/pages/enums/globalEnums";
+import { DISTRIBUTOR_STATUS, USER_TYPE } from "@/app/pages/enums/globalEnums";
 import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
 import { capitalizeEachWord } from "@/app/utils/formatters/textFormatter";
 import axios from "axios";
@@ -77,6 +77,7 @@ export const updateUserData = (consumidor, instalacao, distribuidoraInstalacao, 
         memberGetMemberCode: consumidor?.ref_code,
         invoiceDate: consumidor?.dia_fatura,
         distributor: distribuidoraInstalacao?.nome,
+        distributorStatus: distribuidoraInstalacao?.status === DISTRIBUTOR_STATUS.ACTIVE ? true : false,
         hasSyncDistributorData: Boolean(instalacao?.distribuidora_login),
         distributorLogin: instalacao?.distribuidora_login ? instalacao?.distribuidora_login : "",
         distributorPassword: instalacao?.distribuidora_pass ? instalacao?.distribuidora_pass : "",

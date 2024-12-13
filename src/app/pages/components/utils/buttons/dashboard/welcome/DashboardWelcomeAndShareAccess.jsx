@@ -8,7 +8,7 @@ import WelcomeAndShareAccessModal from '../../../modals/welcome-modal/WelcomeAnd
 export default function DashboardWelcomeAndShareAccess({ isMobileContent, setErrorMessage, setNotifications }) {
 
     const storeUser = useStoreUser()
-    const { isFirstAccess, hasSyncDistributorData, hasOpenedSharedAccessModal } = storeUser?.user || {}
+    const { isFirstAccess, name, distributorStatus, hasSyncDistributorData, hasOpenedSharedAccessModal } = storeUser?.user || {}
 
     const [openModal, setOpenModal] = useState(false)
 
@@ -35,6 +35,8 @@ export default function DashboardWelcomeAndShareAccess({ isMobileContent, setErr
                 (<WelcomeAndShareAccessModal
                     isMobileContent={isMobileContent}
                     isOpen={isFirstAccess}
+                    customerName={name}
+                    distributorStatus={distributorStatus}
                     closeModal={handleCloseWelcomeModal}
                     setErrorMessage={setErrorMessage}
                     setNotifications={setNotifications} />
