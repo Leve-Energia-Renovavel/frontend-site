@@ -7,41 +7,39 @@ import { HomeTutorialAneelCard as AneelCard, HomeTutorialAneelCardContent as Ane
 
 export default function NewHomeTutorial() {
     return (
-        <>
-            <Container className='leveTutorialContainer'>
-                <HomeTutorialTitleContainer className='leveTutorialTitleContainer'>
-                    <h5 className='leveTutorialTitle'>Como a nossa economia chega até você</h5>
-                    <h6 className='leveTutorialSubtitle'>Entregamos economia e sustentabilidade com segurança</h6>
-                </HomeTutorialTitleContainer>
+        <Container className='leveTutorialContainer'>
+            <HomeTutorialTitleContainer className='leveTutorialTitleContainer'>
+                <h5 className='leveTutorialTitle'>Como a nossa economia chega até você</h5>
+                <h6 className='leveTutorialSubtitle'>Entregamos economia e sustentabilidade com segurança</h6>
+            </HomeTutorialTitleContainer>
 
-                <CardContainer className='cardContainer'>
-                    {homeTutorialCardsMobile.map((card, index) => {
-                        return (
-                            <Card key={index} className={`cardMobile-${index}`}>
-                                <Image src={card.icon} className="cardIcon" alt={card.description} loading="lazy" />
-                                <p className='cardTitle'>{`${card.title}`}</p>
-                                <p className='cardDescription'>{card.description}</p>
-                            </Card>
-                        )
-                    })}
-                </CardContainer>
+            <CardContainer className='cardContainer'>
+                {homeTutorialCardsMobile.map((card, index) => {
+                    return (
+                        <Card key={index} className={`cardMobile-${index}`}>
+                            <Image src={card.icon} className="cardIcon" alt={card.description} loading="lazy" />
+                            <p className='cardTitle'>{`${card.title}`}</p>
+                            <p className='cardDescription'>{card.description}</p>
+                        </Card>
+                    )
+                })}
+            </CardContainer>
 
-                <ButtonContainer className='leveTutorialButtonContainer'>
-                    <CTAButton onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular minha economia</span></CTAButton>
-                </ButtonContainer>
+            <ButtonContainer className='leveTutorialButtonContainer'>
+                <CTAButton onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular minha economia</span></CTAButton>
+            </ButtonContainer>
 
-                <Divider>
-                    <AneelCard className='leveTutorialAneelCard'>
-                        <Image src={aneelIcon} className="aneelIcon" alt={`Logo da Aneel`} loading="lazy" />
+            <Divider>
+                <AneelCard className='leveTutorialAneelCard'>
+                    <Image src={aneelIcon} className="aneelIcon" alt={`Logo da Aneel`} loading="lazy" />
 
-                        <AneelCardContent className='leveTutorialAneelCardContent'>
-                            <p className='title'>Aprovado pela ANEEL</p>
-                            <p className='description'>Fazemos parte do sistema de Geração Distribuída regulado pela ANEEL com base na lei 14.300/22.</p>
-                        </AneelCardContent>
-                    </AneelCard>
+                    <AneelCardContent className='leveTutorialAneelCardContent'>
+                        <p className='title'>Aprovado pela ANEEL</p>
+                        <p className='description'>Fazemos parte do sistema de Geração Distribuída regulado pela ANEEL com base na lei 14.300/22.</p>
+                    </AneelCardContent>
+                </AneelCard>
 
-                </Divider>
-            </Container>
-        </>
+            </Divider>
+        </Container>
     )
 }

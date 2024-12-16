@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/globalStyles";
+import { background, containerWidth } from "@/app/pages/globalStyles";
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 
@@ -17,7 +17,7 @@ const fadeInUp = keyframes`
 export const BannerContainer = styled.div`
     background-color: ${background.orange};
     height: 28rem;
-    max-width: 1366px;
+    max-width: ${containerWidth};
     margin: 74px auto;
 
     min-height: 600px;

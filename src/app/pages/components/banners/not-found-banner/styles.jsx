@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/globalStyles"
+import { background, containerWidth } from "@/app/pages/globalStyles"
 import styled from "@emotion/styled"
 
 export const BannerContainer = styled.div`
@@ -6,7 +6,7 @@ export const BannerContainer = styled.div`
     border-radius: 0px 0px 15px 15px;
 
     width: 100%;
-    max-width: 1366px;
+    max-width: ${containerWidth};
 
     min-height: 600px;
     height: 100vh;

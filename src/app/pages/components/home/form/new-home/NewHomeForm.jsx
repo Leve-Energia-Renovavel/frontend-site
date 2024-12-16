@@ -11,7 +11,6 @@ export default function NewHomeForm() {
             </NewHomeMainBannerImage>
 
             <NewHomeMainForm />
-
         </Container>
     )
 }

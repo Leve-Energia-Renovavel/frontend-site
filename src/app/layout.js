@@ -2,11 +2,11 @@ import dynamic from "next/dynamic";
 import "./globals.css";
 
 import { GoogleTagManager } from '@next/third-parties/google';
-import Footer from './pages/components/footer/Footer';
 import Header from './pages/components/header/Header';
 import Hotjar from './pages/components/hotjar/Hotjar';
 
 const WhatsAppFAB = dynamic(() => import('./pages/components/fabWhatsapp/WhatsappFAB'), { ssr: false });
+const Footer = dynamic(() => import('./pages/components/footer/Footer'), { ssr: false });
 
 export const metadata = {
   title: 'Leve Energia Renovavel',

@@ -1,3 +1,5 @@
+"use client"
+
 import { useStoreMessages } from "@/app/hooks/stores/useStoreMessages";
 import { Snackbar } from "@mui/material";
 import { SnackbarMessageAlert, SnackbarMessageNotification } from "./styles";

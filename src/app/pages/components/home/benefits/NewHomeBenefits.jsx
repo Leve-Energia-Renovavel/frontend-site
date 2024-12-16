@@ -20,7 +20,6 @@ export default function NewHomeBenefits() {
 
                 </BenefitsBox>
             </BenefitsContainer>
-
         </Container>
     )
 }

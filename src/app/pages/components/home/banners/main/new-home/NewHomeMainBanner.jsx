@@ -1,7 +1,7 @@
 import { HOME_FORM_ID } from '@/app/pages/enums/globalEnums'
 import { handleScrollToId } from '@/app/utils/browser/BrowserUtils'
 import checkIcon from '@/resources/icons/small/leve-icon-new-home-check-small.png'
-import bannerImage from '@/resources/img/new-home-image.png'
+import bannerImage from '@/resources/img/new-home-image.webp'
 import Image from 'next/image'
 import infoJson from '../../../../../../../../public/info.json'
 import HomeMainBannerMobile from '../mobile/HomeMainBannerMobile'
@@ -19,7 +19,7 @@ export default function NewHomeMainBanner() {
           <h2 className='homeMainSubtitle'>{texts.subtitle}</h2>
 
           <DescriptionContainer className='leveHomeMainBannerDescriptionContainer'>
-            <Image src={checkIcon} alt='checkIcon' className='checkIcon' />
+            <Image src={checkIcon} alt='checkIcon' className='checkIcon' placeholder='blur' priority={true} width={'auto'} height={'auto'} />
             <h3 className='homeMainDescription'>{texts.description}</h3>
           </DescriptionContainer>
 

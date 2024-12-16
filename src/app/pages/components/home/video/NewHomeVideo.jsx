@@ -1,9 +1,9 @@
 "use client"
 
 import Image from 'next/image';
+import { useState } from 'react';
 import thumbnail from '../../../../../resources/img/capa-manifesto.webp';
 import { ButtonContainer, NewHomeVideoContainer, VideoContainer } from './styles';
-import { useState } from 'react';
 
 export default function NewHomeVideo() {
 
@@ -32,6 +32,8 @@ export default function NewHomeVideo() {
                 ) : (
                     <iframe
                         className='embededVideo'
+                        width={'auto'}
+                        height={'auto'}
                         src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
                         title="Video da Leve Energia Renovavel"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
