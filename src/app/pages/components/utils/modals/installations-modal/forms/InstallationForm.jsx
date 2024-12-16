@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreUser } from '@/app/hooks/useStore';
+import { useStoreUser } from '@/app/hooks/stores/useStore';
 import Messages from '@/app/pages/components/messages/Messages';
 import { getAddressByCEP } from '@/app/service/address-service/AddressService';
 import { addNewInstallation } from '@/app/service/installation-service/InstallationService';

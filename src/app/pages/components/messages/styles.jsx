@@ -14,8 +14,14 @@ export const SnackbarMessageAlert = styled(Alert)`
   animation: ${fadeInUp} 0.5s ease-out;
 
   @media screen and (max-width: 600px) {
-    padding: .3rem;
+    padding: 10px 16px;
     font-size: 1rem; 
+
+    border-radius: 5px;
+    margin-bottom: 8px;
+
+    width: 100%;
+    max-width: 100vw;
   }
 
 `
@@ -31,8 +37,15 @@ export const SnackbarMessageNotification = styled(Alert)`
   animation: ${fadeInUp} 0.5s ease-out;
 
   @media screen and (max-width: 600px) {
-    padding: .3rem;
+    padding: 8px 16px;
     font-size: 1rem; 
+
+    margin-bottom: 8px;
+
+    border-radius: 5px;
+
+    width: 100%;
+    max-width: 100vw;
   }
 
 `

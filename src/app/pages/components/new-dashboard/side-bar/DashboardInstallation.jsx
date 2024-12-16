@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser } from "@/app/hooks/useStore";
+import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser } from "@/app/hooks/stores/useStore";
 import { getInstallationByUUIDandUpdateStore } from "@/app/service/installation-service/InstallationService";
 import { getCityNameByStateIdAndCityId } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";

@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreBillingHistory } from '@/app/hooks/useStore';
+import { useStoreBillingHistory } from '@/app/hooks/stores/useStore';
 import { formatBillingArray } from '@/app/utils/helper/installations/installationsCarrouselHelper';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';

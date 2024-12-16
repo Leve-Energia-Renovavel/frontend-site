@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreUser } from '@/app/hooks/useStore';
+import { useStoreUser } from '@/app/hooks/stores/useStore';
 import { recoverPassword } from '@/app/service/login-service/LoginService';
 import { getAccessToken } from '@/app/service/user-service/UserService';
 import { requestSuccessful } from '@/app/service/utils/Validations';

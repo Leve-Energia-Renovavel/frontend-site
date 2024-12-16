@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreMainInstallation } from '@/app/hooks/useStore';
+import { useStoreMainInstallation } from '@/app/hooks/stores/useStore';
 import Step from '@mui/material/Step';
 import { StepperContainer as Container, CustomConnector, CustomStepIcon, CustomStepper, StyledStepLabel } from './styles';
 

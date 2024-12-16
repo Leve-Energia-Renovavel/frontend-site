@@ -10,8 +10,6 @@ export const HomeMainFormSimulationContainer = styled.div`
 
     margin: 0 43px;
 
-    ${props => props.isMobile && `display: none;`}
-
     text-align: center;
 
     .averageUserCost {
@@ -35,8 +33,6 @@ export const HomeMainFormSimulationContainer = styled.div`
 
     @media (max-width: 600px) {
       margin: 0 auto;
-
-      ${props => props.isMobile ? `display: block;` : `display: none;`};
 
       .averageUserCost {
         font-family: "Graphie";

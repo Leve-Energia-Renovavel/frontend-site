@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreAddress, useStoreUser } from '@/app/hooks/useStore';
+import { useStoreAddress, useStoreUser } from '@/app/hooks/stores/useStore';
 import { getLeadData } from '@/app/service/lead-service/LeadService';
 import dynamic from 'next/dynamic';
 import { notFound, useSearchParams } from 'next/navigation';

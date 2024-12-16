@@ -1,4 +1,4 @@
-import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills } from "@/app/hooks/useStore";
+import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills } from "@/app/hooks/stores/useStore";
 import { getInstallationByUUIDandUpdateStore } from "@/app/service/installation-service/InstallationService";
 import { getAddress, getNumber } from "@/app/utils/helper/installations/installationsHelper";
 import { Skeleton } from "@mui/material";

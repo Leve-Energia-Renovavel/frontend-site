@@ -1,4 +1,4 @@
-import { useStoreAddress, useStoreCompany, useStoreInstallations, useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
+import { useStoreAddress, useStoreCompany, useStoreInstallations, useStoreMainInstallation, useStoreUser } from '@/app/hooks/stores/useStore';
 import { pathHelper } from '@/app/utils/helper/pathHelper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { Box, Select } from "@mui/material";

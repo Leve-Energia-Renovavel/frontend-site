@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreUser } from "@/app/hooks/useStore"
+import { useStoreUser } from "@/app/hooks/stores/useStore"
 import { useState } from "react"
 import SharedAccessModal from "../../../modals/shared-access-modal/SharedAccessModal"
 import { ArrowRightIcon, LockIcon, SharedAccessButtonContainer, SharedAccessButtonContent, SharedAccessButtonTitle } from "./styles"

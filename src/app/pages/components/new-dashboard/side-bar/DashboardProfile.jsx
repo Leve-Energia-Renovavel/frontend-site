@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreUser } from "@/app/hooks/useStore";
+import { useStoreUser } from "@/app/hooks/stores/useStore";
 import { formatCpfRestricted } from "@/app/utils/formatters/documentFormatter";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import { Skeleton } from "@mui/material";

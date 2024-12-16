@@ -1,6 +1,7 @@
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { awaitSeconds } from "@/app/utils/browser/BrowserUtils";
 import { LEVE_WHATSAPP_NUMBER, PATH_TO } from "../../enums/globalEnums";
+import { useStoreMessages } from "@/app/hooks/stores/useStoreMessages";
 
 const signupValidationCodes = {
     ALANCASR: "A leve ainda não chegou a sua região",
@@ -30,6 +31,7 @@ const signupValidationCodes = {
 
 
 export const requestValidation = async (response, setNotifications, setErrorMessage, router) => {
+
     const status = response?.status
     const message = response?.message
     const responseCode = response?.data?.code
@@ -53,47 +55,49 @@ export const requestValidation = async (response, setNotifications, setErrorMess
             }
         }
 
-    }
-    if (responseCode === "ALANCASR") {
-        router.push(PATH_TO.OUT_OF_RANGE)
-    }
-    else if (responseCode === "UE") {
-        setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])
-        await awaitSeconds(3)
-        router.push(`/login`)
-    }
-    else if (responseCode === "SCJEL") {
-        router.push(PATH_TO.LOW_COST)
-    }
-    else if (responseCode === "ALANCASR" || message === "A leve ainda não chegou a sua região") {
-        router.push(PATH_TO.OUT_OF_RANGE)
-    }
-    else if (responseCode === "CI") {
-        router.push(PATH_TO.OUT_OF_RANGE)
-    }
-    else if (responseCode === "TCPA") {
-        router.push(PATH_TO.CONTRACT_SIGNATURE)
-    }
-    else if (responseCode === "CPI") {
-        setErrorMessage(["Cupom inválido. Por favor, verifique e tente novamente"])
-    }
-    else if (responseCode === "CNENN") {
-        setErrorMessage(["Campo de nome inválido. Por favor, verifique e tente novamente"])
-    }
-    else if (message === "Não foi possível achar esse usuário") {
-        setErrorMessage(["E-mail não encontrado. Verifique se foi digitado corretamente ou se tiver, busque pelo e-mail secundário."])
-    }
+    } else {
 
-    else if (message === "N\u00e3o h\u00e1 geradora" ||
-        message === "Não há geradora") {
-        const errorCode = "BDM001"
-        setErrorMessage([`Erro de servidor. Por favor, tente novamente mais tarde (cod. ${errorCode})`])
-    }
-    else if (response?.errors) {
-        setErrorMessage(response?.errors)
-    }
-    else {
-        setErrorMessage(["Erro de servidor. Por favor, tente novamente mais tarde"])
+        if (responseCode === "ALANCASR") {
+            router.push(PATH_TO.OUT_OF_RANGE)
+        }
+        else if (responseCode === "UE") {
+            setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])
+            await awaitSeconds(3)
+            router.push(`/login`)
+        }
+        else if (responseCode === "SCJEL") {
+            router.push(PATH_TO.LOW_COST)
+        }
+        else if (responseCode === "ALANCASR" || message === "A leve ainda não chegou a sua região") {
+            router.push(PATH_TO.OUT_OF_RANGE)
+        }
+        else if (responseCode === "CI") {
+            router.push(PATH_TO.OUT_OF_RANGE)
+        }
+        else if (responseCode === "TCPA") {
+            router.push(PATH_TO.CONTRACT_SIGNATURE)
+        }
+        else if (responseCode === "CPI") {
+            setErrorMessage(["Cupom inválido. Por favor, verifique e tente novamente"])
+        }
+        else if (responseCode === "CNENN") {
+            setErrorMessage(["Campo de nome inválido. Por favor, verifique e tente novamente"])
+        }
+        else if (message === "Não foi possível achar esse usuário") {
+            setErrorMessage(["E-mail não encontrado. Verifique se foi digitado corretamente ou se tiver, busque pelo e-mail secundário."])
+        }
+
+        else if (message === "N\u00e3o h\u00e1 geradora" ||
+            message === "Não há geradora") {
+            const errorCode = "BDM001"
+            setErrorMessage([`Erro de servidor. Por favor, tente novamente mais tarde (cod. ${errorCode})`])
+        }
+        else if (response?.errors) {
+            setErrorMessage(response?.errors)
+        }
+        else {
+            setErrorMessage(["Erro de servidor. Por favor, tente novamente mais tarde"])
+        }
     }
 
 }

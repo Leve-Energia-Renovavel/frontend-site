@@ -1,6 +1,10 @@
 {
     "home": {
-        "title": "A energia do futuro é ",
+        "title": "Economia de até",
+        "subtitle": "Solução 100% digital da Leve Energia que garante economia mensal na sua conta de luz a partir da produção de energia limpa.",
+        "description": "Tenha acesso rápido a energia limpa sem investimentos, instalações e sem custos adionais.",
+        "cheaper": " 20% na conta de luz ",
+        "withClearEnergy": "com energia limpa",
         "leve": "Leve",
         "about": "Mais sobre a Leve",
         "simulate": "Simule sua economia real:",
@@ -41,6 +45,7 @@
             "privacyPolicy": "Política de Privacidade."
         }
     },
+    "boxes": {},
     "footer": {
         "title": "Temos a melhor solução de energia para você",
         "ourTeam": "Fale com o nosso time agora mesmo!",

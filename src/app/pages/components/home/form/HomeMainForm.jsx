@@ -14,16 +14,18 @@ import { schemaValidation } from '../schema';
 import { HomeMainForm as Form, HomeMainFormContainer as FormContainer, HomeFormContainer, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "../styles";
 import { requestValidation } from '../validation';
 
+import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import { USER_TYPE } from '@/app/pages/enums/globalEnums';
 import NewHomeMainFormHeader from './new-home/form/header/NewHomeMainFormHeader';
 
 const HomeFormButton = dynamic(() => import('../../utils/buttons/home/form/HomeFormButton'), { ssr: false });
 const HomeMainFormSimulator = dynamic(() => import('./simulator/HomeMainFormSimulator'), { ssr: false });
 
-export default function HomeMainForm({ setErrorMessage, setNotifications, selectedUserType, setSelectedUserType, isMobile }) {
+export default function HomeMainForm({ selectedUserType, setSelectedUserType, isMobile }) {
 
     const router = useRouter()
     const search = useSearchParams()
+    const storeMessages = useStoreMessages()
 
     const cupom = search.get("cupom")
 
@@ -58,8 +60,8 @@ export default function HomeMainForm({ setErrorMessage, setNotifications, select
             couponRef.current.value,
         )
 
-        const response = await schemaValidation(submitData, setErrorMessage)
-        await requestValidation(response, setNotifications, setErrorMessage, router)
+        const response = await schemaValidation(submitData)
+        await requestValidation(response, storeMessages.setNotifications, storeMessages.setErrors, router)
         setLoading(false)
     }
 

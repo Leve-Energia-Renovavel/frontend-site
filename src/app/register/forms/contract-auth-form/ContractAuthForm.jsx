@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 
-import { useStoreUser } from "@/app/hooks/useStore";
+import { useStoreUser } from "@/app/hooks/stores/useStore";
 import DefaultButton from "@/app/pages/components/utils/buttons/DefaultButton";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import LockIcon from '@mui/icons-material/Lock';

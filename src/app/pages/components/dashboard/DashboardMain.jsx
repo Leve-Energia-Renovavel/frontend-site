@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreAddress, useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser, useStoreUserEconomy } from "@/app/hooks/useStore";
+import { useStoreAddress, useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser, useStoreUserEconomy } from "@/app/hooks/stores/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { clearStorageData } from "@/app/utils/browser/BrowserUtils";
 import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";

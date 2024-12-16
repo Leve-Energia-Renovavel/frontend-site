@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreMainInstallation } from '@/app/hooks/useStore';
+import { useStoreMainInstallation } from '@/app/hooks/stores/useStore';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import HistoryDetails from './details/HistoryDetails';

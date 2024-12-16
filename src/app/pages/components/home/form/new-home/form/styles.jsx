@@ -1,5 +1,5 @@
 import { fadeInUp, fadeInUpAnimation, slideAndDisappear } from "@/app/pages/globalAnimations";
-import { background, notification } from "@/app/pages/globalStyles";
+import { background, containerWidth, notification } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/material";
 
@@ -8,8 +8,7 @@ export const HomeContainer = styled.div`
     flex-direction: column;
     background-color: ${background.white};
     
-    max-width: 1920px;
-    /* max-width: 1366px; */
+    max-width: ${containerWidth};
     margin: 0 auto;
     padding: 0 3rem;
     
@@ -199,19 +198,14 @@ export const HomeFormContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  ${props => props.isMobile && `display:none;`}
-
   min-width: 450px;
   width: 596px;
   max-width: 596px;  
   
   @media (max-width: 600px) {
-    min-width: 450px;
-    width: 454px;
-    max-width: 454px;  
-
-    ${props => props.isMobile ? `display:block;` : `display:none;`};
-    max-width: 100vw;
+    min-width: fit-content;
+    width: 100%;
+    max-width: 100vw;  
 
     .privacyPolicyDisclaimer, .privacyPolicy {
       display: none;
@@ -411,45 +405,45 @@ export const HomeMainForm = styled.form`
     }
 
     .privacyPolicyDisclaimer {
-    font-family: "Graphie";
-    font-size: 12px;
-    line-height: 12px;
-    font-weight: 400;
-    text-align: left;
-    color: ${background.white};
+      font-family: "Graphie";
+      font-size: 12px;
+      line-height: 12px;
+      font-weight: 400;
+      text-align: left;
+      color: ${background.white};
 
-    text-align: center;
-    
-    max-width: 305px;
-    
-    margin: 0 auto;
-  }
-
-  .privacyPolicy {
-    font-family: "Graphie";
-    font-size: 12px;
-    line-height: 12px;
-    font-weight: 500;
-    text-decoration: underline;
-    text-align: left;
-    color: ${background.white};
-    border-radius: 5px;
-
-    &:hover{
-      cursor: pointer;
-      color: ${background.green};
-      background-color: ${background.yellow};
+      text-align: center;
+      
+      max-width: 305px;
+      
+      margin: 0 auto;
     }
-  }
+
+    .privacyPolicy {
+      font-family: "Graphie";
+      font-size: 12px;
+      line-height: 12px;
+      font-weight: 500;
+      text-decoration: underline;
+      text-align: left;
+      color: ${background.white};
+      border-radius: 5px;
+
+      &:hover{
+        cursor: pointer;
+        color: ${background.green};
+        background-color: ${background.yellow};
+      }
+    }
 
     .mobilePrivacyPolicy, .mobilePrivacyPolicyDisclaimer {
       display: none;
     }
 
     @media (max-width: 600px) {
-      display: none;
+      padding: 1.5rem 1rem;
+      border-radius: 0px;
     }
-
 `
 
 

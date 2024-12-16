@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreUser } from '@/app/hooks/useStore';
+import { useStoreUser } from '@/app/hooks/stores/useStore';
 import { Sliders } from '@/app/pages/components/simulate-economy/styles';
 import { FormControl, Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';

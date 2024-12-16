@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useStoreClickSign, useStoreUser } from '@/app/hooks/useStore';
+import { useStoreClickSign, useStoreUser } from '@/app/hooks/stores/useStore';
 import { finishSignup } from '@/app/service/contract-service/ContractService';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';

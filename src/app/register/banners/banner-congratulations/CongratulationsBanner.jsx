@@ -1,5 +1,5 @@
 
-import { useStoreUser } from "@/app/hooks/useStore";
+import { useStoreUser } from "@/app/hooks/stores/useStore";
 import { Typography } from "@mui/material";
 import { useState } from "react";
 import { BannerContainer, ConfettiContainer, ContentContainer } from "./styles";

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreClickSign, useStoreUser } from "@/app/hooks/useStore";
+import { useStoreClickSign, useStoreUser } from "@/app/hooks/stores/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
 import { Typography } from "@mui/material";

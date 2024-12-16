@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreBillingHistory, useStoreMainInstallation } from '@/app/hooks/useStore';
+import { useStoreBillingHistory, useStoreMainInstallation } from '@/app/hooks/stores/useStore';
 import { billHasExpired } from '@/app/utils/date/DateUtils';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import { formatDateClearYear, formatFullMonthAndYear } from '@/app/utils/formatters/dateFormatter';

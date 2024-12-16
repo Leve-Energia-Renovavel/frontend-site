@@ -1,4 +1,4 @@
-import { useStoreUserEconomy } from '@/app/hooks/useStore';
+import { useStoreUserEconomy } from '@/app/hooks/stores/useStore';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { useRouter } from 'next/navigation';
 import { HistoryDetail, HistoryDetailContent, HistoryDetailFooter, HistoryDetailFooterHeader, HistoryDetailHeader, HistoryDetailValue } from './styles';

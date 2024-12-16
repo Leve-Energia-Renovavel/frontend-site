@@ -1,4 +1,4 @@
-import { useStoreCompany } from "@/app/hooks/useStore";
+import { useStoreCompany } from "@/app/hooks/stores/useStore";
 import axios from "axios";
 import { requestSuccessful } from "../../service/utils/Validations";
 

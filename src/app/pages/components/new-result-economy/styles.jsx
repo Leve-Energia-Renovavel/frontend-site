@@ -19,7 +19,7 @@ export const EconomyResultContainer = styled.div`
     margin-top: 16px;
 
     width: 100%;
-    /* max-width: 1366px; */
+
     max-width: 877px;
 
     min-height: 450px;
@@ -28,6 +28,8 @@ export const EconomyResultContainer = styled.div`
     @media (max-width: 600px) {
         margin-top: 2px;
         border-radius: 0px;
+
+        max-width: 100vw;
     }
 `
 
@@ -35,7 +37,7 @@ export const EconomyResultTitleContainer = styled.div`
 
     padding: 1rem;
 
-    min-width: 380px;
+    min-width: 360px;
     width: 100%;
     max-width: fit-content;
 
@@ -52,7 +54,11 @@ export const EconomyResultTitleContainer = styled.div`
     }
 
     @media (max-width: 600px) {
+
+        padding: 16px 12px;
+
         text-align: center;
+        max-width: 370px;
 
         .economyResultTitle {
             white-space: normal;

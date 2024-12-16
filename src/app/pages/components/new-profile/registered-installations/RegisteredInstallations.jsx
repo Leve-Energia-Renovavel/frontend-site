@@ -1,4 +1,4 @@
-import { useStoreInstallations } from "@/app/hooks/useStore";
+import { useStoreInstallations } from "@/app/hooks/stores/useStore";
 import InstallationCard from "../../utils/cards/InstallationCard";
 import { RegisteredInstallationsMainContainer as MainContainer, RegisteredInstallationsContainer } from "./styles";
 

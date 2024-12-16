@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreUser } from '@/app/hooks/useStore'
+import { useStoreUser } from '@/app/hooks/stores/useStore'
 import { checkForZero, checkForZeroCurrency, checkForZeroDiscount, newCostValidation, updateSliderConfig } from '@/app/utils/helper/result-economy/resultEconomyHelper'
 import { benefits } from '@/app/utils/helper/signup/signupHelper'
 import { ENVIRONMENTAL_IMPACT, PATH_TO, USER_COST } from '@/enums/globalEnums'

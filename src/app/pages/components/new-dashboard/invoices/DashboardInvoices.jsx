@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useStoreBillingHistory, useStoreMainInstallation, useStoreNextBills } from '@/app/hooks/useStore';
+import { useStoreBillingHistory, useStoreMainInstallation, useStoreNextBills } from '@/app/hooks/stores/useStore';
 import { billHasExpired } from '@/app/utils/date/DateUtils';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import { handlePayButtonText } from '@/app/utils/helper/invoices/invoicesHelper';

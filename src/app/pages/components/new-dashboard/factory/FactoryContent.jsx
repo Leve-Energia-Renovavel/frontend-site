@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreMainInstallation } from '@/app/hooks/useStore'
+import { useStoreMainInstallation } from '@/app/hooks/stores/useStore'
 import { factoryInfos } from '@/app/utils/helper/dashboard/newDashboardHelper'
 import Image from 'next/image'
 import leveTopBanner from '../../../../../resources/img/large/leve-top-banner-image-large.png'

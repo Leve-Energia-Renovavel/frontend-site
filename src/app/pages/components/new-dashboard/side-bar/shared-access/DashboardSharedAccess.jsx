@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreMainInstallation, useStoreUser } from '@/app/hooks/useStore';
+import { useStoreMainInstallation, useStoreUser } from '@/app/hooks/stores/useStore';
 import { DISTRIBUTOR } from '@/app/pages/enums/globalEnums';
 import CloseIcon from '@mui/icons-material/Close';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';

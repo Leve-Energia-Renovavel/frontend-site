@@ -5,7 +5,6 @@ import { clearCookiesAndStorageData } from '@/app/utils/browser/BrowserUtils';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
 import { TextField } from "@mui/material";
-import dynamic from 'next/dynamic';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
@@ -13,18 +12,22 @@ import infoJson from '../../../../../../../../public/info.json';
 import { requestValidation } from '../../../validation';
 import { HomeMainForm as Form, HomeFormContainer, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 
+import { useStoreHome } from '@/app/hooks/stores/home/useStoreHome';
+import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
+import HomeFormButton from '@/app/pages/components/utils/buttons/home/form/HomeFormButton';
 import { USER_TYPE } from '@/app/pages/enums/globalEnums';
 import { schemaValidation } from '../../../schema';
+import HomeMainFormSimulator from '../../simulator/HomeMainFormSimulator';
 import NewHomeMainFormHeader from './header/NewHomeMainFormHeader';
 
-const HomeFormButton = dynamic(() => import('../../../../utils/buttons/home/form/HomeFormButton'), { ssr: false });
-const HomeMainFormSimulator = dynamic(() => import('../../simulator/HomeMainFormSimulator'), { ssr: false });
-
-export default function NewHomeMainForm({ setErrorMessage, setNotifications, isMobile, selectedUserType, setSelectedUserType }) {
+export default function NewHomeMainForm() {
 
     const router = useRouter()
 
     const search = useSearchParams()
+    const storeMessage = useStoreMessages()
+    const storeHome = useStoreHome()
+    const selectedUserType = storeHome.selectedUserType
 
     const cupom = search.get("cupom")
 
@@ -40,7 +43,7 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
     const texts = infoJson.home
 
     const handleSelect = (userType) => {
-        setSelectedUserType(userType);
+        storeHome.setSelectedUserType(userType);
     };
 
     clearCookiesAndStorageData()
@@ -59,13 +62,13 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
             couponRef.current.value,
         )
 
-        const response = await schemaValidation(submitData, setErrorMessage)
-        await requestValidation(response, setNotifications, setErrorMessage, router)
+        const response = await schemaValidation(submitData, storeMessage.setErrors)
+        await requestValidation(response, storeMessage.setNotifications, storeMessage.setErrors, router)
         setLoading(false)
     }
 
     return (
-        <HomeFormContainer isMobile={isMobile} className={`${isMobile ? "leveHomeMainFormContainerMobile" : "leveHomeMainFormContainerDesktop"}`}>
+        <HomeFormContainer className={`leveHomeMainFormContainer`}>
             <Form id={`leadForm`} onSubmit={handleSubmit}>
                 <NewHomeMainFormHeader />
 
@@ -175,18 +178,11 @@ export default function NewHomeMainForm({ setErrorMessage, setNotifications, isM
                     </UserTypeFormButtonContainer>
                 </UserTypeFormContainer>
 
-                <HomeMainFormSimulator isMobile={true}
-                    simulationCost={simulationCost}
-                    handleSimulationCost={setSimulationCost} />
-
                 <HomeMainFormSimulator
-                    isMobile={false}
                     simulationCost={simulationCost}
                     handleSimulationCost={setSimulationCost} />
 
-                <HomeFormButton title={"Calcular"} isLoading={isLoading} isMobile={true} />
-
-                <HomeFormButton title={"Calcular"} isLoading={isLoading} isMobile={false} />
+                <HomeFormButton title={"Calcular"} isLoading={isLoading} />
 
                 <p className='mobilePrivacyPolicyDisclaimer'>{texts.mobile.byClickingButtonAbove}<span className='mobilePrivacyPolicy' onClick={() => router.push(`/politica-de-privacidade`)}>{texts.mobile.privacyPolicy}</span></p>
                 <p className='privacyPolicyDisclaimer'>{texts.mobile.byClickingButtonAbove}<span className='privacyPolicy' onClick={() => router.push(`politica-de-privacidade`)}>{texts.privacyPolicy}</span>.</p>

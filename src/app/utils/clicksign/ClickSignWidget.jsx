@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useStoreClickSign, useStoreUser } from '@/app/hooks/useStore';
+import { useStoreClickSign, useStoreUser } from '@/app/hooks/stores/useStore';
 import ContractFormProgress from '@/app/register/forms/contract-signature-form/ContractFormProgress';
 import ContractFormTitle from '@/app/register/forms/contract-signature-form/ContractFormTitle';
 import { FormHeader } from '@/app/register/forms/contract-signature-form/styles';

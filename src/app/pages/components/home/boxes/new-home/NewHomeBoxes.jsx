@@ -1,3 +1,4 @@
+import { useStoreHome } from '@/app/hooks/stores/home/useStoreHome'
 import { HOME_FORM_ID, USER_TYPE } from '@/app/pages/enums/globalEnums'
 import { handleScrollToId } from '@/app/utils/browser/BrowserUtils'
 import { newHomeBoxes } from '@/app/utils/helper/home/homeBoxesHelper'
@@ -5,10 +6,12 @@ import companyBannerImage from '../../../../../../resources/img/large/leve-compa
 import homeBannerImage from '../../../../../../resources/img/large/leve-family-playing-image-large.png'
 import HomeBoxesMobile from '../mobile/HomeBoxesMobile'
 import { BoxCard, BoxesContainer, ButtonContainer, NewHomeBoxesContainer as Container, NewHomeBoxesContent as Content, HomeBoxCompany, HomeBoxesCTAButton, HomeBoxHome, HomeBoxesUserTypeContainer as UserTypeContainer } from './styles'
-export default function NewHomeBoxes({ setSelectedUserType }) {
+export default function NewHomeBoxes() {
+
+    const storeHome = useStoreHome()
 
     const handleSelectUserTypeAndScroll = (usertype) => {
-        setSelectedUserType(usertype)
+        storeHome.setSelectedUserType(usertype)
         handleScrollToId(HOME_FORM_ID)
     }
     return (

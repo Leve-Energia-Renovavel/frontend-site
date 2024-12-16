@@ -1,4 +1,4 @@
-import { useStoreInstallations, useStoreUser } from '@/app/hooks/useStore'
+import { useStoreInstallations, useStoreUser } from '@/app/hooks/stores/useStore'
 import { formatCpfUnrestricted } from '@/app/utils/formatters/documentFormatter'
 import { factoryInfos } from '@/app/utils/helper/dashboard/newDashboardHelper'
 import { Backdrop, Modal } from '@mui/material'

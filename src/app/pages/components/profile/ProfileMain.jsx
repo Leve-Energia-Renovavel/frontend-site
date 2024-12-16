@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreCompany, useStoreMainInstallation, useStoreUser } from "@/app/hooks/useStore";
+import { useStoreCompany, useStoreMainInstallation, useStoreUser } from "@/app/hooks/stores/useStore";
 import { FormContent, FormLastRow, FormRow } from "@/app/register/forms/register-form/styles";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { awaitSeconds } from "@/app/utils/browser/BrowserUtils";

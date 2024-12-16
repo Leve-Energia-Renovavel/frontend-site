@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreCompany, useStoreInstallations, useStoreMainInstallation, useStoreUser, useStoreUserEconomy } from '@/app/hooks/useStore';
+import { useStoreCompany, useStoreInstallations, useStoreMainInstallation, useStoreUser, useStoreUserEconomy } from '@/app/hooks/stores/useStore';
 import { updateUserProfile } from '@/app/service/user-service/UserService';
 import { getCityNameByStateIdAndCityId } from '@/app/service/utils/addressUtilsService';
 import { requestSuccessful } from '@/app/service/utils/Validations';

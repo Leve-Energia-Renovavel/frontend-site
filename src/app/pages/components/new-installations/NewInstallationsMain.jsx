@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreMainInstallation } from '@/app/hooks/useStore';
+import { useStoreMainInstallation } from '@/app/hooks/stores/useStore';
 import EqualizerOutlinedIcon from '@mui/icons-material/EqualizerOutlined';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';

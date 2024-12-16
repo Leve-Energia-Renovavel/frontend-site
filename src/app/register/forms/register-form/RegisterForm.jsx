@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreAddress, useStoreCompany, useStoreCookies, useStoreUser } from "@/app/hooks/useStore";
+import { useStoreAddress, useStoreCompany, useStoreCookies, useStoreUser } from "@/app/hooks/stores/useStore";
 import useGetCEP from '@/app/hooks/utils/useGetCEP';
 import useGetCNPJ from "@/app/hooks/utils/useGetCNPJ";
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";

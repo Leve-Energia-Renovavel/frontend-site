@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreInstallations, useStoreMainInstallation } from "@/app/hooks/useStore";
+import { useStoreInstallations, useStoreMainInstallation } from "@/app/hooks/stores/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { findCityIdByName } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";

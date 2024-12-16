@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreUser } from '@/app/hooks/useStore';
+import { useStoreUser } from '@/app/hooks/stores/useStore';
 import { forgotPasswordValidation, loginValidation } from '@/app/service/login-service/LoginService';
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import { awaitSeconds } from '@/app/utils/browser/BrowserUtils';

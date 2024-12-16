@@ -1,6 +1,6 @@
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import axios from 'axios';
-import { useStoreClickSign, useStoreUser } from '../useStore';
+import { useStoreClickSign, useStoreUser } from '../stores/useStore';
 
 const useFetchClickSignData = () => {
 

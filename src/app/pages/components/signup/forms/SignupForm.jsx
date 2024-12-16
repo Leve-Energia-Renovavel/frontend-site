@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreAddress, useStoreCompany, useStoreUser } from '@/app/hooks/useStore';
+import { useStoreAddress, useStoreCompany, useStoreUser } from '@/app/hooks/stores/useStore';
 import useGetCEP from '@/app/hooks/utils/useGetCEP';
 import useGetCNPJ from '@/app/hooks/utils/useGetCNPJ';
 import InstallationNumberModal from '@/app/register/modals/installation-number-modal/InstallationNumberModal';
