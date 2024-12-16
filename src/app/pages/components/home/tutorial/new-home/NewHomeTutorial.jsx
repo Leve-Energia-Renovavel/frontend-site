@@ -1,4 +1,3 @@
-
 import { handleScrollToId } from '@/app/utils/browser/BrowserUtils';
 import { homeTutorialCardsMobile } from '@/app/utils/helper/home/homeBoxesHelper';
 import Image from 'next/image';

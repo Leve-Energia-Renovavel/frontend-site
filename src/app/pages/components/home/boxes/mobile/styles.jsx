@@ -3,7 +3,7 @@ import { background } from "@/app/pages/globalStyles"
 import styled from "@emotion/styled"
 import { Button } from "@mui/material"
 
-export const HomeSecondaryBoxesContainerMobile = styled.div`
+export const HomeBoxesContainerMobile = styled.div`
     display: none;
     position: relative;
 

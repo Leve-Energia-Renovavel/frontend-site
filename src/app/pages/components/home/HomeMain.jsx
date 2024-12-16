@@ -3,11 +3,8 @@
 import { Divider } from "@mui/material";
 import dynamic from "next/dynamic";
 import NewHomeMainBanner from "./banners/main/new-home/NewHomeMainBanner";
-import NewHomeBoxes from "./boxes/new-home/NewHomeBoxes";
 import { HomeContainer as Container, HomeContentContainer as HomeBanner } from "./styles";
-
-// const NewHomeMainBanner = dynamic(() => import("./benefits/NewHomeBenefits"), { ssr: true });
-// const NewHomeBoxes = dynamic(() => import("./boxes/new-home/NewHomeBoxes"), { ssr: true });
+import NewHomeBoxes from "./boxes/new-home/NewHomeBoxes";
 
 const NewHomeBenefits = dynamic(() => import("./benefits/NewHomeBenefits"), { ssr: false });
 const NewHomeTutorial = dynamic(() => import("./tutorial/new-home/NewHomeTutorial"), { ssr: false });

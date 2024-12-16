@@ -34,6 +34,7 @@ export default function NewHomeMainBanner() {
         <BannerImageContainer className='leveHomeBannerImageContainer' image={bannerImage} />
       </Container>
 
+      {/* Mobile content here! */}
       <HomeMainBannerMobile />
     </>
   )

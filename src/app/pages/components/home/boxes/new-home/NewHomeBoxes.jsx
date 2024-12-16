@@ -51,7 +51,7 @@ export default function NewHomeBoxes() {
             </Container>
 
             {/* Mobile content here! */}
-            <HomeBoxesMobile className='homeMainBoxesContainerMobile' />
+            <HomeBoxesMobile />
         </>
     )
 }

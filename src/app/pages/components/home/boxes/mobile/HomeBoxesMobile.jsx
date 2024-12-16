@@ -1,11 +1,11 @@
 import { handleScrollToId } from '@/app/utils/browser/BrowserUtils';
 import { newHomeBoxes } from '@/app/utils/helper/home/homeBoxesHelper';
-import bannerImage from "../../../../../../resources/img/new-home-image.png";
-import { HomeSecondaryBannerContainerMobile as BannerImageMobile, MobileBoxesContainer as BoxesContainer, CTAButtonDiscount, CTAButtonEconomy, DiscountButtonContainer, EconomyButtonContainer, HomeBenefitBox, HomeBoxesBaloon, HomeBoxesMobileBenefitsContainer, HomeSecondaryBoxesContainerMobile, MobileBox } from './styles';
+import bannerImage from "../../../../../../resources/img/new-home-image.webp";
+import { HomeSecondaryBannerContainerMobile as BannerImageMobile, MobileBoxesContainer as BoxesContainer, CTAButtonEconomy, EconomyButtonContainer, HomeBoxesBaloon, HomeBoxesContainerMobile, MobileBox } from './styles';
 
 export default function HomeBoxesMobile() {
     return (
-        <HomeSecondaryBoxesContainerMobile className='homeSecondaryBoxesContainerMobile'>
+        <HomeBoxesContainerMobile className='homeMainBoxesContainerMobile'>
 
             <HomeBoxesBaloon className='homeBoxesBaloonMobile'>
                 <p>Você economizou <span className='hihglighted'>R$42,50</span> nesse mês!</p>
@@ -30,6 +30,6 @@ export default function HomeBoxesMobile() {
                 <CTAButtonEconomy onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular minha economia</span></CTAButtonEconomy>
             </EconomyButtonContainer>
 
-        </HomeSecondaryBoxesContainerMobile>
+        </HomeBoxesContainerMobile>
     )
 }
