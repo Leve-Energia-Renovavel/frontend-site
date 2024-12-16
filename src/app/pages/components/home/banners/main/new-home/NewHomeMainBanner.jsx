@@ -1,3 +1,4 @@
+import { HOME_FORM_ID } from '@/app/pages/enums/globalEnums'
 import { handleScrollToId } from '@/app/utils/browser/BrowserUtils'
 import checkIcon from '@/resources/icons/small/leve-icon-new-home-check-small.png'
 import bannerImage from '@/resources/img/new-home-image.png'
@@ -18,7 +19,7 @@ export default function NewHomeMainBanner() {
             <h3 className='homeMainDescription'>Tenha acesso rápido a energia limpa sem investimentos, instalações e sem custos adionais.</h3>
           </DescriptionContainer>
 
-          <CTAButton className='homeMainBannerButton' onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular meu desconto</span></CTAButton>
+          <CTAButton className='homeMainBannerButton' onClick={() => handleScrollToId(HOME_FORM_ID)}><span>Calcular meu desconto</span></CTAButton>
         </HomeMain>
 
         <NewHomeMainBaloon>
