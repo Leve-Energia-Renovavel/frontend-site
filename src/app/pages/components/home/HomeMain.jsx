@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import NewHomeMainBanner from "./banners/main/new-home/NewHomeMainBanner";
 import { HomeContainer as Container, HomeContentContainer as HomeBanner } from "./styles";
 import NewHomeBoxes from "./boxes/new-home/NewHomeBoxes";
+import HomeMainSecond from "./HomeMainSecond";
 
 const NewHomeBenefits = dynamic(() => import("./benefits/NewHomeBenefits"), { ssr: false });
 const NewHomeTutorial = dynamic(() => import("./tutorial/new-home/NewHomeTutorial"), { ssr: false });
@@ -24,7 +25,7 @@ export default function HomeMain() {
                     <NewHomeMainBanner />
                 </HomeBanner>
 
-                <NewHomeBoxes />
+                {/* <NewHomeBoxes />
 
                 <NewHomeBenefits />
 
@@ -34,7 +35,9 @@ export default function HomeMain() {
 
                 <BrandsContainer />
 
-                <NewHomeVideo />
+                <NewHomeVideo /> */}
+
+                <HomeMainSecond />
 
             </Container >
 
