@@ -7,12 +7,12 @@ import dynamic from 'next/dynamic';
 import { notFound, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Messages from '../messages/Messages';
-import LoadingResultEconomy from '../new-result-economy/loading/LoadingResultEconomy';
+import LoadingResultEconomy from '../result-economy/loading/LoadingResultEconomy';
 import { SignUpContainer as Container } from './styles';
 
-const NewResultEconomy = dynamic(() => import('../new-result-economy/NewResultEconomy'), { ssr: false });
+const ResultEconomy = dynamic(() => import('../result-economy/ResultEconomy'), { ssr: false });
 
-export default function SignupMain() {
+export default function EconomySimulation() {
 
     const [isLoading, setIsLoading] = useState(false)
 
@@ -37,7 +37,7 @@ export default function SignupMain() {
     return (
         <>
             <Container className='signupMainContainer'>
-                {isLoading ? <NewResultEconomy /> : <LoadingResultEconomy />}
+                {isLoading ? <ResultEconomy /> : <LoadingResultEconomy />}
             </Container>
 
             <Messages />

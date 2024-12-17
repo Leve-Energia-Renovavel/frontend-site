@@ -6,11 +6,11 @@ import { getLeadData } from '@/app/service/lead-service/LeadService';
 import dynamic from 'next/dynamic';
 import { notFound, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
-import { SignUpContainer as Container } from './styles';
+import { SignUpContainer as Container } from '../signup/styles';
 
-const SignupForm = dynamic(() => import('./forms/SignupForm'), { ssr: false });
+const SignupUserForm = dynamic(() => import('../signup/forms/SignupForm'), { ssr: false });
 
-export default function SignupMainForm() {
+export default function RegisterUser() {
 
     const search = useSearchParams()
     const store = useStoreUser()
@@ -32,8 +32,8 @@ export default function SignupMainForm() {
 
     return (
         <>
-            <Container className='signupMainFormContainer'>
-                <SignupForm />
+            <Container className='registerUserContainer'>
+                <SignupUserForm />
             </Container>
         </>
     )

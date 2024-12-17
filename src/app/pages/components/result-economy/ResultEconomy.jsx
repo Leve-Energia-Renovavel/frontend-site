@@ -11,7 +11,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useRef, useState } from 'react'
 import { ArrowDownContainer, ArrowDownIcon, ContinueSignupButton, EconomyResultContainer, EconomyResultFooter, EconomyResultTitleContainer, EditTodayCostIcon, LeveBenefit, LeveBenefitsContainer, LeveBenefitsContent, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomyDisclaimer, LoadingCircle, OneYearEconomyContainer, OneYearEconomyContent, OneYearEconomyData, OneYearEconomyHeader, PercentageIcon, RoundCheckIcon, SimpleArrowForward, SimpleCheckIcon, SimpleCloseIcon, SimulationSlider, TodayCostContainer, TodayCostValue, TodayEconomyContainer, TodayEconomyContent } from './styles'
 
-export default function NewResultEconomy() {
+export default function ResultEconomy() {
 
     const router = useRouter()
     const search = useSearchParams()
