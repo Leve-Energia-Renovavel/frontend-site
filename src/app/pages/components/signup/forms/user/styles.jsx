@@ -16,58 +16,6 @@ const fadeInUp = keyframes`
   }
 `;
 
-export const SignupFormContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    background-color: ${background.orange};
-    
-    border-radius: 20px;
-    margin: 16px auto 0 auto;
-    
-    width: 100%;
-    max-width: 1366px;
-    
-    @media (max-width: 600px) {
-        margin: 4px auto 0 auto;
-        border-radius: 0;
-        width: 100vw;
-        max-width: 100vw;
-    }
-`
-
-export const SignupFormContentContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    background-color: ${background.white};
-    
-    border-radius: 20px;
-
-    gap: 8px;
-
-    width: 100%;
-    max-width: 1366px;
-
-    padding: 1rem;  //change later !!!!
-
-
-
-    @media (max-width: 600px) {
-        border-radius: 0;
-        width: 100vw;
-        max-width: 100vw;
-    }
-
-    @media (max-width: 600px) and (max-height: 950px) {
-        padding: 1rem 0 350px 0;
-    }
-    @media (max-width: 600px) and (max-height: 750px) {
-        padding: 1rem 0 200px 0;
-    }
-    @media (max-width: 600px) and (max-height: 670px) {
-        padding: 1rem 0 150px 0;
-    }
-`
-
 export const Form = styled.form`
     padding: 8px 100px;
     background-color: ${background.white};

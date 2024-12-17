@@ -4,6 +4,7 @@ import RegisterContract from '@/app/pages/components/register/contract/RegisterC
 import RegisterAddress from '@/app/pages/components/register/RegisterAddress';
 import RegisterUser from '@/app/pages/components/register/RegisterUser';
 import { usePathname } from 'next/navigation';
+import { RoutingContainer } from './styles';
 
 export default function RegisterRouting() {
     const pathname = usePathname()
@@ -19,8 +20,8 @@ export default function RegisterRouting() {
     }
 
     return (
-        <>
+        <RoutingContainer className='routingContainer'>
             {routing[clearPathName(pathname)]}
-        </>
+        </RoutingContainer>
     )
 }

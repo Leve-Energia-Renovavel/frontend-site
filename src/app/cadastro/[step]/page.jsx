@@ -1,4 +1,4 @@
-import RegisterRouting from "./RegisterRouting";
+import RegisterRouting from "../../register/RegisterRouting";
 
 export function generateStaticParams() {
     return [

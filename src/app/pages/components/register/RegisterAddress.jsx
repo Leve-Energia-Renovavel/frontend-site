@@ -2,11 +2,8 @@
 "use client"
 
 import { useStoreAddress, useStoreUser } from '@/app/hooks/stores/useStore';
-import { getLeadData } from '@/app/service/lead-service/LeadService';
 import { notFound, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
 import SignupAddressForm from '../signup/forms/address/SignupAddressForm';
-import { SignUpContainer as Container } from '../signup/styles';
 
 export default function RegisterAddress() {
 
@@ -29,10 +26,6 @@ export default function RegisterAddress() {
 
 
     return (
-        <>
-            <Container className='registerAddressContainer'>
-                <SignupAddressForm />
-            </Container>
-        </>
+        <SignupAddressForm />
     )
 }

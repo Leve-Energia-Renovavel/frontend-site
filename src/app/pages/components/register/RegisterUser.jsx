@@ -6,7 +6,6 @@ import { getLeadData } from '@/app/service/lead-service/LeadService';
 import dynamic from 'next/dynamic';
 import { notFound, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
-import { SignUpContainer as Container } from '../signup/styles';
 
 const SignupUserForm = dynamic(() => import('../signup/forms/user/SignupUserForm'), { ssr: false });
 
@@ -31,10 +30,6 @@ export default function RegisterUser() {
 
 
     return (
-        <>
-            <Container className='registerUserContainer'>
-                <SignupUserForm />
-            </Container>
-        </>
+        <SignupUserForm />
     )
 }

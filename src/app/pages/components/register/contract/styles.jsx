@@ -1,6 +1,5 @@
 import { background } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
-import { LinearProgress } from "@mui/material";
 
 export const ContractSignatureContainer = styled.div`
     display: flex;
