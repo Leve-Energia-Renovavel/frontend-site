@@ -1,7 +1,7 @@
 "use client"
 
-import NewContractSignature from '@/app/pages/components/new-contract-signature/NewContractSignature';
-import EconomySimulation from '@/app/pages/components/signup/EconomySimulation';
+import RegisterContract from '@/app/pages/components/register/contract/RegisterContract';
+import RegisterAddress from '@/app/pages/components/register/RegisterAddress';
 import RegisterUser from '@/app/pages/components/register/RegisterUser';
 import { usePathname } from 'next/navigation';
 
@@ -14,8 +14,8 @@ export default function RegisterRouting() {
 
     const routing = {
         "titular": <RegisterUser />,
-        "imovel": <EconomySimulation />,
-        "assinatura-contrato": <NewContractSignature />
+        "imovel": <RegisterAddress />,
+        "assinatura-contrato": <RegisterContract />
     }
 
     return (

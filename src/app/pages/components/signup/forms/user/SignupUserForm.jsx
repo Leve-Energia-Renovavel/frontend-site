@@ -2,11 +2,9 @@
 "use client"
 
 import { useStoreAddress, useStoreCompany, useStoreUser } from '@/app/hooks/stores/useStore';
-import useGetCEP from '@/app/hooks/utils/useGetCEP';
 import useGetCNPJ from '@/app/hooks/utils/useGetCNPJ';
 import InstallationNumberModal from '@/app/register/modals/installation-number-modal/InstallationNumberModal';
-import { hasToSignContract, requestSuccessful } from '@/app/service/utils/Validations';
-import { findCityIdByName } from '@/app/service/utils/addressUtilsService';
+import { requestSuccessful } from '@/app/service/utils/Validations';
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
 import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
 import { statesAcronymOptions } from '@/app/utils/form-options/statesIdOptions';
@@ -14,25 +12,24 @@ import { formatBrazillianCurrency } from '@/app/utils/formatters/costFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
-import InfoIcon from '@mui/icons-material/Info';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, Button, CircularProgress, MenuItem, Typography } from '@mui/material';
 import Cookies from 'js-cookie';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import InputMask from "react-input-mask";
-import { companySchema, userSchema } from './schema';
-import { SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, fileInputStyles } from './styles';
+import { companySchema, userSchema } from '../schema';
+import { SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormRow, FormSubmitButton, SignupFormContentContainer, fileInputStyles } from './styles';
 
+import { PATH_TO } from '@/app/pages/enums/globalEnums';
 import { signUp } from '@/app/service/user-service/UserService';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
 import { activeDistributorsForDisclaimer, costValidation, newCostValidation } from '@/app/utils/helper/signup/signupHelper';
 import dynamic from 'next/dynamic';
-import { handleRequestsErrors } from './validation';
 
-const Messages = dynamic(() => import('../../messages/Messages'), { ssr: false });
+const Messages = dynamic(() => import('../../../messages/Messages'), { ssr: false });
 
-export default function SignupForm() {
+export default function SignupUserForm() {
 
   const search = useSearchParams()
   const router = useRouter()
@@ -64,7 +61,6 @@ export default function SignupForm() {
 
   const showDisclaimer = activeDistributorsForDisclaimer(distributor?.toUpperCase())
 
-  const fetchCEP = useGetCEP();
   const fetchCNPJ = useGetCNPJ();
 
   const handleChangeUserCost = (event) => {
@@ -95,24 +91,6 @@ export default function SignupForm() {
       }
     } else {
       setErrorMessage(["Preencha o campo de CNPJ antes da busca"])
-    }
-  }
-  const handleGetCEP = async (cep) => {
-    if (cep !== "") {
-      setIsLoadingCEP(true)
-      try {
-        const response = await fetchCEP(cep)
-        if (requestSuccessful(response?.status)) {
-          setNotifications(["Endereço encontrado com sucesso!"])
-        } else {
-          setErrorMessage(["Erro ao buscar o CEP. Por favor, preencha os dados manualmente."])
-        }
-      } catch (error) {
-      } finally {
-        setIsLoadingCEP(false)
-      }
-    } else {
-      setErrorMessage(["Preencha o campo de CEP antes da busca"])
     }
   }
 
@@ -149,13 +127,6 @@ export default function SignupForm() {
     state: useRef(null),
     city: useRef(null),
     installationNumber: useRef(null)
-  }
-
-  const handleChangeState = (value) => {
-    setStateValue(stateOptions[value])
-    const newStateId = value
-    const newStateUf = stateOptions[value].sigla
-    storeAddress.updateAddress({ stateId: newStateId, state: newStateUf })
   }
 
   const handleClickFiles = (fileType) => {
@@ -210,64 +181,91 @@ export default function SignupForm() {
       cpf: userRefs.cpf.current.value,
       data_nascimento: userRefs.birthDate.current.value,
       telefone: userRefs.phone.current.value,
-      cep: addressRefs.addressCep.current.value,
-      endereco: addressRefs.address.current.value,
-      numero: parseFloat(addressRefs.addressNumber.current.value?.replace(/[^0-9.]/g, "")),
-      bairro: addressRefs.neighborhood.current.value,
-      complemento: addressRefs.complement.current.value,
-      estado_id: storeAddress.address.stateId || stateValue.cod_estados,
-      cidade_id: storeAddress.address.cityId || await findCityIdByName(addressRefs.city.current.value, stateValue.cod_estados),
       valor: validatedCost,
       nacionalidade: userRefs.nationality.current.value,
       profissao: userRefs.profession.current.value,
       estado_civil: userRefs.maritalStatus.current.value,
-      numero_instalacao: addressRefs.installationNumber.current.value
     }
     if (isCompany) {
       submitData["razao_social"] = companyRefs.razao_social.current.value
       submitData["cnpj"] = companyRefs.cnpj.current.value
     }
 
-    const response = await schemaValidation(isCompany, submitData)
-    if (requestSuccessful(response?.status) || hasToSignContract(response?.data?.message)) {
-
-      store.updateUser({
-        birthDate: submitData.data_nascimento,
-        rg: submitData.rg,
-        cpf: submitData.cpf,
-        maritalStatus: submitData.estado_civil,
-        profession: submitData.profissao,
-        nationality: submitData.nacionalidade,
-      });
-
-      if (isCompany) {
-        store.updateUser({
-          companyName: submitData.razao_social,
-        });
-      }
-
-      const updatedAddress = {
-        street: submitData.endereco,
-        number: submitData.numero,
-        neighborhood: submitData.bairro,
-        complement: submitData.complemento,
-        city: addressRefs.city.current.value,
-        state: addressRefs.state.current.value,
-        cityId: submitData.cidade_id,
-        stateId: submitData.estado_id,
-        cep: submitData.cep,
-        installationNumber: submitData.numero_instalacao,
-      }
-
-      storeAddress.updateAddress(updatedAddress)
-
-      setNotifications(["Cadastro realizado com sucesso!"])
-      router.push(`/signup/contract-signature/?uuid=${uuid}`)
-
-    } else await handleRequestsErrors(response, setNotifications, setErrorMessage, router)
+    router.push(`${PATH_TO.REGISTER_ADDRESS}/?uuid=${uuid}`)
 
     setIsLoading(false)
   }
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault()
+  //   setIsLoading(true)
+
+  //   const validatedCost = costValidation(userRefs.cost.current.value)
+
+  //   var submitData = {
+  //     uuid: uuid,
+  //     nome_completo: sanitizeAndCapitalizeWords(userRefs.name.current.value),
+  //     email: userRefs.email.current.value,
+  //     rg: userRefs.rg.current.value?.replace(/[-_]/g, ""),
+  //     cpf: userRefs.cpf.current.value,
+  //     data_nascimento: userRefs.birthDate.current.value,
+  //     telefone: userRefs.phone.current.value,
+  //     cep: addressRefs.addressCep.current.value,
+  //     endereco: addressRefs.address.current.value,
+  //     numero: parseFloat(addressRefs.addressNumber.current.value?.replace(/[^0-9.]/g, "")),
+  //     bairro: addressRefs.neighborhood.current.value,
+  //     complemento: addressRefs.complement.current.value,
+  //     estado_id: storeAddress.address.stateId || stateValue.cod_estados,
+  //     cidade_id: storeAddress.address.cityId || await findCityIdByName(addressRefs.city.current.value, stateValue.cod_estados),
+  //     valor: validatedCost,
+  //     nacionalidade: userRefs.nationality.current.value,
+  //     profissao: userRefs.profession.current.value,
+  //     estado_civil: userRefs.maritalStatus.current.value,
+  //     numero_instalacao: addressRefs.installationNumber.current.value
+  //   }
+  //   if (isCompany) {
+  //     submitData["razao_social"] = companyRefs.razao_social.current.value
+  //     submitData["cnpj"] = companyRefs.cnpj.current.value
+  //   }
+
+  //   const response = await schemaValidation(isCompany, submitData)
+  //   if (requestSuccessful(response?.status) || hasToSignContract(response?.data?.message)) {
+
+  //     store.updateUser({
+  //       birthDate: submitData.data_nascimento,
+  //       rg: submitData.rg,
+  //       cpf: submitData.cpf,
+  //       maritalStatus: submitData.estado_civil,
+  //       profession: submitData.profissao,
+  //       nationality: submitData.nacionalidade,
+  //     });
+
+  //     if (isCompany) {
+  //       store.updateUser({
+  //         companyName: submitData.razao_social,
+  //       });
+  //     }
+
+  //     const updatedAddress = {
+  //       street: submitData.endereco,
+  //       number: submitData.numero,
+  //       neighborhood: submitData.bairro,
+  //       complement: submitData.complemento,
+  //       city: addressRefs.city.current.value,
+  //       state: addressRefs.state.current.value,
+  //       cityId: submitData.cidade_id,
+  //       stateId: submitData.estado_id,
+  //       cep: submitData.cep,
+  //       installationNumber: submitData.numero_instalacao,
+  //     }
+
+  //     storeAddress.updateAddress(updatedAddress)
+
+  //     router.push(`/signup/contract-signature/?uuid=${uuid}`)
+
+  //   } else await handleRequestsErrors(response, setNotifications, setErrorMessage, router)
+
+  //   setIsLoading(false)
+  // }
 
   useEffect(() => {
     setStateValue(stateOptions[stateId] || stateOptions[(statesAcronymOptions[state])] || null)
@@ -466,113 +464,7 @@ export default function SignupForm() {
                 inputProps={{ inputMode: 'numeric' }}
                 InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
                 required />
-
-              <InputMask mask="99999-999" value={cep || ""}
-                onChange={(e) => storeAddress.updateAddress({ cep: e.target.value })}
-                onBlur={(e) => handleGetCEP(addressRefs.addressCep.current.value)}>
-                {() => <FormInput
-                  className="inputForm"
-                  inputRef={addressRefs.addressCep}
-                  label="CEP"
-                  variant="outlined"
-                  placeholder="CEP"
-                  type="text"
-                  inputProps={{ inputMode: 'numeric' }}
-                  InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
-                  InputProps={{
-                    endAdornment: !isLoadingCEP ? <SearchIcon className="searchIcon"
-                      onClick={() => handleGetCEP(addressRefs.addressCep.current.value)} /> :
-                      <Box>
-                        <CircularProgress className='formLoading' size={"25px"} />
-                      </Box>,
-                  }}
-                  required />}
-              </InputMask>
-
-              <FormInput className="inputForm"
-                defaultValue={street || ''}
-                inputRef={addressRefs.address}
-                label="Endereço" variant="outlined"
-                placeholder="Endereço"
-                type="text"
-                InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }} required />
-
-              <InputMask mask="99999">
-                {() => <FormInput
-                  className="inputForm"
-                  inputRef={addressRefs.addressNumber}
-                  label="Nº"
-                  variant="outlined"
-                  placeholder="Nº"
-                  type="text"
-                  inputProps={{ inputMode: 'numeric' }}
-                  InputLabelProps={{ style: { color: '#FF7133' } }}
-                  required />}
-              </InputMask>
-
-              <FormInput className="inputForm"
-                inputRef={addressRefs.complement}
-                label="Complemento" variant="outlined" placeholder="Complemento"
-                type="text"
-                InputLabelProps={addressRefs?.complement?.current?.value ? { shrink: true } : {},
-                  { style: { color: '#FF7133' } }} />
-
-              <FormInput className="inputForm"
-                defaultValue={neighborhood || ''}
-                inputRef={addressRefs.neighborhood}
-                label="Bairro" variant="outlined" placeholder="Bairro"
-                type="text"
-                InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }} required />
-
-              <FormInput
-                id="state"
-                select
-                value={stateValue?.cod_estados || ''}
-                onChange={(event) => handleChangeState(event.target.value)}
-                label="Estado"
-                placeholder="Estado"
-                variant="outlined"
-                className="inputForm"
-                InputLabelProps={{
-                  component: 'span',
-                  style: { color: '#FF7133' },
-                  shrink: stateValue ? true : false
-                }}
-                inputRef={addressRefs.state}
-                required>
-                {Object.values(stateOptions).map((state) => {
-                  return (
-                    <MenuItem key={state.cod_estados} value={state.cod_estados}>{state.sigla}</MenuItem>
-                  )
-                })}
-              </FormInput>
-
-
-              <FormInput
-                className="inputForm"
-                defaultValue={city?.toUpperCase() || ''}
-                inputRef={addressRefs.city}
-                label="Cidade"
-                variant="outlined"
-                placeholder="Cidade"
-                type="text"
-                InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }} required />
             </FormContent>
-
-            <FormLastRow>
-              <InstallationInput
-                inputRef={addressRefs.installationNumber}
-                className="inputForm"
-                label={`Número de Instalação`}
-                variant="outlined"
-                placeholder={`Número de Instalação`}
-                type="text"
-              />
-              {showDisclaimer && <InstallationNumberDisclaimer onClick={() => setIsModalOpen(true)}>
-                <InfoIcon className='infoIcon' />
-                <Typography className='installationNumberDisclaimer'><span className='underlined'>Encontre este número</span> no canto superior direito de sua fatura atual.</Typography>
-              </InstallationNumberDisclaimer>}
-            </FormLastRow>
 
             {isCompany ? (
               <FileUploadContainer>

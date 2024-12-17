@@ -9,12 +9,12 @@ import Cookies from "js-cookie";
 import dynamic from "next/dynamic";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
-import { PATH_TO } from "../../enums/globalEnums";
+import { PATH_TO } from "../../../enums/globalEnums";
 import { ContractSignatureContainer as Container, ContractSignatureForm } from "./styles";
 
 const ClicksignWidgetComponent = dynamic(() => import("@/app/utils/clicksign/ClicksignWidgetComponent"), { ssr: false });
 
-export default function NewContractSignature() {
+export default function RegisterContract() {
 
     const store = useStoreUser()
     const storeClicksign = useStoreClickSign()

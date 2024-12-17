@@ -5,7 +5,7 @@ import { useStoreAddress, useStoreUser } from '@/app/hooks/stores/useStore';
 import { getLeadData } from '@/app/service/lead-service/LeadService';
 import { notFound, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
-import SignupAddressForm from '../signup/forms/SignupAddressForm';
+import SignupAddressForm from '../signup/forms/address/SignupAddressForm';
 import { SignUpContainer as Container } from '../signup/styles';
 
 export default function RegisterAddress() {
@@ -20,12 +20,12 @@ export default function RegisterAddress() {
         notFound()
     }
 
-    useEffect(() => {
-        const fetchData = async () => {
-            await getLeadData(uuid, store, storeAddress)
-        };
-        fetchData();
-    }, []);
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         await getLeadData(uuid, store, storeAddress)
+    //     };
+    //     fetchData();
+    // }, []);
 
 
     return (

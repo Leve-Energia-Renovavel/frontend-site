@@ -8,7 +8,7 @@ import { notFound, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { SignUpContainer as Container } from '../signup/styles';
 
-const SignupUserForm = dynamic(() => import('../signup/forms/SignupForm'), { ssr: false });
+const SignupUserForm = dynamic(() => import('../signup/forms/user/SignupUserForm'), { ssr: false });
 
 export default function RegisterUser() {
 
