@@ -1,12 +1,11 @@
+"use client"
+
 import BrandsContainer from "./brands/HomeBrands";
-import NewHomeForm from "./form/new-home/NewHomeForm";
 import NewHomeVideo from "./video/NewHomeVideo";
 
-export default function HomeMainThird() {
+export default function HomeLeveAboutUs() {
     return (
         <>
-            <NewHomeForm />
-
             <BrandsContainer />
 
             <NewHomeVideo />

@@ -20,7 +20,7 @@ import { schemaValidation } from '../../../schema';
 import HomeMainFormSimulator from '../../simulator/HomeMainFormSimulator';
 import NewHomeMainFormHeader from './header/NewHomeMainFormHeader';
 
-export default function NewHomeMainForm() {
+export default function HomeMainForm() {
 
     const router = useRouter()
 

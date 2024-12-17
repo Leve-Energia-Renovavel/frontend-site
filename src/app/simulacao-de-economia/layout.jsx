@@ -1,5 +1,5 @@
 export const metadata = {
-    title: 'Cadastro - Leve Energia Renovavel',
+    title: 'Simulação de Economia - Leve Energia Renovavel',
     description: 'Leve energia renovavel - pague menos na conta de luz',
     icons: {
         icon: "/favicon.ico",

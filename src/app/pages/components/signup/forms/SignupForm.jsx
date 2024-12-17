@@ -21,9 +21,8 @@ import Cookies from 'js-cookie';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import InputMask from "react-input-mask";
-import SignupFormHeader from './SignupFormHeader';
 import { companySchema, userSchema } from './schema';
-import { SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, SignupFormTitle, SignupLinearProgress, fileInputStyles } from './styles';
+import { SignupFormContainer as Container, FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormLastRow, FormRow, FormSubmitButton, InstallationInput, InstallationNumberDisclaimer, SignupFormContentContainer, fileInputStyles } from './styles';
 
 import { signUp } from '@/app/service/user-service/UserService';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
@@ -287,13 +286,6 @@ export default function SignupForm() {
       <Container className='signupFormContainer'>
 
         <SignupFormContentContainer className='signupFormContent'>
-          <SignupFormHeader step={1} />
-
-          <SignupLinearProgress variant="determinate" value={25} />
-
-          <SignupFormTitle>
-            <p className="fillFormBelow">Preencha o cadastro abaixo:</p>
-          </SignupFormTitle>
 
           <Form id='signupForm' acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
             {isCompany && (

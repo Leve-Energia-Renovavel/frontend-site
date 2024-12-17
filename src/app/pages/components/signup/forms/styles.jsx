@@ -1,6 +1,5 @@
 import { background, notification } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { Alert, Button, TextField, keyframes } from "@mui/material";
 import Divider from '@mui/material/Divider';
 import LinearProgress from '@mui/material/LinearProgress';
@@ -36,16 +35,6 @@ export const SignupFormContainer = styled.div`
     }
 `
 
-export const SignupFormTitle = styled.div`
-    padding: 0px 10px;
-
-    .fillFormBelow {    
-        font-family: "Graphie";
-        font-size: 17px;
-        font-weight: 500;
-        color: ${background.green};
-    }
-`
 export const SignupFormContentContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -76,78 +65,6 @@ export const SignupFormContentContainer = styled.div`
     }
     @media (max-width: 600px) and (max-height: 670px) {
         padding: 1rem 0 150px 0;
-    }
-`
-export const SignupFormHeaderContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-
-    justify-content: space-between;
-
-    .formHeaderTitle { 
-        font-family: "Graphie";
-        font-size: 27px;
-        font-weight: 700;
-        color: ${background.orange};
-
-        white-space: nowrap;
-    }
-    
-    .formHeaderSubtitle {
-        font-family: "Graphie";
-        font-size: 17px;
-        font-weight: 600;
-        color: ${background.orange};
-
-        white-space: nowrap;
-    }
-`
-export const SignupFormHeaderHelpContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    gap: 1rem;
-`
-export const SignupFormHeaderHelpContentContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    gap: 5px;
-
-    &:hover {
-        cursor: pointer;
-            h6 {
-                color: ${background.orange};
-            }
-            .helpIcon {
-                color: ${background.orange};
-            }
-        }
-
-    p {
-        font-family: "Graphie";
-        font-size: 12px;
-        font-weight: 700;
-        color: ${background.green};
-    }
-`
-
-export const HelpIcon = styled(HelpOutlineIcon)`
-    color: ${background.green};
-    width: 20px;
-    height: 20px;
-`
-
-export const SignupLinearProgress = styled(LinearProgress)`
-    background-color: ${background.yellow};
-    border-bottom-width: 5px;
-
-    margin-bottom: 15px;
-    
-    & .MuiLinearProgress-bar {
-        background-color: ${background.orange};
     }
 `
 

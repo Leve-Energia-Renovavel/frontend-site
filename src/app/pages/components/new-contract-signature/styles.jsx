@@ -62,14 +62,3 @@ export const ContractSignatureForm = styled.div`
         background-color: ${background.yellow};
     }
 `
-
-export const SignupLinearProgress = styled(LinearProgress)`
-    background-color: ${background.yellow};
-    border-bottom-width: 5px;
-
-    margin-bottom: 15px;
-    
-    & .MuiLinearProgress-bar {
-        background-color: ${background.orange};
-    }
-`

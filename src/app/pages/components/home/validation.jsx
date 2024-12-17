@@ -51,7 +51,7 @@ export const requestValidation = async (response, setNotifications, setErrorMess
                 window.open(url, '_blank', 'noopener noreferrer');
             } else {
                 setNotifications(["Simulação realizada com sucesso! Aguarde 2 segundos..."])
-                router.push(`${PATH_TO.SIGNUP}?uuid=${uuid}`)
+                router.push(`${PATH_TO.ECONOMY_SIMULATION}?uuid=${uuid}`)
             }
         }
 
@@ -75,7 +75,7 @@ export const requestValidation = async (response, setNotifications, setErrorMess
             router.push(PATH_TO.OUT_OF_RANGE)
         }
         else if (responseCode === "TCPA") {
-            router.push(PATH_TO.CONTRACT_SIGNATURE)
+            router.push(PATH_TO.REGISTER_CONTRACT)
         }
         else if (responseCode === "CPI") {
             setErrorMessage(["Cupom inválido. Por favor, verifique e tente novamente"])

@@ -1,8 +1,8 @@
 import { HOME_FORM_ID } from '@/app/pages/enums/globalEnums'
 import bannerImage from '../../../../../../resources/img/large/leve-economy-image-child-outside.jpg'
-import NewHomeMainForm from './form/NewHomeMainForm'
+import HomeMainForm from './form/HomeMainForm'
 import { NewHomeMainFormContainer as Container, NewHomeMainBannerImage } from './styles'
-export default function NewHomeForm() {
+export default function HomeForm() {
 
     return (
         <Container className='leveHomeMainFormContainer' id={HOME_FORM_ID}>
@@ -10,7 +10,7 @@ export default function NewHomeForm() {
                 <p className='leveHomeFormBannerTitle'>Compartilhando a energia do futuro com você</p>
             </NewHomeMainBannerImage>
 
-            <NewHomeMainForm />
+            <HomeMainForm />
         </Container>
     )
 }

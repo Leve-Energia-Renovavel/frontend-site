@@ -1,6 +1,7 @@
 "use client"
 
 import { useStoreUser } from '@/app/hooks/stores/useStore'
+import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages'
 import { checkForZero, checkForZeroCurrency, checkForZeroDiscount, newCostValidation, updateSliderConfig } from '@/app/utils/helper/result-economy/resultEconomyHelper'
 import { benefits } from '@/app/utils/helper/signup/signupHelper'
 import { ENVIRONMENTAL_IMPACT, PATH_TO, USER_COST } from '@/enums/globalEnums'
@@ -10,11 +11,12 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useRef, useState } from 'react'
 import { ArrowDownContainer, ArrowDownIcon, ContinueSignupButton, EconomyResultContainer, EconomyResultFooter, EconomyResultTitleContainer, EditTodayCostIcon, LeveBenefit, LeveBenefitsContainer, LeveBenefitsContent, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomyDisclaimer, LoadingCircle, OneYearEconomyContainer, OneYearEconomyContent, OneYearEconomyData, OneYearEconomyHeader, PercentageIcon, RoundCheckIcon, SimpleArrowForward, SimpleCheckIcon, SimpleCloseIcon, SimulationSlider, TodayCostContainer, TodayCostValue, TodayEconomyContainer, TodayEconomyContent } from './styles'
 
-export default function NewResultEconomy({ setErrorMessage, setNotifications }) {
+export default function NewResultEconomy() {
 
     const router = useRouter()
     const search = useSearchParams()
     const storeUser = useStoreUser()
+    const storeMessage = useStoreMessages()
 
     const uuid = search.get("uuid")
     const user = JSON.parse(localStorage.getItem('user'))
@@ -50,10 +52,10 @@ export default function NewResultEconomy({ setErrorMessage, setNotifications }) 
 
     const handleSubmit = () => {
         if (cost <= 0 || cost < 200) {
-            setErrorMessage(["O valor da sua conta de luz deve ser superior a R$ 200"])
+            storeMessage.setErrors(["O valor da sua conta de luz deve ser superior a R$ 200"])
         } else {
             setIsLoading(true)
-            router.push(`${PATH_TO.SIGNUP_FORM}?uuid=${uuid}`)
+            router.push(`${PATH_TO.REGISTER_USER}?uuid=${uuid}`)
             setIsLoading(false)
         }
     }

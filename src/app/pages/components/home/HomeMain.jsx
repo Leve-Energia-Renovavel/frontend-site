@@ -3,16 +3,11 @@
 import { Divider } from "@mui/material";
 import dynamic from "next/dynamic";
 import NewHomeMainBanner from "./banners/main/new-home/NewHomeMainBanner";
+import HomeHowLeveWorks from "./HomeMainSecond";
+import HomeLeveAboutUs from "./HomeMainThird";
 import { HomeContainer as Container, HomeContentContainer as HomeBanner } from "./styles";
-import NewHomeBoxes from "./boxes/new-home/NewHomeBoxes";
-import HomeMainSecond from "./HomeMainSecond";
-import HomeMainThird from "./HomeMainThird";
 
-const NewHomeBenefits = dynamic(() => import("./benefits/NewHomeBenefits"), { ssr: false });
-const NewHomeTutorial = dynamic(() => import("./tutorial/new-home/NewHomeTutorial"), { ssr: false });
-const NewHomeForm = dynamic(() => import("./form/new-home/NewHomeForm"), { ssr: false });
-const BrandsContainer = dynamic(() => import("./brands/HomeBrands"), { ssr: false });
-const NewHomeVideo = dynamic(() => import("./video/NewHomeVideo"), { ssr: false });
+const HomeForm = dynamic(() => import("./form/new-home/HomeForm"), { ssr: false });
 const Messages = dynamic(() => import("../messages/Messages"), { ssr: false });
 
 export default function HomeMain() {
@@ -26,8 +21,11 @@ export default function HomeMain() {
                     <NewHomeMainBanner />
                 </HomeBanner>
 
-                <HomeMainSecond />
-                <HomeMainThird />
+                <HomeHowLeveWorks />
+
+                <HomeForm />
+
+                <HomeLeveAboutUs />
 
             </Container >
 

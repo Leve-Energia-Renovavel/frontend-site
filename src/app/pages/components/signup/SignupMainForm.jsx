@@ -26,7 +26,6 @@ export default function SignupMainForm() {
         const fetchData = async () => {
             await getLeadData(uuid, store, storeAddress)
         };
-
         fetchData();
     }, []);
 

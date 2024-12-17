@@ -81,6 +81,6 @@ export const handleScrollToId = (id) => {
     if (element) {
         window.scrollTo({ top: element.offsetTop - 60, behavior: 'smooth' });
     } else {
-        window.scrollTo({ top: 500, behavior: 'smooth' })
+        window.scrollTo({ top: 3050, behavior: 'smooth' })
     }
 }
