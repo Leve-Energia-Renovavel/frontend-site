@@ -7,8 +7,8 @@ export default function HomeMainBannerMobile() {
     return (
         <HomeMobileMainContent className='homeMainContentMobile'>
             <h1 className='homeMainTitleMobile'>{texts.mobile.title}<span className='highlighted'>{texts.mobile.cheaper}</span>{texts.mobile.withClearEnergy}.</h1>
-            <p className='homeMainSubtitleMobile'>{texts.mobile.subtitle}.</p>
-            <p className='homeMainDescriptionMobile'>{texts.mobile.description}.</p>
+            <p className='homeMainSubtitleMobile'>{texts.mobile.subtitle}</p>
+            <p className='homeMainDescriptionMobile'>{texts.mobile.description}</p>
             <CallToActionButton isMobile={true} title={`Calcular meu desconto`} starIcon={false} endIcon={false} />
         </HomeMobileMainContent>
     )
