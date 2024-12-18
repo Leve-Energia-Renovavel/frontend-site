@@ -2,7 +2,7 @@
 "use client"
 
 import { useStoreAddress, useStoreUser } from '@/app/hooks/stores/useStore';
-import { notFound, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import SignupAddressForm from '../signup/forms/address/SignupAddressForm';
 
 export default function RegisterAddress() {
@@ -11,15 +11,16 @@ export default function RegisterAddress() {
     const store = useStoreUser()
     const storeAddress = useStoreAddress()
 
-    const uuid = search.get("uuid")
+    const { uuid } = store?.user || {}
+    var uuidParam = search.get("uuid")
 
-    if (!uuid || uuid == "undefined") {
-        notFound()
+    if (!uuidParam || uuidParam === 'undefined') {
+        uuidParam = uuid
     }
 
     // useEffect(() => {
     //     const fetchData = async () => {
-    //         await getLeadData(uuid, store, storeAddress)
+    //         await getLeadData(uuidParam, store, storeAddress)
     //     };
     //     fetchData();
     // }, []);

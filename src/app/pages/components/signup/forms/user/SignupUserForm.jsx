@@ -1,13 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreAddress, useStoreCompany, useStoreUser } from '@/app/hooks/stores/useStore';
+import { useStoreUser } from '@/app/hooks/stores/useStore';
 import useGetCNPJ from '@/app/hooks/utils/useGetCNPJ';
-import InstallationNumberModal from '@/app/register/modals/installation-number-modal/InstallationNumberModal';
 import { requestSuccessful } from '@/app/service/utils/Validations';
-import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
 import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
-import { statesAcronymOptions } from '@/app/utils/form-options/statesIdOptions';
 import { formatBrazillianCurrency } from '@/app/utils/formatters/costFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -18,13 +15,12 @@ import Cookies from 'js-cookie';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import InputMask from "react-input-mask";
-import { companySchema, userSchema } from '../schema';
 import { FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormRow, FormSubmitButton, fileInputStyles } from './styles';
 
+import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import { PATH_TO } from '@/app/pages/enums/globalEnums';
-import { signUp } from '@/app/service/user-service/UserService';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
-import { activeDistributorsForDisclaimer, costValidation, newCostValidation } from '@/app/utils/helper/signup/signupHelper';
+import { costValidation, newCostValidation } from '@/app/utils/helper/signup/signupHelper';
 import dynamic from 'next/dynamic';
 
 const Messages = dynamic(() => import('../../../messages/Messages'), { ssr: false });
@@ -34,32 +30,21 @@ export default function SignupUserForm() {
   const search = useSearchParams()
   const router = useRouter()
   const store = useStoreUser()
-  const storeAddress = useStoreAddress()
+  const messages = useStoreMessages()
 
   const uuid = store.user.uuid || Cookies.get('leveUUID')
   const user = JSON.parse(localStorage.getItem('user'))
-  const address = JSON.parse(localStorage.getItem('address'))
-  const company = useStoreCompany().company
 
   const { name, email, phone, cost, distributor, companyName, cnpj, birthDate, isCompany } = user?.user ?? (store?.user || {})
-  const { street, neighborhood, city, state, stateId, cityId, cep } = address?.address ?? (storeAddress?.address || {})
 
   const [userCost, setUserCost] = useState(cost || null)
   const [isForeigner, setIsForeigner] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoadingCEP, setIsLoadingCEP] = useState(false);
   const [isLoadingCNPJ, setIsLoadingCNPJ] = useState(false);
-
-  const [errors, setErrorMessage] = useState([]);
-  const [notifications, setNotifications] = useState([])
-  const [stateValue, setStateValue] = useState(stateId ? stateId : stateOptions[(statesAcronymOptions[state])]);
 
   const [socialContractFile, setSocialContractFile] = useState(null);
   const [energyExtractFile, setEnergyExtractFile] = useState(null);
-
-  const showDisclaimer = activeDistributorsForDisclaimer(distributor?.toUpperCase())
 
   const fetchCNPJ = useGetCNPJ();
 
@@ -90,12 +75,8 @@ export default function SignupUserForm() {
         setIsLoadingCNPJ(false)
       }
     } else {
-      setErrorMessage(["Preencha o campo de CNPJ antes da busca"])
+      messages.setErrors(["Preencha o campo de CNPJ antes da busca"])
     }
-  }
-
-  const closeModal = () => {
-    setIsModalOpen(false)
   }
 
   const userRefs = {
@@ -114,19 +95,8 @@ export default function SignupUserForm() {
   const companyRefs = {
     razao_social: useRef(null),
     cnpj: useRef(null),
-    socialContract: useRef(null),
-    energyExtract: useRef(null),
-  }
-
-  const addressRefs = {
-    address: useRef(null),
-    addressNumber: useRef(null),
-    addressCep: useRef(null),
-    complement: useRef(null),
-    neighborhood: useRef(null),
-    state: useRef(null),
-    city: useRef(null),
-    installationNumber: useRef(null)
+    contrato_social: useRef(null),
+    extrato_energia: useRef(null),
   }
 
   const handleClickFiles = (fileType) => {
@@ -155,18 +125,6 @@ export default function SignupUserForm() {
     setIsForeigner(value === "estrangeira");
   };
 
-  const schemaValidation = async (isCompany, data) => {
-    try {
-      const validatedData = isCompany
-        ? await companySchema.validate(data, { abortEarly: false })
-        : await userSchema.validate(data, { abortEarly: false });
-
-      return await signUp(validatedData);
-    } catch (error) {
-      return error.errors;
-    }
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault()
     setIsLoading(true)
@@ -191,13 +149,12 @@ export default function SignupUserForm() {
       submitData["cnpj"] = companyRefs.cnpj.current.value
     }
 
-    router.push(`${PATH_TO.REGISTER_ADDRESS}?uuid=${uuid}`)
+    router.push(`${PATH_TO.REGISTER_ADDRESS}`)
 
     setIsLoading(false)
   }
+
   // const handleSubmit = async (event) => {
-  //   event.preventDefault()
-  //   setIsLoading(true)
 
   //   const validatedCost = costValidation(userRefs.cost.current.value)
 
@@ -245,31 +202,10 @@ export default function SignupUserForm() {
   //       });
   //     }
 
-  //     const updatedAddress = {
-  //       street: submitData.endereco,
-  //       number: submitData.numero,
-  //       neighborhood: submitData.bairro,
-  //       complement: submitData.complemento,
-  //       city: addressRefs.city.current.value,
-  //       state: addressRefs.state.current.value,
-  //       cityId: submitData.cidade_id,
-  //       stateId: submitData.estado_id,
-  //       cep: submitData.cep,
-  //       installationNumber: submitData.numero_instalacao,
-  //     }
-
-  //     storeAddress.updateAddress(updatedAddress)
-
   //     router.push(`/signup/contract-signature/?uuid=${uuid}`)
 
   //   } else await handleRequestsErrors(response, setNotifications, setErrorMessage, router)
-
-  //   setIsLoading(false)
   // }
-
-  useEffect(() => {
-    setStateValue(stateOptions[stateId] || stateOptions[(statesAcronymOptions[state])] || null)
-  }, [store, storeAddress])
 
   useEffect(() => {
     if (uuid !== search.get("uuid")) {
@@ -474,7 +410,7 @@ export default function SignupUserForm() {
               <input
                 type="file"
                 onChange={(event) => handleChangeFiles(event, 'socialContract')}
-                ref={companyRefs.socialContract}
+                ref={companyRefs.contrato_social}
                 style={{ display: 'none' }} />
               {socialContractFile && (
                 <>
@@ -494,7 +430,7 @@ export default function SignupUserForm() {
               <input
                 type="file"
                 onChange={(event) => handleChangeFiles(event, 'energyExtract')}
-                ref={companyRefs.energyExtract}
+                ref={companyRefs.extrato_energia}
                 style={{ display: 'none' }} />
               {energyExtractFile && (
                 <>
@@ -525,9 +461,7 @@ export default function SignupUserForm() {
         </FormButtonContainer>
       </FormFooter>
 
-      {isModalOpen && <InstallationNumberModal isModalOpen={isModalOpen} closeModal={closeModal} distribuitor={distributor ? distributor.toLowerCase() : ""} />}
-
-      <Messages notifications={notifications} errors={errors} setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
+      <Messages />
 
     </>
   )

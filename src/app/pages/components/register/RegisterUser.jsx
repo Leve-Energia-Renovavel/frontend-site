@@ -4,7 +4,7 @@
 import { useStoreAddress, useStoreUser } from '@/app/hooks/stores/useStore';
 import { getLeadData } from '@/app/service/lead-service/LeadService';
 import dynamic from 'next/dynamic';
-import { notFound, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
 const SignupUserForm = dynamic(() => import('../signup/forms/user/SignupUserForm'), { ssr: false });
@@ -15,15 +15,16 @@ export default function RegisterUser() {
     const store = useStoreUser()
     const storeAddress = useStoreAddress()
 
-    const uuid = search.get("uuid")
+    const { uuid } = store?.user || {}
+    var uuidParam = search.get("uuid")
 
-    if (!uuid || uuid == "undefined") {
-        notFound()
+    if (!uuidParam || uuidParam === 'undefined') {
+        uuidParam = uuid
     }
 
     useEffect(() => {
         const fetchData = async () => {
-            await getLeadData(uuid, store, storeAddress)
+            await getLeadData(uuidParam, store, storeAddress)
         };
         fetchData();
     }, []);

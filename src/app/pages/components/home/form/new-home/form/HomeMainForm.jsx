@@ -19,12 +19,14 @@ import { USER_TYPE } from '@/app/pages/enums/globalEnums';
 import { schemaValidation } from '../../../schema';
 import HomeMainFormSimulator from '../../simulator/HomeMainFormSimulator';
 import NewHomeMainFormHeader from './header/NewHomeMainFormHeader';
+import { useStoreUser } from '@/app/hooks/stores/useStore';
 
 export default function HomeMainForm() {
 
     const router = useRouter()
 
     const search = useSearchParams()
+    const storeUser = useStoreUser()
     const storeMessage = useStoreMessages()
     const storeHome = useStoreHome()
     const selectedUserType = storeHome.selectedUserType
@@ -63,7 +65,7 @@ export default function HomeMainForm() {
         )
 
         const response = await schemaValidation(submitData, storeMessage.setErrors)
-        await requestValidation(response, storeMessage.setNotifications, storeMessage.setErrors, router)
+        await requestValidation(submitData, response, storeMessage.setNotifications, storeMessage.setErrors, storeUser, router)
         setLoading(false)
     }
 

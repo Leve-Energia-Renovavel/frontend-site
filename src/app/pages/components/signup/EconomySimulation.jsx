@@ -4,7 +4,7 @@
 import { useStoreAddress, useStoreUser } from '@/app/hooks/stores/useStore';
 import { getLeadData } from '@/app/service/lead-service/LeadService';
 import dynamic from 'next/dynamic';
-import { notFound, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Messages from '../messages/Messages';
 import LoadingResultEconomy from '../result-economy/loading/LoadingResultEconomy';
@@ -14,22 +14,24 @@ const ResultEconomy = dynamic(() => import('../result-economy/ResultEconomy'), {
 
 export default function EconomySimulation() {
 
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
     const search = useSearchParams()
     const store = useStoreUser()
     const storeAddress = useStoreAddress()
 
-    const uuid = search.get("uuid")
+    const { uuid } = store?.user || {}
+    var uuidParam = search.get("uuid")
 
-    if (!uuid || uuid == "undefined") {
-        notFound()
+    if (!uuidParam || uuidParam === 'undefined') {
+        uuidParam = uuid
     }
 
     useEffect(() => {
         const fetchData = async () => {
-            await getLeadData(uuid, store, storeAddress)
-            setIsLoading(true)
+            console.log("@@@@@@@@@@@ user ===>>", store.user)
+            await getLeadData(uuidParam, store, storeAddress)
+            setIsLoading(false)
         };
         fetchData();
     }, []);
@@ -37,7 +39,7 @@ export default function EconomySimulation() {
     return (
         <>
             <Container className='signupMainContainer'>
-                {isLoading ? <ResultEconomy /> : <LoadingResultEconomy />}
+                {isLoading ? <LoadingResultEconomy /> : <ResultEconomy />}
             </Container>
 
             <Messages />
