@@ -38,7 +38,9 @@ export default function NewDashboardMain(props) {
     const mainInstallationExists = storeMainInstallation?.mainInstallation?.uuid !== ""
     const isHomeOrInstallations = pathname === PATH_TO.DASHBOARD || pathname === PATH_TO.INSTALLATIONS;
     const activeDistributor = isTrue(distributorStatus)
-    
+
+    console.log("@@@@@ storeUser ===>>>", storeUser?.user)
+
     useEffect(() => {
         const fetchAllDashboardData = async () => {
             await getGeneralDashboardData(router, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations, setErrorMessage)

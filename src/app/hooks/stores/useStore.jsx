@@ -94,6 +94,7 @@ export const useStoreUser = create((set) => ({
                 refreshToken: "",
 
                 distributor: "",
+                distributorStatus: null,
                 distributorPhotoUrl: "",
                 distributorLogin: "",
                 distributorPassword: "",
