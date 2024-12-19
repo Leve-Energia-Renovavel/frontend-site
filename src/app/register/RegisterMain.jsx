@@ -19,10 +19,16 @@ export default function RegisterRouting() {
         "imovel": <RegisterAddress />,
         "assinatura-contrato": <RegisterContract />
     }
+    
+    const steps = {
+        "titular": 1,
+        "imovel": 2,
+        "assinatura-contrato": 3,
+    }
 
     return (
         <RoutingContainer className='routingContainer'>
-            <RegisterHeader>
+            <RegisterHeader step={steps[clearPathName(pathname)]}>
                 {routing[clearPathName(pathname)]}
             </RegisterHeader>
         </RoutingContainer>

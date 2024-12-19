@@ -29,7 +29,7 @@ export default function SignupAddressForm() {
   const uuid = store.user.uuid || Cookies.get('leveUUID')
   // const address = JSON.parse(localStorage.getItem('address'))
 
-  const { street, neighborhood, city, state, stateId, cityId, cep } = address?.address ?? (storeAddress?.address || {})
+  const { street, neighborhood, city, state, stateId, cityId, cep } = storeAddress?.address || {}
 
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingCEP, setIsLoadingCEP] = useState(false);

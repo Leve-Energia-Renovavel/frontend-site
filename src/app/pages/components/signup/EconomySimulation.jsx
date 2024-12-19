@@ -23,13 +23,12 @@ export default function EconomySimulation() {
     const { uuid } = store?.user || {}
     var uuidParam = search.get("uuid")
 
-    if (!uuidParam || uuidParam === 'undefined') {
+    if (!uuidParam) {
         uuidParam = uuid
     }
 
     useEffect(() => {
         const fetchData = async () => {
-            console.log("@@@@@@@@@@@ user ===>>", store.user)
             await getLeadData(uuidParam, store, storeAddress)
             setIsLoading(false)
         };

@@ -32,7 +32,7 @@ export default function SignupUserForm() {
   const store = useStoreUser()
   const messages = useStoreMessages()
 
-  const uuid = store.user.uuid || Cookies.get('leveUUID')
+  const uuid = store?.user?.uuid || Cookies.get('leveUUID')
   const user = JSON.parse(localStorage.getItem('user'))
 
   const { name, email, phone, cost, distributor, companyName, cnpj, birthDate, isCompany } = user?.user ?? (store?.user || {})
@@ -207,13 +207,15 @@ export default function SignupUserForm() {
   //   } else await handleRequestsErrors(response, setNotifications, setErrorMessage, router)
   // }
 
-  useEffect(() => {
-    if (uuid !== search.get("uuid")) {
-      setTimeout(() => {
-        window.location.reload();
-      }, 500);
-    }
-  }, []);
+  
+
+  // useEffect(() => {
+  //   if (uuid !== search.get("uuid")) {
+  //     setTimeout(() => {
+  //       window.location.reload();
+  //     }, 500);
+  //   }
+  // }, []);
 
   const required = false
 
@@ -389,7 +391,7 @@ export default function SignupUserForm() {
           <FormInput
             className="inputForm"
             inputRef={userRefs.cost}
-            value={formatBrazillianCurrency(userCost) || formatBrazillianCurrency(cost) || ""}
+            value={formatBrazillianCurrency(userCost) || ""}
             onChange={(event) => handleChangeUserCost(event)}
             label="Custo Mensal em R$"
             variant="outlined"

@@ -1,4 +1,3 @@
-import { background } from '@/app/pages/globalStyles';
 import { BoxComponent, RoutingHeaderContainer, StepComponent, StepLabelComponent, StepperComponent } from "./styles";
 
 const steps = [
@@ -7,11 +6,11 @@ const steps = [
     'Contrato',
 ];
 
-export default function RegisterHeader({ children }) {
+export default function RegisterHeader({ children, step }) {
     return (
         <RoutingHeaderContainer>
             <BoxComponent>
-                <StepperComponent activeStep={1}>
+                <StepperComponent activeStep={step}>
                     {steps.map((label) => (
                         <StepComponent key={label}>
                             <StepLabelComponent>{label}</StepLabelComponent>

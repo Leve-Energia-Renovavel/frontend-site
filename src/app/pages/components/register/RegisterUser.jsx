@@ -12,10 +12,10 @@ const SignupUserForm = dynamic(() => import('../signup/forms/user/SignupUserForm
 export default function RegisterUser() {
 
     const search = useSearchParams()
-    const store = useStoreUser()
+    const storeUser = useStoreUser()
     const storeAddress = useStoreAddress()
 
-    const { uuid } = store?.user || {}
+    const { uuid } = storeUser?.user || {}
     var uuidParam = search.get("uuid")
 
     if (!uuidParam || uuidParam === 'undefined') {
@@ -24,11 +24,10 @@ export default function RegisterUser() {
 
     useEffect(() => {
         const fetchData = async () => {
-            await getLeadData(uuidParam, store, storeAddress)
+            await getLeadData(uuidParam, storeUser, storeAddress)
         };
         fetchData();
     }, []);
-
 
     return (
         <SignupUserForm />

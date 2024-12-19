@@ -14,7 +14,7 @@ export default function RegisterAddress() {
     const { uuid } = store?.user || {}
     var uuidParam = search.get("uuid")
 
-    if (!uuidParam || uuidParam === 'undefined') {
+    if (!uuidParam) {
         uuidParam = uuid
     }
 

@@ -13,15 +13,15 @@ export const RoutingHeaderContainer = styled.div`
 export const StepperComponent = styled(Stepper)`
     width: 100%;
     max-width: 200px;
-    margin: 0 auto;
-    
+
     .MuiStepConnector-root span {
         border-color: transparent;
     }
 `
 export const StepComponent = styled(Step)`
-    .Mui-completed {
-        color: ${background.green}; // circle color (COMPLETED)
+
+    .MuiStepLabel-root .Mui-completed {
+        color: ${background.orange};
     }
 `
 export const StepLabelComponent = styled(StepLabel)`
