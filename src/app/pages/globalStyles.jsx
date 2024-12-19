@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { Alert } from "@mui/material";
 import { fadeInUp } from "./globalAnimations";
 
+export const headerMargin = "84px"
 export const containerWidth = "1280px"
 export const containerPadding = "54px"
 

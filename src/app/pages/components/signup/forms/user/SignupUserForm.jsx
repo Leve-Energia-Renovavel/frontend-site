@@ -10,12 +10,12 @@ import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, Button, CircularProgress, MenuItem, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, MenuItem } from '@mui/material';
 import Cookies from 'js-cookie';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import InputMask from "react-input-mask";
-import { FileUploadContainer, FileUploadItem, Form, FormButtonContainer, FormContent, FormDivider, FormFooter, FormInput, FormRow, FormSubmitButton, fileInputStyles } from './styles';
+import { FileUploadContainer, FileUploadItem, Form, FormContent, FormFooterContainer, FormInput, FormRow, FormSubmitButton, fileInputStyles } from './styles';
 
 import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import { PATH_TO } from '@/app/pages/enums/globalEnums';
@@ -443,13 +443,8 @@ export default function SignupUserForm() {
             </FileUploadItem>
           </FileUploadContainer>
         ) : null}
-      </Form>
 
-      <FormDivider variant="middle" />
-
-      <FormFooter>
-        <FormButtonContainer>
-          <Typography className='requiredFields'>* Campos obrigatórios</Typography>
+        <FormFooterContainer>
           {isLoading ?
             <Box >
               <CircularProgress className='submitLoading' />
@@ -458,11 +453,10 @@ export default function SignupUserForm() {
               type='submit'
               form='signupForm'
               endIcon={<ArrowForwardIcon className='icon' />}><span>Continuar</span></FormSubmitButton>}
-        </FormButtonContainer>
-      </FormFooter>
+        </FormFooterContainer>
+      </Form>
 
       <Messages />
-
     </>
   )
 }

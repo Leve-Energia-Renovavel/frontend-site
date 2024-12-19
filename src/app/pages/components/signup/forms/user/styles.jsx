@@ -20,6 +20,8 @@ export const Form = styled.form`
     padding: 8px 100px;
     background-color: ${background.white};
 
+    border-radius: 0px 0px 10px 10px;
+
     @media (max-width: 600px) {
         padding: 0px 10px;
     }
@@ -155,29 +157,13 @@ export const FileUploadItem = styled.div`
   }
 `
 
-export const FormDivider = styled(Divider)`
-`
-
-
-export const FormFooter = styled.div`
-    display: flex;
-    flex-direction: column;
-
-    padding: 30px 100px;
-    
-    gap: 30px;
-    
-    @media (max-width: 600px) {
-        padding: 10px;
-    }
-
-`
-
-export const FormButtonContainer = styled.div`
+export const FormFooterContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: end;
+
+    padding: 1rem 0;
 
     .requiredFields {
             font-family: "Graphie";

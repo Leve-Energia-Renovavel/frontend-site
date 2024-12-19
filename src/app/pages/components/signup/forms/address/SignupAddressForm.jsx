@@ -27,7 +27,7 @@ export default function SignupAddressForm() {
   const fetchCNPJ = useGetCNPJ();
 
   const uuid = store.user.uuid || Cookies.get('leveUUID')
-  const address = JSON.parse(localStorage.getItem('address'))
+  // const address = JSON.parse(localStorage.getItem('address'))
 
   const { street, neighborhood, city, state, stateId, cityId, cep } = address?.address ?? (storeAddress?.address || {})
 
