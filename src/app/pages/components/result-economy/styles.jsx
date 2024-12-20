@@ -3,10 +3,10 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CheckIcon from '@mui/icons-material/Check';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import CloseIcon from '@mui/icons-material/Close';
 import EditIcon from '@mui/icons-material/Edit';
 import { Button, CircularProgress, Slider, TextField } from "@mui/material";
 import { background, notification } from "../../globalStyles";
-import CloseIcon from '@mui/icons-material/Close';
 
 export const EconomyResultContainer = styled.div`
     display: flex;
@@ -619,11 +619,12 @@ export const EconomyResultFooter = styled.div`
 `
 
 export const LoadingCircle = styled(CircularProgress)`
-    width: 21px;
-    height: 21px;
-    color: ${background.yellow};
+    width: 60px;
+    height: 60px;
+    color: ${background.green};
+    margin: 0 auto;
 `
-export const ContinueSignupButton = styled(Button)`
+export const StartRegisterButton = styled(Button)`
   display: flex;
   align-items: center;
   background-color: ${background.green};
@@ -649,10 +650,6 @@ export const ContinueSignupButton = styled(Button)`
     color: ${background.white};
 
     white-space: nowrap;
-  }
-
-  .loading {
-      color: ${background.yellow};
   }
   
   &:hover {

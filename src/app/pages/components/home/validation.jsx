@@ -49,7 +49,7 @@ export const requestValidation = async (data, response, setNotifications, setErr
                 const url = `https://api.whatsapp.com/send/?phone=${LEVE_WHATSAPP_NUMBER}&text=Oi!+Tive+um+problema+ao+criar+conta+na+Leve+Energia+e+preciso++de+ajuda&type=phone_number&app_absent=0`
                 window.open(url, '_blank', 'noopener noreferrer');
             } else {
-                setNotifications(["Simulação realizada com sucesso! Aguarde 2 segundos..."])
+                setNotifications(["Simulação realizada com sucesso!"])
                 storeUser.updateUser({
                     uuid: uuid,
                     name: data?.nome_completo,

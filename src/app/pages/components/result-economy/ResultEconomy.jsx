@@ -10,7 +10,7 @@ import logoLeveGreen from '@/resources/img/small/leve-logo-button-green-small.pn
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
-import { ArrowDownContainer, ArrowDownIcon, ContinueSignupButton, EconomyResultContainer, EconomyResultFooter, EconomyResultTitleContainer, EditTodayCostIcon, LeveBenefit, LeveBenefitsContainer, LeveBenefitsContent, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomyDisclaimer, LoadingCircle, OneYearEconomyContainer, OneYearEconomyContent, OneYearEconomyData, OneYearEconomyHeader, PercentageIcon, RoundCheckIcon, SimpleArrowForward, SimpleCheckIcon, SimpleCloseIcon, SimulationSlider, TodayCostContainer, TodayCostValue, TodayEconomyContainer, TodayEconomyContent } from './styles'
+import { ArrowDownContainer, ArrowDownIcon, StartRegisterButton, EconomyResultContainer, EconomyResultFooter, EconomyResultTitleContainer, EditTodayCostIcon, LeveBenefit, LeveBenefitsContainer, LeveBenefitsContent, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomyDisclaimer, LoadingCircle, OneYearEconomyContainer, OneYearEconomyContent, OneYearEconomyData, OneYearEconomyHeader, PercentageIcon, RoundCheckIcon, SimpleArrowForward, SimpleCheckIcon, SimpleCloseIcon, SimulationSlider, TodayCostContainer, TodayCostValue, TodayEconomyContainer, TodayEconomyContent } from './styles'
 
 export default function ResultEconomy() {
 
@@ -48,13 +48,13 @@ export default function ResultEconomy() {
     var formattedLeveDiscount = formatBrazillianCurrency(leveDiscount)
 
     const handleSubmit = () => {
+        setIsLoading(true)
         if (cost <= 0 || cost < 200) {
             storeMessage.setErrors(["O valor da sua conta de luz deve ser superior a R$ 200"])
         } else {
-            setIsLoading(true)
             router.push(`${PATH_TO.REGISTER_USER}`)
-            setIsLoading(false)
         }
+        setIsLoading(false)
     }
 
     const handleUpdateCostByTyping = (event) => {
@@ -198,13 +198,18 @@ export default function ResultEconomy() {
 
             <EconomyResultFooter className='economyResultFooter'>
                 <h2 className='economyResultSubtitle'>Gostou? Complete seu cadastro e se torne Leve</h2>
-                <ContinueSignupButton
-                    onClick={() => handleSubmit()}
-                    endIcon={isLoading ? <LoadingCircle className='loading' size={21} /> : <SimpleArrowForward className='icon' />}>
-                    <span>Completar cadastro</span>
-                </ContinueSignupButton>
+                {isLoading ? (
+                    <LoadingCircle className="loading" />
+                ) : (
+                    <StartRegisterButton
+                        onClick={() => handleSubmit()}
+                        endIcon={<SimpleArrowForward className="icon" />}>
+                        <span>Completar cadastro</span>
+                    </StartRegisterButton>
+                )}
             </EconomyResultFooter>
 
-        </EconomyResultContainer>
+
+        </EconomyResultContainer >
     )
 }
