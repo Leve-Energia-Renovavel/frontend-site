@@ -1,8 +1,6 @@
 import { background, notification } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import { Alert, Button, TextField, keyframes } from "@mui/material";
-import Divider from '@mui/material/Divider';
-import LinearProgress from '@mui/material/LinearProgress';
 
 const fadeInUp = keyframes`
   from {
@@ -72,10 +70,10 @@ export const FormLastRow = styled.div`
     }
 `
 export const FormInput = styled(TextField)`
-    border-radius: 14px;
+    border-radius: 10px;
     
     && {
-        background-color: ${background.orangeTranslucent}; 
+        background-color: ${props => props.filledCorrectly ? background.greenTranslucent : background.orangeTranslucent}; 
     }
 
     .MuiInputLabel-shrink {
@@ -85,18 +83,18 @@ export const FormInput = styled(TextField)`
 
     .MuiOutlinedInput-input {
         border: 2px solid transparent;
-        border-radius: 15px;  
+        border-radius: 10px;  
         
         // styles for the user input text
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 700;
-        color: ${background.orange};
+        color: ${props => props.filledCorrectly ? background.green : background.orange}; 
         
         &:focus {
-            color: ${background.orange};
-            border: 2px solid ${background.orange};
-            background-color: ${background.orangeFocused}; 
+            color: ${props => props.filledCorrectly ? background.green : background.orange}; 
+            border: 2px solid ${props => props.filledCorrectly ? background.green : background.orange};
+            background-color: ${props => props.filledCorrectly ? background.greenTranslucent : background.orangeTranslucent}; 
             }
         }
 
@@ -108,10 +106,10 @@ export const FormInput = styled(TextField)`
             font-family: "Graphie";
             font-size: 14px;
             font-weight: 600;
-            color: ${background.orange};
-
+            color: ${props => props.filledCorrectly ? background.green : background.orange}; 
+            
             &:focus {
-                color: ${background.orange};
+                color: ${props => props.filledCorrectly ? background.green : background.orange}; 
             }
         }
 

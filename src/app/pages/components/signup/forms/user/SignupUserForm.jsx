@@ -6,7 +6,6 @@ import useGetCNPJ from '@/app/hooks/utils/useGetCNPJ';
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
 import { formatBrazillianCurrency } from '@/app/utils/formatters/costFormatter';
-import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
@@ -14,14 +13,14 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Box, Button, CircularProgress, MenuItem } from '@mui/material';
 import Cookies from 'js-cookie';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import InputMask from "react-input-mask";
-import { BackButton, FileUploadContainer, FileUploadItem, Form, FormContent, FormFooterContainer, FormInput, FormRow, FormSubmitButton, fileInputStyles } from './styles';
+import { BackButton, FileUploadContainer, FileUploadItem, Form, FormContent, FormFooterContainer, FormInput, FormRow, FormSubmitButton } from './styles';
 
 import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import { PATH_TO, REGISTER_FORM } from '@/app/pages/enums/globalEnums';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
-import { costValidation, newCostValidation } from '@/app/utils/helper/signup/signupHelper';
+import { birthDateInputFilled, costValidation, cpfInputFilled, emailInputFilled, newCostValidation, normalTextInputFilled, phoneInputFilled, regularTextInputFilled, rgInputFilled } from '@/app/utils/helper/signup/signupHelper';
 import dynamic from 'next/dynamic';
 
 const Messages = dynamic(() => import('../../../messages/Messages'), { ssr: false });
@@ -33,19 +32,14 @@ export default function SignupUserForm() {
   const store = useStoreUser()
   const messages = useStoreMessages()
 
-  const uuid = store?.user?.uuid || Cookies.get('leveUUID')
-  const user = JSON.parse(localStorage.getItem('user'))
+  const uuid = store?.user?.uuid || Cookies.get('leveUUID') || search.get("uuid")
 
-  const { name, email, phone, cost, distributor, companyName, cnpj, birthDate, isCompany } = user?.user ?? (store?.user || {})
+  const { name, email, phone, cost, distributor, companyName, cnpj, birthDate, isCompany } = store?.user || {}
 
-  const [userCost, setUserCost] = useState(cost || null)
   const [isForeigner, setIsForeigner] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingCNPJ, setIsLoadingCNPJ] = useState(false);
-
-  const [socialContractFile, setSocialContractFile] = useState(null);
-  const [energyExtractFile, setEnergyExtractFile] = useState(null);
 
   const fetchCNPJ = useGetCNPJ();
 
@@ -61,7 +55,8 @@ export default function SignupUserForm() {
 
     newCost = `${integerPart},${decimalPart}`;
 
-    setUserCost(newCost);
+    setFormState({ cost: newCost });
+    store.updateUser({ cost: newCost });
   };
 
   const handleGetCNPJ = async (cnpj) => {
@@ -80,25 +75,30 @@ export default function SignupUserForm() {
     }
   }
 
-  const userRefs = {
-    name: useRef(null),
-    rg: useRef(null),
-    cpf: useRef(null),
-    birthDate: useRef(null),
-    nationality: useRef(null),
-    maritalStatus: useRef(null),
-    profession: useRef(null),
-    email: useRef(null),
-    phone: useRef(null),
-    cost: useRef(null),
-  };
+  const [formState, setFormState] = useState({
+    name: name || "",
+    email: email || "",
+    phone: phone || "",
+    cost: cost || "",
+    rg: "",
+    cpf: "",
+    birthDate: birthDate || "",
+    nationality: "",
+    maritalStatus: "",
+    profession: "",
+    razao_social: companyName || "",
+    cnpj: cnpj || "",
+    socialContractFile: null,
+    energyExtractFile: null,
+  });
 
-  const companyRefs = {
-    razao_social: useRef(null),
-    cnpj: useRef(null),
-    contrato_social: useRef(null),
-    extrato_energia: useRef(null),
-  }
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   const handleClickFiles = (fileType) => {
     companyRefs[fileType].current.click();
@@ -132,19 +132,23 @@ export default function SignupUserForm() {
 
     const validatedCost = costValidation(userRefs.cost.current.value)
 
-    var submitData = {
+    const submitData = {
       uuid: uuid,
-      nome_completo: sanitizeAndCapitalizeWords(userRefs.name.current.value),
-      email: userRefs.email.current.value,
-      rg: userRefs.rg.current.value?.replace(/[-_]/g, ""),
-      cpf: userRefs.cpf.current.value,
-      data_nascimento: userRefs.birthDate.current.value,
-      telefone: userRefs.phone.current.value,
+      nome_completo: sanitizeAndCapitalizeWords(formState.name),
+      email: formState.email,
+      rg: formState.rg.replace(/[-_]/g, ""),
+      cpf: formState.cpf,
+      data_nascimento: formState.birthDate,
+      telefone: formState.phone,
       valor: validatedCost,
-      nacionalidade: userRefs.nationality.current.value,
-      profissao: userRefs.profession.current.value,
-      estado_civil: userRefs.maritalStatus.current.value,
-    }
+      nacionalidade: formState.nationality,
+      profissao: formState.profession,
+      estado_civil: formState.maritalStatus,
+      ...(isCompany && {
+        razao_social: formState.razao_social,
+        cnpj: formState.cnpj,
+      }),
+    };
     if (isCompany) {
       submitData["razao_social"] = companyRefs.razao_social.current.value
       submitData["cnpj"] = companyRefs.cnpj.current.value
@@ -209,264 +213,283 @@ export default function SignupUserForm() {
   // }
 
 
-
-  // useEffect(() => {
-  //   if (uuid !== search.get("uuid")) {
-  //     setTimeout(() => {
-  //       window.location.reload();
-  //     }, 500);
-  //   }
-  // }, []);
-
   const required = false
+
+  const greenLeve = "#005940"
+  const orangeLeve = "#FF7133"
 
   return (
     <>
       <Form id={REGISTER_FORM.USER_ID} acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
         {isCompany && (
           <FormRow>
-            <FormInput className="inputForm" defaultValue={company.razao_social || companyName || ''} inputRef={companyRefs.razao_social} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }} required />
-            <InputMask mask="99.999.999/9999-99" defaultValue={company.cnpj || cnpj || ''}>
-              {() => <FormInput className="inputForm" defaultValue={company.cnpj || cnpj || ''} inputRef={companyRefs.cnpj} label="CNPJ" variant="outlined" placeholder="CNPJ" type="text" required
-                InputProps={{
-                  endAdornment: !isLoadingCNPJ ? <SearchIcon className="searchIcon"
-                    onClick={() => handleGetCNPJ(companyRefs.cnpj.current.value)} /> :
-                    <Box>
-                      <CircularProgress className='formLoading' size={"25px"} />
-                    </Box>,
-                }}
-                InputLabelProps={{ style: { color: '#FF7133' } }}
-              />}
+            <FormInput
+              name='razao_social'
+              onChange={handleInputChange}
+              className="inputForm"
+              label="Razão Social"
+              variant="outlined"
+              placeholder="Razão Social"
+              correct={normalTextInputFilled(formState?.razao_social)}
+              value={formState?.razao_social}
+              type="text"
+              InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
+              required
+            />
+            <InputMask mask="99.999.999/9999-99" onChange={handleInputChange}>
+              {() => (
+                <FormInput
+                  name='cnpj'
+                  className="inputForm"
+                  label="CNPJ"
+                  variant="outlined"
+                  placeholder="CNPJ"
+                  type="text"
+                  required
+                  InputProps={{
+                    endAdornment: !isLoadingCNPJ ? (
+                      <SearchIcon className="searchIcon" onClick={handleGetCNPJ} />
+                    ) : (
+                      <Box>
+                        <CircularProgress className="formLoading" size={"25px"} />
+                      </Box>
+                    ),
+                  }}
+                  InputLabelProps={{ style: { color: '#FF7133' } }}
+                />
+              )}
             </InputMask>
-          </FormRow>)}
+          </FormRow>
+        )}
         <FormRow>
           <FormInput
-            className='inputForm'
-            inputRef={userRefs.name}
+            className="inputForm"
+            name='name'
+            onChange={handleInputChange}
+            filledCorrectly={normalTextInputFilled(formState?.name)}
             label={`Nome Completo ${isCompany ? 'do Responsável' : ''}`}
             placeholder={`Nome Completo ${isCompany ? 'do Responsável' : ''}`}
-            defaultValue={name || ''}
             variant="outlined"
+            value={formState?.name}
             type="text"
-            InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
+            InputLabelProps={{ shrink: true, style: { color: normalTextInputFilled(formState?.name) ? greenLeve : orangeLeve } }}
             required
           />
           <FormInput
-            className='inputForm'
-            inputRef={userRefs.email}
+            name='email'
+            onChange={handleInputChange}
+            className="inputForm"
+            filledCorrectly={emailInputFilled(formState?.email)}
             label={`Email ${isCompany ? 'do Responsável' : ''}`}
             placeholder={`Email ${isCompany ? 'do Responsável' : ''}`}
-            defaultValue={email || ''}
             variant="outlined"
-            InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
+            value={formState?.email}
             type="text"
             required
+            InputLabelProps={{ shrink: true, style: { color: emailInputFilled(formState?.email) ? greenLeve : orangeLeve } }}
           />
         </FormRow>
         <FormContent>
-          <InputMask mask="(99) 99999-9999" value={formatPhoneNumber(phone) || ""} onChange={(e) => store.updateUser({ phone: e.target.value })}>
+          <InputMask mask="(99) 99999-9999" value={formState?.phone} onChange={handleInputChange}>
             {() => (
               <FormInput
-                inputRef={userRefs.phone}
+                name='phone'
                 className="inputForm"
+                filledCorrectly={phoneInputFilled(formState?.phone)}
                 inputProps={{ inputMode: 'numeric' }}
                 label={`Telefone ${isCompany ? 'do Responsável' : ''}`}
                 variant="outlined"
                 placeholder={`Telefone ${isCompany ? 'do Responsável' : ''}`}
                 type="text"
-                InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
+                InputLabelProps={{ shrink: true, style: { color: phoneInputFilled(formState?.phone) ? greenLeve : orangeLeve } }}
                 required
               />
             )}
           </InputMask>
-          {isForeigner ?
-            (<InputMask mask="*******-*" required defaultValue={""}>
-              {() => <FormInput inputRef={userRefs.rg} className="inputForm" label="RNE" variant="outlined" placeholder="RNE" type="text" InputLabelProps={{ shrink: false }} required />}
-            </InputMask>)
-            :
-            (<InputMask mask="********-*" required defaultValue={""}>
-              {() => <FormInput
-                inputRef={userRefs.rg}
+          {isForeigner ? (
+            <InputMask mask="*******-*" required onChange={handleInputChange}>
+              {() => (
+                <FormInput
+                  name='rne'
+                  className="inputForm"
+                  label="RNE"
+                  variant="outlined"
+                  placeholder="RNE"
+                  type="text"
+                  required
+                />
+              )}
+            </InputMask>
+          ) : (
+            <InputMask mask="********-*" value={formState?.rg} onChange={handleInputChange}>
+              {() => (
+                <FormInput
+                  className="inputForm"
+                  label="RG"
+                  variant="outlined"
+                  placeholder="RG"
+                  filledCorrectly={rgInputFilled(formState?.rg)}
+                  name='rg'
+                  type="text"
+                  inputProps={{ inputMode: 'numeric' }}
+                  required
+                  InputLabelProps={{ shrink: true, style: { color: rgInputFilled(formState?.rg) ? greenLeve : orangeLeve } }}
+                />
+              )}
+            </InputMask>
+          )}
+          <InputMask mask="999.999.999-99" required value={formState?.cpf} onChange={handleInputChange}>
+            {() => (
+              <FormInput
+                name='cpf'
                 className="inputForm"
-                label="RG"
+                label="CPF"
+                filledCorrectly={cpfInputFilled(formState?.cpf)}
                 variant="outlined"
-                placeholder="RG"
-                type="text"
-                required={required}
+                placeholder="CPF"
                 inputProps={{ inputMode: 'numeric' }}
-                InputLabelProps={{ shrink: false },
-                  { style: { color: '#FF7133' } }}
-              />}
-            </InputMask>)}
-          <InputMask mask="999.999.999-99" required defaultValue={""}>
-            {() => <FormInput inputRef={userRefs.cpf}
-              className="inputForm"
-              label="CPF"
-              variant="outlined"
-              placeholder="CPF"
-              inputProps={{ inputMode: 'numeric' }}
-              type="text"
-              required={required}
-              InputLabelProps={{ shrink: false },
-                { style: { color: '#FF7133' } }} />}
+                type="text"
+                required
+                InputLabelProps={{ shrink: true, style: { color: cpfInputFilled(formState?.cpf) ? greenLeve : orangeLeve } }} />
+            )}
           </InputMask>
-
-          <InputMask mask="99/99/9999" required value={birthDate || ""} onChange={(e) => store.updateUser({ birthDate: e.target.value })}>
-            {() => <FormInput
-              inputRef={userRefs.birthDate}
-              className="inputForm"
-              label="Data de Nascimento"
-              variant="outlined"
-              placeholder="Data de Nascimento"
-              type="text"
-              required={required}
-              inputProps={{ inputMode: 'numeric' }}
-              InputLabelProps={{ shrink: birthDate !== "" },
-                { style: { color: '#FF7133' } }
-              }
-            />}
+          <InputMask mask="99/99/9999" required value={formState?.birthDate} onChange={handleInputChange}>
+            {() => (
+              <FormInput
+                name='birthDate'
+                className="inputForm"
+                filledCorrectly={birthDateInputFilled(formState?.birthDate)}
+                label="Data de Nascimento"
+                variant="outlined"
+                placeholder="Data de Nascimento"
+                type="text"
+                inputProps={{ inputMode: 'numeric' }}
+                InputLabelProps={{ shrink: true, style: { color: birthDateInputFilled(formState?.birthDate) ? greenLeve : orangeLeve } }}
+                required
+              />
+            )}
           </InputMask>
-
           <FormInput
             className="inputForm"
-            inputRef={userRefs.cost}
-            value={formatBrazillianCurrency(userCost) || ""}
-            onChange={(event) => handleChangeUserCost(event)}
             label="Custo Mensal em R$"
             variant="outlined"
+            value={formatBrazillianCurrency(formState?.cost)}
             placeholder="Custo Mensal em R$"
             type="text"
+            name='cost'
+            filledCorrectly={regularTextInputFilled(formState?.cost)}
+            onChange={handleChangeUserCost}
             inputProps={{ inputMode: 'numeric' }}
-            InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
-            required />
-
+            required
+            InputLabelProps={{ shrink: true, style: { color: regularTextInputFilled(formState?.cost) ? greenLeve : orangeLeve } }} />
           <FormInput
             id="maritalStatus"
+            name='maritalStatus'
+            onChange={handleInputChange}
             select
-            defaultValue={store.user.maritalStatus ? store.user.maritalStatus : ""}
+            filledCorrectly={regularTextInputFilled(formState?.maritalStatus)}
             label="Estado Civil"
+            variant="outlined"
+            placeholder="Estado Civil"
             className="inputForm"
-            inputProps={{ inputMode: 'numeric' }}
-            InputLabelProps={{
-              component: 'span',
-              style: { color: '#FF7133' }
-            }}
-            inputRef={userRefs.maritalStatus || ''}>
-            {maritalStatusOptions?.map((maritalStatus) => {
-              return (
-                <MenuItem key={maritalStatus.label} value={maritalStatus.value}>{maritalStatus.label}</MenuItem>
-              )
-            })}
+            InputLabelProps={{ shrink: true, style: { color: regularTextInputFilled(formState?.maritalStatus) ? greenLeve : orangeLeve } }}>
+            {maritalStatusOptions?.map((maritalStatus) => (
+              <MenuItem key={maritalStatus.label} value={maritalStatus.value} >
+                {maritalStatus.label}
+              </MenuItem>
+            ))}
           </FormInput>
-
           <FormInput
             id="nationality"
+            name='nationality'
+            onChange={handleInputChange}
             select
-            defaultValue={store.user.nationality ? store.user.nationality : ""}
-            inputRef={userRefs.nationality}
-            onChange={(event) => handleNationalityChange(event.target.value)}
-            className="inputForm"
+            filledCorrectly={regularTextInputFilled(formState?.nationality)}
             label="Nacionalidade"
+            className="inputForm"
             variant="outlined"
             placeholder="Nacionalidade"
-            type="text"
-            required={required}
-            InputLabelProps={{
-              component: 'span',
-              style: { color: '#FF7133' }
-            }}>
-            {nationalityOptions?.map((nationality) => {
-              return (
-                <MenuItem key={nationality.label} value={nationality.value}>{nationality.label}</MenuItem>
-              )
-            })}
+            required
+            InputLabelProps={{ shrink: true, style: { color: regularTextInputFilled(formState?.nationality) ? greenLeve : orangeLeve } }}>
+            {nationalityOptions?.map((nationality) => (
+              <MenuItem key={nationality.label} value={nationality.value}>
+                {nationality.label}
+              </MenuItem>
+            ))}
           </FormInput>
           <FormInput
+            name='profession'
+            onChange={handleInputChange}
             id="profession"
             select
-            defaultValue={store.user.profession ? store.user.profession : ""}
-            inputRef={userRefs.profession}
-            className="inputForm"
+            filledCorrectly={regularTextInputFilled(formState?.profession)}
             label="Profissão"
+            className="inputForm"
             variant="outlined"
             placeholder="Profissão"
-            required={required}
-            InputLabelProps={{
-              component: 'span',
-              style: { color: '#FF7133' }
-            }}
-            type="text">
-            {professionOptions?.map((profession) => {
-              return (
-                <MenuItem key={profession.label} value={profession.value}>{profession.label}</MenuItem>
-              )
-            })}
+            required
+            InputLabelProps={{ shrink: true, style: { color: regularTextInputFilled(formState?.profession) ? greenLeve : orangeLeve } }}>
+            {professionOptions?.map((profession) => (
+              <MenuItem key={profession.label} value={profession.value}>
+                {profession.label}
+              </MenuItem>
+            ))}
           </FormInput>
-
         </FormContent>
-
-        {isCompany ? (
+        {isCompany && (
           <FileUploadContainer>
             <FileUploadItem>
               <Button
-                className='documentUpload'
+                className="documentUpload"
                 startIcon={<FileUploadIcon />}
-                onClick={() => handleClickFiles('socialContract')}>Enviar contrato social</Button>
+                onClick={() => handleClickFiles('socialContract')}
+              >
+                Enviar contrato social
+              </Button>
               <input
                 type="file"
                 onChange={(event) => handleChangeFiles(event, 'socialContract')}
-                ref={companyRefs.contrato_social}
-                style={{ display: 'none' }} />
-              {socialContractFile && (
-                <>
-                  <p>{socialContractFile.name}</p>
-                  <button
-                    style={fileInputStyles}
-                    onClick={(event) => handleDeleteFiles(event, 'socialContract')}>x</button>
-                </>
-              )}
+                style={{ display: 'none' }}
+              />
             </FileUploadItem>
-
             <FileUploadItem>
               <Button
-                className='documentUpload'
+                className="documentUpload"
                 startIcon={<FileUploadIcon />}
-                onClick={() => handleClickFiles('energyExtract')}>Enviar fatura de energia</Button>
+                onClick={() => handleClickFiles('energyExtract')}
+              >
+                Enviar fatura de energia
+              </Button>
               <input
                 type="file"
                 onChange={(event) => handleChangeFiles(event, 'energyExtract')}
-                ref={companyRefs.extrato_energia}
-                style={{ display: 'none' }} />
-              {energyExtractFile && (
-                <>
-                  <p>{energyExtractFile.name}</p>
-                  <button
-                    style={fileInputStyles}
-                    onClick={(event) => handleDeleteFiles(event, 'energyExtract')}>x</button>
-                </>
-              )}
+                style={{ display: 'none' }}
+              />
             </FileUploadItem>
           </FileUploadContainer>
-        ) : null}
-
+        )}
         <FormFooterContainer>
-          {isLoading ?
-            <Box >
-              <CircularProgress className='submitLoading' />
+          {isLoading ? (
+            <Box>
+              <CircularProgress className="submitLoading" />
             </Box>
-            : <BackButton
-              onClick={() => router.back()}
-              startIcon={<ArrowBackIcon className='icon' />}><span>Voltar</span></BackButton>}
-          {isLoading ?
-            <Box >
-              <CircularProgress className='submitLoading' />
+          ) : (
+            <BackButton onClick={() => router.back()} startIcon={<ArrowBackIcon className="icon" />}>
+              <span>Voltar</span>
+            </BackButton>
+          )}
+          {isLoading ? (
+            <Box>
+              <CircularProgress className="submitLoading" />
             </Box>
-            : <FormSubmitButton
-              type='submit'
-              form={REGISTER_FORM.USER_ID}
-              endIcon={<ArrowForwardIcon className='icon' />}><span>Continuar</span></FormSubmitButton>}
+          ) : (
+            <FormSubmitButton type="submit" form={REGISTER_FORM.USER_ID} endIcon={<ArrowForwardIcon className="icon" />}>
+              <span>Continuar</span>
+            </FormSubmitButton>
+          )}
         </FormFooterContainer>
       </Form>
+
 
       <Messages />
     </>
