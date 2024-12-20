@@ -1,4 +1,4 @@
-import RegisterRouting from "../../register/RegisterMain";
+import RegisterMain from "../../register/RegisterMain";
 
 export function generateStaticParams() {
     return [
@@ -17,6 +17,6 @@ export function getStaticPaths() {
 
 export default function Register() {
     return (
-        <RegisterRouting />
+        <RegisterMain />
     )
 }

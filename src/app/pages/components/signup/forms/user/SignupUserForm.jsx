@@ -7,18 +7,19 @@ import { requestSuccessful } from '@/app/service/utils/Validations';
 import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
 import { formatBrazillianCurrency } from '@/app/utils/formatters/costFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, Button, CircularProgress, MenuItem } from '@mui/material';
 import Cookies from 'js-cookie';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import InputMask from "react-input-mask";
-import { FileUploadContainer, FileUploadItem, Form, FormContent, FormFooterContainer, FormInput, FormRow, FormSubmitButton, fileInputStyles } from './styles';
+import { BackButton, FileUploadContainer, FileUploadItem, Form, FormContent, FormFooterContainer, FormInput, FormRow, FormSubmitButton, fileInputStyles } from './styles';
 
 import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
-import { PATH_TO } from '@/app/pages/enums/globalEnums';
+import { PATH_TO, REGISTER_FORM } from '@/app/pages/enums/globalEnums';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
 import { costValidation, newCostValidation } from '@/app/utils/helper/signup/signupHelper';
 import dynamic from 'next/dynamic';
@@ -207,7 +208,7 @@ export default function SignupUserForm() {
   //   } else await handleRequestsErrors(response, setNotifications, setErrorMessage, router)
   // }
 
-  
+
 
   // useEffect(() => {
   //   if (uuid !== search.get("uuid")) {
@@ -221,7 +222,7 @@ export default function SignupUserForm() {
 
   return (
     <>
-      <Form id='signupForm' acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
+      <Form id={REGISTER_FORM.USER_ID} acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
         {isCompany && (
           <FormRow>
             <FormInput className="inputForm" defaultValue={company.razao_social || companyName || ''} inputRef={companyRefs.razao_social} label="Razão Social" variant="outlined" placeholder="Razão Social" type="text" InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }} required />
@@ -242,8 +243,8 @@ export default function SignupUserForm() {
           <FormInput
             className='inputForm'
             inputRef={userRefs.name}
-            label={`Nome Completo ${isCompany ? 'do Responsável' : ''} (Titular da Conta de Luz)`}
-            placeholder={`Nome Completo ${isCompany ? 'do Responsável' : ''} (Titular da Conta de Luz)`}
+            label={`Nome Completo ${isCompany ? 'do Responsável' : ''}`}
+            placeholder={`Nome Completo ${isCompany ? 'do Responsável' : ''}`}
             defaultValue={name || ''}
             variant="outlined"
             type="text"
@@ -325,6 +326,20 @@ export default function SignupUserForm() {
               }
             />}
           </InputMask>
+
+          <FormInput
+            className="inputForm"
+            inputRef={userRefs.cost}
+            value={formatBrazillianCurrency(userCost) || ""}
+            onChange={(event) => handleChangeUserCost(event)}
+            label="Custo Mensal em R$"
+            variant="outlined"
+            placeholder="Custo Mensal em R$"
+            type="text"
+            inputProps={{ inputMode: 'numeric' }}
+            InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
+            required />
+
           <FormInput
             id="maritalStatus"
             select
@@ -388,18 +403,6 @@ export default function SignupUserForm() {
             })}
           </FormInput>
 
-          <FormInput
-            className="inputForm"
-            inputRef={userRefs.cost}
-            value={formatBrazillianCurrency(userCost) || ""}
-            onChange={(event) => handleChangeUserCost(event)}
-            label="Custo Mensal em R$"
-            variant="outlined"
-            placeholder="Custo Mensal em R$"
-            type="text"
-            inputProps={{ inputMode: 'numeric' }}
-            InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
-            required />
         </FormContent>
 
         {isCompany ? (
@@ -451,9 +454,16 @@ export default function SignupUserForm() {
             <Box >
               <CircularProgress className='submitLoading' />
             </Box>
+            : <BackButton
+              onClick={() => router.back()}
+              startIcon={<ArrowBackIcon className='icon' />}><span>Voltar</span></BackButton>}
+          {isLoading ?
+            <Box >
+              <CircularProgress className='submitLoading' />
+            </Box>
             : <FormSubmitButton
               type='submit'
-              form='signupForm'
+              form={REGISTER_FORM.USER_ID}
               endIcon={<ArrowForwardIcon className='icon' />}><span>Continuar</span></FormSubmitButton>}
         </FormFooterContainer>
       </Form>

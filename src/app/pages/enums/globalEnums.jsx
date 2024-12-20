@@ -109,4 +109,8 @@ export const ERROR_MESSAGE = {
 
 export const HOME_FORM_ID = "calculateYourEconomy"
 
-
+export const REGISTER_FORM = {
+    USER_ID: "registerFormUserId",
+    ADDRESS_ID: "registerFormAddressId",
+    CONTRACT_ID: "registerFormContractId",
+}

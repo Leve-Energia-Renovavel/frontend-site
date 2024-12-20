@@ -415,6 +415,72 @@ export const SnackbarMessageNotification = styled(Alert)`
 
 `
 
+export const FormFooterContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1rem 0;
+
+    .requiredFields {
+            font-family: "Graphie";
+            font-size: 12px;
+            font-weight: 500;
+            color: ${background.orange};
+    }
+
+    .submitLoading {
+        color: ${background.orange};
+    }
+
+`
+
+export const BackButton = styled(Button)`
+    display: flex;
+    align-items: center;
+  background-color: ${background.orange};
+  color: ${background.white};
+  border-radius: 30px;
+
+  height: 54px;
+
+  width: 100%;
+  max-width: 250px;
+  max-width: 342px;
+
+  padding: 8px 16px;
+  
+  span {
+    font-family: "Graphie";
+    font-size: 21px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%; 
+    text-transform: none;
+    color: ${background.white};
+
+    white-space: nowrap;
+  }
+
+  .icon {
+        color: ${background.yellow};
+    }
+
+  &:hover {
+    cursor: pointer;
+    background-color: ${background.yellow};
+
+    span {
+      color: ${background.green};
+    }
+    
+    .icon {
+        color: ${background.green};
+    }
+  }
+`
+
 
 export const fileInputStyles = {
     cursor: 'pointer',
@@ -424,6 +490,8 @@ export const fileInputStyles = {
     fontSize: '1rem',
     fontWeight: 'bold',
 }
+
+
 
 
 

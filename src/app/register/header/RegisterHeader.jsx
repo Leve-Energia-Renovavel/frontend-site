@@ -1,24 +1,46 @@
-import { BoxComponent, RoutingHeaderContainer, StepComponent, StepLabelComponent, StepperComponent } from "./styles";
+import Divider from "@mui/material/Divider";
+import {
+    BoxComponent,
+    RegisterHeaderContainer as Container,
+    RegisterHeaderTitleContainer,
+    StepComponent,
+    StepLabelContainer,
+    StepperComponent
+} from "./styles";
 
 const steps = [
-    'Titular',
-    'Imóvel',
-    'Contrato',
+    { key: 0, label: "Titular", title: "Quem é o titular da conta de luz?" },
+    { key: 1, label: "Imóvel", title: "Agora precisamos dos dados do imóvel da conta de luz" },
+    { key: 2, label: "Contrato", title: "Leia e assine digitalmente o Contrato de adesão e termos de uso" }
 ];
 
 export default function RegisterHeader({ children, step }) {
     return (
-        <RoutingHeaderContainer>
+        <Container className="registerHeaderLabelContainer">
             <BoxComponent>
                 <StepperComponent activeStep={step}>
-                    {steps.map((label) => (
-                        <StepComponent key={label}>
-                            <StepLabelComponent>{label}</StepLabelComponent>
+                    {steps.map(({ key, label }) => (
+                        <StepComponent key={key}>
+                            <StepLabelContainer
+                                className="registerHeaderLabelContainer"
+                                isCompleted={step > key}
+                                isSelected={step === key}
+                            >
+                                <span className="registerHeaderLabel">{label}</span>
+                            </StepLabelContainer>
                         </StepComponent>
                     ))}
                 </StepperComponent>
+
+                <Divider className="registerHeaderDivider" />
+                <RegisterHeaderTitleContainer>
+                    <h1 className="registerHeaderTitle">
+                        {steps.find(({ key }) => key === step)?.title}
+                    </h1>
+                </RegisterHeaderTitleContainer>
             </BoxComponent>
+
             {children}
-        </RoutingHeaderContainer>
-    )
+        </Container>
+    );
 }

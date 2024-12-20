@@ -4,7 +4,7 @@
 import { useStoreAddress, useStoreUser } from "@/app/hooks/stores/useStore";
 import useGetCEP from "@/app/hooks/utils/useGetCEP";
 import useGetCNPJ from "@/app/hooks/utils/useGetCNPJ";
-import { PATH_TO } from "@/app/pages/enums/globalEnums";
+import { PATH_TO, REGISTER_FORM } from "@/app/pages/enums/globalEnums";
 import { findCityIdByName } from "@/app/service/utils/addressUtilsService";
 import { hasToSignContract, requestSuccessful } from "@/app/service/utils/Validations";
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
@@ -15,7 +15,9 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import InputMask from "react-input-mask";
-import { Form, FormContent, FormInput, FormLastRow, InstallationInput } from "./styles";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { BackButton, Form, FormContent, FormFooterContainer, FormInput, FormLastRow, FormSubmitButton, InstallationInput } from "./styles";
 
 export default function SignupAddressForm() {
 
@@ -74,39 +76,60 @@ export default function SignupAddressForm() {
       numero_instalacao: addressRefs.installationNumber.current.value
     }
 
-    const response = await schemaValidation(submitData)
-    if (requestSuccessful(response?.status) || hasToSignContract(response?.data?.message)) {
-
-      store.updateUser({
-        birthDate: submitData.data_nascimento,
-        rg: submitData.rg,
-        cpf: submitData.cpf,
-        maritalStatus: submitData.estado_civil,
-        profession: submitData.profissao,
-        nationality: submitData.nacionalidade,
-      });
-
-      const updatedAddress = {
-        street: submitData.endereco,
-        number: submitData.numero,
-        neighborhood: submitData.bairro,
-        complement: submitData.complemento,
-        city: addressRefs.city.current.value,
-        state: addressRefs.state.current.value,
-        cityId: submitData.cidade_id,
-        stateId: submitData.estado_id,
-        cep: submitData.cep,
-        installationNumber: submitData.numero_instalacao,
-      }
-
-      storeAddress.updateAddress(updatedAddress)
-
-      router.push(PATH_TO.REGISTER_CONTRACT)
-
-    } else await handleRequestsErrors(response, setNotifications, setErrorMessage, router)
-
+    // const response = await schemaValidation(submitData)
+    router.push(PATH_TO.REGISTER_CONTRACT)
     setIsLoading(false)
   }
+
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault()
+  //   setIsLoading(true)
+
+  //   var submitData = {
+  //     uuid: uuid,
+  //     cep: addressRefs.addressCep.current.value,
+  //     endereco: addressRefs.address.current.value,
+  //     numero: parseFloat(addressRefs.addressNumber.current.value?.replace(/[^0-9.]/g, "")),
+  //     bairro: addressRefs.neighborhood.current.value,
+  //     complemento: addressRefs.complement.current.value,
+  //     estado_id: storeAddress.address.stateId || stateValue.cod_estados,
+  //     cidade_id: storeAddress.address.cityId || await findCityIdByName(addressRefs.city.current.value, stateValue.cod_estados),
+  //     numero_instalacao: addressRefs.installationNumber.current.value
+  //   }
+
+  //   const response = await schemaValidation(submitData)
+  //   if (requestSuccessful(response?.status) || hasToSignContract(response?.data?.message)) {
+
+  //     store.updateUser({
+  //       birthDate: submitData.data_nascimento,
+  //       rg: submitData.rg,
+  //       cpf: submitData.cpf,
+  //       maritalStatus: submitData.estado_civil,
+  //       profession: submitData.profissao,
+  //       nationality: submitData.nacionalidade,
+  //     });
+
+  //     const updatedAddress = {
+  //       street: submitData.endereco,
+  //       number: submitData.numero,
+  //       neighborhood: submitData.bairro,
+  //       complement: submitData.complemento,
+  //       city: addressRefs.city.current.value,
+  //       state: addressRefs.state.current.value,
+  //       cityId: submitData.cidade_id,
+  //       stateId: submitData.estado_id,
+  //       cep: submitData.cep,
+  //       installationNumber: submitData.numero_instalacao,
+  //     }
+
+  //     storeAddress.updateAddress(updatedAddress)
+
+  //     router.push(PATH_TO.REGISTER_CONTRACT)
+
+  //   } else await handleRequestsErrors(response, setNotifications, setErrorMessage, router)
+
+  //   setIsLoading(false)
+  // }
 
   const handleGetCEP = async (cep) => {
     if (cep !== "") {
@@ -134,9 +157,11 @@ export default function SignupAddressForm() {
     storeAddress.updateAddress({ stateId: newStateId, state: newStateUf })
   }
 
+  const required = false
+
 
   return (
-    <Form id='signupForm' acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
+    <Form id={REGISTER_FORM.ADDRESS_ID} acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
       <FormContent>
         <InputMask mask="99999-999" value={cep || ""}
           onChange={(e) => storeAddress.updateAddress({ cep: e.target.value })}
@@ -148,6 +173,7 @@ export default function SignupAddressForm() {
             variant="outlined"
             placeholder="CEP"
             type="text"
+            required
             inputProps={{ inputMode: 'numeric' }}
             InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
             InputProps={{
@@ -156,8 +182,7 @@ export default function SignupAddressForm() {
                 <Box>
                   <CircularProgress className='formLoading' size={"25px"} />
                 </Box>,
-            }}
-            required />}
+            }} />}
         </InputMask>
 
         <FormInput className="inputForm"
@@ -176,9 +201,9 @@ export default function SignupAddressForm() {
             variant="outlined"
             placeholder="Nº"
             type="text"
+            required={required}
             inputProps={{ inputMode: 'numeric' }}
-            InputLabelProps={{ style: { color: '#FF7133' } }}
-            required />}
+            InputLabelProps={{ style: { color: '#FF7133' } }} />}
         </InputMask>
 
         <FormInput className="inputForm"
@@ -204,13 +229,13 @@ export default function SignupAddressForm() {
           placeholder="Estado"
           variant="outlined"
           className="inputForm"
+          required={required}
+          inputRef={addressRefs.state}
           InputLabelProps={{
             component: 'span',
             style: { color: '#FF7133' },
             shrink: stateValue ? true : false
-          }}
-          inputRef={addressRefs.state}
-          required>
+          }}>
           {Object.values(stateOptions).map((state) => {
             return (
               <MenuItem key={state.cod_estados} value={state.cod_estados}>{state.sigla}</MenuItem>
@@ -240,6 +265,24 @@ export default function SignupAddressForm() {
           type="text"
         />
       </FormLastRow>
+
+      <FormFooterContainer>
+        {isLoading ?
+          <Box >
+            <CircularProgress className='submitLoading' />
+          </Box>
+          : <BackButton
+            onClick={() => router.back()}
+            startIcon={<ArrowBackIcon className='icon' />}><span>Voltar</span></BackButton>}
+        {isLoading ?
+          <Box >
+            <CircularProgress className='submitLoading' />
+          </Box>
+          : <FormSubmitButton
+            type='submit'
+            form={REGISTER_FORM.ADDRESS_ID}
+            endIcon={<ArrowForwardIcon className='icon' />}><span>Continuar</span></FormSubmitButton>}
+      </FormFooterContainer>
 
     </Form>
   )

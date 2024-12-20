@@ -1,36 +1,28 @@
-"use client"
+"use client";
 
-import RegisterContract from '@/app/pages/components/register/contract/RegisterContract';
-import RegisterAddress from '@/app/pages/components/register/RegisterAddress';
-import RegisterUser from '@/app/pages/components/register/RegisterUser';
-import { usePathname } from 'next/navigation';
-import RegisterHeader from './header/RegisterHeader';
-import { RoutingContainer } from './styles';
+import RegisterContract from "@/app/pages/components/register/contract/RegisterContract";
+import RegisterAddress from "@/app/pages/components/register/RegisterAddress";
+import RegisterUser from "@/app/pages/components/register/RegisterUser";
+import { usePathname } from "next/navigation";
+import RegisterHeader from "./header/RegisterHeader";
+import { RoutingContainer } from "./styles";
 
-export default function RegisterRouting() {
-    const pathname = usePathname()
+export default function RegisterMain() {
+    const pathname = usePathname();
 
-    const clearPathName = (str) => {
-        return str.replace(/\/|cadastro/g, '');
+    const currentPath = pathname.replace(/\/|cadastro/g, "");
+
+    const routeOf = {
+        "titular": { step: 0, component: <RegisterUser /> },
+        "imovel": { step: 1, component: <RegisterAddress /> },
+        "assinatura-contrato": { step: 2, component: <RegisterContract /> },
     };
 
-    const routing = {
-        "titular": <RegisterUser />,
-        "imovel": <RegisterAddress />,
-        "assinatura-contrato": <RegisterContract />
-    }
-    
-    const steps = {
-        "titular": 1,
-        "imovel": 2,
-        "assinatura-contrato": 3,
-    }
+    const { step, component } = routeOf[currentPath] || {};
 
     return (
-        <RoutingContainer className='routingContainer'>
-            <RegisterHeader step={steps[clearPathName(pathname)]}>
-                {routing[clearPathName(pathname)]}
-            </RegisterHeader>
+        <RoutingContainer className="routingContainer">
+            <RegisterHeader step={step}>{component}</RegisterHeader>
         </RoutingContainer>
-    )
+    );
 }
