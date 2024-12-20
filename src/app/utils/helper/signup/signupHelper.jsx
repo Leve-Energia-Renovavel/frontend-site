@@ -22,12 +22,11 @@ export const emailInputFilled = (value) => {
     return emailRegex.test(value);
 };
 export const phoneInputFilled = (value) => {
-    const phoneRegex = /^\(\d{2}\)\s\d{5}-\d{4}$/;
-    return phoneRegex.test(value);
+    return !value.includes('_') && value.length >= 11;
 };
 
 export const rgInputFilled = (value) => {
-    return !value.includes('_')
+    return !value.includes('_') && value.length > 1;
 };
 
 export const cpfInputFilled = (value) => {
@@ -78,7 +77,7 @@ export const birthDateInputFilled = (value) => {
 
 
 export const costValidation = (cost) => {
-    if (cost.includes(',')) {
+    if (cost?.toString()?.includes(',')) {
         return parseInt(cost.replace(/[^0-9]/g, ""), 10) / 100;
     } else {
         return parseInt(cost, 10);

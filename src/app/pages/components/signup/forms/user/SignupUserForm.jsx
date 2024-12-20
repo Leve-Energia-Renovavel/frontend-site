@@ -130,7 +130,7 @@ export default function SignupUserForm() {
     event.preventDefault()
     setIsLoading(true)
 
-    const validatedCost = costValidation(userRefs.cost.current.value)
+    const validatedCost = costValidation(formState.cost)
 
     const submitData = {
       uuid: uuid,
@@ -273,7 +273,7 @@ export default function SignupUserForm() {
             value={formState?.name}
             type="text"
             InputLabelProps={{ shrink: true, style: { color: normalTextInputFilled(formState?.name) ? greenLeve : orangeLeve } }}
-            required
+            required={required}
           />
           <FormInput
             name='email'
@@ -285,9 +285,8 @@ export default function SignupUserForm() {
             variant="outlined"
             value={formState?.email}
             type="text"
-            required
-            InputLabelProps={{ shrink: true, style: { color: emailInputFilled(formState?.email) ? greenLeve : orangeLeve } }}
-          />
+            required={required}
+            InputLabelProps={{ shrink: formState?.email !== "", style: { color: emailInputFilled(formState?.email) ? greenLeve : orangeLeve } }} />
         </FormRow>
         <FormContent>
           <InputMask mask="(99) 99999-9999" value={formState?.phone} onChange={handleInputChange}>
@@ -301,9 +300,8 @@ export default function SignupUserForm() {
                 variant="outlined"
                 placeholder={`Telefone ${isCompany ? 'do Responsável' : ''}`}
                 type="text"
-                InputLabelProps={{ shrink: true, style: { color: phoneInputFilled(formState?.phone) ? greenLeve : orangeLeve } }}
-                required
-              />
+                required={required}
+                InputLabelProps={{ shrink: formState?.phone !== "", style: { color: phoneInputFilled(formState?.phone) ? greenLeve : orangeLeve } }} />
             )}
           </InputMask>
           {isForeigner ? (
@@ -316,7 +314,7 @@ export default function SignupUserForm() {
                   variant="outlined"
                   placeholder="RNE"
                   type="text"
-                  required
+                  required={required}
                 />
               )}
             </InputMask>
@@ -332,9 +330,8 @@ export default function SignupUserForm() {
                   name='rg'
                   type="text"
                   inputProps={{ inputMode: 'numeric' }}
-                  required
-                  InputLabelProps={{ shrink: true, style: { color: rgInputFilled(formState?.rg) ? greenLeve : orangeLeve } }}
-                />
+                  required={required}
+                  InputLabelProps={{ shrink: formState?.rg !== "", style: { color: rgInputFilled(formState?.rg) ? greenLeve : orangeLeve } }} />
               )}
             </InputMask>
           )}
@@ -349,8 +346,8 @@ export default function SignupUserForm() {
                 placeholder="CPF"
                 inputProps={{ inputMode: 'numeric' }}
                 type="text"
-                required
-                InputLabelProps={{ shrink: true, style: { color: cpfInputFilled(formState?.cpf) ? greenLeve : orangeLeve } }} />
+                required={required}
+                InputLabelProps={{ shrink: formState?.cpf !== "", style: { color: cpfInputFilled(formState?.cpf) ? greenLeve : orangeLeve } }} />
             )}
           </InputMask>
           <InputMask mask="99/99/9999" required value={formState?.birthDate} onChange={handleInputChange}>
@@ -364,9 +361,8 @@ export default function SignupUserForm() {
                 placeholder="Data de Nascimento"
                 type="text"
                 inputProps={{ inputMode: 'numeric' }}
-                InputLabelProps={{ shrink: true, style: { color: birthDateInputFilled(formState?.birthDate) ? greenLeve : orangeLeve } }}
-                required
-              />
+                required={required}
+                InputLabelProps={{ shrink: formState?.birthDate !== "", style: { color: birthDateInputFilled(formState?.birthDate) ? greenLeve : orangeLeve } }} />
             )}
           </InputMask>
           <FormInput
@@ -380,7 +376,7 @@ export default function SignupUserForm() {
             filledCorrectly={regularTextInputFilled(formState?.cost)}
             onChange={handleChangeUserCost}
             inputProps={{ inputMode: 'numeric' }}
-            required
+            required={required}
             InputLabelProps={{ shrink: true, style: { color: regularTextInputFilled(formState?.cost) ? greenLeve : orangeLeve } }} />
           <FormInput
             id="maritalStatus"
@@ -392,7 +388,7 @@ export default function SignupUserForm() {
             variant="outlined"
             placeholder="Estado Civil"
             className="inputForm"
-            InputLabelProps={{ shrink: true, style: { color: regularTextInputFilled(formState?.maritalStatus) ? greenLeve : orangeLeve } }}>
+            InputLabelProps={{ shrink: formState?.maritalStatus !== "", style: { color: regularTextInputFilled(formState?.maritalStatus) ? greenLeve : orangeLeve } }}>
             {maritalStatusOptions?.map((maritalStatus) => (
               <MenuItem key={maritalStatus.label} value={maritalStatus.value} >
                 {maritalStatus.label}
@@ -409,8 +405,8 @@ export default function SignupUserForm() {
             className="inputForm"
             variant="outlined"
             placeholder="Nacionalidade"
-            required
-            InputLabelProps={{ shrink: true, style: { color: regularTextInputFilled(formState?.nationality) ? greenLeve : orangeLeve } }}>
+            required={required}
+            InputLabelProps={{ shrink: formState?.nationality !== "", style: { color: regularTextInputFilled(formState?.nationality) ? greenLeve : orangeLeve } }}>
             {nationalityOptions?.map((nationality) => (
               <MenuItem key={nationality.label} value={nationality.value}>
                 {nationality.label}
@@ -427,8 +423,8 @@ export default function SignupUserForm() {
             className="inputForm"
             variant="outlined"
             placeholder="Profissão"
-            required
-            InputLabelProps={{ shrink: true, style: { color: regularTextInputFilled(formState?.profession) ? greenLeve : orangeLeve } }}>
+            required={required}
+            InputLabelProps={{ shrink: formState?.profession !== "", style: { color: regularTextInputFilled(formState?.profession) ? greenLeve : orangeLeve } }}>
             {professionOptions?.map((profession) => (
               <MenuItem key={profession.label} value={profession.value}>
                 {profession.label}
