@@ -1,68 +1,9 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-export const useStoreUser = create((set) => ({
-    user: {
-        uuid: "",
-        name: "",
-        email: "",
-        secondaryEmail: "",
-        phone: null,
-        cep: "",
-        cost: 0,
-        coupon: "",
-        couponValue: 0,
-
-        companyName: "",
-        cnpj: "",
-
-        discount: 0,
-        isCompany: null,
-        isLowCost: false,
-        isOutOfRange: false,
-
-        birthDate: "",
-        rg: "",
-        cpf: "",
-        maritalStatus: "",
-        profession: "",
-        nationality: "",
-
-        clientId: "",
-        accessToken: "",
-        refreshToken: "",
-
-        distributor: "",
-        distributorPhotoUrl: "",
-        distributorLogin: "",
-        distributorPassword: "",
-
-        hasSignContract: false,
-        hasSyncDistributorData: null,
-
-        memberGetMemberCode: "",
-
-        invoiceDate: 0,
-
-        isFirstAccess: null,
-        hasOpenedSharedAccessModal: null, 
-        hasConnectedByBackoffice: false,
-
-        tusd: 0,
-        te: 0,
-        annualDiscount: 0,
-        treeEquivalency: 0,
-        carbonReduction: 0,
-        availabilityTax: 0,
-    },
-    updateUser: (newUser) =>
-        set((state) => ({
-            user: {
-                ...state.user,
-                ...newUser
-            }
-        })),
-    clearUser: () =>
-        set(() => ({
+export const useStoreUser = create(
+    persist(
+        (set) => ({
             user: {
                 uuid: "",
                 name: "",
@@ -106,7 +47,7 @@ export const useStoreUser = create((set) => ({
                 invoiceDate: 0,
 
                 isFirstAccess: null,
-                hasOpenedSharedAccessModal: null, 
+                hasOpenedSharedAccessModal: null,
                 hasConnectedByBackoffice: false,
 
                 tusd: 0,
@@ -116,44 +57,116 @@ export const useStoreUser = create((set) => ({
                 carbonReduction: 0,
                 availabilityTax: 0,
             },
-        }))
-}));
+            updateUser: (newUser) =>
+                set((state) => ({
+                    user: { ...state.user, ...newUser },
+                })),
+            clearUser: () =>
+                set(() => ({
+                    user: {
+                        uuid: "",
+                        name: "",
+                        email: "",
+                        secondaryEmail: "",
+                        phone: null,
+                        cep: "",
+                        cost: 0,
+                        coupon: "",
+                        couponValue: 0,
 
-export const useStoreAddress = create((set) => ({
-    address: {
-        street: "",
-        number: "",
-        neighborhood: "",
-        cityId: 0,
-        stateId: 0,
-        city: "",
-        state: "",
-        cep: "",
-        installationNumber: "",
+                        companyName: "",
+                        cnpj: "",
 
-    },
-    updateAddress: (newAddress) =>
-        set((state) => ({
+                        discount: 0,
+                        isCompany: null,
+                        isLowCost: false,
+                        isOutOfRange: false,
+
+                        birthDate: "",
+                        rg: "",
+                        cpf: "",
+                        maritalStatus: "",
+                        profession: "",
+                        nationality: "",
+
+                        clientId: "",
+                        accessToken: "",
+                        refreshToken: "",
+
+                        distributor: "",
+                        distributorPhotoUrl: "",
+                        distributorLogin: "",
+                        distributorPassword: "",
+
+                        hasSignContract: false,
+                        hasSyncDistributorData: null,
+
+                        memberGetMemberCode: "",
+
+                        invoiceDate: 0,
+
+                        isFirstAccess: null,
+                        hasOpenedSharedAccessModal: null,
+                        hasConnectedByBackoffice: false,
+
+                        tusd: 0,
+                        te: 0,
+                        annualDiscount: 0,
+                        treeEquivalency: 0,
+                        carbonReduction: 0,
+                        availabilityTax: 0,
+                    },
+                })),
+        }),
+        {
+            name: "user",
+            partialize: (state) => ({ user: state.user }),
+        }
+    )
+);
+
+export const useStoreAddress = create(
+    persist(
+      (set) => ({
+        address: {
+          street: "",
+          number: "",
+          neighborhood: "",
+          cityId: 0,
+          stateId: 0,
+          city: "",
+          state: "",
+          cep: "",
+          installationNumber: "",
+        },
+        updateAddress: (newAddress) =>
+          set((state) => ({
             address: {
-                ...state.address,
-                ...newAddress
-            }
-        })),
-    clearAddress: () =>
-        set(() => ({
+              ...state.address,
+              ...newAddress,
+            },
+          })),
+        clearAddress: () =>
+          set(() => ({
             address: {
-                street: "",
-                number: "",
-                neighborhood: "",
-                cityId: 0,
-                stateId: 0,
-                city: "",
-                state: "",
-                cep: "",
-                installationNumber: "",
-            }
-        }))
-}));
+              street: "",
+              number: "",
+              neighborhood: "",
+              cityId: 0,
+              stateId: 0,
+              city: "",
+              state: "",
+              cep: "",
+              installationNumber: "",
+            },
+          })),
+      }),
+      {
+        name: "address", // Key for localStorage
+        partialize: (state) => ({ address: state.address }), // Persist only the `address` property
+      }
+    )
+  );
 
 export const useStoreCompany = create((set) => ({
     company: {

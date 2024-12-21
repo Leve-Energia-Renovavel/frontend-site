@@ -114,3 +114,8 @@ export const REGISTER_FORM = {
     ADDRESS_ID: "registerFormAddressId",
     CONTRACT_ID: "registerFormContractId",
 }
+
+export const COOKIES_FOR = {
+    UUID: "leveUUID",
+    USER: "user",
+}

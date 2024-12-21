@@ -18,7 +18,7 @@ import InputMask from "react-input-mask";
 import { BackButton, FileUploadContainer, FileUploadItem, Form, FormContent, FormFooterContainer, FormInput, FormRow, FormSubmitButton } from './styles';
 
 import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
-import { PATH_TO, REGISTER_FORM } from '@/app/pages/enums/globalEnums';
+import { COOKIES_FOR, PATH_TO, REGISTER_FORM } from '@/app/pages/enums/globalEnums';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
 import { birthDateInputFilled, costValidation, cpfInputFilled, emailInputFilled, newCostValidation, normalTextInputFilled, phoneInputFilled, regularTextInputFilled, rgInputFilled } from '@/app/utils/helper/signup/signupHelper';
 import dynamic from 'next/dynamic';
@@ -32,9 +32,9 @@ export default function SignupUserForm() {
   const store = useStoreUser()
   const messages = useStoreMessages()
 
-  const uuid = store?.user?.uuid || Cookies.get('leveUUID') || search.get("uuid")
+  const uuid = store?.user?.uuid || Cookies.get(COOKIES_FOR.UUID) || search.get("uuid")
 
-  const { name, email, phone, cost, distributor, companyName, cnpj, birthDate, isCompany } = store?.user || {}
+  const { name, email, phone, cost, rg, cpf, distributor, nationality, maritalStatus, profession, companyName, cnpj, birthDate, isCompany } = store?.user || Cookies.get(COOKIES_FOR.USER) || {}
 
   const [isForeigner, setIsForeigner] = useState(false);
 
@@ -80,12 +80,12 @@ export default function SignupUserForm() {
     email: email || "",
     phone: phone || "",
     cost: cost || "",
-    rg: "",
-    cpf: "",
+    rg: rg || "",
+    cpf: cpf || "",
     birthDate: birthDate || "",
-    nationality: "",
-    maritalStatus: "",
-    profession: "",
+    nationality: nationality || "",
+    maritalStatus: maritalStatus || "",
+    profession: profession || "",
     razao_social: companyName || "",
     cnpj: cnpj || "",
     socialContractFile: null,
@@ -98,6 +98,8 @@ export default function SignupUserForm() {
       ...prevState,
       [name]: value,
     }));
+
+    store.updateUser({ [name]: value });
   };
 
   const handleClickFiles = (fileType) => {
@@ -387,6 +389,7 @@ export default function SignupUserForm() {
             label="Estado Civil"
             variant="outlined"
             placeholder="Estado Civil"
+            value={formState?.maritalStatus || ""}
             className="inputForm"
             InputLabelProps={{ shrink: formState?.maritalStatus !== "", style: { color: regularTextInputFilled(formState?.maritalStatus) ? greenLeve : orangeLeve } }}>
             {maritalStatusOptions?.map((maritalStatus) => (
@@ -405,6 +408,7 @@ export default function SignupUserForm() {
             className="inputForm"
             variant="outlined"
             placeholder="Nacionalidade"
+            value={formState?.nationality || ""}
             required={required}
             InputLabelProps={{ shrink: formState?.nationality !== "", style: { color: regularTextInputFilled(formState?.nationality) ? greenLeve : orangeLeve } }}>
             {nationalityOptions?.map((nationality) => (
@@ -423,6 +427,7 @@ export default function SignupUserForm() {
             className="inputForm"
             variant="outlined"
             placeholder="Profissão"
+            value={formState?.profession || ""}
             required={required}
             InputLabelProps={{ shrink: formState?.profession !== "", style: { color: regularTextInputFilled(formState?.profession) ? greenLeve : orangeLeve } }}>
             {professionOptions?.map((profession) => (

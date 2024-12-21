@@ -1,4 +1,4 @@
-import { USER_TYPE } from "@/app/pages/enums/globalEnums";
+import { COOKIES_FOR, USER_TYPE } from "@/app/pages/enums/globalEnums";
 import { checkForCompanyName } from "@/app/utils/company/CompanyUtils";
 import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
 import { capitalizeEachWord, sanitizeAndCapitalizeWords } from "@/app/utils/formatters/textFormatter";
@@ -96,7 +96,7 @@ export const startSignUpForPartners = async (data) => {
 export const getLeadData = async (uuid, store, storeAddress) => {
 
     store.updateUser({ uuid: uuid });
-    Cookies.set('leveUUID', uuid)
+    Cookies.set(COOKIES_FOR.UUID, uuid)
 
     try {
         const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
