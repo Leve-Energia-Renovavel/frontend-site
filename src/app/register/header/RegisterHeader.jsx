@@ -24,8 +24,7 @@ export default function RegisterHeader({ children, step }) {
                             <StepLabelContainer
                                 className="registerHeaderLabelContainer"
                                 isCompleted={step > key}
-                                isSelected={step === key}
-                            >
+                                isSelected={step === key}>
                                 <span className="registerHeaderLabel">{label}</span>
                             </StepLabelContainer>
                         </StepComponent>

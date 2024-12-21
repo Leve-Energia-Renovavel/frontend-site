@@ -111,6 +111,7 @@ export const getLeadData = async (uuid, storeUser, storeAddress) => {
             const cep = consumidor?.cep
 
             const updatedUser = {
+                uuid: consumidor?.uuid || storeUser?.user?.uuid,
                 name: capitalizeEachWord(consumidor?.nome_completo) || capitalizeEachWord(storeUser?.user?.name) || "",
                 phone: consumidor?.telefone || storeUser?.user?.phone || "",
                 email: consumidor?.email || storeUser?.user?.email || "",
