@@ -1,8 +1,8 @@
+import { fadeInRight } from "@/app/pages/globalAnimations";
 import { background, notification } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import { Alert, Button, TextField, keyframes } from "@mui/material";
 import Divider from '@mui/material/Divider';
-import LinearProgress from '@mui/material/LinearProgress';
 
 const fadeInUp = keyframes`
   from {
@@ -121,8 +121,16 @@ export const FormLastRow = styled.div`
         grid-template-columns: repeat(1,1fr);
     }
 `
-export const FormInput = styled(TextField)`
+
+const FormInputBase = styled(TextField, {
+    shouldForwardProp: (prop) => prop !== "filledCorrectly",
+})``;
+
+export const FormInput = styled(FormInputBase)`
     border-radius: 10px;
+
+    animation: ${fadeInRight} 0.5s ease-out;
+    
     
     && {
         background-color: ${props => props.filledCorrectly ? background.greenTranslucent : background.orangeTranslucent}; 
@@ -376,6 +384,8 @@ export const FormFooterContainer = styled.div`
 
     padding: 1rem 0;
 
+    gap: 1rem;
+
     .requiredFields {
             font-family: "Graphie";
             font-size: 12px;
@@ -399,24 +409,11 @@ export const BackButton = styled(Button)`
   height: 54px;
 
   width: 100%;
-  max-width: 250px;
-  max-width: 342px;
-
-  padding: 8px 16px;
+  max-width: fit-content;
   
-  span {
-    font-family: "Graphie";
-    font-size: 21px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 120%; 
-    text-transform: none;
-    color: ${background.white};
-
-    white-space: nowrap;
-  }
-
-  .icon {
+    .icon {
+        width: 26px;
+        height: auto;
         color: ${background.yellow};
     }
 

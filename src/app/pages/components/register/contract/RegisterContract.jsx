@@ -10,22 +10,21 @@ import dynamic from "next/dynamic";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { PATH_TO } from "../../../enums/globalEnums";
-import { ContractSignatureContainer as Container, ContractSignatureForm } from "./styles";
+import { ContractSignatureForm } from "./styles";
 
 const ClicksignWidgetComponent = dynamic(() => import("@/app/utils/clicksign/ClicksignWidgetComponent"), { ssr: false });
 
 export default function RegisterContract() {
 
-    const store = useStoreUser()
-    const storeClicksign = useStoreClickSign()
-
     const router = useRouter()
     const search = useSearchParams()
 
-    const user = JSON.parse(window.localStorage.getItem('user')) || store?.user
-    const { phone } = user?.user ?? (store?.user || {})
+    const storeUser = useStoreUser()
+    const storeClicksign = useStoreClickSign()
 
-    const uuid = search.get("uuid") || store.user.uuid || Cookies.get('leveUUID')
+    const { phone } = storeUser?.user || {}
+
+    const uuid = search.get("uuid") || storeUser.user.uuid || Cookies.get('leveUUID')
 
     if (!uuid || uuid == "undefined") {
         router.push(PATH_TO.HOME)
@@ -53,8 +52,7 @@ export default function RegisterContract() {
 
     return (
         <ContractSignatureForm className="contractSignatureForm">
-            <p className="contractSignInfo">Para assinar o contrato, esteja com o telefone <span className="phoneNumber">{formatPhoneNumber(phone)}</span> em mãos e insira o código de confirmação enviado por SMS.</p>
-            <p className="contractSignInfo">Contrato ID:{Cookies.get("clickSignKey")}</p>
+            {/* <p className="contractSignInfo">Para assinar o contrato, esteja com o telefone <span className="phoneNumber">{formatPhoneNumber(phone)}</span> em mãos e insira o código de confirmação enviado por SMS.</p> */}
             <ClicksignWidgetComponent uuid={uuid} />
         </ContractSignatureForm>
     )

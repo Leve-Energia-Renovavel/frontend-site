@@ -6,7 +6,7 @@ import { useStoreMessages } from "@/app/hooks/stores/useStoreMessages";
 import useGetCEP from "@/app/hooks/utils/useGetCEP";
 import { COOKIES_FOR, PATH_TO, REGISTER_FORM } from "@/app/pages/enums/globalEnums";
 import { findCityIdByName } from "@/app/service/utils/addressUtilsService";
-import { requestSuccessful } from "@/app/service/utils/Validations";
+import { hasToSignContract, requestSuccessful } from "@/app/service/utils/Validations";
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
 import { addressTextInputFilled, cepInputFilled, numberInputFilled } from "@/app/utils/helper/register/registerAddressHelper";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -21,6 +21,7 @@ import { BackButton, Form, FormContent, FormFooterContainer, FormInput, FormLast
 import { userAndAddressSchema } from "./schema";
 import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
 import { signUp } from "@/app/service/user-service/UserService";
+import { formatCpfUnrestricted } from "@/app/utils/formatters/documentFormatter";
 
 export default function SignupAddressForm() {
 
@@ -58,7 +59,7 @@ export default function SignupAddressForm() {
   const schemaValidation = async (data) => {
     try {
       const validatedData = await userAndAddressSchema.validate(data, { abortEarly: false })
-      setNotifications(["Informações salvas com sucesso!"])
+      setNotifications(["Informações do imóvel salvas com sucesso!"])
       return await signUp(validatedData);
 
     } catch (error) {
@@ -88,10 +89,10 @@ export default function SignupAddressForm() {
       nome_completo: name,
       email: email,
       rg: rg,
-      cpf: cpf,
+      cpf: formatCpfUnrestricted(cpf),
       data_nascimento: birthDate,
       telefone: formatPhoneNumber(phone),
-      valor: parseFloat(cost?.replace(',', '.')),
+      valor: parseFloat(cost?.toString()?.replace(',', '.')),
       nacionalidade: nationality,
       profissao: profession,
       estado_civil: maritalStatus,
@@ -108,6 +109,8 @@ export default function SignupAddressForm() {
       cidade_id: formState?.cityId || await findCityIdByName(formState?.city, formState?.stateId),
       numero_instalacao: formState?.installationNumber,
     };
+
+    console.log(submitData);
 
     const response = await schemaValidation(submitData);
     storeAddress.updateAddress({ ...formState });
@@ -312,7 +315,6 @@ export default function SignupAddressForm() {
 
         <FormLastRow>
           <FormInput
-            isInstallationNumber={true}
             type="text"
             variant="outlined"
             className="inputForm"
@@ -321,19 +323,14 @@ export default function SignupAddressForm() {
             label="Número de Instalação"
             placeholder="Número de Instalação"
             required
+            value={formState?.installationNumber || ''}
             filledCorrectly={addressTextInputFilled(formState?.installationNumber)}
             InputLabelProps={{ shrink: formState?.installationNumber !== "", style: { color: addressTextInputFilled(formState?.installationNumber) ? greenLeve : orangeLeve } }}
           />
         </FormLastRow>
 
         <FormFooterContainer>
-          {isLoading ?
-            <Box >
-              <CircularProgress className='submitLoading' />
-            </Box>
-            : <BackButton
-              onClick={() => router.back()}
-              startIcon={<ArrowBackIcon className='icon' />}><span>Voltar</span></BackButton>}
+          <BackButton onClick={() => router.back()} endIcon={<ArrowBackIcon className="icon" />} />
           {isLoading ?
             <Box >
               <CircularProgress className='submitLoading' />

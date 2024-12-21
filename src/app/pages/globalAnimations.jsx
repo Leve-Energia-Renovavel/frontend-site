@@ -68,6 +68,17 @@ export const fadeInUp = keyframes`
     transform: translateY(0);
   }
 `;
+export const fadeInRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
 export const float = keyframes`
     0% {
         transform: translate(0, 0);

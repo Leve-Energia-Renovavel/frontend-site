@@ -72,16 +72,32 @@ export const ClicksignComponentContainer = styled.div`
 
     #clicksign-container {
         width: 100%;
-        background-color: #eee;
 
-        height: 410px; //enough to dont show scrollbar
-        max-height: 900px;
+        height: 410px;
 
         @media (max-width: 600px) {
-            width: 20rem; 
-            height: 35rem;
+            width: 100%;
+            height: 420px;
 
-            margin: 0;
+            max-height: 100%;
+
+        }   
+        @media (max-width: 440px) {
+            width: 100%;
+            height: 490px;
+        }   
+        @media (max-width: 420px) {
+            width: 100%;
+            height: 510px;
+        }   
+
+        @media (max-width: 380px) {
+            width: 100%;
+            height: 450px;
+        }   
+        @media (max-width: 370px) {
+            width: 100%;
+            height: 510px;
         }   
     }
 `

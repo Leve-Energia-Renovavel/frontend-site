@@ -21,6 +21,15 @@ export const BoxComponent = styled(Box)`
         width:100%;
         margin: 2rem auto;
     }
+
+    @media (max-width: 600px) {
+        width: 100%;
+        padding: 1rem;
+
+        .registerHeaderDivider {
+            margin: 1rem auto;
+        }
+    }
 `;
 
 export const StepperComponent = styled(Stepper)`
@@ -29,6 +38,11 @@ export const StepperComponent = styled(Stepper)`
 
     .MuiStepConnector-root span {
         border-color: transparent;
+    }
+
+    @media (max-width: 600px) {
+        width: 100%;
+        max-width: 100%;
     }
 `
 export const StepComponent = styled(Step)`
@@ -41,7 +55,14 @@ export const StepComponent = styled(Step)`
         color: ${background.green};
     }
 `
-export const StepLabelContainer = styled(StepLabel)`
+
+// This corrects the hydratation error message when using props 
+// https://stackoverflow.com/questions/54468535/how-to-solve-warning-react-does-not-recognize-the-x-prop-on-a-dom-element
+const StepLabelContainerBase = styled(StepLabel, {
+    shouldForwardProp: (prop) => prop !== "isSelected" && prop !== "isCompleted",
+})``;
+
+export const StepLabelContainer = styled(StepLabelContainerBase)`
 
     span {
         font-family: "Graphie";

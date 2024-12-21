@@ -1,18 +1,7 @@
+import { fadeInRight, fadeInUp } from "@/app/pages/globalAnimations";
 import { background, notification } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
-import { Alert, Button, TextField, keyframes } from "@mui/material";
-
-const fadeInUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
+import { Alert, Button, TextField } from "@mui/material";
 
 export const Form = styled.form`
     padding: 8px 100px;
@@ -69,8 +58,15 @@ export const FormLastRow = styled.div`
         grid-template-columns: repeat(1,1fr);
     }
 `
-export const FormInput = styled(TextField)`
+
+const FormInputBase = styled(TextField, {
+    shouldForwardProp: (prop) => prop !== "filledCorrectly",
+})``;
+
+export const FormInput = styled(FormInputBase)`
     border-radius: 10px;
+
+    animation: ${fadeInRight} 0.5s ease-out;
     
     && {
         background-color: ${props => props.filledCorrectly ? background.greenTranslucent : background.orangeTranslucent}; 
@@ -163,6 +159,8 @@ export const FormFooterContainer = styled.div`
 
     padding: 1rem 0;
 
+    gap: 1rem;
+
     .requiredFields {
             font-family: "Graphie";
             font-size: 12px;
@@ -230,24 +228,11 @@ export const BackButton = styled(Button)`
   height: 54px;
 
   width: 100%;
-  max-width: 250px;
-  max-width: 342px;
-
-  padding: 8px 16px;
+  max-width: fit-content;
   
-  span {
-    font-family: "Graphie";
-    font-size: 21px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 120%; 
-    text-transform: none;
-    color: ${background.white};
-
-    white-space: nowrap;
-  }
-
   .icon {
+        width: 26px;
+        height: auto;
         color: ${background.yellow};
     }
 
@@ -355,51 +340,3 @@ export const InstallationNumberDisclaimer = styled.div`
     }
 
 `
-
-
-export const SnackbarMessageAlert = styled(Alert)`
-  font-family: "Graphie";
-  font-size: 1rem;
-  background-color: ${notification.alert};
-  border-radius: 10px;
-  padding: 1rem;
-  align-items: center;
-
-  animation: ${fadeInUp} 0.5s ease-out;
-
-  @media screen and (max-width: 600px) {
-    padding: .3rem;
-    font-size: 1rem; 
-  }
-
-`
-
-export const SnackbarMessageNotification = styled(Alert)`
-  font-family: "Graphie";
-  font-size: 1rem;
-  background-color: ${notification.success};
-  border-radius: 10px;
-  padding: 1rem;
-  align-items: center;
-
-  animation: ${fadeInUp} 0.5s ease-out;
-
-  @media screen and (max-width: 600px) {
-    padding: .3rem;
-    font-size: 1rem; 
-  }
-
-`
-
-
-export const fileInputStyles = {
-    cursor: 'pointer',
-    backgroundColor: 'transparent',
-    padding: '0 5px',
-    marginLeft: '.5rem',
-    fontSize: '1rem',
-    fontWeight: 'bold',
-}
-
-
-

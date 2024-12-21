@@ -23,11 +23,13 @@ export default function ClicksignWidgetComponent({ uuid }) {
         widgetInstance.mount('clicksign-container');
 
         widgetInstance.on('signed', async () => {
-            storeUser.updateUser({
+
+            storeUser.updateUser((prevState) => ({
+                ...prevState,
                 hasSignContract: true,
                 isFirstAccess: true,
                 hasOpenedSharedAccessModal: false,
-            });
+            }));
             await finishSignup(router, uuid);
         });
 

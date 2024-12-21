@@ -3,33 +3,28 @@
 
 import { useStoreAddress, useStoreUser } from '@/app/hooks/stores/useStore';
 import { getLeadData } from '@/app/service/lead-service/LeadService';
-import dynamic from 'next/dynamic';
+import Cookies from 'js-cookie';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { COOKIES_FOR } from '../../enums/globalEnums';
 import Messages from '../messages/Messages';
 import LoadingResultEconomy from '../result-economy/loading/LoadingResultEconomy';
+import ResultEconomy from '../result-economy/ResultEconomy';
 import { SignUpContainer as Container } from './styles';
-
-const ResultEconomy = dynamic(() => import('../result-economy/ResultEconomy'), { ssr: false });
 
 export default function EconomySimulation() {
 
     const [isLoading, setIsLoading] = useState(true)
 
     const search = useSearchParams()
-    const store = useStoreUser()
+    const storeUser = useStoreUser()
     const storeAddress = useStoreAddress()
 
-    const { uuid } = store?.user || {}
-    var uuidParam = search.get("uuid")
-
-    if (!uuidParam) {
-        uuidParam = uuid
-    }
+    const uuid = search.get("uuid") || storeUser?.user?.uuid || Cookies.get(COOKIES_FOR.UUID)
 
     useEffect(() => {
         const fetchData = async () => {
-            await getLeadData(uuidParam, store, storeAddress)
+            await getLeadData(uuid, storeUser, storeAddress)
             setIsLoading(false)
         };
         fetchData();

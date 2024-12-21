@@ -10,7 +10,7 @@ export const RoutingContainer = styled.div`
     
     margin: ${headerMargin} auto 0 auto;
     
-    min-height: 1000px;
+    min-height: fit-content;
     height: 100%;
     
     @media (max-width: 600px) {

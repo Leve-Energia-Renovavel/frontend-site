@@ -14,12 +14,6 @@ export const ContractSignatureForm = styled.div`
     padding-bottom: 1rem;
     border-radius: 0px 0px 10px 10px;
 
-    @media (max-width: 600px) {
-        border-radius: 0;
-        width: 100vw;
-        max-width: 100vw;
-    }
-
     .contractSignInfo {
         font-family: "Graphie";
         font-size: 17px;
@@ -36,4 +30,21 @@ export const ContractSignatureForm = styled.div`
         text-decoration: underline;
         background-color: ${background.yellow};
     }
+
+    @media (max-width: 600px) {
+        border-radius: 0;
+        width: 100%;
+        max-width: 100vw;
+
+        padding: 0 1rem;
+
+        .contractSignInfo, .phoneNumber {
+            font-size: 14px;
+        }
+    }
+    @media (max-width: 380px) {
+        width: 100%;
+        padding: 0;
+    }
+
 `

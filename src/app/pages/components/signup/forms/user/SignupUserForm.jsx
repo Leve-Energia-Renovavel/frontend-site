@@ -98,7 +98,7 @@ export default function SignupUserForm() {
   const schemaValidation = async (data, router) => {
     try {
       const validatedData = await userSchema.validate(data, { abortEarly: false })
-      setNotifications(["Informações salvas com sucesso!"])
+      setNotifications(["Informações salvas do titular com sucesso!"])
       router.push(`${PATH_TO.REGISTER_ADDRESS}`)
 
       return validatedData;
@@ -174,10 +174,7 @@ export default function SignupUserForm() {
     console.log("submitData ===>>", submitData)
 
     const response = await schemaValidation(submitData, router);
-    console.log("userSchema validation ===>>", response)
-
     store.updateUser({ ...formState });
-
 
     setIsLoading(false)
   }
@@ -490,15 +487,7 @@ export default function SignupUserForm() {
           </FileUploadContainer>
         )}
         <FormFooterContainer>
-          {isLoading ? (
-            <Box>
-              <CircularProgress className="submitLoading" />
-            </Box>
-          ) : (
-            <BackButton onClick={() => router.back()} startIcon={<ArrowBackIcon className="icon" />}>
-              <span>Voltar</span>
-            </BackButton>
-          )}
+          <BackButton onClick={() => router.back()} endIcon={<ArrowBackIcon className="icon" />} />
           {isLoading ? (
             <Box>
               <CircularProgress className="submitLoading" />
