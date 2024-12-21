@@ -2,6 +2,10 @@
 export const regularTextInputFilled = (value) => {
     return value?.toString().length > 1
 };
+export const costTextInputFilled = (value) => {
+    const formattedValue = parseFloat(value?.toString()?.replace(",", "."))
+    return formattedValue > 200 && formattedValue <= 20000
+};
 export const normalTextInputFilled = (value) => {
     const textRegex = /^[a-zA-ZÀ-ú\s]+$/;
     return value?.length > 1 && textRegex.test(value);

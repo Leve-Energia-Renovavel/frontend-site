@@ -19,10 +19,10 @@ import { BackButton, FileUploadContainer, FileUploadItem, Form, FormContent, For
 
 import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import { COOKIES_FOR, PATH_TO, REGISTER_FORM } from '@/app/pages/enums/globalEnums';
-import { formatCpfUnrestricted } from '@/app/utils/formatters/documentFormatter';
+import { formatCpf } from '@/app/utils/formatters/documentFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
-import { birthDateInputFilled, costValidation, cpfInputFilled, emailInputFilled, newCostValidation, normalTextInputFilled, phoneInputFilled, regularTextInputFilled, rgInputFilled } from '@/app/utils/helper/register/registerUserHelper';
+import { birthDateInputFilled, costTextInputFilled, costValidation, cpfInputFilled, emailInputFilled, newCostValidation, normalTextInputFilled, phoneInputFilled, regularTextInputFilled, rgInputFilled } from '@/app/utils/helper/register/registerUserHelper';
 import { userSchema } from './schema';
 
 export default function SignupUserForm() {
@@ -155,7 +155,7 @@ export default function SignupUserForm() {
       nome_completo: sanitizeAndCapitalizeWords(formState.name),
       email: formState.email,
       rg: formState.rg.replace(/[-_]/g, ""),
-      cpf: formatCpfUnrestricted(formState.cpf),
+      cpf: formatCpf(formState.cpf),
       data_nascimento: formState.birthDate,
       telefone: formatPhoneNumber(formState.phone),
       valor: validatedCost,
@@ -172,9 +172,8 @@ export default function SignupUserForm() {
       submitData["cnpj"] = companyRefs.cnpj.current.value
     }
     console.log("submitData ===>>", submitData)
-
-    const response = await schemaValidation(submitData, router);
     store.updateUser({ ...formState });
+    const response = await schemaValidation(submitData, router);
 
     setIsLoading(false)
   }
@@ -360,13 +359,13 @@ export default function SignupUserForm() {
                 name='cpf'
                 className="inputForm"
                 label="CPF"
-                filledCorrectly={cpfInputFilled(formatCpfUnrestricted(formState?.cpf))}
+                filledCorrectly={cpfInputFilled(formState?.cpf)}
                 variant="outlined"
                 placeholder="CPF"
                 inputProps={{ inputMode: 'numeric' }}
                 type="text"
                 required={required}
-                InputLabelProps={{ shrink: formState?.cpf !== "", style: { color: cpfInputFilled(formatCpfUnrestricted(formState?.cpf)) ? greenLeve : orangeLeve } }} />
+                InputLabelProps={{ shrink: formState?.cpf !== "", style: { color: cpfInputFilled(formState?.cpf) ? greenLeve : orangeLeve } }} />
             )}
           </InputMask>
           <InputMask mask="99/99/9999" required value={formState?.birthDate} onChange={handleInputChange}>
@@ -392,7 +391,7 @@ export default function SignupUserForm() {
             placeholder="Custo Mensal em R$"
             type="text"
             name='cost'
-            filledCorrectly={regularTextInputFilled(formState?.cost)}
+            filledCorrectly={costTextInputFilled(formState?.cost)}
             onChange={handleChangeUserCost}
             inputProps={{ inputMode: 'numeric' }}
             required={required}

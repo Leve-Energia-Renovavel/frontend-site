@@ -5,9 +5,12 @@ import { useStoreAddress, useStoreUser } from "@/app/hooks/stores/useStore";
 import { useStoreMessages } from "@/app/hooks/stores/useStoreMessages";
 import useGetCEP from "@/app/hooks/utils/useGetCEP";
 import { COOKIES_FOR, PATH_TO, REGISTER_FORM } from "@/app/pages/enums/globalEnums";
+import { signUp } from "@/app/service/user-service/UserService";
 import { findCityIdByName } from "@/app/service/utils/addressUtilsService";
 import { hasToSignContract, requestSuccessful } from "@/app/service/utils/Validations";
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
+import { formatCpf } from "@/app/utils/formatters/documentFormatter";
+import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
 import { addressTextInputFilled, cepInputFilled, numberInputFilled } from "@/app/utils/helper/register/registerAddressHelper";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -17,11 +20,8 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import InputMask from "react-input-mask";
-import { BackButton, Form, FormContent, FormFooterContainer, FormInput, FormLastRow, FormSubmitButton } from "./styles";
 import { userAndAddressSchema } from "./schema";
-import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
-import { signUp } from "@/app/service/user-service/UserService";
-import { formatCpfUnrestricted } from "@/app/utils/formatters/documentFormatter";
+import { BackButton, Form, FormContent, FormFooterContainer, FormInput, FormLastRow, FormSubmitButton } from "./styles";
 
 export default function SignupAddressForm() {
 
@@ -89,7 +89,7 @@ export default function SignupAddressForm() {
       nome_completo: name,
       email: email,
       rg: rg,
-      cpf: formatCpfUnrestricted(cpf),
+      cpf: formatCpf(cpf),
       data_nascimento: birthDate,
       telefone: formatPhoneNumber(phone),
       valor: parseFloat(cost?.toString()?.replace(',', '.')),
