@@ -1,13 +1,3 @@
-import { DISTRIBUTOR } from "@/app/pages/enums/globalEnums";
-
-export const benefits = [
-    "Não cobramos bandeira tarifária",
-    "Adesão gratuita",
-    "Sem custos adicionais",
-    "Sem instalações ou obras",
-    "Serviço regulado pela ANEEL",
-    "Cancele quando quiser",
-]
 
 export const regularTextInputFilled = (value) => {
     return value.toString().length > 1
@@ -88,9 +78,3 @@ export const newCostValidation = (newCost) => {
     if (isNaN(newCost)) return 0;
     return Math.min(Math.max(newCost, 0), 20000);
 };
-
-export const activeDistributorsForDisclaimer = (distributor) => {
-    return distributor === DISTRIBUTOR.CEMIG
-        || distributor === DISTRIBUTOR.CPFL_PAULISTA
-        || distributor === DISTRIBUTOR.CPFL_PIRATININGA
-}

@@ -267,7 +267,7 @@ export default function InstallationForm({ closeModal }) {
                             required>
                             {Object.values(stateOptions).map((state) => {
                                 return (
-                                    <MenuItem key={state.cod_estados} value={state.cod_estados}>{state.sigla}</MenuItem>
+                                    <MenuItem key={state.estado_id} value={state.estado_id}>{state.sigla}</MenuItem>
                                 )
                             })}
                         </FormInput>

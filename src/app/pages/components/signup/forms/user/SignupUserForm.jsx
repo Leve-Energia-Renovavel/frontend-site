@@ -20,10 +20,7 @@ import { BackButton, FileUploadContainer, FileUploadItem, Form, FormContent, For
 import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import { COOKIES_FOR, PATH_TO, REGISTER_FORM } from '@/app/pages/enums/globalEnums';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
-import { birthDateInputFilled, costValidation, cpfInputFilled, emailInputFilled, newCostValidation, normalTextInputFilled, phoneInputFilled, regularTextInputFilled, rgInputFilled } from '@/app/utils/helper/signup/signupHelper';
-import dynamic from 'next/dynamic';
-
-const Messages = dynamic(() => import('../../../messages/Messages'), { ssr: false });
+import { birthDateInputFilled, costValidation, cpfInputFilled, emailInputFilled, newCostValidation, normalTextInputFilled, phoneInputFilled, regularTextInputFilled, rgInputFilled } from '@/app/utils/helper/register/registerUserHelper';
 
 export default function SignupUserForm() {
 
@@ -34,7 +31,7 @@ export default function SignupUserForm() {
 
   const uuid = store?.user?.uuid || Cookies.get(COOKIES_FOR.UUID) || search.get("uuid")
 
-  const { name, email, phone, cost, rg, cpf, distributor, nationality, maritalStatus, profession, companyName, cnpj, birthDate, isCompany } = store?.user || Cookies.get(COOKIES_FOR.USER) || {}
+  const { name, email, phone, cost, rg, cpf, distributor, nationality, maritalStatus, profession, companyName, cnpj, birthDate, isCompany } = store?.user || {}
 
   const [isForeigner, setIsForeigner] = useState(false);
 
@@ -232,7 +229,7 @@ export default function SignupUserForm() {
               label="Razão Social"
               variant="outlined"
               placeholder="Razão Social"
-              correct={normalTextInputFilled(formState?.razao_social)}
+              filledCorrectly={normalTextInputFilled(formState?.razao_social)}
               value={formState?.razao_social}
               type="text"
               InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
@@ -490,9 +487,6 @@ export default function SignupUserForm() {
           )}
         </FormFooterContainer>
       </Form>
-
-
-      <Messages />
     </>
   )
 }

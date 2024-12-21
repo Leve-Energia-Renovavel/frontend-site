@@ -122,10 +122,10 @@ export const FormLastRow = styled.div`
     }
 `
 export const FormInput = styled(TextField)`
-    border-radius: 14px;
+    border-radius: 10px;
     
     && {
-        background-color: ${background.orangeTranslucent}; 
+        background-color: ${props => props.filledCorrectly ? background.greenTranslucent : background.orangeTranslucent}; 
     }
 
     .MuiInputLabel-shrink {
@@ -135,18 +135,20 @@ export const FormInput = styled(TextField)`
 
     .MuiOutlinedInput-input {
         border: 2px solid transparent;
-        border-radius: 15px;  
+        border-radius: 10px;  
+
         
         // styles for the user input text
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 700;
-        color: ${background.orange};
+        color: ${props => props.filledCorrectly ? background.green : background.orange}; 
         
         &:focus {
-            color: ${background.orange};
-            border: 2px solid ${background.orange};
-            background-color: ${background.orangeFocused}; 
+            
+            color: ${props => props.filledCorrectly ? background.green : background.orange}; 
+            border: 2px solid ${props => props.filledCorrectly ? background.green : background.orange};
+            background-color: ${props => props.filledCorrectly ? background.greenTranslucent : background.orangeTranslucent}; 
             }
         }
 
@@ -158,19 +160,16 @@ export const FormInput = styled(TextField)`
             font-family: "Graphie";
             font-size: 14px;
             font-weight: 600;
-            color: ${background.orange};
-
+            color: ${props => props.filledCorrectly ? background.green : background.orange}; 
+            
             &:focus {
-                color: ${background.orange};
+                color: ${props => props.filledCorrectly ? background.green : background.orange}; 
             }
         }
 
-        /* .MuiInputLabel-outlined {
-            transform: translate(14px, 16px) scale(1);
-        } */
-
         .searchIcon { 
-            color:${background.orange};
+            color: ${props => props.filledCorrectly ? background.green : background.orange}; 
+
             &:hover{
                 cursor: pointer;
             }
@@ -179,8 +178,6 @@ export const FormInput = styled(TextField)`
         .formLoading {
             color: ${background.orange};
         }
-
-
 `
 
 export const FileUploadContainer = styled.div`
@@ -289,50 +286,6 @@ export const FormSubmitButton = styled(Button)`
   }
 `
 
-
-export const InstallationInput = styled(TextField)`
-    border-radius: 10px;
-    
-    && {
-        background-color: ${background.orangeTranslucent}; 
-    }
-    .MuiInputLabel-shrink {
-        /* Styles for the focused label */
-        line-height: 3em; 
-    }
-    
-    .MuiOutlinedInput-input {
-        border: 2px solid ${background.orange};
-        border-radius: 14px;  
-
-        // styles for the user input text
-        font-family: "Graphie";
-        font-size: 17px;
-        font-weight: 700;
-        color: ${background.orange};
-
-        
-        &:focus {
-            background-color: ${background.orangeFocused}; 
-            }
-        }
-
-        && fieldset {
-            border: none;
-        }     
-        
-        .MuiFormLabel-root {
-            font-family: "Graphie";
-            font-size: 14px;
-            font-weight: 600;
-            color: ${background.orange};
-            
-            &:focus {
-                color: ${background.orange};
-            }
-            
-        }
-`
 export const InstallationNumberDisclaimer = styled.div`
     display: flex;
     flex-direction: row;

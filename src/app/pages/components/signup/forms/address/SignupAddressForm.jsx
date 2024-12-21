@@ -2,52 +2,54 @@
 "use client"
 
 import { useStoreAddress, useStoreUser } from "@/app/hooks/stores/useStore";
+import { useStoreMessages } from "@/app/hooks/stores/useStoreMessages";
 import useGetCEP from "@/app/hooks/utils/useGetCEP";
-import useGetCNPJ from "@/app/hooks/utils/useGetCNPJ";
-import { PATH_TO, REGISTER_FORM } from "@/app/pages/enums/globalEnums";
+import { COOKIES_FOR, PATH_TO, REGISTER_FORM } from "@/app/pages/enums/globalEnums";
 import { findCityIdByName } from "@/app/service/utils/addressUtilsService";
-import { hasToSignContract, requestSuccessful } from "@/app/service/utils/Validations";
+import { requestSuccessful } from "@/app/service/utils/Validations";
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
-import { statesAcronymOptions } from "@/app/utils/form-options/statesIdOptions";
+import { addressTextInputFilled, cepInputFilled, numberInputFilled } from "@/app/utils/helper/register/registerAddressHelper";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, CircularProgress, MenuItem } from '@mui/material';
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import InputMask from "react-input-mask";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { BackButton, Form, FormContent, FormFooterContainer, FormInput, FormLastRow, FormSubmitButton, InstallationInput } from "./styles";
+import { BackButton, Form, FormContent, FormFooterContainer, FormInput, FormLastRow, FormSubmitButton } from "./styles";
 
 export default function SignupAddressForm() {
 
   const router = useRouter()
   const store = useStoreUser()
   const storeAddress = useStoreAddress()
+  const storeMessage = useStoreMessages()
+
+  const setErrors = storeMessage.setErrors
+  const setNotifications = storeMessage.setNotifications
 
   const fetchCEP = useGetCEP();
-  const fetchCNPJ = useGetCNPJ();
 
-  const uuid = store.user.uuid || Cookies.get('leveUUID')
-  // const address = JSON.parse(localStorage.getItem('address'))
+  const uuid = store.user.uuid || Cookies.get(COOKIES_FOR.UUID)
 
-  const { street, neighborhood, city, state, stateId, cityId, cep } = storeAddress?.address || {}
+  const { street, neighborhood, city, state, complement, stateId, cityId, cep, installationNumber } = storeAddress?.address || {}
 
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingCEP, setIsLoadingCEP] = useState(false);
 
-  const [stateValue, setStateValue] = useState(stateId ? stateId : stateOptions[(statesAcronymOptions[state])]);
-
-  const addressRefs = {
-    address: useRef(null),
-    addressNumber: useRef(null),
-    addressCep: useRef(null),
-    complement: useRef(null),
-    neighborhood: useRef(null),
-    state: useRef(null),
-    city: useRef(null),
-    installationNumber: useRef(null)
-  }
+  const [formState, setFormState] = useState({
+    street: street || "",
+    number: "",
+    cep: cep || "",
+    complement: complement || "",
+    neighborhood: neighborhood || "",
+    state: state || "",
+    stateId: stateId || "",
+    city: city || "",
+    cityId: cityId || "",
+    installationNumber: installationNumber || "",
+  });
 
   const schemaValidation = async (data) => {
     try {
@@ -60,26 +62,38 @@ export default function SignupAddressForm() {
     }
   };
 
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+
+    store.updateUser({ [name]: value });
+  };
+
+
   const handleSubmit = async (event) => {
-    event.preventDefault()
-    setIsLoading(true)
+    event.preventDefault();
+    setIsLoading(true);
 
-    var submitData = {
+    const submitData = {
       uuid: uuid,
-      cep: addressRefs.addressCep.current.value,
-      endereco: addressRefs.address.current.value,
-      numero: parseFloat(addressRefs.addressNumber.current.value?.replace(/[^0-9.]/g, "")),
-      bairro: addressRefs.neighborhood.current.value,
-      complemento: addressRefs.complement.current.value,
-      estado_id: storeAddress.address.stateId || stateValue.cod_estados,
-      cidade_id: storeAddress.address.cityId || await findCityIdByName(addressRefs.city.current.value, stateValue.cod_estados),
-      numero_instalacao: addressRefs.installationNumber.current.value
-    }
+      cep: formState.cep,
+      endereco: formState.street,
+      numero: parseFloat(formState.number?.replace(/[^0-9.]/g, "")),
+      bairro: formState.neighborhood,
+      complemento: formState.complement,
+      estado_id: formState.stateId,
+      cidade_id: formState.cityId || await findCityIdByName(formState.city, formState.stateId),
+      numero_instalacao: formState.installationNumber,
+    };
 
-    // const response = await schemaValidation(submitData)
-    router.push(PATH_TO.REGISTER_CONTRACT)
-    setIsLoading(false)
-  }
+    // const response = await schemaValidation(submitData);
+    router.push(PATH_TO.REGISTER_CONTRACT);
+    setIsLoading(false);
+  };
 
   // const handleSubmit = async (event) => {
   //   event.preventDefault()
@@ -137,9 +151,9 @@ export default function SignupAddressForm() {
       try {
         const response = await fetchCEP(cep)
         if (requestSuccessful(response?.status)) {
-          setNotifications(["Endereço encontrado com sucesso!"])
+          storeMessage.setNotifications(["Endereço encontrado com sucesso!"])
         } else {
-          setErrorMessage(["Erro ao buscar o CEP. Por favor, preencha os dados manualmente."])
+          setErrors(["Erro ao buscar o CEP. Por favor, preencha os dados manualmente."])
         }
       } catch (error) {
       } finally {
@@ -151,139 +165,163 @@ export default function SignupAddressForm() {
   }
 
   const handleChangeState = (value) => {
-    setStateValue(stateOptions[value])
     const newStateId = value
-    const newStateUf = stateOptions[value].sigla
-    storeAddress.updateAddress({ stateId: newStateId, state: newStateUf })
+    const newState = stateOptions[value].sigla
+    setFormState((prevState) => ({ ...prevState, stateId: newStateId, state: newState }));
+    storeAddress.updateAddress({ stateId: newStateId, state: newState })
   }
 
   const required = false
+  const greenLeve = "#005940"
+  const orangeLeve = "#FF7133"
 
 
   return (
-    <Form id={REGISTER_FORM.ADDRESS_ID} acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
-      <FormContent>
-        <InputMask mask="99999-999" value={cep || ""}
-          onChange={(e) => storeAddress.updateAddress({ cep: e.target.value })}
-          onBlur={(e) => handleGetCEP(addressRefs.addressCep.current.value)}>
-          {() => <FormInput
-            className="inputForm"
-            inputRef={addressRefs.addressCep}
-            label="CEP"
-            variant="outlined"
-            placeholder="CEP"
+    <>
+      <Form id={REGISTER_FORM.ADDRESS_ID} acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
+        <FormContent>
+          <InputMask mask="99999-999" value={formState?.cep} onChange={handleInputChange}
+            onBlur={(e) => handleGetCEP(formState?.cep)}>
+            {() => <FormInput
+              className="inputForm"
+              label="CEP"
+              variant="outlined"
+              placeholder="CEP"
+              filledCorrectly={cepInputFilled(formState?.cep)}
+              type="text"
+              required
+              inputProps={{ inputMode: 'numeric' }}
+              InputLabelProps={{ shrink: formState?.cep !== "", style: { color: formState?.cep !== "" ? greenLeve : orangeLeve } }}
+              InputProps={{
+                endAdornment: !isLoadingCEP ?
+                  <SearchIcon className="searchIcon"
+                    onClick={() => handleGetCEP(formState?.cep)} /> :
+                  <Box>
+                    <CircularProgress className='formLoading' size={"25px"} />
+                  </Box>,
+              }} />}
+          </InputMask>
+
+          <FormInput className="inputForm"
+            defaultValue={formState?.street || ''}
+            label="Endereço" variant="outlined"
+            placeholder="Endereço"
+            filledCorrectly={addressTextInputFilled(formState?.street)}
             type="text"
+            InputLabelProps={{ shrink: formState?.street !== "", style: { color: formState?.street !== "" ? greenLeve : orangeLeve } }} />
+
+          <InputMask mask="99999" onChange={handleInputChange}>
+            {() => <FormInput
+              className="inputForm"
+              label="Nº"
+              name="number"
+              variant="outlined"
+              placeholder="Nº"
+              type="text"
+              filledCorrectly={numberInputFilled(formState?.number)}
+              required={required}
+              inputProps={{ inputMode: 'numeric' }}
+              InputLabelProps={{ style: { color: numberInputFilled(formState?.number) ? greenLeve : orangeLeve } }} />
+            }
+          </InputMask>
+
+          <FormInput
+            className="inputForm"
+            label="Complemento"
+            name="complement"
+            onChange={handleInputChange}
+            variant="outlined"
+            filledCorrectly={addressTextInputFilled(formState?.complement)}
+            placeholder="Complemento"
+            type="text"
+            InputLabelProps={{ style: { color: addressTextInputFilled(formState?.complement) ? greenLeve : orangeLeve } }} />
+
+
+          <FormInput
+            type="text"
+            label="Bairro"
+            placeholder="Bairro"
+            variant="outlined"
+            name="neighborhood"
+            className="inputForm"
             required
-            inputProps={{ inputMode: 'numeric' }}
-            InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
-            InputProps={{
-              endAdornment: !isLoadingCEP ? <SearchIcon className="searchIcon"
-                onClick={() => handleGetCEP(addressRefs.addressCep.current.value)} /> :
-                <Box>
-                  <CircularProgress className='formLoading' size={"25px"} />
-                </Box>,
-            }} />}
-        </InputMask>
+            onChange={handleInputChange}
+            defaultValue={formState?.neighborhood || ''}
+            filledCorrectly={addressTextInputFilled(formState?.neighborhood)}
+            InputLabelProps={{ style: { color: addressTextInputFilled(formState?.neighborhood) ? greenLeve : orangeLeve } }} />
 
-        <FormInput className="inputForm"
-          defaultValue={street || ''}
-          inputRef={addressRefs.address}
-          label="Endereço" variant="outlined"
-          placeholder="Endereço"
-          type="text"
-          InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }} required />
-
-        <InputMask mask="99999">
-          {() => <FormInput
-            className="inputForm"
-            inputRef={addressRefs.addressNumber}
-            label="Nº"
+          <FormInput
+            id="state"
+            select
+            label="Estado"
+            placeholder="Estado"
             variant="outlined"
-            placeholder="Nº"
-            type="text"
+            className="inputForm"
             required={required}
-            inputProps={{ inputMode: 'numeric' }}
-            InputLabelProps={{ style: { color: '#FF7133' } }} />}
-        </InputMask>
+            value={formState?.stateId || ''}
+            onChange={(event) => handleChangeState(event.target.value)}
+            filledCorrectly={addressTextInputFilled(formState?.stateId)}
+            InputLabelProps={{
+              component: 'span',
+              shrink: formState?.stateId !== "",
+              style: { color: addressTextInputFilled(formState?.stateId) ? greenLeve : orangeLeve }
+            }}>
+            {Object.values(stateOptions).map((state) => {
+              return (
+                <MenuItem key={state.estado_id} value={state.estado_id}>{state.sigla}</MenuItem>
+              )
+            })}
+          </FormInput>
 
-        <FormInput className="inputForm"
-          inputRef={addressRefs.complement}
-          label="Complemento" variant="outlined" placeholder="Complemento"
-          type="text"
-          InputLabelProps={addressRefs?.complement?.current?.value ? { shrink: true } : {},
-            { style: { color: '#FF7133' } }} />
+          <FormInput
+            type="text"
+            name="city"
+            label="Cidade"
+            placeholder="Cidade"
+            className="inputForm"
+            variant="outlined"
+            onChange={handleInputChange}
+            defaultValue={formState?.city?.toUpperCase() || ''}
+            filledCorrectly={addressTextInputFilled(formState?.city)}
+            InputLabelProps={{ shrink: formState?.city !== "", style: { color: addressTextInputFilled(formState?.city) ? greenLeve : orangeLeve } }} required />
+        </FormContent>
 
-        <FormInput className="inputForm"
-          defaultValue={neighborhood || ''}
-          inputRef={addressRefs.neighborhood}
-          label="Bairro" variant="outlined" placeholder="Bairro"
-          type="text"
-          InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }} required />
+        <FormLastRow>
+          <FormInput
+            isInstallationNumber={true}
+            type="text"
+            variant="outlined"
+            className="inputForm"
+            onChange={handleInputChange}
+            name="installationNumber"
+            label="Número de Instalação"
+            placeholder="Número de Instalação"
+            required
+            filledCorrectly={addressTextInputFilled(formState?.installationNumber)}
+            InputLabelProps={{ shrink: formState?.installationNumber !== "", style: { color: addressTextInputFilled(formState?.installationNumber) ? greenLeve : orangeLeve } }}
+          />
+        </FormLastRow>
 
-        <FormInput
-          id="state"
-          select
-          value={stateValue?.cod_estados || ''}
-          onChange={(event) => handleChangeState(event.target.value)}
-          label="Estado"
-          placeholder="Estado"
-          variant="outlined"
-          className="inputForm"
-          required={required}
-          inputRef={addressRefs.state}
-          InputLabelProps={{
-            component: 'span',
-            style: { color: '#FF7133' },
-            shrink: stateValue ? true : false
-          }}>
-          {Object.values(stateOptions).map((state) => {
-            return (
-              <MenuItem key={state.cod_estados} value={state.cod_estados}>{state.sigla}</MenuItem>
-            )
-          })}
-        </FormInput>
+        <FormFooterContainer>
+          {isLoading ?
+            <Box >
+              <CircularProgress className='submitLoading' />
+            </Box>
+            : <BackButton
+              onClick={() => router.back()}
+              startIcon={<ArrowBackIcon className='icon' />}><span>Voltar</span></BackButton>}
+          {isLoading ?
+            <Box >
+              <CircularProgress className='submitLoading' />
+            </Box>
+            : <FormSubmitButton
+              type='submit'
+              form={REGISTER_FORM.ADDRESS_ID}
+              endIcon={<ArrowForwardIcon className='icon' />}><span>Continuar</span></FormSubmitButton>}
+        </FormFooterContainer>
 
+      </Form>
+    </>
 
-        <FormInput
-          className="inputForm"
-          defaultValue={city?.toUpperCase() || ''}
-          inputRef={addressRefs.city}
-          label="Cidade"
-          variant="outlined"
-          placeholder="Cidade"
-          type="text"
-          InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }} required />
-      </FormContent>
-
-      <FormLastRow>
-        <InstallationInput
-          inputRef={addressRefs.installationNumber}
-          className="inputForm"
-          label={`Número de Instalação`}
-          variant="outlined"
-          placeholder={`Número de Instalação`}
-          type="text"
-        />
-      </FormLastRow>
-
-      <FormFooterContainer>
-        {isLoading ?
-          <Box >
-            <CircularProgress className='submitLoading' />
-          </Box>
-          : <BackButton
-            onClick={() => router.back()}
-            startIcon={<ArrowBackIcon className='icon' />}><span>Voltar</span></BackButton>}
-        {isLoading ?
-          <Box >
-            <CircularProgress className='submitLoading' />
-          </Box>
-          : <FormSubmitButton
-            type='submit'
-            form={REGISTER_FORM.ADDRESS_ID}
-            endIcon={<ArrowForwardIcon className='icon' />}><span>Continuar</span></FormSubmitButton>}
-      </FormFooterContainer>
-
-    </Form>
   )
 }
