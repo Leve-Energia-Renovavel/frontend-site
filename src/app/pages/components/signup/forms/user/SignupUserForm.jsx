@@ -21,15 +21,21 @@ import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import { COOKIES_FOR, PATH_TO, REGISTER_FORM } from '@/app/pages/enums/globalEnums';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
 import { birthDateInputFilled, costValidation, cpfInputFilled, emailInputFilled, newCostValidation, normalTextInputFilled, phoneInputFilled, regularTextInputFilled, rgInputFilled } from '@/app/utils/helper/register/registerUserHelper';
+import { userSchema } from './schema';
+import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 
 export default function SignupUserForm() {
 
   const search = useSearchParams()
   const router = useRouter()
   const store = useStoreUser()
-  const messages = useStoreMessages()
+  const storeMessage = useStoreMessages()
+
+  const setErrors = storeMessage.setErrors
+  const setNotifications = storeMessage.setNotifications
 
   const uuid = store?.user?.uuid || Cookies.get(COOKIES_FOR.UUID) || search.get("uuid")
+  // const user = JSON.parse(localStorage.getItem('user'))
 
   const { name, email, phone, cost, rg, cpf, distributor, nationality, maritalStatus, profession, companyName, cnpj, birthDate, isCompany } = store?.user || {}
 
@@ -52,8 +58,7 @@ export default function SignupUserForm() {
 
     newCost = `${integerPart},${decimalPart}`;
 
-    setFormState({ cost: newCost });
-    store.updateUser({ cost: newCost });
+    setFormState((prevState) => ({ ...prevState, cost: newCost }));
   };
 
   const handleGetCNPJ = async (cnpj) => {
@@ -68,7 +73,7 @@ export default function SignupUserForm() {
         setIsLoadingCNPJ(false)
       }
     } else {
-      messages.setErrors(["Preencha o campo de CNPJ antes da busca"])
+      setErrors(["Preencha o campo de CNPJ antes da busca"])
     }
   }
 
@@ -88,6 +93,19 @@ export default function SignupUserForm() {
     socialContractFile: null,
     energyExtractFile: null,
   });
+
+  const schemaValidation = async (data, router) => {
+    try {
+      const validatedData = await userSchema.validate(data, { abortEarly: false })
+      setNotifications(["Informações salvas com sucesso!"])
+      router.push(`${PATH_TO.REGISTER_ADDRESS}`)
+
+      return validatedData;
+    } catch (error) {
+      setErrors(error.errors)
+      return error.errors;
+    }
+  };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -138,7 +156,7 @@ export default function SignupUserForm() {
       rg: formState.rg.replace(/[-_]/g, ""),
       cpf: formState.cpf,
       data_nascimento: formState.birthDate,
-      telefone: formState.phone,
+      telefone: formatPhoneNumber(formState.phone),
       valor: validatedCost,
       nacionalidade: formState.nationality,
       profissao: formState.profession,
@@ -153,7 +171,11 @@ export default function SignupUserForm() {
       submitData["cnpj"] = companyRefs.cnpj.current.value
     }
 
-    router.push(`${PATH_TO.REGISTER_ADDRESS}`)
+    const response = await schemaValidation(submitData, router);
+    console.log("userSchema validation ===>>", response)
+
+    store.updateUser({ ...formState });
+
 
     setIsLoading(false)
   }
@@ -213,7 +235,6 @@ export default function SignupUserForm() {
 
 
   const required = false
-
   const greenLeve = "#005940"
   const orangeLeve = "#FF7133"
 

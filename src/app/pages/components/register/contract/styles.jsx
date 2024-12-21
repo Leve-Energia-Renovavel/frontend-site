@@ -25,8 +25,6 @@ export const ContractSignatureForm = styled.div`
         font-size: 17px;
         font-weight: 500;
         color: ${background.green};
-
-        max-width: 600px;
     }
 
     .phoneNumber {

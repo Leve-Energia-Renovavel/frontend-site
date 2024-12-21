@@ -18,6 +18,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import InputMask from "react-input-mask";
 import { BackButton, Form, FormContent, FormFooterContainer, FormInput, FormLastRow, FormSubmitButton } from "./styles";
+import { userAndAddressSchema } from "./schema";
+import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
+import { signUp } from "@/app/service/user-service/UserService";
 
 export default function SignupAddressForm() {
 
@@ -33,6 +36,7 @@ export default function SignupAddressForm() {
 
   const uuid = store.user.uuid || Cookies.get(COOKIES_FOR.UUID)
 
+  const { name, email, phone, cost, rg, cpf, distributor, nationality, maritalStatus, profession, companyName, cnpj, birthDate, isCompany } = store?.user || {}
   const { street, neighborhood, city, state, complement, stateId, cityId, cep, installationNumber } = storeAddress?.address || {}
 
   const [isLoading, setIsLoading] = useState(false);
@@ -53,11 +57,12 @@ export default function SignupAddressForm() {
 
   const schemaValidation = async (data) => {
     try {
-      console.log("data ==>>" + data)
-      // const validatedData =  await addressSchema.validate(data, { abortEarly: false })
+      const validatedData = await userAndAddressSchema.validate(data, { abortEarly: false })
+      setNotifications(["Informações salvas com sucesso!"])
+      return await signUp(validatedData);
 
-      return data;
     } catch (error) {
+      setErrors(error.errors)
       return error.errors;
     }
   };
@@ -78,20 +83,39 @@ export default function SignupAddressForm() {
     event.preventDefault();
     setIsLoading(true);
 
-    const submitData = {
+    var submitData = {
       uuid: uuid,
-      cep: formState.cep,
-      endereco: formState.street,
-      numero: parseFloat(formState.number?.replace(/[^0-9.]/g, "")),
-      bairro: formState.neighborhood,
-      complemento: formState.complement,
-      estado_id: formState.stateId,
-      cidade_id: formState.cityId || await findCityIdByName(formState.city, formState.stateId),
-      numero_instalacao: formState.installationNumber,
+      nome_completo: name,
+      email: email,
+      rg: rg,
+      cpf: cpf,
+      data_nascimento: birthDate,
+      telefone: formatPhoneNumber(phone),
+      valor: parseFloat(cost?.replace(',', '.')),
+      nacionalidade: nationality,
+      profissao: profession,
+      estado_civil: maritalStatus,
+      // ...(isCompany && {
+      //   razao_social: razao_social,
+      //   cnpj: cnpj,
+      // }),
+      cep: formState?.cep,
+      endereco: formState?.street,
+      numero: parseFloat(formState?.number?.replace(/[^0-9.]/g, "")),
+      bairro: formState?.neighborhood,
+      complemento: formState?.complement,
+      estado_id: formState?.stateId,
+      cidade_id: formState?.cityId || await findCityIdByName(formState?.city, formState?.stateId),
+      numero_instalacao: formState?.installationNumber,
     };
 
-    // const response = await schemaValidation(submitData);
-    router.push(PATH_TO.REGISTER_CONTRACT);
+    const response = await schemaValidation(submitData);
+    storeAddress.updateAddress({ ...formState });
+
+    if (requestSuccessful(response?.status) || hasToSignContract(response?.data?.message)) {
+      router.push(PATH_TO.REGISTER_CONTRACT);
+    }
+
     setIsLoading(false);
   };
 

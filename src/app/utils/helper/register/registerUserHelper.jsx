@@ -1,10 +1,10 @@
 
 export const regularTextInputFilled = (value) => {
-    return value.toString().length > 1
+    return value?.toString().length > 1
 };
 export const normalTextInputFilled = (value) => {
     const textRegex = /^[a-zA-ZÀ-ú\s]+$/;
-    return value.length > 1 && textRegex.test(value);
+    return value?.length > 1 && textRegex.test(value);
 };
 
 export const emailInputFilled = (value) => {
@@ -12,11 +12,11 @@ export const emailInputFilled = (value) => {
     return emailRegex.test(value);
 };
 export const phoneInputFilled = (value) => {
-    return !value.includes('_') && value.length >= 11;
+    return !value?.includes('_') && value?.length >= 11;
 };
 
 export const rgInputFilled = (value) => {
-    return !value.includes('_') && value.length > 1;
+    return !value?.includes('_') && value?.length > 1;
 };
 
 export const cpfInputFilled = (value) => {
@@ -24,7 +24,7 @@ export const cpfInputFilled = (value) => {
     if (!cpfRegex.test(value)) return false;
 
     // CPF validation logic
-    const cpfNumbers = value.replace(/\D/g, "");
+    const cpfNumbers = value?.replace(/\D/g, "");
     let sum = 0;
     let remainder;
 
@@ -53,7 +53,7 @@ export const birthDateInputFilled = (value) => {
     if (!dateRegex.test(value)) return false;
 
     // Validate date logic
-    const [day, month, year] = value.split("/").map(Number);
+    const [day, month, year] = value?.split("/").map(Number);
     const date = new Date(year, month - 1, day);
 
     return (

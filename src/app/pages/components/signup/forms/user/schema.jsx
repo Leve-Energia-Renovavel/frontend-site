@@ -7,7 +7,7 @@ const hasMoreThanFourNumbers = (value) => {
     return numberCount > 4;
 };
 
-export const userAndAddressSchema = yup.object({
+export const userSchema = yup.object({
     uuid: yup.string().required(),
     nome_completo: yup.string()
         .required('O campo Nome Completo é obrigatório')
@@ -21,12 +21,6 @@ export const userAndAddressSchema = yup.object({
     telefone: yup.string()
         .matches(/^\(\d{2}\) \d{5}-\d{4}$/, 'O formato do Telefone é inválido')
         .required('O campo Celular é obrigatório'),
-    cep: yup.string().required('O campo CEP é obrigatório'),
-    endereco: yup.string().required('O campo Endereco é obrigatório'),
-    numero: yup.number().required('O campo Número é obrigatório'),
-    bairro: yup.string().required('O campo Bairro é obrigatório'),
-    estado_id: yup.number().required(),
-    cidade_id: yup.number().required(),
     valor: yup.number()
         .required('O campo Custo Mensal é obrigatório')
         .min(200, 'O custo mensal não pode ser menor que R$ 200')
@@ -89,5 +83,4 @@ export const userAndAddressSchema = yup.object({
 
             return true;
         }),
-    numero_instalacao: yup.string()
 });

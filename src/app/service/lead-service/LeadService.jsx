@@ -111,16 +111,16 @@ export const getLeadData = async (uuid, storeUser, storeAddress) => {
             const cep = consumidor?.cep
 
             const updatedUser = {
-                name: capitalizeEachWord(consumidor?.nome_completo),
-                phone: consumidor?.telefone,
-                email: consumidor?.email,
-                cost: instalacao?.valor_base_consumo,
+                name: capitalizeEachWord(consumidor?.nome_completo) || capitalizeEachWord(storeUser?.user?.name) || "",
+                phone: consumidor?.telefone || storeUser?.user?.phone || "",
+                email: consumidor?.email || storeUser?.user?.email || "",
+                cost: storeUser?.user?.cost || instalacao?.valor_base_consumo,
                 cep: instalacao?.cep,
                 coupon: consumidor?.ref_origin,
 
                 cpf: consumidor?.cpf || storeUser?.user?.cpf || "",
                 rg: consumidor?.rg || storeUser?.user?.rg || "",
-                birthDate: formatBasicBirthDate(consumidor?.data_nascimento) || formatBasicBirthDate(storeUser?.user?.birthDate) || "",
+                birthDate: formatBasicBirthDate(consumidor?.data_nascimento) || storeUser?.user?.birthDate || "",
 
                 isCompany: consumidor?.type == USER_TYPE.PJ ? true : false,
                 cnpj: consumidor?.type == USER_TYPE.PJ ? instalacao?.cnpj : "",

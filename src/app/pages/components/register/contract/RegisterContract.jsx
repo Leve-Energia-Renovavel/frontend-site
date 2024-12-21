@@ -53,7 +53,7 @@ export default function RegisterContract() {
 
     return (
         <ContractSignatureForm className="contractSignatureForm">
-            <p className="contractSignInfo">Para assinar o contrato, esteja com o telefone <span className="phoneNumber">{formatPhoneNumber(phone)}</span> em mãos. Insira o código de confirmação que enviaremos a você via SMS.</p>
+            <p className="contractSignInfo">Para assinar o contrato, esteja com o telefone <span className="phoneNumber">{formatPhoneNumber(phone)}</span> em mãos e insira o código de confirmação enviado por SMS.</p>
             <p className="contractSignInfo">Contrato ID:{Cookies.get("clickSignKey")}</p>
             <ClicksignWidgetComponent uuid={uuid} />
         </ContractSignatureForm>

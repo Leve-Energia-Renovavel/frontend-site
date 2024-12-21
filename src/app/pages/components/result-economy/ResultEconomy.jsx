@@ -51,6 +51,7 @@ export default function ResultEconomy() {
         if (cost <= 0 || cost < 200) {
             storeMessage.setErrors(["O valor da sua conta de luz deve ser superior a R$ 200"])
         } else {
+            storeUser.updateUser({ cost: cost });
             router.push(`${PATH_TO.REGISTER_USER}`)
         }
         setIsLoading(false)

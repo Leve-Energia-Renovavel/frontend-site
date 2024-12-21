@@ -69,16 +69,19 @@ export const ClicksignWidgetContainer = styled.div`
 `;
 
 export const ClicksignComponentContainer = styled.div`
-  #clicksign-container {
-    width: 100%; 
-    max-width: 1000px; 
-    height: 340px;
 
-    @media (max-width: 600px) {
-        width: 20rem; 
-        height: 35rem;
+    #clicksign-container {
+        width: 100%;
+        background-color: #eee;
 
-        margin: 0;
+        height: 410px; //enough to dont show scrollbar
+        max-height: 900px;
+
+        @media (max-width: 600px) {
+            width: 20rem; 
+            height: 35rem;
+
+            margin: 0;
+        }   
     }
-  }
 `
