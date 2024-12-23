@@ -11,6 +11,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { PATH_TO } from "../../../enums/globalEnums";
 import { ContractSignatureForm } from "./styles";
+import { useStoreMessages } from "@/app/hooks/stores/useStoreMessages";
 
 const ClicksignWidgetComponent = dynamic(() => import("@/app/utils/clicksign/ClicksignWidgetComponent"), { ssr: false });
 
@@ -18,16 +19,16 @@ export default function RegisterContract() {
 
     const router = useRouter()
     const search = useSearchParams()
+    const storeMessage = useStoreMessages()
 
     const storeUser = useStoreUser()
     const storeClicksign = useStoreClickSign()
 
-    const { phone } = storeUser?.user || {}
-
     const uuid = search.get("uuid") || storeUser.user.uuid || Cookies.get('leveUUID')
 
     if (!uuid || uuid == "undefined") {
-        router.push(PATH_TO.HOME)
+        storeMessage.setErrors(["Erro ao gerar contrato. Por favor, tente novamente."])
+        router.push(PATH_TO.REGISTER_ADDRESS)
     }
 
     useEffect(() => {
