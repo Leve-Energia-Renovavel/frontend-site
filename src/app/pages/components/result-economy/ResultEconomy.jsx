@@ -2,28 +2,24 @@
 
 import { useStoreUser } from '@/app/hooks/stores/useStore'
 import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages'
-import { checkForZero, checkForZeroCurrency, checkForZeroDiscount, newCostValidation, updateSliderConfig } from '@/app/utils/helper/result-economy/resultEconomyHelper'
-import { benefits } from '@/app/utils/helper/signup/signupHelper'
+import { formatBrazillianCurrency } from '@/app/utils/formatters/costFormatter'
+import { benefits, checkForZero, checkForZeroCurrency, checkForZeroDiscount, newCostValidation, updateSliderConfig } from '@/app/utils/helper/result-economy/resultEconomyHelper'
 import { ENVIRONMENTAL_IMPACT, PATH_TO, USER_COST } from '@/enums/globalEnums'
 import logoLeveGreen from '@/resources/img/small/leve-logo-button-green-small.png'
 import Image from 'next/image'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
-import { ArrowDownContainer, ArrowDownIcon, ContinueSignupButton, EconomyResultContainer, EconomyResultFooter, EconomyResultTitleContainer, EditTodayCostIcon, LeveBenefit, LeveBenefitsContainer, LeveBenefitsContent, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomyDisclaimer, LoadingCircle, OneYearEconomyContainer, OneYearEconomyContent, OneYearEconomyData, OneYearEconomyHeader, PercentageIcon, RoundCheckIcon, SimpleArrowForward, SimpleCheckIcon, SimpleCloseIcon, SimulationSlider, TodayCostContainer, TodayCostValue, TodayEconomyContainer, TodayEconomyContent } from './styles'
+import { ArrowDownContainer, ArrowDownIcon, EconomyResultContainer, EconomyResultFooter, EconomyResultTitleContainer, EditTodayCostIcon, LeveBenefit, LeveBenefitsContainer, LeveBenefitsContent, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomyDisclaimer, LoadingCircle, OneYearEconomyContainer, OneYearEconomyContent, OneYearEconomyData, OneYearEconomyHeader, PercentageIcon, RoundCheckIcon, SimpleArrowForward, SimpleCheckIcon, SimpleCloseIcon, SimulationSlider, StartRegisterButton, TodayCostContainer, TodayCostValue, TodayEconomyContainer, TodayEconomyContent } from './styles'
 
-export default function NewResultEconomy() {
+export default function ResultEconomy() {
 
     const router = useRouter()
-    const search = useSearchParams()
     const storeUser = useStoreUser()
     const storeMessage = useStoreMessages()
 
-    const uuid = search.get("uuid")
-    const user = JSON.parse(localStorage.getItem('user'))
-
     const todayCostValueRef = useRef(null);
 
-    const { cost, couponValue, discount, tusd, te, availabilityTax } = user?.user ?? (storeUser?.user || {})
+    const { cost, couponValue, discount, tusd, te, availabilityTax } = storeUser?.user || {}
 
     const [isLoading, setIsLoading] = useState(false)
     const [isEdition, setIsEdition] = useState(false)
@@ -40,7 +36,7 @@ export default function NewResultEconomy() {
 
     const leveDiscount = checkForZeroDiscount(compensableConsumption * (discount / 100))
     const leveYearTotalDiscount = checkForZeroCurrency(parseFloat(((compensableConsumption * (discount / 100)) * 12)));
-    const formattedLeveYearDiscount = leveYearTotalDiscount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const formattedLeveYearDiscount = formatBrazillianCurrency(leveYearTotalDiscount)
 
     const reducedCarbon = compensableConsumption * 12 * ENVIRONMENTAL_IMPACT.REDUCED_CARBON
     const formattedReducedCarbon = checkForZero(parseInt(reducedCarbon).toLocaleString('pt-BR'))
@@ -48,16 +44,17 @@ export default function NewResultEconomy() {
     const treeEquivalency = reducedCarbon / ENVIRONMENTAL_IMPACT.TREE_EQUIVALENCY
     const formattedTreeEquivalency = checkForZero(Math.ceil(treeEquivalency))
 
-    var formattedLeveDiscount = leveDiscount.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+    var formattedLeveDiscount = formatBrazillianCurrency(leveDiscount)
 
     const handleSubmit = () => {
+        setIsLoading(true)
         if (cost <= 0 || cost < 200) {
             storeMessage.setErrors(["O valor da sua conta de luz deve ser superior a R$ 200"])
         } else {
-            setIsLoading(true)
-            router.push(`${PATH_TO.REGISTER_USER}?uuid=${uuid}`)
-            setIsLoading(false)
+            storeUser.updateUser({ cost: cost });
+            router.push(`${PATH_TO.REGISTER_USER}`)
         }
+        setIsLoading(false)
     }
 
     const handleUpdateCostByTyping = (event) => {
@@ -105,7 +102,7 @@ export default function NewResultEconomy() {
                             type='text'
                             inputProps={{ inputMode: 'numeric' }}
                             InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
-                            value={cost === "" ? "" : cost.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                            value={cost === "" ? "" : formatBrazillianCurrency(cost)}
                             onChange={(event) => handleUpdateCostByTyping(event)}
                             onClick={() => handleEditCost()}
                             required>
@@ -201,13 +198,18 @@ export default function NewResultEconomy() {
 
             <EconomyResultFooter className='economyResultFooter'>
                 <h2 className='economyResultSubtitle'>Gostou? Complete seu cadastro e se torne Leve</h2>
-                <ContinueSignupButton
-                    onClick={() => handleSubmit()}
-                    endIcon={isLoading ? <LoadingCircle className='loading' size={21} /> : <SimpleArrowForward className='icon' />}>
-                    <span>Completar cadastro</span>
-                </ContinueSignupButton>
+                {isLoading ? (
+                    <LoadingCircle className="loading" />
+                ) : (
+                    <StartRegisterButton
+                        onClick={() => handleSubmit()}
+                        endIcon={<SimpleArrowForward className="icon" />}>
+                        <span>Completar cadastro</span>
+                    </StartRegisterButton>
+                )}
             </EconomyResultFooter>
 
-        </EconomyResultContainer>
+
+        </EconomyResultContainer >
     )
 }

@@ -1,9 +1,9 @@
 
-import SignupMain from "../pages/components/signup/SignupMain";
+import EconomySimulation from "../pages/components/signup/EconomySimulation";
 
-export default function Signup() {
+export default function EconomySimulationPage() {
 
     return (
-        <SignupMain />
+        <EconomySimulation />
     );
 }

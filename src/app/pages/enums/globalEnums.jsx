@@ -26,9 +26,9 @@ export const ENVIRONMENTAL_IMPACT = {
 export const PATH_TO = {
     HOME: "/",
     ECONOMY_SIMULATION: "/simulacao-de-economia/",
-    REGISTER_USER: "/cadastro/titular",
-    REGISTER_ADDRESS: "/cadastro/imovel",
-    REGISTER_CONTRACT: "/cadastro/assinatura-contrato",
+    REGISTER_USER: "/cadastro/titular/",
+    REGISTER_ADDRESS: "/cadastro/imovel/",
+    REGISTER_CONTRACT: "/cadastro/assinatura-contrato/",
     LOGIN: "/login/",
     OUT_OF_RANGE: "/fail/out-of-range",
     LOW_COST: "/fail/low-cost",
@@ -109,4 +109,13 @@ export const ERROR_MESSAGE = {
 
 export const HOME_FORM_ID = "calculateYourEconomy"
 
+export const REGISTER_FORM = {
+    USER_ID: "registerFormUserId",
+    ADDRESS_ID: "registerFormAddressId",
+    CONTRACT_ID: "registerFormContractId",
+}
 
+export const COOKIES_FOR = {
+    UUID: "leveUUID",
+    USER: "user",
+}

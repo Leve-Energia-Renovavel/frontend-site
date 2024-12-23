@@ -7,5 +7,5 @@ export const costValidation = (cost) => {
 }
 
 export const formatBrazillianCurrency = (value) => {
-    return value.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+    return value ? value.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "0,00"
 }

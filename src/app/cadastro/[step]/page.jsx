@@ -1,4 +1,5 @@
-import RegisterRouting from "./RegisterRouting";
+import Messages from "@/app/pages/components/messages/Messages";
+import RegisterMain from "../../register/RegisterMain";
 
 export function generateStaticParams() {
     return [
@@ -17,6 +18,10 @@ export function getStaticPaths() {
 
 export default function Register() {
     return (
-        <RegisterRouting />
+        <>
+            <RegisterMain />
+
+            <Messages />
+        </>
     )
 }

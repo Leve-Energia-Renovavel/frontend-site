@@ -1,4 +1,4 @@
-import { USER_TYPE } from "@/app/pages/enums/globalEnums";
+import { COOKIES_FOR, USER_TYPE } from "@/app/pages/enums/globalEnums";
 import { checkForCompanyName } from "@/app/utils/company/CompanyUtils";
 import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
 import { capitalizeEachWord, sanitizeAndCapitalizeWords } from "@/app/utils/formatters/textFormatter";
@@ -93,10 +93,10 @@ export const startSignUpForPartners = async (data) => {
 }
 
 
-export const getLeadData = async (uuid, store, storeAddress) => {
+export const getLeadData = async (uuid, storeUser, storeAddress) => {
 
-    store.updateUser({ uuid: uuid });
-    Cookies.set('leveUUID', uuid)
+    storeUser.updateUser({ uuid: uuid });
+    Cookies.set(COOKIES_FOR.UUID, uuid)
 
     try {
         const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
@@ -111,29 +111,30 @@ export const getLeadData = async (uuid, store, storeAddress) => {
             const cep = consumidor?.cep
 
             const updatedUser = {
-                name: capitalizeEachWord(consumidor?.nome_completo),
-                phone: consumidor?.telefone,
-                email: consumidor?.email,
-                cost: instalacao?.valor_base_consumo,
+                uuid: consumidor?.uuid || storeUser?.user?.uuid,
+                name: capitalizeEachWord(consumidor?.nome_completo) || capitalizeEachWord(storeUser?.user?.name) || "",
+                phone: consumidor?.telefone || storeUser?.user?.phone || "",
+                email: consumidor?.email || storeUser?.user?.email || "",
+                cost: storeUser?.user?.cost || instalacao?.valor_base_consumo,
                 cep: instalacao?.cep,
                 coupon: consumidor?.ref_origin,
 
-                cpf: consumidor?.cpf !== "" ? consumidor.cpf : "",
-                rg: consumidor?.rg !== "" ? consumidor.rg : "",
-                birthDate: consumidor?.data_nascimento ? formatBasicBirthDate(consumidor?.data_nascimento) : "",
+                cpf: consumidor?.cpf || storeUser?.user?.cpf || "",
+                rg: consumidor?.rg || storeUser?.user?.rg || "",
+                birthDate: formatBasicBirthDate(consumidor?.data_nascimento) || storeUser?.user?.birthDate || "",
 
                 isCompany: consumidor?.type == USER_TYPE.PJ ? true : false,
                 cnpj: consumidor?.type == USER_TYPE.PJ ? instalacao?.cnpj : "",
                 companyName: consumidor?.type == USER_TYPE.PJ ? checkForCompanyName(instalacao?.razao_social, instalacao?.nome) : "",
 
-                nationality: consumidor?.nacionalidade,
-                profession: consumidor?.profissao,
-                maritalStatus: consumidor?.estado_civil,
+                nationality: consumidor?.nacionalidade || storeUser?.user?.nationality || "",
+                profession: consumidor?.profissao || storeUser?.user?.profession || "",
+                maritalStatus: consumidor?.estado_civil || storeUser?.user?.maritalStatus || "",
 
-                discount: descontosCarbono?.desconto,
-                clientId: instalacao?.clientes_id,
+                discount: descontosCarbono?.desconto || storeUser?.user?.discount || "",
+                clientId: instalacao?.clientes_id || storeUser?.user?.clientId || "",
 
-                distributor: distribuidora?.nome,
+                distributor: distribuidora?.nome || storeUser?.user?.distributor || "",
                 distributorPhotoUrl: distribuidora?.foto_numero_instalacao,
 
                 tusd: descontosCarbono?.tusd,
@@ -144,12 +145,12 @@ export const getLeadData = async (uuid, store, storeAddress) => {
                 availabilityTax: descontosCarbono?.taxa_disponibilidade,
             }
 
-            store.updateUser(updatedUser);
+            storeUser.updateUser(updatedUser);
 
             const updatedAddress = {
-                cityId: consumidor?.cidade_id,
-                stateId: consumidor?.estado_id,
-                installationNumber: instalacao?.numero_instalacao
+                cityId: consumidor?.cidade_id || storeAddress?.cityId || "",
+                stateId: consumidor?.estado_id || storeAddress?.stateId || "",
+                installationNumber: instalacao?.numero_instalacao || storeAddress?.installationNumber || ""
             }
             storeAddress.updateAddress(updatedAddress)
 
@@ -161,11 +162,11 @@ export const getLeadData = async (uuid, store, storeAddress) => {
             if (requestSuccessful(addressResponse?.status)) {
                 const address = addressResponse?.data
                 const updatedFullAddress = {
-                    street: address?.logradouro,
-                    neighborhood: address?.bairro,
-                    city: address?.cidade,
-                    state: address?.uf,
-                    cep: address?.cep,
+                    street: address?.logradouro || storeAddress?.street || "",
+                    neighborhood: address?.bairro || storeAddress?.neighborhood || "",
+                    city: address?.cidade || storeAddress?.city || "",
+                    state: address?.uf || storeAddress?.state || "",
+                    cep: address?.cep || storeAddress?.cep || "",
                 }
                 storeAddress.updateAddress(updatedFullAddress)
 

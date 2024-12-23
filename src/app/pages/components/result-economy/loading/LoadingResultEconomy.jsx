@@ -5,13 +5,12 @@ export default function LoadingResultEconomy() {
     return (
         <LoadingContainer>
             <Skeleton variant="text" className="loadingTitle" />
-
             <LoadingContent>
                 <Skeleton variant="rectangular" className="loadingDiv" />
-                <Skeleton variant="rectangular" className="loadingDiv" />
+                <Skeleton variant="rectangular" className="secondDiv" />
+                <Skeleton variant="text" className="loadingTitle" />
+                <Skeleton variant="rectangular" className="loadingCard" />
             </LoadingContent>
-                <Skeleton variant="rectangular" className="loadingCard" />
-                <Skeleton variant="rectangular" className="loadingCard" />
         </LoadingContainer>
     )
 }

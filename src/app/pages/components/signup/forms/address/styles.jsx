@@ -1,8 +1,8 @@
+import { fadeInRight } from "@/app/pages/globalAnimations";
 import { background, notification } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import { Alert, Button, TextField, keyframes } from "@mui/material";
 import Divider from '@mui/material/Divider';
-import LinearProgress from '@mui/material/LinearProgress';
 
 const fadeInUp = keyframes`
   from {
@@ -121,11 +121,19 @@ export const FormLastRow = styled.div`
         grid-template-columns: repeat(1,1fr);
     }
 `
-export const FormInput = styled(TextField)`
-    border-radius: 14px;
+
+const FormInputBase = styled(TextField, {
+    shouldForwardProp: (prop) => prop !== "filledCorrectly",
+})``;
+
+export const FormInput = styled(FormInputBase)`
+    border-radius: 10px;
+
+    animation: ${fadeInRight} 0.5s ease-out;
+    
     
     && {
-        background-color: ${background.orangeTranslucent}; 
+        background-color: ${props => props.filledCorrectly ? background.greenTranslucent : background.orangeTranslucent}; 
     }
 
     .MuiInputLabel-shrink {
@@ -135,18 +143,20 @@ export const FormInput = styled(TextField)`
 
     .MuiOutlinedInput-input {
         border: 2px solid transparent;
-        border-radius: 15px;  
+        border-radius: 10px;  
+
         
         // styles for the user input text
         font-family: "Graphie";
         font-size: 17px;
         font-weight: 700;
-        color: ${background.orange};
+        color: ${props => props.filledCorrectly ? background.green : background.orange}; 
         
         &:focus {
-            color: ${background.orange};
-            border: 2px solid ${background.orange};
-            background-color: ${background.orangeFocused}; 
+            
+            color: ${props => props.filledCorrectly ? background.green : background.orange}; 
+            border: 2px solid ${props => props.filledCorrectly ? background.green : background.orange};
+            background-color: ${props => props.filledCorrectly ? background.greenTranslucent : background.orangeTranslucent}; 
             }
         }
 
@@ -158,19 +168,16 @@ export const FormInput = styled(TextField)`
             font-family: "Graphie";
             font-size: 14px;
             font-weight: 600;
-            color: ${background.orange};
-
+            color: ${props => props.filledCorrectly ? background.green : background.orange}; 
+            
             &:focus {
-                color: ${background.orange};
+                color: ${props => props.filledCorrectly ? background.green : background.orange}; 
             }
         }
 
-        /* .MuiInputLabel-outlined {
-            transform: translate(14px, 16px) scale(1);
-        } */
-
         .searchIcon { 
-            color:${background.orange};
+            color: ${props => props.filledCorrectly ? background.green : background.orange}; 
+
             &:hover{
                 cursor: pointer;
             }
@@ -179,8 +186,6 @@ export const FormInput = styled(TextField)`
         .formLoading {
             color: ${background.orange};
         }
-
-
 `
 
 export const FileUploadContainer = styled.div`
@@ -289,50 +294,6 @@ export const FormSubmitButton = styled(Button)`
   }
 `
 
-
-export const InstallationInput = styled(TextField)`
-    border-radius: 10px;
-    
-    && {
-        background-color: ${background.orangeTranslucent}; 
-    }
-    .MuiInputLabel-shrink {
-        /* Styles for the focused label */
-        line-height: 3em; 
-    }
-    
-    .MuiOutlinedInput-input {
-        border: 2px solid ${background.orange};
-        border-radius: 14px;  
-
-        // styles for the user input text
-        font-family: "Graphie";
-        font-size: 17px;
-        font-weight: 700;
-        color: ${background.orange};
-
-        
-        &:focus {
-            background-color: ${background.orangeFocused}; 
-            }
-        }
-
-        && fieldset {
-            border: none;
-        }     
-        
-        .MuiFormLabel-root {
-            font-family: "Graphie";
-            font-size: 14px;
-            font-weight: 600;
-            color: ${background.orange};
-            
-            &:focus {
-                color: ${background.orange};
-            }
-            
-        }
-`
 export const InstallationNumberDisclaimer = styled.div`
     display: flex;
     flex-direction: row;
@@ -415,6 +376,61 @@ export const SnackbarMessageNotification = styled(Alert)`
 
 `
 
+export const FormFooterContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1rem 0;
+
+    gap: 1rem;
+
+    .requiredFields {
+            font-family: "Graphie";
+            font-size: 12px;
+            font-weight: 500;
+            color: ${background.orange};
+    }
+
+    .submitLoading {
+        color: ${background.orange};
+    }
+
+`
+
+export const BackButton = styled(Button)`
+    display: flex;
+    align-items: center;
+  background-color: ${background.orange};
+  color: ${background.white};
+  border-radius: 30px;
+
+  height: 54px;
+
+  width: 100%;
+  max-width: fit-content;
+  
+    .icon {
+        width: 26px;
+        height: auto;
+        color: ${background.yellow};
+    }
+
+  &:hover {
+    cursor: pointer;
+    background-color: ${background.yellow};
+
+    span {
+      color: ${background.green};
+    }
+    
+    .icon {
+        color: ${background.green};
+    }
+  }
+`
+
 
 export const fileInputStyles = {
     cursor: 'pointer',
@@ -424,6 +440,8 @@ export const fileInputStyles = {
     fontSize: '1rem',
     fontWeight: 'bold',
 }
+
+
 
 
 

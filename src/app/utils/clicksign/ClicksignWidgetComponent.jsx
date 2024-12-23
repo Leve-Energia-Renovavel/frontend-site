@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useStoreClickSign, useStoreUser } from '@/app/hooks/stores/useStore';
 import { finishSignup } from '@/app/service/contract-service/ContractService';
 import Cookies from 'js-cookie';
@@ -8,57 +7,40 @@ import Clicksign from "./embedded";
 import { ClicksignComponentContainer as Container } from './styles';
 
 export default function ClicksignWidgetComponent({ uuid }) {
+    const router = useRouter();
+    const storeUser = useStoreUser();
+    const storeClicksign = useStoreClickSign();
 
-    const router = useRouter()
-
-    const storeUser = useStoreUser()
-    const storeClicksign = useStoreClickSign()
-
-    const clickSign = storeClicksign.data
-    const clickSignKey = Cookies.get("clickSignKey")
-
-    const key = clickSignKey ? clickSignKey : clickSign.key
-
+    const clickSignKey = Cookies.get("clickSignKey") || storeClicksign.data.key;
     const [widget, setWidget] = useState(null);
 
     useEffect(() => {
-        if (widget) {
-            widget.unmount();
-        }
+        if (!clickSignKey) return; // Certifica que há uma chave válida
 
-        const run = () => {
-            const widgetInstance = new Clicksign(key);
+        const widgetInstance = new Clicksign(clickSignKey);
+        widgetInstance.endpoint = 'https://app.clicksign.com';
+        widgetInstance.origin = `${window.location.protocol}//${window.location.host}`;
+        widgetInstance.mount('clicksign-container');
 
-            widgetInstance.endpoint = 'https://app.clicksign.com';
-            widgetInstance.origin = window.location.protocol + '//' + window.location.host;
+        widgetInstance.on('signed', async () => {
 
-            widgetInstance.mount('clicksign-container');
+            storeUser.updateUser((prevState) => ({
+                ...prevState,
+                hasSignContract: true,
+                isFirstAccess: true,
+                hasOpenedSharedAccessModal: false,
+            }));
+            await finishSignup(router, uuid);
+        });
 
-            widgetInstance.on('signed', async function (event) {
-                storeUser.updateUser({ hasSignContract: true, isFirstAccess: true, hasOpenedSharedAccessModal: false })
-                await finishSignup(router, uuid)
-            });
+        setWidget(widgetInstance);
 
-            setWidget(widgetInstance);
-
-        };
-
-        if (storeClicksign.key != '') {
-            run()
-        }
-
-        return () => {
-            if (widget) {
-                widget.unmount();
-            }
-        };
-    }, [clickSignKey, key]);
+        return () => widgetInstance.unmount();
+    }, [clickSignKey, router, storeUser, uuid]);
 
     return (
-        <>
-            <Container className="clicksignContainer">
-                <div id="clicksign-container" />
-            </Container>
-        </>
-    )
+        <Container className="clicksignContainer">
+            <div id="clicksign-container" />
+        </Container>
+    );
 }

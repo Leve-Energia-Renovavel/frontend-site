@@ -13,6 +13,7 @@ import { requestValidation } from '../../../validation';
 import { HomeMainForm as Form, HomeFormContainer, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 
 import { useStoreHome } from '@/app/hooks/stores/home/useStoreHome';
+import { useStoreUser } from '@/app/hooks/stores/useStore';
 import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import HomeFormButton from '@/app/pages/components/utils/buttons/home/form/HomeFormButton';
 import { USER_TYPE } from '@/app/pages/enums/globalEnums';
@@ -25,9 +26,14 @@ export default function HomeMainForm() {
     const router = useRouter()
 
     const search = useSearchParams()
+    const storeUser = useStoreUser()
     const storeMessage = useStoreMessages()
     const storeHome = useStoreHome()
+
+    const texts = infoJson.home
     const selectedUserType = storeHome.selectedUserType
+    const setNotifications = storeMessage.setNotifications
+    const setErrors = storeMessage.setErrors
 
     const cupom = search.get("cupom")
 
@@ -40,13 +46,11 @@ export default function HomeMainForm() {
     const cepRef = useRef()
     const couponRef = useRef()
 
-    const texts = infoJson.home
+    clearCookiesAndStorageData()
 
     const handleSelect = (userType) => {
         storeHome.setSelectedUserType(userType);
     };
-
-    clearCookiesAndStorageData()
 
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -62,8 +66,8 @@ export default function HomeMainForm() {
             couponRef.current.value,
         )
 
-        const response = await schemaValidation(submitData, storeMessage.setErrors)
-        await requestValidation(response, storeMessage.setNotifications, storeMessage.setErrors, router)
+        const response = await schemaValidation(submitData, setErrors)
+        await requestValidation(submitData, response, setNotifications, setErrors, storeUser, router)
         setLoading(false)
     }
 

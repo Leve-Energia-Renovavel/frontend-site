@@ -1,7 +1,6 @@
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { awaitSeconds } from "@/app/utils/browser/BrowserUtils";
-import { LEVE_WHATSAPP_NUMBER, PATH_TO } from "../../enums/globalEnums";
-import { useStoreMessages } from "@/app/hooks/stores/useStoreMessages";
+import { LEVE_WHATSAPP_NUMBER, PATH_TO, USER_TYPE } from "../../enums/globalEnums";
 
 const signupValidationCodes = {
     ALANCASR: "A leve ainda não chegou a sua região",
@@ -30,7 +29,7 @@ const signupValidationCodes = {
 };
 
 
-export const requestValidation = async (response, setNotifications, setErrorMessage, router) => {
+export const requestValidation = async (data, response, setNotifications, setErrorMessage, storeUser, router) => {
 
     const status = response?.status
     const message = response?.message
@@ -50,8 +49,18 @@ export const requestValidation = async (response, setNotifications, setErrorMess
                 const url = `https://api.whatsapp.com/send/?phone=${LEVE_WHATSAPP_NUMBER}&text=Oi!+Tive+um+problema+ao+criar+conta+na+Leve+Energia+e+preciso++de+ajuda&type=phone_number&app_absent=0`
                 window.open(url, '_blank', 'noopener noreferrer');
             } else {
-                setNotifications(["Simulação realizada com sucesso! Aguarde 2 segundos..."])
-                router.push(`${PATH_TO.ECONOMY_SIMULATION}?uuid=${uuid}`)
+                setNotifications(["Simulação realizada com sucesso!"])
+                storeUser.updateUser({
+                    uuid: uuid,
+                    name: data?.nome_completo,
+                    email: data?.email?.toLowerCase()?.trim(),
+                    phone: data?.telefone?.toLowerCase()?.trim(),
+                    cep: data?.cep,
+                    cost: data?.valor,
+                    isCompany: data?.type === USER_TYPE.PJ ? true : false,
+                    coupon: data?.cupom,
+                })
+                router.push(`${PATH_TO.ECONOMY_SIMULATION}`)
             }
         }
 

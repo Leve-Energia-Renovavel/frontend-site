@@ -9,23 +9,22 @@ import Cookies from "js-cookie";
 import dynamic from "next/dynamic";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
-import { PATH_TO } from "../../enums/globalEnums";
-import { ContractSignatureContainer as Container, ContractSignatureForm } from "./styles";
+import { PATH_TO } from "../../../enums/globalEnums";
+import { ContractSignatureForm } from "./styles";
 
 const ClicksignWidgetComponent = dynamic(() => import("@/app/utils/clicksign/ClicksignWidgetComponent"), { ssr: false });
 
-export default function NewContractSignature() {
-
-    const store = useStoreUser()
-    const storeClicksign = useStoreClickSign()
+export default function RegisterContract() {
 
     const router = useRouter()
     const search = useSearchParams()
 
-    const user = JSON.parse(window.localStorage.getItem('user')) || store?.user
-    const { phone } = user?.user ?? (store?.user || {})
+    const storeUser = useStoreUser()
+    const storeClicksign = useStoreClickSign()
 
-    const uuid = search.get("uuid") || store.user.uuid || Cookies.get('leveUUID')
+    const { phone } = storeUser?.user || {}
+
+    const uuid = search.get("uuid") || storeUser.user.uuid || Cookies.get('leveUUID')
 
     if (!uuid || uuid == "undefined") {
         router.push(PATH_TO.HOME)
@@ -52,11 +51,9 @@ export default function NewContractSignature() {
     }, [])
 
     return (
-        <Container className="contractSignatureContainer">
-            <ContractSignatureForm className="contractSignatureForm">
-                <p className="contractSignInfo">Para assinar o contrato, esteja com o telefone <span className="phoneNumber">{formatPhoneNumber(phone)}</span> em mãos. Insira o código de confirmação que enviaremos a você via SMS.</p>
-                <ClicksignWidgetComponent uuid={uuid} />
-            </ContractSignatureForm>
-        </Container>
+        <ContractSignatureForm className="contractSignatureForm">
+            {/* <p className="contractSignInfo">Para assinar o contrato, esteja com o telefone <span className="phoneNumber">{formatPhoneNumber(phone)}</span> em mãos e insira o código de confirmação enviado por SMS.</p> */}
+            <ClicksignWidgetComponent uuid={uuid} />
+        </ContractSignatureForm>
     )
 }
