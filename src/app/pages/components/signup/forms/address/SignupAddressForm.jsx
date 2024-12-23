@@ -59,7 +59,6 @@ export default function SignupAddressForm() {
   const schemaValidation = async (data) => {
     try {
       const validatedData = await userAndAddressSchema.validate(data, { abortEarly: false })
-      setNotifications(["Informações do imóvel salvas com sucesso!"])
       return await signUp(validatedData);
 
     } catch (error) {
@@ -116,7 +115,10 @@ export default function SignupAddressForm() {
     storeAddress.updateAddress({ ...formState });
 
     if (requestSuccessful(response?.status) || hasToSignContract(response?.data?.message)) {
+      setNotifications(["Informações do imóvel salvas com sucesso!"])
       router.push(PATH_TO.REGISTER_CONTRACT);
+    } else {
+      setErrors(["Erro ao salvar as informações do imóvel. Por favor, tente novamente."]);
     }
 
     setIsLoading(false);
