@@ -15,16 +15,11 @@ export default function RegisterUser() {
     const storeUser = useStoreUser()
     const storeAddress = useStoreAddress()
 
-    const { uuid } = storeUser?.user || {}
-    var uuidParam = search.get("uuid")
-
-    if (!uuidParam || uuidParam === 'undefined') {
-        uuidParam = uuid
-    }
+    const uuid = search.get("uuid") || storeUser?.user?.uuid || Cookies.get(COOKIES_FOR.UUID)
 
     useEffect(() => {
         const fetchData = async () => {
-            await getLeadData(uuidParam, storeUser, storeAddress)
+            await getLeadData(uuid, storeUser, storeAddress)
         };
         fetchData();
     }, []);

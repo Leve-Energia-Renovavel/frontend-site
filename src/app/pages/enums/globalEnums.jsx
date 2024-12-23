@@ -101,7 +101,6 @@ export const DISTRIBUTOR = {
     CPFL_PIRATININGA: "CPFL PIRATININGA",
 }
 
-
 export const ERROR_MESSAGE = {
     UNAUTHENTICATED: "Unauthenticated.",
     CONSUMER_NOT_FOUND: "Consumidor não encontrado",
