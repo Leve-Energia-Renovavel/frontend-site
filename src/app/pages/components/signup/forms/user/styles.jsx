@@ -1,7 +1,7 @@
-import { fadeInRight, fadeInUp } from "@/app/pages/globalAnimations";
-import { background, notification } from "@/app/pages/globalStyles";
+import { fadeInRight } from "@/app/pages/globalAnimations";
+import { background } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
-import { Alert, Button, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 
 export const Form = styled.form`
     padding: 8px 100px;
@@ -15,22 +15,16 @@ export const Form = styled.form`
 `
 export const FormRow = styled.div`
     display: grid;
-    grid-template-columns: repeat(2, 1fr); 
     grid-column: span 3; 
-
-    gap: 1rem;
 
     margin: 10px 0;
 
-    @media (max-width: 600px) {
-        grid-template-rows: repeat(1, 1fr);
-        grid-template-columns: repeat(1,1fr);
-        grid-gap: 1rem;
-    }
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: repeat(1,1fr);
+    grid-gap: 1rem;
 `
 export const FormContent = styled.div`
     display: grid;
-    /* grid-template-columns: repeat(3, 1fr);  */
     grid-template-columns: 1.35fr 1fr 1fr;
 
     grid-column: span 3; 

@@ -13,7 +13,7 @@ export const EconomyResultContainer = styled.div`
     flex-direction: column;
     background-color: ${background.white};
 
-    border-radius: 20px;
+    border-radius: 10px;
     
     margin: 0 auto;
     margin-top: 16px;

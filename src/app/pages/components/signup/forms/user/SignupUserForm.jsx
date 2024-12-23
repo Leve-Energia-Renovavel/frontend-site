@@ -98,7 +98,7 @@ export default function SignupUserForm() {
   const schemaValidation = async (data, router) => {
     try {
       const validatedData = await userSchema.validate(data, { abortEarly: false })
-      setNotifications(["Informações salvas do titular com sucesso!"])
+      setNotifications(["Informações do titular salvas com sucesso!"])
       router.push(`${PATH_TO.REGISTER_ADDRESS}`)
 
       return validatedData;
@@ -171,7 +171,7 @@ export default function SignupUserForm() {
       submitData["razao_social"] = companyRefs.razao_social.current.value
       submitData["cnpj"] = companyRefs.cnpj.current.value
     }
-    console.log("submitData ===>>", submitData)
+    console.log("user form data ===>>", submitData)
     store.updateUser({ ...formState });
     const response = await schemaValidation(submitData, router);
 

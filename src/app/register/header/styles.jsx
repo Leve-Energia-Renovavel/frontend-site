@@ -8,7 +8,7 @@ import Stepper from '@mui/material/Stepper';
 
 export const RegisterHeaderContainer = styled.div`
     background-color: ${background.white};
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 10px;
 `
 
 export const BoxComponent = styled(Box)`

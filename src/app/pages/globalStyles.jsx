@@ -5,6 +5,7 @@ import { fadeInUp } from "./globalAnimations";
 export const headerMargin = "84px"
 export const containerWidth = "1280px"
 export const containerPadding = "54px"
+export const registerContainerWidth = "877px"
 
 export const notification = {
     success: "#3adb76",

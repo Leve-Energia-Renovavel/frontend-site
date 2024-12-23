@@ -25,9 +25,6 @@ export default function EconomySimulation() {
 
     useEffect(() => {
         const fetchData = async () => {
-            console.log("Fetching data for address ===>>", uuid)
-            console.log("storeUser ===>>", storeUser.user)
-            console.log("storeAddress ===>>", storeAddress.address)
             await clearCookiesAndStorageData()
             await getLeadData(uuid, storeUser, storeAddress)
             setIsLoading(false)

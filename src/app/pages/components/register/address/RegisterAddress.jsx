@@ -3,13 +3,14 @@
 
 import { useStoreAddress, useStoreUser } from '@/app/hooks/stores/useStore';
 import { getLeadData } from '@/app/service/lead-service/LeadService';
-import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import SignupAddressForm from '../../signup/forms/address/SignupAddressForm';
+import LoadingSignupAddressForm from '../../signup/forms/address/loading/LoadingSignupAddressForm';
 
-const SignupUserForm = dynamic(() => import('../signup/forms/user/SignupUserForm'), { ssr: false });
+export default function RegisterAddress() {
 
-export default function RegisterUser() {
+    const [isLoading, setIsLoading] = useState(true)
 
     const search = useSearchParams()
     const storeUser = useStoreUser()
@@ -20,11 +21,16 @@ export default function RegisterUser() {
     useEffect(() => {
         const fetchData = async () => {
             await getLeadData(uuid, storeUser, storeAddress)
+            setIsLoading(false)
+
         };
         fetchData();
     }, []);
 
+
     return (
-        <SignupUserForm />
+        <>
+            {isLoading ? <LoadingSignupAddressForm /> : <SignupAddressForm />}
+        </>
     )
 }

@@ -110,7 +110,7 @@ export default function SignupAddressForm() {
       numero_instalacao: formState?.installationNumber,
     };
 
-    console.log(submitData);
+    console.log("address form data ===>>", submitData)
 
     const response = await schemaValidation(submitData);
     storeAddress.updateAddress({ ...formState });
@@ -246,7 +246,7 @@ export default function SignupAddressForm() {
               placeholder="Nº"
               type="text"
               filledCorrectly={numberInputFilled(formState?.number)}
-              required={required}
+              required
               inputProps={{ inputMode: 'numeric' }}
               InputLabelProps={{ style: { color: numberInputFilled(formState?.number) ? greenLeve : orangeLeve } }} />
             }
@@ -322,7 +322,7 @@ export default function SignupAddressForm() {
             name="installationNumber"
             label="Número de Instalação"
             placeholder="Número de Instalação"
-            required
+            required={false}
             value={formState?.installationNumber || ''}
             filledCorrectly={addressTextInputFilled(formState?.installationNumber)}
             InputLabelProps={{ shrink: formState?.installationNumber !== "", style: { color: addressTextInputFilled(formState?.installationNumber) ? greenLeve : orangeLeve } }}
