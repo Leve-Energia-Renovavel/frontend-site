@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useStoreClickSign, useStoreUser } from '@/app/hooks/stores/useStore';
 import { finishSignup } from '@/app/service/contract-service/ContractService';
 import Cookies from 'js-cookie';
@@ -36,7 +37,7 @@ export default function ClicksignWidgetComponent({ uuid }) {
         setWidget(widgetInstance);
 
         return () => widgetInstance.unmount();
-    }, [clickSignKey, router, storeUser, uuid]);
+    }, [clickSignKey, router]);
 
     return (
         <Container className="clicksignContainer">
