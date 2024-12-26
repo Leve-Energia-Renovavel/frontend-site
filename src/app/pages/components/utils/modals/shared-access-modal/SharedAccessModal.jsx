@@ -7,7 +7,7 @@ import { ModalBox } from './styles';
 
 const DashboardSharedAccess = dynamic(() => import('../../../new-dashboard/side-bar/shared-access/DashboardSharedAccess'), { ssr: false });
 
-export default function SharedAccessModal({ isMobileContent, isOpen, openModal, closeModal, setErrorMessage, setNotifications }) {
+export default function SharedAccessModal({ isMobileContent, isOpen, openModal, closeModal }) {
 
     return (
         <Modal
@@ -27,9 +27,7 @@ export default function SharedAccessModal({ isMobileContent, isOpen, openModal, 
                 <DashboardSharedAccess
                     expanded={true}
                     closeModal={closeModal}
-                    isMobileContent={false}
-                    setErrorMessage={setErrorMessage}
-                    setNotifications={setNotifications} />
+                    isMobileContent={false} />
             </ModalBox>
         </Modal>
     )

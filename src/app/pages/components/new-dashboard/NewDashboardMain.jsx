@@ -27,13 +27,13 @@ export default function NewDashboardMain(props) {
     const storeBilling = useStoreBillingHistory()
     const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
-    const storeMessages = useStoreMessages()
 
     const { distributorStatus } = storeUser?.user || {}
     const { hasStartedBilling } = storeMainInstallation?.mainInstallation || {}
 
     const [menuSelected, setMenuSelection] = useState(menuOptions[props.page])
 
+    const storeMessages = useStoreMessages()
     const setNotifications = storeMessages.setNotifications
     const setErrors = storeMessages.setNotifications
 
@@ -54,9 +54,7 @@ export default function NewDashboardMain(props) {
     return (
         <>
             <Container className='dashboardContainer'>
-                <DashboardSideBar
-                    setErrorMessage={setErrors}
-                    setNotifications={setNotifications}>
+                <DashboardSideBar>
                     <DashboardMenu
                         isSideBar={true}
                         menuSelected={menuSelected}

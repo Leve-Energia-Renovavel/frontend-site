@@ -4,7 +4,7 @@ import { sendWhatsAppMessage } from '@/app/utils/helper/whatsapp/whatsappHelper'
 import { Backdrop, Modal } from '@mui/material';
 import { FormButton, ModalBox, SimpleArrowForward, WelcomeContent } from './styles';
 
-export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, customerName, distributorStatus, openModal, closeModal, setErrorMessage, setNotifications }) {
+export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, customerName, distributorStatus, openModal, closeModal }) {
 
     const activeDistributor = distributorStatus === true
 

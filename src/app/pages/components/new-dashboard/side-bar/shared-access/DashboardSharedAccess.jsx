@@ -1,6 +1,7 @@
 "use client"
 
 import { useStoreMainInstallation, useStoreUser } from '@/app/hooks/stores/useStore';
+import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import { DISTRIBUTOR } from '@/app/pages/enums/globalEnums';
 import CloseIcon from '@mui/icons-material/Close';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
@@ -12,11 +13,15 @@ import { useRef, useState } from 'react';
 import { CheckIcon, CloseButton, DashboardAccordionContainer, DashboardAccordionDetails, DashboardAccordionSummary, EditFormButton, ExpandIcon, FormButton, LoadingIcon, SharedAccessForm, SimpleArrowForward } from './styles';
 import { emptyFields, schemaValidation } from './validation';
 
-export default function DashboardSharedAccess({ expanded, closeModal, isMobileContent, setErrorMessage, setNotifications }) {
+export default function DashboardSharedAccess({ expanded, closeModal, isMobileContent }) {
 
     const router = useRouter()
     const storeUser = useStoreUser()
     const storeMainInstallation = useStoreMainInstallation()
+    const storeMessages = useStoreMessages()
+
+    const setNotifications = storeMessages.setNotifications
+    const setErrors = storeMessages.setNotifications
 
     const user = JSON.parse(localStorage.getItem('user')) || storeUser.user
     const installation = JSON.parse(localStorage.getItem('installation')) || storeMainInstallation.mainInstallation
@@ -45,7 +50,7 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
         event.preventDefault()
 
         if (emptyFields(distributorLoginRef.login.current.value, distributorLoginRef.password.current.value)) {
-            setErrorMessage(["Preencha todos os campos para sincronizar os dados com a sua distribuidora"])
+            setErrors(["Preencha todos os campos para sincronizar os dados com a sua distribuidora"])
             return
         } else {
             setIsLoading(true)
@@ -54,7 +59,7 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
                 login: distributorLoginRef.login.current.value,
                 pass: distributorLoginRef.password.current.value,
             }
-            await schemaValidation(data, uuid, storeUser, isCPFL, router, setIsLoading, setErrorMessage, setNotifications, closeModal)
+            await schemaValidation(data, uuid, storeUser, isCPFL, router, setIsLoading, setErrors, setNotifications, closeModal)
         }
         setIsEdition(false)
 
