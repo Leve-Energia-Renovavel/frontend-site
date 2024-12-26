@@ -44,13 +44,14 @@ export const requestValidation = async (data, response, setNotifications, setErr
             router.push(PATH_TO.LOGIN)
         }
         else {
+            Cookies.set(COOKIES_FOR.UUID, uuid)
+
             if (!uuid || uuid == "undefined") {
                 setErrorMessage(["Erro ao criar conta. Mas nao se preocupe! Em alguns segundos vamos te redirecionar ao nosso Suporte."])
                 await awaitSeconds(4)
                 const url = `https://api.whatsapp.com/send/?phone=${LEVE_WHATSAPP_NUMBER}&text=Oi!+Tive+um+problema+ao+criar+conta+na+Leve+Energia+e+preciso++de+ajuda&type=phone_number&app_absent=0`
                 window.open(url, '_blank', 'noopener noreferrer');
             } else {
-                Cookies.set(COOKIES_FOR.UUID, uuid)
 
                 storeUser.updateUser({
                     uuid: uuid,
@@ -63,7 +64,7 @@ export const requestValidation = async (data, response, setNotifications, setErr
                     coupon: data?.cupom,
                 })
                 setNotifications(["Simulação realizada com sucesso!"])
-                // await awaitSeconds(2)
+                await awaitSeconds(1)
                 router.push(`${PATH_TO.ECONOMY_SIMULATION}`)
             }
         }
