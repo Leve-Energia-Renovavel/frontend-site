@@ -54,37 +54,50 @@ export const FormLastRow = styled.div`
 `
 
 const FormInputBase = styled(TextField, {
-    shouldForwardProp: (prop) => prop !== "filledCorrectly",
+    shouldForwardProp: (prop) => prop !== "success" && prop !== "error",
 })``;
 
 export const FormInput = styled(FormInputBase)`
-    border-radius: 10px;
+    border-radius: 5px;
 
     animation: ${fadeInRight} 0.5s ease-out;
     
     && {
-        background-color: ${props => props.filledCorrectly ? background.greenTranslucent : background.orangeTranslucent}; 
+        background-color: ${background.greyTranslucent}; 
+        background-color: ${props => props.success && background.greenTranslucent}; 
+        background-color: ${props => props.error && background.orangeTranslucent}; 
     }
 
     .MuiInputLabel-shrink {
         /* Styles for the focused label */
-        line-height: 2.8em; 
+        line-height: 4em; 
       }
 
     .MuiOutlinedInput-input {
         border: 2px solid transparent;
-        border-radius: 10px;  
+        border-radius: 5px;  
         
         // styles for the user input text
         font-family: "Graphie";
         font-size: 17px;
-        font-weight: 700;
-        color: ${props => props.filledCorrectly ? background.green : background.orange}; 
+        font-weight: 400;
+
+        color: ${background.greyMediumHigh}; 
+        color: ${props => props.success && background.green}; 
+        color: ${props => props.error && background.orange};
         
         &:focus {
-            color: ${props => props.filledCorrectly ? background.green : background.orange}; 
-            border: 2px solid ${props => props.filledCorrectly ? background.green : background.orange};
-            background-color: ${props => props.filledCorrectly ? background.greenTranslucent : background.orangeTranslucent}; 
+            color: ${background.greyMediumHigh}; 
+            color: ${props => props.success && background.green}; 
+            color: ${props => props.error && background.orange};
+
+            border: 2px solid ${background.greyBorder};
+            border: 2px solid ${props => props.success && background.green};
+            border: 2px solid ${props => props.error && background.orange};
+
+            background-color: ${background.white}; 
+            background-color: ${props => props.success && background.greenTranslucent}; 
+            background-color: ${props => props.error && background.orangeTranslucent};
             }
         }
 
@@ -94,12 +107,17 @@ export const FormInput = styled(FormInputBase)`
 
         .MuiFormLabel-root {
             font-family: "Graphie";
-            font-size: 14px;
-            font-weight: 600;
-            color: ${props => props.filledCorrectly ? background.green : background.orange}; 
+            font-size: 12px;
+            font-weight: 400;
+            
+            color: ${background.greyMediumHigh}; 
+            color: ${props => props.success && background.green}; 
+            color: ${props => props.error && background.orange};
             
             &:focus {
-                color: ${props => props.filledCorrectly ? background.green : background.orange}; 
+                color: ${background.greyMediumHigh}; 
+                color: ${props => props.success && background.green}; 
+                color: ${props => props.error && background.orange};
             }
         }
 

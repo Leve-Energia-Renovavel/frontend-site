@@ -1,4 +1,7 @@
 
+export const inputIncomplete = (value) => {
+    return value?.toString()?.length > 5 && value.toString()?.length < 8
+};
 export const regularTextInputFilled = (value) => {
     return value?.toString().length > 1
 };

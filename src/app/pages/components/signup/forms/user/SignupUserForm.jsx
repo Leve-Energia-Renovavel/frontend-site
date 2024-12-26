@@ -22,7 +22,7 @@ import { COOKIES_FOR, PATH_TO, REGISTER_FORM } from '@/app/pages/enums/globalEnu
 import { formatCpf } from '@/app/utils/formatters/documentFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
-import { birthDateInputFilled, costTextInputFilled, costValidation, cpfInputFilled, emailInputFilled, newCostValidation, normalTextInputFilled, phoneInputFilled, regularTextInputFilled, rgInputFilled } from '@/app/utils/helper/register/registerUserHelper';
+import { birthDateInputFilled, costTextInputFilled, costValidation, cpfInputFilled, emailInputFilled, inputIncomplete, newCostValidation, normalTextInputFilled, phoneInputFilled, regularTextInputFilled, rgInputFilled } from '@/app/utils/helper/register/registerUserHelper';
 import { userSchema } from './schema';
 
 export default function SignupUserForm() {
@@ -177,60 +177,6 @@ export default function SignupUserForm() {
     setIsLoading(false)
   }
 
-  // const handleSubmit = async (event) => {
-
-  //   const validatedCost = costValidation(userRefs.cost.current.value)
-
-  //   var submitData = {
-  //     uuid: uuid,
-  //     nome_completo: sanitizeAndCapitalizeWords(userRefs.name.current.value),
-  //     email: userRefs.email.current.value,
-  //     rg: userRefs.rg.current.value?.replace(/[-_]/g, ""),
-  //     cpf: userRefs.cpf.current.value,
-  //     data_nascimento: userRefs.birthDate.current.value,
-  //     telefone: userRefs.phone.current.value,
-  //     cep: addressRefs.addressCep.current.value,
-  //     endereco: addressRefs.address.current.value,
-  //     numero: parseFloat(addressRefs.addressNumber.current.value?.replace(/[^0-9.]/g, "")),
-  //     bairro: addressRefs.neighborhood.current.value,
-  //     complemento: addressRefs.complement.current.value,
-  //     estado_id: storeAddress.address.stateId || stateValue.cod_estados,
-  //     cidade_id: storeAddress.address.cityId || await findCityIdByName(addressRefs.city.current.value, stateValue.cod_estados),
-  //     valor: validatedCost,
-  //     nacionalidade: userRefs.nationality.current.value,
-  //     profissao: userRefs.profession.current.value,
-  //     estado_civil: userRefs.maritalStatus.current.value,
-  //     numero_instalacao: addressRefs.installationNumber.current.value
-  //   }
-  //   if (isCompany) {
-  //     submitData["razao_social"] = companyRefs.razao_social.current.value
-  //     submitData["cnpj"] = companyRefs.cnpj.current.value
-  //   }
-
-  //   const response = await schemaValidation(isCompany, submitData)
-  //   if (requestSuccessful(response?.status) || hasToSignContract(response?.data?.message)) {
-
-  //     store.updateUser({
-  //       birthDate: submitData.data_nascimento,
-  //       rg: submitData.rg,
-  //       cpf: submitData.cpf,
-  //       maritalStatus: submitData.estado_civil,
-  //       profession: submitData.profissao,
-  //       nationality: submitData.nacionalidade,
-  //     });
-
-  //     if (isCompany) {
-  //       store.updateUser({
-  //         companyName: submitData.razao_social,
-  //       });
-  //     }
-
-  //     router.push(`/signup/contract-signature/?uuid=${uuid}`)
-
-  //   } else await handleRequestsErrors(response, setNotifications, setErrorMessage, router)
-  // }
-
-
   const required = false
   const greenLeve = "#005940"
   const orangeLeve = "#FF7133"
@@ -247,9 +193,10 @@ export default function SignupUserForm() {
               label="Razão Social"
               variant="outlined"
               placeholder="Razão Social"
-              filledCorrectly={normalTextInputFilled(formState?.razao_social)}
-              value={formState?.razao_social}
               type="text"
+              value={formState?.razao_social}
+              error={inputIncomplete(formState?.razao_social)}
+              success={normalTextInputFilled(formState?.razao_social)}
               InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
               required
             />
@@ -283,26 +230,28 @@ export default function SignupUserForm() {
             className="inputForm"
             name='name'
             onChange={handleInputChange}
-            filledCorrectly={normalTextInputFilled(formState?.name)}
+            variant="outlined"
+            type="text"
+            required={required}
+            value={formState?.name}
+            error={!normalTextInputFilled(formState?.name)}
+            success={normalTextInputFilled(formState?.name)}
             label={`Nome Completo ${isCompany ? 'do Responsável' : ''}`}
             placeholder={`Nome Completo ${isCompany ? 'do Responsável' : ''}`}
-            variant="outlined"
-            value={formState?.name}
-            type="text"
             InputLabelProps={{ shrink: true, style: { color: normalTextInputFilled(formState?.name) ? greenLeve : orangeLeve } }}
-            required={required}
           />
           <FormInput
             name='email'
             onChange={handleInputChange}
             className="inputForm"
-            filledCorrectly={emailInputFilled(formState?.email)}
-            label={`Email ${isCompany ? 'do Responsável' : ''}`}
-            placeholder={`Email ${isCompany ? 'do Responsável' : ''}`}
             variant="outlined"
             value={formState?.email}
             type="text"
             required={required}
+            success={emailInputFilled(formState?.email)}
+            error={inputIncomplete(formState?.email)}
+            label={`Email ${isCompany ? 'do Responsável' : ''}`}
+            placeholder={`Email ${isCompany ? 'do Responsável' : ''}`}
             InputLabelProps={{ shrink: formState?.email !== "", style: { color: emailInputFilled(formState?.email) ? greenLeve : orangeLeve } }} />
         </FormRow>
         <FormContent>
@@ -311,13 +260,14 @@ export default function SignupUserForm() {
               <FormInput
                 name='phone'
                 className="inputForm"
-                filledCorrectly={phoneInputFilled(formState?.phone)}
-                inputProps={{ inputMode: 'numeric' }}
-                label={`Telefone ${isCompany ? 'do Responsável' : ''}`}
                 variant="outlined"
-                placeholder={`Telefone ${isCompany ? 'do Responsável' : ''}`}
                 type="text"
                 required={required}
+                inputProps={{ inputMode: 'numeric' }}
+                error={inputIncomplete(formState?.phone)}
+                success={phoneInputFilled(formState?.phone)}
+                label={`Telefone ${isCompany ? 'do Responsável' : ''}`}
+                placeholder={`Telefone ${isCompany ? 'do Responsável' : ''}`}
                 InputLabelProps={{ shrink: formState?.phone !== "", style: { color: phoneInputFilled(formState?.phone) ? greenLeve : orangeLeve } }} />
             )}
           </InputMask>
@@ -343,11 +293,12 @@ export default function SignupUserForm() {
                   label="RG"
                   variant="outlined"
                   placeholder="RG"
-                  filledCorrectly={rgInputFilled(formState?.rg)}
                   name='rg'
                   type="text"
-                  inputProps={{ inputMode: 'numeric' }}
                   required={required}
+                  inputProps={{ inputMode: 'numeric' }}
+                  error={!rgInputFilled(formState?.rg)}
+                  success={rgInputFilled(formState?.rg)}
                   InputLabelProps={{ shrink: formState?.rg !== "", style: { color: rgInputFilled(formState?.rg) ? greenLeve : orangeLeve } }} />
               )}
             </InputMask>
@@ -358,12 +309,13 @@ export default function SignupUserForm() {
                 name='cpf'
                 className="inputForm"
                 label="CPF"
-                filledCorrectly={cpfInputFilled(formState?.cpf)}
                 variant="outlined"
                 placeholder="CPF"
-                inputProps={{ inputMode: 'numeric' }}
                 type="text"
                 required={required}
+                inputProps={{ inputMode: 'numeric' }}
+                success={cpfInputFilled(formState?.cpf)}
+                error={!cpfInputFilled(formState?.cpf)}
                 InputLabelProps={{ shrink: formState?.cpf !== "", style: { color: cpfInputFilled(formState?.cpf) ? greenLeve : orangeLeve } }} />
             )}
           </InputMask>
@@ -372,13 +324,14 @@ export default function SignupUserForm() {
               <FormInput
                 name='birthDate'
                 className="inputForm"
-                filledCorrectly={birthDateInputFilled(formState?.birthDate)}
                 label="Data de Nascimento"
-                variant="outlined"
                 placeholder="Data de Nascimento"
+                variant="outlined"
                 type="text"
-                inputProps={{ inputMode: 'numeric' }}
                 required={required}
+                inputProps={{ inputMode: 'numeric' }}
+                error={inputIncomplete(formState?.birthDate)}
+                success={birthDateInputFilled(formState?.birthDate)}
                 InputLabelProps={{ shrink: formState?.birthDate !== "", style: { color: birthDateInputFilled(formState?.birthDate) ? greenLeve : orangeLeve } }} />
             )}
           </InputMask>
@@ -386,21 +339,22 @@ export default function SignupUserForm() {
             className="inputForm"
             label="Custo Mensal em R$"
             variant="outlined"
-            value={formatBrazillianCurrency(formState?.cost)}
             placeholder="Custo Mensal em R$"
             type="text"
             name='cost'
-            filledCorrectly={costTextInputFilled(formState?.cost)}
+            required={required}
             onChange={handleChangeUserCost}
             inputProps={{ inputMode: 'numeric' }}
-            required={required}
+            value={formatBrazillianCurrency(formState?.cost)}
+            success={costTextInputFilled(formState?.cost)}
             InputLabelProps={{ shrink: true, style: { color: regularTextInputFilled(formState?.cost) ? greenLeve : orangeLeve } }} />
           <FormInput
             id="maritalStatus"
             name='maritalStatus'
             onChange={handleInputChange}
             select
-            filledCorrectly={regularTextInputFilled(formState?.maritalStatus)}
+            error={inputIncomplete(formState?.maritalStatus)}
+            success={regularTextInputFilled(formState?.maritalStatus)}
             label="Estado Civil"
             variant="outlined"
             placeholder="Estado Civil"
@@ -418,7 +372,8 @@ export default function SignupUserForm() {
             name='nationality'
             onChange={handleInputChange}
             select
-            filledCorrectly={regularTextInputFilled(formState?.nationality)}
+            error={inputIncomplete(formState?.nationality)}
+            success={regularTextInputFilled(formState?.nationality)}
             label="Nacionalidade"
             className="inputForm"
             variant="outlined"
@@ -437,7 +392,7 @@ export default function SignupUserForm() {
             onChange={handleInputChange}
             id="profession"
             select
-            filledCorrectly={regularTextInputFilled(formState?.profession)}
+            success={regularTextInputFilled(formState?.profession)}
             label="Profissão"
             className="inputForm"
             variant="outlined"
