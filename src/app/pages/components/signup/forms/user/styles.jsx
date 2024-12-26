@@ -136,7 +136,6 @@ export const FormInput = styled(FormInputBase)`
             color: ${background.orange};
         }
 
-
 `
 
 export const FileUploadContainer = styled.div`

@@ -11,7 +11,7 @@ import { hasToSignContract, requestSuccessful } from "@/app/service/utils/Valida
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
 import { formatCpf } from "@/app/utils/formatters/documentFormatter";
 import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
-import { addressTextInputFilled, cepInputFilled, numberInputFilled } from "@/app/utils/helper/register/registerAddressHelper";
+import { addressTextInputFilled, cepInputFilled, inputIncomplete, installationNumberInputIncomplete, numberInputFilled, numberInputIncomplete } from "@/app/utils/helper/register/registerAddressHelper";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SearchIcon from '@mui/icons-material/Search';
@@ -216,10 +216,11 @@ export default function SignupAddressForm() {
               label="CEP"
               variant="outlined"
               placeholder="CEP"
-              filledCorrectly={cepInputFilled(formState?.cep)}
               type="text"
               required
               inputProps={{ inputMode: 'numeric' }}
+              error={inputIncomplete(formState?.cep)}
+              success={cepInputFilled(formState?.cep)}
               InputLabelProps={{ shrink: formState?.cep !== "", style: { color: formState?.cep !== "" ? greenLeve : orangeLeve } }}
               InputProps={{
                 endAdornment: !isLoadingCEP ?
@@ -231,40 +232,44 @@ export default function SignupAddressForm() {
               }} />}
           </InputMask>
 
-          <FormInput className="inputForm"
-            defaultValue={formState?.street || ''}
-            label="Endereço" variant="outlined"
-            placeholder="Endereço"
-            filledCorrectly={addressTextInputFilled(formState?.street)}
+          <FormInput
+            label="Endereço"
+            variant="outlined"
             type="text"
+            className="inputForm"
+            placeholder="Endereço"
+            defaultValue={formState?.street || ''}
+            error={inputIncomplete(formState?.street)}
+            success={addressTextInputFilled(formState?.street)}
             InputLabelProps={{ shrink: formState?.street !== "", style: { color: formState?.street !== "" ? greenLeve : orangeLeve } }} />
 
           <InputMask mask="99999" onChange={handleInputChange}>
             {() => <FormInput
-              className="inputForm"
               label="Nº"
               name="number"
-              variant="outlined"
               placeholder="Nº"
               type="text"
-              filledCorrectly={numberInputFilled(formState?.number)}
               required
+              variant="outlined"
+              className="inputForm"
               inputProps={{ inputMode: 'numeric' }}
+              error={numberInputIncomplete(formState?.number)}
+              success={numberInputFilled(formState?.number)}
               InputLabelProps={{ style: { color: numberInputFilled(formState?.number) ? greenLeve : orangeLeve } }} />
             }
           </InputMask>
 
           <FormInput
-            className="inputForm"
-            label="Complemento"
             name="complement"
-            onChange={handleInputChange}
             variant="outlined"
-            filledCorrectly={addressTextInputFilled(formState?.complement)}
-            placeholder="Complemento"
             type="text"
+            label="Complemento"
+            className="inputForm"
+            placeholder="Complemento"
+            onChange={handleInputChange}
+            error={inputIncomplete(formState?.complement)}
+            success={addressTextInputFilled(formState?.complement)}
             InputLabelProps={{ style: { color: addressTextInputFilled(formState?.complement) ? greenLeve : orangeLeve } }} />
-
 
           <FormInput
             type="text"
@@ -276,7 +281,8 @@ export default function SignupAddressForm() {
             required
             onChange={handleInputChange}
             defaultValue={formState?.neighborhood || ''}
-            filledCorrectly={addressTextInputFilled(formState?.neighborhood)}
+            error={inputIncomplete(formState?.neighborhood)}
+            success={addressTextInputFilled(formState?.neighborhood)}
             InputLabelProps={{ style: { color: addressTextInputFilled(formState?.neighborhood) ? greenLeve : orangeLeve } }} />
 
           <FormInput
@@ -289,7 +295,8 @@ export default function SignupAddressForm() {
             required={required}
             value={formState?.stateId || ''}
             onChange={(event) => handleChangeState(event.target.value)}
-            filledCorrectly={addressTextInputFilled(formState?.stateId)}
+            error={!addressTextInputFilled(formState?.stateId)}
+            success={addressTextInputFilled(formState?.stateId)}
             InputLabelProps={{
               component: 'span',
               shrink: formState?.stateId !== "",
@@ -311,7 +318,8 @@ export default function SignupAddressForm() {
             variant="outlined"
             onChange={handleInputChange}
             defaultValue={formState?.city?.toUpperCase() || ''}
-            filledCorrectly={addressTextInputFilled(formState?.city)}
+            error={!addressTextInputFilled(formState?.city)}
+            success={addressTextInputFilled(formState?.city)}
             InputLabelProps={{ shrink: formState?.city !== "", style: { color: addressTextInputFilled(formState?.city) ? greenLeve : orangeLeve } }} required />
         </FormContent>
 
@@ -326,7 +334,7 @@ export default function SignupAddressForm() {
             placeholder="Número de Instalação"
             required={false}
             value={formState?.installationNumber || ''}
-            filledCorrectly={addressTextInputFilled(formState?.installationNumber)}
+            success={addressTextInputFilled(formState?.installationNumber)}
             InputLabelProps={{ shrink: formState?.installationNumber !== "", style: { color: addressTextInputFilled(formState?.installationNumber) ? greenLeve : orangeLeve } }}
           />
         </FormLastRow>

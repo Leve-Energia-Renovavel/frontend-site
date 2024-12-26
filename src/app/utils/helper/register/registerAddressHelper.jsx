@@ -1,5 +1,8 @@
 import { DISTRIBUTOR } from "@/app/pages/enums/globalEnums"
 
+export const inputIncomplete = (value) => {
+    return value?.toString()?.length > 5 && value.toString()?.length < 8
+};
 export const activeDistributorsForDisclaimer = (distributor) => {
     return distributor === DISTRIBUTOR.CEMIG
         || distributor === DISTRIBUTOR.CPFL_PAULISTA
@@ -8,6 +11,9 @@ export const activeDistributorsForDisclaimer = (distributor) => {
 
 export const addressTextInputFilled = (value) => {
     return value?.toString().length > 0;
+};
+export const numberInputIncomplete = (value) => {
+    return value?.length < 1;
 };
 export const numberInputFilled = (value) => {
     const underscoreCount = (value?.match(/_/g) || []).length;
