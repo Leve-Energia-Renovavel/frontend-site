@@ -1,6 +1,7 @@
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { awaitSeconds } from "@/app/utils/browser/BrowserUtils";
-import { LEVE_WHATSAPP_NUMBER, PATH_TO, USER_TYPE } from "../../enums/globalEnums";
+import Cookies from "js-cookie";
+import { COOKIES_FOR, LEVE_WHATSAPP_NUMBER, PATH_TO, USER_TYPE } from "../../enums/globalEnums";
 
 const signupValidationCodes = {
     ALANCASR: "A leve ainda não chegou a sua região",
@@ -49,7 +50,8 @@ export const requestValidation = async (data, response, setNotifications, setErr
                 const url = `https://api.whatsapp.com/send/?phone=${LEVE_WHATSAPP_NUMBER}&text=Oi!+Tive+um+problema+ao+criar+conta+na+Leve+Energia+e+preciso++de+ajuda&type=phone_number&app_absent=0`
                 window.open(url, '_blank', 'noopener noreferrer');
             } else {
-                setNotifications(["Simulação realizada com sucesso!"])
+                Cookies.set(COOKIES_FOR.UUID, uuid)
+
                 storeUser.updateUser({
                     uuid: uuid,
                     name: data?.nome_completo,
@@ -60,6 +62,8 @@ export const requestValidation = async (data, response, setNotifications, setErr
                     isCompany: data?.type === USER_TYPE.PJ ? true : false,
                     coupon: data?.cupom,
                 })
+                setNotifications(["Simulação realizada com sucesso!"])
+                // await awaitSeconds(2)
                 router.push(`${PATH_TO.ECONOMY_SIMULATION}`)
             }
         }

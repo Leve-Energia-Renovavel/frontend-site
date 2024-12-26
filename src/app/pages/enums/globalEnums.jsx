@@ -117,4 +117,5 @@ export const REGISTER_FORM = {
 export const COOKIES_FOR = {
     UUID: "leveUUID",
     USER: "user",
+    ACCESS_TOKEN: "accessToken",
 }

@@ -95,14 +95,12 @@ export const startSignUpForPartners = async (data) => {
 
 export const getLeadData = async (uuid, storeUser, storeAddress) => {
 
-    storeUser.updateUser({ uuid: uuid });
-    Cookies.set(COOKIES_FOR.UUID, uuid)
-
     try {
         const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
         if (requestSuccessful(userResponse?.status)) {
 
-            console.log("userResponse ==>>", userResponse)
+            console.log("getLeadData response ==>>", userResponse)
+            Cookies.set(COOKIES_FOR.UUID, uuid)
 
             const { instalacao, distribuidora } = userResponse?.data
             const consumidor = userResponse?.data?.instalacao?.consumidor
@@ -111,7 +109,7 @@ export const getLeadData = async (uuid, storeUser, storeAddress) => {
             const cep = consumidor?.cep
 
             const updatedUser = {
-                uuid: consumidor?.uuid || storeUser?.user?.uuid,
+                uuid: instalacao?.uuid || storeUser?.user?.uuid,
                 name: capitalizeEachWord(consumidor?.nome_completo) || capitalizeEachWord(storeUser?.user?.name) || "",
                 phone: consumidor?.telefone || storeUser?.user?.phone || "",
                 email: consumidor?.email || storeUser?.user?.email || "",

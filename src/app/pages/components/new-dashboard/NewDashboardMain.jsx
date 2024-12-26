@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { NewDashboardContainer as Container, NewDashboardContent as Content } from './styles';
 
+import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import { getGeneralDashboardData } from '@/app/service/dashboard-service/DashboardService';
 import { menuOptions } from '@/app/utils/helper/dashboard/dashboardHelper';
 import { isTrue } from '@/app/utils/helper/generalHelper';
@@ -26,14 +27,15 @@ export default function NewDashboardMain(props) {
     const storeBilling = useStoreBillingHistory()
     const storeInstallations = useStoreInstallations()
     const storeMainInstallation = useStoreMainInstallation()
+    const storeMessages = useStoreMessages()
 
     const { distributorStatus } = storeUser?.user || {}
     const { hasStartedBilling } = storeMainInstallation?.mainInstallation || {}
 
     const [menuSelected, setMenuSelection] = useState(menuOptions[props.page])
 
-    const [notifications, setNotifications] = useState([])
-    const [errors, setErrorMessage] = useState([])
+    const setNotifications = storeMessages.setNotifications
+    const setErrors = storeMessages.setNotifications
 
     const mainInstallationExists = storeMainInstallation?.mainInstallation?.uuid !== ""
     const isHomeOrInstallations = pathname === PATH_TO.DASHBOARD || pathname === PATH_TO.INSTALLATIONS;
@@ -43,17 +45,17 @@ export default function NewDashboardMain(props) {
 
     useEffect(() => {
         const fetchAllDashboardData = async () => {
-            await getGeneralDashboardData(router, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations, setErrorMessage)
+            await getGeneralDashboardData(router, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations, setErrors)
         };
 
         fetchAllDashboardData();
-    }, [router, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations]);
+    }, [router, setErrors, storeBilling, storeEconomy, storeInstallations, storeMainInstallation, storeNextBills, storeUser]);
 
     return (
         <>
             <Container className='dashboardContainer'>
                 <DashboardSideBar
-                    setErrorMessage={setErrorMessage}
+                    setErrorMessage={setErrors}
                     setNotifications={setNotifications}>
                     <DashboardMenu
                         isSideBar={true}
@@ -66,8 +68,7 @@ export default function NewDashboardMain(props) {
                 </Content>
             </Container>
 
-            <Messages notifications={notifications} errors={errors}
-                setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
+            <Messages />
         </>
     )
 }

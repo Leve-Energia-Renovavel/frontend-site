@@ -171,7 +171,6 @@ export default function SignupUserForm() {
       submitData["razao_social"] = companyRefs.razao_social.current.value
       submitData["cnpj"] = companyRefs.cnpj.current.value
     }
-    console.log("user form data ===>>", submitData)
     store.updateUser({ ...formState });
     const response = await schemaValidation(submitData, router);
 
