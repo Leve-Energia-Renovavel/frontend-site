@@ -11,7 +11,9 @@ import { useState } from 'react';
 import logoLeve from '../../../../resources/icons/small/leve-logo-orange-icon-small.svg';
 import LoggedModal from '../utils/modals/header-modal/logged-modal/LoggedModal';
 import LoginModal from '../utils/modals/header-modal/login-modal/LoginModal';
-import { MobileHeaderContainer, PartnerContainer } from './styles';
+import { HeaderContainer, PartnerContainer } from './styles';
+
+// const LoginModal = dynamic(() => import('../utils/modals/header-modal/login-modal/LoginModal'), { ssr: false });
 
 export default function Header() {
 
@@ -44,16 +46,16 @@ export default function Header() {
     }
 
     const goToLogin = () => {
-        router.push(PATH_TO.LOGIN)
+        setOpenLogin(true)
     }
 
     return (
         <>
-            <MobileHeaderContainer
+            <HeaderContainer
                 isLandingPage={isLandingPage}
                 isPartner={isPartner}
                 isOpen={openLogin || loginPath}
-                className="leveHeader">
+                className="leveHeaderContainer">
                 <Image src={logoLeve}
                     onClick={() => handleRoutesWhenUserIsLogged()}
                     className='logoLeve'
@@ -69,7 +71,7 @@ export default function Header() {
                     :
                     <PersonOutlineOutlinedIcon className='profile' onClick={goToLogin} />
                 }
-            </MobileHeaderContainer>
+            </HeaderContainer>
             {openLogin && (
                 isLoggedUser ? (
                     <LoggedModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />

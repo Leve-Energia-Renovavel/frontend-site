@@ -1,6 +1,7 @@
-// "use client"
+"use client"
 
 import { useStoreUser } from '@/app/hooks/stores/useStore';
+import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import { PATH_TO } from '@/app/pages/enums/globalEnums';
 import { modalBackdrop } from '@/app/pages/globalStyles';
 import { forgotPasswordValidation, loginValidation } from '@/app/service/login-service/LoginService';
@@ -8,30 +9,27 @@ import { requestSuccessful } from '@/app/service/utils/Validations';
 import { awaitSeconds } from '@/app/utils/browser/BrowserUtils';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { Backdrop, Box, CircularProgress, Divider, IconButton, InputAdornment, Modal, TextField, Typography } from '@mui/material';
+import { Backdrop, Box, CircularProgress, Divider, IconButton, InputAdornment, Modal, TextField } from '@mui/material';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import leveLogo from '../../../../../../../resources/icons/large/leve-logo-orange-icon-large.svg';
-import Messages from '../../../../messages/Messages';
 import ModalCloseButton from '../../../buttons/close-button/ModalCloseButton';
 import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginContentContainer, LoginForm, LoginIconContainer, LoginTitleContainer } from './styles';
 
 export default function LoginModal({ isOpen, openModal, closeModal, hasForgottenPassword }) {
 
     const router = useRouter()
-    const pathname = usePathname()
 
-    const store = useStoreUser()
+    const storeUser = useStoreUser()
+    const storeMessage = useStoreMessages()
 
     const [forgotPassword, setForgotPassword] = useState(hasForgottenPassword)
     const [isLoading, setIsLoading] = useState(false)
     const [passwordVisibible, setPasswordVisibible] = useState("password")
 
-    const [errors, setErrorMessage] = useState([])
-    const [notifications, setNotifications] = useState([])
-
-    const hideClose = pathname == '/login/' ? true : false
+    const setErrors = storeMessage.setErrors
+    const setNotifications = storeMessage.setNotifications
 
     const loginRef = {
         email: useRef(null),
@@ -44,7 +42,6 @@ export default function LoginModal({ isOpen, openModal, closeModal, hasForgotten
     }
     const goToHome = () => {
         router.push(PATH_TO.HOME)
-        closeModal()
     }
 
     const handleSubmit = async (event) => {
@@ -61,23 +58,24 @@ export default function LoginModal({ isOpen, openModal, closeModal, hasForgotten
                 scope: ""
             }
 
-            const response = await loginValidation(data, store, setErrorMessage)
+            const response = await loginValidation(data, storeUser)
             if (requestSuccessful(response?.status) && response?.data?.access_token) {
+                await awaitSeconds(6)
+                console.log("useSotee ==>>", storeUser)
                 router.push(PATH_TO.DASHBOARD)
             } else if (response?.data?.error) {
-                setErrorMessage(["E-mail e/ou senha estão incorretos"])
+                setErrors(["E-mail e/ou senha estão incorretos"])
             } else if (response?.errors) {
-                setErrorMessage([response?.errors])
+                setErrors([response?.errors])
             } else {
-                setErrorMessage(["Erro ao realizar login. Tente novamente mais tarde"])
-                // setErrorMessage([response?.response?.data?.message])
+                setErrors(["Erro ao realizar login. Tente novamente mais tarde"])
                 await awaitSeconds(2)
                 closeModal()
             }
 
         } else {
             const data = { email: loginRef.email.current.value }
-            await forgotPasswordValidation(data, setNotifications, setErrorMessage)
+            await forgotPasswordValidation(data, setNotifications, setErrors)
         }
         await awaitSeconds(0.6)
         closeModal()
@@ -108,7 +106,7 @@ export default function LoginModal({ isOpen, openModal, closeModal, hasForgotten
                 }}>
                 <LoginBox>
                     <LoginIconContainer>
-                        <ModalCloseButton router={router} hideClose={hideClose} goToHome={goToHome} />
+                        <ModalCloseButton />
                     </LoginIconContainer>
                     <LoginTitleContainer>
                         <Image
@@ -159,15 +157,15 @@ export default function LoginModal({ isOpen, openModal, closeModal, hasForgotten
                                         {!forgotPassword ? <span>Entrar</span> : <span>Recuperar Senha</span>}
                                     </LoginButton>}
                                 {!forgotPassword ?
-                                    <Typography className='forgotPassword' variant='subtitle1' onClick={() => setForgotPassword(true)}>
+                                    <p className='forgotPassword' onClick={() => setForgotPassword(true)}>
                                         Esqueci minha senha
-                                    </Typography> :
-                                    <Typography className='forgotPassword' variant='subtitle1' onClick={() => setForgotPassword(false)}>
+                                    </p> :
+                                    <p className='forgotPassword' onClick={() => setForgotPassword(false)}>
                                         Cancelar
-                                    </Typography>}
+                                    </p>}
                                 <Divider className='divider' />
                                 <FormFooterContainer>
-                                    <Typography variant='subtitle1'>Ainda não tem uma conta? <span className='createNewAccount' onClick={() => handleCreateNewAccount()}>Crie uma aqui!</span> </Typography>
+                                    <p >Ainda não tem uma conta? <span className='createNewAccount' onClick={() => handleCreateNewAccount()}>Crie uma aqui!</span> </p>
                                 </FormFooterContainer>
                             </LoginButtonContainer>
                         </LoginForm>
@@ -175,9 +173,6 @@ export default function LoginModal({ isOpen, openModal, closeModal, hasForgotten
                     </LoginContentContainer>
                 </LoginBox>
             </Modal >
-
-            <Messages notifications={notifications} errors={errors} setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
-
         </>
     );
 }

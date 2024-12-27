@@ -88,7 +88,10 @@ const shouldUpdateDashboardData = (response, storeBilling, storeMainInstallation
 
 export const getGeneralDashboardData = async (router, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations, setErrorMessage) => {
     try {
-        const token = Cookies.get(COOKIES_FOR.ACCESS_TOKEN) || storeUser?.accessToken
+        console.log("@@@@@ cookies ===>>>", Cookies.get(COOKIES_FOR.ACCESS_TOKEN))
+        // const token = Cookies.get(COOKIES_FOR.ACCESS_TOKEN) || storeUser?.accessToken
+        const token = storeUser?.accessToken
+        console.log("@@@@@ token ===>>>", token)
         const headers = {
             "Authorization": `Bearer ${token}`,
         };

@@ -4,16 +4,22 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { getAccessToken } from "../user-service/UserService";
 import { requestSuccessful } from "../utils/Validations";
+import { COOKIES_FOR } from "@/app/pages/enums/globalEnums";
 
-export const loginValidation = async (data, store, setErrorMessage) => {
+export const loginValidation = async (data, storeUser) => {
     return await loginSchema.validate(data, { abortEarly: false })
         .then(async () => {
             const response = await getAccessToken(data)
             if (requestSuccessful(response.status)) {
-                store.updateUser({
-                    accessToken: response.data.access_token,
-                    refreshToken: response.data.refresh_token
+
+                const accessToken = response?.data?.access_token
+                const refreshToken = response?.data?.refresh_token
+
+                storeUser.updateUser({
+                    accessToken: accessToken,
+                    refreshToken: refreshToken
                 })
+
                 Cookies.set('accessToken', response.data.access_token)
                 Cookies.set('refreshToken', response.data.refresh_token)
             }

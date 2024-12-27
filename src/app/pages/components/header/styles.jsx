@@ -1,7 +1,7 @@
 import { background, containerPadding, containerWidth } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 
-export const MobileHeaderContainer = styled.header`
+export const HeaderContainer = styled.header`
     display: flex;
     flex-direction: row;
     align-items: center;

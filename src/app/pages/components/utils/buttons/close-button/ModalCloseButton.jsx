@@ -1,18 +1,17 @@
 import { PATH_TO } from '@/app/pages/enums/globalEnums';
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from '@mui/material';
+import { useRouter } from 'next/navigation';
 
-export default function ModalCloseButton({ router, hideClose, goToHome }) {
+export default function ModalCloseButton() {
+
+    const router = useRouter()
+
     return (
         <div style={{ marginLeft: 'auto' }}>
-            {hideClose ?
-                <IconButton onClick={() => router.push(PATH_TO.HOME)}>
-                    <CloseIcon />
-                </IconButton>
-                :
-                <IconButton onClick={() => goToHome()}>
-                    <CloseIcon />
-                </IconButton>}
+            <IconButton onClick={() => router.push(PATH_TO.HOME)}>
+                <CloseIcon />
+            </IconButton>
         </div>
     )
 }

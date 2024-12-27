@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
 import { useStoreBillingHistory, useStoreInstallations, useStoreMainInstallation, useStoreNextBills, useStoreUser, useStoreUserEconomy } from '@/app/hooks/stores/useStore';
@@ -35,7 +36,7 @@ export default function NewDashboardMain(props) {
 
     const storeMessages = useStoreMessages()
     const setNotifications = storeMessages.setNotifications
-    const setErrors = storeMessages.setNotifications
+    const setErrors = storeMessages.setErrors
 
     const mainInstallationExists = storeMainInstallation?.mainInstallation?.uuid !== ""
     const isHomeOrInstallations = pathname === PATH_TO.DASHBOARD || pathname === PATH_TO.INSTALLATIONS;
@@ -49,7 +50,7 @@ export default function NewDashboardMain(props) {
         };
 
         fetchAllDashboardData();
-    }, [router, setErrors, storeBilling, storeEconomy, storeInstallations, storeMainInstallation, storeNextBills, storeUser]);
+    }, []);
 
     return (
         <>

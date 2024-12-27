@@ -99,6 +99,12 @@ export const removeBackdropOverflow = () => {
         document.body.style.paddingRight = `${window?.innerWidth - document.documentElement.clientWidth}px`;
     }
 };
+export const resetBackdropOverflow = () => {
+    if (typeof window !== "undefined" && typeof document !== "undefined") {
+        document.body.style.overflow = "";
+        document.body.style.paddingRight = "";
+    }
+};
 
 export const SnackbarMessageAlert = styled(Alert)`
   font-family: "Graphie";

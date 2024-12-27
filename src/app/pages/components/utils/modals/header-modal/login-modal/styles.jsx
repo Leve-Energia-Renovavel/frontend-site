@@ -231,7 +231,7 @@ export const FormFooterContainer = styled.div`
 
     padding: 1rem;
 
-    h6 { 
+    p { 
         font-family: "Graphie";
         font-size: 1rem;
         line-height: 1rem;
