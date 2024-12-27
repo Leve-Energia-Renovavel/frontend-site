@@ -66,6 +66,7 @@ export const NewHomeMainContainer = styled.div`
         color: ${background.greyHigh};
 
         animation: ${fadeInUp} 0.5s ease-out;
+        animation-delay: 0.4s;
 
         text-align: normal;
 
@@ -86,11 +87,10 @@ export const NewHomeMainDescriptionContainer = styled.div`
     margin-top: 43px;
 
     .checkIcon {
-        display: block;
-        width: 36px;
-        height: auto;
+        animation: ${fadeInUp} 0.5s ease-out;
+        animation-delay: 0.8s;
     }
-    
+
     .homeMainDescription {
         display: block;
 
@@ -101,7 +101,7 @@ export const NewHomeMainDescriptionContainer = styled.div`
         color: ${background.green};
 
         animation: ${fadeInUp} 0.5s ease-out;
-        
+        animation-delay: 0.8s;
 
         max-width: 475px;
     }

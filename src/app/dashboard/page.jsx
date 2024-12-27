@@ -1,4 +1,4 @@
-import NewDashboardMain from "../pages/components/new-dashboard/NewDashboardMain";
+import NewDashboardMain from "../pages/components/dashboard/DashboardMain";
 
 export const fetchCache = 'force-no-store';
 

@@ -6,6 +6,7 @@ export const headerMargin = "84px"
 export const containerWidth = "1280px"
 export const containerPadding = "54px"
 export const registerContainerWidth = "877px"
+export const modalBackdrop = "rgba(0, 0, 0, 0.4)"
 
 export const notification = {
     success: "#3adb76",
@@ -38,8 +39,6 @@ export const newFontStatusColors = {
     canceled: "#FFF",
     scheduled: "#FF7133",
 }
-
-
 
 export const partners = {
     tribanco: {
@@ -93,6 +92,13 @@ export const background = {
     orangeFocused: "#FDDCCB",
     orangeTranslucent: "#FFF1EB",
 }
+
+export const removeBackdropOverflow = () => {
+    if (typeof window !== "undefined" && typeof document !== "undefined") {
+        document.body.style.overflow = "hidden";
+        document.body.style.paddingRight = `${window?.innerWidth - document.documentElement.clientWidth}px`;
+    }
+};
 
 export const SnackbarMessageAlert = styled(Alert)`
   font-family: "Graphie";

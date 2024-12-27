@@ -1,4 +1,4 @@
-import { forgotPasswordSchema, loginSchema } from "@/app/pages/components/new-login/schema";
+import { forgotPasswordSchema, loginSchema } from "@/app/pages/components/utils/modals/header-modal/login-modal/schema";
 import { awaitSeconds } from "@/app/utils/browser/BrowserUtils";
 import axios from "axios";
 import Cookies from "js-cookie";

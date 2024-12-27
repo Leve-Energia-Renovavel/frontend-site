@@ -9,7 +9,7 @@ import { ConsumptionHistoryContainer as ConsumptionHistory, NewInstallationsCont
 
 const NewInstallationsMainHeader = dynamic(() => import("./header/NewInstallationsMainHeader"), { ssr: false });
 const NewInstallationsCarrousel = dynamic(() => import("./carrousel/NewInstallationsCarrousel"), { ssr: false });
-const StatusStepper = dynamic(() => import("../new-dashboard/status-stepper/StatusStepper"), { ssr: false });
+const StatusStepper = dynamic(() => import("../dashboard/status-stepper/StatusStepper"), { ssr: false });
 
 export default function NewInstallationsMain() {
 

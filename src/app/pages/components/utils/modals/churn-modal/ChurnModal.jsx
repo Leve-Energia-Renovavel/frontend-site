@@ -2,7 +2,7 @@ import { useStoreInstallations, useStoreUser } from '@/app/hooks/stores/useStore
 import { formatCpfUnrestricted } from '@/app/utils/formatters/documentFormatter'
 import { factoryInfos } from '@/app/utils/helper/dashboard/newDashboardHelper'
 import { Backdrop, Modal } from '@mui/material'
-import HistoryDetails from '../../../new-dashboard/history/details/HistoryDetails'
+import HistoryDetails from '../../../dashboard/history/details/HistoryDetails'
 import { FactoryDetailsContainer, FactoryDetailsContent, FactoryInfoCard, HistoryDetailsContainer, ModalBox, OptionsButton, OptionsContainer } from './styles'
 import { LEVE_WHATSAPP_NUMBER } from '@/app/pages/enums/globalEnums'
 

@@ -2,7 +2,7 @@
 import { downloadBillByUrl } from '@/app/utils/downloader/invoicesDownloader';
 import { useRouter } from 'next/navigation';
 import { DownloadIcon, DueButton, GraphIcon, IconButton, InvoicesTableActionButtonContainer, LinkIcon, PendingButton } from './styles';
-import { BILL_STATUS } from '../../new-dashboard/invoices/invoicesEnums';
+import { BILL_STATUS } from '../../dashboard/invoices/invoicesEnums';
 
 export default function NewInvoicesActionButtonContainer({ status, urlBill, uuid, referenceDate }) {
 

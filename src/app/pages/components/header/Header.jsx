@@ -1,37 +1,31 @@
 "use client"
 
-import { clearPartnerName } from '@/app/utils/helper/partners/partnerHelper';
+import { PATH_TO } from "@/app/pages/enums/globalEnums";
+import { clearPartnerName, partners } from "@/app/utils/helper/partners/partnerHelper";
 import { headerHelper, landingPageHelper, partnersPath } from '@/app/utils/helper/pathHelper';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import NewHeader from '../new-header/NewHeader';
-import NewLoggedModal from '../new-header/NewLoggedModal';
-import NewLoginModal from '../new-login/NewLoginModal';
+import MenuIcon from '@mui/icons-material/Menu';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
+import { useState } from 'react';
+import logoLeve from '../../../../resources/icons/small/leve-logo-orange-icon-small.svg';
+import LoggedModal from '../utils/modals/header-modal/logged-modal/LoggedModal';
+import LoginModal from '../utils/modals/header-modal/login-modal/LoginModal';
+import { MobileHeaderContainer, PartnerContainer } from './styles';
 
 export default function Header() {
 
+    const router = useRouter()
     const pathname = usePathname()
 
-    const [isMobile, setIsMobile] = useState(false);
     const [openLogin, setOpenLogin] = useState(false);
 
-    const mobileWidth = 900
+    const loginPath = pathname === PATH_TO.LOGIN
+
     const isLandingPage = landingPageHelper[pathname]
+    const partner = clearPartnerName(pathname)
     const isPartner = partnersPath[pathname]
     const isLoggedUser = headerHelper[pathname]
-
-    useEffect(() => {
-        const handleResize = () => {
-            const windowSize = window.innerWidth <= mobileWidth;
-            if (windowSize !== isMobile) setIsMobile(windowSize);
-        };
-
-        window.addEventListener('resize', handleResize);
-        handleResize();
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, [isMobile]);
 
     const openLoginModal = () => {
         setOpenLogin(true);
@@ -41,21 +35,46 @@ export default function Header() {
         setOpenLogin(false);
     };
 
+    const handleRoutesWhenUserIsLogged = () => {
+        if (isLoggedUser) {
+            router.push(PATH_TO.DASHBOARD)
+        } else {
+            router.push(PATH_TO.HOME)
+        }
+    }
+
+    const goToLogin = () => {
+        router.push(PATH_TO.LOGIN)
+    }
+
     return (
         <>
-            <NewHeader
-                isLoggedUser={isLoggedUser}
-                isOpen={openLogin}
-                openModal={openLoginModal}
+            <MobileHeaderContainer
                 isLandingPage={isLandingPage}
                 isPartner={isPartner}
-                partner={clearPartnerName(pathname)}
-            />
+                isOpen={openLogin || loginPath}
+                className="leveHeader">
+                <Image src={logoLeve}
+                    onClick={() => handleRoutesWhenUserIsLogged()}
+                    className='logoLeve'
+                    alt={"Logo da Leve na cor laranja"}
+                    priority={true} />
+                {isPartner && (
+                    <PartnerContainer>
+                        <p className="partnershipIcon">+</p>
+                        {partners[partner]?.logo}
+                    </PartnerContainer>)}
+                {isLoggedUser ?
+                    <MenuIcon className='profile' onClick={openLoginModal} />
+                    :
+                    <PersonOutlineOutlinedIcon className='profile' onClick={goToLogin} />
+                }
+            </MobileHeaderContainer>
             {openLogin && (
                 isLoggedUser ? (
-                    <NewLoggedModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />
+                    <LoggedModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />
                 ) : (
-                    <NewLoginModal
+                    <LoginModal
                         isOpen={openLogin}
                         hasForgottenPassword={false}
                         openModal={openLoginModal}

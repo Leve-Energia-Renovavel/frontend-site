@@ -1,6 +1,8 @@
-"use client"
+// "use client"
 
 import { useStoreUser } from '@/app/hooks/stores/useStore';
+import { PATH_TO } from '@/app/pages/enums/globalEnums';
+import { modalBackdrop } from '@/app/pages/globalStyles';
 import { forgotPasswordValidation, loginValidation } from '@/app/service/login-service/LoginService';
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import { awaitSeconds } from '@/app/utils/browser/BrowserUtils';
@@ -10,12 +12,12 @@ import { Backdrop, Box, CircularProgress, Divider, IconButton, InputAdornment, M
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
-import leveLogo from '../../../../resources/icons/large/leve-logo-orange-icon-large.svg';
-import Messages from '../messages/Messages';
-import ModalCloseButton from '../utils/buttons/close-button/ModalCloseButton';
+import leveLogo from '../../../../../../../resources/icons/large/leve-logo-orange-icon-large.svg';
+import Messages from '../../../../messages/Messages';
+import ModalCloseButton from '../../../buttons/close-button/ModalCloseButton';
 import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginContentContainer, LoginForm, LoginIconContainer, LoginTitleContainer } from './styles';
 
-export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgottenPassword }) {
+export default function LoginModal({ isOpen, openModal, closeModal, hasForgottenPassword }) {
 
     const router = useRouter()
     const pathname = usePathname()
@@ -37,11 +39,11 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
     }
 
     const handleCreateNewAccount = () => {
-        router.push(`/`)
+        router.push(PATH_TO.HOME)
         setForgotPassword(false)
     }
-    const getBackToHome = () => {
-        router.push(`/`)
+    const goToHome = () => {
+        router.push(PATH_TO.HOME)
         closeModal()
     }
 
@@ -61,7 +63,7 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
 
             const response = await loginValidation(data, store, setErrorMessage)
             if (requestSuccessful(response?.status) && response?.data?.access_token) {
-                router.push(`/dashboard`)
+                router.push(PATH_TO.DASHBOARD)
             } else if (response?.data?.error) {
                 setErrorMessage(["E-mail e/ou senha estão incorretos"])
             } else if (response?.errors) {
@@ -100,13 +102,13 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
                 slotProps={{
                     backdrop: {
                         sx: {
-                            backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                            backgroundColor: modalBackdrop
                         },
                     },
                 }}>
                 <LoginBox>
                     <LoginIconContainer>
-                        <ModalCloseButton router={router} hideClose={hideClose} getBackToHome={getBackToHome} />
+                        <ModalCloseButton router={router} hideClose={hideClose} goToHome={goToHome} />
                     </LoginIconContainer>
                     <LoginTitleContainer>
                         <Image
@@ -114,15 +116,23 @@ export default function NewLoginModal({ isOpen, openModal, closeModal, hasForgot
                             loading="lazy"
                             src={leveLogo}
                             alt="Ícone de formulário para completar o cadastro"
-                            onClick={() => getBackToHome()} />
+                            onClick={() => goToHome()} />
                         {!forgotPassword ? <h1>Entrar</h1> : <h1>Recuperar minha senha</h1>}
                     </LoginTitleContainer>
                     <LoginContentContainer>
                         <LoginForm>
-                            <TextField className="formInput" inputRef={loginRef.email} label="E-mail" variant="outlined" placeholder="E-mail" type="text" required />
+                            <TextField className="formInput"
+                                autoComplete="username"
+                                inputRef={loginRef.email}
+                                label="E-mail"
+                                variant="outlined"
+                                placeholder="E-mail"
+                                type="text"
+                                required />
                             {!forgotPassword ?
                                 <TextField className="formInput"
                                     inputRef={loginRef.password}
+                                    autoComplete="current-password"
                                     label="Senha"
                                     variant="outlined"
                                     placeholder="Senha"

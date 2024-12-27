@@ -15,13 +15,15 @@ export default function ClicksignWidgetComponent({ uuid }) {
     const clickSignKey = Cookies.get("clickSignKey") || storeClicksign.data.key;
     const [widget, setWidget] = useState(null);
 
+    const clicksignContainerId = 'clicksign-container'
+
     useEffect(() => {
         if (!clickSignKey) return; // Certifica que há uma chave válida
 
         const widgetInstance = new Clicksign(clickSignKey);
         widgetInstance.endpoint = 'https://app.clicksign.com';
         widgetInstance.origin = `${window.location.protocol}//${window.location.host}`;
-        widgetInstance.mount('clicksign-container');
+        widgetInstance.mount(clicksignContainerId);
 
         widgetInstance.on('signed', async () => {
 
@@ -41,7 +43,7 @@ export default function ClicksignWidgetComponent({ uuid }) {
 
     return (
         <Container className="clicksignContainer">
-            <div id="clicksign-container" />
+            <div id={clicksignContainerId} />
         </Container>
     );
 }

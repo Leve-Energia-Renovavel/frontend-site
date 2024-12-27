@@ -2,7 +2,7 @@ import { PATH_TO } from '@/app/pages/enums/globalEnums';
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from '@mui/material';
 
-export default function ModalCloseButton({ router, hideClose, getBackToHome }) {
+export default function ModalCloseButton({ router, hideClose, goToHome }) {
     return (
         <div style={{ marginLeft: 'auto' }}>
             {hideClose ?
@@ -10,7 +10,7 @@ export default function ModalCloseButton({ router, hideClose, getBackToHome }) {
                     <CloseIcon />
                 </IconButton>
                 :
-                <IconButton onClick={() => getBackToHome()}>
+                <IconButton onClick={() => goToHome()}>
                     <CloseIcon />
                 </IconButton>}
         </div>

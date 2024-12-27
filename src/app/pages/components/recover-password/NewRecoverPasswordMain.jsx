@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import HomeMain from '../home/HomeMain';
 import Messages from '../messages/Messages';
-import NewLoginModal from '../new-login/NewLoginModal';
+import LoginModal from '../utils/modals/header-modal/login-modal/LoginModal';
 import ConfirmNewPassword from './confirm-new-password/ConfirmNewPassword';
 
 export default function NewRecoverPasswordMain() {
@@ -48,7 +48,7 @@ export default function NewRecoverPasswordMain() {
                     setNotifications={setNotifications}
                     setValidationErrors={setErrorMessage} />)
                 :
-                (<NewLoginModal
+                (<LoginModal
                     isOpen={openLogin}
                     hasForgottenPassword={true}
                     openModal={openLoginModal}

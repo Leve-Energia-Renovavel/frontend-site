@@ -1,5 +1,5 @@
 import NewHelpMain from '@/app/pages/components/help/NewHelpMain';
-import NewDashboardMainContent from '@/app/pages/components/new-dashboard/main-content/NewDashboardMainContent';
+import NewDashboardMainContent from '@/app/pages/components/dashboard/main-content/NewDashboardMainContent';
 import NewInvoicesMain from '@/app/pages/components/new-invoices/NewInvoicesMain';
 import NewPaymentMain from '@/app/pages/components/new-payment/NewPaymentMain';
 import NewProfileMain from '@/app/pages/components/new-profile/NewProfileMain';

@@ -1,10 +1,13 @@
+"use client"
+
 import { HOME_FORM_ID } from '@/app/pages/enums/globalEnums'
 import { handleScrollToId } from '@/app/utils/browser/BrowserUtils'
-import checkIcon from '@/resources/icons/small/leve-icon-new-home-check-small.png'
 import bannerImage from '@/resources/img/new-home-image.webp'
 import Image from 'next/image'
 import infoJson from '../../../../../../../../public/info.json'
+import checkIcon from '../../../../../../../resources/icons/small/leve-icon-new-home-check-small.webp'
 import HomeMainBannerMobile from '../mobile/HomeMainBannerMobile'
+
 import { NewHomeBannerImageContainer as BannerImageContainer, NewHomeMainBannerContainer as Container, CTAButton, NewHomeMainDescriptionContainer as DescriptionContainer, NewHomeMainContainer as HomeMain, NewHomeMainBaloon } from './styles'
 
 export default function NewHomeMainBanner() {
@@ -19,7 +22,11 @@ export default function NewHomeMainBanner() {
           <h2 className='homeMainSubtitle'>{texts.subtitle}</h2>
 
           <DescriptionContainer className='leveHomeMainBannerDescriptionContainer'>
-            <Image src={checkIcon} alt='checkIcon' className='checkIcon' placeholder='blur' priority={true} width={'auto'} height={'auto'} />
+            <Image src={checkIcon} alt='checkIcon' className='checkIcon'
+              width={36}
+              height={36}
+              unoptimized={true}
+              quality={1} />
             <h3 className='homeMainDescription'>{texts.description}</h3>
           </DescriptionContainer>
 

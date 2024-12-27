@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Box, Button } from "@mui/material";
-import { background } from "../../globalStyles";
+import { background } from "../../../../../globalStyles";
 
 export const LoginBox = styled(Box)`
     position: absolute;
@@ -9,6 +9,8 @@ export const LoginBox = styled(Box)`
     transform: translate(-50%, -50%);
     background-color: ${background.white};
     border-radius: 15px;
+
+    overflow: hidden;
 
     width: 60vw;
     height: 80vh;
@@ -42,8 +44,6 @@ export const LoginBox = styled(Box)`
         top: 0;
         left: 0;
         transform: none;
-
-        overflow: auto;
 
         padding: 1rem 1rem;
 

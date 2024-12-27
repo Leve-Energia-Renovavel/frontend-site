@@ -6,13 +6,13 @@ import { Backdrop, IconButton, Modal } from "@mui/material";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import soleProfile from "../../../../resources/icons/large/sole-icon-profile-large.png";
-import Messages from "../messages/Messages";
-import DashboardMenu from "../new-dashboard/side-bar/DashboardMenu";
-import DashboardMemberGetMember from "../new-dashboard/side-bar/member-get-member/DashboardMemberGetMember";
+import soleProfile from "../../../../../../../resources/icons/large/sole-icon-profile-large.png";
+import DashboardMenu from "../../../../dashboard/side-bar/DashboardMenu";
+import DashboardMemberGetMember from "../../../../dashboard/side-bar/member-get-member/DashboardMemberGetMember";
+import Messages from "../../../../messages/Messages";
 import { LoginBox, MenuContent, MenuHeaderContent } from "./styles";
 
-export default function NewLoggedModal({ isOpen, openModal, closeModal }) {
+export default function LoggedModal({ isOpen, openModal, closeModal }) {
 
     const path = usePathname()
 
