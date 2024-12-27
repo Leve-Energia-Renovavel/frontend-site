@@ -45,10 +45,6 @@ export default function Header() {
         }
     }
 
-    const goToLogin = () => {
-        setOpenLogin(true)
-    }
-
     return (
         <>
             <HeaderContainer
@@ -67,11 +63,13 @@ export default function Header() {
                         {partners[partner]?.logo}
                     </PartnerContainer>)}
                 {isLoggedUser ?
-                    <MenuIcon className='profile' onClick={openLoginModal} />
+                    <MenuIcon className='profile' onClick={() => openLoginModal()} />
                     :
-                    <PersonOutlineOutlinedIcon className='profile' onClick={goToLogin} />
+                    <PersonOutlineOutlinedIcon className='profile' onClick={() => setOpenLogin(true)} />
                 }
             </HeaderContainer>
+
+            {/* Header modals below*/}
             {openLogin && (
                 isLoggedUser ? (
                     <LoggedModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />
@@ -79,7 +77,6 @@ export default function Header() {
                     <LoginModal
                         isOpen={openLogin}
                         hasForgottenPassword={false}
-                        openModal={openLoginModal}
                         closeModal={closeLoginModal} />
                 )
             )}

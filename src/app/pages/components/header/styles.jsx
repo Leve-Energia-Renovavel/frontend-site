@@ -8,8 +8,6 @@ export const HeaderContainer = styled.header`
     background-color: ${background.white};
     ${props => props.isPartner ? "" : `justify-content: ${props.isLandingPage ? 'center' : 'space-between'};`};
     
-    overflow: hidden;
-
     border-radius: 0 0 10px 10px;
 
     width:100%;

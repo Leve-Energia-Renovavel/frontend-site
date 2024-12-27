@@ -17,7 +17,7 @@ import leveLogo from '../../../../../../../resources/icons/large/leve-logo-orang
 import ModalCloseButton from '../../../buttons/close-button/ModalCloseButton';
 import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginContentContainer, LoginForm, LoginIconContainer, LoginTitleContainer } from './styles';
 
-export default function LoginModal({ isOpen, openModal, closeModal, hasForgottenPassword }) {
+export default function LoginModal({ isOpen, closeModal, hasForgottenPassword }) {
 
     const router = useRouter()
 
@@ -60,7 +60,6 @@ export default function LoginModal({ isOpen, openModal, closeModal, hasForgotten
 
             const response = await loginValidation(data, storeUser)
             if (requestSuccessful(response?.status) && response?.data?.access_token) {
-                await awaitSeconds(6)
                 console.log("useSotee ==>>", storeUser)
                 router.push(PATH_TO.DASHBOARD)
             } else if (response?.data?.error) {
