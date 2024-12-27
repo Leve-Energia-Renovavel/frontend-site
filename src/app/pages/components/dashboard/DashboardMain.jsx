@@ -12,7 +12,6 @@ import { getGeneralDashboardData } from '@/app/service/dashboard-service/Dashboa
 import { menuOptions } from '@/app/utils/helper/dashboard/dashboardHelper';
 import { isTrue } from '@/app/utils/helper/generalHelper';
 import { PATH_TO } from '../../enums/globalEnums';
-import Messages from '../messages/Messages';
 import DashboardMenu from './side-bar/DashboardMenu';
 import DashboardSideBar from './side-bar/DashboardSideBar';
 
@@ -63,8 +62,6 @@ export default function NewDashboardMain(props) {
                     {menuSelected?.content}
                 </Content>
             </Container>
-
-            <Messages />
         </>
     )
 }

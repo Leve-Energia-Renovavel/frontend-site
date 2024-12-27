@@ -7,6 +7,7 @@ import { modalBackdrop } from '@/app/pages/globalStyles';
 import { forgotPasswordValidation, loginValidation } from '@/app/service/login-service/LoginService';
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import { awaitSeconds } from '@/app/utils/browser/BrowserUtils';
+import { createForgotPasswordData, createLoginData } from '@/app/utils/helper/login/loginHelper';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Backdrop, Box, CircularProgress, Divider, IconButton, InputAdornment, Modal, TextField } from '@mui/material';
@@ -21,46 +22,33 @@ export default function LoginModal({ isOpen, closeModal, hasForgottenPassword })
 
     const router = useRouter()
 
-    const storeUser = useStoreUser()
-    const storeMessage = useStoreMessages()
+    const { user, updateUser } = useStoreUser();
+    const { setErrors, setNotifications } = useStoreMessages();
 
     const [forgotPassword, setForgotPassword] = useState(hasForgottenPassword)
     const [isLoading, setIsLoading] = useState(false)
     const [passwordVisibible, setPasswordVisibible] = useState("password")
-
-    const setErrors = storeMessage.setErrors
-    const setNotifications = storeMessage.setNotifications
 
     const loginRef = {
         email: useRef(null),
         password: useRef(null)
     }
 
-    const handleCreateNewAccount = () => {
-        router.push(PATH_TO.HOME)
-        setForgotPassword(false)
-    }
-    const goToHome = () => {
-        router.push(PATH_TO.HOME)
-    }
-
     const handleSubmit = async (event) => {
         event.preventDefault()
         setIsLoading(true)
 
-        if (!forgotPassword) {
-            const data = {
-                username: loginRef.email.current.value,
-                password: loginRef.password.current.value,
-                grant_type: process.env.NEXT_PUBLIC_GRANT_TYPE,
-                client_id: process.env.NEXT_PUBLIC_CLIENT_ID,
-                client_secret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
-                scope: ""
-            }
+        if (forgotPassword) {
+            const data = createForgotPasswordData(loginRef)
+            await forgotPasswordValidation(data, setNotifications, setErrors)
 
-            const response = await loginValidation(data, storeUser)
+        } else {
+            const data = createLoginData(loginRef)
+            const response = await loginValidation(data, updateUser)
+
+            console.log("RESPONSE ===>>", response)
+
             if (requestSuccessful(response?.status) && response?.data?.access_token) {
-                console.log("useSotee ==>>", storeUser)
                 router.push(PATH_TO.DASHBOARD)
             } else if (response?.data?.error) {
                 setErrors(["E-mail e/ou senha estão incorretos"])
@@ -69,16 +57,10 @@ export default function LoginModal({ isOpen, closeModal, hasForgottenPassword })
             } else {
                 setErrors(["Erro ao realizar login. Tente novamente mais tarde"])
                 await awaitSeconds(2)
-                closeModal()
             }
-
-        } else {
-            const data = { email: loginRef.email.current.value }
-            await forgotPasswordValidation(data, setNotifications, setErrors)
         }
-        await awaitSeconds(0.6)
+        await awaitSeconds(2)
         closeModal()
-        setIsLoading(false)
     }
 
     const handleKeyPress = (event) => {
@@ -113,7 +95,7 @@ export default function LoginModal({ isOpen, closeModal, hasForgottenPassword })
                             loading="lazy"
                             src={leveLogo}
                             alt="Ícone de formulário para completar o cadastro"
-                            onClick={() => goToHome()} />
+                            onClick={() => router.push(PATH_TO.HOME)} />
                         {!forgotPassword ? <h1>Entrar</h1> : <h1>Recuperar minha senha</h1>}
                     </LoginTitleContainer>
                     <LoginContentContainer>
@@ -125,11 +107,13 @@ export default function LoginModal({ isOpen, closeModal, hasForgottenPassword })
                                 variant="outlined"
                                 placeholder="E-mail"
                                 type="text"
+                                value={"dalbenmilton@gmail.com"}
                                 required />
                             {!forgotPassword ?
                                 <TextField className="formInput"
                                     inputRef={loginRef.password}
                                     autoComplete="current-password"
+                                    value={"123456A!"}
                                     label="Senha"
                                     variant="outlined"
                                     placeholder="Senha"
@@ -164,7 +148,7 @@ export default function LoginModal({ isOpen, closeModal, hasForgottenPassword })
                                     </p>}
                                 <Divider className='divider' />
                                 <FormFooterContainer>
-                                    <p >Ainda não tem uma conta? <span className='createNewAccount' onClick={() => handleCreateNewAccount()}>Crie uma aqui!</span> </p>
+                                    <p >Ainda não tem uma conta? <span className='createNewAccount' onClick={() => router.push(PATH_TO.HOME)}>Crie uma aqui!</span> </p>
                                 </FormFooterContainer>
                             </LoginButtonContainer>
                         </LoginForm>

@@ -4,6 +4,7 @@ import "./globals.css";
 import { GoogleTagManager } from '@next/third-parties/google';
 import Header from './pages/components/header/Header';
 import Hotjar from './pages/components/hotjar/Hotjar';
+import Messages from "./pages/components/messages/Messages";
 
 const WhatsAppFAB = dynamic(() => import('./pages/components/fabWhatsapp/WhatsappFAB'), { ssr: false });
 const Footer = dynamic(() => import('./pages/components/footer/Footer'), { ssr: false });
@@ -66,6 +67,7 @@ export default function RootLayout({ children }) {
         {children}
         <WhatsAppFAB />
         <Footer />
+        <Messages />
       </body>
     </html>
   )

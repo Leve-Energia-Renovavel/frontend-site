@@ -59,9 +59,9 @@ export const useStoreUser = create(
                 availabilityTax: 0,
             },
             updateUser: (newUser) =>
-                set((state) => ({
-                    user: { ...state.user, ...newUser },
-                })),
+                set((state) => {
+                    return { user: { ...state.user, ...newUser } };
+                }),
             clearUser: () =>
                 set(() => ({
                     user: {
@@ -128,46 +128,46 @@ export const useStoreUser = create(
 
 export const useStoreAddress = create(
     persist(
-      (set) => ({
-        address: {
-          street: "",
-          number: "",
-          neighborhood: "",
-          cityId: 0,
-          stateId: 0,
-          city: "",
-          state: "",
-          cep: "",
-          installationNumber: "",
-        },
-        updateAddress: (newAddress) =>
-          set((state) => ({
+        (set) => ({
             address: {
-              ...state.address,
-              ...newAddress,
+                street: "",
+                number: "",
+                neighborhood: "",
+                cityId: 0,
+                stateId: 0,
+                city: "",
+                state: "",
+                cep: "",
+                installationNumber: "",
             },
-          })),
-        clearAddress: () =>
-          set(() => ({
-            address: {
-              street: "",
-              number: "",
-              neighborhood: "",
-              cityId: 0,
-              stateId: 0,
-              city: "",
-              state: "",
-              cep: "",
-              installationNumber: "",
-            },
-          })),
-      }),
-      {
-        name: "address", // Key for localStorage
-        partialize: (state) => ({ address: state.address }), // Persist only the `address` property
-      }
+            updateAddress: (newAddress) =>
+                set((state) => ({
+                    address: {
+                        ...state.address,
+                        ...newAddress,
+                    },
+                })),
+            clearAddress: () =>
+                set(() => ({
+                    address: {
+                        street: "",
+                        number: "",
+                        neighborhood: "",
+                        cityId: 0,
+                        stateId: 0,
+                        city: "",
+                        state: "",
+                        cep: "",
+                        installationNumber: "",
+                    },
+                })),
+        }),
+        {
+            name: "address", // Key for localStorage
+            partialize: (state) => ({ address: state.address }), // Persist only the `address` property
+        }
     )
-  );
+);
 
 export const useStoreCompany = create((set) => ({
     company: {

@@ -2,11 +2,10 @@ import { forgotPasswordSchema, loginSchema } from "@/app/pages/components/utils/
 import { awaitSeconds } from "@/app/utils/browser/BrowserUtils";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { getAccessToken } from "../user-service/UserService";
 import { requestSuccessful } from "../utils/Validations";
-import { COOKIES_FOR } from "@/app/pages/enums/globalEnums";
+import { getAccessToken } from "../user-service/UserService";
 
-export const loginValidation = async (data, storeUser) => {
+export const loginValidation = async (data, updateUser) => {
     return await loginSchema.validate(data, { abortEarly: false })
         .then(async () => {
             const response = await getAccessToken(data)
@@ -15,7 +14,7 @@ export const loginValidation = async (data, storeUser) => {
                 const accessToken = response?.data?.access_token
                 const refreshToken = response?.data?.refresh_token
 
-                storeUser.updateUser({
+                updateUser({
                     accessToken: accessToken,
                     refreshToken: refreshToken
                 })

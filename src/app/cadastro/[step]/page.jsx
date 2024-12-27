@@ -1,4 +1,3 @@
-import Messages from "@/app/pages/components/messages/Messages";
 import RegisterMain from "../../register/RegisterMain";
 
 export function generateStaticParams() {
@@ -20,8 +19,6 @@ export default function Register() {
     return (
         <>
             <RegisterMain />
-
-            <Messages />
         </>
     )
 }

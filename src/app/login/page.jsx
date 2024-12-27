@@ -4,11 +4,9 @@ import HomeMain from '../pages/components/home/HomeMain';
 import LoginModal from '../pages/components/utils/modals/header-modal/login-modal/LoginModal';
 import { removeBackdropOverflow } from '../pages/globalStyles';
 
-export const fetchCache = 'force-no-store';
-
 export default function LoginPage() {
 
-    // removeBackdropOverflow();
+    removeBackdropOverflow();
 
     return (
         <>

@@ -4,16 +4,15 @@ import { PATH_TO } from "@/app/pages/enums/globalEnums";
 import { clearPartnerName, partners } from "@/app/utils/helper/partners/partnerHelper";
 import { headerHelper, landingPageHelper, partnersPath } from '@/app/utils/helper/pathHelper';
 import MenuIcon from '@mui/icons-material/Menu';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import dynamic from "next/dynamic";
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import logoLeve from '../../../../resources/icons/small/leve-logo-orange-icon-small.svg';
-import LoggedModal from '../utils/modals/header-modal/logged-modal/LoggedModal';
-import LoginModal from '../utils/modals/header-modal/login-modal/LoginModal';
-import { HeaderContainer, PartnerContainer } from './styles';
+import { HeaderContainer, PartnerContainer, ProfileIcon } from './styles';
 
-// const LoginModal = dynamic(() => import('../utils/modals/header-modal/login-modal/LoginModal'), { ssr: false });
+const LoginModal = dynamic(() => import('../utils/modals/header-modal/login-modal/LoginModal'), { ssr: false });
+const LoggedModal = dynamic(() => import('../utils/modals/header-modal/logged-modal/LoggedModal'), { ssr: false });
 
 export default function Header() {
 
@@ -21,8 +20,6 @@ export default function Header() {
     const pathname = usePathname()
 
     const [openLogin, setOpenLogin] = useState(false);
-
-    const loginPath = pathname === PATH_TO.LOGIN
 
     const isLandingPage = landingPageHelper[pathname]
     const partner = clearPartnerName(pathname)
@@ -50,13 +47,10 @@ export default function Header() {
             <HeaderContainer
                 isLandingPage={isLandingPage}
                 isPartner={isPartner}
-                isOpen={openLogin || loginPath}
+                isOpen={openLogin}
                 className="leveHeaderContainer">
-                <Image src={logoLeve}
-                    onClick={() => handleRoutesWhenUserIsLogged()}
-                    className='logoLeve'
-                    alt={"Logo da Leve na cor laranja"}
-                    priority={true} />
+                <Image src={logoLeve} className='logoLeve' priority={true} alt={"Logo da Leve na cor laranja"}
+                    onClick={() => handleRoutesWhenUserIsLogged()} />
                 {isPartner && (
                     <PartnerContainer>
                         <p className="partnershipIcon">+</p>
@@ -65,7 +59,7 @@ export default function Header() {
                 {isLoggedUser ?
                     <MenuIcon className='profile' onClick={() => openLoginModal()} />
                     :
-                    <PersonOutlineOutlinedIcon className='profile' onClick={() => setOpenLogin(true)} />
+                    <ProfileIcon className='profile' onClick={() => setOpenLogin(true)} />
                 }
             </HeaderContainer>
 

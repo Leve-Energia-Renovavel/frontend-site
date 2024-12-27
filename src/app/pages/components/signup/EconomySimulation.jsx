@@ -8,7 +8,6 @@ import Cookies from 'js-cookie';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { COOKIES_FOR } from '../../enums/globalEnums';
-import Messages from '../messages/Messages';
 import LoadingResultEconomy from '../result-economy/loading/LoadingResultEconomy';
 import ResultEconomy from '../result-economy/ResultEconomy';
 import { SignUpContainer as Container } from './styles';
@@ -37,8 +36,6 @@ export default function EconomySimulation() {
             <Container className='signupMainContainer'>
                 {isLoading ? <LoadingResultEconomy /> : <ResultEconomy />}
             </Container>
-
-            <Messages />
         </>
     )
 }

@@ -1,5 +1,6 @@
 import { background, containerPadding, containerWidth } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 export const HeaderContainer = styled.header`
     display: flex;
@@ -60,6 +61,7 @@ export const HeaderContainer = styled.header`
     }
 `
 
+
 export const PartnerContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -98,4 +100,7 @@ export const PartnerContainer = styled.div`
         height: auto;
         }
     }
+`
+
+export const ProfileIcon = styled(PersonOutlineOutlinedIcon)`
 `
