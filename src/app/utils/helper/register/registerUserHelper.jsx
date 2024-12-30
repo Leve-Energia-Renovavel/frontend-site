@@ -27,6 +27,7 @@ export const rgInputFilled = (value) => {
 };
 
 export const cpfInputFilled = (value) => {
+    if (!value) return null
     const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/; // CPF format: 000.000.000-00
     if (!cpfRegex.test(value)) return false;
 
@@ -84,4 +85,20 @@ export const costValidation = (cost) => {
 export const newCostValidation = (newCost) => {
     if (isNaN(newCost)) return 0;
     return Math.min(Math.max(newCost, 0), 20000);
+};
+
+
+export const handleChangeUserCost = (event, setFormState) => {
+    let newCost = event.target.value;
+
+    newCost = newCost.replace(/\D/g, '');
+
+    const validatedCost = newCostValidation(parseInt(newCost, 10) / 100);
+
+    const integerPart = Math.floor(validatedCost).toString();
+    const decimalPart = (validatedCost % 1).toFixed(2).split('.')[1];
+
+    newCost = `${integerPart},${decimalPart}`;
+
+    setFormState((prevState) => ({ ...prevState, cost: newCost }));
 };

@@ -30,10 +30,10 @@ export const PATH_TO = {
     REGISTER_ADDRESS: "/cadastro/imovel/",
     REGISTER_CONTRACT: "/cadastro/assinatura-contrato/",
     LOGIN: "/login/",
-    OUT_OF_RANGE: "/fail/out-of-range",
-    LOW_COST: "/fail/low-cost",
+    OUT_OF_RANGE: "/fail/out-of-range/",
+    LOW_COST: "/fail/low-cost/",
     DASHBOARD: "/dashboard/",
-    INSTALLATIONS: "/dashboard/installations",
+    INSTALLATIONS: "/dashboard/installations/",
 };
 
 export const CIDADE = {

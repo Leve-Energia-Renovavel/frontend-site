@@ -1,4 +1,4 @@
-import { background } from "@/app/pages/globalStyles"
+import { background, containerWidth } from "@/app/pages/globalStyles"
 import styled from "@emotion/styled"
 
 export const BannerContainer = styled.div`
@@ -7,7 +7,7 @@ export const BannerContainer = styled.div`
 
     width: 100%;
     height: 80vh;
-    max-width: 1366px;
+    max-width: ${containerWidth};
     
     margin: 74px auto;
 

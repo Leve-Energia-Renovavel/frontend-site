@@ -3,27 +3,26 @@
 
 import { useStoreUser } from '@/app/hooks/stores/useStore';
 import useGetCNPJ from '@/app/hooks/utils/useGetCNPJ';
-import { requestSuccessful } from '@/app/service/utils/Validations';
 import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
 import { formatBrazillianCurrency } from '@/app/utils/formatters/costFormatter';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import FileUploadIcon from '@mui/icons-material/FileUpload';
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, Button, CircularProgress, MenuItem } from '@mui/material';
+import { Box, CircularProgress, MenuItem } from '@mui/material';
 import Cookies from 'js-cookie';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import InputMask from "react-input-mask";
-import { BackButton, FileUploadContainer, FileUploadItem, Form, FormContent, FormFooterContainer, FormInput, FormRow, FormSubmitButton } from './styles';
+import { BackButton, Form, FormContent, FormFooterContainer, FormInput, FormRow, FormSubmitButton } from './styles';
 
 import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import { COOKIES_FOR, PATH_TO, REGISTER_FORM } from '@/app/pages/enums/globalEnums';
 import { formatCpf } from '@/app/utils/formatters/documentFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
-import { birthDateInputFilled, costTextInputFilled, costValidation, cpfInputFilled, emailInputFilled, inputIncomplete, newCostValidation, normalTextInputFilled, phoneInputFilled, regularTextInputFilled, rgInputFilled } from '@/app/utils/helper/register/registerUserHelper';
-import { userSchema } from './schema';
+import { cnpjInputComplete, companyInputFilled } from '@/app/utils/helper/register/registerCompanyHelper';
+import { birthDateInputFilled, costTextInputFilled, costValidation, cpfInputFilled, emailInputFilled, handleChangeUserCost, inputIncomplete, normalTextInputFilled, phoneInputFilled, regularTextInputFilled, rgInputFilled } from '@/app/utils/helper/register/registerUserHelper';
+import { schemaValidation } from './schema';
 
 export default function SignupUserForm() {
 
@@ -36,47 +35,12 @@ export default function SignupUserForm() {
   const setNotifications = storeMessage.setNotifications
 
   const uuid = store?.user?.uuid || Cookies.get(COOKIES_FOR.UUID) || search.get("uuid")
-  // const user = JSON.parse(localStorage.getItem('user'))
 
   const { name, email, phone, cost, rg, cpf, distributor, nationality, maritalStatus, profession, companyName, cnpj, birthDate, isCompany } = store?.user || {}
 
   const [isForeigner, setIsForeigner] = useState(false);
-
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingCNPJ, setIsLoadingCNPJ] = useState(false);
-
-  const fetchCNPJ = useGetCNPJ();
-
-  const handleChangeUserCost = (event) => {
-    let newCost = event.target.value;
-
-    newCost = newCost.replace(/\D/g, '');
-
-    const validatedCost = newCostValidation(parseInt(newCost, 10) / 100);
-
-    const integerPart = Math.floor(validatedCost).toString();
-    const decimalPart = (validatedCost % 1).toFixed(2).split('.')[1];
-
-    newCost = `${integerPart},${decimalPart}`;
-
-    setFormState((prevState) => ({ ...prevState, cost: newCost }));
-  };
-
-  const handleGetCNPJ = async (cnpj) => {
-    if (cnpj !== "") {
-      setIsLoadingCNPJ(true)
-      try {
-        const response = await fetchCNPJ(cnpj)
-        if (requestSuccessful(response?.status)) {
-        }
-      } catch (error) {
-      } finally {
-        setIsLoadingCNPJ(false)
-      }
-    } else {
-      setErrors(["Preencha o campo de CNPJ antes da busca"])
-    }
-  }
 
   const [formState, setFormState] = useState({
     name: name || "",
@@ -89,24 +53,30 @@ export default function SignupUserForm() {
     nationality: nationality || "",
     maritalStatus: maritalStatus || "",
     profession: profession || "",
-    razao_social: companyName || "",
-    cnpj: cnpj || "",
-    socialContractFile: null,
-    energyExtractFile: null,
+    ...(isCompany && {
+      cnpj: cnpj || "",
+      socialReason: companyName || "",
+      socialContractFile: null,
+      energyExtractFile: null,
+    }),
   });
 
-  const schemaValidation = async (data, router) => {
-    try {
-      const validatedData = await userSchema.validate(data, { abortEarly: false })
-      setNotifications(["Informações do titular salvas com sucesso!"])
-      router.push(`${PATH_TO.REGISTER_ADDRESS}`)
+  const getCompanyData = useGetCNPJ(setFormState);
 
-      return validatedData;
-    } catch (error) {
-      setErrors(error.errors)
-      return error.errors;
+  const handleGetCNPJ = async (cnpj) => {
+    if (cnpj !== "") {
+      setIsLoadingCNPJ(true)
+      try {
+        await getCompanyData(cnpj)
+      } catch (error) {
+        setErrors(["Houve um problema ao buscar o CNPJ. Por favor, informe manualmente"])
+      } finally {
+        setIsLoadingCNPJ(false)
+      }
+    } else {
+      setErrors(["Preencha o campo de CNPJ antes da busca"])
     }
-  };
+  }
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -114,30 +84,7 @@ export default function SignupUserForm() {
       ...prevState,
       [name]: value,
     }));
-
     store.updateUser({ [name]: value });
-  };
-
-  const handleClickFiles = (fileType) => {
-    companyRefs[fileType].current.click();
-  }
-
-  const handleChangeFiles = (event, fileType) => {
-    console.log(event.target.files)
-    const fileUploaded = event.target.files[0];
-    if (fileType === 'socialContract') {
-      setSocialContractFile(fileUploaded);
-    } else if (fileType === 'energyExtract') {
-      setEnergyExtractFile(fileUploaded);
-    }
-  };
-
-  const handleDeleteFiles = (event, fileType) => {
-    if (fileType === 'socialContract') {
-      setSocialContractFile(null);
-    } else if (fileType === 'energyExtract') {
-      setEnergyExtractFile(null);
-    }
   };
 
   const handleNationalityChange = (value) => {
@@ -163,16 +110,13 @@ export default function SignupUserForm() {
       profissao: formState.profession,
       estado_civil: formState.maritalStatus,
       ...(isCompany && {
-        razao_social: formState.razao_social,
+        razao_social: formState.socialReason,
         cnpj: formState.cnpj,
       }),
     };
-    if (isCompany) {
-      submitData["razao_social"] = companyRefs.razao_social.current.value
-      submitData["cnpj"] = companyRefs.cnpj.current.value
-    }
+
     store.updateUser({ ...formState });
-    const response = await schemaValidation(submitData, router);
+    const response = await schemaValidation(submitData, router, setNotifications, setErrors);
 
     setIsLoading(false)
   }
@@ -186,21 +130,7 @@ export default function SignupUserForm() {
       <Form id={REGISTER_FORM.USER_ID} acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
         {isCompany && (
           <FormRow>
-            <FormInput
-              name='razao_social'
-              onChange={handleInputChange}
-              className="inputForm"
-              label="Razão Social"
-              variant="outlined"
-              placeholder="Razão Social"
-              type="text"
-              value={formState?.razao_social}
-              error={inputIncomplete(formState?.razao_social)}
-              success={normalTextInputFilled(formState?.razao_social)}
-              InputLabelProps={{ shrink: true, style: { color: '#FF7133' } }}
-              required
-            />
-            <InputMask mask="99.999.999/9999-99" onChange={handleInputChange}>
+            <InputMask mask="99.999.999/9999-99" onChange={handleInputChange} onBlur={() => handleGetCNPJ(formState?.cnpj)}>
               {() => (
                 <FormInput
                   name='cnpj'
@@ -210,19 +140,34 @@ export default function SignupUserForm() {
                   placeholder="CNPJ"
                   type="text"
                   required
+                  error={cnpjInputComplete(formState?.cnpj) === false}
+                  success={cnpjInputComplete(formState?.cnpj) === true}
                   InputProps={{
-                    endAdornment: !isLoadingCNPJ ? (
-                      <SearchIcon className="searchIcon" onClick={handleGetCNPJ} />
-                    ) : (
-                      <Box>
+                    endAdornment: isLoadingCNPJ ?
+                      (<Box>
                         <CircularProgress className="formLoading" size={"25px"} />
-                      </Box>
-                    ),
+                      </Box>)
+                      :
+                      (<SearchIcon className="searchIcon" />),
                   }}
-                  InputLabelProps={{ style: { color: '#FF7133' } }}
+                  InputLabelProps={{ style: { color: cnpjInputComplete(formState?.cnpj) ? greenLeve : orangeLeve } }}
                 />
               )}
             </InputMask>
+            <FormInput
+              name='socialReason'
+              onChange={handleInputChange}
+              className="inputForm"
+              label="Razão Social"
+              variant="outlined"
+              placeholder="Razão Social"
+              type="text"
+              value={formState?.socialReason}
+              success={companyInputFilled(formState?.socialReason)}
+              InputLabelProps={{ style: { color: companyInputFilled(formState?.socialReason) ? greenLeve : orangeLeve } }}
+              required
+            />
+
           </FormRow>
         )}
         <FormRow>
@@ -236,8 +181,8 @@ export default function SignupUserForm() {
             value={formState?.name}
             error={!normalTextInputFilled(formState?.name)}
             success={normalTextInputFilled(formState?.name)}
-            label={`Nome Completo ${isCompany ? 'do Responsável' : ''}`}
-            placeholder={`Nome Completo ${isCompany ? 'do Responsável' : ''}`}
+            label={`Nome Completo ${isCompany ? 'do responsável' : ''}`}
+            placeholder={`Nome Completo ${isCompany ? 'do responsável' : ''}`}
             InputLabelProps={{ shrink: true, style: { color: normalTextInputFilled(formState?.name) ? greenLeve : orangeLeve } }}
           />
           <FormInput
@@ -250,8 +195,8 @@ export default function SignupUserForm() {
             required={required}
             success={emailInputFilled(formState?.email)}
             error={inputIncomplete(formState?.email)}
-            label={`Email ${isCompany ? 'do Responsável' : ''}`}
-            placeholder={`Email ${isCompany ? 'do Responsável' : ''}`}
+            label={`Email ${isCompany ? 'do responsável' : ''}`}
+            placeholder={`Email ${isCompany ? 'do responsável' : ''}`}
             InputLabelProps={{ shrink: formState?.email !== "", style: { color: emailInputFilled(formState?.email) ? greenLeve : orangeLeve } }} />
         </FormRow>
         <FormContent>
@@ -266,8 +211,8 @@ export default function SignupUserForm() {
                 inputProps={{ inputMode: 'numeric' }}
                 error={inputIncomplete(formState?.phone)}
                 success={phoneInputFilled(formState?.phone)}
-                label={`Telefone ${isCompany ? 'do Responsável' : ''}`}
-                placeholder={`Telefone ${isCompany ? 'do Responsável' : ''}`}
+                label={`Telefone ${isCompany ? 'do responsável' : ''}`}
+                placeholder={`Telefone ${isCompany ? 'do responsável' : ''}`}
                 InputLabelProps={{ shrink: formState?.phone !== "", style: { color: phoneInputFilled(formState?.phone) ? greenLeve : orangeLeve } }} />
             )}
           </InputMask>
@@ -314,8 +259,8 @@ export default function SignupUserForm() {
                 type="text"
                 required={required}
                 inputProps={{ inputMode: 'numeric' }}
-                success={cpfInputFilled(formState?.cpf)}
-                error={!cpfInputFilled(formState?.cpf)}
+                error={cpfInputFilled(formState?.cpf) === false}
+                success={cpfInputFilled(formState?.cpf) === true}
                 InputLabelProps={{ shrink: formState?.cpf !== "", style: { color: cpfInputFilled(formState?.cpf) ? greenLeve : orangeLeve } }} />
             )}
           </InputMask>
@@ -343,7 +288,7 @@ export default function SignupUserForm() {
             type="text"
             name='cost'
             required={required}
-            onChange={handleChangeUserCost}
+            onChange={(event) => handleChangeUserCost(event, setFormState)}
             inputProps={{ inputMode: 'numeric' }}
             value={formatBrazillianCurrency(formState?.cost)}
             success={costTextInputFilled(formState?.cost)}
@@ -407,38 +352,7 @@ export default function SignupUserForm() {
             ))}
           </FormInput>
         </FormContent>
-        {isCompany && (
-          <FileUploadContainer>
-            <FileUploadItem>
-              <Button
-                className="documentUpload"
-                startIcon={<FileUploadIcon />}
-                onClick={() => handleClickFiles('socialContract')}
-              >
-                Enviar contrato social
-              </Button>
-              <input
-                type="file"
-                onChange={(event) => handleChangeFiles(event, 'socialContract')}
-                style={{ display: 'none' }}
-              />
-            </FileUploadItem>
-            <FileUploadItem>
-              <Button
-                className="documentUpload"
-                startIcon={<FileUploadIcon />}
-                onClick={() => handleClickFiles('energyExtract')}
-              >
-                Enviar fatura de energia
-              </Button>
-              <input
-                type="file"
-                onChange={(event) => handleChangeFiles(event, 'energyExtract')}
-                style={{ display: 'none' }}
-              />
-            </FileUploadItem>
-          </FileUploadContainer>
-        )}
+
         <FormFooterContainer>
           <BackButton onClick={() => router.push(`${PATH_TO.ECONOMY_SIMULATION}/?uuid=${uuid}`)} endIcon={<ArrowBackIcon className="icon" />} />
           {isLoading ? (

@@ -15,7 +15,9 @@ export default function Footer() {
         pathname === PATH_TO.ECONOMY_SIMULATION ||
         pathname === PATH_TO.REGISTER_USER ||
         pathname === PATH_TO.REGISTER_ADDRESS ||
-        pathname === PATH_TO.REGISTER_CONTRACT;
+        pathname === PATH_TO.REGISTER_CONTRACT ||
+        pathname === PATH_TO.OUT_OF_RANGE ||
+        pathname === PATH_TO.LOW_COST
 
     if (hideFooter) {
         return null;
@@ -23,6 +25,7 @@ export default function Footer() {
 
     return (
         <>
+            <h1>{pathname}</h1>
             {showMinimalist ? <MinimalistFooter /> : <NewFooter />}
         </>
     );

@@ -8,6 +8,7 @@ import { forgotPasswordValidation, loginValidation } from '@/app/service/login-s
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import { awaitSeconds } from '@/app/utils/browser/BrowserUtils';
 import { createForgotPasswordData, createLoginData } from '@/app/utils/helper/login/loginHelper';
+import CloseIcon from '@mui/icons-material/Close';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { Backdrop, Box, CircularProgress, Divider, IconButton, InputAdornment, Modal, TextField } from '@mui/material';
@@ -15,8 +16,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import leveLogo from '../../../../../../../resources/icons/large/leve-logo-orange-icon-large.svg';
-import ModalCloseButton from '../../../buttons/close-button/ModalCloseButton';
-import { FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginContentContainer, LoginForm, LoginIconContainer, LoginTitleContainer } from './styles';
+import { CloseButtonContainer, ContentContainer, FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginForm, TitleContainer } from './styles';
 
 export default function LoginModal({ isOpen, closeModal, hasForgottenPassword }) {
 
@@ -46,8 +46,6 @@ export default function LoginModal({ isOpen, closeModal, hasForgottenPassword })
             const data = createLoginData(loginRef)
             const response = await loginValidation(data, updateUser)
 
-            console.log("RESPONSE ===>>", response)
-
             if (requestSuccessful(response?.status) && response?.data?.access_token) {
                 router.push(PATH_TO.DASHBOARD)
             } else if (response?.data?.error) {
@@ -70,6 +68,10 @@ export default function LoginModal({ isOpen, closeModal, hasForgottenPassword })
         }
     };
 
+    const goToHome = () => {
+        router.push(PATH_TO.HOME)
+    }
+
     return (
         <>
             <Modal
@@ -86,19 +88,21 @@ export default function LoginModal({ isOpen, closeModal, hasForgottenPassword })
                     },
                 }}>
                 <LoginBox>
-                    <LoginIconContainer>
-                        <ModalCloseButton />
-                    </LoginIconContainer>
-                    <LoginTitleContainer>
+                    <CloseButtonContainer className="modalCloseButtonContainer">
+                        <IconButton onClick={closeModal}>
+                            <CloseIcon />
+                        </IconButton>
+                    </CloseButtonContainer>
+                    <TitleContainer className="modalTitleContainer">
                         <Image
                             className="logoLeve"
                             loading="lazy"
                             src={leveLogo}
                             alt="Ícone de formulário para completar o cadastro"
-                            onClick={() => router.push(PATH_TO.HOME)} />
+                            onClick={() => goToHome()} />
                         {!forgotPassword ? <h1>Entrar</h1> : <h1>Recuperar minha senha</h1>}
-                    </LoginTitleContainer>
-                    <LoginContentContainer>
+                    </TitleContainer>
+                    <ContentContainer className="modalContentContainer">
                         <LoginForm>
                             <TextField className="formInput"
                                 autoComplete="username"
@@ -107,13 +111,11 @@ export default function LoginModal({ isOpen, closeModal, hasForgottenPassword })
                                 variant="outlined"
                                 placeholder="E-mail"
                                 type="text"
-                                value={"dalbenmilton@gmail.com"}
                                 required />
                             {!forgotPassword ?
                                 <TextField className="formInput"
                                     inputRef={loginRef.password}
                                     autoComplete="current-password"
-                                    value={"123456A!"}
                                     label="Senha"
                                     variant="outlined"
                                     placeholder="Senha"
@@ -148,12 +150,12 @@ export default function LoginModal({ isOpen, closeModal, hasForgottenPassword })
                                     </p>}
                                 <Divider className='divider' />
                                 <FormFooterContainer>
-                                    <p >Ainda não tem uma conta? <span className='createNewAccount' onClick={() => router.push(PATH_TO.HOME)}>Crie uma aqui!</span> </p>
+                                    <p >Ainda não tem uma conta? <span className='createNewAccount' onClick={() => goToHome()}>Crie uma aqui!</span> </p>
                                 </FormFooterContainer>
                             </LoginButtonContainer>
                         </LoginForm>
 
-                    </LoginContentContainer>
+                    </ContentContainer>
                 </LoginBox>
             </Modal >
         </>

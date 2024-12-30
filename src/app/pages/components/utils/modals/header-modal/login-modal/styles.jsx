@@ -8,7 +8,7 @@ export const LoginBox = styled(Box)`
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: ${background.white};
-    border-radius: 15px;
+    border-radius: 10px;
 
     overflow: hidden;
 
@@ -51,14 +51,17 @@ export const LoginBox = styled(Box)`
 
     }
 `
-export const LoginIconContainer = styled.div`
+export const CloseButtonContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 
-    margin: 0;
+    width: 100%;
+    max-width: fit-content;
+
+    margin-left: auto;
 `
-export const LoginTitleContainer = styled.div`
+export const TitleContainer = styled.div`
     text-align: center;
 
     h1 { 
@@ -87,7 +90,7 @@ export const LoginTitleContainer = styled.div`
     }
 `
 
-export const LoginContentContainer = styled.div`
+export const ContentContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -99,7 +102,6 @@ export const LoginContentContainer = styled.div`
     height: auto;
 
     padding: 2rem;
-
 `
 
 export const LoginForm = styled.form`

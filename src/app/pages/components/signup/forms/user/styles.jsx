@@ -126,40 +126,21 @@ export const FormInput = styled(FormInputBase)`
         } */
 
         .searchIcon { 
-            color:${background.orange};
+            color: ${background.greyMediumHigh}; 
+            color: ${props => props.success && background.green}; 
+            color: ${props => props.error && background.orange};
+
             &:hover{
                 cursor: pointer;
             }
         }
 
         .formLoading {
-            color: ${background.orange};
+             color: ${background.greyMediumHigh}; 
+            color: ${props => props.success && background.green}; 
+            color: ${props => props.error && background.orange};
         }
 
-`
-
-export const FileUploadContainer = styled.div`
-  display: flex;
-  grid-template-columns: repeat(2, 1fr); 
-  grid-column: span 3; 
-  flex-direction: row;
-  flex-wrap: wrap;
-`
-export const FileUploadItem = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  margin-top: 25px;
-
-  .documentUpload {
-    font-family: "Graphie";
-    font-size: 14px;
-    font-weight: 600;
-    color: ${background.orange};
-    text-decoration: underline;
-    text-transform: none;
-  }
 `
 
 export const FormFooterContainer = styled.div`
