@@ -81,8 +81,6 @@ export const getDashboardMainData = async (router, storeUser, storeEconomy, setE
 const shouldUpdateDashboardData = (response, storeBilling, storeMainInstallation) => {
     const hasDifferentBillings = response.data.ciclosConsumo.length !== storeBilling.billings.length;
     const hasDifferentInstallation = response.data.instalacao.uuid !== storeMainInstallation.mainInstallation.uuid;
-
-    console.log("shouldUpdateDashboardData ???????", hasDifferentBillings || hasDifferentInstallation)
     return hasDifferentBillings || hasDifferentInstallation;
 }
 

@@ -56,7 +56,11 @@ export const updateUserProfile = async (data) => {
 }
 
 export const updateUserData = (consumidor, instalacao, distribuidoraInstalacao, descontosCarbono, storeUser) => {
+
+    const currentUserData = storeUser?.user;
+
     storeUser.updateUser({
+        ...currentUserData,
         uuid: consumidor?.uuid,
         name: `${capitalizeEachWord(consumidor?.nome_completo)}`,
         phone: consumidor?.telefone,
@@ -79,8 +83,7 @@ export const updateUserData = (consumidor, instalacao, distribuidoraInstalacao, 
         distributor: distribuidoraInstalacao?.nome,
         distributorStatus: distribuidoraInstalacao?.status?.toUpperCase() === DISTRIBUTOR_STATUS.ACTIVE ? true : false,
         hasSyncDistributorData: Boolean(instalacao?.distribuidora_login),
-        distributorLogin: instalacao?.distribuidora_login ? instalacao?.distribuidora_login : "",
-        distributorPassword: instalacao?.distribuidora_pass ? instalacao?.distribuidora_pass : "",
-        hasOpenedSharedAccessModal: false
-    });
+        distributorLogin: instalacao?.distribuidora_login || "",
+        distributorPassword: instalacao?.distribuidora_pass || "",
+    })
 };

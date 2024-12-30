@@ -33,6 +33,7 @@ export default function ClicksignWidgetComponent({ uuid }) {
                 isFirstAccess: true,
                 hasOpenedSharedAccessModal: false,
             }));
+            console.log("ClicksignWidgetComponent storeUser ==>>", storeUser)
             await finishSignup(router, uuid);
         });
 
