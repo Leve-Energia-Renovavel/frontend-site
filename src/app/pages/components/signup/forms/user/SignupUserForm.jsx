@@ -242,8 +242,8 @@ export default function SignupUserForm() {
                   type="text"
                   required={required}
                   inputProps={{ inputMode: 'numeric' }}
-                  error={!rgInputFilled(formState?.rg)}
-                  success={rgInputFilled(formState?.rg)}
+                  error={rgInputFilled(formState?.rg) === false}
+                  success={rgInputFilled(formState?.rg) === true}
                   InputLabelProps={{ shrink: formState?.rg !== "", style: { color: rgInputFilled(formState?.rg) ? greenLeve : orangeLeve } }} />
               )}
             </InputMask>

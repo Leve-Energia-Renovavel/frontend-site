@@ -18,7 +18,7 @@ import { useRef, useState } from 'react';
 import leveLogo from '../../../../../../../resources/icons/large/leve-logo-orange-icon-large.svg';
 import { CloseButtonContainer, ContentContainer, FormFooterContainer, LoginBox, LoginButton, LoginButtonContainer, LoginForm, TitleContainer } from './styles';
 
-export default function LoginModal({ isOpen, closeModal, hasForgottenPassword }) {
+export default function LoginModal({ isOpen, closeModal, hasForgottenPassword, isLoginPage }) {
 
     const router = useRouter()
 
@@ -72,6 +72,14 @@ export default function LoginModal({ isOpen, closeModal, hasForgottenPassword })
         router.push(PATH_TO.HOME)
     }
 
+    const handleCloseModal = () => {
+        if (isLoginPage) {
+            router.push(PATH_TO.HOME)
+        } else {
+            closeModal()
+        }
+    }
+
     return (
         <>
             <Modal
@@ -89,7 +97,7 @@ export default function LoginModal({ isOpen, closeModal, hasForgottenPassword })
                 }}>
                 <LoginBox>
                     <CloseButtonContainer className="modalCloseButtonContainer">
-                        <IconButton onClick={closeModal}>
+                        <IconButton onClick={() => handleCloseModal()}>
                             <CloseIcon />
                         </IconButton>
                     </CloseButtonContainer>

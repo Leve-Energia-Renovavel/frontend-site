@@ -13,7 +13,8 @@ export default function LoginPage() {
             <HomeMain />
             <LoginModal
                 isOpen={true}
-                hasForgottenPassword={false} />
+                hasForgottenPassword={false}
+                isLoginPage={true} />
         </>
     );
 }

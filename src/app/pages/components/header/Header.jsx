@@ -66,12 +66,15 @@ export default function Header() {
             {/* Header modals below*/}
             {openLogin && (
                 isLoggedUser ? (
-                    <LoggedModal isOpen={openLogin} openModal={openLoginModal} closeModal={closeLoginModal} />
+                    <LoggedModal
+                        isOpen={openLogin}
+                        openModal={openLoginModal}
+                        closeModal={closeLoginModal} />
                 ) : (
                     <LoginModal
                         isOpen={openLogin}
-                        hasForgottenPassword={false}
-                        closeModal={closeLoginModal} />
+                        closeModal={closeLoginModal}
+                        hasForgottenPassword={false} />
                 )
             )}
         </>

@@ -25,7 +25,6 @@ export default function Footer() {
 
     return (
         <>
-            <h1>{pathname}</h1>
             {showMinimalist ? <MinimalistFooter /> : <NewFooter />}
         </>
     );

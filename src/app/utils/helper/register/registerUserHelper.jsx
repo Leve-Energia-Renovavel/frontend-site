@@ -23,6 +23,7 @@ export const phoneInputFilled = (value) => {
 };
 
 export const rgInputFilled = (value) => {
+    if (!value) return null
     return !value?.includes('_') && value?.length > 1;
 };
 
