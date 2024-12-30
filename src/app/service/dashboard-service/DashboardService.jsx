@@ -93,6 +93,7 @@ export const getGeneralDashboardData = async (router, storeUser, storeEconomy, s
         };
 
         const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
+
         if (requestSuccessful(response?.status)) {
             if (shouldUpdateDashboardData(response, storeBilling, storeMainInstallation)) {
                 const data = response?.data

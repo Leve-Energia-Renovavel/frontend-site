@@ -31,8 +31,6 @@ export default function DashboardWelcomeAndShareAccess({ isMobileContent }) {
         }
     }, [hasSyncDistributorData, hasOpenedSharedAccessModal])
 
-    console.log("storeUser ===>>", storeUser)
-
     return (
         <>
             {isFirstAccess &&
