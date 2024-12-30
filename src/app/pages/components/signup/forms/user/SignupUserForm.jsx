@@ -354,7 +354,7 @@ export default function SignupUserForm() {
         </FormContent>
 
         <FormFooterContainer>
-          <BackButton onClick={() => router.push(`${PATH_TO.ECONOMY_SIMULATION}/?uuid=${uuid}`)} endIcon={<ArrowBackIcon className="icon" />} />
+          {/* <BackButton onClick={() => router.push(`${PATH_TO.ECONOMY_SIMULATION}/?uuid=${uuid}`)} endIcon={<ArrowBackIcon className="icon" />} /> */}
           {isLoading ? (
             <Box>
               <CircularProgress className="submitLoading" />

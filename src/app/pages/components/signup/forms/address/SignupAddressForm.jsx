@@ -279,7 +279,7 @@ export default function SignupAddressForm() {
         </FormLastRow>
 
         <FormFooterContainer>
-          <BackButton onClick={() => router.push(`${PATH_TO.REGISTER_USER}/?uuid=${uuid}`)} endIcon={<ArrowBackIcon className="icon" />} />
+          {/* <BackButton onClick={() => router.push(`${PATH_TO.REGISTER_USER}/?uuid=${uuid}`)} endIcon={<ArrowBackIcon className="icon" />} /> */}
           {isLoading ?
             <Box >
               <CircularProgress className='submitLoading' />

@@ -402,7 +402,7 @@ export const FormFooterContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: end;
 
     padding: 1rem 0;
 
