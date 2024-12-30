@@ -48,7 +48,7 @@ export const LoadingSection = styled.div`
         width: 200px;
         border-radius: 10px;
     }
-    .loadingThirdField:nth-child(1) {
+    .loadingThirdField:nth-of-type(1) {
         height: 70px;
         width: 240px;
         border-radius: 10px;

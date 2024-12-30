@@ -11,7 +11,7 @@ import { hasToSignContract, requestSuccessful } from "@/app/service/utils/Valida
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
 import { formatCpf } from "@/app/utils/formatters/documentFormatter";
 import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
-import { addressTextInputFilled, cepInputFilled, inputIncomplete, installationNumberInputIncomplete, numberInputFilled, numberInputIncomplete } from "@/app/utils/helper/register/registerAddressHelper";
+import { addressTextInputFilled, cepInputFilled, inputIncomplete, numberInputFilled, numberInputIncomplete } from "@/app/utils/helper/register/registerAddressHelper";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SearchIcon from '@mui/icons-material/Search';
@@ -20,7 +20,7 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import InputMask from "react-input-mask";
-import { userAndAddressSchema } from "./schema";
+import { schemaValidation, userAndAddressSchema } from "./schema";
 import { BackButton, Form, FormContent, FormFooterContainer, FormInput, FormLastRow, FormSubmitButton } from "./styles";
 
 export default function SignupAddressForm() {
@@ -56,18 +56,6 @@ export default function SignupAddressForm() {
     installationNumber: installationNumber || "",
   });
 
-  const schemaValidation = async (data) => {
-    try {
-      const validatedData = await userAndAddressSchema.validate(data, { abortEarly: false })
-      return await signUp(validatedData);
-
-    } catch (error) {
-      setErrors(error.errors)
-      return error.errors;
-    }
-  };
-
-
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormState((prevState) => ({
@@ -77,7 +65,6 @@ export default function SignupAddressForm() {
 
     store.updateUser({ [name]: value });
   };
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -95,10 +82,12 @@ export default function SignupAddressForm() {
       nacionalidade: nationality,
       profissao: profession,
       estado_civil: maritalStatus,
-      // ...(isCompany && {
-      //   razao_social: razao_social,
-      //   cnpj: cnpj,
-      // }),
+
+      ...(isCompany && {
+        razao_social: companyName,
+        cnpj: cnpj,
+      }),
+
       cep: formState?.cep,
       endereco: formState?.street,
       numero: parseFloat(formState?.number?.replace(/[^0-9.]/g, "")),
@@ -111,7 +100,7 @@ export default function SignupAddressForm() {
 
     console.log("address form data ===>>", submitData)
 
-    const response = await schemaValidation(submitData);
+    const response = await schemaValidation(submitData, setErrors);
     storeAddress.updateAddress({ ...formState });
 
     if (requestSuccessful(response?.status) || hasToSignContract(response?.data?.message)) {
@@ -123,56 +112,6 @@ export default function SignupAddressForm() {
 
     setIsLoading(false);
   };
-
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault()
-  //   setIsLoading(true)
-
-  //   var submitData = {
-  //     uuid: uuid,
-  //     cep: addressRefs.addressCep.current.value,
-  //     endereco: addressRefs.address.current.value,
-  //     numero: parseFloat(addressRefs.addressNumber.current.value?.replace(/[^0-9.]/g, "")),
-  //     bairro: addressRefs.neighborhood.current.value,
-  //     complemento: addressRefs.complement.current.value,
-  //     estado_id: storeAddress.address.stateId || stateValue.cod_estados,
-  //     cidade_id: storeAddress.address.cityId || await findCityIdByName(addressRefs.city.current.value, stateValue.cod_estados),
-  //     numero_instalacao: addressRefs.installationNumber.current.value
-  //   }
-
-  //   const response = await schemaValidation(submitData)
-  //   if (requestSuccessful(response?.status) || hasToSignContract(response?.data?.message)) {
-
-  //     store.updateUser({
-  //       birthDate: submitData.data_nascimento,
-  //       rg: submitData.rg,
-  //       cpf: submitData.cpf,
-  //       maritalStatus: submitData.estado_civil,
-  //       profession: submitData.profissao,
-  //       nationality: submitData.nacionalidade,
-  //     });
-
-  //     const updatedAddress = {
-  //       street: submitData.endereco,
-  //       number: submitData.numero,
-  //       neighborhood: submitData.bairro,
-  //       complement: submitData.complemento,
-  //       city: addressRefs.city.current.value,
-  //       state: addressRefs.state.current.value,
-  //       cityId: submitData.cidade_id,
-  //       stateId: submitData.estado_id,
-  //       cep: submitData.cep,
-  //       installationNumber: submitData.numero_instalacao,
-  //     }
-
-  //     storeAddress.updateAddress(updatedAddress)
-
-  //     router.push(PATH_TO.REGISTER_CONTRACT)
-
-  //   } else await handleRequestsErrors(response, setNotifications, setErrorMessage, router)
-
-  //   setIsLoading(false)
-  // }
 
   const handleGetCEP = async (cep) => {
     if (cep !== "") {
@@ -189,7 +128,7 @@ export default function SignupAddressForm() {
         setIsLoadingCEP(false)
       }
     } else {
-      setErrorMessage(["Preencha o campo de CEP antes da busca"])
+      setErrors(["Preencha o campo de CEP antes da busca"])
     }
   }
 

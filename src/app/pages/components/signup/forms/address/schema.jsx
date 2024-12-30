@@ -1,6 +1,18 @@
+import { signUp } from '@/app/service/user-service/UserService';
 import { isOver110, isOver18, isValidDate } from '@/app/utils/date/DateUtils';
 import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
 import * as yup from 'yup';
+
+export const schemaValidation = async (data, setErrors) => {
+    try {
+        const validatedData = await userAndAddressSchema.validate(data, { abortEarly: false })
+        return await signUp(validatedData);
+
+    } catch (error) {
+        setErrors(error.errors)
+        return error.errors;
+    }
+};
 
 const hasMoreThanFourNumbers = (value) => {
     const numberCount = (value.match(/\d/g) || []).length;
