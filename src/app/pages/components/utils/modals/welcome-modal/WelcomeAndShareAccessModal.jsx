@@ -41,7 +41,7 @@ export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, cu
                         <p className='descriptionSecondary'>O cadastro na distribuidora pode levar até <span className='highlighted'>30 dias</span> e sua conta de luz começará a ficar mais barata em até <span className='highlighted'>60 dias</span>.</p>
                     </> :
                         <>
-                            <h6 className='title'>Informação Importante</h6>
+                            <h6 className='title'>Parabéns!</h6>
                             <p className='subtitle'>Você acaba de contratar a Leve Energia</p>
                             <p className='descriptionPrimary'>As usinas que atenderão a sua região ainda estão em fase de construção, por isso, sua economia na conta de luz vai demorar um pouco mais para começar.</p>
                             <p className='descriptionSecondary'>Enquanto isso, você pode começar a espalhar impacto positivo em sua rede e garantir outros ganhos com a Leve desde já utilizando nossos programas de indicação e agregados.</p>
