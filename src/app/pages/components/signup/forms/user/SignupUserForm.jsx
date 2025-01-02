@@ -91,8 +91,12 @@ export default function SignupUserForm() {
 
   return (
     <>
-      <Form id={REGISTER_FORM.USER_ID} acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
-        <FormRow>
+      <Form id={REGISTER_FORM.USER_ID}
+        acceptCharset="UTF-8"
+        method="POST"
+        onSubmit={handleSubmit}
+        className='signupUserForm'>
+        <FormRow className='signupUserFormRow'>
           <FormInput
             className="inputForm"
             name='name'
@@ -146,7 +150,7 @@ export default function SignupUserForm() {
             )}
           </InputMask>
         </FormRow>
-        <FormContent>
+        <FormContent className='signupUserFormContent'>
           <InputMask mask="(99) 99999-9999" value={formState?.phone} onChange={handleInputChange}>
             {() => (
               <FormInput
