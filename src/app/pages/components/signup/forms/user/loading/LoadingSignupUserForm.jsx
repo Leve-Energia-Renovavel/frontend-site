@@ -26,7 +26,6 @@ export default function LoadingSignupUserForm() {
                 <Skeleton variant="rectangular" className="loadingThirdField" />
             </LoadingSection>
             <LoadingFooter>
-                <Skeleton variant="rectangular" className="circularButton" />
                 <Skeleton variant="rectangular" className="largerCircularButton" />
             </LoadingFooter>
         </LoadingContainer>
