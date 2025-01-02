@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import LoadingSignupUserForm from '../../signup/forms/user/loading/LoadingSignupUserForm';
+import SignupMainForm from '../../signup/forms/SignupMainForm';
 
 const SignupUserForm = dynamic(() => import('../../signup/forms/user/SignupUserForm'), { ssr: false });
 
@@ -30,7 +31,7 @@ export default function RegisterUser() {
 
     return (
         <>
-            {isLoading ? <LoadingSignupUserForm /> : <SignupUserForm />}
+            {isLoading ? <LoadingSignupUserForm /> : <SignupMainForm />}
         </>
     )
 }

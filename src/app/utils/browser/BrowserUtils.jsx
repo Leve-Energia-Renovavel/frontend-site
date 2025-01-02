@@ -29,7 +29,7 @@ export const clearBrowserData = async () => {
         localStorage.clear();
     }
 
-    if (caches) {
+    if (typeof caches !== 'undefined') {
         caches.keys().then(cacheNames => {
             cacheNames.forEach(cacheName => {
                 caches.delete(cacheName);

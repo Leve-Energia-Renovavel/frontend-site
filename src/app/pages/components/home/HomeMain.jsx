@@ -1,5 +1,6 @@
 "use client"
 
+import { clearBrowserData } from "@/app/utils/browser/BrowserUtils";
 import { Divider } from "@mui/material";
 import dynamic from "next/dynamic";
 import NewHomeMainBanner from "./banners/main/new-home/NewHomeMainBanner";
@@ -10,6 +11,8 @@ import { HomeContainer as Container, HomeContentContainer as HomeBanner } from "
 const HomeForm = dynamic(() => import("./form/new-home/HomeForm"), { ssr: false });
 
 export default function HomeMain() {
+
+    clearBrowserData()
 
     return (
         <>

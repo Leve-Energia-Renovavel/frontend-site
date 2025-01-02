@@ -3,10 +3,9 @@ import { isOver110, isOver18, isValidDate } from '@/app/utils/date/DateUtils';
 import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
 import * as yup from 'yup';
 
-export const schemaValidation = async (data, router, setNotifications, setErrors) => {
+export const schemaValidation = async (data, router, setErrors) => {
     try {
         const validatedData = await userSchema.validate(data, { abortEarly: false })
-        setNotifications(["Informações do titular salvas com sucesso!"])
         router.push(`${PATH_TO.REGISTER_ADDRESS}`)
         return validatedData;
     } catch (error) {

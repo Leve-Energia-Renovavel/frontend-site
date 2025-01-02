@@ -5,12 +5,12 @@ export const regularTextInputFilled = (value) => {
     return value?.toString().length > 1
 };
 export const companyInputFilled = (value) => {
+    if (!value) return null
     return value?.toString()?.length >= 1
 };
 export const cnpjInputComplete = (value) => {
-    if (!value || value == "__.___.___/____-__") return null; // Return null to indicate no validation yet
+    if (!value || value == "__.___.___/____-__") return null;
 
-    // Remove all non-numeric characters
     const cleanedValue = value.toString().replace(/\D/g, '');
 
     if (cleanedValue.length !== 14) return false;

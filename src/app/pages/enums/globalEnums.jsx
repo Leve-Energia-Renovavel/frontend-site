@@ -110,6 +110,7 @@ export const HOME_FORM_ID = "calculateYourEconomy"
 
 export const REGISTER_FORM = {
     USER_ID: "registerFormUserId",
+    COMPANY_ID: "registerFormCompanyId",
     ADDRESS_ID: "registerFormAddressId",
     CONTRACT_ID: "registerFormContractId",
 }

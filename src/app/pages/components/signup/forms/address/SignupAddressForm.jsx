@@ -5,14 +5,12 @@ import { useStoreAddress, useStoreUser } from "@/app/hooks/stores/useStore";
 import { useStoreMessages } from "@/app/hooks/stores/useStoreMessages";
 import useGetCEP from "@/app/hooks/utils/useGetCEP";
 import { COOKIES_FOR, PATH_TO, REGISTER_FORM } from "@/app/pages/enums/globalEnums";
-import { signUp } from "@/app/service/user-service/UserService";
 import { findCityIdByName } from "@/app/service/utils/addressUtilsService";
 import { hasToSignContract, requestSuccessful } from "@/app/service/utils/Validations";
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
 import { formatCpf } from "@/app/utils/formatters/documentFormatter";
 import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
-import { addressTextInputFilled, cepInputFilled, inputIncomplete, numberInputFilled, numberInputIncomplete } from "@/app/utils/helper/register/registerAddressHelper";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { addressTextInputFilled, cepInputFilled, inputIncomplete, labelColorHelper, numberInputFilled, numberInputIncomplete } from "@/app/utils/helper/register/registerAddressHelper";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, CircularProgress, MenuItem } from '@mui/material';
@@ -20,8 +18,8 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import InputMask from "react-input-mask";
-import { schemaValidation, userAndAddressSchema } from "./schema";
-import { BackButton, Form, FormContent, FormFooterContainer, FormInput, FormLastRow, FormSubmitButton } from "./styles";
+import { schemaValidation } from "./schema";
+import { Form, FormContent, FormFooterContainer, FormInput, FormLastRow, FormSubmitButton } from "./styles";
 
 export default function SignupAddressForm() {
 
@@ -38,14 +36,14 @@ export default function SignupAddressForm() {
   const uuid = store.user.uuid || Cookies.get(COOKIES_FOR.UUID)
 
   const { name, email, phone, cost, rg, cpf, distributor, nationality, maritalStatus, profession, companyName, cnpj, birthDate, isCompany } = store?.user || {}
-  const { street, neighborhood, city, state, complement, stateId, cityId, cep, installationNumber } = storeAddress?.address || {}
+  const { street, neighborhood, city, state, number, complement, stateId, cityId, cep, installationNumber } = storeAddress?.address || {}
 
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingCEP, setIsLoadingCEP] = useState(false);
 
   const [formState, setFormState] = useState({
     street: street || "",
-    number: "",
+    number: number || "",
     cep: cep || "",
     complement: complement || "",
     neighborhood: neighborhood || "",
@@ -104,7 +102,6 @@ export default function SignupAddressForm() {
     storeAddress.updateAddress({ ...formState });
 
     if (requestSuccessful(response?.status) || hasToSignContract(response?.data?.message)) {
-      setNotifications(["Informações do imóvel salvas com sucesso!"])
       router.push(PATH_TO.REGISTER_CONTRACT);
     } else {
       setErrors(["Erro ao salvar as informações do imóvel. Por favor, tente novamente."]);
@@ -140,9 +137,6 @@ export default function SignupAddressForm() {
   }
 
   const required = false
-  const greenLeve = "#005940"
-  const orangeLeve = "#FF7133"
-
 
   return (
     <>
@@ -160,7 +154,7 @@ export default function SignupAddressForm() {
               inputProps={{ inputMode: 'numeric' }}
               error={inputIncomplete(formState?.cep)}
               success={cepInputFilled(formState?.cep)}
-              InputLabelProps={{ shrink: formState?.cep !== "", style: { color: formState?.cep !== "" ? greenLeve : orangeLeve } }}
+              InputLabelProps={{ shrink: formState?.cep !== "", style: { color: labelColorHelper(addressTextInputFilled(formState?.cep)) } }}
               InputProps={{
                 endAdornment: !isLoadingCEP ?
                   <SearchIcon className="searchIcon"
@@ -180,9 +174,9 @@ export default function SignupAddressForm() {
             defaultValue={formState?.street || ''}
             error={inputIncomplete(formState?.street)}
             success={addressTextInputFilled(formState?.street)}
-            InputLabelProps={{ shrink: formState?.street !== "", style: { color: formState?.street !== "" ? greenLeve : orangeLeve } }} />
+            InputLabelProps={{ shrink: formState?.street !== "", style: { color: labelColorHelper(addressTextInputFilled(formState?.street)) } }} />
 
-          <InputMask mask="99999" onChange={handleInputChange}>
+          <InputMask mask="99999" onChange={handleInputChange} value={formState?.number}>
             {() => <FormInput
               label="Nº"
               name="number"
@@ -194,7 +188,7 @@ export default function SignupAddressForm() {
               inputProps={{ inputMode: 'numeric' }}
               error={numberInputIncomplete(formState?.number)}
               success={numberInputFilled(formState?.number)}
-              InputLabelProps={{ style: { color: numberInputFilled(formState?.number) ? greenLeve : orangeLeve } }} />
+              InputLabelProps={{ style: { color: labelColorHelper(numberInputFilled(formState?.number)) } }} />
             }
           </InputMask>
 
@@ -208,7 +202,7 @@ export default function SignupAddressForm() {
             onChange={handleInputChange}
             error={inputIncomplete(formState?.complement)}
             success={addressTextInputFilled(formState?.complement)}
-            InputLabelProps={{ style: { color: addressTextInputFilled(formState?.complement) ? greenLeve : orangeLeve } }} />
+            InputLabelProps={{ style: { color: labelColorHelper(addressTextInputFilled(formState?.complement)) } }} />
 
           <FormInput
             type="text"
@@ -222,7 +216,7 @@ export default function SignupAddressForm() {
             defaultValue={formState?.neighborhood || ''}
             error={inputIncomplete(formState?.neighborhood)}
             success={addressTextInputFilled(formState?.neighborhood)}
-            InputLabelProps={{ style: { color: addressTextInputFilled(formState?.neighborhood) ? greenLeve : orangeLeve } }} />
+            InputLabelProps={{ style: { color: labelColorHelper(addressTextInputFilled(formState?.neighborhood)) } }} />
 
           <FormInput
             id="state"
@@ -239,7 +233,7 @@ export default function SignupAddressForm() {
             InputLabelProps={{
               component: 'span',
               shrink: formState?.stateId !== "",
-              style: { color: addressTextInputFilled(formState?.stateId) ? greenLeve : orangeLeve }
+              style: { color: labelColorHelper(addressTextInputFilled(formState?.stateId)) }
             }}>
             {Object.values(stateOptions).map((state) => {
               return (
@@ -259,7 +253,7 @@ export default function SignupAddressForm() {
             defaultValue={formState?.city?.toUpperCase() || ''}
             error={!addressTextInputFilled(formState?.city)}
             success={addressTextInputFilled(formState?.city)}
-            InputLabelProps={{ shrink: formState?.city !== "", style: { color: addressTextInputFilled(formState?.city) ? greenLeve : orangeLeve } }} required />
+            InputLabelProps={{ shrink: formState?.city !== "", style: { color: labelColorHelper(addressTextInputFilled(formState?.city)) } }} required />
         </FormContent>
 
         <FormLastRow>
@@ -269,17 +263,16 @@ export default function SignupAddressForm() {
             className="inputForm"
             onChange={handleInputChange}
             name="installationNumber"
-            label="Número de Instalação"
-            placeholder="Número de Instalação"
+            label="Número de instalação"
+            placeholder="Número de instalação"
             required={false}
             value={formState?.installationNumber || ''}
             success={addressTextInputFilled(formState?.installationNumber)}
-            InputLabelProps={{ shrink: formState?.installationNumber !== "", style: { color: addressTextInputFilled(formState?.installationNumber) ? greenLeve : orangeLeve } }}
+            InputLabelProps={{ shrink: formState?.installationNumber !== "", style: { color: labelColorHelper(addressTextInputFilled(formState?.installationNumber)) } }}
           />
         </FormLastRow>
 
         <FormFooterContainer>
-          {/* <BackButton onClick={() => router.push(`${PATH_TO.REGISTER_USER}/?uuid=${uuid}`)} endIcon={<ArrowBackIcon className="icon" />} /> */}
           {isLoading ?
             <Box >
               <CircularProgress className='submitLoading' />
@@ -287,7 +280,7 @@ export default function SignupAddressForm() {
             : <FormSubmitButton
               type='submit'
               form={REGISTER_FORM.ADDRESS_ID}
-              endIcon={<ArrowForwardIcon className='icon' />}><span>Continuar</span></FormSubmitButton>}
+              endIcon={<ArrowForwardIcon className='icon' />}><span>Assine o contrato</span></FormSubmitButton>}
         </FormFooterContainer>
 
       </Form>
