@@ -31,8 +31,6 @@ export const rgInputFilled = (value) => {
 
 export const cpfInputFilled = (value) => {
     if (!value) return null
-    const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/; // CPF format: 000.000.000-00
-    if (!cpfRegex.test(value)) return false;
 
     // CPF validation logic
     const cpfNumbers = value?.replace(/\D/g, "");
@@ -111,4 +109,8 @@ export const labelColorHelper = (value) => {
     if (value === null) return background.greyMediumHigh
     if (value === false) return background.orange
     if (value === true) return background.green
+}
+
+export const shrinkHelper = (value) => {
+    return value !== ""
 }

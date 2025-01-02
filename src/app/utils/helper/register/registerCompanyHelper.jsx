@@ -75,3 +75,7 @@ export const handleDeleteFiles = (fileType, formState, setFormState) => {
     }));
     console.log(`${fileType}File removed`);
 };
+
+export const shrinkHelper = (value) => {
+    return value !== ""
+}

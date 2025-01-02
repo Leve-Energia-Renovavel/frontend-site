@@ -2,6 +2,7 @@
 
 import { useStoreUser } from '@/app/hooks/stores/useStore'
 import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages'
+import { clearCookiesAndStorageData } from '@/app/utils/browser/BrowserUtils'
 import { formatBrazillianCurrency } from '@/app/utils/formatters/costFormatter'
 import { benefits, checkForZero, checkForZeroCurrency, checkForZeroDiscount, newCostValidation, updateSliderConfig } from '@/app/utils/helper/result-economy/resultEconomyHelper'
 import { ENVIRONMENTAL_IMPACT, PATH_TO, USER_COST } from '@/enums/globalEnums'
@@ -12,6 +13,8 @@ import { useRef, useState } from 'react'
 import { ArrowDownContainer, ArrowDownIcon, EconomyResultContainer, EconomyResultFooter, EconomyResultTitleContainer, EditTodayCostIcon, LeveBenefit, LeveBenefitsContainer, LeveBenefitsContent, LeveEconomy, LeveEconomyContainer, LeveEconomyContent, LeveEconomyDisclaimer, LoadingCircle, OneYearEconomyContainer, OneYearEconomyContent, OneYearEconomyData, OneYearEconomyHeader, PercentageIcon, RoundCheckIcon, SimpleArrowForward, SimpleCheckIcon, SimpleCloseIcon, SimulationSlider, StartRegisterButton, TodayCostContainer, TodayCostValue, TodayEconomyContainer, TodayEconomyContent } from './styles'
 
 export default function ResultEconomy() {
+
+    clearCookiesAndStorageData()
 
     const router = useRouter()
     const storeUser = useStoreUser()

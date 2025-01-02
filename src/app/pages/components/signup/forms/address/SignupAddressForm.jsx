@@ -10,7 +10,7 @@ import { hasToSignContract, requestSuccessful } from "@/app/service/utils/Valida
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
 import { formatCpf } from "@/app/utils/formatters/documentFormatter";
 import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
-import { addressTextInputFilled, cepInputFilled, inputIncomplete, labelColorHelper, numberInputFilled, numberInputIncomplete } from "@/app/utils/helper/register/registerAddressHelper";
+import { addressTextInputFilled, cepInputFilled, inputIncomplete, labelColorHelper, numberInputFilled, numberInputIncomplete, shrinkHelper } from "@/app/utils/helper/register/registerAddressHelper";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, CircularProgress, MenuItem } from '@mui/material';
@@ -19,7 +19,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import InputMask from "react-input-mask";
 import { schemaValidation } from "./schema";
-import { Form, FormContent, FormFooterContainer, FormInput, FormLastRow, FormSubmitButton } from "./styles";
+import { Form, FormContent, FormFooterContainer, FormInput, FormLastRow, FormRow, FormSubmitButton } from "./styles";
 
 export default function SignupAddressForm() {
 
@@ -29,7 +29,6 @@ export default function SignupAddressForm() {
   const storeMessage = useStoreMessages()
 
   const setErrors = storeMessage.setErrors
-  const setNotifications = storeMessage.setNotifications
 
   const fetchCEP = useGetCEP();
 
@@ -140,8 +139,21 @@ export default function SignupAddressForm() {
 
   return (
     <>
-      <Form id={REGISTER_FORM.ADDRESS_ID} acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
-        <FormContent>
+      <Form id={REGISTER_FORM.ADDRESS_ID} acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit} className="signupAddressForm">
+        <FormRow className="signupAddressFormRow">
+          <FormInput
+            label="Endereço"
+            variant="outlined"
+            type="text"
+            className="inputForm"
+            placeholder="Endereço"
+            defaultValue={formState?.street || ''}
+            error={inputIncomplete(formState?.street)}
+            success={addressTextInputFilled(formState?.street)}
+            InputLabelProps={{
+              shrink: shrinkHelper(formState?.street),
+              style: { color: labelColorHelper(addressTextInputFilled(formState?.street)) }
+            }} />
           <InputMask mask="99999-999" value={formState?.cep} onChange={handleInputChange}
             onBlur={(e) => handleGetCEP(formState?.cep)}>
             {() => <FormInput
@@ -164,18 +176,25 @@ export default function SignupAddressForm() {
                   </Box>,
               }} />}
           </InputMask>
+        </FormRow>
 
+        <FormContent className="signupAddressFormContent">
           <FormInput
-            label="Endereço"
-            variant="outlined"
             type="text"
+            label="Bairro"
+            placeholder="Bairro"
+            variant="outlined"
+            name="neighborhood"
             className="inputForm"
-            placeholder="Endereço"
-            defaultValue={formState?.street || ''}
-            error={inputIncomplete(formState?.street)}
-            success={addressTextInputFilled(formState?.street)}
-            InputLabelProps={{ shrink: formState?.street !== "", style: { color: labelColorHelper(addressTextInputFilled(formState?.street)) } }} />
-
+            required
+            onChange={handleInputChange}
+            defaultValue={formState?.neighborhood || ''}
+            error={inputIncomplete(formState?.neighborhood)}
+            success={addressTextInputFilled(formState?.neighborhood)}
+            InputLabelProps={{
+              shrink: shrinkHelper(formState?.neighborhood),
+              style: { color: labelColorHelper(addressTextInputFilled(formState?.neighborhood)) }
+            }} />
           <InputMask mask="99999" onChange={handleInputChange} value={formState?.number}>
             {() => <FormInput
               label="Nº"
@@ -188,7 +207,10 @@ export default function SignupAddressForm() {
               inputProps={{ inputMode: 'numeric' }}
               error={numberInputIncomplete(formState?.number)}
               success={numberInputFilled(formState?.number)}
-              InputLabelProps={{ style: { color: labelColorHelper(numberInputFilled(formState?.number)) } }} />
+              InputLabelProps={{
+                shrink: shrinkHelper(formState?.number),
+                style: { color: labelColorHelper(numberInputFilled(formState?.number)) }
+              }} />
             }
           </InputMask>
 
@@ -202,21 +224,28 @@ export default function SignupAddressForm() {
             onChange={handleInputChange}
             error={inputIncomplete(formState?.complement)}
             success={addressTextInputFilled(formState?.complement)}
-            InputLabelProps={{ style: { color: labelColorHelper(addressTextInputFilled(formState?.complement)) } }} />
+            InputLabelProps={{
+              shrink: shrinkHelper(formState?.complement),
+              style: { color: labelColorHelper(addressTextInputFilled(formState?.complement)) }
+            }} />
 
           <FormInput
             type="text"
-            label="Bairro"
-            placeholder="Bairro"
-            variant="outlined"
-            name="neighborhood"
+            name="city"
+            label="Cidade"
+            placeholder="Cidade"
             className="inputForm"
-            required
+            variant="outlined"
+            required={required}
             onChange={handleInputChange}
-            defaultValue={formState?.neighborhood || ''}
-            error={inputIncomplete(formState?.neighborhood)}
-            success={addressTextInputFilled(formState?.neighborhood)}
-            InputLabelProps={{ style: { color: labelColorHelper(addressTextInputFilled(formState?.neighborhood)) } }} />
+            defaultValue={formState?.city?.toUpperCase() || ''}
+            error={!addressTextInputFilled(formState?.city)}
+            success={addressTextInputFilled(formState?.city)}
+            InputLabelProps={{
+              shrink: shrinkHelper(formState?.city),
+              style: { color: labelColorHelper(addressTextInputFilled(formState?.city)) }
+            }}
+          />
 
           <FormInput
             id="state"
@@ -232,7 +261,7 @@ export default function SignupAddressForm() {
             success={addressTextInputFilled(formState?.stateId)}
             InputLabelProps={{
               component: 'span',
-              shrink: formState?.stateId !== "",
+              shrink: shrinkHelper(formState?.stateId),
               style: { color: labelColorHelper(addressTextInputFilled(formState?.stateId)) }
             }}>
             {Object.values(stateOptions).map((state) => {
@@ -242,21 +271,7 @@ export default function SignupAddressForm() {
             })}
           </FormInput>
 
-          <FormInput
-            type="text"
-            name="city"
-            label="Cidade"
-            placeholder="Cidade"
-            className="inputForm"
-            variant="outlined"
-            onChange={handleInputChange}
-            defaultValue={formState?.city?.toUpperCase() || ''}
-            error={!addressTextInputFilled(formState?.city)}
-            success={addressTextInputFilled(formState?.city)}
-            InputLabelProps={{ shrink: formState?.city !== "", style: { color: labelColorHelper(addressTextInputFilled(formState?.city)) } }} required />
-        </FormContent>
 
-        <FormLastRow>
           <FormInput
             type="text"
             variant="outlined"
@@ -268,9 +283,12 @@ export default function SignupAddressForm() {
             required={false}
             value={formState?.installationNumber || ''}
             success={addressTextInputFilled(formState?.installationNumber)}
-            InputLabelProps={{ shrink: formState?.installationNumber !== "", style: { color: labelColorHelper(addressTextInputFilled(formState?.installationNumber)) } }}
+            InputLabelProps={{
+              shrink: shrinkHelper(formState?.installationNumber),
+              style: { color: labelColorHelper(addressTextInputFilled(formState?.installationNumber)) }
+            }}
           />
-        </FormLastRow>
+        </FormContent>
 
         <FormFooterContainer>
           {isLoading ?

@@ -1,5 +1,4 @@
 import { COOKIES_FOR, USER_TYPE } from "@/app/pages/enums/globalEnums";
-import { checkForCompanyName } from "@/app/utils/company/CompanyUtils";
 import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
 import { capitalizeEachWord, sanitizeAndCapitalizeWords } from "@/app/utils/formatters/textFormatter";
 import axios from "axios";
@@ -108,31 +107,33 @@ export const getLeadData = async (uuid, storeUser, storeAddress) => {
 
             const cep = consumidor?.cep
 
+            const user = storeUser?.user
+
             const updatedUser = {
-                uuid: instalacao?.uuid || storeUser?.user?.uuid,
-                name: capitalizeEachWord(consumidor?.nome_completo) || capitalizeEachWord(storeUser?.user?.name) || "",
-                phone: consumidor?.telefone || storeUser?.user?.phone || "",
-                email: consumidor?.email || storeUser?.user?.email || "",
-                cost: storeUser?.user?.cost || instalacao?.valor_base_consumo,
+                uuid: instalacao?.uuid || user?.uuid,
+                name: capitalizeEachWord(consumidor?.nome_completo) || capitalizeEachWord(user?.name) || "",
+                phone: consumidor?.telefone || user?.phone || "",
+                email: consumidor?.email || user?.email || "",
+                cost: user?.cost || instalacao?.valor_base_consumo,
                 cep: instalacao?.cep,
                 coupon: consumidor?.ref_origin,
 
-                cpf: consumidor?.cpf || storeUser?.user?.cpf || "",
-                rg: consumidor?.rg || storeUser?.user?.rg || "",
-                birthDate: formatBasicBirthDate(consumidor?.data_nascimento) || storeUser?.user?.birthDate || "",
+                cpf: consumidor?.cpf || user?.cpf || "",
+                rg: consumidor?.rg || user?.rg || "",
+                birthDate: formatBasicBirthDate(consumidor?.data_nascimento) || user?.birthDate || "",
 
                 isCompany: consumidor?.type == USER_TYPE.PJ ? true : false,
-                cnpj: consumidor?.type == USER_TYPE.PJ ? instalacao?.cnpj : "",
-                companyName: consumidor?.type == USER_TYPE.PJ ? checkForCompanyName(instalacao?.razao_social, instalacao?.nome) : "",
+                cnpj: user?.cnpj || instalacao?.cnpj || "",
+                companyName: user?.companyName || instalacao?.razao_social || "",
 
-                nationality: consumidor?.nacionalidade || storeUser?.user?.nationality || "",
-                profession: consumidor?.profissao || storeUser?.user?.profession || "",
-                maritalStatus: consumidor?.estado_civil || storeUser?.user?.maritalStatus || "",
+                nationality: consumidor?.nacionalidade || user?.nationality || "",
+                profession: consumidor?.profissao || user?.profession || "",
+                maritalStatus: consumidor?.estado_civil || user?.maritalStatus || "",
 
-                discount: descontosCarbono?.desconto || storeUser?.user?.discount || "",
-                clientId: instalacao?.clientes_id || storeUser?.user?.clientId || "",
+                discount: descontosCarbono?.desconto || user?.discount || "",
+                clientId: instalacao?.clientes_id || user?.clientId || "",
 
-                distributor: distribuidora?.nome || storeUser?.user?.distributor || "",
+                distributor: distribuidora?.nome || user?.distributor || "",
                 distributorPhotoUrl: distribuidora?.foto_numero_instalacao,
 
                 tusd: descontosCarbono?.tusd,
@@ -148,6 +149,7 @@ export const getLeadData = async (uuid, storeUser, storeAddress) => {
             const updatedAddress = {
                 cityId: consumidor?.cidade_id || storeAddress?.cityId || "",
                 stateId: consumidor?.estado_id || storeAddress?.stateId || "",
+                number: instalacao?.numero || storeAddress?.number || "",
                 installationNumber: instalacao?.numero_instalacao || storeAddress?.installationNumber || ""
             }
             storeAddress.updateAddress(updatedAddress)

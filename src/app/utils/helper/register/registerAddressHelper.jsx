@@ -5,6 +5,10 @@ export const inputIncomplete = (value) => {
     if (!value) return null
     return value?.toString()?.length > 5 && value.toString()?.length < 8
 };
+
+export const shrinkHelper = (value) => {
+    return value !== ""
+}
 export const activeDistributorsForDisclaimer = (distributor) => {
     return distributor === DISTRIBUTOR.CEMIG
         || distributor === DISTRIBUTOR.CPFL_PAULISTA
@@ -21,7 +25,8 @@ export const numberInputIncomplete = (value) => {
 export const numberInputFilled = (value) => {
     if (!value) return null
     const underscoreCount = (value?.match(/_/g) || []).length;
-    return underscoreCount <= 4 && underscoreCount > 0;
+    if (underscoreCount === 5) return null
+    return underscoreCount <= 4 && underscoreCount >= 0;
 };
 export const cepInputFilled = (value) => {
     const cepRegex = /^[0-9]{5}-[0-9]{3}$/;

@@ -61,14 +61,9 @@ export const LoadingSection = styled.div`
 export const LoadingFooter = styled.div`   
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: end;
     margin: 0 100px;
     
-    .circularButton {
-        border-radius: 30px;
-        width: 70px;
-        height: 60px;
-    }
     .largerCircularButton {
         border-radius: 30px;
         width: 330px;

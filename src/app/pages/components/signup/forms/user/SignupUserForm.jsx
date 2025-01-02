@@ -16,7 +16,7 @@ import { COOKIES_FOR, REGISTER_FORM } from '@/app/pages/enums/globalEnums';
 import { formatCpf } from '@/app/utils/formatters/documentFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
-import { birthDateInputFilled, costValidation, cpfInputFilled, emailInputFilled, inputIncomplete, labelColorHelper, normalTextInputFilled, phoneInputFilled, regularTextInputFilled, rgInputFilled } from '@/app/utils/helper/register/registerUserHelper';
+import { birthDateInputFilled, costValidation, cpfInputFilled, emailInputFilled, inputIncomplete, labelColorHelper, normalTextInputFilled, phoneInputFilled, regularTextInputFilled, rgInputFilled, shrinkHelper } from '@/app/utils/helper/register/registerUserHelper';
 import { schemaValidation } from './schema';
 
 export default function SignupUserForm() {
@@ -105,7 +105,10 @@ export default function SignupUserForm() {
             success={normalTextInputFilled(formState?.name)}
             label={`Nome completo`}
             placeholder={`Nome completo`}
-            InputLabelProps={{ shrink: true, style: { color: labelColorHelper(normalTextInputFilled(formState?.name)) } }}
+            InputLabelProps={{
+              shrink: true,
+              style: { color: labelColorHelper(normalTextInputFilled(formState?.name)) }
+            }}
           />
           <FormInput
             name='email'
@@ -119,7 +122,29 @@ export default function SignupUserForm() {
             error={inputIncomplete(formState?.email)}
             label={`Email`}
             placeholder={`Email`}
-            InputLabelProps={{ shrink: formState?.email !== "", style: { color: labelColorHelper(emailInputFilled(formState?.email)) } }} />
+            InputLabelProps={{
+              shrink: shrinkHelper(formState?.email),
+              style: { color: labelColorHelper(emailInputFilled(formState?.email)) }
+            }} />
+          <InputMask mask="999.999.999-99" required value={formState?.cpf} onChange={handleInputChange}>
+            {() => (
+              <FormInput
+                name='cpf'
+                className="inputForm"
+                label="CPF"
+                variant="outlined"
+                placeholder="CPF"
+                type="text"
+                required={required}
+                inputProps={{ inputMode: 'numeric' }}
+                error={cpfInputFilled(formState?.cpf) === false}
+                success={cpfInputFilled(formState?.cpf) === true}
+                InputLabelProps={{
+                  shrink: shrinkHelper(formState?.cpf),
+                  style: { color: labelColorHelper(cpfInputFilled(formState?.cpf)) }
+                }} />
+            )}
+          </InputMask>
         </FormRow>
         <FormContent>
           <InputMask mask="(99) 99999-9999" value={formState?.phone} onChange={handleInputChange}>
@@ -135,7 +160,10 @@ export default function SignupUserForm() {
                 success={phoneInputFilled(formState?.phone)}
                 label={`Telefone`}
                 placeholder={`Telefone`}
-                InputLabelProps={{ shrink: formState?.phone !== "", style: { color: labelColorHelper(phoneInputFilled(formState?.phone)) } }} />
+                InputLabelProps={{
+                  shrink: shrinkHelper(formState?.phone),
+                  style: { color: labelColorHelper(phoneInputFilled(formState?.phone)) }
+                }} />
             )}
           </InputMask>
           {isForeigner ? (
@@ -166,26 +194,14 @@ export default function SignupUserForm() {
                   inputProps={{ inputMode: 'numeric' }}
                   error={rgInputFilled(formState?.rg) === false}
                   success={rgInputFilled(formState?.rg) === true}
-                  InputLabelProps={{ shrink: formState?.rg !== "", style: { color: labelColorHelper(rgInputFilled(formState?.rg)) } }} />
+                  InputLabelProps={{
+                    shrink: shrinkHelper(formState?.rg),
+                    style: { color: labelColorHelper(rgInputFilled(formState?.rg)) }
+                  }} />
               )}
             </InputMask>
           )}
-          <InputMask mask="999.999.999-99" required value={formState?.cpf} onChange={handleInputChange}>
-            {() => (
-              <FormInput
-                name='cpf'
-                className="inputForm"
-                label="CPF"
-                variant="outlined"
-                placeholder="CPF"
-                type="text"
-                required={required}
-                inputProps={{ inputMode: 'numeric' }}
-                error={cpfInputFilled(formState?.cpf) === false}
-                success={cpfInputFilled(formState?.cpf) === true}
-                InputLabelProps={{ shrink: formState?.cpf !== "", style: { color: labelColorHelper(cpfInputFilled(formState?.cpf)) } }} />
-            )}
-          </InputMask>
+
           <InputMask mask="99/99/9999" required value={formState?.birthDate} onChange={handleInputChange}>
             {() => (
               <FormInput
@@ -199,7 +215,10 @@ export default function SignupUserForm() {
                 inputProps={{ inputMode: 'numeric' }}
                 error={inputIncomplete(formState?.birthDate)}
                 success={birthDateInputFilled(formState?.birthDate)}
-                InputLabelProps={{ shrink: formState?.birthDate !== "", style: { color: labelColorHelper(birthDateInputFilled(formState?.birthDate)) } }} />
+                InputLabelProps={{
+                  shrink: shrinkHelper(formState?.birthDate),
+                  style: { color: labelColorHelper(birthDateInputFilled(formState?.birthDate)) }
+                }} />
             )}
           </InputMask>
 
@@ -215,7 +234,10 @@ export default function SignupUserForm() {
             placeholder="Estado Civil"
             value={formState?.maritalStatus || ""}
             className="inputForm"
-            InputLabelProps={{ shrink: formState?.maritalStatus !== "", style: { color: labelColorHelper(regularTextInputFilled(formState?.maritalStatus)) } }}>
+            InputLabelProps={{
+              shrink: shrinkHelper(formState?.maritalStatus),
+              style: { color: labelColorHelper(regularTextInputFilled(formState?.maritalStatus)) }
+            }}>
             {maritalStatusOptions?.map((maritalStatus) => (
               <MenuItem key={maritalStatus.label} value={maritalStatus.value} >
                 {maritalStatus.label}
@@ -235,7 +257,10 @@ export default function SignupUserForm() {
             placeholder="Nacionalidade"
             value={formState?.nationality || ""}
             required={required}
-            InputLabelProps={{ shrink: formState?.nationality !== "", style: { color: labelColorHelper(regularTextInputFilled(formState?.nationality)) } }}>
+            InputLabelProps={{
+              shrink: shrinkHelper(formState?.nationality),
+              style: { color: labelColorHelper(regularTextInputFilled(formState?.nationality)) }
+            }}>
             {nationalityOptions?.map((nationality) => (
               <MenuItem key={nationality.label} value={nationality.value}>
                 {nationality.label}
@@ -254,7 +279,10 @@ export default function SignupUserForm() {
             placeholder="Profissão"
             value={formState?.profession || ""}
             required={required}
-            InputLabelProps={{ shrink: formState?.profession !== "", style: { color: labelColorHelper(regularTextInputFilled(formState?.profession)) } }}>
+            InputLabelProps={{
+              shrink: shrinkHelper(formState?.profession),
+              style: { color: labelColorHelper(regularTextInputFilled(formState?.profession)) }
+            }}>
             {professionOptions?.map((profession) => (
               <MenuItem key={profession.label} value={profession.value}>
                 {profession.label}

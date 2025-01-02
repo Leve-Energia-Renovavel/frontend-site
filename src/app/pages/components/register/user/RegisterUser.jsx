@@ -2,12 +2,14 @@
 "use client"
 
 import { useStoreAddress, useStoreUser } from '@/app/hooks/stores/useStore';
+import { COOKIES_FOR } from '@/app/pages/enums/globalEnums';
 import { getLeadData } from '@/app/service/lead-service/LeadService';
+import Cookies from 'js-cookie';
 import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import LoadingSignupUserForm from '../../signup/forms/user/loading/LoadingSignupUserForm';
 import SignupMainForm from '../../signup/forms/SignupMainForm';
+import LoadingSignupUserForm from '../../signup/forms/user/loading/LoadingSignupUserForm';
 
 const SignupUserForm = dynamic(() => import('../../signup/forms/user/SignupUserForm'), { ssr: false });
 

@@ -29,7 +29,7 @@ const useGetCNPJ = (setFormState) => {
 
                 setFormState((prevState) => ({
                     ...prevState,
-                    socialReason: response?.data?.razao_social,
+                    companyName: response?.data?.razao_social,
                 }));
             }
 

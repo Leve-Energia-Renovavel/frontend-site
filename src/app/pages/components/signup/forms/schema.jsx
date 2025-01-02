@@ -93,12 +93,5 @@ export const userSchema = yup.object({
     numero_instalacao: yup.string()
 });
 
-export const companySchema = userSchema.concat(
-    yup.object({
-        razao_social: yup.string().required(),
-        cnpj: yup.string().required()
-    })
-);
-
 
 

@@ -133,10 +133,13 @@ export const FormInput = styled(FormInputBase)`
 
 export const RepresentativeTitleContainer = styled.div`
 
+    margin: 27px 0;
+
     .representativeTitle {
         font-family: "Graphie";
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 400;
+        line-height: 120%;
         color: ${background.green};
     }
 `

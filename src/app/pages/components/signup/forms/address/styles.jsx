@@ -93,8 +93,8 @@ export const FormRow = styled.div`
 `
 export const FormContent = styled.div`
     display: grid;
-    /* grid-template-columns: repeat(3, 1fr);  */
-    grid-template-columns: 1.35fr 1fr 1fr;
+    grid-template-columns: 1.5fr .8fr 1.5fr;
+    
 
     grid-column: span 3; 
 
@@ -107,21 +107,6 @@ export const FormContent = styled.div`
         grid-template-columns: repeat(1,1fr);
     }
 `
-export const FormLastRow = styled.div`
-    display: grid;
-    grid-template-columns: 1.35fr 1fr 1fr;
-    grid-column: span 3; 
-
-    gap: 10px;
-
-    margin-top: 7px;
-
-    @media (max-width: 600px) {
-        grid-template-rows: repeat(1, 1fr);
-        grid-template-columns: repeat(1,1fr);
-    }
-`
-
 const FormInputBase = styled(TextField, {
     shouldForwardProp: (prop) => prop !== "success" && prop !== "error",
 })``;
