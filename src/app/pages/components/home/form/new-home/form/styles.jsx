@@ -2,6 +2,7 @@ import { fadeInUp, fadeInUpAnimation, slideAndDisappear } from "@/app/pages/glob
 import { background, containerWidth, notification } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/material";
+import { TextField } from "@mui/material";
 
 export const HomeContainer = styled.div`
     display: flex;
@@ -20,40 +21,6 @@ export const HomeContainer = styled.div`
     }
 `
 
-export const FormTitleContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 6px;
-  
-  animation: ${fadeInUp} 0.5s ease-out; 
-  
-  @media (max-width: 600px) {
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  h2 {
-      font-family: "Graphie";
-      font-weight: 600;
-      color: ${background.yellow};
-      white-space: nowrap;
-      font-size: 27px;
-      text-align: left;
-      
-      @media (max-width: 600px) {
-        font-size: 27px;
-      }
-
-  }
-
-  .economyIcon {
-    @media (max-width: 600px) {
-      width: 32px;
-      height: 32px;
-    }
-  }
-`
 export const HomeContentContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -117,6 +84,49 @@ export const HomeContent = styled.div`
   flex-direction: column; 
   justify-content: end; 
   height: 100%; 
+`
+
+export const FormTitleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
+  animation: ${fadeInUp} 0.5s ease-out; 
+
+  padding: 0px;
+
+  margin: 1rem 0;
+
+  gap: 1rem;
+  
+  .formTitle {
+    font-family: "Graphie";
+    font-size: 24px;
+    line-height: 120%;
+    font-weight: 500;
+    color: ${background.yellow};
+    max-width: 395px;
+
+    text-align: center;
+  } 
+  
+  @media (max-width: 600px) {
+    padding: 0 0 1rem 0;
+
+    .formTitle {
+      font-size: 20px;
+      white-space: normal;
+    }
+
+  }
+  @media (max-width: 400px) {
+    .formTitle {
+      font-size: 18px;
+      white-space: normal;
+    }
+  }
+
 `
 
 export const HomeMainTitleContainer = styled.div`
@@ -323,86 +333,17 @@ export const HomeMainForm = styled.form`
     display: flex;
     flex-direction: column;
     background-color: ${background.green};
+
+    gap: 8px;
     
     border-radius: 0px 20px 20px 0px;
     
-    padding: 1.5rem 53px;
+    padding: 1rem 53px;
     
     height: auto;
     max-height: 756px;
     
     overflow: hidden;
-
-    .homeFormInput, .homeFormInputCEP {
-      background-color: ${background.white};
-      border-radius: 5px;
-      height: 42px;
-      margin-bottom: 8px;
-
-      & .MuiInputLabel-shrink {
-        /* Styles for the focused label */
-        /* line-height: 2.4375em;  */
-        font-size: 17px;
-        line-height: 17px;   //label lower
-        margin-left: 65px;   //label centralized
-        margin-top: 10px;
-      }
-
-      .MuiOutlinedInput-input {
-        // styles for the user input text
-        font-family: "Graphie";
-        font-size: 22px;
-        height: 2px;
-        padding: 24px 14px;
-        font-weight: 700;
-        color: ${background.orange};
-        }
-
-        & label {
-          font-family: "Graphie";
-          font-weight: 500;
-          font-size: 20px;
-          color:  ${background.green};
-
-          margin-top: -5px;
-
-        }
-        
-        & .MuiFormLabel-root-MuiInputLabel-root {
-          line-height: 2.4375em;
-        }
-        
-        & .MuiOutlinedInput-root {
-          & fieldset {
-            height: 42px;
-            border-radius: 10px;
-            border-color: ${background.white};
-          }
-        } 
-
-        & .MuiInputLabel-root {
-          right: 0;
-          text-align: center;
-        }
-        
-        input {
-          all: inset;
-        }
-
-        input:-webkit-autofill,
-        input:-webkit-autofill:hover,
-        input:-webkit-autofill:focus,
-        input:-webkit-autofill:active {
-          transition: all 1000s ease-in-out 0s;
-        }
-
-    }
-
-    .homeFormInputCEP {
-      width: 100%;
-      max-width: 305px;
-      margin: 0 auto;
-    }
 
     .privacyPolicyDisclaimer {
       font-family: "Graphie";
@@ -446,7 +387,94 @@ export const HomeMainForm = styled.form`
     }
 `
 
+const inputHeight = "48px"
 
+const FormInputBase = styled(TextField, {
+  shouldForwardProp: (prop) => prop !== "success" && prop !== "error",
+})``;
+
+export const HomeFormInput = styled(FormInputBase)`
+  background-color: ${background.white};
+  border-radius: 5px;
+
+  && {
+        border: 3px solid transparent;
+
+        background-color: ${background.greyTranslucent}; 
+        background-color: ${props => props.success && background.greenTranslucent}; 
+        background-color: ${props => props.error && background.orangeTranslucent}; 
+
+        &:focus-within {
+          border-color: ${background.orange}; /* Applies when the input is focused */
+        }
+    }
+
+  .MuiOutlinedInput-input {
+    padding: 12px 14px;
+
+    /* User input text style */
+    font-family: "Graphie";
+    font-size: 22px;
+    font-weight: 500;
+
+    color: ${background.greyMediumHigh}; 
+    color: ${props => props.success && background.green}; 
+    color: ${props => props.error && background.orange};
+
+  }
+
+  & label {
+    width: fit-content;
+    font-family: "Graphie";
+    font-weight: 500;
+    font-size: 20px;
+    color: ${background.green};
+  }
+
+  .MuiOutlinedInput-root {
+    height: ${inputHeight};
+    max-height: ${inputHeight};
+    width: 100%;
+    box-sizing: border-box;
+
+    & fieldset, &:hover fieldset, &.Mui-focused fieldset, &.Mui-focused + label {
+      border: 2px solid ${background.white}; /* Default border color */
+    }
+
+  }
+
+  .MuiFormLabel-root {
+    font-family: "Graphie";
+    font-size: 16px;
+    font-weight: 400;
+    
+    color: ${background.greyMediumHigh}; 
+    color: ${props => props.success && background.green}; 
+    color: ${props => props.error && background.orange};
+    
+    &:focus {
+        color: ${background.greyMediumHigh}; 
+        color: ${props => props.success && background.green}; 
+        color: ${props => props.error && background.orange};
+    }
+  }
+  & .MuiInputLabel-shrink {
+    font-size: 14px;
+    line-height: 14px;
+    margin-top: 12px;
+  }
+
+  input {
+    all: unset;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: all 1000s ease-in-out 0s;
+  }
+`;
 
 export const UserTypeFormContainer = styled.div`
     display: flex;
