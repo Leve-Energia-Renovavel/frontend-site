@@ -3,6 +3,7 @@
 import { useStoreMessages } from "@/app/hooks/stores/useStoreMessages";
 import { Snackbar } from "@mui/material";
 import { SnackbarMessageAlert, SnackbarMessageNotification } from "./styles";
+import { ErrorOutline, CheckCircleOutline } from "@mui/icons-material";
 
 export default function Messages() {
 
@@ -10,6 +11,8 @@ export default function Messages() {
 
     const errors = storeMessages?.errors;
     const notifications = storeMessages?.notifications;
+
+    const autoHideDuration = 6000
 
     return (
         <>
@@ -19,14 +22,16 @@ export default function Messages() {
                         className="errorSnackBarMessage"
                         key={index}
                         open={errors.length >= 1}
-                        autoHideDuration={6000}
+                        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+
+                        autoHideDuration={autoHideDuration}
                         message={error}
-                        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
                         onClose={() => storeMessages.clearErrors([])}>
                         <SnackbarMessageAlert
                             className="errorAlert"
                             sx={{ marginBottom: `${index * 5}rem` }}
                             severity="error"
+                            icon={<ErrorOutline />}
                             variant="filled"
                             onClose={() => storeMessages.clearErrors([])}
                         >
@@ -41,14 +46,16 @@ export default function Messages() {
                         className="notificationSnackBarMessage"
                         key={index}
                         open={notifications.length >= 1}
-                        autoHideDuration={6000}
+                        autoHideDuration={autoHideDuration}
+                        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+
                         message={notification}
-                        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
                         onClose={() => storeMessages.clearNotifications([])}>
                         <SnackbarMessageNotification
                             className="notificationAlert"
                             sx={{ marginBottom: `${index * 5}rem` }}
                             severity="error"
+                            icon={<CheckCircleOutline />}
                             variant="filled"
                             onClose={() => storeMessages.clearNotifications([])}
                         >

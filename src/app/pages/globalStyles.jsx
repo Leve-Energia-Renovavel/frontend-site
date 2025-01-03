@@ -8,6 +8,19 @@ export const containerPadding = "54px"
 export const registerContainerWidth = "877px"
 export const modalBackdrop = "rgba(0, 0, 0, 0.4)"
 
+export const messages = {
+    success: {
+        title: "#005940",
+        background: "#E6EEEC",
+        border: "#005940",
+    },
+    error: {
+        title: "#FF7133",
+        background: "#FFF1EB",
+        border: "#FF7133",
+    }
+
+}
 export const notification = {
     success: "#3adb76",
     successFocus: "#22bb5b",
