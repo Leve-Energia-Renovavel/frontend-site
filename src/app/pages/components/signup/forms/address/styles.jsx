@@ -1,8 +1,10 @@
 import { fadeInRight } from "@/app/pages/globalAnimations";
-import { background, notification } from "@/app/pages/globalStyles";
+import { background, containerWidth } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
-import { Alert, Button, TextField, keyframes } from "@mui/material";
-import Divider from '@mui/material/Divider';
+import { Button, CircularProgress, TextField, keyframes } from "@mui/material";
+
+const formGap = "8px"
+const inputHeight = "48px"
 
 const fadeInUp = keyframes`
   from {
@@ -42,14 +44,12 @@ export const SignupFormContentContainer = styled.div`
     
     border-radius: 20px;
 
-    gap: 8px;
+    gap: ${formGap};
 
     width: 100%;
-    max-width: 1366px;
+    max-width: ${containerWidth};
 
-    padding: 1rem;  //change later !!!!
-
-
+    padding: 1rem; 
 
     @media (max-width: 600px) {
         border-radius: 0;
@@ -78,12 +78,10 @@ export const Form = styled.form`
 `
 export const FormRow = styled.div`
     display: grid;
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: 1fr 1.5fr .5fr; 
     grid-column: span 3; 
 
-    gap: 1rem;
-
-    margin: 10px 0;
+    gap: ${formGap};
 
     @media (max-width: 600px) {
         grid-template-rows: repeat(1, 1fr);
@@ -93,14 +91,26 @@ export const FormRow = styled.div`
 `
 export const FormContent = styled.div`
     display: grid;
-    grid-template-columns: 1.5fr .8fr 1.5fr;
-    
-
+    grid-template-columns: 2fr 1.47fr;
     grid-column: span 3; 
 
-    gap: 10px;
+    gap: ${formGap};
 
-    margin-top: 7px;
+    margin-top: ${formGap};
+
+    @media (max-width: 600px) {
+        grid-template-rows: repeat(1, 1fr);
+        grid-template-columns: repeat(1,1fr);
+    }
+`
+export const FormContentFooter = styled.div`
+    display: grid;
+    grid-template-columns: 1.5fr .5fr 1.5fr;
+    grid-column: span 3; 
+
+    gap: ${formGap};
+
+    margin-top: ${formGap};
 
     @media (max-width: 600px) {
         grid-template-rows: repeat(1, 1fr);
@@ -115,22 +125,31 @@ export const FormInput = styled(FormInputBase)`
     border-radius: 5px;
 
     animation: ${fadeInRight} 0.5s ease-out;
-    
+
     && {
         background-color: ${background.greyTranslucent}; 
         background-color: ${props => props.success && background.greenTranslucent}; 
         background-color: ${props => props.error && background.orangeTranslucent}; 
     }
 
+    .MuiOutlinedInput-root {
+        height: ${inputHeight}; 
+        max-height: ${inputHeight};
+        width: 100%;
+        box-sizing: border-box; 
+    }
+
     .MuiInputLabel-shrink {
         /* Styles for the focused label */
-        line-height: 4em; 
+        line-height: 45px; 
       }
 
     .MuiOutlinedInput-input {
+        padding: 12px 14px; /* Adjusted for proper alignment */
+
         border: 2px solid transparent;
         border-radius: 5px;  
-        
+
         // styles for the user input text
         font-family: "Graphie";
         font-size: 17px;
@@ -146,8 +165,8 @@ export const FormInput = styled(FormInputBase)`
             color: ${props => props.error && background.orange};
 
             border: 2px solid ${background.greyBorder};
-            border: 2px solid ${props => props.success && background.green};
-            border: 2px solid ${props => props.error && background.orange};
+            border-color: ${props => props.success && background.green};
+            border-color: ${props => props.error && background.orange};
 
             background-color: ${background.white}; 
             background-color: ${props => props.success && background.greenTranslucent}; 
@@ -161,7 +180,7 @@ export const FormInput = styled(FormInputBase)`
 
         .MuiFormLabel-root {
             font-family: "Graphie";
-            font-size: 12px;
+            font-size: 16px;
             font-weight: 400;
             
             color: ${background.greyMediumHigh}; 
@@ -217,24 +236,6 @@ export const FileUploadItem = styled.div`
     text-decoration: underline;
     text-transform: none;
   }
-`
-
-export const FormDivider = styled(Divider)`
-`
-
-
-export const FormFooter = styled.div`
-    display: flex;
-    flex-direction: column;
-
-    padding: 30px 100px;
-    
-    gap: 30px;
-    
-    @media (max-width: 600px) {
-        padding: 10px;
-    }
-
 `
 
 export const FormButtonContainer = styled.div`
@@ -348,41 +349,11 @@ export const InstallationNumberDisclaimer = styled.div`
 
 `
 
-
-export const SnackbarMessageAlert = styled(Alert)`
-  font-family: "Graphie";
-  font-size: 1rem;
-  background-color: ${notification.alert};
-  border-radius: 10px;
-  padding: 1rem;
-  align-items: center;
-
-  animation: ${fadeInUp} 0.5s ease-out;
-
-  @media screen and (max-width: 600px) {
-    padding: .3rem;
-    font-size: 1rem; 
-  }
-
+export const LoadingIcon = styled(CircularProgress)`
+    width: 54px !important;
+    height: 54px !important;
+    color: ${background.orange};
 `
-
-export const SnackbarMessageNotification = styled(Alert)`
-  font-family: "Graphie";
-  font-size: 1rem;
-  background-color: ${notification.success};
-  border-radius: 10px;
-  padding: 1rem;
-  align-items: center;
-
-  animation: ${fadeInUp} 0.5s ease-out;
-
-  @media screen and (max-width: 600px) {
-    padding: .3rem;
-    font-size: 1rem; 
-  }
-
-`
-
 export const FormFooterContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -398,10 +369,6 @@ export const FormFooterContainer = styled.div`
             font-size: 12px;
             font-weight: 500;
             color: ${background.orange};
-    }
-
-    .submitLoading {
-        color: ${background.orange};
     }
 
 `

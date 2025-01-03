@@ -1,6 +1,8 @@
 import { background, registerContainerWidth } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 
+const inputHeight = "50px"
+
 export const LoadingContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -16,7 +18,7 @@ export const LoadingContainer = styled.div`
     margin: 0 auto;
 
     .loadingFullField, .loadingMobileFullField {
-        height: 60px;
+        height: ${inputHeight};
         border-radius: 10px;
         margin: 0 100px;
     }
@@ -28,7 +30,7 @@ export const LoadingContainer = styled.div`
     @media (max-width: 600px) {
 
         .loadingFullField, .loadingMobileFullField {
-            height: 60px;
+            height: ${inputHeight};
             border-radius: 10px;
             margin: 0 1rem;
         }
@@ -44,12 +46,12 @@ export const LoadingSection = styled.div`
     margin: 0 100px;
 
     .loadingThirdField {
-        height: 70px;
+        height: ${inputHeight};
         width: 200px;
         border-radius: 10px;
     }
     .loadingThirdField:nth-of-type(1) {
-        height: 70px;
+        height: ${inputHeight};
         width: 240px;
         border-radius: 10px;
     }

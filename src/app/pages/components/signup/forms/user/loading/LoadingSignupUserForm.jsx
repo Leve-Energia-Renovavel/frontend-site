@@ -6,6 +6,7 @@ export default function LoadingSignupUserForm() {
         <LoadingContainer>
             <Skeleton variant="rectangular" className="loadingFullField" />
             <Skeleton variant="rectangular" className="loadingFullField" />
+            <Skeleton variant="rectangular" className="loadingFullField" />
             <Skeleton variant="rectangular" className="loadingMobileFullField" />
             <Skeleton variant="rectangular" className="loadingMobileFullField" />
             <Skeleton variant="rectangular" className="loadingMobileFullField" />
@@ -18,10 +19,6 @@ export default function LoadingSignupUserForm() {
             </LoadingSection>
             <LoadingSection>
                 <Skeleton variant="rectangular" className="loadingThirdField" />
-                <Skeleton variant="rectangular" className="loadingThirdField" />
-                <Skeleton variant="rectangular" className="loadingThirdField" />
-            </LoadingSection>
-            <LoadingSection>
                 <Skeleton variant="rectangular" className="loadingThirdField" />
                 <Skeleton variant="rectangular" className="loadingThirdField" />
             </LoadingSection>

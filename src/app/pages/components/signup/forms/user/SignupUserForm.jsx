@@ -9,14 +9,14 @@ import Cookies from 'js-cookie';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import InputMask from "react-input-mask";
-import { Form, FormContent, FormFooterContainer, FormInput, FormRow, FormSubmitButton } from './styles';
+import { Form, FormContent, FormContentLarge, FormFooterContainer, FormInput, FormRow, FormSubmitButton } from './styles';
 
 import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import { COOKIES_FOR, REGISTER_FORM } from '@/app/pages/enums/globalEnums';
 import { formatCpf } from '@/app/utils/formatters/documentFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
-import { birthDateInputFilled, costValidation, cpfInputFilled, emailInputFilled, inputIncomplete, labelColorHelper, normalTextInputFilled, phoneInputFilled, regularTextInputFilled, rgInputFilled, shrinkHelper } from '@/app/utils/helper/register/registerUserHelper';
+import { birthDateInputFilled, birthDateInputIncomplete, costValidation, cpfInputFilled, emailInputComplete, emailInputIncomplete, inputCompleted, inputIncomplete, labelColorHelper, phoneInputComplete, phoneInputIncomplete, rgInputFilled, shrinkHelper } from '@/app/utils/helper/register/registerUserHelper';
 import { schemaValidation } from './schema';
 
 export default function SignupUserForm() {
@@ -32,7 +32,6 @@ export default function SignupUserForm() {
 
   const { name, email, phone, cost, rg, cpf, nationality, maritalStatus, profession, birthDate } = store?.user || {}
 
-  const [isForeigner, setIsForeigner] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const [formState, setFormState] = useState({
@@ -55,10 +54,6 @@ export default function SignupUserForm() {
       [name]: value,
     }));
     store.updateUser({ [name]: value });
-  };
-
-  const handleNationalityChange = (value) => {
-    setIsForeigner(value === "estrangeira");
   };
 
   const handleSubmit = async (event) => {
@@ -105,15 +100,18 @@ export default function SignupUserForm() {
             type="text"
             required={required}
             value={formState?.name}
-            error={!normalTextInputFilled(formState?.name)}
-            success={normalTextInputFilled(formState?.name)}
+            error={inputIncomplete(formState?.name)}
+            success={inputCompleted(formState?.name)}
             label={`Nome completo`}
             placeholder={`Nome completo`}
             InputLabelProps={{
-              shrink: true,
-              style: { color: labelColorHelper(normalTextInputFilled(formState?.name)) }
+              shrink: shrinkHelper(formState?.name),
+              style: { color: labelColorHelper(formState?.name) }
             }}
           />
+        </FormRow>
+
+        <FormContentLarge className='signupUserFormContentLarge'>
           <FormInput
             name='email'
             onChange={handleInputChange}
@@ -122,14 +120,38 @@ export default function SignupUserForm() {
             value={formState?.email}
             type="text"
             required={required}
-            success={emailInputFilled(formState?.email)}
-            error={inputIncomplete(formState?.email)}
+            error={emailInputIncomplete(formState?.email)}
+            success={emailInputComplete(formState?.email)}
             label={`Email`}
             placeholder={`Email`}
             InputLabelProps={{
               shrink: shrinkHelper(formState?.email),
-              style: { color: labelColorHelper(emailInputFilled(formState?.email)) }
+              style: { color: labelColorHelper(formState?.email) }
             }} />
+
+          <InputMask mask="(99) 99999-9999" value={formState?.phone} onChange={handleInputChange}>
+            {() => (
+              <FormInput
+                name='phone'
+                className="inputForm"
+                variant="outlined"
+                type="text"
+                required={required}
+                inputProps={{ inputMode: 'numeric' }}
+                error={phoneInputIncomplete(formState?.phone)}
+                success={phoneInputComplete(formState?.phone)}
+                label={`Celular / Whatsapp`}
+                placeholder={`Celular / Whatsapp`}
+                InputLabelProps={{
+                  shrink: shrinkHelper(formState?.phone),
+                  style: { color: labelColorHelper(formState?.phone) }
+                }} />
+            )}
+          </InputMask>
+        </FormContentLarge>
+
+        <FormContent className='signupUserFormContent'>
+
           <InputMask mask="999.999.999-99" required value={formState?.cpf} onChange={handleInputChange}>
             {() => (
               <FormInput
@@ -149,62 +171,26 @@ export default function SignupUserForm() {
                 }} />
             )}
           </InputMask>
-        </FormRow>
-        <FormContent className='signupUserFormContent'>
-          <InputMask mask="(99) 99999-9999" value={formState?.phone} onChange={handleInputChange}>
+
+          <InputMask mask="********-*" value={formState?.rg} onChange={handleInputChange}>
             {() => (
               <FormInput
-                name='phone'
                 className="inputForm"
+                label="Documento de identidade"
                 variant="outlined"
+                placeholder="Documento de identidade"
+                name='rg'
                 type="text"
                 required={required}
                 inputProps={{ inputMode: 'numeric' }}
-                error={inputIncomplete(formState?.phone)}
-                success={phoneInputFilled(formState?.phone)}
-                label={`Telefone`}
-                placeholder={`Telefone`}
+                error={rgInputFilled(formState?.rg) === false}
+                success={rgInputFilled(formState?.rg) === true}
                 InputLabelProps={{
-                  shrink: shrinkHelper(formState?.phone),
-                  style: { color: labelColorHelper(phoneInputFilled(formState?.phone)) }
+                  shrink: shrinkHelper(formState?.rg),
+                  style: { color: labelColorHelper(rgInputFilled(formState?.rg)) }
                 }} />
             )}
           </InputMask>
-          {isForeigner ? (
-            <InputMask mask="*******-*" required onChange={handleInputChange}>
-              {() => (
-                <FormInput
-                  name='rne'
-                  className="inputForm"
-                  label="RNE"
-                  variant="outlined"
-                  placeholder="RNE"
-                  type="text"
-                  required={required}
-                />
-              )}
-            </InputMask>
-          ) : (
-            <InputMask mask="********-*" value={formState?.rg} onChange={handleInputChange}>
-              {() => (
-                <FormInput
-                  className="inputForm"
-                  label="Documento de identidade"
-                  variant="outlined"
-                  placeholder="Documento de identidade"
-                  name='rg'
-                  type="text"
-                  required={required}
-                  inputProps={{ inputMode: 'numeric' }}
-                  error={rgInputFilled(formState?.rg) === false}
-                  success={rgInputFilled(formState?.rg) === true}
-                  InputLabelProps={{
-                    shrink: shrinkHelper(formState?.rg),
-                    style: { color: labelColorHelper(rgInputFilled(formState?.rg)) }
-                  }} />
-              )}
-            </InputMask>
-          )}
 
           <InputMask mask="99/99/9999" required value={formState?.birthDate} onChange={handleInputChange}>
             {() => (
@@ -217,44 +203,22 @@ export default function SignupUserForm() {
                 type="text"
                 required={required}
                 inputProps={{ inputMode: 'numeric' }}
-                error={inputIncomplete(formState?.birthDate)}
+                error={birthDateInputIncomplete(formState?.birthDate)}
                 success={birthDateInputFilled(formState?.birthDate)}
                 InputLabelProps={{
                   shrink: shrinkHelper(formState?.birthDate),
-                  style: { color: labelColorHelper(birthDateInputFilled(formState?.birthDate)) }
+                  style: { color: labelColorHelper(formState?.birthDate) }
                 }} />
             )}
           </InputMask>
 
-          <FormInput
-            id="maritalStatus"
-            name='maritalStatus'
-            onChange={handleInputChange}
-            select
-            error={inputIncomplete(formState?.maritalStatus)}
-            success={regularTextInputFilled(formState?.maritalStatus)}
-            label="Estado Civil"
-            variant="outlined"
-            placeholder="Estado Civil"
-            value={formState?.maritalStatus || ""}
-            className="inputForm"
-            InputLabelProps={{
-              shrink: shrinkHelper(formState?.maritalStatus),
-              style: { color: labelColorHelper(regularTextInputFilled(formState?.maritalStatus)) }
-            }}>
-            {maritalStatusOptions?.map((maritalStatus) => (
-              <MenuItem key={maritalStatus.label} value={maritalStatus.value} >
-                {maritalStatus.label}
-              </MenuItem>
-            ))}
-          </FormInput>
           <FormInput
             id="nationality"
             name='nationality'
             onChange={handleInputChange}
             select
             error={inputIncomplete(formState?.nationality)}
-            success={regularTextInputFilled(formState?.nationality)}
+            success={inputCompleted(formState?.nationality)}
             label="Nacionalidade"
             className="inputForm"
             variant="outlined"
@@ -263,7 +227,7 @@ export default function SignupUserForm() {
             required={required}
             InputLabelProps={{
               shrink: shrinkHelper(formState?.nationality),
-              style: { color: labelColorHelper(regularTextInputFilled(formState?.nationality)) }
+              style: { color: labelColorHelper(inputCompleted(formState?.nationality)) }
             }}>
             {nationalityOptions?.map((nationality) => (
               <MenuItem key={nationality.label} value={nationality.value}>
@@ -271,12 +235,36 @@ export default function SignupUserForm() {
               </MenuItem>
             ))}
           </FormInput>
+
+          <FormInput
+            id="maritalStatus"
+            name='maritalStatus'
+            onChange={handleInputChange}
+            select
+            error={inputIncomplete(formState?.maritalStatus)}
+            success={inputCompleted(formState?.maritalStatus)}
+            label="Estado Civil"
+            variant="outlined"
+            placeholder="Estado Civil"
+            value={formState?.maritalStatus || ""}
+            className="inputForm"
+            InputLabelProps={{
+              shrink: shrinkHelper(formState?.maritalStatus),
+              style: { color: labelColorHelper(inputCompleted(formState?.maritalStatus)) }
+            }}>
+            {maritalStatusOptions?.map((maritalStatus) => (
+              <MenuItem key={maritalStatus.label} value={maritalStatus.value} >
+                {maritalStatus.label}
+              </MenuItem>
+            ))}
+          </FormInput>
+
           <FormInput
             name='profession'
             onChange={handleInputChange}
             id="profession"
             select
-            success={regularTextInputFilled(formState?.profession)}
+            success={inputCompleted(formState?.profession)}
             label="Profissão"
             className="inputForm"
             variant="outlined"
@@ -285,7 +273,7 @@ export default function SignupUserForm() {
             required={required}
             InputLabelProps={{
               shrink: shrinkHelper(formState?.profession),
-              style: { color: labelColorHelper(regularTextInputFilled(formState?.profession)) }
+              style: { color: labelColorHelper(inputCompleted(formState?.profession)) }
             }}>
             {professionOptions?.map((profession) => (
               <MenuItem key={profession.label} value={profession.value}>

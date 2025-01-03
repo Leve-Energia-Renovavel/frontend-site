@@ -1,27 +1,41 @@
 import { background } from "@/app/pages/globalStyles";
 
 export const inputIncomplete = (value) => {
-    return value?.toString()?.length > 5 && value.toString()?.length < 8
+    if (value?.toString()?.length === 0) return null
+    return value?.toString()?.length < 1
 };
-export const regularTextInputFilled = (value) => {
+export const inputCompleted = (value) => {
     if (!value) return null
-    return value?.toString().length > 1
+    return value?.toString().length >= 1
 };
 export const costTextInputFilled = (value) => {
     const formattedValue = parseFloat(value?.toString()?.replace(",", "."))
     return formattedValue > 200 && formattedValue <= 20000
 };
 export const normalTextInputFilled = (value) => {
+    if (!value) return null
     const textRegex = /^[a-zA-ZÀ-ú\s]+$/;
     return value?.length > 1 && textRegex.test(value);
 };
 
-export const emailInputFilled = (value) => {
+export const emailInputComplete = (value) => {
+    if (!value) return null
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(value);
 };
-export const phoneInputFilled = (value) => {
+export const emailInputIncomplete = (value) => {
+    if (!value) return null
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (value?.length >= 1 && !emailRegex.test(value)) {
+        return true
+    }
+};
+export const phoneInputComplete = (value) => {
     return !value?.includes('_') && value?.length >= 11;
+};
+export const phoneInputIncomplete = (value) => {
+    if (!value) return null
+    return value?.includes('_')
 };
 
 export const rgInputFilled = (value) => {
@@ -57,6 +71,11 @@ export const cpfInputFilled = (value) => {
     return remainder === parseInt(cpfNumbers[10]);
 };
 
+export const birthDateInputIncomplete = (value) => {
+    if (!value) return null
+    const dateRegex = /^([0-2]\d|3[01])\/(0\d|1[0-2])\/\d{4}$/;
+    if (!dateRegex.test(value) || value?.includes('_')) return true;
+};
 export const birthDateInputFilled = (value) => {
     if (!value) return null
     const dateRegex = /^([0-2]\d|3[01])\/(0\d|1[0-2])\/\d{4}$/; // DD/MM/YYYY format
@@ -106,7 +125,7 @@ export const handleChangeUserCost = (event, setFormState) => {
 };
 
 export const labelColorHelper = (value) => {
-    if (value === null) return background.greyMediumHigh
+    if (value === null || value === "") return background.greyMediumHigh
     if (value === false) return background.orange
     if (value === true) return background.green
 }

@@ -10,7 +10,7 @@ import { NewDashboardContainer as Container, NewDashboardContent as Content } fr
 import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import { getGeneralDashboardData } from '@/app/service/dashboard-service/DashboardService';
 import { menuOptions } from '@/app/utils/helper/dashboard/dashboardHelper';
-import { isTrue } from '@/app/utils/helper/generalHelper';
+import { isTrue } from '@/app/utils/helper/globalHelper';
 import { PATH_TO } from '../../enums/globalEnums';
 import DashboardMenu from './side-bar/DashboardMenu';
 import DashboardSideBar from './side-bar/DashboardSideBar';

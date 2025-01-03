@@ -13,9 +13,10 @@ import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/a
 import { formatCpf } from '@/app/utils/formatters/documentFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
+import { isNotEmpty } from '@/app/utils/helper/globalHelper';
 import { inputIncomplete } from "@/app/utils/helper/register/registerAddressHelper";
 import { cnpjInputComplete, companyInputFilled, regularTextInputFilled, shrinkHelper } from '@/app/utils/helper/register/registerCompanyHelper';
-import { birthDateInputFilled, costValidation, cpfInputFilled, emailInputFilled, labelColorHelper, normalTextInputFilled, phoneInputFilled, rgInputFilled } from '@/app/utils/helper/register/registerUserHelper';
+import { birthDateInputFilled, costValidation, cpfInputFilled, emailInputComplete, labelColorHelper, normalTextInputFilled, phoneInputComplete, rgInputFilled } from '@/app/utils/helper/register/registerUserHelper';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Cookies from 'js-cookie';
 import { useRouter, useSearchParams } from "next/navigation";
@@ -30,7 +31,6 @@ export default function SignupCompanyForm() {
     const storeMessage = useStoreMessages()
 
     const setErrors = storeMessage.setErrors
-    const setNotifications = storeMessage.setNotifications
 
     const uuid = store?.user?.uuid || Cookies.get(COOKIES_FOR.UUID) || search.get("uuid")
 
@@ -81,7 +81,7 @@ export default function SignupCompanyForm() {
         console.log("company form submitData ==>>", submitData)
 
         store.updateUser({ ...formState });
-        const response = await schemaValidation(submitData, router, setNotifications, setErrors);
+        const response = await schemaValidation(submitData, router, setErrors);
 
         setIsLoading(false)
     }
@@ -96,7 +96,7 @@ export default function SignupCompanyForm() {
     };
 
     const handleGetCNPJ = async (cnpj) => {
-        if (cnpj !== "") {
+        if (isNotEmpty(cnpj)) {
             setIsLoadingCNPJ(true)
             try {
                 await getCompanyData(cnpj)
@@ -172,13 +172,13 @@ export default function SignupCompanyForm() {
                     value={formState?.email}
                     type="text"
                     required={required}
-                    success={emailInputFilled(formState?.email)}
+                    success={emailInputComplete(formState?.email)}
                     error={inputIncomplete(formState?.email)}
                     label={`E-mail`}
                     placeholder={`E-mail`}
                     InputLabelProps={{
                         shrink: shrinkHelper(formState?.email),
-                        style: { color: labelColorHelper(emailInputFilled(formState?.email)) }
+                        style: { color: labelColorHelper(formState?.email) }
                     }} />
                 <InputMask mask="(99) 99999-9999" value={formState?.phone} onChange={handleInputChange}>
                     {() => (
@@ -190,12 +190,12 @@ export default function SignupCompanyForm() {
                             required={required}
                             inputProps={{ inputMode: 'numeric' }}
                             error={inputIncomplete(formState?.phone)}
-                            success={phoneInputFilled(formState?.phone)}
-                            label={`Telefone`}
-                            placeholder={`Telefone`}
+                            success={phoneInputComplete(formState?.phone)}
+                            label={`Celular / Whatsapp`}
+                            placeholder={`Celular / Whatsapp`}
                             InputLabelProps={{
                                 shrink: shrinkHelper(formState?.phone),
-                                style: { color: labelColorHelper(phoneInputFilled(formState?.phone)) }
+                                style: { color: labelColorHelper(formState?.phone) }
                             }} />
                     )}
                 </InputMask>

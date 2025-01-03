@@ -1,30 +1,29 @@
 import { Skeleton } from "@mui/material";
-import { LoadingContainer, LoadingFooter, LoadingSection } from "./styles";
+import { LoadingContainer, LoadingFooter, LoadingSection, LoadingSectionFirst } from "./styles";
 
 export default function LoadingSignupAddressForm() {
     return (
-        <LoadingContainer>
+        <LoadingContainer className="loadingSignupAddressFormContainer">
             <Skeleton variant="rectangular" className="loadingMobileFullField" />
             <Skeleton variant="rectangular" className="loadingMobileFullField" />
             <Skeleton variant="rectangular" className="loadingMobileFullField" />
             <Skeleton variant="rectangular" className="loadingMobileFullField" />
             <Skeleton variant="rectangular" className="loadingMobileFullField" />
-            <LoadingSection>
+            <LoadingSectionFirst className="loadingSignupAddressFormSection">
+                <Skeleton variant="rectangular" className="loadingThirdField" />
+                <Skeleton variant="rectangular" className="loadingThirdField" />
+            </LoadingSectionFirst>
+            <LoadingSection className="loadingSignupAddressFormSection">
                 <Skeleton variant="rectangular" className="loadingThirdField" />
                 <Skeleton variant="rectangular" className="loadingThirdField" />
                 <Skeleton variant="rectangular" className="loadingThirdField" />
             </LoadingSection>
-            <LoadingSection>
+            <LoadingSection className="loadingSignupAddressFormSection">
                 <Skeleton variant="rectangular" className="loadingThirdField" />
                 <Skeleton variant="rectangular" className="loadingThirdField" />
                 <Skeleton variant="rectangular" className="loadingThirdField" />
             </LoadingSection>
-            <LoadingSection>
-                <Skeleton variant="rectangular" className="loadingThirdField" />
-                <Skeleton variant="rectangular" className="loadingThirdField" />
-                <Skeleton variant="rectangular" className="loadingThirdField" />
-            </LoadingSection>
-            <LoadingFooter>
+            <LoadingFooter className="loadingSignupAddressFormFooter">
                 <Skeleton variant="rectangular" className="largerCircularButton" />
             </LoadingFooter>
         </LoadingContainer>

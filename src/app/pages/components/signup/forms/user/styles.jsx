@@ -3,6 +3,9 @@ import { background } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import { Button, TextField } from "@mui/material";
 
+const formGap = "8px"
+const inputHeight = "48px"
+
 export const Form = styled.form`
     padding: 8px 100px;
     background-color: ${background.white};
@@ -17,19 +20,33 @@ export const FormRow = styled.div`
     display: grid;
     grid-column: span 3; 
 
-    margin: 10px 0;
-
     grid-template-rows: repeat(1, 1fr);
     grid-template-columns: repeat(1,1fr);
-    grid-gap: 1rem;
+
+    grid-gap: ${formGap};
 `
-export const FormContent = styled.div`
+export const FormContentLarge = styled.div`
     display: grid;
-    grid-template-columns: 1.35fr 1fr 1fr;
+    grid-template-columns: 2.7fr 1fr;
 
     grid-column: span 3; 
 
-    gap: 10px;
+    gap: ${formGap};
+
+    margin-top: 7px;
+
+    @media (max-width: 600px) {
+        grid-template-rows: repeat(1, 1fr);
+        grid-template-columns: repeat(1,1fr);
+    }
+`
+export const FormContent = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    grid-column: span 2; 
+
+    gap: ${formGap};
 
     margin-top: 7px;
 
@@ -43,7 +60,7 @@ export const FormLastRow = styled.div`
     grid-template-columns: 1.35fr 1fr 1fr;
     grid-column: span 3; 
 
-    gap: 10px;
+    gap: ${formGap};
 
     margin-top: 7px;
 
@@ -67,16 +84,24 @@ export const FormInput = styled(FormInputBase)`
         background-color: ${props => props.success && background.greenTranslucent}; 
         background-color: ${props => props.error && background.orangeTranslucent}; 
     }
+    .MuiOutlinedInput-root {
+        height: ${inputHeight}; 
+        max-height: ${inputHeight};
+        width: 100%;
+        box-sizing: border-box; 
+    }
 
     .MuiInputLabel-shrink {
         /* Styles for the focused label */
-        line-height: 4em; 
+        line-height: 45px; 
       }
 
     .MuiOutlinedInput-input {
+        padding: 12px 14px; /* Adjusted for proper alignment */
+
         border: 2px solid transparent;
         border-radius: 5px;  
-        
+
         // styles for the user input text
         font-family: "Graphie";
         font-size: 17px;
@@ -91,9 +116,9 @@ export const FormInput = styled(FormInputBase)`
             color: ${props => props.success && background.green}; 
             color: ${props => props.error && background.orange};
 
-            border: 2px solid ${background.greyBorder};
-            border: 2px solid ${props => props.success && background.green};
-            border: 2px solid ${props => props.error && background.orange};
+            border: 2px solid ${background.greyBorder}; 
+            border-color: ${props => props.success && background.green};
+            border-color: ${props => props.error && background.orange};
 
             background-color: ${background.white}; 
             background-color: ${props => props.success && background.greenTranslucent}; 
@@ -107,7 +132,7 @@ export const FormInput = styled(FormInputBase)`
 
         .MuiFormLabel-root {
             font-family: "Graphie";
-            font-size: 12px;
+            font-size: 16px;
             font-weight: 400;
             
             color: ${background.greyMediumHigh}; 

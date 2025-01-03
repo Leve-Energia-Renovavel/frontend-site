@@ -3,6 +3,8 @@ import { background } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import { Button, TextField } from "@mui/material";
 
+const formGap = "8px"
+
 export const Form = styled.form`
     padding: 8px 100px;
     background-color: ${background.white};
@@ -20,9 +22,7 @@ export const FormContent = styled.div`
 
     grid-column: span 3; 
 
-    gap: 10px;
-
-    margin-top: 7px;
+    gap: ${formGap};
 
     @media (max-width: 600px) {
         grid-template-rows: repeat(1, 1fr);
@@ -34,11 +34,9 @@ export const FormRow = styled.div`
     display: grid;
     grid-column: span 3; 
 
-    margin: 10px 0;
-
     grid-template-rows: repeat(1, 1fr);
     grid-template-columns: repeat(1,1fr);
-    grid-gap: 1rem;
+    grid-gap: ${formGap};
 `
 
 const FormInputBase = styled(TextField, {
@@ -54,6 +52,11 @@ export const FormInput = styled(FormInputBase)`
         background-color: ${background.greyTranslucent}; 
         background-color: ${props => props.success && background.greenTranslucent}; 
         background-color: ${props => props.error && background.orangeTranslucent}; 
+    }
+
+    .MuiOutlinedInput-root {
+        height: 48px; 
+        width: 100%;
     }
 
     .MuiInputLabel-shrink {
@@ -133,12 +136,12 @@ export const FormInput = styled(FormInputBase)`
 
 export const RepresentativeTitleContainer = styled.div`
 
-    margin: 27px 0;
+    margin: 26px 0;
 
     .representativeTitle {
         font-family: "Graphie";
         font-size: 14px;
-        font-weight: 400;
+        font-weight: 600;
         line-height: 120%;
         color: ${background.green};
     }

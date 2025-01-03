@@ -13,8 +13,6 @@ export const LoadingContainer = styled.div`
     gap: 12px;
     padding-bottom: 2rem;
 
-    margin: 0 auto;
-
      .loadingMobileFullField {
         height: 60px;
         border-radius: 10px;
@@ -38,14 +36,29 @@ export const LoadingContainer = styled.div`
         }
     }
 `
+export const LoadingSectionFirst = styled.div`   
+    display: flex;
+    gap: 1rem;
+    margin: 0 100px;
+
+    .loadingThirdField {
+        height: 50px;
+        width: 330px;
+        border-radius: 10px;
+    }
+
+    @media (max-width: 600px) {
+        display: none;
+    }
+`
 export const LoadingSection = styled.div`   
     display: flex;
     gap: 1rem;
     margin: 0 100px;
 
     .loadingThirdField {
-        height: 70px;
-        width: 200px;
+        height: 50px;
+        width: 250px;
         border-radius: 10px;
     }
     .loadingThirdField:nth-of-type() {

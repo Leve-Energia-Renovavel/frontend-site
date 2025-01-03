@@ -1,7 +1,7 @@
 "use client"
 
 import { useStoreUser } from '@/app/hooks/stores/useStore'
-import { isTrue } from '@/app/utils/helper/generalHelper'
+import { isTrue } from '@/app/utils/helper/globalHelper'
 import { useEffect, useState } from 'react'
 import SharedAccessModal from '../../../modals/shared-access-modal/SharedAccessModal'
 import WelcomeAndShareAccessModal from '../../../modals/welcome-modal/WelcomeAndShareAccessModal'
