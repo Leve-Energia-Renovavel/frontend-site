@@ -21,12 +21,10 @@ export default function LoadingSignupAddressForm() {
             </LoadingSection>
             <LoadingSection>
                 <Skeleton variant="rectangular" className="loadingThirdField" />
-            </LoadingSection>
-            <LoadingSection>
+                <Skeleton variant="rectangular" className="loadingThirdField" />
                 <Skeleton variant="rectangular" className="loadingThirdField" />
             </LoadingSection>
             <LoadingFooter>
-                <Skeleton variant="rectangular" className="circularButton" />
                 <Skeleton variant="rectangular" className="largerCircularButton" />
             </LoadingFooter>
         </LoadingContainer>

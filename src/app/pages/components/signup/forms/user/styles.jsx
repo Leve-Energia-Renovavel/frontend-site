@@ -80,7 +80,7 @@ export const FormInput = styled(FormInputBase)`
         // styles for the user input text
         font-family: "Graphie";
         font-size: 17px;
-        font-weight: 400;
+        font-weight: 500;
 
         color: ${background.greyMediumHigh}; 
         color: ${props => props.success && background.green}; 
