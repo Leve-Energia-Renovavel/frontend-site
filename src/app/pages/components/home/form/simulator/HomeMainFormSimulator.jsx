@@ -13,7 +13,8 @@ export default function HomeMainFormSimulator({ simulationCost, handleSimulation
             <h6 className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === USER_COST.MAX ? "+" : ""}</span></h6>
             <FormSlider
                 className='formSlider'
-                onChange={(event) => handleSimulationCost(event.target.value)}
+                name='cost'
+                onChange={handleSimulationCost}
                 value={simulationCost}
                 step={10}
                 defaultValue={USER_COST.MIN}

@@ -126,9 +126,6 @@ export default function SignupAddressForm() {
     } else {
       setErrors(["Preencha o campo de CEP corretamente antes da busca"])
     }
-
-    console.log("formState ===>>", formState)
-    console.log("storeAddress ===>>", storeAddress?.address)
   }
 
   const handleChangeState = (value) => {

@@ -13,7 +13,7 @@ export default function NewHomeBoxes() {
     const storeHome = useStoreHome()
 
     const handleSelectUserTypeAndScroll = (usertype) => {
-        storeHome.setSelectedUserType(usertype)
+        storeHome.changeUserType(usertype)
         handleScrollToId(HOME_FORM_ID)
     }
     return (
@@ -24,10 +24,10 @@ export default function NewHomeBoxes() {
 
                 <Content className='leveHomeBoxesContent'>
                     <UserTypeContainer className='leveHomeBoxesUserTypeContainer'>
-                        <HomeBoxHome className={"leveHomeBoxHome"} bannerImage={homeBannerImage} onClick={() => handleSelectUserTypeAndScroll(USER_TYPE.RESIDENCIA)}>
+                        <HomeBoxHome className={"leveHomeBoxHome"} bannerImage={homeBannerImage} onClick={() => handleSelectUserTypeAndScroll(USER_TYPE.PF)}>
                             <p className='leveHomeBoxForYourHome'>Para sua casa</p>
                         </HomeBoxHome>
-                        <HomeBoxCompany className={"leveHomeBoxCompany"} bannerImage={companyBannerImage} onClick={() => handleSelectUserTypeAndScroll(USER_TYPE.EMPRESA)}>
+                        <HomeBoxCompany className={"leveHomeBoxCompany"} bannerImage={companyBannerImage} onClick={() => handleSelectUserTypeAndScroll(USER_TYPE.PJ)}>
                             <p className='leveHomeBoxForYourCompany'>Para sua empresa</p>
                         </HomeBoxCompany>
                     </UserTypeContainer>

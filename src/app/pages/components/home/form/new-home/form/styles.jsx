@@ -405,7 +405,10 @@ export const HomeFormInput = styled(FormInputBase)`
         background-color: ${props => props.error && background.orangeTranslucent}; 
 
         &:focus-within {
-          border-color: ${background.orange}; /* Applies when the input is focused */
+          /* Applies when the input is focused */
+          border-color: ${background.greyBorder}; 
+          border-color: ${props => props.success && background.greenSoft}; 
+          border-color: ${props => props.error && background.orange};
         }
     }
 
@@ -417,9 +420,9 @@ export const HomeFormInput = styled(FormInputBase)`
     font-size: 22px;
     font-weight: 500;
 
-    color: ${background.greyMediumHigh}; 
-    color: ${props => props.success && background.green}; 
-    color: ${props => props.error && background.orange};
+    color: ${background.greyMediumHigh} !important; 
+    color: ${props => props.success && background.green} !important; 
+    color: ${props => props.error && background.orange} !important;
 
   }
 
@@ -438,7 +441,10 @@ export const HomeFormInput = styled(FormInputBase)`
     box-sizing: border-box;
 
     & fieldset, &:hover fieldset, &.Mui-focused fieldset, &.Mui-focused + label {
-      border: 2px solid ${background.white}; /* Default border color */
+      /* Default border color */
+      border: 2px solid ${background.white}; 
+      border-color: ${props => props.success && background.greenTranslucent}; 
+      border-color: ${props => props.error && background.orangeTranslucent}; 
     }
 
   }
@@ -448,14 +454,14 @@ export const HomeFormInput = styled(FormInputBase)`
     font-size: 16px;
     font-weight: 400;
     
-    color: ${background.greyMediumHigh}; 
-    color: ${props => props.success && background.green}; 
-    color: ${props => props.error && background.orange};
+    color: ${background.greyMediumHigh} !important; 
+    color: ${props => props.success && background.green} !important; 
+    color: ${props => props.error && background.orange} !important;
     
     &:focus {
-        color: ${background.greyMediumHigh}; 
-        color: ${props => props.success && background.green}; 
-        color: ${props => props.error && background.orange};
+        color: ${background.greyMediumHigh} !important; 
+        color: ${props => props.success && background.green} !important; 
+        color: ${props => props.error && background.orange} !important;
     }
   }
   & .MuiInputLabel-shrink {

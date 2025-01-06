@@ -11,6 +11,12 @@ export const cepInputIncomplete = (value) => {
     if (value?.includes('_') || !cepRegex.test(value)) return true
 };
 
+export const cepInputComplete = (value) => {
+    if (!value) return null
+    const cepRegex = /^[0-9]{5}-[0-9]{3}$/;
+    return cepRegex.test(value);
+};
+
 export const inputIsEmpty = (value) => {
     if (!value) return null
     return value?.length < 1;
@@ -39,11 +45,7 @@ export const numberInputFilled = (value) => {
     if (underscoreCount === 5) return null
     return underscoreCount <= 4 && underscoreCount >= 0;
 };
-export const cepInputComplete = (value) => {
-    if (!value) return null
-    const cepRegex = /^[0-9]{5}-[0-9]{3}$/;
-    return cepRegex.test(value);
-};
+
 export const cityInputFilled = (value) => {
     const cityRegex = /^[a-zA-ZÀ-ú\s]+$/;
     return cityRegex.test(value);

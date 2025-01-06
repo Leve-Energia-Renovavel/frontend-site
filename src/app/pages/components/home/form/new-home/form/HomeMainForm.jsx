@@ -1,7 +1,6 @@
 "use client"
 
 import { createSignupPayload } from '@/app/service/lead-service/LeadService';
-import { clearCookiesAndStorageData } from '@/app/utils/browser/BrowserUtils';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -16,7 +15,8 @@ import { useStoreUser } from '@/app/hooks/stores/useStore';
 import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import HomeFormButton from '@/app/pages/components/utils/buttons/home/form/HomeFormButton';
 import { USER_TYPE } from '@/app/pages/enums/globalEnums';
-import { labelColorHelper, labelColorHelperForMasked } from '@/app/utils/helper/globalHelper';
+import { cepInputComplete, cepInputIncomplete, emailInputComplete, emailInputIncomplete, labelColorHelper, labelColorHelperForMasked, nameInputCompleted, nameInputIncomplete, phoneInputComplete, phoneInputIncomplete } from '@/app/utils/helper/form/formHelper';
+import { stringLengthIsZero } from '@/app/utils/helper/globalHelper';
 import { schemaValidation } from '../../../schema';
 import HomeMainFormSimulator from '../../simulator/HomeMainFormSimulator';
 
@@ -29,24 +29,26 @@ export default function HomeMainForm() {
     const storeMessage = useStoreMessages()
     const storeHome = useStoreHome()
 
+    const cupom = search.get("cupom")
+
     const texts = infoJson.home
 
     const setNotifications = storeMessage.setNotifications
     const setErrors = storeMessage.setErrors
 
-    const cupom = search.get("cupom")
     const selectedType = storeHome?.selectedUserType
-    const isCompany = selectedType === USER_TYPE.EMPRESA
+    const changeUserType = storeHome?.changeUserType
+
+    const isCompany = selectedType === USER_TYPE.PJ
 
     const [isLoading, setLoading] = useState(false)
-    const [simulationCost, setSimulationCost] = useState(200)
 
     const [formState, setFormState] = useState({
         name: '',
         email: '',
         phone: '',
         cep: '',
-        cost: simulationCost,
+        cost: 200,
         type: selectedType,
         coupon: cupom,
         ...(isCompany && {
@@ -55,18 +57,21 @@ export default function HomeMainForm() {
 
     })
 
+    const handleChangeUserType = (usertype) => {
+        changeUserType(usertype)
+        setFormState((prevState) => ({
+            ...prevState,
+            type: usertype,
+        }));
+    }
+
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormState((prevState) => ({
             ...prevState,
             [name]: value,
         }));
-    };
-
-    clearCookiesAndStorageData()
-
-    const handleSelect = (userType) => {
-        storeHome.setSelectedUserType(userType);
+        console.log("formState ===>>", formState)
     };
 
     const handleSubmit = async (event) => {
@@ -101,6 +106,8 @@ export default function HomeMainForm() {
                     label={`Nome completo`}
                     placeholder={`Nome completo`}
                     name='name'
+                    error={nameInputIncomplete(formState?.name)}
+                    success={nameInputCompleted(formState?.name)}
                     onChange={handleInputChange}
                     value={formState?.name}
                     type="text"
@@ -131,6 +138,8 @@ export default function HomeMainForm() {
                             placeholder={`Celular / Whatsapp`}
                             name='phone'
                             onChange={handleInputChange}
+                            error={phoneInputIncomplete(formState?.phone)}
+                            success={phoneInputComplete(formState?.phone)}
                             type="text"
                             disabled={isLoading}
                             required
@@ -147,6 +156,8 @@ export default function HomeMainForm() {
                     className="homeFormInput"
                     name='email'
                     onChange={handleInputChange}
+                    error={emailInputIncomplete(formState?.email)}
+                    success={emailInputComplete(formState?.email)}
                     value={formState?.email}
                     label={`E-mail ${isCompany ? "corporativo" : ""}`}
                     placeholder={`E-mail ${isCompany ? "corporativo" : ""}`}
@@ -166,6 +177,8 @@ export default function HomeMainForm() {
                             placeholder={`CEP`}
                             type="text"
                             disabled={isLoading}
+                            error={cepInputIncomplete(formState?.cep)}
+                            success={cepInputComplete(formState?.cep)}
                             required
                             InputProps={{
                                 inputProps: {
@@ -179,7 +192,8 @@ export default function HomeMainForm() {
                     className="homeFormInput"
                     name='coupon'
                     onChange={handleInputChange}
-                    value={formState?.coupon}
+                    success={!stringLengthIsZero(formState?.coupon)}
+                    value={formState?.coupon?.toUpperCase()}
                     defaultValue={cupom ? cupom : ""}
                     label={`Cupom de desconto`}
                     placeholder={`Cupom`}
@@ -193,14 +207,14 @@ export default function HomeMainForm() {
                         <Select
                             className='homeFormHouseSelect'
                             startIcon={<HomeIcon />}
-                            onClick={() => handleSelect(USER_TYPE.RESIDENCIA)}
+                            onClick={() => handleChangeUserType(USER_TYPE.PF)}
                             selected={!isCompany} >
                             {texts.house}
                         </Select>
                         <Select
                             className='homeFormCompanySelect'
                             startIcon={<StoreIcon />}
-                            onClick={() => handleSelect(USER_TYPE.EMPRESA)}
+                            onClick={() => handleChangeUserType(USER_TYPE.PJ)}
                             selected={isCompany} >
                             {texts.company}
                         </Select>
@@ -208,8 +222,8 @@ export default function HomeMainForm() {
                 </UserTypeFormContainer>
 
                 <HomeMainFormSimulator
-                    simulationCost={simulationCost}
-                    handleSimulationCost={setSimulationCost} />
+                    simulationCost={formState?.cost}
+                    handleSimulationCost={handleInputChange} />
 
                 <HomeFormButton title={"Calcular"} isLoading={isLoading} />
 
