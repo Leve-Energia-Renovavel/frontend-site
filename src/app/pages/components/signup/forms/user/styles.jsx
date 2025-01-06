@@ -140,9 +140,9 @@ export const FormInput = styled(FormInputBase)`
             color: ${props => props.error && background.orange};
             
             &:focus {
-                color: ${background.greyMediumHigh}; 
-                color: ${props => props.success && background.green}; 
-                color: ${props => props.error && background.orange};
+                color: ${background.greyMediumHigh} !important; 
+                color: ${props => props.success && background.green} !important; 
+                color: ${props => props.error && background.orange} !important;
             }
         }
 

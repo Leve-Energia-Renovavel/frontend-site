@@ -61,10 +61,12 @@ export const FormInput = styled(FormInputBase)`
 
     .MuiInputLabel-shrink {
         /* Styles for the focused label */
-        line-height: 4em; 
+        line-height: 45px; 
       }
 
     .MuiOutlinedInput-input {
+        padding: 12px 14px; /* Adjusted for proper alignment */
+
         border: 2px solid transparent;
         border-radius: 5px;  
         
@@ -78,9 +80,9 @@ export const FormInput = styled(FormInputBase)`
         color: ${props => props.error && background.orange};
         
         &:focus {
-            color: ${background.greyMediumHigh}; 
-            color: ${props => props.success && background.green}; 
-            color: ${props => props.error && background.orange};
+            color: ${background.greyMediumHigh} !important; 
+            color: ${props => props.success && background.green} !important; 
+            color: ${props => props.error && background.orange} !important;
 
             border: 2px solid ${background.greyBorder};
             border: 2px solid ${props => props.success && background.green};
