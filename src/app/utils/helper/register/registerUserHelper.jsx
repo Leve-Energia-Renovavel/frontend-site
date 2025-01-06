@@ -1,8 +1,12 @@
 import { background } from "@/app/pages/globalStyles";
 
+export const inputSelectIncomplete = (value) => {
+    if (value?.toString()?.length === 0) return null
+    return value?.toString().length < 1
+};
 export const inputIncomplete = (value) => {
     if (value?.toString()?.length === 0) return null
-    return value?.toString()?.length < 1
+    if (!value?.includes(" ")) return true
 };
 export const inputCompleted = (value) => {
     if (!value) return null
@@ -21,8 +25,11 @@ export const normalTextInputFilled = (value) => {
 export const emailInputComplete = (value) => {
     if (!value) return null
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(value);
+    if (value?.length >= 1 && emailRegex.test(value)) {
+        return true
+    }
 };
+
 export const emailInputIncomplete = (value) => {
     if (!value) return null
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -125,7 +132,7 @@ export const handleChangeUserCost = (event, setFormState) => {
 };
 
 export const labelColorHelper = (value) => {
-    if (value === null || value === "") return background.greyMediumHigh
+    if (value === null || value === "" || !value) return background.greyMediumHigh
     if (value === false) return background.orange
     if (value === true) return background.green
 }

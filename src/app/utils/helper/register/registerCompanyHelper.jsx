@@ -1,3 +1,17 @@
+export const nameInputIncomplete = (value) => {
+    if (value?.toString()?.length === 0) return null
+    if (!value?.includes(" ")) return true
+};
+
+export const inputIncomplete = (value) => {
+    if (value?.toString()?.length === 0) return null
+    return value?.toString()?.length < 1
+};
+export const inputCompleted = (value) => {
+    if (!value) return null
+    return value?.toString().length >= 1
+};
+
 export const companyInputIncomplete = (value) => {
     return value?.toString()?.length > 0 && value.toString()?.length < 8
 };

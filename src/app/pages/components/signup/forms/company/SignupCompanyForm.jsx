@@ -13,10 +13,9 @@ import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/a
 import { formatCpf } from '@/app/utils/formatters/documentFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
-import { isNotEmpty } from '@/app/utils/helper/globalHelper';
-import { inputIncomplete } from "@/app/utils/helper/register/registerAddressHelper";
-import { cnpjInputComplete, companyInputFilled, regularTextInputFilled, shrinkHelper } from '@/app/utils/helper/register/registerCompanyHelper';
-import { birthDateInputFilled, costValidation, cpfInputFilled, emailInputComplete, labelColorHelper, normalTextInputFilled, phoneInputComplete, rgInputFilled } from '@/app/utils/helper/register/registerUserHelper';
+import { isNotEmpty, isValidCNPJ } from '@/app/utils/helper/globalHelper';
+import { cnpjInputComplete, companyInputFilled, inputIncomplete, nameInputIncomplete, regularTextInputFilled, shrinkHelper } from '@/app/utils/helper/register/registerCompanyHelper';
+import { birthDateInputFilled, birthDateInputIncomplete, costValidation, cpfInputFilled, emailInputComplete, labelColorHelper, normalTextInputFilled, phoneInputComplete, rgInputFilled } from '@/app/utils/helper/register/registerUserHelper';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Cookies from 'js-cookie';
 import { useRouter, useSearchParams } from "next/navigation";
@@ -96,7 +95,7 @@ export default function SignupCompanyForm() {
     };
 
     const handleGetCNPJ = async (cnpj) => {
-        if (isNotEmpty(cnpj)) {
+        if (isValidCNPJ(cnpj)) {
             setIsLoadingCNPJ(true)
             try {
                 await getCompanyData(cnpj)
@@ -214,13 +213,13 @@ export default function SignupCompanyForm() {
                     type="text"
                     required={required}
                     value={formState?.name}
-                    error={!normalTextInputFilled(formState?.name)}
+                    error={nameInputIncomplete(formState?.name)}
                     success={normalTextInputFilled(formState?.name)}
                     label={`Nome completo`}
                     placeholder={`Nome completo`}
                     InputLabelProps={{
                         shrink: true,
-                        style: { color: labelColorHelper(normalTextInputFilled(formState?.name)) }
+                        style: { color: labelColorHelper(formState?.name) }
                     }}
                 />
                 <InputMask mask="99/99/9999" required value={formState?.birthDate} onChange={handleInputChange}>
@@ -234,9 +233,9 @@ export default function SignupCompanyForm() {
                             type="text"
                             required={required}
                             inputProps={{ inputMode: 'numeric' }}
-                            error={inputIncomplete(formState?.birthDate)}
+                            error={birthDateInputIncomplete(formState?.birthDate)}
                             success={birthDateInputFilled(formState?.birthDate)}
-                            InputLabelProps={{ shrink: formState?.birthDate !== "", style: { color: labelColorHelper(birthDateInputFilled(formState?.birthDate)) } }} />
+                            InputLabelProps={{ shrink: shrinkHelper(formState?.birthDate), style: { color: labelColorHelper(birthDateInputFilled(formState?.birthDate)) } }} />
                     )}
                 </InputMask>
                 <InputMask mask="999.999.999-99" required value={formState?.cpf} onChange={handleInputChange}>
@@ -252,7 +251,7 @@ export default function SignupCompanyForm() {
                             inputProps={{ inputMode: 'numeric' }}
                             error={cpfInputFilled(formState?.cpf) === false}
                             success={cpfInputFilled(formState?.cpf) === true}
-                            InputLabelProps={{ shrink: formState?.cpf !== "", style: { color: labelColorHelper(cpfInputFilled(formState?.cpf)) } }} />
+                            InputLabelProps={{ shrink: shrinkHelper(formState?.cpf), style: { color: labelColorHelper(cpfInputFilled(formState?.cpf)) } }} />
                     )}
                 </InputMask>
 
@@ -269,7 +268,7 @@ export default function SignupCompanyForm() {
                             inputProps={{ inputMode: 'numeric' }}
                             error={rgInputFilled(formState?.rg) === false}
                             success={rgInputFilled(formState?.rg) === true}
-                            InputLabelProps={{ shrink: formState?.rg !== "", style: { color: labelColorHelper(rgInputFilled(formState?.rg)) } }} />
+                            InputLabelProps={{ shrink: shrinkHelper(formState?.rg), style: { color: labelColorHelper(rgInputFilled(formState?.rg)) } }} />
                     )}
                 </InputMask>
 

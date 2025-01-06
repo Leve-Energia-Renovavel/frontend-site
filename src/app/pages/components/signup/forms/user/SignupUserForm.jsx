@@ -16,7 +16,7 @@ import { COOKIES_FOR, REGISTER_FORM } from '@/app/pages/enums/globalEnums';
 import { formatCpf } from '@/app/utils/formatters/documentFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
-import { birthDateInputFilled, birthDateInputIncomplete, costValidation, cpfInputFilled, emailInputComplete, emailInputIncomplete, inputCompleted, inputIncomplete, labelColorHelper, phoneInputComplete, phoneInputIncomplete, rgInputFilled, shrinkHelper } from '@/app/utils/helper/register/registerUserHelper';
+import { birthDateInputFilled, birthDateInputIncomplete, costValidation, cpfInputFilled, emailInputComplete, emailInputIncomplete, inputCompleted, inputIncomplete, inputSelectIncomplete, labelColorHelper, phoneInputComplete, phoneInputIncomplete, rgInputFilled, shrinkHelper } from '@/app/utils/helper/register/registerUserHelper';
 import { schemaValidation } from './schema';
 
 export default function SignupUserForm() {
@@ -217,7 +217,7 @@ export default function SignupUserForm() {
             name='nationality'
             onChange={handleInputChange}
             select
-            error={inputIncomplete(formState?.nationality)}
+            error={inputSelectIncomplete(formState?.nationality)}
             success={inputCompleted(formState?.nationality)}
             label="Nacionalidade"
             className="inputForm"
@@ -227,7 +227,7 @@ export default function SignupUserForm() {
             required={required}
             InputLabelProps={{
               shrink: shrinkHelper(formState?.nationality),
-              style: { color: labelColorHelper(inputCompleted(formState?.nationality)) }
+              style: { color: labelColorHelper(formState?.nationality) }
             }}>
             {nationalityOptions?.map((nationality) => (
               <MenuItem key={nationality.label} value={nationality.value}>
@@ -241,7 +241,7 @@ export default function SignupUserForm() {
             name='maritalStatus'
             onChange={handleInputChange}
             select
-            error={inputIncomplete(formState?.maritalStatus)}
+            error={inputSelectIncomplete(formState?.maritalStatus)}
             success={inputCompleted(formState?.maritalStatus)}
             label="Estado Civil"
             variant="outlined"
@@ -250,7 +250,7 @@ export default function SignupUserForm() {
             className="inputForm"
             InputLabelProps={{
               shrink: shrinkHelper(formState?.maritalStatus),
-              style: { color: labelColorHelper(inputCompleted(formState?.maritalStatus)) }
+              style: { color: labelColorHelper(formState?.maritalStatus) }
             }}>
             {maritalStatusOptions?.map((maritalStatus) => (
               <MenuItem key={maritalStatus.label} value={maritalStatus.value} >
@@ -264,6 +264,7 @@ export default function SignupUserForm() {
             onChange={handleInputChange}
             id="profession"
             select
+            error={inputSelectIncomplete(formState?.profession)}
             success={inputCompleted(formState?.profession)}
             label="Profissão"
             className="inputForm"
@@ -273,7 +274,7 @@ export default function SignupUserForm() {
             required={required}
             InputLabelProps={{
               shrink: shrinkHelper(formState?.profession),
-              style: { color: labelColorHelper(inputCompleted(formState?.profession)) }
+              style: { color: labelColorHelper(formState?.profession) }
             }}>
             {professionOptions?.map((profession) => (
               <MenuItem key={profession.label} value={profession.value}>
