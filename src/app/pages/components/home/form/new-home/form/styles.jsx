@@ -413,6 +413,7 @@ export const HomeFormInput = styled(FormInputBase)`
     }
 
   .MuiOutlinedInput-input {
+    width: 100%;
     padding: 12px 14px;
 
     /* User input text style */
@@ -421,8 +422,8 @@ export const HomeFormInput = styled(FormInputBase)`
     font-weight: 500;
 
     color: ${background.greyMediumHigh} !important; 
-    color: ${props => props.success && background.green} !important; 
     color: ${props => props.error && background.orange} !important;
+    color: ${props => props.success && background.green} !important; 
 
   }
 
@@ -431,7 +432,6 @@ export const HomeFormInput = styled(FormInputBase)`
     font-family: "Graphie";
     font-weight: 500;
     font-size: 20px;
-    color: ${background.green};
   }
 
   .MuiOutlinedInput-root {

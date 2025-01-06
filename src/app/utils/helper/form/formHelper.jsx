@@ -7,15 +7,15 @@ export const nameInputIncomplete = (value) => {
 };
 export const nameInputCompleted = (value) => {
     if (!value) return null
-    return value?.toString().length >= 1
+    if (value?.toString().length >= 1 && value?.includes(" ")) return true
 };
 
 export const phoneInputComplete = (value) => {
     return !value?.includes('_') && value?.length >= 11;
 };
 export const phoneInputIncomplete = (value) => {
-    if (!value) return null
-    return value?.includes('_')
+    if (!value || value === "(__) _____-____") return null
+    if (value?.includes('_')) return true
 };
 
 export const emailInputComplete = (value) => {
@@ -35,15 +35,19 @@ export const emailInputIncomplete = (value) => {
 };
 
 export const cepInputIncomplete = (value) => {
-    if (!value || value?.toString()?.length === 0) return null
+    if (!value || value === "_____-___") return null
     const cepRegex = /^[0-9]{5}-[0-9]{3}$/;
     if (value?.includes('_') || !cepRegex.test(value)) return true
 };
 
 export const cepInputComplete = (value) => {
-    if (!value) return null
+    if (!value || value === "_____-___") return null
     const cepRegex = /^[0-9]{5}-[0-9]{3}$/;
     return cepRegex.test(value);
+};
+export const couponInputComplete = (value) => {
+    if (!value) return null
+    if (value?.toString()?.length > 0) return true
 };
 
 export const labelColorHelperForMasked = (value) => {

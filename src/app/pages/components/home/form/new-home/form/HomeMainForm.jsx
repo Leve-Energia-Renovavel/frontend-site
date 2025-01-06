@@ -15,8 +15,7 @@ import { useStoreUser } from '@/app/hooks/stores/useStore';
 import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import HomeFormButton from '@/app/pages/components/utils/buttons/home/form/HomeFormButton';
 import { USER_TYPE } from '@/app/pages/enums/globalEnums';
-import { cepInputComplete, cepInputIncomplete, emailInputComplete, emailInputIncomplete, labelColorHelper, labelColorHelperForMasked, nameInputCompleted, nameInputIncomplete, phoneInputComplete, phoneInputIncomplete } from '@/app/utils/helper/form/formHelper';
-import { stringLengthIsZero } from '@/app/utils/helper/globalHelper';
+import { cepInputComplete, cepInputIncomplete, couponInputComplete, emailInputComplete, emailInputIncomplete, labelColorHelper, labelColorHelperForMasked, nameInputCompleted, nameInputIncomplete, phoneInputComplete, phoneInputIncomplete } from '@/app/utils/helper/form/formHelper';
 import { schemaValidation } from '../../../schema';
 import HomeMainFormSimulator from '../../simulator/HomeMainFormSimulator';
 
@@ -56,7 +55,6 @@ export default function HomeMainForm() {
         })
 
     })
-
     const handleChangeUserType = (usertype) => {
         changeUserType(usertype)
         setFormState((prevState) => ({
@@ -71,7 +69,6 @@ export default function HomeMainForm() {
             ...prevState,
             [name]: value,
         }));
-        console.log("formState ===>>", formState)
     };
 
     const handleSubmit = async (event) => {
@@ -93,29 +90,44 @@ export default function HomeMainForm() {
         setLoading(false)
     }
 
+    const required = true
+
     return (
         <HomeFormContainer className={`leveHomeMainFormContainer`}>
-            <Form id={`leadForm`} onSubmit={handleSubmit}>
+            <Form
+                id={`leadForm`}
+                // key={JSON.stringify(formState)} // Force re-render when formState changes
+                onSubmit={handleSubmit}>
 
                 <FormTitleContainer className='formTitleContainer'>
                     <h2 className='formTitle'>Calcule sua economia e o impacto positivo que você pode promover</h2>
                 </FormTitleContainer>
 
                 <HomeFormInput
+                    name='name'
+                    type="text"
                     className="homeFormInput"
                     label={`Nome completo`}
                     placeholder={`Nome completo`}
-                    name='name'
+                    required={required}
+                    disabled={isLoading}
+                    value={formState?.name}
                     error={nameInputIncomplete(formState?.name)}
                     success={nameInputCompleted(formState?.name)}
                     onChange={handleInputChange}
-                    value={formState?.name}
-                    type="text"
-                    disabled={isLoading}
-                    required
                     InputLabelProps={{ style: { color: labelColorHelper(formState?.name) } }}
 
-                />
+                    // this removes browser default autofill
+                    aria-autocomplete='none'
+                    autoComplete="off"
+                    autoCorrect="off"
+                    spellCheck="false"
+                    inputProps={{
+                        autoComplete: 'new-password',
+                        form: {
+                            autoComplete: 'off',
+                        },
+                    }} />
                 {/* {isCompany && (<HomeFormInput
                     className="homeFormInput"
                     label={`Nome da empresa`}
@@ -130,74 +142,105 @@ export default function HomeMainForm() {
                 <InputMask mask="(99) 99999-9999"
                     value={formState?.phone}
                     onChange={handleInputChange}
+
                     disabled={isLoading}>
                     {() =>
                         <HomeFormInput
+                            type="text"
+                            name='phone'
                             className="homeFormInput"
                             label={`Celular / Whatsapp`}
                             placeholder={`Celular / Whatsapp`}
-                            name='phone'
                             onChange={handleInputChange}
                             error={phoneInputIncomplete(formState?.phone)}
                             success={phoneInputComplete(formState?.phone)}
-                            type="text"
                             disabled={isLoading}
-                            required
+                            required={required}
                             InputLabelProps={{ style: { color: labelColorHelperForMasked(formState?.phone) } }}
+
+                            // this removes browser default autofill
+                            aria-autocomplete='none'
+                            autoComplete="off"
+                            autoCorrect="off"
+                            spellCheck="false"
                             InputProps={{
+                                autoComplete: 'new-password',
+                                form: {
+                                    autoComplete: 'off',
+                                },
                                 inputProps: {
                                     inputMode: 'numeric'
                                 }
-                            }}
+                            }} />}
 
-                        />}
                 </InputMask>
                 <HomeFormInput
-                    className="homeFormInput"
+                    type="text"
                     name='email'
+                    className="homeFormInput"
                     onChange={handleInputChange}
                     error={emailInputIncomplete(formState?.email)}
                     success={emailInputComplete(formState?.email)}
                     value={formState?.email}
                     label={`E-mail ${isCompany ? "corporativo" : ""}`}
                     placeholder={`E-mail ${isCompany ? "corporativo" : ""}`}
-                    type="text"
                     disabled={isLoading}
                     required
                     InputLabelProps={{ style: { color: labelColorHelper(formState?.email) } }}
 
-                />
+                    // this removes browser default autofill
+                    aria-autocomplete='none'
+                    autoComplete="off"
+                    autoCorrect="off"
+                    spellCheck="false"
+                    inputProps={{
+                        autoComplete: 'new-password',
+                        form: {
+                            autoComplete: 'off',
+                        },
+                    }} />
 
-                <InputMask mask="99999-999" disabled={isLoading} onChange={handleInputChange} value={formState?.cep}>
+                <InputMask mask="99999-999" disabled={isLoading} onChange={handleInputChange} value={formState?.cep} >
                     {() =>
                         <HomeFormInput
-                            className="homeFormInput"
+                            type="text"
                             name='cep'
                             label={`CEP`}
                             placeholder={`CEP`}
-                            type="text"
+                            className="homeFormInput"
                             disabled={isLoading}
-                            error={cepInputIncomplete(formState?.cep)}
+                            required={required}
                             success={cepInputComplete(formState?.cep)}
-                            required
+                            error={cepInputIncomplete(formState?.cep)}
+                            InputLabelProps={{ style: { color: labelColorHelperForMasked(formState?.cep) } }}
+
+                            // this removes browser default autofill
+                            aria-autocomplete='none'
+                            autoComplete="off"
+                            autoCorrect="off"
+                            spellCheck="false"
                             InputProps={{
+                                autoComplete: 'new-password',
+                                form: {
+                                    autoComplete: 'off',
+                                },
                                 inputProps: {
                                     inputMode: 'numeric'
                                 }
-                            }}
-                            InputLabelProps={{ style: { color: labelColorHelperForMasked(formState?.cep) } }} />}
+                            }} />}
                 </InputMask>
 
                 <HomeFormInput
-                    className="homeFormInput"
+                    type="text"
                     name='coupon'
+                    className="homeFormInput"
+                    placeholder={`Cupom`}
+                    label={`Cupom de desconto`}
                     onChange={handleInputChange}
-                    success={!stringLengthIsZero(formState?.coupon)}
+                    required={false}
+                    success={couponInputComplete(formState?.coupon)}
                     value={formState?.coupon?.toUpperCase()}
                     defaultValue={cupom ? cupom : ""}
-                    label={`Cupom de desconto`}
-                    placeholder={`Cupom`}
-                    type="text"
                     disabled={isLoading}
                     InputLabelProps={{ style: { color: labelColorHelper(formState?.coupon) } }} />
 
