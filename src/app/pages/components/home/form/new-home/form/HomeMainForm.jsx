@@ -66,7 +66,7 @@ export default function HomeMainForm() {
             couponRef.current.value,
         )
 
-        const response = await schemaValidation(submitData, setErrors)
+        const response = await schemaValidation(submitData)
         await requestValidation(submitData, response, setNotifications, setErrors, storeUser, router)
         setLoading(false)
     }

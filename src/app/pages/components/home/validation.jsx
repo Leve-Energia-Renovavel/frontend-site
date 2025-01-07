@@ -34,6 +34,7 @@ export const requestValidation = async (data, response, setNotifications, setErr
 
     const status = response?.status
     const message = response?.message
+    const errorMessage = response?.response?.data?.message
     const responseCode = response?.data?.code
     const uuid = response?.data?.uuid
 
@@ -82,7 +83,7 @@ export const requestValidation = async (data, response, setNotifications, setErr
         else if (responseCode === "SCJEL") {
             router.push(PATH_TO.LOW_COST)
         }
-        else if (responseCode === "ALANCASR" || message === "A leve ainda não chegou a sua região") {
+        else if (responseCode === "ALANCASR" || message === "A leve ainda não chegou a sua região" || errorMessage === "A leve ainda não chegou a sua região") {
             router.push(PATH_TO.OUT_OF_RANGE)
         }
         else if (responseCode === "CI") {
