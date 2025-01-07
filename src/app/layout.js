@@ -3,14 +3,15 @@ import "./globals.css";
 
 import Head from "next/head";
 import Header from './pages/components/header/Header';
-import Messages from "./pages/components/messages/Messages";
 
 import { Partytown } from '@builder.io/partytown/react';
+import { GoogleTagManager } from '@next/third-parties/google';
 import Script from "next/script";
 import Hotjar from "./pages/components/hotjar/Hotjar";
 
 const WhatsAppFAB = dynamic(() => import('./pages/components/fabWhatsapp/WhatsappFAB'), { ssr: false });
 const Footer = dynamic(() => import('./pages/components/footer/Footer'), { ssr: false });
+const Messages = dynamic(() => import("./pages/components/messages/Messages"), { ssr: false });
 
 export const metadata = {
   title: 'Leve Energia Renovavel',
@@ -64,11 +65,13 @@ export default function RootLayout({ children }) {
       <Head>
         <Partytown>
           <Script id="hotjar" type="text/partytown">
-            <Hotjar hotjarId={hotjarId}/>
+            <Hotjar hotjarId={hotjarId} />
+            <GoogleTagManager gtmId={gtmId} />
           </Script>
         </Partytown>
-      </ Head>
-      <body suppressHydrationWarning={true} style={{ background: "#EFEFEC" }}>
+      </Head>
+
+      <body style={{ background: "#EFEFEC" }}>
         <Header />
         {children}
         <WhatsAppFAB />
