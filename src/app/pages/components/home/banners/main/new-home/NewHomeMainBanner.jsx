@@ -33,7 +33,7 @@ export default function NewHomeMainBanner() {
           <CTAButton className='homeMainBannerButton' onClick={() => handleScrollToId(HOME_FORM_ID)}><span>Calcular meu desconto</span></CTAButton>
         </HomeMain>
 
-        <NewHomeMainBaloon>
+        <NewHomeMainBaloon className='leveHomeBannerBaloon'>
           <p>Você economizou <span className='hihglighted'>R$42,50</span> nesse mês!</p>
           <p>Sua ajuda ao meio ambiente equivale a <span className='hihglighted'>4 árvores plantadas.</span></p>
         </NewHomeMainBaloon>

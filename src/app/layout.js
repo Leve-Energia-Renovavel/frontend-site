@@ -63,15 +63,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning={true} >
       <Head>
-        <Partytown>
+        <Partytown debug={true} forward={['dataLayer.push']}>
           <Script id="hotjar" type="text/partytown">
             <Hotjar hotjarId={hotjarId} />
-            <GoogleTagManager gtmId={gtmId} />
           </Script>
         </Partytown>
+        <GoogleTagManager gtmId={gtmId} />
       </Head>
 
-      <body style={{ background: "#EFEFEC" }}>
+      <body suppressHydrationWarning={true} style={{ background: "#EFEFEC" }}>
         <Header />
         {children}
         <WhatsAppFAB />
