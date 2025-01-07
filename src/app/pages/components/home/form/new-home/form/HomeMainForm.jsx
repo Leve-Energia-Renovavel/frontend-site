@@ -94,10 +94,7 @@ export default function HomeMainForm() {
 
     return (
         <HomeFormContainer className={`leveHomeMainFormContainer`}>
-            <Form
-                id={`leadForm`}
-                // key={JSON.stringify(formState)} // Force re-render when formState changes
-                onSubmit={handleSubmit}>
+            <Form id={`leadForm`} onSubmit={handleSubmit}>
 
                 <FormTitleContainer className='formTitleContainer'>
                     <h2 className='formTitle'>Calcule sua economia e o impacto positivo que você pode promover</h2>
@@ -106,6 +103,7 @@ export default function HomeMainForm() {
                 <HomeFormInput
                     name='name'
                     type="text"
+                    variant="outlined"
                     className="homeFormInput"
                     label={`Nome completo`}
                     placeholder={`Nome completo`}
@@ -115,68 +113,33 @@ export default function HomeMainForm() {
                     error={nameInputIncomplete(formState?.name)}
                     success={nameInputCompleted(formState?.name)}
                     onChange={handleInputChange}
-                    InputLabelProps={{ style: { color: labelColorHelper(formState?.name) } }}
+                    InputLabelProps={{ style: { color: labelColorHelper(formState?.name) } }} />
 
-                    // this removes browser default autofill
-                    aria-autocomplete='none'
-                    autoComplete="off"
-                    autoCorrect="off"
-                    spellCheck="false"
-                    inputProps={{
-                        autoComplete: 'new-password',
-                        form: {
-                            autoComplete: 'off',
-                        },
-                    }} />
-                {/* {isCompany && (<HomeFormInput
-                    className="homeFormInput"
-                    label={`Nome da empresa`}
-                    placeholder={`Nome da empresa`}
-                    name='companyName'
-                    onChange={handleInputChange}
-                    value={formState?.companyName}
-                    type="text"
-                    disabled={isLoading}
-                    required
-                />)} */}
                 <InputMask mask="(99) 99999-9999"
                     value={formState?.phone}
                     onChange={handleInputChange}
-
                     disabled={isLoading}>
                     {() =>
                         <HomeFormInput
                             type="text"
                             name='phone'
+                            variant="outlined"
                             className="homeFormInput"
                             label={`Celular / Whatsapp`}
                             placeholder={`Celular / Whatsapp`}
+                            value={formState?.phone}
                             onChange={handleInputChange}
                             error={phoneInputIncomplete(formState?.phone)}
                             success={phoneInputComplete(formState?.phone)}
                             disabled={isLoading}
                             required={required}
-                            InputLabelProps={{ style: { color: labelColorHelperForMasked(formState?.phone) } }}
-
-                            // this removes browser default autofill
-                            aria-autocomplete='none'
-                            autoComplete="off"
-                            autoCorrect="off"
-                            spellCheck="false"
-                            InputProps={{
-                                autoComplete: 'new-password',
-                                form: {
-                                    autoComplete: 'off',
-                                },
-                                inputProps: {
-                                    inputMode: 'numeric'
-                                }
-                            }} />}
+                            InputLabelProps={{ style: { color: labelColorHelperForMasked(formState?.phone) } }} />}
 
                 </InputMask>
                 <HomeFormInput
                     type="text"
                     name='email'
+                    variant="outlined"
                     className="homeFormInput"
                     onChange={handleInputChange}
                     error={emailInputIncomplete(formState?.email)}
@@ -186,19 +149,7 @@ export default function HomeMainForm() {
                     placeholder={`E-mail ${isCompany ? "corporativo" : ""}`}
                     disabled={isLoading}
                     required
-                    InputLabelProps={{ style: { color: labelColorHelper(formState?.email) } }}
-
-                    // this removes browser default autofill
-                    aria-autocomplete='none'
-                    autoComplete="off"
-                    autoCorrect="off"
-                    spellCheck="false"
-                    inputProps={{
-                        autoComplete: 'new-password',
-                        form: {
-                            autoComplete: 'off',
-                        },
-                    }} />
+                    InputLabelProps={{ style: { color: labelColorHelper(formState?.email) } }} />
 
                 <InputMask mask="99999-999" disabled={isLoading} onChange={handleInputChange} value={formState?.cep} >
                     {() =>
@@ -207,27 +158,13 @@ export default function HomeMainForm() {
                             name='cep'
                             label={`CEP`}
                             placeholder={`CEP`}
+                            value={formState?.cep}
                             className="homeFormInput"
                             disabled={isLoading}
                             required={required}
                             success={cepInputComplete(formState?.cep)}
                             error={cepInputIncomplete(formState?.cep)}
-                            InputLabelProps={{ style: { color: labelColorHelperForMasked(formState?.cep) } }}
-
-                            // this removes browser default autofill
-                            aria-autocomplete='none'
-                            autoComplete="off"
-                            autoCorrect="off"
-                            spellCheck="false"
-                            InputProps={{
-                                autoComplete: 'new-password',
-                                form: {
-                                    autoComplete: 'off',
-                                },
-                                inputProps: {
-                                    inputMode: 'numeric'
-                                }
-                            }} />}
+                            InputLabelProps={{ style: { color: labelColorHelperForMasked(formState?.cep) } }} />}
                 </InputMask>
 
                 <HomeFormInput

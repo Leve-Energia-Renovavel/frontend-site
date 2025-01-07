@@ -60,7 +60,7 @@ export const startSignUp = async (data) => {
     } catch (error) {
         if (error.response) {
             console.log("Error message from server:", error.response.data);
-            response = error.response;
+            response = error.response.data;
         } else if (error.request) {
             console.log("No response received from server.");
             response = error.request;

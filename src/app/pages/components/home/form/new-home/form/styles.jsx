@@ -442,7 +442,7 @@ export const HomeFormInput = styled(FormInputBase)`
 
     & fieldset, &:hover fieldset, &.Mui-focused fieldset, &.Mui-focused + label {
       /* Default border color */
-      border: 2px solid ${background.white}; 
+      border: 2px solid ${background.greyTranslucent}; 
       border-color: ${props => props.success && background.greenTranslucent}; 
       border-color: ${props => props.error && background.orangeTranslucent}; 
     }
@@ -474,11 +474,18 @@ export const HomeFormInput = styled(FormInputBase)`
     all: unset;
   }
 
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill:active {
-    transition: all 1000s ease-in-out 0s;
+  & input:-webkit-autofill {
+    -webkit-text-fill-color: ${props =>
+    props.success ? background.green :
+      props.error ? background.orange :
+        background.greyMediumHigh} !important;
+
+    box-shadow: 0 0 0px 1000px ${props =>
+    props.success ? background.greenTranslucent :
+      props.error ? background.orangeTranslucent :
+        background.greyTranslucent} inset !important;
+
+    transition: background-color 5000s ease-in-out 0s;
   }
 `;
 

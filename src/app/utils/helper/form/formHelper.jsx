@@ -60,3 +60,19 @@ export const labelColorHelper = (value) => {
     if (value === false) return background.orange
     if (value === true) return background.green
 }
+
+export const removeAutoFill = {
+    'aria-autocomplete': 'none',
+    autoComplete: 'off',
+    autoCorrect: 'off',
+    spellCheck: 'false',
+    InputProps: {
+        autoComplete: 'new-password',
+        form: {
+            autoComplete: 'off',
+        },
+        inputProps: {
+            inputMode: 'numeric',
+        },
+    },
+};
