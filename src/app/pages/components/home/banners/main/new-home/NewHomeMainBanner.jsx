@@ -38,7 +38,9 @@ export default function NewHomeMainBanner() {
           <p>Sua ajuda ao meio ambiente equivale a <span className='hihglighted'>4 árvores plantadas.</span></p>
         </NewHomeMainBaloon>
 
-        <BannerImageContainer className='leveHomeBannerImageContainer' image={bannerImage} />
+        <BannerImageContainer className='leveHomeBannerImageContainer'>
+          <Image src={bannerImage} alt='leveHomeBanner' className='leveHomeBannerImage' priority={true} />
+        </ BannerImageContainer>
       </Container>
 
       {/* Mobile content here! */}

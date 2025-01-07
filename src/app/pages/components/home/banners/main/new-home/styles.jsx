@@ -138,18 +138,16 @@ export const NewHomeMainBaloon = styled.div`
     }
 `
 export const NewHomeBannerImageContainer = styled.div`
-    background-image: url(${props => props.image.src});
-    background-repeat: no-repeat;
-    background-size: 100%; 
-    background-position: 90% 10%;
+    border-radius: 15px;
 
-    width: 100%;
-    max-width: 668px;
+    .leveHomeBannerImage {
+        width: 100%;
+        max-width: 668px;
+        
+        min-height: 360px;
+        height: 453px;
+    }
     
-    min-height: 360px;
-    height: 453px;
-    
-    border-radius: 15px 15px 15px 15px;
 `
 
 export const CTAButton = styled(Button)`
