@@ -15,7 +15,7 @@ export const NewHomeMainBannerContainer = styled.section`
 
     padding: 75px 0px;
 
-    gap: 43px;
+    gap: 1rem;
 
     height: 100%;
     max-height: 567px;
@@ -116,8 +116,8 @@ export const NewHomeMainBaloon = styled.div`
 
     padding: 14px 19px;
     
-    right: 25%; 
-    top: 48%;   
+    right: 20%; 
+    top: 42%;   
 
     min-width: 300px;
     width: 100%;
