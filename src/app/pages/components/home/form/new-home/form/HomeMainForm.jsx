@@ -1,7 +1,6 @@
 "use client"
 
 import { createSignupPayload } from '@/app/service/lead-service/LeadService';
-import { clearCookiesAndStorageData } from '@/app/utils/browser/BrowserUtils';
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
 import { TextField } from "@mui/material";
@@ -21,6 +20,8 @@ import { schemaValidation } from '../../../schema';
 import HomeMainFormSimulator from '../../simulator/HomeMainFormSimulator';
 import NewHomeMainFormHeader from './header/NewHomeMainFormHeader';
 
+const texts = infoJson.home
+
 export default function HomeMainForm() {
 
     const router = useRouter()
@@ -30,7 +31,6 @@ export default function HomeMainForm() {
     const storeMessage = useStoreMessages()
     const storeHome = useStoreHome()
 
-    const texts = infoJson.home
     const selectedUserType = storeHome.selectedUserType
     const setNotifications = storeMessage.setNotifications
     const setErrors = storeMessage.setErrors
@@ -45,8 +45,6 @@ export default function HomeMainForm() {
     const phoneRef = useRef()
     const cepRef = useRef()
     const couponRef = useRef()
-
-    clearCookiesAndStorageData()
 
     const handleSelect = (userType) => {
         storeHome.setSelectedUserType(userType);
@@ -73,7 +71,10 @@ export default function HomeMainForm() {
 
     return (
         <HomeFormContainer className={`leveHomeMainFormContainer`}>
-            <Form id={`leadForm`} onSubmit={handleSubmit}>
+            <Form acceptCharset="UTF-8"
+                method="POST"
+                id={`leadForm`}
+                onSubmit={handleSubmit}>
                 <NewHomeMainFormHeader />
 
                 <TextField

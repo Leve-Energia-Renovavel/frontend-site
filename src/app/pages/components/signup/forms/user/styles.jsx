@@ -107,14 +107,14 @@ export const FormInput = styled(FormInputBase)`
         font-size: 17px;
         font-weight: 500;
 
-        color: ${background.greyMediumHigh}; 
-        color: ${props => props.success && background.green}; 
-        color: ${props => props.error && background.orange};
+        color: ${background.greyMediumHigh} !important; 
+        color: ${props => props.success && background.green} !important; 
+        color: ${props => props.error && background.orange} !important;
         
         &:focus {
-            color: ${background.greyMediumHigh}; 
-            color: ${props => props.success && background.green}; 
-            color: ${props => props.error && background.orange};
+            color: ${background.greyMediumHigh} !important; 
+            color: ${props => props.success && background.green} !important; 
+            color: ${props => props.error && background.orange} !important;
 
             border: 2px solid ${background.greyBorder}; 
             border-color: ${props => props.success && background.green};
@@ -138,12 +138,12 @@ export const FormInput = styled(FormInputBase)`
             color: ${background.greyMediumHigh}; 
             color: ${props => props.success && background.green}; 
             color: ${props => props.error && background.orange};
-            
-            &:focus {
-                color: ${background.greyMediumHigh} !important; 
-                color: ${props => props.success && background.green} !important; 
-                color: ${props => props.error && background.orange} !important;
-            }
+        }
+        
+        .Mui-focused {
+            color: ${background.greyMediumHigh} !important; 
+            color: ${props => props.success && background.green} !important; 
+            color: ${props => props.error && background.orange} !important;
         }
 
         /* .MuiInputLabel-outlined {
@@ -187,6 +187,10 @@ export const FormFooterContainer = styled.div`
 
     .submitLoading {
         color: ${background.orange};
+    }
+
+    @media (max-width: 600px) {
+        justify-content: center;
     }
 
 `

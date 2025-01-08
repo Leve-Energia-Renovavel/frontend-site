@@ -41,17 +41,21 @@ export const phoneInputComplete = (value) => {
     return !value?.includes('_') && value?.length >= 11;
 };
 export const phoneInputIncomplete = (value) => {
-    if (!value) return null
+    if (!value || value === "(__) _____-____") return null
     return value?.includes('_')
+};
+export const phoneInputNotFilled = (value) => {
+    if (value === "(__) _____-____") return null
+    return value?.replace("_", "")?.length < 3
 };
 
 export const rgInputFilled = (value) => {
-    if (!value) return null
+    if (!value || value === "________-_") return null
     return !value?.includes('_') && value?.length > 1;
 };
 
 export const cpfInputFilled = (value) => {
-    if (!value) return null
+    if (!value || value === "___.___.___-__") return null
 
     // CPF validation logic
     const cpfNumbers = value?.replace(/\D/g, "");
@@ -79,7 +83,7 @@ export const cpfInputFilled = (value) => {
 };
 
 export const birthDateInputIncomplete = (value) => {
-    if (!value) return null
+    if (!value || value === "__/__/____") return null
     const dateRegex = /^([0-2]\d|3[01])\/(0\d|1[0-2])\/\d{4}$/;
     if (!dateRegex.test(value) || value?.includes('_')) return true;
 };
@@ -134,6 +138,15 @@ export const handleChangeUserCost = (event, setFormState) => {
 export const labelColorHelper = (value) => {
     if (value === null || value === "" || !value) return background.greyMediumHigh
     if (value === false) return background.orange
+    if (value === true) return background.green
+}
+export const labelColorHelperForMaskedInputs = (value) => {
+    if (value === "(__) _____-____" ||
+        value === "________-_" ||
+        value === "__/__/____" ||
+        value === "___.___.___-__"
+    ) return background.greyMediumHigh
+    if (value === false || value === "") return background.orange
     if (value === true) return background.green
 }
 

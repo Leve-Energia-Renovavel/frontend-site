@@ -10,6 +10,9 @@ export const isNotEmpty = (value) => {
 export const dontIncludesUnderscore = (value) => {
     return !value?.includes('_')
 }
+export const valuesAreNotEqual = (first, second) => {
+    if (first !== second) return true
+}
 
 export const isValidCNPJ = (cnpj) => {
 

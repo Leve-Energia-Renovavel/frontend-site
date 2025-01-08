@@ -1,5 +1,7 @@
 "use client"
 
+import { useStoreUser } from '@/app/hooks/stores/useStore';
+import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import { createPartnerPayload } from '@/app/service/lead-service/LeadService';
 import { capitalizeFirstLetter, partnerTokens } from '@/app/utils/helper/partners/partnerHelper';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -27,12 +29,18 @@ import {
     UserTypeFormContainer
 } from "./styles";
 
-export default function PartnerForm({ partner, setErrorMessage, setNotifications }) {
+export default function PartnerForm({ partner }) {
 
     const router = useRouter()
+    const storeUser = useStoreUser()
+    const storeMessages = useStoreMessages()
+
+    const setErrors = storeMessages.setErrors
+    const setNotifications = storeMessages.setNotifications
 
     const [isLoading, setLoading] = useState(false)
     const [simulationCost, setSimulationCost] = useState(200)
+
 
     const minSimulationCost = 200
 
@@ -72,8 +80,7 @@ export default function PartnerForm({ partner, setErrorMessage, setNotifications
         }
 
         const response = await partnerSchemaValidation(submitData)
-        await requestValidation(response, setNotifications, setErrorMessage, router)
-
+        await requestValidation(submitData, response, setNotifications, setErrors, storeUser, router)
         setLoading(false)
     }
 

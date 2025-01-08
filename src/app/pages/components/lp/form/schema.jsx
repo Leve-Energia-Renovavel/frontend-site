@@ -7,7 +7,6 @@ export const partnerSchemaValidation = async (data) => {
     const response = await partnerLeadSchema.validate(data, { abortEarly: false })
         .then(async () => {
             return await startSignUpForPartners(data)
-
         })
         .catch((error) => {
             return error

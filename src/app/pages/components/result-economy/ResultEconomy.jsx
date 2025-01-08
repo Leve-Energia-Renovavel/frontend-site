@@ -14,8 +14,6 @@ import { ArrowDownContainer, ArrowDownIcon, EconomyResultContainer, EconomyResul
 
 export default function ResultEconomy() {
 
-    clearCookiesAndStorageData()
-
     const router = useRouter()
     const storeUser = useStoreUser()
     const storeMessage = useStoreMessages()
