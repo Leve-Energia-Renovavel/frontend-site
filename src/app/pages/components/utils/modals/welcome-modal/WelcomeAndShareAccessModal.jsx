@@ -3,10 +3,14 @@
 import { modalBackdropGreen } from '@/app/pages/globalStyles';
 import { sendWhatsAppMessage } from '@/app/utils/helper/whatsapp/whatsappHelper';
 import { Backdrop, Modal } from '@mui/material';
+import { useEffect, useState } from 'react';
 import ActiveDistributorMessage from './active-distributor-message/ActiveDistributorMessage';
 import InactiveDistributorMessage from './inactive-distributor-message/InactiveDistributorMessage';
-import { FormButton, LampIcon, ModalBox, MyBeautifulButton, SimpleArrowForward, WelcomeContent } from './styles';
+import { FormButton, LampIcon, ModalBox, SwitchButton, SimpleArrowForward, WelcomeContent } from './styles';
+import { isNull } from '@/app/utils/helper/globalHelper';
 export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, customerName, distributorStatus, closeModal }) {
+
+    const [checked, setChecked] = useState(false)
 
     const isActiveDistributor = distributorStatus === true;
 
@@ -15,10 +19,14 @@ export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, cu
         } else {
             sendWhatsAppMessage(`Olá! Meu nome é ${customerName} e quero conhecer o programa de indicações e agregados da Leve Energia.`);
         }
-        closeModal();
+        closeModal
     };
 
-    if (distributorStatus === null) return null;
+    useEffect(() => {
+        setChecked(true)
+    }, []);
+
+    if (isNull(distributorStatus)) return null;
 
     return (
         <Modal
@@ -35,7 +43,7 @@ export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, cu
         >
             <ModalBox className={isMobileContent ? "welcomeAndShareAccessModalMobile" : "welcomeAndShareAccessModalDesktop"}>
                 <WelcomeContent className='welcomeAndShareAccessContent'>
-                    <MyBeautifulButton defaultChecked checkedIcon={<LampIcon />} />
+                    <SwitchButton checkedIcon={<LampIcon />} checked={checked} />
                     {isActiveDistributor ? <ActiveDistributorMessage /> : <InactiveDistributorMessage />}
                     <FormButton
                         onClick={handleButtonClick}

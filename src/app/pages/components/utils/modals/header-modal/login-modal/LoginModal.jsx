@@ -58,7 +58,7 @@ export default function LoginModal({ isOpen, closeModal, hasForgottenPassword, i
             }
         }
         await awaitSeconds(2)
-        closeModal()
+        closeModal
     }
 
     const handleKeyPress = (event) => {

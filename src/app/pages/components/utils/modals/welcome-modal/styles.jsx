@@ -113,7 +113,6 @@ export const SimpleArrowForward = styled(ArrowForwardIcon)`
     color: ${background.yellow};
 `
 
-
 export const LampIcon = styled(EmojiObjectsOutlinedIcon)`
   color: ${background.green};
   background-color: ${background.yellow};
@@ -122,7 +121,7 @@ export const LampIcon = styled(EmojiObjectsOutlinedIcon)`
   width: 32px;
   height: 32px;
 `
-export const MyBeautifulButton = styled(Switch)`
+export const SwitchButton = styled(Switch)`
   width: 75px;
   height: 38px;
   padding: 0;
@@ -136,7 +135,7 @@ export const MyBeautifulButton = styled(Switch)`
 
     &.Mui-checked {
       transform: translateX(38px);
-      color: #fff;
+      color: ${background.orange};
 
       & + .MuiSwitch-track {
         background-color: ${background.green};
@@ -170,7 +169,7 @@ export const MyBeautifulButton = styled(Switch)`
 
   & .MuiSwitch-track {
     border-radius: 30px;
-    background-color: #e9e9ea;
+    background-color: ${background.orange};
     opacity: 1;
   }
 `;
