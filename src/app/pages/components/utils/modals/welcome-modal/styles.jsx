@@ -1,8 +1,9 @@
-import { fadeInUp } from "@/app/pages/globalAnimations";
 import { background } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import EmojiObjectsOutlinedIcon from '@mui/icons-material/EmojiObjectsOutlined';
 import { Box, Button } from "@mui/material";
+import { Switch } from '@mui/material';
 
 export const ModalBox = styled(Box)`
     display: flex;
@@ -111,3 +112,65 @@ export const SimpleArrowForward = styled(ArrowForwardIcon)`
     height: 21px;
     color: ${background.yellow};
 `
+
+
+export const LampIcon = styled(EmojiObjectsOutlinedIcon)`
+  color: ${background.green};
+  background-color: ${background.yellow};
+
+  border-radius: 30px;
+  width: 32px;
+  height: 32px;
+`
+export const MyBeautifulButton = styled(Switch)`
+  width: 75px;
+  height: 38px;
+  padding: 0;
+
+  margin: 0 auto;
+
+  & .MuiSwitch-switchBase {
+    padding: 0;
+    margin: 3px;
+    transition-duration: 300ms;
+
+    &.Mui-checked {
+      transform: translateX(38px);
+      color: #fff;
+
+      & + .MuiSwitch-track {
+        background-color: ${background.green};
+        opacity: 1;
+        border: 0;
+      }
+
+      &.Mui-disabled + .MuiSwitch-track {
+        opacity: 0.5;
+      }
+    }
+
+    &.Mui-focusVisible .MuiSwitch-thumb {
+      color: #33cf4d;
+      border: 30px solid #fff;
+    }
+
+    &.Mui-disabled .MuiSwitch-thumb {
+    }
+
+    &.Mui-disabled + .MuiSwitch-track {
+      opacity: 0.7;
+    }
+  }
+
+  & .MuiSwitch-thumb {
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+  }
+
+  & .MuiSwitch-track {
+    border-radius: 30px;
+    background-color: #e9e9ea;
+    opacity: 1;
+  }
+`;

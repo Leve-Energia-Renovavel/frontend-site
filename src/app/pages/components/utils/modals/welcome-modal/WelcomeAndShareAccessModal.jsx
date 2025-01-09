@@ -5,11 +5,10 @@ import { sendWhatsAppMessage } from '@/app/utils/helper/whatsapp/whatsappHelper'
 import { Backdrop, Modal } from '@mui/material';
 import ActiveDistributorMessage from './active-distributor-message/ActiveDistributorMessage';
 import InactiveDistributorMessage from './inactive-distributor-message/InactiveDistributorMessage';
-import { FormButton, ModalBox, SimpleArrowForward, WelcomeContent } from './styles';
-
+import { FormButton, LampIcon, ModalBox, MyBeautifulButton, SimpleArrowForward, WelcomeContent } from './styles';
 export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, customerName, distributorStatus, closeModal }) {
 
-    const isActiveDistributor = distributorStatus !== true;
+    const isActiveDistributor = distributorStatus === true;
 
     const handleButtonClick = () => {
         if (isActiveDistributor) {
@@ -36,6 +35,7 @@ export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, cu
         >
             <ModalBox className={isMobileContent ? "welcomeAndShareAccessModalMobile" : "welcomeAndShareAccessModalDesktop"}>
                 <WelcomeContent className='welcomeAndShareAccessContent'>
+                    <MyBeautifulButton defaultChecked checkedIcon={<LampIcon />} />
                     {isActiveDistributor ? <ActiveDistributorMessage /> : <InactiveDistributorMessage />}
                     <FormButton
                         onClick={handleButtonClick}
