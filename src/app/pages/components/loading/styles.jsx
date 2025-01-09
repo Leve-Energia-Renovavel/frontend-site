@@ -3,20 +3,27 @@ import { background } from "../../globalStyles";
 
 export const LoadingContainer = styled.div`
     background-color: ${background.orange};
+    background-color: transparent;
+    backdrop-filter: blur(20px);
+
+    position: fixed;
+    z-index: 9999;
+
     display: flex;
     flex-direction: column;
     justify-content: center; 
     align-items: center;
 
-    min-height: 100vh;
+    width: 100vw;
+    height: 100vh;
 
     h1 {
         font-family: "Graphie", sans-serif, system-ui, -apple-system;
-        color: ${background.yellow};
+        color: ${background.orange};
         font-style: bold;
-        font-weight: 700;
-        font-size: 2.625rem;
-        line-height: 2.625rem;
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 36px;
     }
 
     .logoLeve {
@@ -24,6 +31,6 @@ export const LoadingContainer = styled.div`
         height: auto;
     }
     .circularProgress {
-        color: ${background.yellow};
+        color: ${background.orange};
     }
 `

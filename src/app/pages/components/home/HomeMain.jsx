@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import NewHomeMainBanner from "./banners/main/NewHomeMainBanner";
 import HomeHowLeveWorks from "./HomeHowLeveWorks";
 import { HomeContainer as Container, HomeContentContainer as HomeBanner } from "./styles";
+import LoadingMain from "../loading/LoadingMain";
 
 const HomeForm = dynamic(() => import("./form/new-home/HomeForm"), { ssr: false });
 const HomeLeveAboutUs = dynamic(() => import("./HomeLeveAboutUs"), { ssr: false });
@@ -25,7 +26,6 @@ export default function HomeMain() {
                 <HomeForm />
 
                 <HomeLeveAboutUs />
-
             </Container >
         </>
     )
