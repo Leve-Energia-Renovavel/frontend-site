@@ -1,6 +1,9 @@
 export const isTrue = (value) => {
     return value === true
 }
+export const isNull = (value) => {
+    return value === null
+}
 export const isEmpty = (value) => {
     return value === ""
 }

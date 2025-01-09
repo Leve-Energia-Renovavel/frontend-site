@@ -39,57 +39,20 @@ export const WelcomeContent = styled.div`
     display: flex;
     flex-direction: column;
     
-    max-width: 342px;
+    max-width: 375px;
     
-    padding: 1rem;
+    padding: 24px;
     
     gap: 1rem;
     
-    .title{
-        font-family: "Graphie";
-        font-size: 22px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 120%; /* 26.4px */
-        color: ${background.orange};
-        
-        animation: ${fadeInUp} 0.5s ease-out;
-    }
-    .subtitle{
-        font-family: "Graphie";
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 120%; /* 21.6px */
-        color: ${background.green};
-        
-        animation: ${fadeInUp} 0.4s ease-out;
-    }
-    .descriptionPrimary, .descriptionSecondary{
-        font-family: "Graphie";
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 120%; /* 19.2px */
-        color: ${background.greyMediumHigh};
-        
-        animation: ${fadeInUp} 0.2s ease-out;
-        
-    }
-    
-    .highlighted {
-        font-weight: 600;
-        color: ${background.greyMediumHigh};
-    }
-    
     @media (max-width: 600px) {
         min-width: 340px;
-        width: 342px;
-        max-width: 342px;
+        width: 375px;
+        max-width: 375px;
 
         min-height: 360px;
-        height: 369px;
-        max-height: 369px;
+        height: fit-content;
+        max-height: fit-content;
     }
 `
 
@@ -100,7 +63,7 @@ export const FormButton = styled(Button)`
   color: ${background.white};
   border-radius: 30px;
 
-  height: 40px;
+  height: 48px;
 
   width: 100%;
   max-width: 388px;
@@ -111,9 +74,9 @@ export const FormButton = styled(Button)`
   
     span {
     font-family: "Graphie";
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 120%; 
     text-transform: none;
     color: ${background.white};

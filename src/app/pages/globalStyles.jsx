@@ -1,12 +1,9 @@
-import styled from "@emotion/styled";
-import { Alert } from "@mui/material";
-import { fadeInUp } from "./globalAnimations";
-
 export const headerMargin = "84px"
 export const containerWidth = "1280px"
 export const containerPadding = "54px"
 export const registerContainerWidth = "877px"
 export const modalBackdrop = "rgba(0, 0, 0, 0.4)"
+export const modalBackdropGreen = "rgba(0, 89, 64, 0.4)"
 
 export const messages = {
     success: {
@@ -118,36 +115,3 @@ export const resetBackdropOverflow = () => {
         document.body.style.paddingRight = "";
     }
 };
-
-export const SnackbarMessageAlert = styled(Alert)`
-  font-family: "Graphie";
-  font-size: 1rem;
-  background-color: ${notification.alert};
-  border-radius: 10px;
-  padding: 1rem;
-  align-items: center;
-
-  animation: ${fadeInUp} 0.5s ease-out;
-
-  @media screen and (max-width: 600px) {
-    padding: .3rem;
-    font-size: 1rem; 
-  }
-
-`
-export const SnackbarMessageNotification = styled(Alert)`
-  font-family: "Graphie";
-  font-size: 1rem;
-  background-color: ${notification.success};
-  border-radius: 10px;
-  padding: 1rem;
-  align-items: center;
-
-  animation: ${fadeInUp} 0.5s ease-out;
-
-  @media screen and (max-width: 600px) {
-    padding: .3rem;
-    font-size: 1rem; 
-  }
-
-`

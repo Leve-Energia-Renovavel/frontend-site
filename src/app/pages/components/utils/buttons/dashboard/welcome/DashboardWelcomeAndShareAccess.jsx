@@ -43,7 +43,7 @@ export default function DashboardWelcomeAndShareAccess({ isMobileContent }) {
                 )}
 
             {hasToOpenShareAccess && (
-                < SharedAccessModal
+                <SharedAccessModal
                     isMobileContent={isMobileContent}
                     isOpen={openModal}
                     closeModal={handleClose} />)
