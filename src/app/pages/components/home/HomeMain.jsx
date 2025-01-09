@@ -2,7 +2,7 @@
 
 import { Divider } from "@mui/material";
 import dynamic from "next/dynamic";
-import NewHomeMainBanner from "./banners/main/new-home/NewHomeMainBanner";
+import NewHomeMainBanner from "./banners/main/NewHomeMainBanner";
 import HomeHowLeveWorks from "./HomeHowLeveWorks";
 import { HomeContainer as Container, HomeContentContainer as HomeBanner } from "./styles";
 
