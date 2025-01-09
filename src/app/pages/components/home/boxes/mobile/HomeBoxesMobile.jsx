@@ -16,6 +16,7 @@ export default function HomeBoxesMobile() {
             <BannerImageMobile className='homeSecondaryBannerContainer'>
                 <Image src={bannerImage} alt='leveHomeBanner'
                     className='homeBoxesMobileBannerImage'
+                    quality={80}
                     fill
                     priority={true} />
                 <h2 className='homeBoxesSecondarySectionTitle'>Vantagens em ser Leve</h2>
