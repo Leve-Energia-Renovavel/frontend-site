@@ -16,15 +16,19 @@ export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, cu
 
     const handleButtonClick = () => {
         if (isActiveDistributor) {
-            closeModal
+            closeModal()
         } else {
             sendWhatsAppMessage(`Olá! Meu nome é ${customerName} e quero conhecer o programa de indicações e agregados da Leve Energia.`);
-            closeModal
+            closeModal()
         }
     };
 
     useEffect(() => {
-        setChecked(true)
+        const timer = setTimeout(() => {
+            setChecked(true);
+        }, 1500);
+
+        return () => clearTimeout(timer);
     }, []);
 
     if (isNull(distributorStatus)) return null;
