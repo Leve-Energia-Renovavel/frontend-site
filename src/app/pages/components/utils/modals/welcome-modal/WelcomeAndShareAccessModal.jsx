@@ -16,10 +16,11 @@ export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, cu
 
     const handleButtonClick = () => {
         if (isActiveDistributor) {
+            closeModal
         } else {
             sendWhatsAppMessage(`Olá! Meu nome é ${customerName} e quero conhecer o programa de indicações e agregados da Leve Energia.`);
+            closeModal
         }
-        closeModal
     };
 
     useEffect(() => {
@@ -47,8 +48,7 @@ export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, cu
                     {isActiveDistributor ? <ActiveDistributorMessage /> : <InactiveDistributorMessage />}
                     <FormButton
                         onClick={handleButtonClick}
-                        endIcon={<SimpleArrowForward className="icon" />}
-                    >
+                        endIcon={<SimpleArrowForward className="icon" />}>
                         <span>{isActiveDistributor ? "Completar cadastro" : "Conhecer programas"}</span>
                     </FormButton>
                 </WelcomeContent>
