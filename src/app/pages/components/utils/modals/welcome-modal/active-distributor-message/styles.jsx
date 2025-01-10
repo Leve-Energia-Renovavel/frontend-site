@@ -29,10 +29,10 @@ export const ActiveDistributorMessageContainer = styled.div`
         }
         .descriptionPrimary, .descriptionSecondary{
             font-family: "Graphie";
-            font-size: 18px;
+            font-size: 16px;
             font-style: normal;
             font-weight: 400;
-            line-height: 120%; 
+            line-height: 100%; 
     
             text-align:justify;
             word-spacing:-2px;
@@ -71,17 +71,17 @@ export const HighlightBoxContent = styled.div`
 
     gap: 6px;
 
-    .title, .subtitle {
+    .highlightTitle, .highlightSubtitle {
         font-family: "Graphie";
         line-height: 120%;
         width: fit-content;
     }
-    .title {
+    .highlightTitle {
         font-weight: 600;
         font-size: 18px;
         color: ${background.green};
     }
-    .subtitle {
+    .highlightSubtitle {
         font-weight: 400;
         font-size: 14px;
         color: ${background.greyMediumHigh};

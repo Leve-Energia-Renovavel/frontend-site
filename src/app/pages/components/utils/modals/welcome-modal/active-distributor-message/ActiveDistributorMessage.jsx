@@ -12,8 +12,8 @@ export default function ActiveDistributorMessage() {
             <HighlightBox className="highlightBox">
                 <BoltOutlinedIcon className='icon' />
                 <HighlightBoxContent className="highlightBoxContent">
-                    <p className='title'>Maximize seus benefícios</p>
-                    <p className='subtitle'>Complete seu cadastro para receber desconto sobre o máximo do seu consumo de energia todo mês.</p>
+                    <p className='highlightTitle'>Maximize seus benefícios</p>
+                    <p className='highlightSubtitle'>Complete seu cadastro para receber desconto sobre o máximo do seu consumo de energia todo mês.</p>
                 </HighlightBoxContent>
             </HighlightBox>
 
