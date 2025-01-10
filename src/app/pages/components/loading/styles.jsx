@@ -2,12 +2,14 @@ import styled from "@emotion/styled";
 import { background } from "../../globalStyles";
 
 export const LoadingContainer = styled.div`
-    background-color: ${background.orange};
-    background-color: transparent;
-    backdrop-filter: blur(20px);
-
     position: fixed;
+    top: 0;
+    left: 0;
     z-index: 9999;
+    overflow: hidden;
+
+    background-color: transparent;
+    backdrop-filter: blur(25px);
 
     display: flex;
     flex-direction: column;
