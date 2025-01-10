@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreUser } from "@/app/hooks/useStore";
+import { useStoreUser } from "@/app/hooks/stores/useStore";
 import { Typography } from "@mui/material";
 import { BannerContainer, ContentContainer } from "./styles";
 

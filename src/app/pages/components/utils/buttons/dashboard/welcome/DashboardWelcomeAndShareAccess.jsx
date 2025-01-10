@@ -1,18 +1,20 @@
 "use client"
 
-import { useStoreUser } from '@/app/hooks/useStore'
+import { useStoreUser } from '@/app/hooks/stores/useStore'
+import { isTrue } from '@/app/utils/helper/globalHelper'
 import { useEffect, useState } from 'react'
 import SharedAccessModal from '../../../modals/shared-access-modal/SharedAccessModal'
 import WelcomeAndShareAccessModal from '../../../modals/welcome-modal/WelcomeAndShareAccessModal'
 
-export default function DashboardWelcomeAndShareAccess({ isMobileContent, setErrorMessage, setNotifications }) {
+export default function DashboardWelcomeAndShareAccess({ isMobileContent }) {
 
     const storeUser = useStoreUser()
+
     const { isFirstAccess, name, distributorStatus, hasSyncDistributorData, hasOpenedSharedAccessModal } = storeUser?.user || {}
 
     const [openModal, setOpenModal] = useState(false)
 
-    const hasToOpenShareAccess = !isFirstAccess && !hasSyncDistributorData && !hasOpenedSharedAccessModal && openModal
+    const hasToOpenShareAccess = !isFirstAccess && !hasSyncDistributorData && !hasOpenedSharedAccessModal && openModal && isTrue(distributorStatus)
 
     const handleCloseWelcomeModal = () => {
         storeUser.updateUser({ isFirstAccess: false })
@@ -37,18 +39,14 @@ export default function DashboardWelcomeAndShareAccess({ isMobileContent, setErr
                     isOpen={isFirstAccess}
                     customerName={name}
                     distributorStatus={distributorStatus}
-                    closeModal={handleCloseWelcomeModal}
-                    setErrorMessage={setErrorMessage}
-                    setNotifications={setNotifications} />
+                    closeModal={handleCloseWelcomeModal} />
                 )}
 
             {hasToOpenShareAccess && (
-                < SharedAccessModal
+                <SharedAccessModal
                     isMobileContent={isMobileContent}
                     isOpen={openModal}
-                    closeModal={handleClose}
-                    setErrorMessage={setErrorMessage}
-                    setNotifications={setNotifications} />)
+                    closeModal={handleClose} />)
             }
         </>
     )

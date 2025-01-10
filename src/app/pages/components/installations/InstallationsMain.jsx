@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreInstallations, useStoreMainInstallation } from "@/app/hooks/useStore";
+import { useStoreInstallations, useStoreMainInstallation } from "@/app/hooks/stores/useStore";
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { findCityIdByName } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
@@ -368,7 +368,7 @@ export default function InstallationsMain() {
                                     required>
                                     {Object.values(stateOptions).map((state) => {
                                         return (
-                                            <MenuItem key={state.cod_estados} value={state.cod_estados}>{state.sigla}</MenuItem>
+                                            <MenuItem key={state.estado_id} value={state.estado_id}>{state.sigla}</MenuItem>
                                         )
                                     })}
                                 </TextField>

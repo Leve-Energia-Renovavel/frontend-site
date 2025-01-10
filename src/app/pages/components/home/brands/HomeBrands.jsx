@@ -1,5 +1,3 @@
-"use client"
-
 import { brands } from '@/app/utils/helper/home/homeBoxesHelper';
 import Image from 'next/image';
 import infoJson from '../../../../../../public/info.json';

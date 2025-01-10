@@ -1,9 +1,9 @@
-import { useStoreAddress } from "@/app/hooks/useStore";
+import { useStoreAddress } from "@/app/hooks/stores/useStore";
+import { findCityIdByName, getCityNameByStateIdAndCityId } from "@/app/service/utils/addressUtilsService";
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
+import { statesAcronymOptions } from "@/app/utils/form-options/statesIdOptions";
 import axios from 'axios';
 import { requestSuccessful } from "../../service/utils/Validations";
-import { findCityIdByName } from "@/app/service/utils/addressUtilsService";
-import { statesAcronymOptions } from "@/app/utils/form-options/statesIdOptions";
 
 function findStateId(uf) {
     for (const id in stateOptions) {
@@ -14,32 +14,41 @@ function findStateId(uf) {
     return "";
 }
 
-const useGetCEP = () => {
-    const storeAddress = useStoreAddress();
-    const fetchData = async (cep) => {
-        var response = null
-        try {
-            response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, {
-                params: { cep: cep }
-            });
+const useGetCEP = (setFormState) => {
 
+    const storeAddress = useStoreAddress();
+
+    const fetchData = async (cep) => {
+        try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep/`, {
+                params: { cep: cep },
+            });
             if (requestSuccessful(response?.status)) {
                 const address = response?.data;
+                const stateId = findStateId(address?.uf);
+                const cityId = await findCityIdByName(address?.cidade, statesAcronymOptions[address?.uf]);
+                const cityName = getCityNameByStateIdAndCityId(stateId, cityId);
 
-                storeAddress.updateAddress({
+                const updatedAddress = {
                     street: address?.logradouro,
                     neighborhood: address?.bairro,
-                    city: address?.cidade,
+                    city: cityName,
                     state: address?.uf,
-                    stateId: findStateId(address?.uf),
-                    cityId: await findCityIdByName(address?.cidade, statesAcronymOptions[address?.uf]),
+                    stateId: stateId,
+                    cityId: cityId,
                     cep: address?.cep,
-                });
+                };
+
+                storeAddress.updateAddress(updatedAddress);
+
+                setFormState((prevState) => ({
+                    ...prevState,
+                    ...updatedAddress,
+                }));
             }
         } catch (error) {
             console.error('Error fetching CEP data:', error);
         }
-        return response
     };
 
     return fetchData;

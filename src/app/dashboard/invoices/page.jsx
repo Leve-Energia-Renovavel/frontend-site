@@ -1,4 +1,4 @@
-import NewDashboardMain from '@/app/pages/components/new-dashboard/NewDashboardMain';
+import NewDashboardMain from '@/app/pages/components/dashboard/DashboardMain';
 
 export default function Invoices() {
 

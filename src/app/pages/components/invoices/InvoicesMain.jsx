@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreBillingHistory, useStoreNextBills, useStoreUser } from '@/app/hooks/useStore';
+import { useStoreBillingHistory, useStoreNextBills, useStoreUser } from '@/app/hooks/stores/useStore';
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import { clearStorageData } from '@/app/utils/browser/BrowserUtils';
 import { billHasToBePaid, billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';

@@ -1,7 +1,7 @@
-import { USER_TYPE } from "@/app/pages/enums/globalEnums";
-import { checkForCompanyName } from "@/app/utils/company/CompanyUtils";
+import { COOKIES_FOR, USER_TYPE } from "@/app/pages/enums/globalEnums";
 import { formatBasicBirthDate } from "@/app/utils/date/DateUtils";
 import { capitalizeEachWord, sanitizeAndCapitalizeWords } from "@/app/utils/formatters/textFormatter";
+import { isNotEmpty } from "@/app/utils/helper/globalHelper";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { requestSuccessful } from "../utils/Validations";
@@ -55,22 +55,7 @@ export const createPromoPayload = (name, email, phone, cep, value, type, token) 
 }
 
 export const startSignUp = async (data) => {
-    var response = null
-    try {
-        response = await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/step-one`, data);
-    } catch (error) {
-        if (error.response) {
-            console.log("Error message from server:", error.response.data);
-            response = error.response;
-        } else if (error.request) {
-            console.log("No response received from server.");
-            response = error.request;
-        } else {
-            console.log("Error while setting up the request:", error.message);
-            response = error.message;
-        }
-    }
-    return response
+    return await axios.post(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/step-one`, data);
 }
 export const startSignUpForPartners = async (data) => {
     var response = null
@@ -92,86 +77,87 @@ export const startSignUpForPartners = async (data) => {
     return response
 }
 
+export const getLeadData = async (uuid, storeUser, storeAddress) => {
+    if (uuid && isNotEmpty(uuid)) {
+        try {
+            const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
+            if (requestSuccessful(userResponse?.status)) {
 
-export const getLeadData = async (uuid, store, storeAddress) => {
+                console.log("getLeadData ==>>", userResponse)
+                const { instalacao, distribuidora, descontos_carbono } = userResponse?.data
+                const consumidor = userResponse?.data?.instalacao?.consumidor
+                const cep = consumidor?.cep
+                const user = storeUser?.user
 
-    store.updateUser({ uuid: uuid });
-    Cookies.set('leveUUID', uuid)
+                Cookies.set(COOKIES_FOR.UUID, uuid)
 
-    try {
-        const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consumer/${uuid}`);
-        if (requestSuccessful(userResponse?.status)) {
+                const updatedUser = {
+                    uuid: instalacao?.uuid || user?.uuid,
+                    name: capitalizeEachWord(consumidor?.nome_completo) || capitalizeEachWord(user?.name) || "",
+                    phone: consumidor?.telefone || user?.phone || "",
+                    email: consumidor?.email || user?.email || "",
+                    cost: user?.cost || instalacao?.valor_base_consumo,
+                    cep: instalacao?.cep,
+                    coupon: consumidor?.ref_origin,
 
-            console.log("userResponse ==>>", userResponse)
+                    cpf: consumidor?.cpf || user?.cpf || "",
+                    rg: consumidor?.rg || user?.rg || "",
+                    birthDate: formatBasicBirthDate(consumidor?.data_nascimento) || user?.birthDate || "",
 
-            const { instalacao, distribuidora } = userResponse?.data
-            const consumidor = userResponse?.data?.instalacao?.consumidor
-            const descontosCarbono = userResponse?.data?.descontos_carbono
+                    isCompany: consumidor?.type == USER_TYPE.PJ ? true : false,
+                    cnpj: user?.cnpj || instalacao?.cnpj || "",
+                    companyName: user?.companyName || instalacao?.razao_social || "",
 
-            const cep = consumidor?.cep
+                    nationality: consumidor?.nacionalidade || user?.nationality || "",
+                    profession: consumidor?.profissao || user?.profession || "",
+                    maritalStatus: consumidor?.estado_civil || user?.maritalStatus || "",
 
-            const updatedUser = {
-                name: capitalizeEachWord(consumidor?.nome_completo),
-                phone: consumidor?.telefone,
-                email: consumidor?.email,
-                cost: instalacao?.valor_base_consumo,
-                cep: instalacao?.cep,
-                coupon: consumidor?.ref_origin,
+                    discount: descontos_carbono?.desconto || user?.discount || "",
+                    clientId: instalacao?.clientes_id || user?.clientId || "",
 
-                cpf: consumidor?.cpf !== "" ? consumidor.cpf : "",
-                rg: consumidor?.rg !== "" ? consumidor.rg : "",
-                birthDate: consumidor?.data_nascimento ? formatBasicBirthDate(consumidor?.data_nascimento) : "",
+                    distributor: distribuidora?.nome || user?.distributor || "",
+                    distributorPhotoUrl: distribuidora?.foto_numero_instalacao,
 
-                isCompany: consumidor?.type == USER_TYPE.PJ ? true : false,
-                cnpj: consumidor?.type == USER_TYPE.PJ ? instalacao?.cnpj : "",
-                companyName: consumidor?.type == USER_TYPE.PJ ? checkForCompanyName(instalacao?.razao_social, instalacao?.nome) : "",
-
-                nationality: consumidor?.nacionalidade,
-                profession: consumidor?.profissao,
-                maritalStatus: consumidor?.estado_civil,
-
-                discount: descontosCarbono?.desconto,
-                clientId: instalacao?.clientes_id,
-
-                distributor: distribuidora?.nome,
-                distributorPhotoUrl: distribuidora?.foto_numero_instalacao,
-
-                tusd: descontosCarbono?.tusd,
-                te: descontosCarbono?.te,
-                annualDiscount: descontosCarbono?.desconto_anual,
-                treeEquivalency: descontosCarbono?.equivalencia_arvores,
-                carbonReduction: descontosCarbono?.reducao_carbono,
-                availabilityTax: descontosCarbono?.taxa_disponibilidade,
-            }
-
-            store.updateUser(updatedUser);
-
-            const updatedAddress = {
-                cityId: consumidor?.cidade_id,
-                stateId: consumidor?.estado_id,
-                installationNumber: instalacao?.numero_instalacao
-            }
-            storeAddress.updateAddress(updatedAddress)
-
-            const addressResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, {
-                params: { cep: cep },
-                withCredentials: false
-            });
-
-            if (requestSuccessful(addressResponse?.status)) {
-                const address = addressResponse?.data
-                const updatedFullAddress = {
-                    street: address?.logradouro,
-                    neighborhood: address?.bairro,
-                    city: address?.cidade,
-                    state: address?.uf,
-                    cep: address?.cep,
+                    tusd: descontos_carbono?.tusd,
+                    te: descontos_carbono?.te,
+                    annualDiscount: descontos_carbono?.desconto_anual,
+                    treeEquivalency: descontos_carbono?.equivalencia_arvores,
+                    carbonReduction: descontos_carbono?.reducao_carbono,
+                    availabilityTax: descontos_carbono?.taxa_disponibilidade,
                 }
-                storeAddress.updateAddress(updatedFullAddress)
 
+                storeUser.updateUser(updatedUser);
+
+                const updatedAddress = {
+                    cityId: consumidor?.cidade_id || storeAddress?.cityId || "",
+                    stateId: consumidor?.estado_id || storeAddress?.stateId || "",
+                    number: instalacao?.numero || storeAddress?.number || "",
+                    installationNumber: instalacao?.numero_instalacao || storeAddress?.installationNumber || ""
+                }
+                storeAddress.updateAddress(updatedAddress)
+
+                const addressResponse = await axios.get(`${process.env.NEXT_PUBLIC_SIGNUP_BASE_URL}/sign-up/consulta-cep`, {
+                    params: { cep: cep },
+                    withCredentials: false
+                });
+
+                if (requestSuccessful(addressResponse?.status)) {
+                    const address = addressResponse?.data
+                    const updatedFullAddress = {
+                        street: address?.logradouro || storeAddress?.street || "",
+                        neighborhood: address?.bairro || storeAddress?.neighborhood || "",
+                        city: address?.cidade || storeAddress?.city || "",
+                        state: address?.uf || storeAddress?.state || "",
+                        cep: address?.cep || storeAddress?.cep || "",
+                    }
+                    storeAddress.updateAddress(updatedFullAddress)
+
+                }
             }
+        } catch (error) {
+            console.error(error);
         }
-    } catch (error) {
-        console.error(error);
+    } else {
+        console.error("UUID is required to fetch lead data.")
     }
 }

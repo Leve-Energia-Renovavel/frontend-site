@@ -18,32 +18,15 @@ export const pathHelper = {
 }
 
 export const headerHelper = {
-    '/': false,
-    '/home/': false,
-    '/signup/': false,
-    '/lp/': false,
-    '/lp/novos-clientes/': false,
-    '/lp/apresentacao/': false,
-    '/lp/empresas/': false,
-    '/lp/tribanco/': false,
-    '/lp/tim/': false,
-    '/lp/martins/': false,
-    '/lp/yduqs/': false,
-    '/lp/localiza/': false,
-    '/register/': false,
     '/dashboard/': true,
     '/dashboard/profile/': true,
     '/dashboard/invoices/': true,
     '/dashboard/installations/': true,
     '/dashboard/installations/contract-signature/': true,
     '/dashboard/payment/': true,
-    '/recover-password/': false,
-    '/fail/out-of-range/': false,
-    '/fail/low-cost/': false,
     '/connection/': true,
 }
 export const landingPageHelper = {
-    '/': false,
     '/lp/': true,
     '/lp/novos-clientes/': true,
     '/lp/apresentacao/': true,
@@ -58,16 +41,12 @@ export const landingPageHelper = {
 export const helperToPath = {
     '/': "na+home",
     '/home/': "na+home",
-    '/signup/': "no+cadastro",
     '/login/': "no+login",
-    '/lp/novos-clientes/': "na+landing+page+de+novos+clientes",
-    '/lp/apresentacao/': "na+landing+page+de+apresentação",
-    '/lp/tribanco/': "na+landing+page+do+Tribanco",
-    '/lp/tim/': "na+landing+page+da+Tim",
-    '/lp/martins/': "na+landing+page+da+Martins",
-    '/lp/yduqs/': "na+landing+page+da+Yduqs",
-    '/lp/localiza/': "na+landing+page+da+Localiza",
-    '/lp/empresas/': "na+landing+page+para+Empresas",
+    '/simulacao-de-economia/': "na+simulacao+de+economia",
+    '/cadastro/titular/': "no+cadastro",
+    '/cadastro/imovel/': "no+cadastro",
+    '/cadastro/assinatura-contrato/': "na+página+de+assinatura+de+contrato",
+
     '/municipios-atendidos/': "na+página+de+municípios+atendidos",
     '/dashboard/': "no+painel",
     '/dashboard/profile/': "na+minha+página+de+perfil",
@@ -78,6 +57,19 @@ export const helperToPath = {
     '/fail/low-cost/': "na+página+de+baixo+custo",
     '/politica-de-privacidade/': "na+Política+de+Privacidade",
     '/connection/': "na+página+de+conexão",
+
+    // LPs internal
+    '/lp/novos-clientes/': "na+landing+page+de+novos+clientes",
+    '/lp/apresentacao/': "na+landing+page+de+apresentação",
+    '/lp/empresas/': "na+landing+page+para+Empresas",
+
+    // LPs partners
+    '/lp/tribanco/': "na+landing+page+do+Tribanco",
+    '/lp/tim/': "na+landing+page+da+Tim",
+    '/lp/martins/': "na+landing+page+da+Martins",
+    '/lp/yduqs/': "na+landing+page+da+Yduqs",
+    '/lp/localiza/': "na+landing+page+da+Localiza",
+    '/lp/allya/': "na+landing+page+da+Allya",
 }
 
 export const partnersPath = {

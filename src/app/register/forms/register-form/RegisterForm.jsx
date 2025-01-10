@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client"
 
-import { useStoreAddress, useStoreCompany, useStoreCookies, useStoreUser } from "@/app/hooks/useStore";
+import { useStoreAddress, useStoreCompany, useStoreCookies, useStoreUser } from "@/app/hooks/stores/useStore";
 import useGetCEP from '@/app/hooks/utils/useGetCEP';
 import useGetCNPJ from "@/app/hooks/utils/useGetCNPJ";
 import FormButton from "@/app/pages/components/utils/buttons/FormButton";
@@ -468,7 +468,7 @@ export default function RegisterForm() {
                         required>
                         {Object.values(stateOptions).map((state) => {
                             return (
-                                <MenuItem key={state.cod_estados} value={state.cod_estados}>{state.sigla}</MenuItem>
+                                <MenuItem key={state.estado_id} value={state.estado_id}>{state.sigla}</MenuItem>
                             )
                         })}
                     </TextField>

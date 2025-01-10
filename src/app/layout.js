@@ -1,12 +1,17 @@
 import dynamic from "next/dynamic";
 import "./globals.css";
 
-import { GoogleTagManager } from '@next/third-parties/google';
-import Footer from './pages/components/footer/Footer';
+import Head from "next/head";
 import Header from './pages/components/header/Header';
-import Hotjar from './pages/components/hotjar/Hotjar';
+
+import { Partytown } from '@builder.io/partytown/react';
+import { GoogleTagManager } from '@next/third-parties/google';
+import Script from "next/script";
+import Hotjar from "./pages/components/hotjar/Hotjar";
 
 const WhatsAppFAB = dynamic(() => import('./pages/components/fabWhatsapp/WhatsappFAB'), { ssr: false });
+const Footer = dynamic(() => import('./pages/components/footer/Footer'), { ssr: false });
+const Messages = dynamic(() => import("./pages/components/messages/Messages"), { ssr: false });
 
 export const metadata = {
   title: 'Leve Energia Renovavel',
@@ -57,15 +62,21 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="pt-BR" suppressHydrationWarning={true} >
-      <head>
-        <Hotjar hotjarId={hotjarId} />
-      </head>
-      <body suppressHydrationWarning={true} style={{ background: "#EFEFEC" }}>
+      <Head>
+        <Partytown debug={true} forward={['dataLayer.push']}>
+          <Script id="hotjar" type="text/partytown">
+            <Hotjar hotjarId={hotjarId} />
+          </Script>
+        </Partytown>
         <GoogleTagManager gtmId={gtmId} />
+      </Head>
+
+      <body suppressHydrationWarning={true} style={{ background: "#EFEFEC" }}>
         <Header />
         {children}
         <WhatsAppFAB />
         <Footer />
+        <Messages />
       </body>
     </html>
   )

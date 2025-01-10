@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import BarChartIcon from '@mui/icons-material/BarChart';
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import InsertLinkIcon from '@mui/icons-material/InsertLink';
-import { BILL_STATUS } from "../../new-dashboard/invoices/invoicesEnums";
+import { BILL_STATUS } from "../../dashboard/invoices/invoicesEnums";
 
 export const InvoicesTableActionButtonContainer = styled.div`
     display: flex;

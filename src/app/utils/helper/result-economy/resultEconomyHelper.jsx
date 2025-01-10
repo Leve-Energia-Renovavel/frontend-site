@@ -1,4 +1,12 @@
 
+export const benefits = [
+    "Não cobramos bandeira tarifária",
+    "Adesão gratuita",
+    "Sem custos adicionais",
+    "Sem instalações ou obras",
+    "Serviço regulado pela ANEEL",
+    "Cancele quando quiser",
+]
 export const checkForZero = (value) => {
     return value > 0 ? value : "0"
 }

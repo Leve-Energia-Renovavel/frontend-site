@@ -1,19 +1,24 @@
-import { forgotPasswordSchema, loginSchema } from "@/app/pages/components/new-login/schema";
+import { forgotPasswordSchema, loginSchema } from "@/app/pages/components/utils/modals/header-modal/login-modal/schema";
 import { awaitSeconds } from "@/app/utils/browser/BrowserUtils";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { getAccessToken } from "../user-service/UserService";
 import { requestSuccessful } from "../utils/Validations";
+import { getAccessToken } from "../user-service/UserService";
 
-export const loginValidation = async (data, store, setErrorMessage) => {
+export const loginValidation = async (data, updateUser) => {
     return await loginSchema.validate(data, { abortEarly: false })
         .then(async () => {
             const response = await getAccessToken(data)
             if (requestSuccessful(response.status)) {
-                store.updateUser({
-                    accessToken: response.data.access_token,
-                    refreshToken: response.data.refresh_token
+
+                const accessToken = response?.data?.access_token
+                const refreshToken = response?.data?.refresh_token
+
+                updateUser({
+                    accessToken: accessToken,
+                    refreshToken: refreshToken
                 })
+
                 Cookies.set('accessToken', response.data.access_token)
                 Cookies.set('refreshToken', response.data.refresh_token)
             }

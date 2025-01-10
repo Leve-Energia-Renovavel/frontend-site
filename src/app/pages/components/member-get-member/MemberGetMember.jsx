@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreUser } from '@/app/hooks/useStore';
+import { useStoreUser } from '@/app/hooks/stores/useStore';
 import { requestSuccessful } from '@/app/service/utils/Validations';
 import CloseIcon from '@mui/icons-material/Close';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';

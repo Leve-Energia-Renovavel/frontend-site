@@ -4,10 +4,11 @@
 import { Backdrop, Modal } from '@mui/material';
 import dynamic from 'next/dynamic';
 import { ModalBox } from './styles';
+import { modalBackdropGreen } from '@/app/pages/globalStyles';
 
-const DashboardSharedAccess = dynamic(() => import('../../../new-dashboard/side-bar/shared-access/DashboardSharedAccess'), { ssr: false });
+const DashboardSharedAccess = dynamic(() => import('../../../dashboard/side-bar/shared-access/DashboardSharedAccess'), { ssr: false });
 
-export default function SharedAccessModal({ isMobileContent, isOpen, openModal, closeModal, setErrorMessage, setNotifications }) {
+export default function SharedAccessModal({ isMobileContent, isOpen, openModal, closeModal }) {
 
     return (
         <Modal
@@ -19,7 +20,7 @@ export default function SharedAccessModal({ isMobileContent, isOpen, openModal, 
             slotProps={{
                 backdrop: {
                     sx: {
-                        backgroundColor: 'rgba(0, 89, 64, 0.4)',
+                        backgroundColor: modalBackdropGreen,
                     },
                 },
             }}>
@@ -27,9 +28,7 @@ export default function SharedAccessModal({ isMobileContent, isOpen, openModal, 
                 <DashboardSharedAccess
                     expanded={true}
                     closeModal={closeModal}
-                    isMobileContent={false}
-                    setErrorMessage={setErrorMessage}
-                    setNotifications={setNotifications} />
+                    isMobileContent={false} />
             </ModalBox>
         </Modal>
     )

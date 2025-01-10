@@ -8,6 +8,11 @@ export const formatCpfRestricted = (cpf) => {
     const part4 = cpf.substring(9);
     return `***.***.${part3}-${part4}`;
 }
+
+export const formatCpf = (cpf = "") => {
+    const cleanedCpf = cpf.replace(/\D/g, ""); // Remove non-numeric characters
+    return cleanedCpf.padStart(11, "0").replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+};
 export const formatCpfUnrestricted = (cpf) => {
     if (!cpf || cpf === "") {
         return `000.000.000-00`;

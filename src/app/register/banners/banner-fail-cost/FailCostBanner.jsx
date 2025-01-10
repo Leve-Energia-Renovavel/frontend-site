@@ -1,7 +1,7 @@
 
 "use client"
 
-import { useStoreUser } from "@/app/hooks/useStore";
+import { useStoreUser } from "@/app/hooks/stores/useStore";
 import { Button, Typography } from "@mui/material";
 import { useRouter } from 'next/navigation';
 import { BannerContainer, ButtonContainer, ContentContainer } from "./styles";

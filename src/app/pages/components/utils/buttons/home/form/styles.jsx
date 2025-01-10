@@ -11,13 +11,11 @@ export const FormButton = styled(Button)`
 
   padding: 14px 16px;
   margin: 1rem 0;
+
+  width: 100%;
+  max-width: 305px;
+  margin: 1rem auto;
   
-  //this is very ugly but necessary to avoid hydratation error in nextjs webpack
-  ${props => props.ismobile === "true" && 'display: none;'}
-
-  ${props => props.ismobile === "false" && 'width: 100%; max-width: 305px; margin: 1rem auto;'}
-
-
   span {
     font-family: "Graphie";
     font-size: 20px;
@@ -36,8 +34,9 @@ export const FormButton = styled(Button)`
   }
   
     @media (max-width: 600px) {
-      //this is very ugly but necessary to avoid hydratation error in nextjs webpack
-      ${props => props.ismobile === "true" ? `display: flex;` : `display: none;`}
+      width: 100%;
+      max-width: 305px;
+      margin: 1rem auto;
     }
 `
 

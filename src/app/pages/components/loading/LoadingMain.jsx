@@ -5,10 +5,9 @@ import { LoadingContainer } from "./styles";
 
 export default function LoadingMain() {
     return (
-        <LoadingContainer>
-            {/* <Image className="logoLeve" loading="lazy"  src={leveLogo} alt="Ícone de formulário para completar o cadastro" /> */}
+        <LoadingContainer className="loadingContainer">
             <CircularProgress className="circularProgress" />
-            <h1>Carregando...</h1>
+            <h1 className="loading">Carregando...</h1>
         </LoadingContainer>
     );
 }

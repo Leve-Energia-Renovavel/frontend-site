@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreBillingHistory } from '@/app/hooks/useStore';
+import { useStoreBillingHistory } from '@/app/hooks/stores/useStore';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';

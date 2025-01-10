@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreBillingHistory } from '@/app/hooks/useStore'
+import { useStoreBillingHistory } from '@/app/hooks/stores/useStore'
 import { formatFullMonthAndYear } from '@/app/utils/formatters/dateFormatter'
 import { useState } from 'react'
 import NewInstallationButton from '../../utils/buttons/NewInstallationButton'

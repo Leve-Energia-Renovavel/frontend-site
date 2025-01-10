@@ -2,14 +2,13 @@
 
 import { FormButton, Loading } from './styles';
 
-export default function HomeFormButton({ title, isLoading, isMobile }) {
+export default function HomeFormButton({ title, isLoading }) {
     return (
         <FormButton
-            className={`${isMobile ? "homeFormButtonMobile" : "homeFormButton"}`}
-            ismobile={isMobile.toString()}
+            className={`homeFormButton`}
             type='submit'
-            form={`${isMobile ? "leadFormMobile" : "leadForm"}`}>
-            {isLoading ? <Loading size={20} /> : <span className={`${isMobile ? "homeFormButtonTitleMobile" : "homeFormButtonTitle"}`}>{title}</span>}
+            form={`leadForm`}>
+            {isLoading ? <Loading size={20} /> : <span className={`homeFormButtonTitle`}>{title}</span>}
         </FormButton>
     )
 }

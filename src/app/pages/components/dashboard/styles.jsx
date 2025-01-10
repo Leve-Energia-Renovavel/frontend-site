@@ -1,509 +1,74 @@
 import styled from "@emotion/styled";
-import { Skeleton } from "@mui/material";
-import { background, statusColors } from "../../globalStyles";
-import { statusHelper } from "@/app/utils/helper/StyleHelpers";
-import { keyframes } from "@emotion/react";
+import { background } from "../../globalStyles";
 
-const fadeInUp = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-export const DashboardContainer = styled.div`
-    color: ${background.orange};
-
-    background-color: ${background.white};
-    display: flex;
-    flex-direction: column;
-
-    max-width: 1500px;
-    margin: 0 auto;
-`
-
-export const TitleContainer = styled.div`
-    padding: 1rem 0;
-
-    h1 {
-        font-family: "Graphie";
-        font-size: 24px;
-        line-height: 18px;
-        font-weight: 700;
-    }
-
-`
-export const MainInfoContainer = styled.div`
-    background-color: ${background.white};
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    gap: 2rem;
-    
-    width: 100%;
-    max-width: 80vw;
-    margin: 0 auto;
-
-    padding: 0 2rem;
-
-    @media (max-width: 1300px) {
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr;
-      grid-gap: 1rem;
-
-      max-width: 90vw;
-      padding: 1rem 2rem;
-    }
-
-    @media (max-width: 600px) {
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr;
-      grid-gap: 1rem;
-
-      max-width: 100vw;
-      padding: 1rem 1rem;
-     }
-
-`
-export const NextBillContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-`
-
-export const NextBill = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-
-  animation: ${fadeInUp} 0.5s ease-out;
-
-  border: 1px solid ${background.orange};
-  border-radius: 4px;
-  padding: 1rem 3rem;
-  
-  height: 100%;
-  max-height: 50vh;
-  
-  @media (max-width: 600px) {
-    padding: 1rem 1rem;
-    max-width: 100vw;
-  }
-`
-
-export const NextBillGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
-  grid-template-rows: auto auto; /* 2 rows with auto height */
-  gap: 1rem; 
-    
-  .grid-item {
-    padding: 1rem;
-
-  }
-
-    .grid-item:nth-of-type(1) {
-      grid-column: 1;
-      grid-row: 1;
-    }
-
-    .grid-item:nth-of-type(2) {
-      grid-column: 1;
-      grid-row: 2;
-    }
-
-    .grid-item:nth-of-type(3) {
-      grid-column: 2;
-      grid-row: 2;
-    }
-
-    .grid-item:nth-of-type(4) {
-      grid-column: 3;
-      grid-row: 2;
-    }
-
-
-    .loaded-grid-item {
-      padding: .5rem;
-    }
-
-    .loaded-grid-item:nth-of-type(1) {
-      grid-column: 1;
-      grid-row: 1;
-    }
-
-    .loaded-grid-item:nth-of-type(2) {
-      grid-column: 1;
-      grid-row: 2;
-    }
-
-    .loaded-grid-item:nth-of-type(3) {
-      grid-column: 2;
-      grid-row: 2;
-    }
-
-    .loaded-grid-item:nth-of-type(4) {
-      grid-column: 3;
-      grid-row: 2;
-    }
-
-    @media (max-width: 600px) {
-      grid-template-columns: 1fr;
-      gap: 1rem; 
-
-    .grid-item:nth-of-type(1),
-    .grid-item:nth-of-type(2),
-    .grid-item:nth-of-type(3),
-    .grid-item:nth-of-type(4) {
-      grid-column: auto;
-      grid-row: auto; 
-
-      margin: 0 auto;
-
-      padding: 10px;
-
-    }
-  }
-
-
-`
-
-export const NextBillValue = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  
-  .referenceMonth {
-    color: ${background.mediumGrey};
-    font-weight: 600;
-    font-size: 1rem;
-  }
-  
-  .billValue {
-    color: ${background.textLeve};
-    font-weight: 500;
-    font-size: 2rem;
-    white-space: nowrap;
-  }
-  
-  .nextBillNotFound {
-    font-weight: 500;
-    font-size: 1.2rem;
-    white-space: nowrap;
-  }
-`
-export const NextBillNotFound = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  height: 5.7rem;
-
-  animation: ${fadeInUp} 0.5s ease-out;
-  
-  border: 1px solid ${background.orange};
-  border-radius: 4px;
-
-  padding: 1rem;
-  
-  .nextBillNotFound {
-    font-weight: 500;
-    font-size: 1.2rem;
-    white-space: nowrap;
-  }
-`
-export const NextBillInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-
-  .title { 
-    color: ${background.mediumGrey};
-    font-weight: 600;
-    font-size: 1rem;
-  }
-
-  .content {
-    color: ${background.textLeve};
-    font-weight: 600;
-    font-size: 1rem;
-  }
-  
-  .paymentStatus { 
-    white-space: nowrap;
-    font-weight: 800;
-    color: ${props => props.status ? statusHelper[props.status] : background.mediumGrey};
-  }
-`
-export const PaymentButtonContainer = styled.div`
-  display: flex;
-  padding: 2rem 0;
-  
-  @media (max-width: 600px) {
-    margin: 0 auto;
-    padding: 1rem 0;
-  } 
-`
-export const YourInfoContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-`
-
-export const YourInfo = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns with equal width */
-  grid-template-rows: repeat(3, auto); /* 3 rows with auto height */
-  gap: 1rem;
-
-  height: 100%;
-  max-height: 50vh;
-  
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-    gap: 1rem; 
-    max-height: 100vh;
-  }
-`
-
-export const NewInstallationButtonContainer = styled.div`
-    padding: 1.8rem;
-
-`
-export const UserEconomyContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-
-`
-export const UserEconomyInfos = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  animation: ${fadeInUp} 0.5s ease-out;
-  
-  border: 1px solid ${background.orange};
-  border-radius: 4px;
-  text-align: center;
-  align-items: center;
-
-  padding: 1.8rem;
-  
-  span{
-      text-align: center;
-      color: ${background.grey};
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 14px;
-      letter-spacing: 0em;
-      
-      padding: 2px;
-    }
-    
-  .economyValue {
-    color: ${statusColors.paid};
-    font-size: 1.4rem;
-    margin-top: 4px;
-  }
-  
-  .economyData {
-    color: ${background.textLeve};
-    font-size: 1.4rem;
-    margin-top: 4px;
-  }
-  
-  @media (max-width: 600px) {
-    padding: 1rem;
-
-    span{
-      font-size: 12px;
-    }
-    
-  }
-`
-export const UserEconomyNotFound = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  height: 5.7rem;
-
-  animation: ${fadeInUp} 0.5s ease-out;
-  
-  border: 1px solid ${background.orange};
-  border-radius: 4px;
-
-  padding: 1rem;
-
-  .notFoundEconomy {
-    font-weight: 500;
-    font-size: 1.2rem;
-    white-space: nowrap;
-  }
-`
-
-
-
-export const HistoryContainer = styled.div`
-    background-color: ${background.white};
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    gap: 2rem;
-
-    width: 100%;
-    max-width: 80vw;
-    margin: 0 auto;
-
-    padding: 1rem 2rem;
-    
-    @media (max-width: 1300px) {
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr;
-      grid-gap: 1rem;
-
-      max-width: 90vw;
-      padding: 1rem 2rem;
-    }
-
-    @media (max-width: 600px) {
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr;
-      grid-gap: 1rem;
-
-      max-width: 100vw;
-      padding: 1rem 1rem;
-     }
-`
-
-export const HistorySpendingContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-
-    .notFoundHistorySpending {
-      font-weight: 500;
-      font-size: 1.5rem;
-      white-space: nowrap;
-      color: ${background.orange};
-    }
-`
-export const HistorySpendingGrid = styled.div`
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: auto;
-
-    border: 1px solid ${background.orange};
-    border-radius: 4px;
-
-    padding: 0 2rem;
-    animation: ${fadeInUp} 0.5s ease-out;
-
-    
-    height: 100%;
-    max-height: 50vh;
-    
-    @media (max-width: 600px) {
-      padding: 0 10px;
-    }
-
-    .grid-item {
-      background-color: grey;
-      width: 40px;
-      height: 300px;
-      margin-top: auto;
-      
-      @media (max-width: 600px) {
-        width: 36px;
-        margin-right: 4px;
-      }
-      
-    }
-    
-    .grid-item:nth-of-type(3) {
-      height: 300px;
-    }
-`
-
-export const HistoryBillingContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-`
-export const HistoryBilling = styled.div`
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-
-    .seeMoreBillings { 
-      color: ${background.orange};
-      font-weight: 500;
-      font-size: 1.2rem;
-
-      &:hover {
-        cursor: pointer;
-        text-decoration: underline;
-      } 
-    }
-`
-export const BillDetails = styled.div`
+export const NewDashboardContainer = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    align-items: stretch;
+    background-color: ${background.grey};
 
-    animation: ${fadeInUp} 0.5s ease-out;
-
-    padding: 2rem;
-    margin-bottom: 1.5rem;
-
-    height: 100%;
-    max-height: 50vh;
-
-    border: 1px solid ${background.orange};
-    border-radius: 4px;
-
-    span {
-      color: ${background.textLeve};
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 14px;
-      letter-spacing: 0em;
-      text-align: center;
+    padding: 46px 85px;
+    
+    min-height: 1000px;
+    /* max-width: 1920px; */
+    max-width: 1366px;
+    margin: 74px auto;
+    
+    @media (max-width: 900px) {
+        min-height: 600px;
+        padding: 1rem 1rem 3rem 1rem;
     }
+    @media (max-width: 700px) {
+        min-height: 600px;
+        padding: 1rem 10px 3rem 10px;
+    }
+`
+export const NewDashboardSideBar = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: ${background.grey};
+    
+    gap: 1rem;
 
+    min-width: 287px;
+    max-width: 287px;
+
+    @media (max-width: 1300px) {
+        display: none;
+    }
+`
+export const NewDashboardContent = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 900px;
+
+    margin-left: 100px;
+    
+    gap: 60px;
+
+    @media (max-width: 1400px) {
+        margin-left: 2rem;
+    }
+    @media (max-width: 900px) {
+        margin: 0 auto;
+        gap: 25px;
+    }
     @media (max-width: 600px) {
-      max-width: 92vw;
-      padding: 2rem;
+        margin: 0 auto;
+        gap: 16px;
     }
 `
-
-export const MemberGetMemberContainer = styled.div`
-  padding: 0 1rem;
-`
-export const WarningsContainer = styled.div`
-  margin: 0 auto;
-  width: 80vw;
-  max-width: 80vw;
-
-  padding: 1rem;
-
-  .connectToDistributor{ 
-    text-decoration: underline;
-
-    &:hover { 
-      cursor: pointer;
+export const NewDashboardMainContent = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    gap: 1rem;
+    
+    @media (max-width: 900px) {
+        flex-direction: column;
+        align-items: center;
     }
-  }
-
-`
-
-export const SkeletonDiv = styled(Skeleton)`
-    background-color: grey;
-    width: 177px;
-
-    padding: 1rem;
 `

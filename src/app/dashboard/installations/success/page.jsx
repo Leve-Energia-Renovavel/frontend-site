@@ -1,6 +1,6 @@
 "use client"
 
-import NewDashboardMain from "@/app/pages/components/new-dashboard/NewDashboardMain";
+import NewDashboardMain from "@/app/pages/components/dashboard/DashboardMain";
 import NewInstallationSuccessModal from "@/app/pages/components/utils/modals/installations-modal/success-modal/NewInstallationSuccessModal";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

@@ -1,10 +1,23 @@
-import styled from "@emotion/styled";
-import { Alert } from "@mui/material";
-import { fadeInUp } from "./globalAnimations";
-
+export const headerMargin = "84px"
 export const containerWidth = "1280px"
 export const containerPadding = "54px"
+export const registerContainerWidth = "877px"
+export const modalBackdrop = "rgba(0, 0, 0, 0.4)"
+export const modalBackdropGreen = "rgba(0, 89, 64, 0.4)"
 
+export const messages = {
+    success: {
+        title: "#005940",
+        background: "#E6EEEC",
+        border: "#005940",
+    },
+    error: {
+        title: "#FF7133",
+        background: "#FFF1EB",
+        border: "#FF7133",
+    }
+
+}
 export const notification = {
     success: "#3adb76",
     successFocus: "#22bb5b",
@@ -36,8 +49,6 @@ export const newFontStatusColors = {
     canceled: "#FFF",
     scheduled: "#FF7133",
 }
-
-
 
 export const partners = {
     tribanco: {
@@ -76,50 +87,31 @@ export const background = {
     greenTranslucent: "#E6EEEC",
     greenLight: "#B0CBC2",
     greenSoft: "#81AD9F",
-    grey: "#EFEFEC",
     black: "#313131",
     blackLight: "##4B4747",
+    grey: "#EFEFEC",
+    greyBorder: "#A3A3A3",
     greyTranslucent: "#D5D5D5",
     greyMedium: "#BBB",
     greyMediumHigh: "#727272",
     greyHigh: "#787878",
     greyDark: "#838383",
-    greyTranslucent: "#F3F3F1",
+    greyTranslucent: "#F1F1F1",
     orangeLight: "#FF8D5C",
     orangeHigh: "#FFBEA1",
     orangeFocused: "#FDDCCB",
     orangeTranslucent: "#FFF1EB",
 }
 
-export const SnackbarMessageAlert = styled(Alert)`
-  font-family: "Graphie";
-  font-size: 1rem;
-  background-color: ${notification.alert};
-  border-radius: 10px;
-  padding: 1rem;
-  align-items: center;
-
-  animation: ${fadeInUp} 0.5s ease-out;
-
-  @media screen and (max-width: 600px) {
-    padding: .3rem;
-    font-size: 1rem; 
-  }
-
-`
-export const SnackbarMessageNotification = styled(Alert)`
-  font-family: "Graphie";
-  font-size: 1rem;
-  background-color: ${notification.success};
-  border-radius: 10px;
-  padding: 1rem;
-  align-items: center;
-
-  animation: ${fadeInUp} 0.5s ease-out;
-
-  @media screen and (max-width: 600px) {
-    padding: .3rem;
-    font-size: 1rem; 
-  }
-
-`
+export const removeBackdropOverflow = () => {
+    if (typeof window !== "undefined" && typeof document !== "undefined") {
+        document.body.style.overflow = "hidden";
+        document.body.style.paddingRight = `${window?.innerWidth - document.documentElement.clientWidth}px`;
+    }
+};
+export const resetBackdropOverflow = () => {
+    if (typeof window !== "undefined" && typeof document !== "undefined") {
+        document.body.style.overflow = "";
+        document.body.style.paddingRight = "";
+    }
+};

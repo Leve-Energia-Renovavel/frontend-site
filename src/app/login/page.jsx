@@ -1,32 +1,20 @@
 "use client"
 
-import dynamic from 'next/dynamic';
-import { useState } from 'react';
 import HomeMain from '../pages/components/home/HomeMain';
-
-const NewLoginModal = dynamic(() => import('../pages/components/new-login/NewLoginModal'), { ssr: false });
-
-export const fetchCache = 'force-no-store';
+import LoginModal from '../pages/components/utils/modals/header-modal/login-modal/LoginModal';
+import { removeBackdropOverflow } from '../pages/globalStyles';
 
 export default function LoginPage() {
 
-    const [openLogin, setOpenLogin] = useState(true);
+    removeBackdropOverflow();
 
-    const openLoginModal = () => {
-        setOpenLogin(true);
-    };
-
-    const closeLoginModal = () => {
-        setOpenLogin(false);
-    };
     return (
         <>
             <HomeMain />
-            <NewLoginModal
-                isOpen={openLogin}
+            <LoginModal
+                isOpen={true}
                 hasForgottenPassword={false}
-                openModal={openLoginModal}
-                closeModal={closeLoginModal} />
+                isLoginPage={true} />
         </>
     );
 }

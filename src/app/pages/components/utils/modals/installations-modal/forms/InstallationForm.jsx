@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreUser } from '@/app/hooks/useStore';
+import { useStoreUser } from '@/app/hooks/stores/useStore';
 import Messages from '@/app/pages/components/messages/Messages';
 import { getAddressByCEP } from '@/app/service/address-service/AddressService';
 import { addNewInstallation } from '@/app/service/installation-service/InstallationService';
@@ -267,7 +267,7 @@ export default function InstallationForm({ closeModal }) {
                             required>
                             {Object.values(stateOptions).map((state) => {
                                 return (
-                                    <MenuItem key={state.cod_estados} value={state.cod_estados}>{state.sigla}</MenuItem>
+                                    <MenuItem key={state.estado_id} value={state.estado_id}>{state.sigla}</MenuItem>
                                 )
                             })}
                         </FormInput>

@@ -1,6 +1,7 @@
 import { requestSuccessful } from "@/app/service/utils/Validations";
 import { awaitSeconds } from "@/app/utils/browser/BrowserUtils";
-import { LEVE_WHATSAPP_NUMBER, PATH_TO } from "../../enums/globalEnums";
+import Cookies from "js-cookie";
+import { COOKIES_FOR, LEVE_WHATSAPP_NUMBER, PATH_TO, USER_TYPE } from "../../enums/globalEnums";
 
 const signupValidationCodes = {
     ALANCASR: "A leve ainda não chegou a sua região",
@@ -29,11 +30,16 @@ const signupValidationCodes = {
 };
 
 
-export const requestValidation = async (response, setNotifications, setErrorMessage, router) => {
+export const requestValidation = async (data, response, setNotifications, setErrors, storeUser, router) => {
+
     const status = response?.status
     const message = response?.message
+    const errorMessage = response?.response?.data?.message
     const responseCode = response?.data?.code
     const uuid = response?.data?.uuid
+
+    // clear user data
+    storeUser?.clearUser()
 
     if (requestSuccessful(status)) {
         if (responseCode === "VJPC") {
@@ -43,57 +49,72 @@ export const requestValidation = async (response, setNotifications, setErrorMess
         }
         else {
             if (!uuid || uuid == "undefined") {
-                setErrorMessage(["Erro ao criar conta. Mas nao se preocupe! Em alguns segundos vamos te redirecionar ao nosso Suporte."])
+                setErrors(["Erro ao criar conta. Mas nao se preocupe! Em alguns segundos vamos te redirecionar ao nosso Suporte."])
                 await awaitSeconds(4)
                 const url = `https://api.whatsapp.com/send/?phone=${LEVE_WHATSAPP_NUMBER}&text=Oi!+Tive+um+problema+ao+criar+conta+na+Leve+Energia+e+preciso++de+ajuda&type=phone_number&app_absent=0`
                 window.open(url, '_blank', 'noopener noreferrer');
+
             } else {
-                setNotifications(["Simulação realizada com sucesso! Aguarde 2 segundos..."])
-                router.push(`${PATH_TO.SIGNUP}?uuid=${uuid}`)
+                Cookies.set(COOKIES_FOR.UUID, uuid)
+
+                storeUser.updateUser({
+                    uuid: uuid,
+                    name: data?.nome_completo,
+                    email: data?.email?.toLowerCase()?.trim(),
+                    phone: data?.telefone?.toLowerCase()?.trim(),
+                    cep: data?.cep,
+                    cost: data?.valor,
+                    isCompany: data?.type === USER_TYPE.PJ ? true : false,
+                    coupon: data?.cupom,
+                })
+                await awaitSeconds(1)
+                router.push(`${PATH_TO.ECONOMY_SIMULATION}`)
             }
         }
 
-    }
-    if (responseCode === "ALANCASR") {
-        router.push(PATH_TO.OUT_OF_RANGE)
-    }
-    else if (responseCode === "UE") {
-        setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])
-        await awaitSeconds(3)
-        router.push(`/login`)
-    }
-    else if (responseCode === "SCJEL") {
-        router.push(PATH_TO.LOW_COST)
-    }
-    else if (responseCode === "ALANCASR" || message === "A leve ainda não chegou a sua região") {
-        router.push(PATH_TO.OUT_OF_RANGE)
-    }
-    else if (responseCode === "CI") {
-        router.push(PATH_TO.OUT_OF_RANGE)
-    }
-    else if (responseCode === "TCPA") {
-        router.push(PATH_TO.CONTRACT_SIGNATURE)
-    }
-    else if (responseCode === "CPI") {
-        setErrorMessage(["Cupom inválido. Por favor, verifique e tente novamente"])
-    }
-    else if (responseCode === "CNENN") {
-        setErrorMessage(["Campo de nome inválido. Por favor, verifique e tente novamente"])
-    }
-    else if (message === "Não foi possível achar esse usuário") {
-        setErrorMessage(["E-mail não encontrado. Verifique se foi digitado corretamente ou se tiver, busque pelo e-mail secundário."])
-    }
+    } else {
 
-    else if (message === "N\u00e3o h\u00e1 geradora" ||
-        message === "Não há geradora") {
-        const errorCode = "BDM001"
-        setErrorMessage([`Erro de servidor. Por favor, tente novamente mais tarde (cod. ${errorCode})`])
-    }
-    else if (response?.errors) {
-        setErrorMessage(response?.errors)
-    }
-    else {
-        setErrorMessage(["Erro de servidor. Por favor, tente novamente mais tarde"])
+        if (responseCode === "ALANCASR") {
+            router.push(PATH_TO.OUT_OF_RANGE)
+        }
+        else if (responseCode === "UE") {
+            setNotifications(["Você já possui cadastro! Vamos te redirecionar para o Login"])
+            await awaitSeconds(3)
+            router.push(`/login`)
+        }
+        else if (responseCode === "SCJEL") {
+            router.push(PATH_TO.LOW_COST)
+        }
+        else if (responseCode === "ALANCASR" || message === "A leve ainda não chegou a sua região" || errorMessage === "A leve ainda não chegou a sua região") {
+            router.push(PATH_TO.OUT_OF_RANGE)
+        }
+        else if (responseCode === "CI") {
+            router.push(PATH_TO.OUT_OF_RANGE)
+        }
+        else if (responseCode === "TCPA") {
+            router.push(PATH_TO.REGISTER_CONTRACT)
+        }
+        else if (responseCode === "CPI") {
+            setErrors(["Cupom inválido. Por favor, verifique e tente novamente"])
+        }
+        else if (responseCode === "CNENN") {
+            setErrors(["Campo de nome inválido. Por favor, verifique e tente novamente"])
+        }
+        else if (message === "Não foi possível achar esse usuário") {
+            setErrors(["E-mail não encontrado. Verifique se foi digitado corretamente ou se tiver, busque pelo e-mail secundário."])
+        }
+
+        else if (message === "N\u00e3o h\u00e1 geradora" ||
+            message === "Não há geradora") {
+            const errorCode = "BDM001"
+            setErrors([`Erro de servidor. Por favor, tente novamente mais tarde (cod. ${errorCode})`])
+        }
+        else if (response?.errors) {
+            setErrors(response?.errors)
+        }
+        else {
+            setErrors(["Erro de servidor. Por favor, tente novamente mais tarde"])
+        }
     }
 
 }

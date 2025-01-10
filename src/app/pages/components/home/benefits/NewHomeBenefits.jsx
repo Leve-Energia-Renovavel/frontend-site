@@ -3,7 +3,7 @@ import { handleScrollToId } from '@/app/utils/browser/BrowserUtils';
 import { BenefitsBox, BenefitsBoxButton, BenefitsBoxButtonIcon, BenefitsContainer, NewHomeBenefitsContainer as Container } from "./styles";
 
 import Image from 'next/image';
-import iconFlag from '../../../../../resources/icons/large/leve-icon-tax-flag-banner-large.png';
+import iconFlag from '../../../../../resources/icons/large/leve-icon-tax-flag-banner-large.webp';
 export default function NewHomeBenefits() {
     return (
         <Container className="leveHomeBenefitsContainer">
@@ -20,7 +20,6 @@ export default function NewHomeBenefits() {
 
                 </BenefitsBox>
             </BenefitsContainer>
-
         </Container>
     )
 }

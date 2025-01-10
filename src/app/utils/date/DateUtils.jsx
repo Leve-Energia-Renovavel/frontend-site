@@ -1,4 +1,4 @@
-import { BILL_STATUS } from '@/app/pages/components/new-dashboard/invoices/invoicesEnums';
+import { BILL_STATUS } from '@/app/pages/components/dashboard/invoices/invoicesEnums';
 import { format } from 'date-fns';
 
 export const getCurrentDate = () => {

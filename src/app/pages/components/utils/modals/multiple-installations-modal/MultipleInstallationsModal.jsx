@@ -1,4 +1,4 @@
-import { useStoreInstallations } from '@/app/hooks/useStore'
+import { useStoreInstallations } from '@/app/hooks/stores/useStore'
 import { Backdrop, Modal } from '@mui/material'
 import InstallationCard from '../../cards/InstallationCard'
 import { ModalBox, RegisteredInstallationsContainer } from './styles'

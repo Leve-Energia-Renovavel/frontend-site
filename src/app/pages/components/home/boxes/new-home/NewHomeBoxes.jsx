@@ -1,14 +1,19 @@
+"use client"
+
+import { useStoreHome } from '@/app/hooks/stores/home/useStoreHome'
 import { HOME_FORM_ID, USER_TYPE } from '@/app/pages/enums/globalEnums'
 import { handleScrollToId } from '@/app/utils/browser/BrowserUtils'
 import { newHomeBoxes } from '@/app/utils/helper/home/homeBoxesHelper'
-import companyBannerImage from '../../../../../../resources/img/large/leve-company-image-large.jpg'
-import homeBannerImage from '../../../../../../resources/img/large/leve-family-playing-image-large.png'
+import companyBannerImage from '../../../../../../resources/img/large/leve-company-image-large.webp'
+import homeBannerImage from '../../../../../../resources/img/large/leve-family-playing-image-large.webp'
 import HomeBoxesMobile from '../mobile/HomeBoxesMobile'
 import { BoxCard, BoxesContainer, ButtonContainer, NewHomeBoxesContainer as Container, NewHomeBoxesContent as Content, HomeBoxCompany, HomeBoxesCTAButton, HomeBoxHome, HomeBoxesUserTypeContainer as UserTypeContainer } from './styles'
-export default function NewHomeBoxes({ setSelectedUserType }) {
+export default function NewHomeBoxes() {
+
+    const storeHome = useStoreHome()
 
     const handleSelectUserTypeAndScroll = (usertype) => {
-        setSelectedUserType(usertype)
+        storeHome.setSelectedUserType(usertype)
         handleScrollToId(HOME_FORM_ID)
     }
     return (
@@ -18,12 +23,11 @@ export default function NewHomeBoxes({ setSelectedUserType }) {
                 <h3 className='homeBoxesSubTitle'>Mais economia e mais facilidades</h3>
 
                 <Content className='leveHomeBoxesContent'>
-
                     <UserTypeContainer className='leveHomeBoxesUserTypeContainer'>
-                        <HomeBoxHome bannerImage={homeBannerImage} onClick={() => handleSelectUserTypeAndScroll(USER_TYPE.RESIDENCIA)}>
+                        <HomeBoxHome className={"leveHomeBoxHome"} bannerImage={homeBannerImage} onClick={() => handleSelectUserTypeAndScroll(USER_TYPE.RESIDENCIA)}>
                             <p className='leveHomeBoxForYourHome'>Para sua casa</p>
                         </HomeBoxHome>
-                        <HomeBoxCompany bannerImage={companyBannerImage} onClick={() => handleSelectUserTypeAndScroll(USER_TYPE.EMPRESA)}>
+                        <HomeBoxCompany className={"leveHomeBoxCompany"} bannerImage={companyBannerImage} onClick={() => handleSelectUserTypeAndScroll(USER_TYPE.EMPRESA)}>
                             <p className='leveHomeBoxForYourCompany'>Para sua empresa</p>
                         </HomeBoxCompany>
                     </UserTypeContainer>
@@ -47,7 +51,7 @@ export default function NewHomeBoxes({ setSelectedUserType }) {
             </Container>
 
             {/* Mobile content here! */}
-            <HomeBoxesMobile className='homeMainBoxesContainerMobile' />
+            <HomeBoxesMobile />
         </>
     )
 }

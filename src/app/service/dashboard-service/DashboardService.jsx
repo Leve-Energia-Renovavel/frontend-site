@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from "@/app/pages/enums/globalEnums";
+import { COOKIES_FOR, ERROR_MESSAGE } from "@/app/pages/enums/globalEnums";
 import { awaitSeconds, clearBrowserData } from "@/app/utils/browser/BrowserUtils";
 import { formatBrazillianDate } from "@/app/utils/formatters/dateFormatter";
 import axios from "axios";
@@ -78,23 +78,24 @@ export const getDashboardMainData = async (router, storeUser, storeEconomy, setE
     }
 }
 
-const shouldUpdateDashboardData = (response, storeUser, storeBilling, storeMainInstallation) => {
+const shouldUpdateDashboardData = (response, storeBilling, storeMainInstallation) => {
     const hasDifferentBillings = response.data.ciclosConsumo.length !== storeBilling.billings.length;
     const hasDifferentInstallation = response.data.instalacao.uuid !== storeMainInstallation.mainInstallation.uuid;
-
     return hasDifferentBillings || hasDifferentInstallation;
 }
 
 export const getGeneralDashboardData = async (router, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations, setErrorMessage) => {
     try {
-        const token = Cookies.get('accessToken') || storeUser.accessToken
+        const accessToken = storeUser?.user?.accessToken
+        const token = accessToken || Cookies.get(COOKIES_FOR.ACCESS_TOKEN)
         const headers = {
             "Authorization": `Bearer ${token}`,
         };
 
         const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/painel/`, { headers });
+
         if (requestSuccessful(response?.status)) {
-            if (shouldUpdateDashboardData(response, storeUser, storeBilling, storeMainInstallation)) {
+            if (shouldUpdateDashboardData(response, storeBilling, storeMainInstallation)) {
                 const data = response?.data
                 await updateGeneralDashboardData(data, storeUser, storeEconomy, storeNextBills, storeBilling, storeMainInstallation, storeInstallations)
             }

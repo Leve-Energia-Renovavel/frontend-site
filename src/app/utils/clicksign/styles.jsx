@@ -69,18 +69,35 @@ export const ClicksignWidgetContainer = styled.div`
 `;
 
 export const ClicksignComponentContainer = styled.div`
-  #clicksign-container {
-    margin: 60px auto 0 auto;
 
-    width: 100%; 
-    max-width: 900px; 
-    height: 27rem;
+    #clicksign-container {
+        width: 100%;
 
-    @media (max-width: 600px) {
-        width: 20rem; 
-        height: 35rem;
+        height: 410px;
 
-        margin: 0;
+        @media (max-width: 600px) {
+            width: 100%;
+            height: 420px;
+
+            max-height: 100%;
+
+        }   
+        @media (max-width: 440px) {
+            width: 100%;
+            height: 490px;
+        }   
+        @media (max-width: 420px) {
+            width: 100%;
+            height: 510px;
+        }   
+
+        @media (max-width: 380px) {
+            width: 100%;
+            height: 450px;
+        }   
+        @media (max-width: 370px) {
+            width: 100%;
+            height: 510px;
+        }   
     }
-  }
 `

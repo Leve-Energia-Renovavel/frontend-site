@@ -3,7 +3,7 @@ import { background } from "@/app/pages/globalStyles"
 import styled from "@emotion/styled"
 import { Button } from "@mui/material"
 
-export const HomeSecondaryBoxesContainerMobile = styled.div`
+export const HomeBoxesContainerMobile = styled.div`
     display: none;
     position: relative;
 
@@ -21,6 +21,8 @@ export const HomeBoxesBaloon = styled.div`
     background-color: ${background.white};
 
     animation: ${float} 4s ease-in-out infinite;
+
+    z-index: 10;
 
     padding: 10px;
     
@@ -61,47 +63,50 @@ export const HomeBoxesBaloon = styled.div`
 
     @media (max-width: 480px) {
         right: 38%;
-        top: 7%;
+        top: 15%;
     }
 
     @media (max-width: 412px) {
         right: 37%;
-        top: 7%;
+        top: 15%;
     }
     @media (max-width: 400px) {
         right: 30%;
-        top: 7%;
+        top: 15%;
     }
     @media (max-width: 380px) {
         right: 30%;
-        top: 7%;
+        top: 15%;
     }
     @media (max-width: 362px) {
         right: 29%;
-        top: 7%;
+        top: 15%;
     }
 `
 export const HomeSecondaryBannerContainerMobile = styled.div`
+
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
+    align-items: start;
 
-    min-width: 100vw;
+    height: 360px; 
+    width: 100%; 
+    overflow: hidden; 
     
-    height: 100%;
-    width: 100%;
-    
-    min-height: 360px;
-    max-height: 360px;
+    z-index: 9;
 
-    padding: 35px 16px 0px 16px;
-
-    background-image: url(${props => props.image.src});
-    background-repeat: no-repeat;
-    background-size: cover; 
-    background-position: 100% 30%;
-    background-size: 110%; /* Zoom in the background image */
-    z-index: 9; 
+    .homeBoxesMobileBannerImage {
+        position: absolute; /* Allows the image to span the container */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* Places the image behind the content */
+        object-fit: cover;
+        object-position: right top;
+    }
     
     .homeBoxesSecondarySectionTitle {
         font-family: "Graphie";
@@ -113,6 +118,7 @@ export const HomeSecondaryBannerContainerMobile = styled.div`
         max-width: 180px;
 
         margin-bottom: 80px;
+        margin-left: 1rem;
     }
 
     @media (max-width: 600px) {

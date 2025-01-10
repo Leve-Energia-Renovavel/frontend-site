@@ -1,8 +1,9 @@
-import { fadeInUp } from "@/app/pages/globalAnimations";
 import { background } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import EmojiObjectsOutlinedIcon from '@mui/icons-material/EmojiObjectsOutlined';
 import { Box, Button } from "@mui/material";
+import { Switch } from '@mui/material';
 
 export const ModalBox = styled(Box)`
     display: flex;
@@ -39,57 +40,20 @@ export const WelcomeContent = styled.div`
     display: flex;
     flex-direction: column;
     
-    max-width: 342px;
+    max-width: 375px;
     
-    padding: 1rem;
+    padding: 24px;
     
     gap: 1rem;
     
-    .title{
-        font-family: "Graphie";
-        font-size: 22px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 120%; /* 26.4px */
-        color: ${background.orange};
-        
-        animation: ${fadeInUp} 0.5s ease-out;
-    }
-    .subtitle{
-        font-family: "Graphie";
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 120%; /* 21.6px */
-        color: ${background.green};
-        
-        animation: ${fadeInUp} 0.4s ease-out;
-    }
-    .descriptionPrimary, .descriptionSecondary{
-        font-family: "Graphie";
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 120%; /* 19.2px */
-        color: ${background.greyMediumHigh};
-        
-        animation: ${fadeInUp} 0.2s ease-out;
-        
-    }
-    
-    .highlighted {
-        font-weight: 600;
-        color: ${background.greyMediumHigh};
-    }
-    
     @media (max-width: 600px) {
         min-width: 340px;
-        width: 342px;
-        max-width: 342px;
+        width: 375px;
+        max-width: 375px;
 
         min-height: 360px;
-        height: 369px;
-        max-height: 369px;
+        height: fit-content;
+        max-height: fit-content;
     }
 `
 
@@ -100,7 +64,7 @@ export const FormButton = styled(Button)`
   color: ${background.white};
   border-radius: 30px;
 
-  height: 40px;
+  height: 48px;
 
   width: 100%;
   max-width: 388px;
@@ -111,9 +75,9 @@ export const FormButton = styled(Button)`
   
     span {
     font-family: "Graphie";
-    font-size: 16px;
+    font-size: 18px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 120%; 
     text-transform: none;
     color: ${background.white};
@@ -148,3 +112,64 @@ export const SimpleArrowForward = styled(ArrowForwardIcon)`
     height: 21px;
     color: ${background.yellow};
 `
+
+export const LampIcon = styled(EmojiObjectsOutlinedIcon)`
+  color: ${background.green};
+  background-color: ${background.yellow};
+
+  border-radius: 30px;
+  width: 32px;
+  height: 32px;
+`
+export const SwitchButton = styled(Switch)`
+  width: 75px;
+  height: 38px;
+  padding: 0;
+
+  margin: 0 auto;
+
+  & .MuiSwitch-switchBase {
+    padding: 0;
+    margin: 3px;
+    transition-duration: 300ms;
+
+    &.Mui-checked {
+      transform: translateX(38px);
+      color: ${background.orange};
+
+      & + .MuiSwitch-track {
+        background-color: ${background.green};
+        opacity: 1;
+        border: 0;
+      }
+
+      &.Mui-disabled + .MuiSwitch-track {
+        opacity: 0.5;
+      }
+    }
+
+    &.Mui-focusVisible .MuiSwitch-thumb {
+      color: #33cf4d;
+      border: 30px solid #fff;
+    }
+
+    &.Mui-disabled .MuiSwitch-thumb {
+    }
+
+    &.Mui-disabled + .MuiSwitch-track {
+      opacity: 0.7;
+    }
+  }
+
+  & .MuiSwitch-thumb {
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+  }
+
+  & .MuiSwitch-track {
+    border-radius: 30px;
+    background-color: ${background.orange};
+    opacity: 1;
+  }
+`;

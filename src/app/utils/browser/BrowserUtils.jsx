@@ -29,7 +29,7 @@ export const clearBrowserData = async () => {
         localStorage.clear();
     }
 
-    if (caches) {
+    if (typeof caches !== 'undefined') {
         caches.keys().then(cacheNames => {
             cacheNames.forEach(cacheName => {
                 caches.delete(cacheName);
@@ -63,7 +63,6 @@ export const clearCookiesAndStorageData = async () => {
     }
 }
 
-
 export const awaitSeconds = async (seconds) => {
     return await new Promise(resolve => setTimeout(resolve, seconds * 1000));
 }
@@ -81,6 +80,6 @@ export const handleScrollToId = (id) => {
     if (element) {
         window.scrollTo({ top: element.offsetTop - 60, behavior: 'smooth' });
     } else {
-        window.scrollTo({ top: 500, behavior: 'smooth' })
+        window.scrollTo({ top: 3050, behavior: 'smooth' })
     }
 }

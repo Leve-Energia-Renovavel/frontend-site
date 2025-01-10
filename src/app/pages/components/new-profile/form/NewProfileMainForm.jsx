@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreCompany, useStoreInstallations, useStoreMainInstallation, useStoreUser, useStoreUserEconomy } from '@/app/hooks/useStore';
+import { useStoreCompany, useStoreInstallations, useStoreMainInstallation, useStoreUser, useStoreUserEconomy } from '@/app/hooks/stores/useStore';
 import { updateUserProfile } from '@/app/service/user-service/UserService';
 import { getCityNameByStateIdAndCityId } from '@/app/service/utils/addressUtilsService';
 import { requestSuccessful } from '@/app/service/utils/Validations';
@@ -419,7 +419,7 @@ export default function NewProfileMainForm({ isEdition, handleEdition, setNotifi
                         inputRef={addressRefs.state}>
                         {Object.values(stateOptions).map((state) => {
                             return (
-                                <MenuItem key={state.cod_estados} value={state.cod_estados}>{state.sigla}</MenuItem>
+                                <MenuItem key={state.estado_id} value={state.estado_id}>{state.sigla}</MenuItem>
                             )
                         })}
                     </FormInput>

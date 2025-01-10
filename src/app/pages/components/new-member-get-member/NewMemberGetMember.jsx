@@ -1,6 +1,6 @@
 "use client"
 
-import { useStoreUser } from "@/app/hooks/useStore";
+import { useStoreUser } from "@/app/hooks/stores/useStore";
 import { handleSendInvite } from "@/app/service/dashboard-service/DashboardService";
 import { TextField } from "@mui/material";
 import { useRef, useState } from "react";
