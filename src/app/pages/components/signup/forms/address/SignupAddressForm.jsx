@@ -313,7 +313,7 @@ export default function SignupAddressForm() {
             : <FormSubmitButton
               type='submit'
               form={REGISTER_FORM.ADDRESS_ID}
-              endIcon={<ArrowForwardIcon className='icon' />}><span>Assine o contrato</span></FormSubmitButton>}
+              endIcon={<ArrowForwardIcon className='icon' />}><span>Contrato</span></FormSubmitButton>}
         </FormFooterContainer>
 
       </Form>

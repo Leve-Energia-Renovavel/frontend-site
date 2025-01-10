@@ -33,10 +33,10 @@ export default function DashboardWelcomeAndShareAccess({ isMobileContent }) {
 
     return (
         <>
-            {isFirstAccess &&
+            {true &&
                 (<WelcomeAndShareAccessModal
                     isMobileContent={isMobileContent}
-                    isOpen={isFirstAccess}
+                    isOpen={true}
                     customerName={name}
                     distributorStatus={distributorStatus}
                     closeModal={handleCloseWelcomeModal} />

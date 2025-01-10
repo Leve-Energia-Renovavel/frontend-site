@@ -13,6 +13,7 @@ export const ActiveDistributorMessageContainer = styled.div`
             font-style: normal;
             font-weight: 600;
             line-height: 120%;
+            letter-spacing: 0.4px;
             color: ${background.green};
             
         }
@@ -32,11 +33,8 @@ export const ActiveDistributorMessageContainer = styled.div`
             font-size: 16px;
             font-style: normal;
             font-weight: 400;
-            line-height: 100%; 
-    
-            text-align:justify;
-            word-spacing:-2px;
-    
+            line-height: 120%; 
+
             color: ${background.greyMediumHigh};
             
         }
@@ -63,6 +61,8 @@ export const HighlightBox = styled.div`
         width: 37px;
         height: 60px;
         color: ${background.green};
+        filter: invert(14%) sepia(95%) saturate(245%) hue-rotate(141deg) brightness(80%) contrast(94%);
+
     }
 `
 export const HighlightBoxContent = styled.div`

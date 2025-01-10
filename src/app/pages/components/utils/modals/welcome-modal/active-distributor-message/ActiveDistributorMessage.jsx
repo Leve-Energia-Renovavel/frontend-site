@@ -1,6 +1,9 @@
 import BoltOutlinedIcon from '@mui/icons-material/BoltOutlined';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import { ActiveDistributorMessageContainer as Container, DiscountBanner, DiscountValue, HighlightBox, HighlightBoxContent } from "./styles";
+import lightningIcon from '../../../../../../../resources/icons/large/leve-icon-lightning-large.svg'
+import Image from 'next/image';
+
 export default function ActiveDistributorMessage() {
     return (
         <Container className="activeDistributorMessageContainer">

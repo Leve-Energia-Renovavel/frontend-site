@@ -12,6 +12,7 @@ export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, cu
 
     const [checked, setChecked] = useState(false)
 
+    const isNotActiveDistributor = distributorStatus === false;
     const isActiveDistributor = distributorStatus === true;
 
     const handleButtonClick = () => {
@@ -49,7 +50,7 @@ export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, cu
             <ModalBox className={isMobileContent ? "welcomeAndShareAccessModalMobile" : "welcomeAndShareAccessModalDesktop"}>
                 <WelcomeContent className='welcomeAndShareAccessContent'>
                     <SwitchButton checkedIcon={<LampIcon />} checked={checked} />
-                    {isActiveDistributor ? <ActiveDistributorMessage /> : <InactiveDistributorMessage />}
+                    {isNotActiveDistributor ? <InactiveDistributorMessage /> : <ActiveDistributorMessage />}
                     <FormButton
                         onClick={handleButtonClick}
                         endIcon={<SimpleArrowForward className="icon" />}>
