@@ -2,8 +2,6 @@
 
 import { modalBackdropGreen } from '@/app/pages/globalStyles';
 import { isNull } from '@/app/utils/helper/globalHelper';
-import { sendWhatsAppMessage } from '@/app/utils/helper/whatsapp/whatsappHelper';
-import { isNull } from '@/app/utils/helper/globalHelper';
 import { Backdrop, Modal } from '@mui/material';
 import { useEffect, useState } from 'react';
 import ActiveDistributorMessage from './active-distributor-message/ActiveDistributorMessage';
