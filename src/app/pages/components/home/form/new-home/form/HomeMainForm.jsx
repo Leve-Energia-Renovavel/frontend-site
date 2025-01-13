@@ -101,8 +101,6 @@ export default function HomeMainForm() {
         <HomeFormContainer className={`leveHomeMainFormContainer`}>
             <Form acceptCharset="UTF-8" method="POST" id={`leadForm`} onSubmit={handleSubmit}>
 
-                <HomeMainFormHeader />
-
                 <FormTitleContainer className='formTitleContainer'>
                     <h2 className='formTitle'>Calcule sua economia e o impacto positivo que você pode promover</h2>
                 </FormTitleContainer>
