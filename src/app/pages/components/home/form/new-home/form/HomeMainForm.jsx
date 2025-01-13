@@ -18,6 +18,9 @@ import { USER_TYPE } from '@/app/pages/enums/globalEnums';
 import { cepInputComplete, cepInputIncomplete, couponInputComplete, emailInputComplete, emailInputIncomplete, labelColorHelper, labelColorHelperForMasked, nameInputCompleted, nameInputIncomplete, phoneInputComplete, phoneInputIncomplete } from '@/app/utils/helper/form/formHelper';
 import { schemaValidation } from '../../../schema';
 import HomeMainFormSimulator from '../../simulator/HomeMainFormSimulator';
+import NewHomeMainFormHeader from './header/NewHomeMainFormHeader';
+
+const texts = infoJson.home
 
 export default function HomeMainForm() {
 
@@ -30,6 +33,7 @@ export default function HomeMainForm() {
 
     const cupom = search.get("cupom")
 
+    const selectedUserType = storeHome.selectedUserType
     const texts = infoJson.home
 
     const setNotifications = storeMessage.setNotifications
@@ -85,7 +89,7 @@ export default function HomeMainForm() {
             formState?.coupon,
         )
 
-        const response = await schemaValidation(submitData, setErrors)
+        const response = await schemaValidation(submitData)
         await requestValidation(submitData, response, setNotifications, setErrors, storeUser, router)
         setLoading(false)
     }
@@ -94,6 +98,11 @@ export default function HomeMainForm() {
 
     return (
         <HomeFormContainer className={`leveHomeMainFormContainer`}>
+            <Form acceptCharset="UTF-8"
+                method="POST"
+                id={`leadForm`}
+                onSubmit={handleSubmit}>
+                <NewHomeMainFormHeader />
             <Form id={`leadForm`} onSubmit={handleSubmit}>
 
                 <FormTitleContainer className='formTitleContainer'>

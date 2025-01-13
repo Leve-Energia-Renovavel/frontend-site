@@ -21,7 +21,7 @@ export default function DashboardSharedAccess({ expanded, closeModal, isMobileCo
     const storeMessages = useStoreMessages()
 
     const setNotifications = storeMessages.setNotifications
-    const setErrors = storeMessages.setNotifications
+    const setErrors = storeMessages.setErrors
 
     const user = JSON.parse(localStorage.getItem('user')) || storeUser.user
     const installation = JSON.parse(localStorage.getItem('installation')) || storeMainInstallation.mainInstallation

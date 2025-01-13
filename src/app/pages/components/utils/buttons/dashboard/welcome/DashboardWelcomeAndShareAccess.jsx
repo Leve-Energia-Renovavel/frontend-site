@@ -1,7 +1,6 @@
 "use client"
 
 import { useStoreUser } from '@/app/hooks/stores/useStore'
-import { isTrue } from '@/app/utils/helper/globalHelper'
 import { useEffect, useState } from 'react'
 import SharedAccessModal from '../../../modals/shared-access-modal/SharedAccessModal'
 import WelcomeAndShareAccessModal from '../../../modals/welcome-modal/WelcomeAndShareAccessModal'
@@ -14,7 +13,7 @@ export default function DashboardWelcomeAndShareAccess({ isMobileContent }) {
 
     const [openModal, setOpenModal] = useState(false)
 
-    const hasToOpenShareAccess = !isFirstAccess && !hasSyncDistributorData && !hasOpenedSharedAccessModal && openModal && isTrue(distributorStatus)
+    const hasToOpenShareAccess = !isFirstAccess && !hasSyncDistributorData && !hasOpenedSharedAccessModal && openModal
 
     const handleCloseWelcomeModal = () => {
         storeUser.updateUser({ isFirstAccess: false })
@@ -43,7 +42,7 @@ export default function DashboardWelcomeAndShareAccess({ isMobileContent }) {
                 )}
 
             {hasToOpenShareAccess && (
-                < SharedAccessModal
+                <SharedAccessModal
                     isMobileContent={isMobileContent}
                     isOpen={openModal}
                     closeModal={handleClose} />)

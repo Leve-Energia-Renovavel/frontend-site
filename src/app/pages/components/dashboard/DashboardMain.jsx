@@ -34,7 +34,6 @@ export default function NewDashboardMain(props) {
     const [menuSelected, setMenuSelection] = useState(menuOptions[props.page])
 
     const storeMessages = useStoreMessages()
-    const setNotifications = storeMessages.setNotifications
     const setErrors = storeMessages.setErrors
 
     const mainInstallationExists = storeMainInstallation?.mainInstallation?.uuid !== ""

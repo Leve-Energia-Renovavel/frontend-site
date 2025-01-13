@@ -18,32 +18,15 @@ export const pathHelper = {
 }
 
 export const headerHelper = {
-    '/': false,
-    '/home/': false,
-    '/signup/': false,
-    '/lp/': false,
-    '/lp/novos-clientes/': false,
-    '/lp/apresentacao/': false,
-    '/lp/empresas/': false,
-    '/lp/tribanco/': false,
-    '/lp/tim/': false,
-    '/lp/martins/': false,
-    '/lp/yduqs/': false,
-    '/lp/localiza/': false,
-    '/register/': false,
     '/dashboard/': true,
     '/dashboard/profile/': true,
     '/dashboard/invoices/': true,
     '/dashboard/installations/': true,
     '/dashboard/installations/contract-signature/': true,
     '/dashboard/payment/': true,
-    '/recover-password/': false,
-    '/fail/out-of-range/': false,
-    '/fail/low-cost/': false,
     '/connection/': true,
 }
 export const landingPageHelper = {
-    '/': false,
     '/lp/': true,
     '/lp/novos-clientes/': true,
     '/lp/apresentacao/': true,

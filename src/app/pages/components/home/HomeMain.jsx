@@ -2,12 +2,12 @@
 
 import { Divider } from "@mui/material";
 import dynamic from "next/dynamic";
-import NewHomeMainBanner from "./banners/main/new-home/NewHomeMainBanner";
+import NewHomeMainBanner from "./banners/main/NewHomeMainBanner";
 import HomeHowLeveWorks from "./HomeHowLeveWorks";
-import HomeLeveAboutUs from "./HomeLeveAboutUs";
 import { HomeContainer as Container, HomeContentContainer as HomeBanner } from "./styles";
 
 const HomeForm = dynamic(() => import("./form/new-home/HomeForm"), { ssr: false });
+const HomeLeveAboutUs = dynamic(() => import("./HomeLeveAboutUs"), { ssr: false });
 
 export default function HomeMain() {
 
@@ -25,7 +25,6 @@ export default function HomeMain() {
                 <HomeForm />
 
                 <HomeLeveAboutUs />
-
             </Container >
         </>
     )

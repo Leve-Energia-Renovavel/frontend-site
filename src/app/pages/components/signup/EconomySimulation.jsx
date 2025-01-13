@@ -3,7 +3,6 @@
 
 import { useStoreAddress, useStoreUser } from '@/app/hooks/stores/useStore';
 import { getLeadData } from '@/app/service/lead-service/LeadService';
-import { clearCookiesAndStorageData } from '@/app/utils/browser/BrowserUtils';
 import Cookies from 'js-cookie';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -24,7 +23,6 @@ export default function EconomySimulation() {
 
     useEffect(() => {
         const fetchData = async () => {
-            await clearCookiesAndStorageData()
             await getLeadData(uuid, storeUser, storeAddress)
             setIsLoading(false)
         };

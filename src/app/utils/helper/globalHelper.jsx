@@ -2,6 +2,9 @@
 export const isTrue = (value) => {
     return value === true
 }
+export const isNull = (value) => {
+    return value === null
+}
 export const isEmpty = (value) => {
     return value === ""
 }
@@ -13,6 +16,9 @@ export const stringLengthIsZero = (value) => {
 }
 export const dontIncludesUnderscore = (value) => {
     return !value?.includes('_')
+}
+export const valuesAreNotEqual = (first, second) => {
+    if (first !== second) return true
 }
 
 export const isValidCNPJ = (cnpj) => {

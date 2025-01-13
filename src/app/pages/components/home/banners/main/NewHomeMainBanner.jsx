@@ -4,9 +4,9 @@ import { HOME_FORM_ID } from '@/app/pages/enums/globalEnums'
 import { handleScrollToId } from '@/app/utils/browser/BrowserUtils'
 import bannerImage from '@/resources/img/new-home-image.webp'
 import Image from 'next/image'
-import infoJson from '../../../../../../../../public/info.json'
-import checkIcon from '../../../../../../../resources/icons/small/leve-icon-new-home-check-small.webp'
-import HomeMainBannerMobile from '../mobile/HomeMainBannerMobile'
+import infoJson from '../../../../../../../public/info.json'
+import checkIcon from '../../../../../../resources/icons/small/leve-icon-new-home-check-small.webp'
+import HomeMainBannerMobile from './mobile/HomeMainBannerMobile'
 
 import { NewHomeBannerImageContainer as BannerImageContainer, NewHomeMainBannerContainer as Container, CTAButton, NewHomeMainDescriptionContainer as DescriptionContainer, NewHomeMainContainer as HomeMain, NewHomeMainBaloon } from './styles'
 
@@ -33,12 +33,14 @@ export default function NewHomeMainBanner() {
           <CTAButton className='homeMainBannerButton' onClick={() => handleScrollToId(HOME_FORM_ID)}><span>Calcular meu desconto</span></CTAButton>
         </HomeMain>
 
-        <NewHomeMainBaloon>
+        <NewHomeMainBaloon className='leveHomeBannerBaloon'>
           <p>Você economizou <span className='hihglighted'>R$42,50</span> nesse mês!</p>
           <p>Sua ajuda ao meio ambiente equivale a <span className='hihglighted'>4 árvores plantadas.</span></p>
         </NewHomeMainBaloon>
 
-        <BannerImageContainer className='leveHomeBannerImageContainer' image={bannerImage} />
+        <BannerImageContainer className='leveHomeBannerImageContainer'>
+          <Image src={bannerImage} alt='leveHomeBanner' className='leveHomeBannerImage' priority={true} />
+        </ BannerImageContainer>
       </Container>
 
       {/* Mobile content here! */}

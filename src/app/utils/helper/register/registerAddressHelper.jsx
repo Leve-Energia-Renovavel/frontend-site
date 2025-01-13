@@ -37,7 +37,7 @@ export const addressTextInputFilled = (value) => {
 };
 export const numberInputIncomplete = (value) => {
     if (!value) return null
-    return value?.length < 1;
+    if (value === "_____") return true
 };
 export const numberInputFilled = (value) => {
     if (!value) return null

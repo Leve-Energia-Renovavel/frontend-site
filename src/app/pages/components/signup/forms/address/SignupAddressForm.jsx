@@ -10,7 +10,7 @@ import { hasToSignContract, requestSuccessful } from "@/app/service/utils/Valida
 import { stateOptions } from '@/app/utils/form-options/addressFormOptions';
 import { formatCpf } from "@/app/utils/formatters/documentFormatter";
 import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
-import { dontIncludesUnderscore, isNotEmpty } from "@/app/utils/helper/globalHelper";
+import { dontIncludesUnderscore, isEmpty, isNotEmpty, valuesAreNotEqual } from "@/app/utils/helper/globalHelper";
 import { addressTextInputFilled, cepInputComplete, cepInputIncomplete, inputIncomplete, inputIsEmpty, labelColorHelper, numberInputFilled, numberInputIncomplete, shrinkHelper } from "@/app/utils/helper/register/registerAddressHelper";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import SearchIcon from '@mui/icons-material/Search';
@@ -113,11 +113,11 @@ export default function SignupAddressForm() {
     setIsLoading(false);
   };
 
-  const handleGetCEP = async (cep) => {
-    if (isNotEmpty(cep) && dontIncludesUnderscore(cep)) {
+  const handleGetCEP = async (stateCep) => {
+    if (isNotEmpty(stateCep) && dontIncludesUnderscore(stateCep) && valuesAreNotEqual(stateCep, cep)) {
       setIsLoadingCEP(true)
       try {
-        await fetchCEP(cep)
+        await fetchCEP(stateCep)
       } catch (error) {
         setErrors(["Erro ao buscar o CEP. Por favor, preencha os dados manualmente."])
       } finally {
@@ -142,7 +142,7 @@ export default function SignupAddressForm() {
       <Form id={REGISTER_FORM.ADDRESS_ID} acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit} className="signupAddressForm">
 
         <FormRow className="signupAddressFormRow">
-          <InputMask mask="99999-999" value={formState?.cep} onChange={handleInputChange}>
+          <InputMask mask="99999-999" value={formState?.cep} onChange={handleInputChange} onBlur={() => handleGetCEP(formState?.cep)}>
             {() => <FormInput
               className="inputForm"
               label="CEP"
@@ -152,7 +152,7 @@ export default function SignupAddressForm() {
               type="text"
               required={required}
               inputProps={{ inputMode: 'numeric' }}
-              error={cepInputIncomplete(formState?.cep)}
+              error={cepInputIncomplete(formState?.cep) || isEmpty(formState?.cep)}
               success={cepInputComplete(formState?.cep)}
               InputLabelProps={{
                 shrink: shrinkHelper(formState?.cep),
@@ -178,7 +178,7 @@ export default function SignupAddressForm() {
             required={required}
             onChange={handleInputChange}
             value={formState?.street}
-            error={inputIncomplete(formState?.street)}
+            error={inputIncomplete(formState?.street) || isEmpty(formState?.street)}
             success={addressTextInputFilled(formState?.street)}
             InputLabelProps={{
               shrink: shrinkHelper(formState?.street),
@@ -217,11 +217,11 @@ export default function SignupAddressForm() {
             required={required}
             onChange={handleInputChange}
             value={formState?.neighborhood}
-            error={inputIsEmpty(formState?.neighborhood)}
+            error={inputIsEmpty(formState?.neighborhood) || isEmpty(formState?.neighborhood)}
             success={addressTextInputFilled(formState?.neighborhood)}
             InputLabelProps={{
               shrink: shrinkHelper(formState?.neighborhood),
-              style: { color: labelColorHelper(addressTextInputFilled(formState?.neighborhood)) }
+              style: { color: labelColorHelper(formState?.neighborhood) }
             }} />
 
 
@@ -255,8 +255,8 @@ export default function SignupAddressForm() {
             variant="outlined"
             required={required}
             onChange={handleInputChange}
-            defaultValue={formState?.city?.toUpperCase()}
-            error={inputIsEmpty(formState?.city)}
+            value={formState?.city?.toUpperCase()}
+            error={inputIsEmpty(formState?.city) || isEmpty(formState?.city)}
             success={addressTextInputFilled(formState?.city)}
             InputLabelProps={{
               shrink: shrinkHelper(formState?.city),
@@ -313,7 +313,7 @@ export default function SignupAddressForm() {
             : <FormSubmitButton
               type='submit'
               form={REGISTER_FORM.ADDRESS_ID}
-              endIcon={<ArrowForwardIcon className='icon' />}><span>Assine o contrato</span></FormSubmitButton>}
+              endIcon={<ArrowForwardIcon className='icon' />}><span>Contrato</span></FormSubmitButton>}
         </FormFooterContainer>
 
       </Form>

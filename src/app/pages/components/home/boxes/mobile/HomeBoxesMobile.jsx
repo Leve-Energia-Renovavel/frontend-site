@@ -2,6 +2,7 @@ import { handleScrollToId } from '@/app/utils/browser/BrowserUtils';
 import { newHomeBoxes } from '@/app/utils/helper/home/homeBoxesHelper';
 import bannerImage from "../../../../../../resources/img/new-home-image.webp";
 import { HomeSecondaryBannerContainerMobile as BannerImageMobile, MobileBoxesContainer as BoxesContainer, CTAButtonEconomy, EconomyButtonContainer, HomeBoxesBaloon, HomeBoxesContainerMobile, MobileBox } from './styles';
+import Image from 'next/image';
 
 export default function HomeBoxesMobile() {
     return (
@@ -12,7 +13,12 @@ export default function HomeBoxesMobile() {
                 <p>Sua ajuda ao meio ambiente equivale a <span className='hihglighted'>4 árvores plantadas.</span></p>
             </HomeBoxesBaloon>
 
-            <BannerImageMobile image={bannerImage} className='homeSecondaryBannerImage'>
+            <BannerImageMobile className='homeSecondaryBannerContainer'>
+                <Image src={bannerImage} alt='leveHomeBanner'
+                    className='homeBoxesMobileBannerImage'
+                    quality={80}
+                    fill
+                    priority={true} />
                 <h2 className='homeBoxesSecondarySectionTitle'>Vantagens em ser Leve</h2>
             </BannerImageMobile>
             <BoxesContainer className='homeSecondaryBoxesContainer'>

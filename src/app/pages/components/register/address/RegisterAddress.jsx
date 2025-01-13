@@ -22,11 +22,9 @@ export default function RegisterAddress() {
         const fetchData = async () => {
             await getLeadData(uuid, storeUser, storeAddress)
             setIsLoading(false)
-
         };
         fetchData();
     }, []);
-
 
     return (
         <>

@@ -15,7 +15,7 @@ export const NewHomeMainBannerContainer = styled.section`
 
     padding: 75px 0px;
 
-    gap: 43px;
+    gap: 1rem;
 
     height: 100%;
     max-height: 567px;
@@ -116,8 +116,8 @@ export const NewHomeMainBaloon = styled.div`
 
     padding: 14px 19px;
     
-    right: 25%; 
-    top: 48%;   
+    right: 20%; 
+    top: 42%;   
 
     min-width: 300px;
     width: 100%;
@@ -138,18 +138,16 @@ export const NewHomeMainBaloon = styled.div`
     }
 `
 export const NewHomeBannerImageContainer = styled.div`
-    background-image: url(${props => props.image.src});
-    background-repeat: no-repeat;
-    background-size: 100%; 
-    background-position: 90% 10%;
+    border-radius: 15px;
 
-    width: 100%;
-    max-width: 668px;
+    .leveHomeBannerImage {
+        width: 100%;
+        max-width: 668px;
+        
+        min-height: 360px;
+        height: 453px;
+    }
     
-    min-height: 360px;
-    height: 453px;
-    
-    border-radius: 15px 15px 15px 15px;
 `
 
 export const CTAButton = styled(Button)`

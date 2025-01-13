@@ -1,20 +1,32 @@
-"use client"
+"use client";
 
-import { sendWhatsAppMessage } from '@/app/utils/helper/whatsapp/whatsappHelper';
+import { modalBackdropGreen } from '@/app/pages/globalStyles';
+import { isNull } from '@/app/utils/helper/globalHelper';
 import { Backdrop, Modal } from '@mui/material';
-import { FormButton, ModalBox, SimpleArrowForward, WelcomeContent } from './styles';
+import { useEffect, useState } from 'react';
+import ActiveDistributorMessage from './active-distributor-message/ActiveDistributorMessage';
+import InactiveDistributorMessage from './inactive-distributor-message/InactiveDistributorMessage';
+import { FormButton, LampIcon, ModalBox, SimpleArrowForward, SwitchButton, WelcomeContent } from './styles';
+export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, customerName, distributorStatus, closeModal }) {
 
-export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, customerName, distributorStatus, openModal, closeModal }) {
+    const [checked, setChecked] = useState(false)
 
-    const activeDistributor = distributorStatus === true
+    const isNotActiveDistributor = distributorStatus === false;
+    const isActiveDistributor = distributorStatus === true;
 
     const handleButtonClick = () => {
-        if (activeDistributor) {
-            closeModal()
-        } else {
-            sendWhatsAppMessage(`Olá! Meu nome é ${customerName} e quero conhecer o programa de indicações e agregados da Leve Energia.`)
-        }
-    }
+        closeModal()
+    };
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setChecked(true);
+        }, 1500);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (isNull(distributorStatus)) return null;
 
     return (
         <Modal
@@ -25,35 +37,21 @@ export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, cu
             slots={{ backdrop: Backdrop }}
             slotProps={{
                 backdrop: {
-                    sx: {
-                        backgroundColor: 'rgba(0, 89, 64, 0.4)',
-                    },
+                    sx: { backgroundColor: modalBackdropGreen },
                 },
-            }}>
-            <ModalBox className={`${isMobileContent ? "welcomeAndShareAccessModalMobile" : "welcomeAndShareAccessModalDesktop"}`}>
-
-                <WelcomeContent>
-                    {activeDistributor ? <>
-                        <h6 className='title'>Parabéns!</h6>
-                        <p className='subtitle'>Você acaba de contratar a Leve Energia</p>
-                        <p className='descriptionPrimary'>Agora você precisa completar o seu cadastro com informações do seu imóvel.</p>
-                        <p className='descriptionSecondary'>Após isso, iremos confirmar seus dados e solicitar que sua distribuidora cadastre seu imóvel como consumidor de nossas usinas.</p>
-                        <p className='descriptionSecondary'>O cadastro na distribuidora pode levar até <span className='highlighted'>30 dias</span> e sua conta de luz começará a ficar mais barata em até <span className='highlighted'>60 dias</span>.</p>
-                    </> :
-                        <>
-                            <h6 className='title'>Parabéns!</h6>
-                            <p className='subtitle'>Você acaba de contratar a Leve Energia</p>
-                            <p className='descriptionPrimary'>As usinas que atenderão a sua região ainda estão em fase de construção, por isso, sua economia na conta de luz vai demorar um pouco mais para começar.</p>
-                            <p className='descriptionSecondary'>Enquanto isso, você pode começar a espalhar impacto positivo em sua rede e garantir outros ganhos com a Leve desde já utilizando nossos programas de indicação e agregados.</p>
-                        </>}
+            }}
+        >
+            <ModalBox className={isMobileContent ? "welcomeAndShareAccessModalMobile" : "welcomeAndShareAccessModalDesktop"}>
+                <WelcomeContent className='welcomeAndShareAccessContent'>
+                    <SwitchButton checkedIcon={<LampIcon />} checked={checked} />
+                    {isNotActiveDistributor ? <InactiveDistributorMessage /> : <ActiveDistributorMessage />}
                     <FormButton
-                        onClick={() => handleButtonClick()}
+                        onClick={handleButtonClick}
                         endIcon={<SimpleArrowForward className="icon" />}>
-                        <span>{activeDistributor ? "Completar cadastro" : "Conhecer programas"} </span>
+                        <span>{"Completar cadastro"}</span>
                     </FormButton>
                 </WelcomeContent>
-
             </ModalBox>
         </Modal>
-    )
+    );
 }
