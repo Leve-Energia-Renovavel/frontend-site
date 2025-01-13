@@ -1,13 +1,12 @@
 "use client";
 
 import { modalBackdropGreen } from '@/app/pages/globalStyles';
-import { sendWhatsAppMessage } from '@/app/utils/helper/whatsapp/whatsappHelper';
+import { isNull } from '@/app/utils/helper/globalHelper';
 import { Backdrop, Modal } from '@mui/material';
 import { useEffect, useState } from 'react';
 import ActiveDistributorMessage from './active-distributor-message/ActiveDistributorMessage';
 import InactiveDistributorMessage from './inactive-distributor-message/InactiveDistributorMessage';
-import { FormButton, LampIcon, ModalBox, SwitchButton, SimpleArrowForward, WelcomeContent } from './styles';
-import { isNull } from '@/app/utils/helper/globalHelper';
+import { FormButton, LampIcon, ModalBox, SimpleArrowForward, SwitchButton, WelcomeContent } from './styles';
 export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, customerName, distributorStatus, closeModal }) {
 
     const [checked, setChecked] = useState(false)
@@ -16,12 +15,7 @@ export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, cu
     const isActiveDistributor = distributorStatus === true;
 
     const handleButtonClick = () => {
-        if (isActiveDistributor) {
-            closeModal()
-        } else {
-            sendWhatsAppMessage(`Olá! Meu nome é ${customerName} e quero conhecer o programa de indicações e agregados da Leve Energia.`);
-            closeModal()
-        }
+        closeModal()
     };
 
     useEffect(() => {
@@ -54,7 +48,7 @@ export default function WelcomeAndShareAccessModal({ isMobileContent, isOpen, cu
                     <FormButton
                         onClick={handleButtonClick}
                         endIcon={<SimpleArrowForward className="icon" />}>
-                        <span>{isActiveDistributor ? "Completar cadastro" : "Conhecer programas"}</span>
+                        <span>{"Completar cadastro"}</span>
                     </FormButton>
                 </WelcomeContent>
             </ModalBox>

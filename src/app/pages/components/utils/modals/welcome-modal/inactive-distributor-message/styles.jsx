@@ -29,10 +29,9 @@ export const InactiveDistributorMessageContainer = styled.div`
             font-style: normal;
             font-weight: 400;
             line-height: 120%; 
-    
-            text-align: justify;
-            word-spacing: 3px;
-    
+
+            letter-spacing: 0.4px;
+
             color: ${background.greyMediumHigh};
             
         }
