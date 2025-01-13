@@ -18,7 +18,7 @@ import { USER_TYPE } from '@/app/pages/enums/globalEnums';
 import { cepInputComplete, cepInputIncomplete, couponInputComplete, emailInputComplete, emailInputIncomplete, labelColorHelper, labelColorHelperForMasked, nameInputCompleted, nameInputIncomplete, phoneInputComplete, phoneInputIncomplete } from '@/app/utils/helper/form/formHelper';
 import { schemaValidation } from '../../../schema';
 import HomeMainFormSimulator from '../../simulator/HomeMainFormSimulator';
-import NewHomeMainFormHeader from './header/NewHomeMainFormHeader';
+import HomeMainFormHeader from '../../header/HomeMainFormHeader';
 
 const texts = infoJson.home
 
@@ -59,6 +59,7 @@ export default function HomeMainForm() {
         })
 
     })
+
     const handleChangeUserType = (usertype) => {
         changeUserType(usertype)
         setFormState((prevState) => ({
@@ -92,18 +93,15 @@ export default function HomeMainForm() {
         const response = await schemaValidation(submitData)
         await requestValidation(submitData, response, setNotifications, setErrors, storeUser, router)
         setLoading(false)
-    }
+    };
 
     const required = true
 
     return (
         <HomeFormContainer className={`leveHomeMainFormContainer`}>
-            <Form acceptCharset="UTF-8"
-                method="POST"
-                id={`leadForm`}
-                onSubmit={handleSubmit}>
-                <NewHomeMainFormHeader />
-            <Form id={`leadForm`} onSubmit={handleSubmit}>
+            <Form acceptCharset="UTF-8" method="POST" id={`leadForm`} onSubmit={handleSubmit}>
+
+                <HomeMainFormHeader />
 
                 <FormTitleContainer className='formTitleContainer'>
                     <h2 className='formTitle'>Calcule sua economia e o impacto positivo que você pode promover</h2>
