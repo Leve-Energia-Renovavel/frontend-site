@@ -30,7 +30,7 @@ export default function DashboardInstallation({ isMobileContent }) {
 
     const { uuid, hasConnectedByBackoffice } = store?.user || {}
 
-    const { address, street, number, neighborhood, city, state, stateId, cityId, zipCode, id, hasStartedBilling } = storeMainInstallation?.mainInstallation || {}
+    const { address, street, number, neighborhood, city, state, stateId, cityId, zipCode, id, hasStartedBilling, installationNumber } = storeMainInstallation?.mainInstallation || {}
 
     const allInstallations = storeInstallations?.installations || {}
 
@@ -55,24 +55,24 @@ export default function DashboardInstallation({ isMobileContent }) {
     return (
         <>
             <NewDashboardInstallation isMobileContent={isMobileContent} className="dashboardInstallation">
-                <InstallationHeader>
+                <InstallationHeader className="installationHeader">
                     <InventoryIcon className="installationIcon" />
-                    <BoxInstallation >
+                    <BoxInstallation className="installationBoxInstallation" >
                         <SelectInstallation
                             fullWidth
                             value={0}
                             displayEmpty
                             IconComponent={filteredInstallations.length > 0 ? KeyboardArrowDownIcon : ""}>
                             <li value={0} style={{ display: 'none' }}>
-                                {/* <span className="home">{`Endereço ${installationNumber}`}</span> */}
-                                <span className="home">{`Casa`}</span>
+                                {/* <span className="home">{getAddress(address, street)}</span> */}
+                                <span className="home">Nº{installationNumber}</span>
                             </li>
                             {filteredInstallations?.map((otherInstallation, index) => {
                                 const address = otherInstallation.address
                                 const street = otherInstallation.street
                                 const number = getNumber(otherInstallation.number)
                                 return (
-                                    <InstallationItem key={otherInstallation?.id} value={index + 1}>
+                                    <InstallationItem key={otherInstallation?.id} value={index + 1} className="installationItem">
                                         <span onClick={() => handleChangeSelectedInstallation(otherInstallation)}>
                                             {getAddress(address, street)}{number !== "Nº" ? `, ${number}` : ""}
                                         </span>

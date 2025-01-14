@@ -267,9 +267,7 @@ export const MenuOption = styled.div`
 
 export const BoxInstallation = styled(Box)`
     min-width: 90px;
-    width: auto;
-    max-width: 120px;
-
+    width: 100%;
 `
 
 export const SelectInstallation = styled(Select)`
@@ -291,6 +289,7 @@ export const SelectInstallation = styled(Select)`
         }
         .MuiSelect-select:focus {
             background-color: transparent; // Avoid the blue background on focus
+            
         }
         &.Mui-focused .MuiOutlinedInput-notchedOutline {
             border-color: transparent !important; // Border color when focused
@@ -313,13 +312,17 @@ export const SelectInstallation = styled(Select)`
 `
 
 export const InstallationItem = styled(MenuItem)`
-    padding: 4px;
+    padding: 4px 10px;
+    left: 5px;
 
-    font-family: "Graphie";
-    font-weight: 600;
-    font-size: 17px;
-    line-height: 21px;
-    color: ${background.orange};
+    span {
+        font-family: "Graphie";
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 21px;
+        color: ${background.orange};
+    }
+
 `
 
 
