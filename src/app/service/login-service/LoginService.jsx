@@ -1,15 +1,16 @@
 import { forgotPasswordSchema, loginSchema } from "@/app/pages/components/utils/modals/header-modal/login-modal/schema";
+import { PATH_TO } from "@/app/pages/enums/globalEnums";
 import { awaitSeconds } from "@/app/utils/browser/BrowserUtils";
 import axios from "axios";
 import Cookies from "js-cookie";
-import { requestSuccessful } from "../utils/Validations";
 import { getAccessToken } from "../user-service/UserService";
+import { requestSuccessful } from "../utils/Validations";
 
-export const loginValidation = async (data, updateUser) => {
+export const loginValidation = async (data, updateUser, router, setErrors, closeModal) => {
     return await loginSchema.validate(data, { abortEarly: false })
         .then(async () => {
             const response = await getAccessToken(data)
-            if (requestSuccessful(response.status)) {
+            if (requestSuccessful(response?.status) && response?.data?.access_token) {
 
                 const accessToken = response?.data?.access_token
                 const refreshToken = response?.data?.refresh_token
@@ -21,12 +22,18 @@ export const loginValidation = async (data, updateUser) => {
 
                 Cookies.set('accessToken', response.data.access_token)
                 Cookies.set('refreshToken', response.data.refresh_token)
+
+                router.push(PATH_TO.DASHBOARD)
             }
-            return response
+            else if (response?.data?.error) {
+                setErrors(["E-mail e/ou senha estão incorretos"])
+            } else if (response?.errors) {
+                setErrors([response?.errors])
+            } else {
+                setErrors(["Erro ao realizar login. Tente novamente mais tarde"])
+                await awaitSeconds(2)
+            }
         })
-        .catch((error) => {
-            return error
-        });
 }
 
 export const forgotPasswordValidation = async (data, setNotifications, setErrorMessage) => {

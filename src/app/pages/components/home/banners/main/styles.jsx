@@ -84,7 +84,8 @@ export const NewHomeMainDescriptionContainer = styled.div`
 
     gap: 12px;
 
-    margin-top: 43px;
+    margin-top: 36px;
+    margin-bottom: 8px;
 
     .checkIcon {
         animation: ${fadeInUp} 0.5s ease-out;

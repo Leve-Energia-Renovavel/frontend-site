@@ -5,8 +5,6 @@ import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import { PATH_TO } from '@/app/pages/enums/globalEnums';
 import { modalBackdrop } from '@/app/pages/globalStyles';
 import { forgotPasswordValidation, loginValidation } from '@/app/service/login-service/LoginService';
-import { requestSuccessful } from '@/app/service/utils/Validations';
-import { awaitSeconds } from '@/app/utils/browser/BrowserUtils';
 import { emailInputComplete, emailInputIncomplete } from '@/app/utils/helper/form/formHelper';
 import { stringLengthIsBiggerThanZero } from '@/app/utils/helper/globalHelper';
 import { createForgotPasswordData, createLoginData } from '@/app/utils/helper/login/loginHelper';
@@ -28,9 +26,11 @@ export default function LoginModal({ isOpen, closeModal, hasForgottenPassword, i
     const { user, updateUser } = useStoreUser();
     const { setErrors, setNotifications } = useStoreMessages();
 
+    const PASSWORD = "password"
+
     const [forgotPassword, setForgotPassword] = useState(hasForgottenPassword)
     const [isLoading, setIsLoading] = useState(false)
-    const [passwordVisibible, setPasswordVisibible] = useState("password")
+    const [passwordVisibible, setPasswordVisibible] = useState(PASSWORD)
 
     const [login, setLogin] = useState({
         email: '',
@@ -55,20 +55,9 @@ export default function LoginModal({ isOpen, closeModal, hasForgottenPassword, i
 
         } else {
             const data = createLoginData(login?.email, login?.password)
-            const response = await loginValidation(data, updateUser)
-
-            if (requestSuccessful(response?.status) && response?.data?.access_token) {
-                router.push(PATH_TO.DASHBOARD)
-            } else if (response?.data?.error) {
-                setErrors(["E-mail e/ou senha estão incorretos"])
-            } else if (response?.errors) {
-                setErrors([response?.errors])
-            } else {
-                setErrors(["Erro ao realizar login. Tente novamente mais tarde"])
-                await awaitSeconds(2)
-            }
+            await loginValidation(data, updateUser, router, setErrors, closeModal)
         }
-        await awaitSeconds(2)
+        setIsLoading(false)
         closeModal()
     }
 
@@ -88,87 +77,85 @@ export default function LoginModal({ isOpen, closeModal, hasForgottenPassword, i
     }
 
     return (
-        <>
-            <Modal
-                open={isOpen}
-                onClose={closeModal}
-                aria-labelledby="modal-modal-login"
-                aria-describedby="modal-modal-login"
-                slots={{ backdrop: Backdrop }}
-                slotProps={{
-                    backdrop: {
-                        sx: {
-                            backgroundColor: modalBackdrop
-                        },
+        <Modal
+            open={isOpen}
+            onClose={closeModal}
+            aria-labelledby="modal-modal-login"
+            aria-describedby="modal-modal-login"
+            slots={{ backdrop: Backdrop }}
+            slotProps={{
+                backdrop: {
+                    sx: {
+                        backgroundColor: modalBackdrop
                     },
-                }}>
-                <LoginBox className='loginModalBox'>
-                    <CloseButtonContainer className="modalCloseButtonContainer">
-                        <IconButton onClick={() => handleCloseModal()}>
-                            <CloseIcon />
-                        </IconButton>
-                    </CloseButtonContainer>
-                    <TitleContainer className="modalTitleContainer">
-                        <Image
-                            className="logoLeve"
-                            loading="lazy"
-                            src={leveLogo}
-                            alt="Ícone de formulário para completar o cadastro" />
-                        <h1>{!forgotPassword ? `Entrar` : `Recuperar minha senha`}</h1>
-                    </TitleContainer>
-                    <ContentContainer className="modalContentContainer">
-                        <LoginForm className='loginForm'>
+                },
+            }}>
+            <LoginBox className='loginModalBox'>
+                <CloseButtonContainer className="modalCloseButtonContainer">
+                    <IconButton onClick={() => handleCloseModal()}>
+                        <CloseIcon />
+                    </IconButton>
+                </CloseButtonContainer>
+                <TitleContainer className="modalTitleContainer">
+                    <Image
+                        className="logoLeve"
+                        loading="lazy"
+                        src={leveLogo}
+                        alt="Ícone de formulário para completar o cadastro" />
+                    <h1>{!forgotPassword ? `Entrar` : `Recuperar minha senha`}</h1>
+                </TitleContainer>
+                <ContentContainer className="modalContentContainer">
+                    <LoginForm className='loginForm'>
+                        <LoginInput
+                            autoComplete="email"
+                            label="E-mail"
+                            name='email'
+                            error={emailInputIncomplete(login?.email)}
+                            success={emailInputComplete(login?.email)}
+                            onChange={handleInputChange}
+                            variant="outlined"
+                            placeholder="E-mail"
+                            type="text"
+                            required />
+                        {!forgotPassword ?
                             <LoginInput
-                                autoComplete="username"
-                                label="E-mail"
-                                name='email'
-                                error={emailInputIncomplete(login?.email)}
-                                success={emailInputComplete(login?.email)}
+                                autoComplete="password"
+                                label="Senha"
+                                name='password'
+                                success={stringLengthIsBiggerThanZero(login?.password)}
                                 onChange={handleInputChange}
                                 variant="outlined"
-                                placeholder="E-mail"
-                                type="text"
-                                required />
-                            {!forgotPassword ?
-                                <LoginInput
-                                    autoComplete="current-password"
-                                    label="Senha"
-                                    name='password'
-                                    success={stringLengthIsBiggerThanZero(login?.password)}
-                                    onChange={handleInputChange}
-                                    variant="outlined"
-                                    placeholder="Senha"
-                                    type={passwordVisibible}
-                                    required
-                                    onKeyDown={(event) => handleKeyPress(event)}
-                                    InputProps={{
-                                        endAdornment:
-                                            <IconButton
-                                                className='icon'
-                                                onClick={() => setPasswordVisibible(passwordVisibible == "password" ? "text" : "password")}>
-                                                {passwordVisibible === "password" ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                                            </IconButton>
-                                    }} />
-                                : <></>}
-                            <LoginButtonContainer className='loginButtonContainer'>
-                                {isLoading ?
-                                    <Box className="box">
-                                        <CircularProgress className='loading' />
-                                    </Box>
-                                    :
-                                    <LoginButton onClick={handleSubmit} endIcon={<ArrowForwardIcon className="icon" />} >
-                                        <span>{!forgotPassword ? 'Entrar' : 'Recuperar senha'}</span>
-                                    </LoginButton>}
+                                placeholder="Senha"
+                                type={passwordVisibible}
+                                required
+                                onKeyDown={(event) => handleKeyPress(event)}
+                                InputProps={{
+                                    endAdornment:
+                                        <IconButton
+                                            className='icon'
+                                            onClick={() => setPasswordVisibible(passwordVisibible === PASSWORD ? "text" : "password")}>
+                                            {passwordVisibible === "password" ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                                        </IconButton>
+                                }} />
+                            : <></>}
+                        <LoginButtonContainer className='loginButtonContainer'>
+                            {isLoading ?
+                                <Box className="box">
+                                    <CircularProgress className='loading' />
+                                </Box>
+                                :
+                                <LoginButton onClick={handleSubmit} endIcon={<ArrowForwardIcon className="icon" />} >
+                                    <span>{!forgotPassword ? 'Entrar' : 'Recuperar senha'}</span>
+                                </LoginButton>}
 
-                                <p className="forgotPassword" onClick={() => setForgotPassword(!forgotPassword)} >
-                                    {forgotPassword ? "Cancelar" : "Esqueci minha senha"}
-                                </p>
-                            </LoginButtonContainer>
-                        </LoginForm>
+                            <p className="forgotPassword" onClick={() => setForgotPassword(!forgotPassword)} >
+                                {forgotPassword ? "Cancelar" : "Esqueci minha senha"}
+                            </p>
+                        </LoginButtonContainer>
+                    </LoginForm>
 
-                    </ContentContainer>
-                </LoginBox>
-            </Modal >
-        </>
+                </ContentContainer>
+            </LoginBox>
+        </Modal >
     );
 }
