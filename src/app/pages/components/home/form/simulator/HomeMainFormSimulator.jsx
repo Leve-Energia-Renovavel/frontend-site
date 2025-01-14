@@ -20,7 +20,7 @@ export default function HomeMainFormSimulator({ simulationCost, handleSimulation
                 defaultValue={USER_COST.MIN}
                 min={USER_COST.MIN}
                 max={USER_COST.MAX}
-                valueLabelDisplay="off"
+                valueLabelDisplay="auto"
                 aria-labelledby="simulationSlider"
             />
         </HomeMainFormSimulationContainer>

@@ -10,25 +10,28 @@ export const FormButton = styled(Button)`
   height: 52px;
 
   padding: 14px 16px;
-  margin: 1rem 0;
+  margin: 16px auto;
 
   width: 100%;
-  max-width: 305px;
-  margin: 1rem auto;
+  max-width: 320px;
   
   span {
     font-family: "Graphie";
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 500;
     text-transform: none;
     color: ${background.white};
+  }
+
+  .icon {
+    color: ${background.yellow};
   }
   
   &:hover {
     cursor: pointer;
     background-color: ${background.yellow};
 
-    span {
+    span, .icon {
       color: ${background.green};
     }
   }

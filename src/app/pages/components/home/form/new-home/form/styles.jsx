@@ -96,10 +96,8 @@ export const FormTitleContainer = styled.div`
 
   padding: 0px;
 
-  margin: 1rem 0;
+  margin-bottom: 24px;
 
-  gap: 1rem;
-  
   .formTitle {
     font-family: "Graphie";
     font-size: 24px;
@@ -338,10 +336,12 @@ export const HomeMainForm = styled.form`
     
     border-radius: 0px 20px 20px 0px;
     
-    padding: 1rem 53px;
-    
+    padding: 24px 16px;
+
     height: auto;
     max-height: 756px;
+    /* max-width: 342px; */
+    /* max-width: 422px; */
     
     overflow: hidden;
 
@@ -355,7 +355,7 @@ export const HomeMainForm = styled.form`
 
       text-align: center;
       
-      max-width: 305px;
+      max-width: 320px;
       
       margin: 0 auto;
     }
@@ -387,7 +387,7 @@ export const HomeMainForm = styled.form`
     }
 `
 
-const inputHeight = "48px"
+const inputHeight = "42px"
 
 const FormInputBase = styled(TextField, {
   shouldForwardProp: (prop) => prop !== "success" && prop !== "error",
@@ -414,17 +414,18 @@ export const HomeFormInput = styled(FormInputBase)`
 
   .MuiOutlinedInput-input {
     width: 100%;
-    padding: 12px 14px;
+    padding: 0px 14px;
 
     /* User input text style */
     font-family: "Graphie";
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 500;
+    /* line height of input text */
+    margin-top: 12px;
 
     color: ${background.greyMediumHigh} !important; 
     color: ${props => props.error && background.orange} !important;
     color: ${props => props.success && background.green} !important; 
-
   }
 
   & label {
@@ -453,11 +454,14 @@ export const HomeFormInput = styled(FormInputBase)`
     font-family: "Graphie";
     font-size: 16px;
     font-weight: 400;
+
+    // line height of the placeholder
+    margin-top: -6px;
     
     color: ${background.greyMediumHigh} !important; 
     color: ${props => props.success && background.green} !important; 
     color: ${props => props.error && background.orange} !important;
-    
+
     &:focus {
         color: ${background.greyMediumHigh} !important; 
         color: ${props => props.success && background.green} !important; 
@@ -467,7 +471,8 @@ export const HomeFormInput = styled(FormInputBase)`
   & .MuiInputLabel-shrink {
     font-size: 14px;
     line-height: 14px;
-    margin-top: 12px;
+    /* margin-top: 12px; */
+    margin-top: 9px;
   }
 
   input {
@@ -528,7 +533,7 @@ export const UserTypeFormButtonContainer = styled.div`
 
     gap: 1rem;
     
-    padding: 1rem 0;
+    padding: 0;
     
     @media (max-width: 600px) {
       gap: .5rem;
@@ -552,7 +557,10 @@ export const FormSelect = styled(Button)`
   font-family: "Graphie";
   font-size: 16px;
   color: ${props => props.selected ? background.yellow : background.white};
-  border: 1px solid ${props => props.selected ? background.yellow : background.grey};
+  border: 2px solid ${props => props.selected ? background.yellow : background.grey};
+
+  ${props => props.selected && `background: linear-gradient(270deg, rgba(225, 255, 15, 0.25) 0%, rgba(225, 255, 15, 0.05) 100%)`};
+  
 
   font-weight: 400;
   text-transform: none;

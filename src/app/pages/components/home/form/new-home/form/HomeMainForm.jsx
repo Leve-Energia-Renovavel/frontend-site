@@ -18,7 +18,6 @@ import { USER_TYPE } from '@/app/pages/enums/globalEnums';
 import { cepInputComplete, cepInputIncomplete, couponInputComplete, emailInputComplete, emailInputIncomplete, labelColorHelper, labelColorHelperForMasked, nameInputCompleted, nameInputIncomplete, phoneInputComplete, phoneInputIncomplete } from '@/app/utils/helper/form/formHelper';
 import { schemaValidation } from '../../../schema';
 import HomeMainFormSimulator from '../../simulator/HomeMainFormSimulator';
-import HomeMainFormHeader from '../../header/HomeMainFormHeader';
 
 const texts = infoJson.home
 
@@ -33,7 +32,6 @@ export default function HomeMainForm() {
 
     const cupom = search.get("cupom")
 
-    const selectedUserType = storeHome.selectedUserType
     const texts = infoJson.home
 
     const setNotifications = storeMessage.setNotifications
@@ -99,7 +97,7 @@ export default function HomeMainForm() {
 
     return (
         <HomeFormContainer className={`leveHomeMainFormContainer`}>
-            <Form acceptCharset="UTF-8" method="POST" id={`leadForm`} onSubmit={handleSubmit}>
+            <Form acceptCharset="UTF-8" method="POST" id={`leadForm`} className="leveHomeMainForm" onSubmit={handleSubmit}>
 
                 <FormTitleContainer className='formTitleContainer'>
                     <h2 className='formTitle'>Calcule sua economia e o impacto positivo que você pode promover</h2>
@@ -161,8 +159,8 @@ export default function HomeMainForm() {
                         <HomeFormInput
                             type="text"
                             name='cep'
-                            label={`CEP`}
-                            placeholder={`CEP`}
+                            label={`CEP da conta de luz`}
+                            placeholder={`CEP da conta de luz`}
                             value={formState?.cep}
                             className="homeFormInput"
                             disabled={isLoading}
@@ -206,9 +204,7 @@ export default function HomeMainForm() {
                     </UserTypeFormButtonContainer>
                 </UserTypeFormContainer>
 
-                <HomeMainFormSimulator
-                    simulationCost={formState?.cost}
-                    handleSimulationCost={handleInputChange} />
+                <HomeMainFormSimulator simulationCost={formState?.cost} handleSimulationCost={handleInputChange} />
 
                 <HomeFormButton title={"Calcular"} isLoading={isLoading} />
 

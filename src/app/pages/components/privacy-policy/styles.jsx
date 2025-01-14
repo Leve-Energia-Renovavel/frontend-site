@@ -1,12 +1,10 @@
 import styled from "@emotion/styled";
-import { Button } from "@mui/material";
-import { background } from "../../globalStyles";
-
+import { background, containerWidth, headerMargin } from "../../globalStyles";
 
 export const PolicyContainer = styled.div`
-    margin: 74px auto 1rem auto;
+    margin: ${headerMargin} auto 1rem auto;
 
-    max-width: 1366px;
+    max-width: ${containerWidth};
     background-color: ${background.white};
     border: 1px solid ${background.orange};
     border-radius: 15px;

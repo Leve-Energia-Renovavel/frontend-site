@@ -8,7 +8,9 @@ export const HomeMainFormSimulationContainer = styled.div`
     flex-direction: column;
     justify-content: center;
 
-    margin: 0 43px;
+    padding: 8px;
+
+    margin: 0;
 
     text-align: center;
 
@@ -21,7 +23,7 @@ export const HomeMainFormSimulationContainer = styled.div`
 
         min-width: 340px;
 
-        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .simulationCost {
@@ -65,14 +67,15 @@ export const HomeMainFormSimulationContainer = styled.div`
 export const FormSlider = styled(Slider)`
     color: ${background.orange};
     height: 8px;
-
-    max-width: 305px;
+    
     margin: 19px auto 0 auto;
+    
+    max-width: 380px;
     
     & .MuiSlider-thumb {
         background-color: ${background.yellow};
-        height: 22px;
-        width: 22px;
+        height: 20px;
+        width: 20px;
       }
     
       & .MuiSlider-rail {
@@ -80,6 +83,15 @@ export const FormSlider = styled(Slider)`
         border: 1px solid ${background.white};
         height: 5px;
       } 
+      & .MuiSlider-valueLabel {
+        background-color: ${background.white};
+        color: ${background.green};
+        border-radius: 5px;
+
+        span {
+          font-weight: 700;
+        }
+      }
 
     .sliderLabel {
       /* background-color: aqua; */
