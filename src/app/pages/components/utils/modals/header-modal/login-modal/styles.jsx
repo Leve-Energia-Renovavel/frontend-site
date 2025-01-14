@@ -13,11 +13,18 @@ export const LoginBox = styled(Box)`
     overflow: hidden;
 
     width: 50vw;
-    height: 65vh;
+    height: 80vh;
     
     padding: 1rem;
-
+    
     outline: none;
+    
+    @media (max-height: 1100px) {
+        height: 65vh;
+    }
+    @media (max-height: 900px) {
+        height: 80vh;
+    }
 
     @media (max-width: 900px) {
         width: 100%;
