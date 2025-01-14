@@ -2,7 +2,11 @@ import { background } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
 import { Button, CircularProgress } from "@mui/material";
 
-export const FormButton = styled(Button)`
+const FormButtonBase = styled(Button, {
+  shouldForwardProp: (prop) => prop !== "isCompany",
+})``;
+
+export const FormButton = styled(FormButtonBase)`
   background-color: ${background.orange};
   color: ${background.white};
   border-radius: 30px;
@@ -38,8 +42,8 @@ export const FormButton = styled(Button)`
   
     @media (max-width: 600px) {
       width: 100%;
-      max-width: 305px;
-      margin: 1rem auto;
+      max-width: 320px;
+      margin: 0 auto;
     }
 `
 

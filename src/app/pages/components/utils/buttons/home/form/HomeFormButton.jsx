@@ -1,7 +1,5 @@
-"use client"
-
-import { FormButton, Loading } from './styles';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { FormButton, Loading } from './styles';
 
 export default function HomeFormButton({ title, isLoading, isCompany }) {
     return (

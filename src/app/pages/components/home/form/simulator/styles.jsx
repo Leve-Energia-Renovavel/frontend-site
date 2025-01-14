@@ -24,8 +24,6 @@ export const HomeMainFormSimulationContainer = styled.div`
         min-width: 340px;
 
         margin-bottom:${props => props.isCompany ? `0px` : `20px`};
-
-        
     }
 
     .simulationCost {
@@ -36,7 +34,9 @@ export const HomeMainFormSimulationContainer = styled.div`
     }
 
     @media (max-width: 600px) {
-      margin: 0 auto;
+      
+      padding: 0px;
+      margin: 0;
 
       .averageUserCost {
         font-family: "Graphie";
@@ -48,11 +48,17 @@ export const HomeMainFormSimulationContainer = styled.div`
         width: fit-content;
         max-width: 280px;
 
-        margin-top: 20px;
-        
+        white-space: nowrap;
+
+        margin: 0 15px;
       }
       .simulationCost {
         color:${background.yellow};
+      }
+    }
+    @media (max-width: 377px) {
+      .averageUserCost {
+        margin: 0 -5px;
       }
     }
 
@@ -102,6 +108,7 @@ export const FormSlider = styled(Slider)`
     @media (max-width: 600px) {
       height: 10px;
       color: ${background.orange};
+      max-width: 320px;
 
       & .MuiSlider-thumb {
         background-color: ${background.yellow};

@@ -1,8 +1,7 @@
 import { fadeInUp, fadeInUpAnimation, slideAndDisappear } from "@/app/pages/globalAnimations";
 import { background, containerWidth, notification } from "@/app/pages/globalStyles";
 import styled from "@emotion/styled";
-import { Alert, Button, CircularProgress, Slider, Typography } from "@mui/material";
-import { TextField } from "@mui/material";
+import { Alert, Button, CircularProgress, Slider, TextField, Typography } from "@mui/material";
 
 export const HomeContainer = styled.div`
     display: flex;
@@ -378,13 +377,10 @@ export const HomeMainForm = styled.form`
       }
     }
 
-    .mobilePrivacyPolicy, .mobilePrivacyPolicyDisclaimer {
-      display: none;
-    }
-
     @media (max-width: 600px) {
-      padding: 1.5rem 1rem;
+      padding: 24px ;
       border-radius: 0px;
+      max-height: 776px;
     }
 `
 

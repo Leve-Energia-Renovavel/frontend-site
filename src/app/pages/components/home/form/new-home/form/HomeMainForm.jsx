@@ -1,7 +1,6 @@
 "use client"
 
 import { createSignupPayload } from '@/app/service/lead-service/LeadService';
-import HomeIcon from '@mui/icons-material/Home';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -226,7 +225,6 @@ export default function HomeMainForm() {
 
                 <HomeFormButton title={"Calcular"} isLoading={isLoading} isCompany={isCompany} />
 
-                <p className='mobilePrivacyPolicyDisclaimer'>{texts.mobile.byClickingButtonAbove}<span className='mobilePrivacyPolicy' onClick={() => router.push(`/politica-de-privacidade`)}>{texts.mobile.privacyPolicy}</span></p>
                 <p className='privacyPolicyDisclaimer'>{texts.mobile.byClickingButtonAbove}<span className='privacyPolicy' onClick={() => router.push(`politica-de-privacidade`)}>{texts.privacyPolicy}</span>.</p>
             </Form>
         </HomeFormContainer>
