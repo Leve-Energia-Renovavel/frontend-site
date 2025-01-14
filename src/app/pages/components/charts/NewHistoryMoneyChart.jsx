@@ -7,6 +7,7 @@ import ReactApexChart from 'react-apexcharts';
 import { background } from '../../globalStyles';
 import { BarChartWrapper } from './styles';
 import { BILL_STATUS } from '../dashboard/invoices/invoicesEnums';
+import { clearChartCost, formatBrazillianCurrency } from '@/app/utils/formatters/costFormatter';
 
 export default function NewHistoryMoneyChart() {
 
@@ -15,13 +16,13 @@ export default function NewHistoryMoneyChart() {
     const chartSize = -6
 
     const valueData = billings?.slice(chartSize).map((bill) => bill?.value)
+
+    const availabilityData = billings?.slice(chartSize).map((_) => 0)
+    // const availabilityData = billings?.slice(chartSize).map((_) => 250)
     // const availabilityData = billings?.slice(chartSize).map((bill) => bill?.energyDistributorInjected)
 
-    // const availabilityData = billings?.slice(chartSize).map((_) => 250)
-    const availabilityData = billings?.slice(chartSize).map((_) => 0)
-
-    // const dueDateData = billings?.slice(chartSize).map((bill) => formatDayMonthAndYearInFull(bill?.dueDate))
     const billDateData = billings?.slice(chartSize).map((bill) => formatMonthAndYearInFull(bill?.billDate))
+    // const billDateData = billings?.slice(chartSize).map((bill) => formatDayMonthAndYearInFull(bill?.dueDate))
 
     const labelColors = billings?.slice(chartSize).map((_, index, arr) => {
         return index === arr?.length - 1 ? background.orange : background.green;
@@ -85,6 +86,7 @@ export default function NewHistoryMoneyChart() {
                 borderRadiusApplication: 'end', // 'around', 'end'
                 borderRadiusWhenStacked: 'last', // 'all', 'last'
                 dataLabels: {
+                    position: 'center', // center the value of each bar
                     total: {
                         enabled: false,   //disable total
                         style: {
@@ -103,11 +105,11 @@ export default function NewHistoryMoneyChart() {
                 fontWeight: 900,
                 color: background.green
             },
-            formatter: function (val, option) {
+            formatter: function (value, option) {
                 if (option?.seriesIndex === 0) {
                     return energyNetwork[0]
                 } else {
-                    return val
+                    return clearChartCost(value)
                 }
             },
         },

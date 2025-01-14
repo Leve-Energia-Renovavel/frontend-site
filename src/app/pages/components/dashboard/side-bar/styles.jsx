@@ -166,12 +166,15 @@ export const NewDashboardMenu = styled.div`
     padding: 14px;
 
     .loggout {
+        display: block;
         font-family: "Graphie";
         font-size: 21px;
         line-height: 27px;
         font-weight: 500;
         color: ${background.orange};
-
+        
+        width: 40px;
+        
         ${props => !props.isSideBar && "margin: 3rem 10rem 0rem 10rem;"}
         ${props => props.isSideBar && "display: none;"}
         
@@ -179,8 +182,7 @@ export const NewDashboardMenu = styled.div`
         
         &:hover {
             cursor: pointer;
-            font-weight: 800;
-            text-decoration: underline;
+            color: ${background.green};
         }
     }
     

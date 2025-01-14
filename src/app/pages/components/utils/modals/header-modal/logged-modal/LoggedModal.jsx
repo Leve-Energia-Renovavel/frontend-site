@@ -1,57 +1,53 @@
 "use client"
 
+import { useStoreUser } from "@/app/hooks/stores/useStore";
+import { useStoreMessages } from "@/app/hooks/stores/useStoreMessages";
+import DashboardMenu from "@/app/pages/components/dashboard/side-bar/DashboardMenu";
+import DashboardMemberGetMember from "@/app/pages/components/dashboard/side-bar/member-get-member/DashboardMemberGetMember";
 import { menuOptions } from "@/app/utils/helper/dashboard/dashboardHelper";
 import CloseIcon from '@mui/icons-material/Close';
-import { Backdrop, IconButton, Modal } from "@mui/material";
+import { IconButton } from "@mui/material";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import soleProfile from "../../../../../../../resources/icons/large/sole-icon-profile-large.png";
-import DashboardMenu from "../../../../dashboard/side-bar/DashboardMenu";
-import DashboardMemberGetMember from "../../../../dashboard/side-bar/member-get-member/DashboardMemberGetMember";
-import Messages from "../../../../messages/Messages";
-import { LoginBox, MenuContent, MenuHeaderContent } from "./styles";
+import { DrawerMenu, DrawerMenuContent, MenuContent, MenuHeaderContent } from "./styles";
 
-export default function LoggedModal({ isOpen, openModal, closeModal }) {
+export default function LoggedModal({ isOpen, closeModal }) {
 
     const path = usePathname()
+    const storeUser = useStoreUser()
+    const storeMessages = useStoreMessages()
 
-    const user = JSON.parse(localStorage.getItem('user'))
+    const setNotifications = storeMessages.setNotifications
+    const setErrors = storeMessages.setErrors
 
-    const { name } = user?.user ?? {}
+    const { name } = storeUser?.user || {}
 
     const filteredOption = menuOptions?.find(option => option?.link === path?.toString());
     const [menuSelected, setMenuSelection] = useState(filteredOption)
 
-    const [notifications, setNotifications] = useState([])
-    const [errors, setErrorMessage] = useState([])
-
     return (
         <>
-            <Modal
+            <DrawerMenu
+                anchor="right"
                 open={isOpen}
                 onClose={closeModal}
+                className="loggedDrawerMenu"
                 aria-labelledby="new-logged-modal-title"
-                aria-describedby="modal-modal-new-logged-description"
-                slots={{ backdrop: Backdrop }}
-                slotProps={{
-                    backdrop: {
-                        sx: {
-                            backgroundColor: 'transparent',
-                        },
-                    },
-                }}>
-                <LoginBox>
+                aria-describedby="modal-modal-new-logged-description">
+
+                <DrawerMenuContent className="loggedDrawerMenuContent">
                     <IconButton onClick={closeModal}>
                         <CloseIcon />
                     </IconButton>
-                    <MenuContent>
-                        <MenuHeaderContent>
+                    <MenuContent className="loggedMenuContent">
+                        <MenuHeaderContent className="loggedMenuHeaderContent">
                             <Image src={soleProfile} className="sole" alt="Imagem do Solem, mascote da Leve" />
                             <p className="helloUser">Olá, {name ? name?.split(" ")[0] : "Visitante"}</p>
                         </MenuHeaderContent>
 
-                        <DashboardMemberGetMember isSideBar={false} setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
+                        <DashboardMemberGetMember isSideBar={false} setErrors={setErrors} setNotifications={setNotifications} />
 
                         <DashboardMenu
                             isSideBar={false}
@@ -59,9 +55,8 @@ export default function LoggedModal({ isOpen, openModal, closeModal }) {
                             setMenuSelection={setMenuSelection}
                             closeModal={closeModal} />
                     </MenuContent>
-                </LoginBox>
-            </Modal >
-            <Messages notifications={notifications} errors={errors} setErrorMessage={setErrorMessage} setNotifications={setNotifications} />
+                </DrawerMenuContent>
+            </DrawerMenu>
         </>
     );
 }

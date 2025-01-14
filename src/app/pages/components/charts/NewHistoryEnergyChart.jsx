@@ -22,8 +22,8 @@ export default function NewHistoryEnergyChart() {
 
     const availabilityData = billings?.slice(chartSize).map((item) => parseInt(average / 3))
 
-    // const dueDateData = billings.slice(chartSize).map(item => formatDayMonthAndYearInFull(item.dueDate))
     const billDateData = billings?.slice(chartSize).map((bill) => formatMonthAndYearInFull(bill?.billDate))
+    // const billDateData = billings.slice(chartSize).map(item => formatDayMonthAndYearInFull(item.dueDate))
 
     const labelColors = billings?.slice(chartSize).map((_, index, arr) => {
         return index === arr.length - 1 ? background.orange : background.green;
@@ -87,6 +87,7 @@ export default function NewHistoryEnergyChart() {
                 borderRadiusApplication: 'end', // 'around', 'end'
                 borderRadiusWhenStacked: 'last', // 'all', 'last'
                 dataLabels: {
+                    position: 'center', // center the value of each bar
                     total: {
                         enabled: false,   //disable total
                         style: {
@@ -114,7 +115,7 @@ export default function NewHistoryEnergyChart() {
                 }
             },
         },
-        colors: [background.grey, (item) => {
+        colors: [background.greyMediumHigh, (item) => {
             const bill = billings?.slice(chartSize)[item.dataPointIndex];
 
             const status = billHasExpired(bill.status, bill.dueDate)

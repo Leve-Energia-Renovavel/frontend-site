@@ -2,7 +2,7 @@
 import { useStoreBillingHistory, useStoreMainInstallation, useStoreNextBills } from '@/app/hooks/stores/useStore';
 import { billHasExpired } from '@/app/utils/date/DateUtils';
 import { billingStatusOptions } from '@/app/utils/form-options/billingStatusOptions';
-import { handlePayButtonText } from '@/app/utils/helper/invoices/invoicesHelper';
+import { formatToBrazillianReal, handlePayButtonText } from '@/app/utils/helper/invoices/invoicesHelper';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import NewDefaultButton from '../../utils/buttons/NewDefaultButton';
@@ -43,7 +43,7 @@ export default function DashboardInvoices() {
                         <NextBill key={bill.uuid} className='nextBill'>
                           <h6 className='billDate'>{bill.billDate}</h6>
                           <NextBillInfo status={billHasExpired(bill.status, bill.dueDate)}>
-                            <h6 className='value'>{bill.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</h6>
+                            <h6 className='value'>{formatToBrazillianReal(bill.value)}</h6>
                             <p className='status'>{billingStatusOptions[billHasExpired(bill.status, bill.dueDate)]}</p>
                           </NextBillInfo>
                           <NextBillInfo>
@@ -64,7 +64,7 @@ export default function DashboardInvoices() {
                           <NextBill key={bill.uuid} className='nextBill'>
                             <h6 className='billDate'>{bill.billDate}</h6>
                             <NextBillInfo status={bill.status}>
-                              <h6 className='value'>R$ {bill.value}</h6>
+                              <h6 className='value'>{formatToBrazillianReal(bill.value)}</h6>
                               <p className='status'>{billingStatusOptions[bill.status]}</p>
                             </NextBillInfo>
                             <NextBillInfo>

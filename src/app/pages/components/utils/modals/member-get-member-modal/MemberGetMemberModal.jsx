@@ -2,7 +2,7 @@ import { Backdrop, Modal } from '@mui/material';
 import NewMemberGetMember from '../../../new-member-get-member/NewMemberGetMember';
 import { ModalBox } from './styles';
 
-export default function MemberGetMemberModal({ isOpen, closeModal, setErrorMessage, setNotifications }) {
+export default function MemberGetMemberModal({ isOpen, closeModal, setErrors, setNotifications }) {
 
     return (
         <Modal
@@ -20,7 +20,7 @@ export default function MemberGetMemberModal({ isOpen, closeModal, setErrorMessa
             }}>
             <ModalBox className="memberGetMemberModalBox">
                 <NewMemberGetMember closeModal={closeModal}
-                    setErrorMessage={setErrorMessage}
+                    setErrorMessage={setErrors}
                     setNotifications={setNotifications} />
             </ModalBox>
         </Modal>

@@ -25,3 +25,7 @@ export const formatToTwoDecimals = (value) => {
         return value.replace(".", ",")
     }
 }
+
+export const formatToBrazillianReal = (value) => {
+    return value?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2, maximumFractionDigits: 2 })
+}

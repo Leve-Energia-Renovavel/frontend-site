@@ -1,29 +1,25 @@
+import { fadeInLeft } from "@/app/pages/globalAnimations";
 import styled from "@emotion/styled";
-import { Box, Button } from "@mui/material";
+import { Button, Drawer } from "@mui/material";
 import { background } from "../../../../../globalStyles";
 
-export const LoginBox = styled(Box)`
-    position: absolute;
-    top: 48%;
-    left: 100%;
-    transform: translate(-50%, -50%);
-    background-color: ${background.white};
+export const DrawerMenu = styled(Drawer)`
 
-    width: 60vw;
-    height: 80vh;
+    .MuiDrawer-paper {
+        background-color: ${background.white};
+        margin: 5rem 0;
+        border-radius: 10px 0 0 10px;
+        max-height: 80vh;
+        animation: ${fadeInLeft} 0.5s ease-out forwards;
+    }
 
-    box-shadow: 5px 10px 15px 20px rgba(0, 0, 0, 0.1);
+    // change backdrop color
+  .MuiBackdrop-root {
+    background-color: transparent;
+  }
 
-    border-width: 0px 1px 1px 1px;
-    border-style: solid;
-    border-color: ${background.yellow};
-    
-    padding: 1rem 2rem;
-
-    outline: none;
-
-    @media (max-width: 900px) {
-        width: 100%;
+  @media (max-width: 900px) {
+        /* width: 100%;
         height: 100%;
         height: auto;
 
@@ -34,10 +30,12 @@ export const LoginBox = styled(Box)`
 
         overflow: auto;
 
-        padding: 1rem 1rem;
+        padding: 1rem 1rem; */
     }
+ `
+export const DrawerMenuContent = styled.div`
+    padding: 1rem;
 `
-
 export const MenuContent = styled.div`
     display: flex;
     flex-direction: column;

@@ -10,6 +10,7 @@ import { useState } from 'react';
 import NewInstallationButton from '../../utils/buttons/dashboard/installations/NewInstallationButton';
 import NewInvoicesActionButtonContainer from '../action-button-container/NewInvoicesActionButton';
 import { InvoicesTableLeveBill, MobileActionButtonContainer, NewInvoicesSelectedInstallation, NewInvoicesTableContent, NewInvoicesTableHeader } from './styles';
+import { formatToBrazillianReal } from '@/app/utils/helper/invoices/invoicesHelper';
 
 export default function NewInvoicesTable() {
 
@@ -60,7 +61,7 @@ export default function NewInvoicesTable() {
                                 aria-controls="panel1-content"
                                 id="panel1-header">
                                 <p className='leveBillValue'>{formatFullMonthAndYear(billing?.billDate)}</p>
-                                <p className='leveBillValue'>{`${billing?.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`}</p>
+                                <p className='leveBillValue'>{formatToBrazillianReal(billing?.value)}</p>
                                 <p className='leveBillValue'>{formatDateClearYear(billing?.dueDate)}</p>
                                 <p className='leveBillStatus'>{billingStatusOptions[billHasExpired(billing?.status, billing?.dueDate)]}</p>
 

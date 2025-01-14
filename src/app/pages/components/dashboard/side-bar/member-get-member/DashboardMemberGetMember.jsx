@@ -5,7 +5,7 @@ import { useState } from 'react';
 import MemberGetMemberModal from '../../../utils/modals/member-get-member-modal/MemberGetMemberModal';
 import { MenuOption } from './styles';
 
-export default function DashboardMemberGetMember({ isSideBar, setErrorMessage, setNotifications }) {
+export default function DashboardMemberGetMember({ isSideBar, setErrors, setNotifications }) {
 
     const [openModal, setOpenModal] = useState(false)
 
@@ -25,7 +25,7 @@ export default function DashboardMemberGetMember({ isSideBar, setErrorMessage, s
 
             {<MemberGetMemberModal isOpen={openModal}
                 closeModal={handleCloseModal}
-                setErrorMessage={setErrorMessage}
+                setErrors={setErrors}
                 setNotifications={setNotifications} />}
         </>
     )

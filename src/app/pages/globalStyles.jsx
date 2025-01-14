@@ -112,6 +112,6 @@ export const removeBackdropOverflow = () => {
 export const resetBackdropOverflow = () => {
     if (typeof window !== "undefined" && typeof document !== "undefined") {
         document.body.style.overflow = "";
-        document.body.style.paddingRight = "";
+        document.body.style.paddingRight = ``;
     }
 };

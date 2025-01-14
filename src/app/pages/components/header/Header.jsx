@@ -4,15 +4,13 @@ import { PATH_TO } from "@/app/pages/enums/globalEnums";
 import { clearPartnerName, partners } from "@/app/utils/helper/partners/partnerHelper";
 import { headerHelper, landingPageHelper, partnersPath } from '@/app/utils/helper/pathHelper';
 import MenuIcon from '@mui/icons-material/Menu';
-import dynamic from "next/dynamic";
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import logoLeve from '../../../../resources/icons/small/leve-logo-orange-icon-small.svg';
+import LoggedModal from "../utils/modals/header-modal/logged-modal/LoggedModal";
+import LoginModal from "../utils/modals/header-modal/login-modal/LoginModal";
 import { HeaderContainer, PartnerContainer, ProfileIcon } from './styles';
-
-const LoginModal = dynamic(() => import('../utils/modals/header-modal/login-modal/LoginModal'), { ssr: false });
-const LoggedModal = dynamic(() => import('../utils/modals/header-modal/logged-modal/LoggedModal'), { ssr: false });
 
 export default function Header() {
 
@@ -68,7 +66,6 @@ export default function Header() {
                 isLoggedUser ? (
                     <LoggedModal
                         isOpen={openLogin}
-                        openModal={openLoginModal}
                         closeModal={closeLoginModal} />
                 ) : (
                     <LoginModal

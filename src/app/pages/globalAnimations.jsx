@@ -79,6 +79,17 @@ export const fadeInRight = keyframes`
     transform: translateX(0);
   }
 `;
+export const fadeInLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
 export const float = keyframes`
     0% {
         transform: translate(0, 0);
