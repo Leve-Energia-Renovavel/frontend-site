@@ -1,6 +1,6 @@
 "use client"
 
-import NewDashboardMain from '@/app/pages/components/dashboard/DashboardMain';
+import DashboardMain from '@/app/pages/components/dashboard/DashboardMain';
 
 export default function Invoices() {
 
@@ -8,7 +8,7 @@ export default function Invoices() {
 
     return (
         <>
-            <NewDashboardMain page={paymentInitialPageIndex} />
+            <DashboardMain page={paymentInitialPageIndex} />
         </>
     );
 }

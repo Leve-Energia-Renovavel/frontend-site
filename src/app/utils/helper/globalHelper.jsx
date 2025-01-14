@@ -14,6 +14,9 @@ export const isNotEmpty = (value) => {
 export const stringLengthIsZero = (value) => {
     return value?.toString()?.length === 0
 }
+export const stringLengthIsBiggerThanZero = (value) => {
+    return value?.toString()?.length > 0
+}
 export const dontIncludesUnderscore = (value) => {
     return !value?.includes('_')
 }

@@ -53,7 +53,7 @@ img {
 
 
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 2px;
 }
 
 ::-webkit-scrollbar-track {
@@ -62,7 +62,6 @@ img {
 
 ::-webkit-scrollbar-thumb {
     background: #E1FF0F;
-    border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

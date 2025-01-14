@@ -1,10 +1,10 @@
-import NewDashboardMain from '@/app/pages/components/dashboard/DashboardMain';
+import DashboardMain from '@/app/pages/components/dashboard/DashboardMain';
 
 export default function Invoices() {
 
     const invoicesInitialPageIndex = 1
 
     return (
-        <NewDashboardMain page={invoicesInitialPageIndex} />
+        <DashboardMain page={invoicesInitialPageIndex} />
     );
 }

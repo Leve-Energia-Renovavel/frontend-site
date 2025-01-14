@@ -1,6 +1,6 @@
 "use client"
 
-import NewDashboardMain from "@/app/pages/components/dashboard/DashboardMain";
+import DashboardMain from "@/app/pages/components/dashboard/DashboardMain";
 import NewInstallationSuccessModal from "@/app/pages/components/utils/modals/installations-modal/success-modal/NewInstallationSuccessModal";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -19,7 +19,7 @@ export default function Installations() {
 
     return (
         <>
-            <NewDashboardMain page={installationsInitialPageIndex} />
+            <DashboardMain page={installationsInitialPageIndex} />
             {isOpen && <NewInstallationSuccessModal isOpen={isOpen} closeModal={closeModal} />}
         </>
     );

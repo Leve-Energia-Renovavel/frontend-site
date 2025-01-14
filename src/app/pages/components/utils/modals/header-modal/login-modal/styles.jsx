@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { Box, Button } from "@mui/material";
-import { background } from "../../../../../globalStyles";
+import { Box, Button, TextField } from "@mui/material";
+import { background, inputHeight } from "../../../../../globalStyles";
 
 export const LoginBox = styled(Box)`
     position: absolute;
@@ -12,30 +12,12 @@ export const LoginBox = styled(Box)`
 
     overflow: hidden;
 
-    width: 60vw;
-    height: 80vh;
+    width: 50vw;
+    height: 65vh;
     
-    box-shadow: 24px;
-
-    padding: 1rem 2rem;
+    padding: 1rem;
 
     outline: none;
-
-    .MuiOutlinedInput-root {
-        &:hover .MuiOutlinedInput-notchedOutline {
-            border-color: ${background.orangeFocused}; // Border color on hover
-        }
-        &.Mui-focused .MuiOutlinedInput-notchedOutline {
-            border-color: ${background.orange} !important; // Border color when focused
-        }
-        &:not(.Mui-focused) .MuiOutlinedInput-notchedOutline {
-            border-color: ${background.orangeFocused} !important; // Border color when not focused
-        }
-    }
-
-    .MuiOutlinedInput-notchedOutline {
-        border-color: ${background.orangeFocused}; // Border color: ;
-    }
 
     @media (max-width: 900px) {
         width: 100%;
@@ -44,11 +26,6 @@ export const LoginBox = styled(Box)`
         top: 0;
         left: 0;
         transform: none;
-
-        padding: 1rem 1rem;
-
-        overflow: hidden;
-
     }
 `
 export const CloseButtonContainer = styled.div`
@@ -76,17 +53,21 @@ export const TitleContainer = styled.div`
     }
 
     .logoLeve { 
-        width: 20%;
-        height: 20%;
+        width: 250px;
+        height: auto;
+    }
 
-        @media (max-width: 600px) {
-            width: 70%;
-            height: 70%;
-        }
-
-        &:hover {
+    &:hover {
+        .logoLeve {
             cursor: pointer;
         }
+    }
+
+    @media (max-width: 600px) {
+        .logoLeve {
+            width: 70%;
+            height: 70%;
+        }   
     }
 `
 
@@ -102,7 +83,123 @@ export const ContentContainer = styled.div`
     height: auto;
 
     padding: 2rem;
+    
+    @media (max-width: 600px) {
+        padding: 2rem 1rem;
+    }
 `
+
+const FormInputBase = styled(TextField, {
+    shouldForwardProp: (prop) => prop !== "success" && prop !== "error",
+})``;
+
+export const LoginInput = styled(FormInputBase)`
+    background-color: ${background.white};
+    border-radius: 5px;
+
+      && {
+            border: 2px solid transparent;
+    
+            background-color: ${background.greyTranslucent}; 
+            background-color: ${props => props.success && background.greenTranslucent}; 
+            background-color: ${props => props.error && background.orangeTranslucent}; 
+    
+            &:focus-within {
+              /* Applies when the input is focused */
+              border-color: ${background.greyBorder}; 
+              border-color: ${props => props.success && background.greenSoft}; 
+              border-color: ${props => props.error && background.orange};
+            }
+        }
+    
+      .MuiOutlinedInput-input {
+        width: 100%;
+        padding: 0px 14px;
+    
+        /* User input text style */
+        font-family: "Graphie";
+        font-size: 20px;
+        font-weight: 500;
+        /* line height of input text */
+        margin-top: 12px;
+    
+        color: ${background.greyMediumHigh} !important; 
+        color: ${props => props.error && background.orange} !important;
+        color: ${props => props.success && background.green} !important; 
+      }
+    
+      & label {
+        width: fit-content;
+        font-family: "Graphie";
+        font-weight: 500;
+        font-size: 20px;
+      }
+    
+      .MuiOutlinedInput-root {
+        height: ${inputHeight};
+        max-height: ${inputHeight};
+        width: 100%;
+        box-sizing: border-box;
+    
+        & fieldset, &:hover fieldset, &.Mui-focused fieldset, &.Mui-focused + label {
+          /* Default border color */
+          border: 2px solid ${background.greyTranslucent}; 
+          border-color: ${props => props.success && background.greenTranslucent}; 
+          border-color: ${props => props.error && background.orangeTranslucent}; 
+        }
+    
+      }
+    
+      .MuiFormLabel-root{
+        font-family: "Graphie";
+        font-size: 16px;
+        font-weight: 400;
+    
+        // line height of the placeholder
+        margin-top: -6px;
+        
+        color: ${background.greyMediumHigh} !important; 
+        color: ${props => props.success && background.green} !important; 
+        color: ${props => props.error && background.orange} !important;
+    
+        &:focus {
+            color: ${background.greyMediumHigh} !important; 
+            color: ${props => props.success && background.green} !important; 
+            color: ${props => props.error && background.orange} !important;
+        }
+      }
+      & .MuiInputLabel-shrink {
+        font-size: 14px;
+        line-height: 14px;
+        /* margin-top: 12px; */
+        margin-top: 9px;
+      }
+
+      .icon {
+        color: ${background.greyMediumHigh} !important; 
+        color: ${props => props.success && background.green} !important; 
+        color: ${props => props.error && background.orange} !important;
+      }
+    
+      input {
+        all: unset;
+      }
+    
+      & input:-webkit-autofill {
+        -webkit-text-fill-color: ${props =>
+        props.success ? background.green :
+            props.error ? background.orange :
+                background.greyMediumHigh} !important;
+    
+        box-shadow: 0 0 0px 1000px ${props =>
+        props.success ? background.greenTranslucent :
+            props.error ? background.orangeTranslucent :
+                background.greyTranslucent} inset !important;
+    
+        transition: background-color 5000s ease-in-out 0s;
+      }
+`
+
 
 export const LoginForm = styled.form`
     display: flex;
@@ -111,37 +208,14 @@ export const LoginForm = styled.form`
 
     gap: 1rem;
 
-    .formInput {
-        background-color: ${background.light};
-        border-radius: 4px;
+    width: 100%;
+    max-width: 60%;
+    margin: 0 auto;
 
-        margin: 0 auto;
-        
-        width: 30vw;
-        
-        @media (max-width: 900px) {
-            margin: 0 auto;
-            width: 70%;
-            max-width: 90vw;
-        }
-        @media (max-width: 600px) {
-            margin: 0 auto;
-            width: 100%;
-            max-width: 90vw;
-        }
-
-        .MuiInputLabel-root {
-            color: ${background.orange};
-        }
-
-        &:hover .MuiOutlinedInput-notchedOutline {
-            border-color: ${background.orange};
-        }
-        & .MuiSelect-select:focus {
-            background-color: ${background.orange};
-        }
+    @media (max-width: 600px) {
+        width: 100%;
+        max-width: 90vw;
     }
-    
 `
 
 export const LoginButtonContainer = styled.div`
@@ -149,26 +223,20 @@ export const LoginButtonContainer = styled.div`
     flex-direction: column;
     justify-content: center;
 
+    gap: 2rem;
+
     .forgotPassword {
         font-family: "Graphie";
-        font-weight: 700;
         font-size: 18px;
         line-height: 18px;
+        font-weight: 600;
         color: ${background.greyHigh};
         
-        margin: 1rem auto;
+        margin: 0 auto;
         
         &:hover {
             cursor: pointer;
             text-decoration: underline;
-        }
-
-        .divider {
-            margin-top: 1rem;
-        }
-
-        @media (max-width: 600px) {
-            margin: 2.5rem auto;
         }
     }
     
@@ -193,24 +261,32 @@ export const LoginButtonContainer = styled.div`
 `
 export const LoginButton = styled(Button)`
     text-transform: none;
-    color: ${background.yellow};
-    border-color: ${background.white};
+    color: ${background.white};
     background-color: ${background.orange};
-    border-radius: 13px;
+    border-radius: 10px;
     cursor: pointer;
     height: 3rem;
     padding: 1rem 4rem;
     
     margin: 0 auto;
-    width: 30vw;
+    
+    width: 100%;
+    max-width: 30vw;
     
     span { 
         font-family: "Graphie";
         font-size: 18px;
         line-height: 18px;
         font-weight: 600;
-        
-        @media (max-width: 1200px) {
+    }
+
+    &:hover {
+        background-color: ${background.green};
+        color: ${background.yellow};
+    }
+
+    @media (max-width: 1200px) {
+        span {
             font-size: 16px;
             line-height: 16px;
         }
@@ -218,27 +294,7 @@ export const LoginButton = styled(Button)`
 
     @media (max-width: 600px) {
         width: 100%;
-        max-width: 75vw;
+        max-width: 90vw;
     }
 
-    &:hover {
-        background-color: ${background.light};
-        color: ${background.orange};
-        border: 1px solid ${background.orange};
-    }
 `
-
-export const FormFooterContainer = styled.div`
-    text-align: center;
-
-    padding: 1rem;
-
-    p { 
-        font-family: "Graphie";
-        font-size: 1rem;
-        line-height: 1rem;
-        font-weight: 500;
-        color: ${background.greyMediumHigh}
-    }
-`
-

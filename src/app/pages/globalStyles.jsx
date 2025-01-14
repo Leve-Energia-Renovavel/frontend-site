@@ -4,6 +4,7 @@ export const containerPadding = "54px"
 export const registerContainerWidth = "877px"
 export const modalBackdrop = "rgba(0, 0, 0, 0.4)"
 export const modalBackdropGreen = "rgba(0, 89, 64, 0.4)"
+export const inputHeight = "42px"
 
 export const messages = {
     success: {

@@ -17,7 +17,7 @@ import DashboardSideBar from './side-bar/DashboardSideBar';
 
 const StatusStepper = dynamic(() => import('./status-stepper/StatusStepper'), { ssr: false });
 
-export default function NewDashboardMain(props) {
+export default function DashboardMain(props) {
 
     const router = useRouter()
     const pathname = usePathname()

@@ -1,6 +1,6 @@
 "use client"
 
-import NewDashboardMain from '@/app/pages/components/dashboard/DashboardMain';
+import DashboardMain from '@/app/pages/components/dashboard/DashboardMain';
 
 export default function Profile() {
 
@@ -8,7 +8,7 @@ export default function Profile() {
 
     return (
         <>
-            <NewDashboardMain page={invoicesInitialPageIndex} />
+            <DashboardMain page={invoicesInitialPageIndex} />
         </>
     );
 }

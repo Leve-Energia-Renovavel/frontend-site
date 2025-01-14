@@ -1,10 +1,10 @@
-import NewDashboardMain from "@/app/pages/components/dashboard/DashboardMain";
+import DashboardMain from "@/app/pages/components/dashboard/DashboardMain";
 
 export default function Installations() {
 
     const installationsInitialPageIndex = 3
 
     return (
-        <NewDashboardMain page={installationsInitialPageIndex} />
+        <DashboardMain page={installationsInitialPageIndex} />
     );
 }

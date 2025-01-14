@@ -1,4 +1,4 @@
-import NewDashboardMain from "@/app/pages/components/dashboard/DashboardMain";
+import DashboardMain from "@/app/pages/components/dashboard/DashboardMain";
 
 export default function Installations() {
 
@@ -6,7 +6,7 @@ export default function Installations() {
 
     return (
         <>
-            <NewDashboardMain page={helpInitialPageIndex} />
+            <DashboardMain page={helpInitialPageIndex} />
         </>
     );
 }

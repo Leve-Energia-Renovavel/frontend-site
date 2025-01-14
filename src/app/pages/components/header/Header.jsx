@@ -26,11 +26,11 @@ export default function Header() {
 
     const openLoginModal = () => {
         setOpenLogin(true);
-    };
+    }
 
     const closeLoginModal = () => {
         setOpenLogin(false);
-    };
+    }
 
     const handleRoutesWhenUserIsLogged = () => {
         if (isLoggedUser) {
