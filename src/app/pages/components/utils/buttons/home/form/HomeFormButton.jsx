@@ -3,9 +3,10 @@
 import { FormButton, Loading } from './styles';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-export default function HomeFormButton({ title, isLoading }) {
+export default function HomeFormButton({ title, isLoading, isCompany }) {
     return (
         <FormButton
+            isCompany={isCompany}
             className={`homeFormButton`}
             type='submit'
             form={`leadForm`}

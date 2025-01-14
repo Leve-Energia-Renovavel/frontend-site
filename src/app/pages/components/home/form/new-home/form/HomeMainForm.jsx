@@ -2,7 +2,8 @@
 
 import { createSignupPayload } from '@/app/service/lead-service/LeadService';
 import HomeIcon from '@mui/icons-material/Home';
-import StoreIcon from '@mui/icons-material/Store';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import InputMask from "react-input-mask";
@@ -118,6 +119,23 @@ export default function HomeMainForm() {
                     onChange={handleInputChange}
                     InputLabelProps={{ style: { color: labelColorHelper(formState?.name) } }} />
 
+                {isCompany && (
+                    <HomeFormInput
+                        name='companyName'
+                        type="text"
+                        variant="outlined"
+                        className="homeFormInput"
+                        label={`Nome da empresa`}
+                        placeholder={`Nome da empresa`}
+                        required={required}
+                        disabled={isLoading}
+                        value={formState?.companyName}
+                        error={nameInputIncomplete(formState?.companyName)}
+                        success={nameInputCompleted(formState?.companyName)}
+                        onChange={handleInputChange}
+                        InputLabelProps={{ style: { color: labelColorHelper(formState?.companyName) } }} />
+                )}
+
                 <InputMask mask="(99) 99999-9999"
                     value={formState?.phone}
                     onChange={handleInputChange}
@@ -184,19 +202,19 @@ export default function HomeMainForm() {
                     disabled={isLoading}
                     InputLabelProps={{ style: { color: labelColorHelper(formState?.coupon) } }} />
 
-                <UserTypeFormContainer className='homeFormUserTypeFormContainer'>
+                <UserTypeFormContainer className='homeFormUserTypeFormContainer' isCompany={isCompany}>
                     <p className='chooseWhereToEconomy'>{texts.iWantToEconomy}</p>
                     <UserTypeFormButtonContainer className='homeFormUserTypeButtons'>
                         <Select
                             className='homeFormHouseSelect'
-                            startIcon={<HomeIcon />}
+                            startIcon={<HomeOutlinedIcon />}
                             onClick={() => handleChangeUserType(USER_TYPE.PF)}
                             selected={!isCompany} >
                             {texts.house}
                         </Select>
                         <Select
                             className='homeFormCompanySelect'
-                            startIcon={<StoreIcon />}
+                            startIcon={<StorefrontOutlinedIcon />}
                             onClick={() => handleChangeUserType(USER_TYPE.PJ)}
                             selected={isCompany} >
                             {texts.company}
@@ -204,9 +222,9 @@ export default function HomeMainForm() {
                     </UserTypeFormButtonContainer>
                 </UserTypeFormContainer>
 
-                <HomeMainFormSimulator simulationCost={formState?.cost} handleSimulationCost={handleInputChange} />
+                <HomeMainFormSimulator simulationCost={formState?.cost} handleSimulationCost={handleInputChange} isCompany={isCompany} />
 
-                <HomeFormButton title={"Calcular"} isLoading={isLoading} />
+                <HomeFormButton title={"Calcular"} isLoading={isLoading} isCompany={isCompany} />
 
                 <p className='mobilePrivacyPolicyDisclaimer'>{texts.mobile.byClickingButtonAbove}<span className='mobilePrivacyPolicy' onClick={() => router.push(`/politica-de-privacidade`)}>{texts.mobile.privacyPolicy}</span></p>
                 <p className='privacyPolicyDisclaimer'>{texts.mobile.byClickingButtonAbove}<span className='privacyPolicy' onClick={() => router.push(`politica-de-privacidade`)}>{texts.privacyPolicy}</span>.</p>

@@ -349,8 +349,9 @@ export const HomeMainForm = styled.form`
       font-family: "Graphie";
       font-size: 12px;
       line-height: 12px;
-      font-weight: 400;
+      font-weight: 300;
       text-align: left;
+      letter-spacing: 0.2px;
       color: ${background.white};
 
       text-align: center;
@@ -504,12 +505,11 @@ export const UserTypeFormContainer = styled.div`
       color: ${background.white};
       font-size: 18px;
       line-height: 19px;
+      text-align: center;
+      
+      ${props => props.isCompany ? ` margin: 8px 0 17px 0;` : ` margin: 25px 0 17px 0;`}
       
       animation: ${fadeInUp} 0.5s ease-out;
-      
-      margin: 25px 0 17px 0;  //25px - 8px from margin-bottom of .homeFormInput
-
-      text-align: center;
     }
     
     

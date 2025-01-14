@@ -4,12 +4,12 @@ import { USER_COST } from '@/enums/globalEnums';
 import infoJson from '../../../../../../../public/info.json';
 import { FormSlider, HomeMainFormSimulationContainer } from './styles';
 
-export default function HomeMainFormSimulator({ simulationCost, handleSimulationCost }) {
+export default function HomeMainFormSimulator({ simulationCost, handleSimulationCost, isCompany }) {
 
     const texts = infoJson.home
 
     return (
-        <HomeMainFormSimulationContainer className={`homeSimulatorContainer`}>
+        <HomeMainFormSimulationContainer className={`homeSimulatorContainer`} isCompany={isCompany}>
             <h6 className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === USER_COST.MAX ? "+" : ""}</span></h6>
             <FormSlider
                 className='formSlider'
