@@ -14,7 +14,7 @@ export const FormButton = styled(FormButtonBase)`
   height: 52px;
 
   padding: 14px 16px;
-  margin: ${props => props.isCompany ? `8px auto` : `16px auto`};
+  margin: 16px auto;
 
   width: 100%;
   max-width: 320px;

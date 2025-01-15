@@ -335,12 +335,10 @@ export const HomeMainForm = styled.form`
     
     border-radius: 0px 20px 20px 0px;
     
-    padding: 24px 16px;
+    padding: 24px;
 
     height: auto;
     max-height: 756px;
-    /* max-width: 342px; */
-    /* max-width: 422px; */
     
     overflow: hidden;
 
@@ -415,7 +413,7 @@ export const HomeFormInput = styled(FormInputBase)`
 
     /* User input text style */
     font-family: "Graphie";
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     /* line height of input text */
     margin-top: 12px;
@@ -465,10 +463,10 @@ export const HomeFormInput = styled(FormInputBase)`
         color: ${props => props.error && background.orange} !important;
     }
   }
+
   & .MuiInputLabel-shrink {
     font-size: 14px;
     line-height: 14px;
-    /* margin-top: 12px; */
     margin-top: 9px;
   }
 
@@ -502,8 +500,8 @@ export const UserTypeFormContainer = styled.div`
       font-size: 18px;
       line-height: 19px;
       text-align: center;
-      
-      ${props => props.isCompany ? ` margin: 8px 0 17px 0;` : ` margin: 25px 0 17px 0;`}
+
+      margin: 25px 0 17px 0;
       
       animation: ${fadeInUp} 0.5s ease-out;
     }

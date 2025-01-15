@@ -118,23 +118,6 @@ export default function HomeMainForm() {
                     onChange={handleInputChange}
                     InputLabelProps={{ style: { color: labelColorHelper(formState?.name) } }} />
 
-                {isCompany && (
-                    <HomeFormInput
-                        name='companyName'
-                        type="text"
-                        variant="outlined"
-                        className="homeFormInput"
-                        label={`Nome da empresa`}
-                        placeholder={`Nome da empresa`}
-                        required={required}
-                        disabled={isLoading}
-                        value={formState?.companyName}
-                        error={nameInputIncomplete(formState?.companyName)}
-                        success={nameInputCompleted(formState?.companyName)}
-                        onChange={handleInputChange}
-                        InputLabelProps={{ style: { color: labelColorHelper(formState?.companyName) } }} />
-                )}
-
                 <InputMask mask="(99) 99999-9999"
                     value={formState?.phone}
                     onChange={handleInputChange}
@@ -201,7 +184,7 @@ export default function HomeMainForm() {
                     disabled={isLoading}
                     InputLabelProps={{ style: { color: labelColorHelper(formState?.coupon) } }} />
 
-                <UserTypeFormContainer className='homeFormUserTypeFormContainer' isCompany={isCompany}>
+                <UserTypeFormContainer className='homeFormUserTypeFormContainer'>
                     <p className='chooseWhereToEconomy'>{texts.iWantToEconomy}</p>
                     <UserTypeFormButtonContainer className='homeFormUserTypeButtons'>
                         <Select
@@ -221,9 +204,9 @@ export default function HomeMainForm() {
                     </UserTypeFormButtonContainer>
                 </UserTypeFormContainer>
 
-                <HomeMainFormSimulator simulationCost={formState?.cost} handleSimulationCost={handleInputChange} isCompany={isCompany} />
+                <HomeMainFormSimulator simulationCost={formState?.cost} handleSimulationCost={handleInputChange} />
 
-                <HomeFormButton title={"Calcular"} isLoading={isLoading} isCompany={isCompany} />
+                <HomeFormButton title={"Calcular"} isLoading={isLoading} />
 
                 <p className='privacyPolicyDisclaimer'>{texts.mobile.byClickingButtonAbove}<span className='privacyPolicy' onClick={() => router.push(`politica-de-privacidade`)}>{texts.privacyPolicy}</span>.</p>
             </Form>

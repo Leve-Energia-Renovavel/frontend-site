@@ -7,10 +7,8 @@ import DashboardMemberGetMember from "@/app/pages/components/dashboard/side-bar/
 import { menuOptions } from "@/app/utils/helper/dashboard/dashboardHelper";
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from "@mui/material";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import soleProfile from "../../../../../../../resources/icons/large/sole-icon-profile-large.png";
 import { DrawerMenu, DrawerMenuContent, MenuContent, MenuHeaderContent } from "./styles";
 
 export default function LoggedModal({ isOpen, closeModal }) {
@@ -43,7 +41,6 @@ export default function LoggedModal({ isOpen, closeModal }) {
                     </IconButton>
                     <MenuContent className="loggedMenuContent">
                         <MenuHeaderContent className="loggedMenuHeaderContent">
-                            <Image src={soleProfile} className="sole" alt="Imagem do Solem, mascote da Leve" />
                             <p className="helloUser">Olá, {name ? name?.split(" ")[0] : "Visitante"}</p>
                         </MenuHeaderContent>
 

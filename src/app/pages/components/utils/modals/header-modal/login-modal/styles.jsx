@@ -270,7 +270,7 @@ export const LoginButton = styled(Button)`
     text-transform: none;
     color: ${background.white};
     background-color: ${background.orange};
-    border-radius: 10px;
+    border-radius: 30px;
     cursor: pointer;
     height: 3rem;
     padding: 1rem 4rem;

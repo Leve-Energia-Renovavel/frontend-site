@@ -36,7 +36,7 @@ export default function NewInstallationsMain() {
 
                     <ConsumptionHistory className='installationsConsumptionHistory'>
                         <TitleContainer className='installationsTitleContainer'>
-                            <DefaultTitle icon={<EqualizerOutlinedIcon className='icon' />} title={`Histórico de Consumo`} />
+                            <DefaultTitle icon={<EqualizerOutlinedIcon className='icon' />} title={`Histórico de Consumo (kWh)`} />
                             {/* <SwitchContainer className='installationsSwitchContainer'>
                                 <p className='label'>R$</p>
                                 <AntSwitch defaultChecked={true} disabled />

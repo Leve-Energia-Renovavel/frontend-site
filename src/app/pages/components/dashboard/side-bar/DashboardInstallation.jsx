@@ -6,7 +6,7 @@ import { getCityNameByStateIdAndCityId } from "@/app/service/utils/addressUtilsS
 import { stateOptions } from "@/app/utils/form-options/addressFormOptions";
 import { formatCep } from "@/app/utils/formatters/documentFormatter";
 import { pascalCaseWord } from "@/app/utils/formatters/textFormatter";
-import { getAddress, getNumber, isPending } from "@/app/utils/helper/installations/installationsHelper";
+import { getAddress, getInstallationIndexById, getNumber, isPending } from "@/app/utils/helper/installations/installationsHelper";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -40,6 +40,8 @@ export default function DashboardInstallation({ isMobileContent }) {
 
     const hasPendingContracts = pendingInstallations?.length > 0
 
+    const hasMoreThanOneInstallation = allInstallations.length > 1
+
     const handleChangeSelectedInstallation = async (selectedInstallation) => {
         setIsLoading(true)
         const uuid = selectedInstallation?.uuid
@@ -65,7 +67,7 @@ export default function DashboardInstallation({ isMobileContent }) {
                             IconComponent={filteredInstallations.length > 0 ? KeyboardArrowDownIcon : ""}>
                             <li value={0} style={{ display: 'none' }}>
                                 {/* <span className="home">{getAddress(address, street)}</span> */}
-                                {isLoading ? <Skeleton variant="text" className="loading" /> : <span className="home">Nº{installationNumber}</span>}
+                                {isLoading ? <Skeleton variant="text" className="loading" /> : <span className="home">Imóvel {hasMoreThanOneInstallation && getInstallationIndexById(id, allInstallations)}</span>}
                             </li>
                             {filteredInstallations?.map((otherInstallation, index) => {
                                 const address = otherInstallation.address

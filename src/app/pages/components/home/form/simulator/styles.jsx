@@ -23,7 +23,7 @@ export const HomeMainFormSimulationContainer = styled.div`
 
         min-width: 340px;
 
-        margin-bottom:${props => props.isCompany ? `0px` : `20px`};
+        margin-bottom:20px;
     }
 
     .simulationCost {
