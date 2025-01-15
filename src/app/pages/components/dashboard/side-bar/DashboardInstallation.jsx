@@ -65,7 +65,7 @@ export default function DashboardInstallation({ isMobileContent }) {
                             IconComponent={filteredInstallations.length > 0 ? KeyboardArrowDownIcon : ""}>
                             <li value={0} style={{ display: 'none' }}>
                                 {/* <span className="home">{getAddress(address, street)}</span> */}
-                                <span className="home">Nº{installationNumber}</span>
+                                {isLoading ? <Skeleton variant="text" className="loading" /> : <span className="home">Nº{installationNumber}</span>}
                             </li>
                             {filteredInstallations?.map((otherInstallation, index) => {
                                 const address = otherInstallation.address

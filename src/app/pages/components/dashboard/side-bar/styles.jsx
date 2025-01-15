@@ -279,6 +279,9 @@ export const SelectInstallation = styled(Select)`
         line-height: 24px;
         color: ${background.green};
     }
+    .loading {
+        max-width: 180px;
+    }
 
     &.MuiOutlinedInput-root {
         .MuiSelect-select {
