@@ -111,7 +111,7 @@ export const LegendExpired = styled(LegendBase)`
 background-color: ${background.orange};
 `;
 export const LegendCarrier = styled(LegendBase)`
-    background-color: ${background.grey};
+    background-color: ${background.greyMediumHigh};
     color: ${background.white};
 `;
 

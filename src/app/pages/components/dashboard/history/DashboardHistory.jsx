@@ -1,14 +1,12 @@
 "use client"
 
 import { useStoreMainInstallation } from '@/app/hooks/stores/useStore';
-import dynamic from 'next/dynamic';
 import { useState } from 'react';
+import NewHistoryEnergyChart from '../../charts/NewHistoryEnergyChart';
+import NewHistoryMoneyChart from '../../charts/NewHistoryMoneyChart';
 import HistoryDetails from './details/HistoryDetails';
 import { DATA_TYPE } from './historyEnums';
 import { AntSwitch, DashboardHistoryContainer as Container, DashboardHistoryContent as Content, DashboardHistoryTitleContainer as Header, HistoryChartLegend, HistoryDivider, LegendCarrier, LegendDue, LegendExpired, LegendPaid, DashboardHistorySwitchContainer as SwitchContainer } from './styles';
-
-const NewHistoryEnergyChart = dynamic(() => import('../../charts/NewHistoryEnergyChart'), { ssr: false });
-const NewHistoryMoneyChart = dynamic(() => import('../../charts/NewHistoryMoneyChart'), { ssr: false });
 
 export default function DashboardHistory() {
 

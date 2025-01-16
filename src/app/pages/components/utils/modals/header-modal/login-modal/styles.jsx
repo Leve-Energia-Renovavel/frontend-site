@@ -125,7 +125,7 @@ export const LoginInput = styled(FormInputBase)`
     
         /* User input text style */
         font-family: "Graphie";
-        font-size: 20px;
+        font-size:18px;
         font-weight: 500;
         /* line height of input text */
         margin-top: 12px;
