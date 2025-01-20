@@ -2,9 +2,8 @@
 "use client"
 
 import { useStoreUser } from '@/app/hooks/stores/useStore';
-import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Box, CircularProgress, MenuItem } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import Cookies from 'js-cookie';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
@@ -17,7 +16,7 @@ import { formatCpf } from '@/app/utils/formatters/documentFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
 import { isEmpty } from '@/app/utils/helper/globalHelper';
-import { birthDateInputFilled, birthDateInputIncomplete, costValidation, cpfInputFilled, emailInputComplete, emailInputIncomplete, inputCompleted, inputIncomplete, inputSelectIncomplete, labelColorHelper, labelColorHelperForMaskedInputs, phoneInputComplete, phoneInputIncomplete, phoneInputNotFilled, rgInputFilled, shrinkHelper } from '@/app/utils/helper/register/registerUserHelper';
+import { birthDateInputFilled, birthDateInputIncomplete, costValidation, cpfInputFilled, emailInputComplete, emailInputIncomplete, inputCompleted, inputIncomplete, labelColorHelper, labelColorHelperForMaskedInputs, phoneInputComplete, phoneInputIncomplete, phoneInputNotFilled, rgInputFilled, shrinkHelper } from '@/app/utils/helper/register/registerUserHelper';
 import { schemaValidation } from './schema';
 
 export default function SignupUserForm() {
@@ -43,9 +42,10 @@ export default function SignupUserForm() {
     rg: rg || "",
     cpf: cpf || "",
     birthDate: birthDate || "",
-    nationality: nationality || "",
-    maritalStatus: maritalStatus || "",
-    profession: profession || "",
+
+    nationality: "nao_informado",
+    maritalStatus: "nao_informado",
+    profession: "nao_informado",
   });
 
   const handleInputChange = (event) => {
@@ -219,78 +219,6 @@ export default function SignupUserForm() {
                 }} />
             )}
           </InputMask>
-
-          <FormInput
-            id="nationalityId"
-            name='nationality'
-            variant="outlined"
-            className="inputForm"
-            label="Nacionalidade"
-            placeholder="Nacionalidade"
-            select
-            error={inputSelectIncomplete(formState?.nationality)}
-            success={inputCompleted(formState?.nationality)}
-            onChange={handleInputChange}
-            value={formState?.nationality || ""}
-            required={required}
-            InputLabelProps={{
-              shrink: shrinkHelper(formState?.nationality),
-              style: { color: labelColorHelper(formState?.nationality) }
-            }}>
-            {nationalityOptions?.map((nationality) => (
-              <MenuItem key={nationality.label} value={nationality.value}>
-                {nationality.label}
-              </MenuItem>
-            ))}
-          </FormInput>
-
-          <FormInput
-            select
-            variant="outlined"
-            id="maritalStatusId"
-            name='maritalStatus'
-            className="inputForm"
-            label="Estado civil"
-            placeholder="Estado civil"
-            onChange={handleInputChange}
-            value={formState?.maritalStatus || ""}
-            success={inputCompleted(formState?.maritalStatus)}
-            error={inputSelectIncomplete(formState?.maritalStatus)}
-            InputLabelProps={{
-              shrink: shrinkHelper(formState?.maritalStatus),
-              style: { color: labelColorHelper(formState?.maritalStatus) }
-            }}>
-            {maritalStatusOptions?.map((maritalStatus) => (
-              <MenuItem key={maritalStatus.label} value={maritalStatus.value}  >
-                {maritalStatus.label}
-              </MenuItem>
-            ))}
-          </FormInput>
-
-          <FormInput
-            name='profession'
-            id="professionId"
-            select
-            label="Profissão"
-            className="inputForm"
-            variant="outlined"
-            placeholder="Profissão"
-            required={required}
-            onChange={handleInputChange}
-            value={formState?.profession || ""}
-            error={inputSelectIncomplete(formState?.profession)}
-            success={inputCompleted(formState?.profession)}
-            InputLabelProps={{
-              shrink: shrinkHelper(formState?.profession),
-              style: { color: labelColorHelper(formState?.profession) }
-            }}
-          >
-            {professionOptions?.map((profession) => (
-              <MenuItem key={profession.label} value={profession.value}>
-                {profession.label}
-              </MenuItem>
-            ))}
-          </FormInput>
         </FormContent>
 
         <FormFooterContainer>

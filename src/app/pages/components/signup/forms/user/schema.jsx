@@ -45,12 +45,9 @@ export const userSchema = yup.object({
         .test('is-valid-date', 'A data de nascimento é inválida', (value) => isValidDate(value))
         .test('is-over-18', 'Você deve ser maior de 18 anos', isOver18)
         .test('is-under-110', 'Data de nascimento inválida', (value) => isOver110(value)),
-    nacionalidade: yup.string().required('O campo Nacionalidade é obrigatório')
-        .oneOf(nationalityOptions.map(option => option.value), 'Valor de nacionalidade inválido'),
-    profissao: yup.string().required('O campo Profissão é obrigatório')
-        .oneOf(professionOptions.map(option => option.value), 'Valor de profissão inválido'),
-    estado_civil: yup.string().required('O campo Estado Civil é obrigatório')
-        .oneOf(maritalStatusOptions.map(option => option.value), 'Valor de estado civil inválido'),
+    nacionalidade: yup.string().required('O campo Nacionalidade é obrigatório'),
+    profissao: yup.string().required('O campo Profissão é obrigatório'),
+    estado_civil: yup.string().required('O campo Estado Civil é obrigatório'),
     cpf: yup.string()
         .matches(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/, 'O formato do CPF é inválido')
         .required('O campo CPF é obrigatório')

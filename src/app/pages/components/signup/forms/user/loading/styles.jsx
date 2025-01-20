@@ -40,26 +40,6 @@ export const LoadingContainer = styled.div`
         }
     }
 `
-export const LoadingSection = styled.div`   
-    display: flex;
-    gap: 1rem;
-    margin: 0 100px;
-
-    .loadingThirdField {
-        height: ${inputHeight};
-        width: 200px;
-        border-radius: 10px;
-    }
-    .loadingThirdField:nth-of-type(1) {
-        height: ${inputHeight};
-        width: 240px;
-        border-radius: 10px;
-    }
-
-    @media (max-width: 600px) {
-        display: none;
-    }
-`
 export const LoadingFooter = styled.div`   
     display: flex;
     align-items: center;

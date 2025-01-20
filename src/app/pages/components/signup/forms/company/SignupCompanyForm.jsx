@@ -1,7 +1,7 @@
 "use client"
 
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, CircularProgress, MenuItem } from '@mui/material';
+import { Box, CircularProgress } from '@mui/material';
 import InputMask from "react-input-mask";
 import { Form, FormFooterContainer, FormInput, FormRow, FormSubmitButton, RepresentativeTitleContainer } from "./styles";
 
@@ -9,12 +9,11 @@ import { useStoreUser } from "@/app/hooks/stores/useStore";
 import { useStoreMessages } from "@/app/hooks/stores/useStoreMessages";
 import useGetCNPJ from "@/app/hooks/utils/useGetCNPJ";
 import { REGISTER_FORM } from '@/app/pages/enums/globalEnums';
-import { maritalStatusOptions, nationalityOptions, professionOptions } from '@/app/utils/form-options/formOptions';
 import { formatCpf } from '@/app/utils/formatters/documentFormatter';
 import formatPhoneNumber from '@/app/utils/formatters/phoneFormatter';
 import { sanitizeAndCapitalizeWords } from '@/app/utils/formatters/textFormatter';
-import { isNotEmpty, isValidCNPJ } from '@/app/utils/helper/globalHelper';
-import { cnpjInputComplete, companyInputFilled, inputIncomplete, nameInputIncomplete, regularTextInputFilled, shrinkHelper } from '@/app/utils/helper/register/registerCompanyHelper';
+import { isValidCNPJ } from '@/app/utils/helper/globalHelper';
+import { cnpjInputComplete, companyInputFilled, inputIncomplete, nameInputIncomplete, shrinkHelper } from '@/app/utils/helper/register/registerCompanyHelper';
 import { birthDateInputFilled, birthDateInputIncomplete, costValidation, cpfInputFilled, emailInputComplete, labelColorHelper, normalTextInputFilled, phoneInputComplete, rgInputFilled } from '@/app/utils/helper/register/registerUserHelper';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Cookies from 'js-cookie';
@@ -46,13 +45,14 @@ export default function SignupCompanyForm() {
         rg: rg || "",
         cpf: cpf || "",
         birthDate: birthDate || "",
-        nationality: nationality || "",
-        maritalStatus: maritalStatus || "",
-        profession: profession || "",
         cnpj: cnpj || "",
         companyName: companyName || "",
         socialContractFile: null,
         energyExtractFile: null,
+
+        nationality: "nao_informado",
+        maritalStatus: "nao_informado",
+        profession: "nao_informado",
     });
 
     const handleSubmit = async (event) => {
@@ -76,8 +76,6 @@ export default function SignupCompanyForm() {
             razao_social: formState.companyName,
             cnpj: formState.cnpj,
         };
-
-        console.log("company form submitData ==>>", submitData)
 
         store.updateUser({ ...formState });
         const response = await schemaValidation(submitData, router, setErrors);
@@ -272,73 +270,6 @@ export default function SignupCompanyForm() {
                     )}
                 </InputMask>
 
-                <FormInput
-                    id="maritalStatus"
-                    name='maritalStatus'
-                    onChange={handleInputChange}
-                    select
-                    error={inputIncomplete(formState?.maritalStatus)}
-                    success={regularTextInputFilled(formState?.maritalStatus)}
-                    label="Estado Civil"
-                    variant="outlined"
-                    placeholder="Estado Civil"
-                    value={formState?.maritalStatus || ""}
-                    className="inputForm"
-                    InputLabelProps={{
-                        shrink: shrinkHelper(formState?.maritalStatus),
-                        style: { color: labelColorHelper(formState?.maritalStatus) }
-                    }}>
-                    {maritalStatusOptions?.map((maritalStatus) => (
-                        <MenuItem key={maritalStatus.label} value={maritalStatus.value} >
-                            {maritalStatus.label}
-                        </MenuItem>
-                    ))}
-                </FormInput>
-                <FormInput
-                    id="nationality"
-                    name='nationality'
-                    onChange={handleInputChange}
-                    select
-                    error={inputIncomplete(formState?.nationality)}
-                    success={regularTextInputFilled(formState?.nationality)}
-                    label="Nacionalidade"
-                    className="inputForm"
-                    variant="outlined"
-                    placeholder="Nacionalidade"
-                    value={formState?.nationality || ""}
-                    required={required}
-                    InputLabelProps={{
-                        shrink: shrinkHelper(formState?.nationality),
-                        style: { color: labelColorHelper(formState?.nationality) }
-                    }}>
-                    {nationalityOptions?.map((nationality) => (
-                        <MenuItem key={nationality.label} value={nationality.value}>
-                            {nationality.label}
-                        </MenuItem>
-                    ))}
-                </FormInput>
-                <FormInput
-                    name='profession'
-                    onChange={handleInputChange}
-                    id="profession"
-                    select
-                    success={regularTextInputFilled(formState?.profession)}
-                    label="Profissão"
-                    className="inputForm"
-                    variant="outlined"
-                    placeholder="Profissão"
-                    value={formState?.profession || ""}
-                    required={required}
-                    InputLabelProps={{
-                        shrink: shrinkHelper(formState?.profession),
-                        style: { color: labelColorHelper(formState?.profession) }
-                    }}>
-                    {professionOptions?.map((profession) => (
-                        <MenuItem key={profession.label} value={profession.value}>
-                            {profession.label}
-                        </MenuItem>
-                    ))}
-                </FormInput>
             </FormRow>
 
             <FormFooterContainer>

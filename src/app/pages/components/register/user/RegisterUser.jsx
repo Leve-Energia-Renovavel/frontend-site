@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-"use client";
+"use client"
 
 import { useStoreAddress, useStoreUser } from "@/app/hooks/stores/useStore";
 import { COOKIES_FOR } from "@/app/pages/enums/globalEnums";
@@ -14,30 +14,30 @@ import SignupUserForm from "../../signup/forms/user/SignupUserForm";
 export default function RegisterUser() {
     const [isLoading, setIsLoading] = useState(true);
 
-    const search = useSearchParams();
-    const storeUser = useStoreUser();
-    const storeAddress = useStoreAddress();
+    const search = useSearchParams()
+    const storeUser = useStoreUser()
+    const storeAddress = useStoreAddress()
 
-    const uuid = search.get("uuid") || storeUser?.user?.uuid || Cookies.get(COOKIES_FOR.UUID);
+    const uuid = search.get("uuid") || storeUser?.user?.uuid || Cookies.get(COOKIES_FOR.UUID)
 
-    const { isCompany } = storeUser?.user || {};
+    const { isCompany } = storeUser?.user || {}
 
     useEffect(() => {
         const fetchData = async () => {
-            await getLeadData(uuid, storeUser, storeAddress);
-            setIsLoading(false);
-        };
-        fetchData();
-    }, []);
+            await getLeadData(uuid, storeUser, storeAddress)
+            setIsLoading(false)
+        }
+        fetchData()
+    }, [])
 
 
     if (isLoading) {
-        return <LoadingSignupUserForm />;
+        return <LoadingSignupUserForm />
     }
 
     return (
         <>
             {isCompany ? <SignupCompanyForm /> : <SignupUserForm />}
         </>
-    );
+    )
 }

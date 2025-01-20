@@ -12,16 +12,6 @@ export default function LoadingSignupUserForm() {
             <Skeleton variant="rectangular" className="loadingMobileFullField" />
             <Skeleton variant="rectangular" className="loadingMobileFullField" />
             <Skeleton variant="rectangular" className="loadingMobileFullField" />
-            <LoadingSection>
-                <Skeleton variant="rectangular" className="loadingThirdField" />
-                <Skeleton variant="rectangular" className="loadingThirdField" />
-                <Skeleton variant="rectangular" className="loadingThirdField" />
-            </LoadingSection>
-            <LoadingSection>
-                <Skeleton variant="rectangular" className="loadingThirdField" />
-                <Skeleton variant="rectangular" className="loadingThirdField" />
-                <Skeleton variant="rectangular" className="loadingThirdField" />
-            </LoadingSection>
             <LoadingFooter>
                 <Skeleton variant="rectangular" className="largerCircularButton" />
             </LoadingFooter>
