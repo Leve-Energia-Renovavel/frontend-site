@@ -379,6 +379,14 @@ export const HomeMainForm = styled.form`
       padding: 24px ;
       border-radius: 0px;
       max-height: 776px;
+
+      .privacyPolicyDisclaimer {
+        display: block;
+      } 
+      .privacyPolicy {
+        display: inline-block;
+        
+      }
     }
 `
 
