@@ -103,20 +103,6 @@ export const FormContent = styled.div`
         grid-template-columns: repeat(1,1fr);
     }
 `
-export const FormContentFooter = styled.div`
-    display: grid;
-    grid-template-columns: 1.5fr .5fr 1.5fr;
-    grid-column: span 3; 
-
-    gap: ${formGap};
-
-    margin-top: ${formGap};
-
-    @media (max-width: 600px) {
-        grid-template-rows: repeat(1, 1fr);
-        grid-template-columns: repeat(1,1fr);
-    }
-`
 const FormInputBase = styled(TextField, {
     shouldForwardProp: (prop) => prop !== "success" && prop !== "error",
 })``;

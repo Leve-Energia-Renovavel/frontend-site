@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import InputMask from "react-input-mask";
 import { schemaValidation } from "./schema";
-import { Form, FormContent, FormContentFooter, FormFooterContainer, FormInput, FormRow, FormSubmitButton, LoadingIcon } from "./styles";
+import { Form, FormContent, FormFooterContainer, FormInput, FormRow, FormSubmitButton, LoadingIcon } from "./styles";
 
 export default function SignupAddressForm() {
 
@@ -225,44 +225,6 @@ export default function SignupAddressForm() {
             }} />
 
 
-          <FormInput
-            name="complement"
-            variant="outlined"
-            type="text"
-            label="Complemento"
-            className="inputForm"
-            placeholder="Complemento"
-            required={false}
-            onChange={handleInputChange}
-            value={formState?.complement}
-            error={inputIsEmpty(formState?.complement)}
-            success={addressTextInputFilled(formState?.complement)}
-            InputLabelProps={{
-              shrink: shrinkHelper(formState?.complement),
-              style: { color: labelColorHelper(formState?.complement) }
-            }} />
-
-
-        </FormContent>
-
-        <FormContentFooter className="signupAddressFormContentFooter">
-          <FormInput
-            type="text"
-            name="city"
-            label="Cidade"
-            placeholder="Cidade"
-            className="inputForm"
-            variant="outlined"
-            required={required}
-            onChange={handleInputChange}
-            value={formState?.city?.toUpperCase()}
-            error={inputIsEmpty(formState?.city) || isEmpty(formState?.city)}
-            success={addressTextInputFilled(formState?.city)}
-            InputLabelProps={{
-              shrink: shrinkHelper(formState?.city),
-              style: { color: labelColorHelper(formState?.city) }
-            }}
-          />
 
           <FormInput
             id="state"
@@ -290,22 +252,41 @@ export default function SignupAddressForm() {
 
           <FormInput
             type="text"
-            variant="outlined"
+            name="city"
+            label="Cidade"
+            placeholder="Cidade"
             className="inputForm"
+            variant="outlined"
+            required={required}
             onChange={handleInputChange}
-            name="installationNumber"
-            label="Número de instalação"
-            placeholder="Número de instalação"
-            required={false}
-            value={formState?.installationNumber || ''}
-            success={addressTextInputFilled(formState?.installationNumber)}
+            value={formState?.city?.toUpperCase()}
+            error={inputIsEmpty(formState?.city) || isEmpty(formState?.city)}
+            success={addressTextInputFilled(formState?.city)}
             InputLabelProps={{
-              shrink: shrinkHelper(formState?.installationNumber),
-              style: { color: labelColorHelper(addressTextInputFilled(formState?.installationNumber)) }
+              shrink: shrinkHelper(formState?.city),
+              style: { color: labelColorHelper(formState?.city) }
             }}
           />
 
-        </FormContentFooter>
+          <FormInput
+            name="complement"
+            variant="outlined"
+            type="text"
+            label="Complemento"
+            className="inputForm"
+            placeholder="Complemento"
+            required={false}
+            onChange={handleInputChange}
+            value={formState?.complement}
+            error={inputIsEmpty(formState?.complement)}
+            success={addressTextInputFilled(formState?.complement)}
+            InputLabelProps={{
+              shrink: shrinkHelper(formState?.complement),
+              style: { color: labelColorHelper(formState?.complement) }
+            }} />
+
+
+        </FormContent>
 
         <FormFooterContainer className="signupAddressFormFooterContainer">
           {isLoading ?
