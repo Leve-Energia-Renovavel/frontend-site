@@ -30,7 +30,12 @@ export default function NewHomeMainBanner() {
             <h3 className='homeMainDescription'>{texts.description}</h3>
           </DescriptionContainer>
 
-          <CTAButton className='homeMainBannerButton' onClick={() => handleScrollToId(HOME_FORM_ID)}><span>Calcular meu desconto</span></CTAButton>
+          <CTAButton
+            className='homeMainBannerButton'
+            aria-label="Calcular meu desconto"
+            onClick={() => handleScrollToId(HOME_FORM_ID)}>
+            <span>Calcular meu desconto</span>
+          </CTAButton>
         </HomeMain>
 
         <NewHomeMainBaloon className='leveHomeBannerBaloon'>

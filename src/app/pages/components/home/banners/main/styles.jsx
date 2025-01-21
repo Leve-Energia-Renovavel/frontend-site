@@ -63,7 +63,7 @@ export const NewHomeMainContainer = styled.div`
         font-size: 22px;
         line-height: 30px;
         font-weight: 400;
-        color: ${background.greyHigh};
+        color: ${background.greyDark};
 
         animation: ${fadeInUp} 0.5s ease-out;
         animation-delay: 0.4s;

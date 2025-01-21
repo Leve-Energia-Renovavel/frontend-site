@@ -1,5 +1,6 @@
 
 import styled from "@emotion/styled";
+import { IconButton } from '@mui/material';
 import { fadeInUp } from "../../globalAnimations";
 
 export const FABContainer = styled.div`
@@ -31,7 +32,7 @@ export const FABContainer = styled.div`
   }
   `
 
-export const WhatsappLink = styled.a`
+export const WhatsappButton = styled(IconButton)`
   display: flex;
   align-items: center;
   justify-content: center;

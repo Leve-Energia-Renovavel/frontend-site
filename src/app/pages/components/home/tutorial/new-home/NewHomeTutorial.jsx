@@ -8,8 +8,8 @@ export default function NewHomeTutorial() {
     return (
         <Container className='leveTutorialContainer'>
             <HomeTutorialTitleContainer className='leveTutorialTitleContainer'>
-                <h5 className='leveTutorialTitle'>Como a nossa economia chega até você</h5>
-                <h6 className='leveTutorialSubtitle'>Entregamos economia e sustentabilidade com segurança</h6>
+                <h6 className='leveTutorialTitle'>Como a nossa economia chega até você</h6>
+                <h5 className='leveTutorialSubtitle'>Entregamos economia e sustentabilidade com segurança</h5>
             </HomeTutorialTitleContainer>
 
             <CardContainer className='cardContainer'>
@@ -25,7 +25,7 @@ export default function NewHomeTutorial() {
             </CardContainer>
 
             <ButtonContainer className='leveTutorialButtonContainer'>
-                <CTAButton onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular minha economia</span></CTAButton>
+                <CTAButton onClick={() => handleScrollToId("calculateYourEconomy")} aria-label="Calcular minha economia"><span>Calcular minha economia</span></CTAButton>
             </ButtonContainer>
 
             <Divider>

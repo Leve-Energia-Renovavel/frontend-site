@@ -10,7 +10,7 @@ export default function HomeMainFormSimulator({ simulationCost, handleSimulation
 
     return (
         <HomeMainFormSimulationContainer className={`homeSimulatorContainer`}>
-            <h6 className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === USER_COST.MAX ? "+" : ""}</span></h6>
+            <label htmlFor="simulationSlider" className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === USER_COST.MAX ? "+" : ""}</span></label>
             <FormSlider
                 className='formSlider'
                 name='cost'
@@ -20,6 +20,7 @@ export default function HomeMainFormSimulator({ simulationCost, handleSimulation
                 defaultValue={USER_COST.MIN}
                 min={USER_COST.MIN}
                 max={USER_COST.MAX}
+                aria-label="Slider de simulação"
                 valueLabelDisplay="auto"
                 aria-labelledby="simulationSlider"
             />

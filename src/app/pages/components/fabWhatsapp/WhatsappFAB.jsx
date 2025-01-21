@@ -5,7 +5,7 @@ import { helperToPath } from '@/app/utils/helper/pathHelper';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { usePathname } from 'next/navigation';
 import { LEVE_WHATSAPP_NUMBER, PATH_TO } from '../../enums/globalEnums';
-import { FABContainer, WhatsappLink } from './styles';
+import { FABContainer, WhatsappButton } from './styles';
 
 export default function WhatsAppFAB() {
 
@@ -26,10 +26,10 @@ export default function WhatsAppFAB() {
     }
 
     return (
-        <FABContainer onClick={() => handleWhatsapp()}>
-            <WhatsappLink >
+        <FABContainer onClick={() => handleWhatsapp()} className='leveWhatsappContainer'>
+            <WhatsappButton className='leveWhatsappButton' aria-label="Whatsapp">
                 <WhatsAppIcon className='icon' />
-            </WhatsappLink>
+            </WhatsappButton>
         </FABContainer >
     );
 };
