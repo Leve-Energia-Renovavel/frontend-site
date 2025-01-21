@@ -170,6 +170,10 @@ export const FormFooterContainer = styled.div`
         color: ${background.orange};
     }
 
+    @media (max-width: 600px) {
+        justify-content: center;
+    }
+
 `
 
 export const FormSubmitButton = styled(Button)`
