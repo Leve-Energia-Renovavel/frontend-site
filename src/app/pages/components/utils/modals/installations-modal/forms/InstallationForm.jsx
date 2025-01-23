@@ -50,7 +50,6 @@ export default function InstallationForm({ closeModal }) {
         installationNumber: useRef(null)
     }
 
-
     const handleChangeState = (value) => {
         setStateValue(stateOptions[value])
     }
@@ -114,8 +113,8 @@ export default function InstallationForm({ closeModal }) {
 
     return (
         <>
-            <InstallationFormContainer>
-                <Form id='signupForm' acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit}>
+            <InstallationFormContainer className='installationFormContainer'>
+                <Form id='signupForm' acceptCharset="UTF-8" method="POST" onSubmit={handleSubmit} className='installationForm'>
                     <FormRow>
                         <FormInput
                             className='inputForm'
@@ -258,7 +257,7 @@ export default function InstallationForm({ closeModal }) {
                             placeholder="Estado"
                             variant="outlined"
                             className="inputForm"
-                            value={stateValue?.cod_estados || ""}
+                            value={stateValue?.estado_id || stateValue?.cod_estados || ""}
                             InputLabelProps={{
                                 component: 'span',
                                 style: { color: labelColor }

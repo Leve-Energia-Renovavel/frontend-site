@@ -19,7 +19,7 @@ export default function AddInstallationModal({ isOpen, closeModal }) {
                 },
             }}>
             <ModalBox>
-                <ModalTitleContainer>
+                <ModalTitleContainer className="modalTitleContainer">
                     <h1 className='modalTitle'>Cadastre seu novo endereço</h1>
                     <p className="description">Preencha o formulário abaixo:</p>
                 </ModalTitleContainer>
