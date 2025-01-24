@@ -7,6 +7,7 @@ export const BenefitsBannerContainer = styled.div`
     border-radius: ${defaultBorderRadius};
     
     background-color: ${background.green};
+    
 
     @media (max-width: 600px) {
         border-radius: 0px 0px ${defaultBorderRadius} ${defaultBorderRadius};
