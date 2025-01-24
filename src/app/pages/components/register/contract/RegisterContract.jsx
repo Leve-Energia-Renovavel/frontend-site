@@ -2,8 +2,8 @@
 "use client"
 
 import { useStoreClickSign, useStoreUser } from "@/app/hooks/stores/useStore";
+import { useStoreMessages } from "@/app/hooks/stores/useStoreMessages";
 import { requestSuccessful } from "@/app/service/utils/Validations";
-import formatPhoneNumber from "@/app/utils/formatters/phoneFormatter";
 import axios from "axios";
 import Cookies from "js-cookie";
 import dynamic from "next/dynamic";
@@ -11,7 +11,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { PATH_TO } from "../../../enums/globalEnums";
 import { ContractSignatureForm } from "./styles";
-import { useStoreMessages } from "@/app/hooks/stores/useStoreMessages";
 
 const ClicksignWidgetComponent = dynamic(() => import("@/app/utils/clicksign/ClicksignWidgetComponent"), { ssr: false });
 
@@ -53,7 +52,6 @@ export default function RegisterContract() {
 
     return (
         <ContractSignatureForm className="contractSignatureForm">
-            {/* <p className="contractSignInfo">Para assinar o contrato, esteja com o telefone <span className="phoneNumber">{formatPhoneNumber(phone)}</span> em mãos e insira o código de confirmação enviado por SMS.</p> */}
             <ClicksignWidgetComponent uuid={uuid} />
         </ContractSignatureForm>
     )

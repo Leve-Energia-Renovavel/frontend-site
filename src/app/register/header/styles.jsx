@@ -69,6 +69,7 @@ export const StepLabelContainer = styled(StepLabelContainerBase)`
         font-size: 16px;
         line-height: 100%;
         font-weight: 600;
+        white-space: nowrap;
         color: ${props => props.isSelected ? background.orange : background.greyHigh};
         color: ${props => props.isCompleted && background.green};
     }

@@ -11,7 +11,7 @@ import {
 const steps = [
     { key: 0, label: "Titular", title: "Quem é o titular da conta de luz?" },
     { key: 1, label: "Imóvel", title: "Qual o endereço do imóvel da conta de luz?" },
-    { key: 2, label: "Contrato", title: "Leia e assine o contrato para começar a economizar e gerar impacto positivo para o planeta" }
+    { key: 2, label: "Termo de adesão", title: "Leia e assine o contrato para começar a economizar e gerar impacto positivo para o planeta" }
 ];
 
 export default function RegisterHeader({ children, step }) {

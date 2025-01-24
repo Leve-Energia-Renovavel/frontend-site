@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import RegisterHeader from "./header/RegisterHeader";
 import { RoutingContainer } from "./styles";
 import dynamic from "next/dynamic";
+import BenefitsBanners from "./banners/benefits-banners/BenefitsBanners";
 
 const RegisterUser = dynamic(() => import("@/app/pages/components/register/user/RegisterUser"), { ssr: false });
 const RegisterAddress = dynamic(() => import("@/app/pages/components/register/address/RegisterAddress"), { ssr: false });
@@ -24,7 +25,9 @@ export default function RegisterMain() {
 
     return (
         <RoutingContainer className="routingContainer">
-            <RegisterHeader step={step}>{component}</RegisterHeader>
+            <BenefitsBanners step={step}>
+                <RegisterHeader step={step}>{component}</RegisterHeader>
+            </BenefitsBanners>
         </RoutingContainer>
     );
 }
