@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import "./globals.css";
 
+import { Partytown } from '@builder.io/partytown/react';
 import Head from "next/head";
 import Header from './pages/components/header/Header';
 
@@ -66,8 +67,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning={true}>
       <Head>
-        <Hotjar hotjarId={hotjarId} />
-        <GoogleTagManager gtmId={gtmId} />
+        <Partytown debug={true} forward={['dataLayer.push', 'gtag']}>
+          <Hotjar hotjarId={hotjarId} />
+          <GoogleTagManager gtmId={gtmId} />
+        </Partytown>
       </Head>
 
       <body suppressHydrationWarning={true} style={{ background: "#EFEFEC" }} >

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "npm run open-browser && next dev",
     "export": "next build && next export",
-    "build": "next build",
+    "build": "npm run partytown && next build",
     "start": "npx serve out -p 3000",
     "lint": "next lint",
     "cypress:open": "cypress open",
@@ -15,9 +15,11 @@
     "test:headed": "start-server-and-test start http://localhost:3000 cypress:run",
     "test:spec": "start-server-and-test start http://localhost:3000 'cypress run --browser chrome --headed --spec cypress/e2e/**/HomeStressForm.cy.js'",
     "test:stress": "start-server-and-test start http://localhost:3000 'cypress run --browser chrome --spec cypress/e2e/**/HomeStressForm.cy.js'",
+    "partytown": "partytown copylib public/~partytown",
     "open-browser": "start http://localhost:3000"
   },
   "dependencies": {
+    "@builder.io/partytown": "^0.10.3",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.3",
