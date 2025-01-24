@@ -14,14 +14,19 @@ const Footer = dynamic(() => import('./pages/components/footer/Footer'), { ssr: 
 const Messages = dynamic(() => import("./pages/components/messages/Messages"), { ssr: false });
 
 export const metadata = {
-  title: 'Leve Energia Renovavel',
+  title: 'Leve Energia Renovável',
   description: 'Leve energia renovavel - pague menos na conta de luz',
+  url: 'https://leveenergia.com.br/',
+  siteName: 'Leve Energia Renovável',
+  generator: 'Leve Energia Renovável',
+  applicationName: 'Leve Energia Renovável',
+  keywords: ['Leve Energia Renovável', 'Leve Energia', 'Energia Renovável',],
+  category: 'energy',
   icons: {
     icon: "/favicon.ico",
   },
   content: 'text/html; charset=utf-8',
-  cacheControl: 'public, max-age=31536000',
-  expires: 'Thu, 31 Dec 2026 23:59:59 GMT',
+  cacheControl: 'public, max-age=86400, stale-while-revalidate=3600',
 
   openGraph: {
     title: 'Leve Energia Renovável',

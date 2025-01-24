@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "npm run open-browser && next dev",
     "export": "next build && next export",
-    "build": "npm run partytown && next build",
+    "build": "next build",
     "start": "npx serve out -p 3000",
     "lint": "next lint",
     "cypress:open": "cypress open",
