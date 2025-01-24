@@ -20,8 +20,8 @@ export const metadata = {
     icon: "/favicon.ico",
   },
   content: 'text/html; charset=utf-8',
-  cacheControl: 'public, max-age=31536000, immutable',
-  expires: 'Sun, 31 Dec 2025 23:59:59 GMT',
+  cacheControl: 'public, max-age=31536000',
+  expires: 'Thu, 31 Dec 2026 23:59:59 GMT',
 
   openGraph: {
     title: 'Leve Energia Renovável',
@@ -61,7 +61,7 @@ export default function RootLayout({ children }) {
   const hotjarId = process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_HOTJAR_ID : null;
 
   return (
-    <html lang="pt-BR" suppressHydrationWarning={true} >
+    <html lang="pt-BR" suppressHydrationWarning={true}>
       <Head>
         <Partytown forward={['dataLayer.push']}>
           <Script id="hotjar" type="text/partytown">
@@ -71,7 +71,7 @@ export default function RootLayout({ children }) {
         <GoogleTagManager gtmId={gtmId} />
       </Head>
 
-      <body suppressHydrationWarning={true} style={{ background: "#EFEFEC" }}>
+      <body suppressHydrationWarning={true} style={{ background: "#EFEFEC" }} >
         <Header />
         {children}
         <WhatsAppFAB />
