@@ -4,9 +4,7 @@ import "./globals.css";
 import Head from "next/head";
 import Header from './pages/components/header/Header';
 
-import { Partytown } from '@builder.io/partytown/react';
 import { GoogleTagManager } from '@next/third-parties/google';
-import Script from "next/script";
 import Hotjar from "./pages/components/hotjar/Hotjar";
 
 const WhatsAppFAB = dynamic(() => import('./pages/components/fabWhatsapp/WhatsappFAB'), { ssr: false });
@@ -68,11 +66,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning={true}>
       <Head>
-        <Partytown forward={['dataLayer.push', 'gtag']}>
-          <Script id="hotjar" type="text/partytown" strategy="lazyOnload">
-            <Hotjar hotjarId={hotjarId} />
-          </Script>
-        </Partytown>
+        <Hotjar hotjarId={hotjarId} />
         <GoogleTagManager gtmId={gtmId} />
       </Head>
 

@@ -4,7 +4,7 @@ export default function Hotjar({ hotjarId }) {
     return (
         <>
             {hotjarId && (
-                <Script id='hotjar' type="text/partytown" strategy="lazyOnload">
+                <Script id='hotjar'>
                     {`(function (h, o, t, j, a, r) {
                     h.hj =
                     h.hj ||
