@@ -63,8 +63,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning={true}>
       <Head>
-        <Partytown forward={['dataLayer.push']}>
-          <Script id="hotjar" type="text/partytown">
+        <Partytown forward={['dataLayer.push', 'gtag']}>
+          <Script id="hotjar" type="text/partytown" strategy="lazyOnload">
             <Hotjar hotjarId={hotjarId} />
           </Script>
         </Partytown>
