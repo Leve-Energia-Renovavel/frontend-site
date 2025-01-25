@@ -28,7 +28,7 @@ export const NewHomeBoxesContainer = styled.section`
         font-size: 20px;
         line-height: 120%;
         font-weight: 500;
-        color: ${background.greyHigh};
+        color: ${background.greyDarker};
 
         margin-top: 10px;
         margin-left: 6px;
@@ -167,7 +167,7 @@ export const BoxCard = styled.div`
         font-size: 22px;
         line-height: 24px;
         font-weight: 500;
-        color: ${background.greyHigh};
+        color: ${background.greyDarker};
     }
 
     @media (max-width: 800px) {

@@ -34,7 +34,7 @@ export const HomeTutorialTitleContainer = styled.div`
       font-size: 20px;
       line-height: 120%;
       font-weight: 500;
-      color: ${background.greyHigh};
+      color: ${background.greyDarker};
 
       margin-left: 6px;
     }
@@ -107,7 +107,7 @@ export const HomeTutorialCard = styled.div`
       font-size: 22px;
       line-height: 120%;
       font-weight: 400;
-      color: ${background.greyHigh};
+      color: ${background.greyDarker};
 
       max-width: 300px;
     }
@@ -264,7 +264,7 @@ export const HomeTutorialAneelCardContent = styled.div`
       font-size: 22px;
       line-height: 120%;
       font-weight: 500;
-      color: ${background.greyHigh};
+      color: ${background.greyDarker};
 
       max-width: 620px;
     }
