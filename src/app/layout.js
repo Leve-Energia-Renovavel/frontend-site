@@ -6,7 +6,6 @@ import Head from "next/head";
 import Header from './pages/components/header/Header';
 
 import { GoogleTagManager } from '@next/third-parties/google';
-import Script from "next/script";
 import Hotjar from "./pages/components/hotjar/Hotjar";
 
 const WhatsAppFAB = dynamic(() => import('./pages/components/fabWhatsapp/WhatsappFAB'), { ssr: false });
@@ -67,12 +66,13 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="pt-BR" suppressHydrationWarning={true}>
+      <head>
+        <link rel="stylesheet" href="https://use.typekit.net/hfo1jru.css" />
+      </head>
       <Head>
         <Partytown forward={['dataLayer.push']}>
           <Hotjar hotjarId={hotjarId} />
-          <Script id='gtmId' type="text/partytown">
-            <GoogleTagManager gtmId={gtmId} />
-          </Script>
+          <GoogleTagManager gtmId={gtmId} />
         </Partytown>
       </Head>
 
