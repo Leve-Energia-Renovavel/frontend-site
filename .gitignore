@@ -12,8 +12,8 @@
 .yarn/install-state.gz
 
 # Partytown files
-/public/~partytown
-/public/~partytown/debug
+# /public/~partytown
+# /public/~partytown/debug
 
 
 # testing
