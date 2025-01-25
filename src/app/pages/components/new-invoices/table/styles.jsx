@@ -45,7 +45,11 @@ export const NewInvoicesTableHeader = styled.div`
     }
     
     `
-export const NewInvoicesTableContent = styled(Accordion)`
+const AccordionBase = styled(Accordion, {
+    shouldForwardProp: (prop) => prop !== "noBills",
+})``;
+
+export const NewInvoicesTableContent = styled(AccordionBase)`
     border-radius: 10px;
     width: 100%;
     

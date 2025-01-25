@@ -9,8 +9,6 @@ export default function HomeLeveAboutUs() {
     return (
         <>
             <BrandsContainer />
-
-            <NewHomeVideo />
         </>
     )
 }
