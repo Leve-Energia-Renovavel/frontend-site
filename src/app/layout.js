@@ -72,6 +72,7 @@ export default function RootLayout({ children }) {
       <Head>
         <Partytown forward={['dataLayer.push']}>
           <Hotjar hotjarId={hotjarId} />
+          <GoogleTagManager gtmId={gtmId} />
         </Partytown>
       </Head>
 
@@ -81,7 +82,6 @@ export default function RootLayout({ children }) {
         <WhatsAppFAB />
         <Footer />
         <Messages />
-        <GoogleTagManager gtmId={gtmId} />
       </body>
     </html>
   )
