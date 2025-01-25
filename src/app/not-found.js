@@ -1,6 +1,7 @@
 "use client"
 
-import NotFoundBanner from "./pages/components/banners/not-found-banner/NotFoundBanner";
+import dynamic from "next/dynamic";
+const NotFoundBanner = dynamic(() => import("./pages/components/banners/not-found-banner/NotFoundBanner"), { ssr: false });
 
 export default function NotFound() {
 

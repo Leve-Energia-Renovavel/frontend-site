@@ -1,6 +1,7 @@
 "use client"
 
-import ServerErrorBanner from "./pages/components/banners/server-error-banner/ServerErrorBanner";
+import dynamic from "next/dynamic";
+const ServerErrorBanner = dynamic(() => import("./pages/components/banners/server-error-banner/ServerErrorBanner"), { ssr: false });
 
 export default function ErrorPageMain({ error }) {
 

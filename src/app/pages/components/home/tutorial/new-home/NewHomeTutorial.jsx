@@ -8,8 +8,8 @@ export default function NewHomeTutorial() {
     return (
         <Container className='leveTutorialContainer'>
             <HomeTutorialTitleContainer className='leveTutorialTitleContainer'>
-                <h6 className='leveTutorialTitle'>Como a nossa economia chega até você</h6>
-                <h5 className='leveTutorialSubtitle'>Entregamos economia e sustentabilidade com segurança</h5>
+                <h5 className='leveTutorialTitle'>Como a nossa economia chega até você</h5>
+                <h6 className='leveTutorialSubtitle'>Entregamos economia e sustentabilidade com segurança</h6>
             </HomeTutorialTitleContainer>
 
             <CardContainer className='cardContainer'>

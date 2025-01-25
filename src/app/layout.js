@@ -67,7 +67,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning={true}>
       <Head>
-        <Partytown debug={true} forward={['dataLayer.push', 'gtag']}>
+        <Partytown forward={['dataLayer.push']}>
           <Hotjar hotjarId={hotjarId} />
           <GoogleTagManager gtmId={gtmId} />
         </Partytown>
