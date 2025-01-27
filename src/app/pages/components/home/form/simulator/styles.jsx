@@ -26,7 +26,7 @@ export const HomeMainFormSimulationContainer = styled.div`
 
     .simulationCost {
       font-family: "Graphie";
-      font-size: 34px;
+      font-size: 20px;
       font-weight: 900;
       color:${background.yellow};
     }

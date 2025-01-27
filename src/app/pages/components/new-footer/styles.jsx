@@ -56,6 +56,11 @@ export const LegalContainer = styled.div`
         line-height: 120%;
         color: ${background.white};
     }
+
+    .leveLogoImage {
+        max-width: 162px;
+        height: auto;
+    }
     
     @media (max-width: 600px) {
         .leveRightsDesktop {

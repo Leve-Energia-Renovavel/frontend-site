@@ -3,11 +3,8 @@ import styled from "@emotion/styled";
 
 export const BenefitsBannerContainer = styled.div`
     max-width: ${registerContainerWidth};
-    
-    border-radius: ${defaultBorderRadius};
-    
-    background-color: ${background.green};
-    
+    margin: 0 auto;
+    background-color: ${background.grey};
 
     @media (max-width: 600px) {
         border-radius: 0px 0px ${defaultBorderRadius} ${defaultBorderRadius};
@@ -18,14 +15,23 @@ export const BenefitsBannerContent = styled.div`
     flex-direction: row;
     align-items: center;
 
-    width: fit-content;
+    background-color: ${background.green};
+    border-radius: 5px;
+
+    width: 100%;
+    max-width: 471px;
+
     margin: 0 auto;
     gap: 8px;
     
-    padding: 1rem;
+    padding: 1rem 35px;
     
     .icon {
         color: ${background.yellow};
+    }
+
+    @media (max-width: 600px) {
+        border-radius: 0px;
     }
     `
 export const BenefitsTitleContainer = styled.div`
@@ -37,7 +43,7 @@ export const BenefitsTitleContainer = styled.div`
 
     .title {
         font-family: 'Graphie';
-        font-size: 14px;
+        font-size: 15px;
         font-style: normal;
         font-weight: 400;
         line-height: 120%;
@@ -47,7 +53,7 @@ export const BenefitsTitleContainer = styled.div`
     }
     .subtitle {
         font-family: 'Graphie';
-        font-size: 13px;
+        font-size: 15px;
         font-weight: 500;
         line-height: 120%;
         color: ${background.yellow};
@@ -65,7 +71,7 @@ export const BenefitsValueBaloon = styled.div`
 
     padding: 4px 8px;
 
-    margin-left: 1rem;
+    margin-left: auto;
 
     border-radius: 99px;
     background: linear-gradient(191deg, #337A67 8.65%, #005940 184.33%);
