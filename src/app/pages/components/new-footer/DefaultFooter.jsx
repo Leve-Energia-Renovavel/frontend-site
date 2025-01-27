@@ -5,12 +5,16 @@ import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import { IconButton } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 import infoJson from '../../../../../public/info.json';
 import reclameAquiLogo from '../../../../resources/icons/icon-RA.webp';
 import logoLeve from "../../../../resources/icons/small/leve-logo-yellow-icon-small-reduced.webp";
+import { PATH_TO } from '../../enums/globalEnums';
 import { CompanyNameAndCNPJ, Contact, ContactContainer, FooterContainer as Container, FooterSocialMediaContainer, LegalContainer, SocialMediaContainer } from './styles';
 
 export default function DefaultFooter() {
+
+  const router = useRouter()
 
   const texts = infoJson.footer
 
@@ -20,18 +24,18 @@ export default function DefaultFooter() {
 
   return (
     <>
-      <Container className='leveFooterContainer'>
+      <Container className='footerContainer'>
 
-        <LegalContainer className='legalContainer'>
+        <LegalContainer className='footerLegalContainer'>
           <Image src={logoLeve} className="leveLogoImage" alt={"Logo da Leve Energia Renovável"} priority={false} loading='lazy' />
-          <CompanyNameAndCNPJ>
+          <CompanyNameAndCNPJ className='footerCompanyNameAndCNPJ'>
             <p className='highlighted'>Leve Energia Renovável</p>
             <p >CNPJ 45.193.816/0001-17</p>
           </CompanyNameAndCNPJ>
-          <p>{texts.rights}</p>
+          <p className='leveRightsDesktop'>{texts.rights}</p>
         </LegalContainer>
 
-        <ContactContainer className='contactContainer'>
+        <ContactContainer className='footerContactContainer'>
           <p className='contactUs'>Fale com a gente</p>
           <Contact className='contact'>
             <PhoneIcon className='icon' />
@@ -43,7 +47,7 @@ export default function DefaultFooter() {
           </Contact>
         </ContactContainer>
 
-        <SocialMediaContainer className='leveFooterSocialMediaContainer'>
+        <SocialMediaContainer className='footerSocialMediaContainer'>
           <FooterSocialMediaContainer>
             {socialMedia.map((media) => {
               return (
@@ -60,8 +64,10 @@ export default function DefaultFooter() {
             </IconButton>
           </FooterSocialMediaContainer>
 
-          <p className='privacyPolicy'>Política de Privacidade</p>
+          <p className='privacyPolicy' onClick={() => router.push(PATH_TO.PRIVACY_POLICY)}>Política de Privacidade</p>
         </SocialMediaContainer>
+
+        <p className='leveRightsMobile'>{texts.rights}</p>
 
       </Container >
     </>

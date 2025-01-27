@@ -8,13 +8,31 @@ export const FooterContainer = styled.footer`
     justify-content: space-around;
     align-items: center;
     background: ${background.green};
-
+    
     max-width: ${containerWidth};
     margin: 0 auto;
-
+    
     padding: 56px 74px;
 
+    .leveRightsMobile {
+        display: none;
+    }
+    
     @media (max-width: 600px) {
+        flex-direction: column;
+        padding: 34px 26px;
+
+        gap: 43px;
+
+        .leveRightsMobile {
+            display: block;
+
+            font-family: "Graphie";
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 120%;
+            color: ${background.white};
+        }   
     }
 `
 
@@ -40,6 +58,9 @@ export const LegalContainer = styled.div`
     }
     
     @media (max-width: 600px) {
+        .leveRightsDesktop {
+            display: none;
+        }
     }
     `
 export const CompanyNameAndCNPJ = styled.div`
@@ -68,16 +89,25 @@ export const SocialMediaContainer = styled.div`
         white-space: nowrap;
         margin-top: 37px;
         margin-left: 8px;
-
+        
         &:hover {
             cursor: pointer;
             text-decoration: underline
         }
     }
+    
+    @media (max-width: 600px) {
+        margin-right: auto;
+
+        .privacyPolicy {
+            margin-left: 0px;
+         }
+    }
     `;
 export const FooterSocialMediaContainer = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
 
     .socialIcon, .reclameAquiLogo {
         width: 50px;
@@ -137,6 +167,12 @@ export const ContactContainer = styled.div`
         line-height: 120%;
         color: ${background.yellow};
     }
+    
+    @media (max-width: 600px) {
+        .contactUs {
+            margin-top: 16px;
+        }
+    }
 `;
 export const Contact = styled.div`
     display: flex;
@@ -160,12 +196,6 @@ export const Contact = styled.div`
         white-space: nowrap;
     }
 
-    &:hover {
-        cursor: pointer;
-        .icon, .phone, .email {
-            color: ${background.yellow};
-        }
-    }
 `;
 
 export const FooterButton = styled(Button)`

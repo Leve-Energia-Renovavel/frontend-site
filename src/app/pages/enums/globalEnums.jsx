@@ -34,6 +34,7 @@ export const PATH_TO = {
     LOW_COST: "/fail/low-cost/",
     DASHBOARD: "/dashboard/",
     INSTALLATIONS: "/dashboard/installations/",
+    PRIVACY_POLICY: "/politica-de-privacidade/",
 };
 
 export const CIDADE = {
