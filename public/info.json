@@ -17,7 +17,7 @@
         "iWantToEconomy": "Quero economizar na minha:",
         "company": "Empresa",
         "house": "Residência",
-        "averageCost": "Valor médio da fatura atual:",
+        "averageCost": "Valor médio da fatura:",
         "discountCalculate": "Calcular economia",
         "forYourHouse": "Para a sua residência",
         "forYourCompany": "Para o seu comércio ou empresa",
@@ -29,6 +29,7 @@
         "weBelieve": "Nós acreditamos que você merece um dinheiro extra na sua conta para investir no que realmente importa para você e sua família.",
         "moreToKnow": "Saiba mais sobre como podemos proporcionar isso ",
         "brandsThatTrust": "Marcas que confiam na gente",
+        "trustEarnedByTransparency": "Confiança conquistada com transparência e resultados",
         "agreedToReceiveEmails": "Ao clicar em \"Calcular economia\" você concorda em receber e-mails da Leve Energia e aceita nossa ",
         "privacyPolicy": "Política de Privacidade",
         "mobile": {
@@ -51,7 +52,7 @@
         "ourTeam": "Fale com o nosso time agora mesmo!",
         "weAreReady": "Estamos prontos para te atender da melhor maneira:",
         "callConsultant": "Falar com um consultor",
-        "rights": "©2025 - Todos os direitos reservados - Leve Energia Renovável"
+        "rights": "©2025 - Todos os direitos reservados"
     },
     "lp": {
         "novosClientes": {

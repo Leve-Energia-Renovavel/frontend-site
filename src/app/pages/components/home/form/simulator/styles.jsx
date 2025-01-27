@@ -8,8 +8,6 @@ export const HomeMainFormSimulationContainer = styled.div`
     flex-direction: column;
     justify-content: center;
 
-    padding: 8px;
-
     margin: 0;
 
     text-align: center;
@@ -28,7 +26,7 @@ export const HomeMainFormSimulationContainer = styled.div`
 
     .simulationCost {
       font-family: "Graphie";
-      font-size: 21px;
+      font-size: 34px;
       font-weight: 900;
       color:${background.yellow};
     }

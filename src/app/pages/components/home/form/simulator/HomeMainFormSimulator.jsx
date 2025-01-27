@@ -3,6 +3,7 @@
 import { USER_COST } from '@/enums/globalEnums';
 import infoJson from '../../../../../../../public/info.json';
 import { FormSlider, HomeMainFormSimulationContainer } from './styles';
+import { formatBrazillianCurrency } from '@/app/utils/formatters/costFormatter';
 
 export default function HomeMainFormSimulator({ simulationCost, handleSimulationCost }) {
 
@@ -10,7 +11,7 @@ export default function HomeMainFormSimulator({ simulationCost, handleSimulation
 
     return (
         <HomeMainFormSimulationContainer className={`homeSimulatorContainer`}>
-            <label htmlFor="simulationSlider" className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${simulationCost}{simulationCost === USER_COST.MAX ? "+" : ""}</span></label>
+            <label htmlFor="simulationSlider" className='averageUserCost'>{texts.averageCost} <span className='simulationCost'>R${formatBrazillianCurrency(simulationCost)}{simulationCost === USER_COST.MAX ? "+" : ""}</span></label>
             <FormSlider
                 className='formSlider'
                 name='cost'

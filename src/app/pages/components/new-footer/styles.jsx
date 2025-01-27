@@ -4,217 +4,80 @@ import { background, containerWidth } from "../../globalStyles";
 
 export const FooterContainer = styled.footer`
     display: flex;
-    flex-direction: column;
-
-    overflow: hidden;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background: ${background.green};
 
     max-width: ${containerWidth};
     margin: 0 auto;
 
-    background: linear-gradient(to top,${background.orange}, ${background.orange} 10%, ${background.white} 100%);
+    padding: 56px 74px;
 
-    gap: 10rem; //change later...
-    
     @media (max-width: 600px) {
-        background: linear-gradient(
-        to top,
-        ${background.orange}, 
-        ${background.orange}, 
-        ${background.white} 88%,
-        transparent 100%);
-
-        background-color: ${background.grey};
-        
-        gap: 0px //change later...
     }
-
-
 `
-export const FooterMainContent = styled.div`
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    display: none;    //hiding this component FooterMainContent!!!
-
-    text-align: center;
-
-    .footerTitle {
-        font-family: "Graphie";
-        font-size: 70px;
-        font-weight: 600;
-        
-        color: ${background.orange};
-        text-align: center;
-        
-        max-width: 1022px;
-        
-        margin-top: 5rem; //change later...
-        margin-bottom: 62px; //change later...
-    }
-    
-    .footerSubtitle { 
-        font-family: "Graphie";
-        color: ${background.green};
-        font-size: 32px;
-        font-weight: 600;
-        margin-bottom: 20px; //change later...
-    }
-
-    .footerDescription {
-        font-family: "Graphie";
-        font-weight: 500;
-        color: ${background.green};
-        
-        font-size: 20px;
-        margin-bottom: 50px; //change later...
-    }
-
-    @media (max-width: 600px) {
-        display: none;
-
-        .footerTitle {
-            font-size: 27px;
-            max-width: 330px;
-            
-            margin-top: 120px;
-            margin-bottom: 20px; //change later...
-        }
-
-        .footerSubtitle {
-            font-size: 14px;
-            margin-bottom: 10px; //change later...
-        }
-
-        .footerDescription {
-            font-size: 14px;
-            max-width: 330px;
-
-            margin-bottom: 30px; //change later...
-        }
-    }
-    `
-
-export const FooterSecondaryContent = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    overflow: hidden;
-
-    .leveLogoImage {
-        width:250px; 
-        height:auto;
-    }
-    
-    @media (max-width: 600px) {
-        background-image: url(${props => props.image.src});
-        background-repeat: no-repeat;
-        background-size: 420px;
-        
-        height: 500px;
-        background-position: -26px 150px;
-
-        .leveLogoImage {
-            width: 130px; 
-            height: auto;
-
-            margin-top: 16px;
-        }
-    }
-
-    @media (max-height: 1100px) {
-        height: 900px;
-        background-size: 600px;
-        background-position: -100px 250px;
-    }
-    @media (max-height: 900px) {
-        height: 800px;
-        background-size: 600px;
-        background-position: -100px 200px;
-    }
-    
-    `
 export const LegalContainer = styled.div`
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
 
-    .rights, .leveLegalData {
+    width: 100%;
+    max-width: ${containerWidth} / 3;
+    
+    gap: 42px;
+
+    text-align: left;
+
+    p {
+        font-family: "Graphie";
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 120%;
         color: ${background.white};
-        font-size: 15px;
     }
-    .rights {
-        margin-top: 43px;
-    }
+    
     @media (max-width: 600px) {
-        .rights, .leveLegalData {
-            font-family: "Graphie";
-            font-size: 10px;
-            line-height: 12px;
-            font-weight: 400;
-        }
-                    
-        .rights {
-            margin-top: 42px;
-            margin-bottom: 0px;
-        }
+    }
+    `
+export const CompanyNameAndCNPJ = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    .highlighted {
+        font-weight: 500;
     }
 `
-export const SunContainer = styled.div`
-display: none;
-    position: fixed; /* Ensure the container remains fixed */
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1200px; /* Adjust the height to fit the sun image */
-    overflow: hidden; /* Hide the bottom half of the sun image */
-    z-index: -1; /* Move the container behind other content */
-    
-    .sunImage { 
-        position: absolute; /* Ensure the sun image remains absolutely positioned */
-        bottom: -418px; /* Position the sun image at the bottom of its container */
-        left: 50%; /* Position the sun image horizontally centered */
-        transform: translateX(-50%) scaleY(-1); 
-        width: 1200px; /* Adjust the width of the sun image */
-        height: 1200px; /* Adjust the height of the sun image */
-        border-radius: 50%; /* Make the sun image round */
-        
-        /* TESTES MARCOS */
-        width: 1120px; 
-        height: auto; 
-        /* FIM TESTES MARCOS */
-        
-        @media (max-width: 1400px) {
-            width: 850px; 
-            height: 850px; 
-        }
-        @media (max-width: 1100px) {
-            width: 750px; 
-            height: 750px; 
-        }
-        @media (max-width: 600px) {
-            display: none;
-        }
-    }
+export const SocialMediaContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: start;
 
-    @media (max-width: 600px) {
-        display: none;
+    width: 100%;
+    max-width: fit-content;
+
+    .privacyPolicy {
+        font-family: "Graphie";
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 120%;
+        color: ${background.yellow};
+        
+        white-space: nowrap;
+        margin-top: 37px;
+        margin-left: 8px;
+
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline
+        }
     }
-`;
+    `;
 export const FooterSocialMediaContainer = styled.div`
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-    gap: 1rem;
-
-    max-width: 460px;
-
-    /* margin-top: 150px; */
-    margin-bottom: 102px;
 
     .socialIcon, .reclameAquiLogo {
         width: 50px;
@@ -225,19 +88,21 @@ export const FooterSocialMediaContainer = styled.div`
         border-radius: 30px;
 
         &:hover {
-            background-color: ${background.green};
+            background-color: ${background.yellow};
             cursor: pointer;
         }
     }
 
+
+
     .socialIcon {
-        color: ${background.orangeHigh};
+        color: ${background.green};
         background-color: ${background.white};
         border-radius: 30px;
         padding: 8px;
         
         &:hover {
-            color: ${background.green};
+            color: ${background.yellow};
             cursor: pointer;
         }
     }
@@ -252,6 +117,56 @@ export const FooterSocialMediaContainer = styled.div`
         }
     }
 `
+
+export const ContactContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+    height: 160px;
+
+    gap: 16px;
+
+    width: 100%;
+    max-width: ${containerWidth} / 3;
+
+    .contactUs {
+        font-family: "Graphie";
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 120%;
+        color: ${background.yellow};
+    }
+`;
+export const Contact = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 12px;
+
+    .icon, .phone, .email {
+        width: 23px;
+        height: 23px;
+        color: ${background.white};
+    }
+    .phone, .email {
+        font-family: "Graphie";
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 120%;
+        color: ${background.white};
+
+        white-space: nowrap;
+    }
+
+    &:hover {
+        cursor: pointer;
+        .icon, .phone, .email {
+            color: ${background.yellow};
+        }
+    }
+`;
 
 export const FooterButton = styled(Button)`
   background-color: ${background.orange};
@@ -271,97 +186,4 @@ export const FooterButton = styled(Button)`
       color: ${background.yellow};
         cursor: pointer;
   }
-`
-
-export const FooterMobile = styled.div`
-    display: none;
-
-    .title {
-        font-family: "Graphie";
-        font-size: 24px;  
-        font-weight: 600;
-        color: ${background.green};
-    }
-    .subtitle {
-        font-family: "Graphie";
-        font-size: 18px;  
-        font-weight: 500;
-        color: ${background.greyHigh};
-
-        white-space: nowrap;
-
-        margin-top: 6px;
-    }
-    
-    @media (max-width: 600px) {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    //adapting by device height...
-    @media (max-height: 1000px) {
-        margin-bottom: -260px;
-    }
-
-    @media (max-height: 900px) {
-        margin-bottom: -240px;
-    }
-    `
-
-export const VideoContainer = styled.div`
-    margin: 0 auto;
-    padding: 2rem;
-    border-radius: 10px;
-
-    z-index: 9;
-    
-    margin-top: 30px;
-    
-    .embededVideo {
-        width: 1000px;
-        height: 581px;
-        border-radius: 5px;
-    }
-    
-    @media (max-width: 600px) {
-        padding: 0;
-        
-        .videoThumbnail, .embededVideo {
-            z-index: 10;
-        }
-
-        .videoThumbnail {
-            width: 336px;
-            height: auto;
-            border-radius: 5px;
-
-        &:hover {
-            cursor: pointer;
-            }
-        }
-        
-        .embededVideo {
-            width: 336px;
-            height: 220px;
-        }
-    }
-`
-
-export const ButtonContainer = styled.div`
-    text-align: center;
-
-    .checkOurYouTubeChannel {
-        font-family: "Graphie";
-        font-size: 17px;  
-        font-weight: 500;
-        color: ${background.orange};
-        text-decoration: underline;
-
-        margin-top: 18px;
-
-        white-space: nowrap;
-
-        margin-bottom: 90px;
-    }
 `

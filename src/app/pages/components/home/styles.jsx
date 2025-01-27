@@ -949,7 +949,6 @@ export const HomeSixthSectionContainer = styled.section`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     background-color: ${background.white};
 
     border-top: 2px solid ${background.grey};
@@ -963,18 +962,30 @@ export const HomeSixthSectionContainer = styled.section`
     
     padding: 2rem 2rem 1rem 2rem;
     
-    .sectionTitle {
+    @media (max-width: 600px) {
+      padding: 0px 12px;
+      align-items: start;
+      background-color: ${background.grey};
+    }
+`
+export const HomeSixthSectionTitleContainer = styled.div`
+  text-align: left;
+  margin-bottom: 20px;
+
+  .sectionTitle {
       font-family: "Graphie";
       font-size: 34px;
       font-weight: 600;
       color: ${background.green};
     }
-    
+  .sectionSubtitle {
+      font-family: "Graphie";
+      font-size: 20px;
+      font-weight: 400;
+      color: ${background.greyMediumHigh};
+    }
+
     @media (max-width: 600px) {
-      padding: 0px 12px;
-      align-items: start;
-      background-color: ${background.grey};
-      
       .sectionTitle {
         display: block;
         font-size: 24px;
@@ -984,9 +995,6 @@ export const HomeSixthSectionContainer = styled.section`
         text-align: left;
       }
     }
-`
-export const HomeSixthSectionTitleContainer = styled.div`
-  text-align: center;
 `
 export const HomeSixthSectionCardContainer = styled.div`
     display: flex;

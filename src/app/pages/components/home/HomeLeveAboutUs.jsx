@@ -1,15 +1,12 @@
 "use client"
 
-import dynamic from "next/dynamic";
-
-const BrandsContainer = dynamic(() => import("./brands/HomeBrands"), { ssr: false });
-const NewHomeVideo = dynamic(() => import("./video/NewHomeVideo"), { ssr: false });
+import { clearPartnerName } from "@/app/utils/helper/partners/partnerHelper";
+import { usePathname } from "next/navigation";
+import BrandsContainer from "./brands/HomeBrands";
 
 export default function HomeLeveAboutUs() {
+    const partner = usePathname()
     return (
-        <>
-            <BrandsContainer />
-            <NewHomeVideo />
-        </>
+        <BrandsContainer partner={clearPartnerName(partner)} />
     )
 }

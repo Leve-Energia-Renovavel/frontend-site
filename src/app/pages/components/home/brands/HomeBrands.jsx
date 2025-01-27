@@ -14,6 +14,7 @@ export default function BrandsContainer({ partner }) {
             (<Container className='brandsContainer'>
                 <TitleContainer className='titleContainer'>
                     <p className='sectionTitle'>{texts.brandsThatTrust}</p>
+                    <p className='sectionSubtitle'>{texts.trustEarnedByTransparency}</p>
                 </TitleContainer>
 
                 <ContentContainer className='brandsContentContainer'>

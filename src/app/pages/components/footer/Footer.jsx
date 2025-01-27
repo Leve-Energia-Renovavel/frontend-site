@@ -3,7 +3,7 @@
 import { footerBasedOn } from '@/app/utils/helper/footer/footerHelper';
 import { usePathname } from 'next/navigation';
 import { PATH_TO } from '../../enums/globalEnums';
-import NewFooter from '../new-footer/NewFooter';
+import DefaultFooter from '../new-footer/DefaultFooter';
 import MinimalistFooter from '../new-footer/minimalist-footer/MinimalistFooter';
 
 export default function Footer() {
@@ -25,7 +25,7 @@ export default function Footer() {
 
     return (
         <>
-            {showMinimalist ? <MinimalistFooter /> : <NewFooter />}
+            {showMinimalist ? <MinimalistFooter /> : <DefaultFooter />}
         </>
     );
 }
