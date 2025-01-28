@@ -22,6 +22,7 @@ export const BenefitsBannerContent = styled.div`
     max-width: 471px;
 
     margin: 0 auto;
+    margin-bottom: 10px;
     gap: 8px;
     
     padding: 1rem 35px;
