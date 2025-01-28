@@ -2,6 +2,9 @@ import styled from "@emotion/styled";
 import { Button } from "@mui/material";
 import { background, containerWidth } from "../../globalStyles";
 
+
+const footerFontSize = "16px"
+
 export const FooterContainer = styled.footer`
     display: flex;
     flex-direction: row;
@@ -51,7 +54,7 @@ export const LegalContainer = styled.div`
 
     p {
         font-family: "Graphie";
-        font-size: 20px;
+        font-size: ${footerFontSize};
         font-weight: 400;
         line-height: 120%;
         color: ${background.white};
@@ -86,7 +89,7 @@ export const SocialMediaContainer = styled.div`
 
     .privacyPolicy {
         font-family: "Graphie";
-        font-size: 20px;
+        font-size: ${footerFontSize};
         font-weight: 400;
         line-height: 120%;
         color: ${background.yellow};
@@ -167,7 +170,7 @@ export const ContactContainer = styled.div`
 
     .contactUs {
         font-family: "Graphie";
-        font-size: 20px;
+        font-size: ${footerFontSize};
         font-weight: 500;
         line-height: 120%;
         color: ${background.yellow};
@@ -187,13 +190,13 @@ export const Contact = styled.div`
     gap: 12px;
 
     .icon, .phone, .email {
-        width: 23px;
-        height: 23px;
+        width: 20px;
+        height: 20px;
         color: ${background.white};
     }
     .phone, .email {
         font-family: "Graphie";
-        font-size: 20px;
+        font-size: ${footerFontSize};
         font-weight: 400;
         line-height: 120%;
         color: ${background.white};
@@ -212,7 +215,7 @@ export const FooterButton = styled(Button)`
   padding: 0.5rem 1.5rem;
 
   font-family: "Graphie";
-  font-size: 20px;
+  font-size: ${footerFontSize};
   font-weight: 500;
 
   
