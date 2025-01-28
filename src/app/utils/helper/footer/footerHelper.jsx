@@ -23,11 +23,6 @@ export const socialMedia = [
         redirect: "instagram",
         icon: <InstagramIcon className="socialIcon" />
     },
-    {
-        name: "YouTube",
-        redirect: "youtube",
-        icon: <YouTubeIcon className="socialIcon" />
-    }
 ]
 
 export const footerBasedOn = {

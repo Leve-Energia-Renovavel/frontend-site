@@ -9,6 +9,9 @@ export const costValidation = (cost) => {
 export const formatBrazillianCurrency = (value) => {
     return value ? value.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : "0,00"
 }
+export const formatBrazillianCurrencyWithoutDecimals = (value) => {
+    return value ? value.toLocaleString("pt-BR", { minimumFractionDigits: 0, maximumFractionDigits: 0 }) : "0,00"
+}
 export const clearChartCost = (value) => {
     if (!value) return "0";
 

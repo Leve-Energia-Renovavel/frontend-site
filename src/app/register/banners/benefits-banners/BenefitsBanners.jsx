@@ -1,6 +1,6 @@
 import { useStoreUser } from '@/app/hooks/stores/useStore';
 import { ENVIRONMENTAL_IMPACT } from '@/app/pages/enums/globalEnums';
-import { formatBrazillianCurrency } from '@/app/utils/formatters/costFormatter';
+import { formatBrazillianCurrencyWithoutDecimals } from '@/app/utils/formatters/costFormatter';
 import { checkForZero, checkForZeroCurrency, checkForZeroDiscount } from '@/app/utils/helper/result-economy/resultEconomyHelper';
 import PercentIcon from '@mui/icons-material/Percent';
 import SavingsOutlinedIcon from '@mui/icons-material/SavingsOutlined';
@@ -14,7 +14,7 @@ export default function BenefitsBanners({ step, children }) {
 
     const leveDiscount = checkForZeroDiscount(compensableConsumption * (discount / 100))
     const leveYearTotalDiscount = checkForZeroCurrency(parseFloat(((compensableConsumption * (discount / 100)) * 12)));
-    const formattedLeveYearDiscount = formatBrazillianCurrency(leveYearTotalDiscount)
+    const formattedLeveYearDiscount = formatBrazillianCurrencyWithoutDecimals(leveYearTotalDiscount)
 
     const reducedCarbon = compensableConsumption * 12 * ENVIRONMENTAL_IMPACT.REDUCED_CARBON
     const formattedReducedCarbon = checkForZero(parseInt(reducedCarbon).toLocaleString('pt-BR'))
