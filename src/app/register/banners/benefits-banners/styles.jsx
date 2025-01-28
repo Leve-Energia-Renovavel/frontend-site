@@ -33,6 +33,7 @@ export const BenefitsBannerContent = styled.div`
 
     @media (max-width: 600px) {
         border-radius: 0px;
+        margin-bottom: 0px;    
     }
     `
 export const BenefitsTitleContainer = styled.div`
