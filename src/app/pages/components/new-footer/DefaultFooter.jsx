@@ -1,5 +1,6 @@
 "use client"
 
+import useFetchEmailAndWhatsapp from '@/app/hooks/useFetchEmailAndWhatsapp';
 import { linkTo, socialMedia } from '@/app/utils/helper/footer/footerHelper';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
@@ -15,6 +16,8 @@ import { CompanyNameAndCNPJ, Contact, ContactContainer, FooterContainer as Conta
 export default function DefaultFooter() {
 
   const router = useRouter()
+  const fileUrl = process.env.NEXT_PUBLIC_FETCH_WHATSAPP_EMAIL;
+  const { data, loading, error } = useFetchEmailAndWhatsapp(fileUrl);
 
   const texts = infoJson.footer
 
@@ -39,11 +42,11 @@ export default function DefaultFooter() {
           <p className='contactUs'>Fale com a gente</p>
           <Contact className='contact'>
             <PhoneIcon className='icon' />
-            <p className='phone'>11 3181-8210</p>
+            <p className='phone'>{data?.telefone}</p>
           </Contact>
           <Contact className='contact'>
             <EmailIcon className='icon' />
-            <p className='email'>contato@leveenergia.com.br</p>
+            <p className='email'>{data?.email}</p>
           </Contact>
         </ContactContainer>
 
