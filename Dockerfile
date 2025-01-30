@@ -1,4 +1,4 @@
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 WORKDIR /leve
 COPY package.json package-lock.json ./
 RUN npm install --legacy-peer-deps --frozen-lockfile && npm cache clean --force
@@ -6,7 +6,7 @@ RUN npm install --legacy-peer-deps --frozen-lockfile && npm cache clean --force
 COPY . .
 RUN npm run build
 
-FROM node:18-alpine AS runner
+FROM node:20-alpine AS runner
 WORKDIR /leve
 
 COPY --from=builder /leve/public ./public
