@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "docker-dev": "next dev",
     "dev": "npm run open-browser && next dev",
     "export": "next build && next export",
     "build": "npm run partytown && next build",
@@ -39,6 +40,7 @@
     "react-input-mask": "^2.0.4",
     "sharp": "^0.33.5",
     "yup": "^1.3.3",
+    "serve": "^14.2.4",
     "zustand": "^4.5.1"
   },
   "devDependencies": {
