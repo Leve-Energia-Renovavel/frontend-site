@@ -16,8 +16,7 @@ import { CompanyNameAndCNPJ, Contact, ContactContainer, FooterContainer as Conta
 export default function DefaultFooter() {
 
   const router = useRouter()
-  const fileUrl = process.env.NEXT_PUBLIC_FETCH_WHATSAPP_EMAIL;
-  const { data, loading, error } = useFetchEmailAndWhatsapp(fileUrl);
+  const { data, loading, error } = useFetchEmailAndWhatsapp();
 
   const texts = infoJson.footer
 

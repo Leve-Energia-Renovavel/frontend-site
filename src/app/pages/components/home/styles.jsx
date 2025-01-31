@@ -986,13 +986,17 @@ export const HomeSixthSectionTitleContainer = styled.div`
     }
 
     @media (max-width: 600px) {
+      margin-bottom: 0px;
       .sectionTitle {
         display: block;
         font-size: 24px;
         line-height: 100%;
-        max-width: 355px;
-        margin-left: 6px;
-        text-align: left;
+
+        margin-top: 16px;
+        margin-left: 30px;
+      }
+      .sectionSubtitle {
+        display: none;
       }
     }
 `
