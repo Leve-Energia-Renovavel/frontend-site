@@ -7,7 +7,6 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import InputMask from "react-input-mask";
 import infoJson from '../../../../../../../../public/info.json';
-import { requestValidation } from '../../../validation';
 import { HomeMainForm as Form, FormTitleContainer, HomeFormContainer, HomeFormInput, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
 
 import { useStoreHome } from '@/app/hooks/stores/home/useStoreHome';
@@ -16,7 +15,7 @@ import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import HomeFormButton from '@/app/pages/components/utils/buttons/home/form/HomeFormButton';
 import { USER_TYPE } from '@/app/pages/enums/globalEnums';
 import { cepInputComplete, cepInputIncomplete, couponInputComplete, emailInputComplete, emailInputIncomplete, labelColorHelper, labelColorHelperForMasked, nameInputCompleted, nameInputIncomplete, phoneInputComplete, phoneInputIncomplete } from '@/app/utils/helper/form/formHelper';
-import { schemaValidation } from '../../../schema';
+import { Dropbox } from 'dropbox';
 import HomeMainFormSimulator from '../../simulator/HomeMainFormSimulator';
 
 const texts = infoJson.home
@@ -75,8 +74,8 @@ export default function HomeMainForm() {
     };
 
     const handleSubmit = async (event) => {
-        event.preventDefault()
-        setLoading(true)
+        event.preventDefault();
+        setLoading(true);
 
         const submitData = createSignupPayload(
             formState?.name,
@@ -86,13 +85,54 @@ export default function HomeMainForm() {
             formState?.cost,
             formState?.type,
             formState?.coupon,
-        )
+        );
 
-        const response = await schemaValidation(submitData)
-        await requestValidation(submitData, response, setNotifications, setErrors, storeUser, router)
-        setLoading(false)
+        submitData.data = new Date().toLocaleString('pt-BR');
+
+        try {
+            const accessToken = process.env.NEXT_PUBLIC_DROPBOX_ACCESS_TOKEN;
+            const dbx = new Dropbox({ accessToken });
+
+            const filePath = '/planilha_leads.csv';
+
+            let existingData = '';
+            try {
+                await dbx.filesGetMetadata({ path: filePath });
+
+                const existingFile = await dbx.filesDownload({ path: filePath });
+                const fileBlob = existingFile.result.fileBlob;
+                existingData = await fileBlob.text();
+            } catch (error) {
+                if (error.status !== 409) {
+                    throw error;
+                }
+            }
+
+            const headers = Object.keys(submitData).join(',');
+            const newRow = convertToCSV(submitData);
+            const csvData = existingData ? `${existingData}\n${newRow}` : `${headers}\n${newRow}`;
+
+            const response = await dbx.filesUpload({
+                path: filePath,
+                contents: csvData,
+                mode: 'overwrite',
+                autorename: false,
+                mute: false,
+            });
+
+            console.log('Arquivo enviado com sucesso!');
+        } catch (error) {
+            console.error('Erro ao enviar arquivo para o Dropbox:', error.response?.data || error.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
+    const convertToCSV = (data) => {
+        return Object.values(data)
+            .map(value => `"${value}"`)
+            .join(',');
+    };
     const required = true
 
     return (
