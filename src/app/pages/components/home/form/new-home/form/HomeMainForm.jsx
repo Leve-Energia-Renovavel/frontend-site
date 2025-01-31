@@ -206,7 +206,7 @@ export default function HomeMainForm() {
 
                 <HomeMainFormSimulator simulationCost={formState?.cost} handleSimulationCost={handleInputChange} />
 
-                <HomeFormButton title={"Calcular"} isLoading={isLoading} />
+                <HomeFormButton title={"Registrar meu interesse"} isLoading={isLoading} />
 
                 <p className='privacyPolicyDisclaimer'>{texts.mobile.byClickingButtonAbove}<span className='privacyPolicy' onClick={() => router.push(`politica-de-privacidade`)}>{texts.privacyPolicy}</span>.</p>
             </Form>

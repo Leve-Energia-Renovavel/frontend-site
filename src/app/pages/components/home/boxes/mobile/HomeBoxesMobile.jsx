@@ -33,7 +33,7 @@ export default function HomeBoxesMobile() {
             </BoxesContainer>
 
             <EconomyButtonContainer className='homeSecondaryMobileButtonContainer'>
-                <CTAButtonEconomy onClick={() => handleScrollToId("calculateYourEconomy")}><span>Calcular minha economia</span></CTAButtonEconomy>
+                <CTAButtonEconomy onClick={() => handleScrollToId("calculateYourEconomy")}><span>Tenho interesse</span></CTAButtonEconomy>
             </EconomyButtonContainer>
 
         </HomeBoxesContainerMobile>

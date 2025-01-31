@@ -49,16 +49,17 @@ export default function Header() {
                 className="leveHeaderContainer">
                 <Image src={logoLeve} className='logoLeve' priority={true} alt={"Logo da Leve na cor laranja"}
                     onClick={() => handleRoutesWhenUserIsLogged()} />
-                {isPartner && (
+                {/* {isPartner && (
                     <PartnerContainer>
                         <p className="partnershipIcon">+</p>
                         {partners[partner]?.logo}
-                    </PartnerContainer>)}
-                {isLoggedUser ?
+                    </PartnerContainer>)} */}
+
+                {/* {isLoggedUser ?
                     <MenuIcon className='profile' onClick={() => openLoginModal()} />
                     :
                     <ProfileIcon className='profile' onClick={() => setOpenLogin(true)} />
-                }
+                } */}
             </HeaderContainer>
 
             {/* Header modals below*/}

@@ -1,4 +1,5 @@
 import PartnershipMain from "@/app/pages/components/lp/parcerias/PartnershipMain";
+import { notFound } from "next/navigation";
 
 export function generateStaticParams() {
     return [
@@ -19,6 +20,8 @@ export function getStaticPaths() {
 }
 
 export default function Partners() {
+
+    notFound() //remove to bring back the partners pages
 
     return (
         <PartnershipMain />

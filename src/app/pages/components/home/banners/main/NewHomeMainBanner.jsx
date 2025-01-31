@@ -32,9 +32,9 @@ export default function NewHomeMainBanner() {
 
           <CTAButton
             className='homeMainBannerButton'
-            aria-label="Calcular meu desconto"
+            aria-label="Tenho interesse"
             onClick={() => handleScrollToId(HOME_FORM_ID)}>
-            <span>Calcular meu desconto</span>
+            <span>Tenho interesse</span>
           </CTAButton>
         </HomeMain>
 

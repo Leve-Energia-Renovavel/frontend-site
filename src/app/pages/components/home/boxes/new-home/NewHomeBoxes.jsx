@@ -45,8 +45,8 @@ export default function NewHomeBoxes() {
                         <ButtonContainer className="homeBoxesButtonContainer">
                             <HomeBoxesCTAButton
                                 onClick={() => handleScrollToId(HOME_FORM_ID)}
-                                aria-label="Calcular minha economia">
-                                <span>Calcular minha economia</span>
+                                aria-label="Tenho interesse">
+                                <span>Tenho interesse</span>
                             </HomeBoxesCTAButton>
                         </ButtonContainer>
 
