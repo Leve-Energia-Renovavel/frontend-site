@@ -46,8 +46,9 @@ export const HomeTutorialTitleContainer = styled.div`
 
       .leveTutorialTitle {
         font-size: 24px;
-        text-align: left;
+        text-align: center;
         max-width: 350px;
+        margin-left: 16px;
       }
       .leveTutorialSubtitle {
         display: none;
