@@ -26,7 +26,7 @@ export const HomeTutorialTitleContainer = styled.div`
       font-size: 34px;
       line-height: 100%;
       font-weight: 600;
-      color: ${background.green};
+      color: ${background.orange};
     }
     
     .leveTutorialSubtitle {
@@ -285,8 +285,8 @@ export const HomeTutorialAneelCardContent = styled.div`
 `
 
 export const CTAButton = styled(Button)`
-  background-color: ${background.orange};
-  color: ${background.white};
+  background-color: ${background.green};
+  color: ${background.yellow};
   border-radius: 30px;
   margin: 0 auto;
 
@@ -309,8 +309,8 @@ export const CTAButton = styled(Button)`
   }
 
   &:hover {
-      background-color: ${background.yellow};
-      color: ${background.green};
+      background-color: ${background.orange};
+      color: ${background.white};
       cursor: pointer;
   }
 `

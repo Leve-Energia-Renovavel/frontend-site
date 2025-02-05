@@ -26,7 +26,7 @@ export const BenefitsContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: ${background.green};
 
     gap: 59px;
@@ -123,6 +123,8 @@ export const BenefitsBoxButton = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    margin-left: auto;
 
     width: 100%;
     max-width: fit-content;

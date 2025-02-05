@@ -32,9 +32,9 @@ export default function NewHomeMainBanner() {
 
           <CTAButton
             className='homeMainBannerButton'
-            aria-label="Tenho interesse"
+            aria-label="Quero me cadastrar"
             onClick={() => handleScrollToId(HOME_FORM_ID)}>
-            <span>Tenho interesse</span>
+            <span>Quero me cadastrar</span>
           </CTAButton>
         </HomeMain>
 

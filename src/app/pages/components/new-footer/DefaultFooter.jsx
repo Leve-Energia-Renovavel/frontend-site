@@ -11,7 +11,7 @@ import infoJson from '../../../../../public/info.json';
 import reclameAquiLogo from '../../../../resources/icons/icon-RA.webp';
 import logoLeve from "../../../../resources/icons/small/leve-logo-yellow-icon-small-reduced.webp";
 import { PATH_TO } from '../../enums/globalEnums';
-import { CompanyNameAndCNPJ, Contact, ContactContainer, FooterContainer as Container, FooterSocialMediaContainer, LegalContainer, SocialMediaContainer } from './styles';
+import { CompanyNameAndCNPJ, Contact, ContactContainer, ContactContent, ContactContentContainer, FooterContainer as Container, FooterSocialMediaContainer, LegalContainer, SocialMediaContainer } from './styles';
 
 export default function DefaultFooter() {
 
@@ -32,24 +32,33 @@ export default function DefaultFooter() {
           <Image src={logoLeve} className="leveLogoImage" alt={"Logo da Leve Energia Renovável"} priority={false} loading='lazy' />
           <CompanyNameAndCNPJ className='footerCompanyNameAndCNPJ'>
             <p className='highlighted'>Leve Energia Renovável</p>
-            <p >CNPJ 45.193.816/0001-17</p>
+            <p >CNPJ 42.497.169/0001-49</p>
           </CompanyNameAndCNPJ>
           <p className='leveRightsDesktop'>{texts.rights}</p>
         </LegalContainer>
 
         <ContactContainer className='footerContactContainer'>
           <p className='contactUs'>Fale com a gente</p>
-          <Contact className='contact'>
-            <PhoneIcon className='icon' />
-            <p className='phone'>{data?.telefone}</p>
-          </Contact>
-          <Contact className='contact'>
-            <EmailIcon className='icon' />
-            <p className='email'>{data?.email}</p>
-          </Contact>
+          <ContactContentContainer>
+
+            <ContactContent>
+              <p className='comercialService'>Atendimento comercial</p>
+              <Contact className='contact'>
+                <p className='phone'>{data?.emailComercial}</p>
+              </Contact>
+            </ContactContent>
+            <ContactContent>
+              <p className='comercialService'>Atendimento a clientes</p>
+              <Contact className='contact'>
+                <p className='email'>{data?.emailClientes}</p>
+              </Contact>
+            </ContactContent>
+          </ContactContentContainer>
+          <p className='privacyPolicy' onClick={() => router.push(PATH_TO.PRIVACY_POLICY)}>Política de Privacidade</p>
+
         </ContactContainer>
 
-        <SocialMediaContainer className='footerSocialMediaContainer'>
+        {/* <SocialMediaContainer className='footerSocialMediaContainer'>
           <FooterSocialMediaContainer>
             {socialMedia.map((media) => {
               return (
@@ -66,8 +75,7 @@ export default function DefaultFooter() {
             </IconButton>
           </FooterSocialMediaContainer>
 
-          <p className='privacyPolicy' onClick={() => router.push(PATH_TO.PRIVACY_POLICY)}>Política de Privacidade</p>
-        </SocialMediaContainer>
+        </SocialMediaContainer> */}
 
         <p className='leveRightsMobile'>{texts.rights}</p>
 

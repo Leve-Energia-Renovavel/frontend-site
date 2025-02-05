@@ -66,11 +66,11 @@ export const newHomeBoxes = [
         subtitle: <p className="subtitle">Economia de até 20% na conta de luz todo mês.</p>
     },
     {
-        title: "Energia limpa e renovável",
+        title: "Energia limpa e acessível",
         subtitle: <p className="subtitle">Reduza a emissão de poluentes na atmosfera.</p>
     },
     {
-        title: "Sem custos extras",
+        title: "Sem taxas e custos extras",
         subtitle: <p className="subtitle">Adesão gratuita, sem investimentos e custos extras.</p>
     },
     {

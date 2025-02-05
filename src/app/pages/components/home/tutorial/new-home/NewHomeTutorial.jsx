@@ -25,7 +25,7 @@ export default function NewHomeTutorial() {
             </CardContainer>
 
             <ButtonContainer className='leveTutorialButtonContainer'>
-                <CTAButton onClick={() => handleScrollToId("calculateYourEconomy")} aria-label="Tenho interesse"><span>Tenho interesse</span></CTAButton>
+                <CTAButton onClick={() => handleScrollToId("calculateYourEconomy")} aria-label="Quero me cadastrar"><span>Quero me cadastrar</span></CTAButton>
             </ButtonContainer>
 
             <Divider>

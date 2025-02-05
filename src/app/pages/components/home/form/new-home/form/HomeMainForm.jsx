@@ -1,22 +1,17 @@
 "use client"
 
 import { createSignupPayload } from '@/app/service/lead-service/LeadService';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import InputMask from "react-input-mask";
 import infoJson from '../../../../../../../../public/info.json';
-import { HomeMainForm as Form, FormTitleContainer, HomeFormContainer, HomeFormInput, FormSelect as Select, UserTypeFormButtonContainer, UserTypeFormContainer } from "./styles";
+import { HomeMainForm as Form, FormTitleContainer, HomeFormContainer, HomeFormInput } from "./styles";
 
 import { useStoreHome } from '@/app/hooks/stores/home/useStoreHome';
-import { useStoreUser } from '@/app/hooks/stores/useStore';
-import { useStoreMessages } from '@/app/hooks/stores/useStoreMessages';
 import HomeFormButton from '@/app/pages/components/utils/buttons/home/form/HomeFormButton';
 import { USER_TYPE } from '@/app/pages/enums/globalEnums';
-import { cepInputComplete, cepInputIncomplete, couponInputComplete, emailInputComplete, emailInputIncomplete, labelColorHelper, labelColorHelperForMasked, nameInputCompleted, nameInputIncomplete, phoneInputComplete, phoneInputIncomplete } from '@/app/utils/helper/form/formHelper';
-import { Dropbox } from 'dropbox';
-import HomeMainFormSimulator from '../../simulator/HomeMainFormSimulator';
+import { saveDataToDropbox } from '@/app/service/dropbox-service/DropboxService';
+import { cepInputComplete, cepInputIncomplete, emailInputComplete, emailInputIncomplete, labelColorHelper, labelColorHelperForMasked, nameInputCompleted, nameInputIncomplete, phoneInputComplete, phoneInputIncomplete } from '@/app/utils/helper/form/formHelper';
 
 const texts = infoJson.home
 
@@ -24,46 +19,23 @@ export default function HomeMainForm() {
 
     const router = useRouter()
 
-    const search = useSearchParams()
-    const storeUser = useStoreUser()
-    const storeMessage = useStoreMessages()
     const storeHome = useStoreHome()
-
-    const cupom = search.get("cupom")
 
     const texts = infoJson.home
 
-    const setNotifications = storeMessage.setNotifications
-    const setErrors = storeMessage.setErrors
-
     const selectedType = storeHome?.selectedUserType
-    const changeUserType = storeHome?.changeUserType
 
     const isCompany = selectedType === USER_TYPE.PJ
 
     const [isLoading, setLoading] = useState(false)
+    const [hasSubmitedForm, setHasSubmitedForm] = useState(false)
 
     const [formState, setFormState] = useState({
         name: '',
         email: '',
         phone: '',
         cep: '',
-        cost: 200,
-        type: selectedType,
-        coupon: cupom,
-        ...(isCompany && {
-            companyName: '',
-        })
-
     })
-
-    const handleChangeUserType = (usertype) => {
-        changeUserType(usertype)
-        setFormState((prevState) => ({
-            ...prevState,
-            type: usertype,
-        }));
-    }
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -82,57 +54,13 @@ export default function HomeMainForm() {
             formState?.email?.toLowerCase(),
             formState?.phone,
             formState?.cep,
-            formState?.cost,
-            formState?.type,
-            formState?.coupon,
         );
 
         submitData.data = new Date().toLocaleString('pt-BR');
+        await saveDataToDropbox(submitData, setHasSubmitedForm, setLoading)
+    }
 
-        try {
-            const accessToken = process.env.NEXT_PUBLIC_DROPBOX_ACCESS_TOKEN;
-            const dbx = new Dropbox({ accessToken });
 
-            const filePath = '/planilha_leads.csv';
-
-            let existingData = '';
-            try {
-                await dbx.filesGetMetadata({ path: filePath });
-
-                const existingFile = await dbx.filesDownload({ path: filePath });
-                const fileBlob = existingFile.result.fileBlob;
-                existingData = await fileBlob.text();
-            } catch (error) {
-                if (error.status !== 409) {
-                    throw error;
-                }
-            }
-
-            const headers = Object.keys(submitData).join(',');
-            const newRow = convertToCSV(submitData);
-            const csvData = existingData ? `${existingData}\n${newRow}` : `${headers}\n${newRow}`;
-
-            const response = await dbx.filesUpload({
-                path: filePath,
-                contents: csvData,
-                mode: 'overwrite',
-                autorename: false,
-                mute: false,
-            });
-
-            console.log('Arquivo enviado com sucesso!');
-        } catch (error) {
-            console.error('Erro ao enviar arquivo para o Dropbox:', error.response?.data || error.message);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const convertToCSV = (data) => {
-        return Object.values(data)
-            .map(value => `"${value}"`)
-            .join(',');
-    };
     const required = true
 
     return (
@@ -140,7 +68,7 @@ export default function HomeMainForm() {
             <Form acceptCharset="UTF-8" method="POST" id={`leadForm`} className="leveHomeMainForm" onSubmit={handleSubmit}>
 
                 <FormTitleContainer className='formTitleContainer'>
-                    <h2 className='formTitle'>Calcule sua economia e o impacto positivo que você pode promover</h2>
+                    <h2 className='formTitle'>Faça seu cadastro para receber o contato do nosso time comercial</h2>
                 </FormTitleContainer>
 
                 <HomeFormInput
@@ -210,45 +138,17 @@ export default function HomeMainForm() {
                             InputLabelProps={{ style: { color: labelColorHelperForMasked(formState?.cep) } }} />}
                 </InputMask>
 
-                <HomeFormInput
-                    type="text"
-                    name='coupon'
-                    className="homeFormInput"
-                    placeholder={`Cupom`}
-                    label={`Cupom de desconto`}
-                    onChange={handleInputChange}
-                    required={false}
-                    success={couponInputComplete(formState?.coupon)}
-                    value={formState?.coupon?.toUpperCase()}
-                    defaultValue={cupom ? cupom : ""}
-                    disabled={isLoading}
-                    InputLabelProps={{ style: { color: labelColorHelper(formState?.coupon) } }} />
+                {!hasSubmitedForm ?
+                    (<>
+                        <HomeFormButton title={"Enviar"} isLoading={isLoading} />
+                        <p className='privacyPolicyDisclaimer'>{texts.mobile.byClickingButtonAbove}<span className='privacyPolicy' onClick={() => router.push(`politica-de-privacidade`)}>{texts.privacyPolicy}</span>.</p>
+                    </>
+                    ) :
+                    (<FormTitleContainer className='formTitleContainer'>
+                        <h2 className='formTitle'>Recebemos o seu cadastro! Em breve entraremos em contato.</h2>
+                    </FormTitleContainer>)
+                }
 
-                <UserTypeFormContainer className='homeFormUserTypeFormContainer'>
-                    <p className='chooseWhereToEconomy'>{texts.iWantToEconomy}</p>
-                    <UserTypeFormButtonContainer className='homeFormUserTypeButtons'>
-                        <Select
-                            className='homeFormHouseSelect'
-                            startIcon={<HomeOutlinedIcon />}
-                            onClick={() => handleChangeUserType(USER_TYPE.PF)}
-                            selected={!isCompany} >
-                            {texts.house}
-                        </Select>
-                        <Select
-                            className='homeFormCompanySelect'
-                            startIcon={<StorefrontOutlinedIcon />}
-                            onClick={() => handleChangeUserType(USER_TYPE.PJ)}
-                            selected={isCompany} >
-                            {texts.company}
-                        </Select>
-                    </UserTypeFormButtonContainer>
-                </UserTypeFormContainer>
-
-                <HomeMainFormSimulator simulationCost={formState?.cost} handleSimulationCost={handleInputChange} />
-
-                <HomeFormButton title={"Registrar meu interesse"} isLoading={isLoading} />
-
-                <p className='privacyPolicyDisclaimer'>{texts.mobile.byClickingButtonAbove}<span className='privacyPolicy' onClick={() => router.push(`politica-de-privacidade`)}>{texts.privacyPolicy}</span>.</p>
             </Form>
         </HomeFormContainer>
     )

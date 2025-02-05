@@ -23,8 +23,6 @@ export default function HomeMain() {
                 <HomeHowLeveWorks />
 
                 <HomeForm />
-
-                <HomeLeveAboutUs />
             </Container >
         </>
     )

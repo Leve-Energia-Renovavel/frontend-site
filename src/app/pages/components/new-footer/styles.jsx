@@ -87,22 +87,7 @@ export const SocialMediaContainer = styled.div`
     width: 100%;
     max-width: fit-content;
 
-    .privacyPolicy {
-        font-family: "Graphie";
-        font-size: ${footerFontSize};
-        font-weight: 400;
-        line-height: 120%;
-        color: ${background.yellow};
-        
-        white-space: nowrap;
-        margin-top: 37px;
-        margin-left: 8px;
-        
-        &:hover {
-            cursor: pointer;
-            text-decoration: underline
-        }
-    }
+
     
     @media (max-width: 600px) {
         margin-right: auto;
@@ -156,6 +141,16 @@ export const FooterSocialMediaContainer = styled.div`
     }
 `
 
+export const ContactContentContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+
+    gap: 94px;
+`
+export const ContactContent = styled.div`
+    display: flex;
+    flex-direction: column;
+`
 export const ContactContainer = styled.div`
     display: flex;
     flex-direction: column;
@@ -174,6 +169,28 @@ export const ContactContainer = styled.div`
         font-weight: 500;
         line-height: 120%;
         color: ${background.yellow};
+    }
+    
+    .comercialService {
+        font-weight: 500;
+        color: ${background.white};
+
+    }
+
+    .privacyPolicy {
+        font-family: "Graphie";
+        font-size: ${footerFontSize};
+        font-weight: 400;
+        line-height: 120%;
+        color: ${background.yellow};
+        
+        white-space: nowrap;
+        margin-top: 78px;
+        
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline
+        }
     }
     
     @media (max-width: 600px) {
