@@ -146,6 +146,11 @@ export const ContactContentContainer = styled.div`
     flex-direction: row;
 
     gap: 94px;
+    
+    @media (max-width: 600px) {
+        flex-wrap: wrap;
+        gap: 35px;
+    }
 `
 export const ContactContent = styled.div`
     display: flex;
