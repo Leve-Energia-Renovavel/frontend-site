@@ -44,6 +44,8 @@ export const FormButton = styled(FormButtonBase)`
       width: 100%;
       max-width: 320px;
       margin: 0 auto;
+
+      margin-top: 32px;
     }
 `
 

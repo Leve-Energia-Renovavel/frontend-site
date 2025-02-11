@@ -95,7 +95,7 @@ export const FormTitleContainer = styled.div`
 
   padding: 0px;
 
-  margin: 62px auto;
+  margin: 28px auto;
 
   .formTitle {
     font-family: "Graphie";
@@ -337,7 +337,7 @@ export const HomeMainForm = styled.form`
     
     padding: 24px;
 
-    min-height: 756px;
+    min-height: 655px;
     height: auto;
     max-height: 756px;
     
@@ -380,6 +380,9 @@ export const HomeMainForm = styled.form`
       padding: 24px ;
       border-radius: 0px;
       max-height: 776px;
+
+      gap: 16px;
+
 
       .privacyPolicyDisclaimer {
         display: block;
