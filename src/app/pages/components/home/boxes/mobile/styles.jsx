@@ -229,6 +229,8 @@ export const CTAButtonEconomy = styled(Button)`
 
   padding: 15px 53px;
 
+  min-width: 320px;
+  width: 100%;
   max-width: 330px;
   
   span {

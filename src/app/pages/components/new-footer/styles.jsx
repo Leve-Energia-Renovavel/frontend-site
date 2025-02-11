@@ -45,7 +45,7 @@ export const LegalContainer = styled.div`
     justify-content: space-between;
     align-items: start;
 
-    width: 100%;
+    width: 552px;
     max-width: ${containerWidth} / 3;
     
     gap: 42px;
@@ -66,6 +66,8 @@ export const LegalContainer = styled.div`
     }
     
     @media (max-width: 600px) {
+        width: 100%;
+
         .leveRightsDesktop {
             display: none;
         }

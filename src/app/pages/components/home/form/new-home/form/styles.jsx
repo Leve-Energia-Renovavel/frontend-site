@@ -95,8 +95,8 @@ export const FormTitleContainer = styled.div`
 
   padding: 0px;
 
-  margin: 28px auto;
-
+  margin: 24px auto;
+  
   .formTitle {
     font-family: "Graphie";
     font-size: 24px;
@@ -104,15 +104,16 @@ export const FormTitleContainer = styled.div`
     font-weight: 500;
     color: ${background.yellow};
     max-width: 395px;
-
+    
     text-align: center;
   } 
   
   @media (max-width: 600px) {
     padding: 0 0 1rem 0;
-
+    margin: 12px auto;
+    
     .formTitle {
-      font-size: 20px;
+      font-size: 24px;
       white-space: normal;
     }
 
@@ -342,7 +343,7 @@ export const HomeMainForm = styled.form`
     max-height: 756px;
     
     overflow: hidden;
-
+    
     .privacyPolicyDisclaimer {
       font-family: "Graphie";
       font-size: 12px;
@@ -351,14 +352,14 @@ export const HomeMainForm = styled.form`
       text-align: left;
       letter-spacing: 0.2px;
       color: ${background.white};
-
+      
       text-align: center;
       
       max-width: 320px;
       
       margin: 0 auto;
     }
-
+    
     .privacyPolicy {
       font-family: "Graphie";
       font-size: 12px;
@@ -368,19 +369,20 @@ export const HomeMainForm = styled.form`
       text-align: left;
       color: ${background.white};
       border-radius: 5px;
-
+      
       &:hover{
         cursor: pointer;
         color: ${background.green};
         background-color: ${background.yellow};
       }
     }
-
+    
     @media (max-width: 600px) {
       padding: 24px ;
       border-radius: 0px;
       max-height: 776px;
-
+      min-height: 680px;
+      
       gap: 16px;
 
 
