@@ -9,7 +9,7 @@ const useFetchEmailAndWhatsapp = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const finalUrl = `https://api.allorigins.win/raw?url=${process.env.NEXT_PUBLIC_FETCH_WHATSAPP_EMAIL}`;
+                const finalUrl = `${process.env.NEXT_PUBLIC_FETCH_WHATSAPP_EMAIL}`;
                 const response = await axios.get(finalUrl);
                 const parsedData = typeof response.data === "string" ? JSON.parse(response.data) : response.data;
 
