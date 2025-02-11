@@ -13,7 +13,6 @@ import LoginModal from "../utils/modals/header-modal/login-modal/LoginModal";
 import { HeaderContainer, PartnerContainer, ProfileIcon } from './styles';
 
 export default function Header() {
-
     const router = useRouter()
     const pathname = usePathname()
 
