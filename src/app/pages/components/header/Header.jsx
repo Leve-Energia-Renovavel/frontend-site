@@ -62,7 +62,6 @@ export default function Header() {
                 } */}
             </HeaderContainer>
 
-            {/* Header modals below*/}
             {openLogin && (
                 isLoggedUser ? (
                     <LoggedModal
