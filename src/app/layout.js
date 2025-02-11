@@ -79,7 +79,6 @@ export default function RootLayout({ children }) {
       <body suppressHydrationWarning={true} style={{ background: "#EFEFEC" }} >
         <Header />
         {children}
-        <WhatsAppFAB />
         <Footer />
         <Messages />
       </body>
